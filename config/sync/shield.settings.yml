@@ -1,0 +1,17 @@
+_core:
+  default_config_hash: FLJZME3II5fjmMSrdEvJHp95ZJf8V_X0jbX0VdVU1BU
+shield_enable: true
+credential_provider: shield
+credentials:
+  shield:
+    user: dv21
+    pass: bc
+allow_cli: true
+debug_header: false
+unset_basic_auth_headers: true
+print: Hello!
+method: 0
+paths: ''
+allowlist: ''
+http_method_allowlist: {  }
+domains: ''

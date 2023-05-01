@@ -1,0 +1,22 @@
+uuid: b2b5067b-7ab7-4008-af37-ac13c380aeb0
+langcode: en
+status: true
+dependencies:
+  theme:
+    - bcbb
+_core:
+  default_config_hash: nGE3EoPQQaQCuqTUtZgw0-KIzmrqdKDzdNQf2JyPUt4
+id: bcbb_primary_local_tasks
+theme: bcbb
+region: header
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Primary tabs'
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: false
+visibility: {  }

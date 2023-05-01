@@ -1,0 +1,10 @@
+_core:
+  default_config_hash: o7UdhCuEHWPn7Pz1c9KT7W818Cvg9EMVd2Gay1qKKPk
+b5_body_schema: ''
+b5_body_bg_schema: ''
+b5_navbar_schema: dark
+b5_navbar_bg_schema: dark
+b5_footer_schema: dark
+b5_footer_bg_schema: secondary
+b5_top_container: container
+b5_top_container_config: ''
