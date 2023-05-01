@@ -1,0 +1,15 @@
+uuid: 715d59f7-7f46-4c64-af10-f551ca7d3860
+langcode: en
+status: true
+dependencies: {  }
+id: dev
+label: Dev
+description: ''
+weight: 0
+stackable: false
+storage: folder
+folder: ../config/split/dev
+module: {  }
+theme: {  }
+complete_list: {  }
+partial_list: {  }
