@@ -1,0 +1,78 @@
+{
+    "name": "bcgov/bcbb_template",
+    "description": "BC Base Build Template",
+    "type": "project",
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://github.com/bcgov/bcbb-template",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/bcgov/bcbb"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/bcgov/bcbb-theme"
+        }
+    ],
+    "require": {
+        "bcgov/bcbb": "1.0.x-dev",
+        "bcgov/bcbb_theme": "1.0.x-dev",
+        "composer/installers": "^2.0",
+        "drupal/core-composer-scaffold": "^10.1",
+        "drupal/core-recommended": "^10.1"
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "drupal/core-composer-scaffold": true,
+            "phpstan/extension-installer": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "drupal-scaffold": {
+            "locations": {
+                "web-root": "html/"
+            }
+        },
+        "installer-paths": {
+            "html/core": [
+                "type:drupal-core"
+            ],
+            "html/libraries/{$name}": [
+                "type:drupal-library"
+            ],
+            "html/modules/contrib/{$name}": [
+                "type:drupal-module"
+            ],
+            "html/profiles/contrib/{$name}": [
+                "type:drupal-profile"
+            ],
+            "html/themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ],
+            "drush/Commands/contrib/{$name}": [
+                "type:drupal-drush"
+            ],
+            "html/modules/custom/{$name}": [
+                "type:drupal-custom-module"
+            ],
+            "html/profiles/custom/{$name}": [
+                "type:drupal-custom-profile"
+            ],
+            "html/themes/custom/{$name}": [
+                "type:drupal-custom-theme"
+            ]
+        }
+    }
+}

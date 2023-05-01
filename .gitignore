@@ -1,0 +1,32 @@
+html/*
+!html/modules/custom/
+!html/themes/custom/
+
+vendor
+*/*/*/vendor
+*/*/vendor
+
+# Ignore Development Files
+.idea
+*.backup
+*.ddev
+*.diff
+*.DS_Store
+*.err
+*.log
+*.orig
+*.prettierignore
+*.rej
+*.sass-cache
+*.swo
+*.swp
+*.vi
+compass_app_log.txt
+
+# SASS
+.sass-cache
+*.sass-cache*
+**/sass/*.css
+
+# Custom
+docker
