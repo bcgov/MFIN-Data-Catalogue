@@ -1,8 +1,8 @@
 {
-    "name": "bcgov/bcbb_template",
-    "description": "BC Base Build Template",
+    "name": "bcgov-c/mfin-data-catalogue",
+    "description": "BC MFIN Data Catalogue",
     "type": "project",
-    "homepage": "https://github.com/bcgov/bcbb-template",
+    "homepage": "https://github.com/bcgov-c/MFIN-Data-Catalogue",
     "repositories": [
         {
             "type": "composer",
