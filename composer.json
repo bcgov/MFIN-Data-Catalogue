@@ -2,7 +2,6 @@
     "name": "bcgov/bcbb_template",
     "description": "BC Base Build Template",
     "type": "project",
-    "license": "GPL-2.0-or-later",
     "homepage": "https://github.com/bcgov/bcbb-template",
     "repositories": [
         {
