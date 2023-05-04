@@ -1,5 +1,9 @@
 html/*
+!html/modules/
+html/modules/*
 !html/modules/custom/
+!html/themes/
+html/themes/*
 !html/themes/custom/
 
 vendor
