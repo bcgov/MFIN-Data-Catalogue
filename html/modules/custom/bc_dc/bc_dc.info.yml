@@ -1,0 +1,5 @@
+name: 'BC Data Catalogue Module'
+description: 'Functionality specific to the BC Data Catalogue.'
+type: module
+core_version_requirement: ^10.1
+package: 'BC Base Build'
