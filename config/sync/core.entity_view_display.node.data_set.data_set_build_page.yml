@@ -21,6 +21,7 @@ dependencies:
     - field.field.node.data_set.field_used_in_products
     - node.type.data_set
   module:
+    - bc_dc
     - datetime
     - entity_reference_revisions
     - layout_builder
@@ -39,33 +40,31 @@ third_party_settings:
           context_mapping: {  }
           column_widths: 50-50
         components:
-          e373b793-b2af-4da5-906a-447a1dd2e47c:
-            uuid: e373b793-b2af-4da5-906a-447a1dd2e47c
+          ec64ac8c-7a00-4719-b298-810a0345c197:
+            uuid: ec64ac8c-7a00-4719-b298-810a0345c197
             region: first
             configuration:
-              id: 'inline_block:basic'
-              label: 'Edit description'
+              id: bc_dc_edit_button
+              label: 'Edit section button'
               label_display: '0'
-              provider: layout_builder
-              view_mode: full
-              context_mapping: {  }
-              block_revision_id: 3
-              block_serialized: null
-            weight: 0
+              provider: bc_dc
+              context_mapping:
+                node: layout_builder.entity
+              query_param: data_set_description
+            weight: 1
             additional: {  }
-          c7fecf9d-27cc-442a-a9d0-bd4bf79ad7c9:
-            uuid: c7fecf9d-27cc-442a-a9d0-bd4bf79ad7c9
+          742a25ec-0b8f-4cc1-9f7b-b78277880911:
+            uuid: 742a25ec-0b8f-4cc1-9f7b-b78277880911
             region: second
             configuration:
-              id: 'inline_block:basic'
-              label: 'Edit columns'
+              id: bc_dc_edit_button
+              label: 'Edit section button'
               label_display: '0'
-              provider: layout_builder
-              view_mode: full
-              context_mapping: {  }
-              block_revision_id: 4
-              block_serialized: null
-            weight: 0
+              provider: bc_dc
+              context_mapping:
+                node: layout_builder.entity
+              query_param: data_set_columns
+            weight: 1
             additional: {  }
         third_party_settings: {  }
       -
