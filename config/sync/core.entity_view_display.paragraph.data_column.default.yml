@@ -1,0 +1,135 @@
+uuid: a031d7b1-7af1-4fc8-816d-a20c1b9fd421
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.data_column.field_column_allowed_values
+    - field.field.paragraph.data_column.field_column_data_quality
+    - field.field.paragraph.data_column.field_column_description
+    - field.field.paragraph.data_column.field_column_name
+    - field.field.paragraph.data_column.field_column_size
+    - field.field.paragraph.data_column.field_column_transformations
+    - field.field.paragraph.data_column.field_column_type
+    - field.field.paragraph.data_column.field_metadata_type
+    - field.field.paragraph.data_column.field_provenance_field_name
+    - field.field.paragraph.data_column.field_provenance_field_number
+    - field.field.paragraph.data_column.field_provenance_field_question
+    - field.field.paragraph.data_column.field_provenance_form_name
+    - field.field.paragraph.data_column.field_provenance_form_number
+    - field.field.paragraph.data_column.field_references
+    - paragraphs.paragraphs_type.data_column
+  module:
+    - text
+id: paragraph.data_column.default
+targetEntityType: paragraph
+bundle: data_column
+mode: default
+content:
+  field_column_allowed_values:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 23
+    region: content
+  field_column_data_quality:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 19
+    region: content
+  field_column_description:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 20
+    region: content
+  field_column_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 15
+    region: content
+  field_column_size:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 16
+    region: content
+  field_column_transformations:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 21
+    region: content
+  field_column_type:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_metadata_type:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_provenance_field_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 17
+    region: content
+  field_provenance_field_number:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_provenance_field_question:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 22
+    region: content
+  field_provenance_form_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 18
+    region: content
+  field_provenance_form_number:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_references:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 7
+    region: content
+hidden: {  }

@@ -1,0 +1,20 @@
+uuid: c411404a-6856-4f8c-ade5-7b05a18ffa2c
+langcode: en
+status: true
+dependencies:
+  theme:
+    - bcbb_theme
+_core:
+  default_config_hash: pm8V-xAZgAPqWUKY1vYsK4Ld8ByUuFiu-8sL2nHpgmw
+id: bcbb_theme_local_actions
+theme: bcbb_theme
+region: content
+weight: -2
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

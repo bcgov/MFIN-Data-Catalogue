@@ -1,0 +1,25 @@
+uuid: 522a6c20-60b5-40df-842a-efa24efbc2c8
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bcbb_theme
+_core:
+  default_config_hash: jddjLDEu-c8gqvK5es7A__WnTl6lG0nlcmSuVZ6YfGA
+id: bcbb_theme_branding
+theme: bcbb_theme
+region: nav_branding
+weight: -6
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: false
+visibility: {  }

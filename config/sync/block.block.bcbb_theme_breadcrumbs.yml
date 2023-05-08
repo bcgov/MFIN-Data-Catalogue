@@ -1,0 +1,22 @@
+uuid: c68059f1-516d-4089-8dca-b34d698d0a74
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bcbb_theme
+_core:
+  default_config_hash: it7X2p03dz4oCkHOe5AkSEvGhgn-HC6VHe9_Lh4ZU8c
+id: bcbb_theme_breadcrumbs
+theme: bcbb_theme
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

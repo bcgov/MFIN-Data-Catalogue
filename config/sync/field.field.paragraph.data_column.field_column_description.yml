@@ -1,0 +1,22 @@
+uuid: 03c19f7a-1aaf-4d69-b438-43619fdd559b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_column_description
+    - paragraphs.paragraphs_type.data_column
+  module:
+    - text
+id: paragraph.data_column.field_column_description
+field_name: field_column_description
+entity_type: paragraph
+bundle: data_column
+label: 'Column description'
+description: 'Plain English description of the column.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

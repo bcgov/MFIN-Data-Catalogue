@@ -1,0 +1,17 @@
+uuid: a6b10d79-c607-4145-849b-a75950f6178b
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Data set'
+type: data_set
+description: ''
+help: ''
+new_revision: true
+preview_mode: 0
+display_submitted: false

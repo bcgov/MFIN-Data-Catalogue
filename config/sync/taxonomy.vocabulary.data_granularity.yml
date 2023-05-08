@@ -1,0 +1,8 @@
+uuid: 7cc0c77d-32ec-40cf-a2dd-d7f151487b2f
+langcode: en
+status: true
+dependencies: {  }
+name: 'Data granularity'
+vid: data_granularity
+description: ''
+weight: 0

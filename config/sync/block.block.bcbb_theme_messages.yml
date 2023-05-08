@@ -1,0 +1,22 @@
+uuid: 3db3d476-57c9-4295-90fd-a2cefb3da1b1
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bcbb_theme
+_core:
+  default_config_hash: kT3xzqAg9A6B1stxNUMbHy_5dzmVsUg-XO0w_k39BZo
+id: bcbb_theme_messages
+theme: bcbb_theme
+region: content
+weight: -7
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: Messages
+  label_display: '0'
+  provider: system
+visibility: {  }

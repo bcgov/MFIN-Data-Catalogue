@@ -1,0 +1,29 @@
+uuid: 408b787f-2251-40ea-8992-a3afea0988e3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_series
+    - node.type.data_set
+    - taxonomy.vocabulary.data_set_series
+id: node.data_set.field_series
+field_name: field_series
+entity_type: node
+bundle: data_set
+label: Series
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      data_set_series: data_set_series
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

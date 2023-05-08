@@ -1,0 +1,19 @@
+uuid: 20a9990f-3081-4545-a711-ba2056f1eff3
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - text
+id: paragraph.field_column_data_quality
+field_name: field_column_data_quality
+entity_type: paragraph
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,22 @@
+uuid: 48281b8c-5542-4a04-98f5-21b0580ad397
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_provenance_field_question
+    - paragraphs.paragraphs_type.data_column
+  module:
+    - text
+id: paragraph.data_column.field_provenance_field_question
+field_name: field_provenance_field_question
+entity_type: paragraph
+bundle: data_column
+label: 'Provenance field question'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

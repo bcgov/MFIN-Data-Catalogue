@@ -1,0 +1,8 @@
+uuid: 3dc6c67b-4f05-487d-bed1-d7297249a3fb
+langcode: en
+status: true
+dependencies: {  }
+name: 'Data product'
+vid: data_product
+description: ''
+weight: 0

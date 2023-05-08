@@ -1,0 +1,29 @@
+uuid: f55532c7-ef12-467c-9124-13f04c2fcabb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_data_set_format
+    - node.type.data_set
+    - taxonomy.vocabulary.data_set_format
+id: node.data_set.field_data_set_format
+field_name: field_data_set_format
+entity_type: node
+bundle: data_set
+label: 'Data set format'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      data_set_format: data_set_format
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

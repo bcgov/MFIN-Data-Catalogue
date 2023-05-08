@@ -1,0 +1,22 @@
+uuid: 97bb4b04-2e10-4d7b-af34-429c1d8de348
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_column_allowed_values
+    - paragraphs.paragraphs_type.data_column
+  module:
+    - text
+id: paragraph.data_column.field_column_allowed_values
+field_name: field_column_allowed_values
+entity_type: paragraph
+bundle: data_column
+label: 'Column allowed values'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

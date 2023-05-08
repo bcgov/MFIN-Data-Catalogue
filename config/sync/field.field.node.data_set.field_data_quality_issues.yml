@@ -1,0 +1,22 @@
+uuid: 67b2c946-d436-4aeb-92cd-b8720ff66b11
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_data_quality_issues
+    - node.type.data_set
+  module:
+    - text
+id: node.data_set.field_data_quality_issues
+field_name: field_data_quality_issues
+entity_type: node
+bundle: data_set
+label: 'Data quality issues'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

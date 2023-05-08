@@ -1,0 +1,19 @@
+uuid: 5d346834-b3e5-4272-aee3-1285da182f3c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_provenance_field_name
+    - paragraphs.paragraphs_type.data_column
+id: paragraph.data_column.field_provenance_field_name
+field_name: field_provenance_field_name
+entity_type: paragraph
+bundle: data_column
+label: 'Provenance field name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

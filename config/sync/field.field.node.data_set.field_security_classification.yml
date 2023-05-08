@@ -1,0 +1,29 @@
+uuid: b8e75d8f-60e1-44d5-b639-6c5c47eb6acf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_security_classification
+    - node.type.data_set
+    - taxonomy.vocabulary.security_classification
+id: node.data_set.field_security_classification
+field_name: field_security_classification
+entity_type: node
+bundle: data_set
+label: 'Security classification'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      security_classification: security_classification
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

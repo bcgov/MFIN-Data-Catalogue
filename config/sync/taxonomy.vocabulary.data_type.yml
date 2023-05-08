@@ -1,0 +1,8 @@
+uuid: bf00e6b3-af65-4376-9947-35e0d6684bb4
+langcode: en
+status: true
+dependencies: {  }
+name: 'Data type'
+vid: data_type
+description: ''
+weight: 0

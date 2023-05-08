@@ -1,0 +1,22 @@
+uuid: c1ac3178-9857-43e8-ab9b-6c69cc8a1b73
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_column_transformations
+    - paragraphs.paragraphs_type.data_column
+  module:
+    - text
+id: paragraph.data_column.field_column_transformations
+field_name: field_column_transformations
+entity_type: paragraph
+bundle: data_column
+label: 'Column transformations'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

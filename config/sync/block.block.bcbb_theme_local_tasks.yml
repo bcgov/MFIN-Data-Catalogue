@@ -1,0 +1,22 @@
+uuid: da3f5e25-6a39-45fd-8b12-3f03ae937df8
+langcode: en
+status: true
+dependencies:
+  theme:
+    - bcbb_theme
+_core:
+  default_config_hash: KN2u4yHtWY3dO6EpDmCwJ6b7re2B1vPk8h4r7WIPYgY
+id: bcbb_theme_local_tasks
+theme: bcbb_theme
+region: content
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

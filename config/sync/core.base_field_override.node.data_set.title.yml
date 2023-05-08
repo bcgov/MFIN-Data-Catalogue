@@ -1,0 +1,18 @@
+uuid: db637b23-200a-4318-8a07-6e38b70c813e
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.data_set
+id: node.data_set.title
+field_name: title
+entity_type: node
+bundle: data_set
+label: 'Data set name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,61 @@
+uuid: 0f86782f-4340-452e-875b-1f1a7ca7666c
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.node.data_set_columns
+    - field.field.node.data_set.body
+    - field.field.node.data_set.field_columns
+    - field.field.node.data_set.field_data_quality_issues
+    - field.field.node.data_set.field_data_set_format
+    - field.field.node.data_set.field_data_set_historical_change
+    - field.field.node.data_set.field_data_set_type
+    - field.field.node.data_set.field_granularity
+    - field.field.node.data_set.field_modified_date
+    - field.field.node.data_set.field_owner_organization
+    - field.field.node.data_set.field_published_date
+    - field.field.node.data_set.field_security_classification
+    - field.field.node.data_set.field_series
+    - field.field.node.data_set.field_source_system
+    - field.field.node.data_set.field_used_in_products
+    - node.type.data_set
+  module:
+    - paragraphs
+id: node.data_set.data_set_columns
+targetEntityType: node
+bundle: data_set
+mode: data_set_columns
+content:
+  field_columns:
+    type: entity_reference_paragraphs
+    weight: 0
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+hidden:
+  body: true
+  created: true
+  field_data_quality_issues: true
+  field_data_set_format: true
+  field_data_set_historical_change: true
+  field_data_set_type: true
+  field_granularity: true
+  field_modified_date: true
+  field_owner_organization: true
+  field_published_date: true
+  field_security_classification: true
+  field_series: true
+  field_source_system: true
+  field_used_in_products: true
+  path: true
+  promote: true
+  status: true
+  sticky: true
+  title: true
+  uid: true

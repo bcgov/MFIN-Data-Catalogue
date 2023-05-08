@@ -1,0 +1,22 @@
+uuid: 4f3a6dd6-8e49-43f2-9ec3-390946dd8b91
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_data_set_historical_change
+    - node.type.data_set
+  module:
+    - text
+id: node.data_set.field_data_set_historical_change
+field_name: field_data_set_historical_change
+entity_type: node
+bundle: data_set
+label: 'Data set historical change'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

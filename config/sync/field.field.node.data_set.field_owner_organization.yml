@@ -1,0 +1,29 @@
+uuid: 4311e9ff-e7a5-45ef-9358-bc6906b88376
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_owner_organization
+    - node.type.data_set
+    - taxonomy.vocabulary.organization
+id: node.data_set.field_owner_organization
+field_name: field_owner_organization
+entity_type: node
+bundle: data_set
+label: 'Owner organization'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      organization: organization
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

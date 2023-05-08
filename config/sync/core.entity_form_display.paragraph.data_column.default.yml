@@ -1,0 +1,148 @@
+uuid: 24f95813-19d6-4965-acee-95555946e074
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.data_column.field_column_allowed_values
+    - field.field.paragraph.data_column.field_column_data_quality
+    - field.field.paragraph.data_column.field_column_description
+    - field.field.paragraph.data_column.field_column_name
+    - field.field.paragraph.data_column.field_column_size
+    - field.field.paragraph.data_column.field_column_transformations
+    - field.field.paragraph.data_column.field_column_type
+    - field.field.paragraph.data_column.field_metadata_type
+    - field.field.paragraph.data_column.field_provenance_field_name
+    - field.field.paragraph.data_column.field_provenance_field_number
+    - field.field.paragraph.data_column.field_provenance_field_question
+    - field.field.paragraph.data_column.field_provenance_form_name
+    - field.field.paragraph.data_column.field_provenance_form_number
+    - field.field.paragraph.data_column.field_references
+    - paragraphs.paragraphs_type.data_column
+  module:
+    - text
+id: paragraph.data_column.default
+targetEntityType: paragraph
+bundle: data_column
+mode: default
+content:
+  field_column_allowed_values:
+    type: text_textarea
+    weight: 18
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_column_data_quality:
+    type: text_textarea
+    weight: 14
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_column_description:
+    type: text_textarea
+    weight: 15
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_column_name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_column_size:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_column_transformations:
+    type: text_textarea
+    weight: 16
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_column_type:
+    type: entity_reference_autocomplete
+    weight: 1
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_metadata_type:
+    type: entity_reference_autocomplete
+    weight: 4
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_provenance_field_name:
+    type: string_textfield
+    weight: 12
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_provenance_field_number:
+    type: string_textfield
+    weight: 11
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_provenance_field_question:
+    type: text_textarea
+    weight: 17
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_provenance_form_name:
+    type: string_textfield
+    weight: 10
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_provenance_form_number:
+    type: string_textfield
+    weight: 9
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_references:
+    type: entity_reference_autocomplete
+    weight: 7
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

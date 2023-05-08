@@ -1,0 +1,22 @@
+uuid: 8397fe2e-1001-4638-a610-fdc999776a75
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_column_data_quality
+    - paragraphs.paragraphs_type.data_column
+  module:
+    - text
+id: paragraph.data_column.field_column_data_quality
+field_name: field_column_data_quality
+entity_type: paragraph
+bundle: data_column
+label: 'Column data quality'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

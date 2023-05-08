@@ -1,0 +1,22 @@
+uuid: f89400f7-ca08-4d31-bc0d-3077645f06b4
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.data_set
+id: node.data_set.promote
+field_name: promote
+entity_type: node
+bundle: data_set
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

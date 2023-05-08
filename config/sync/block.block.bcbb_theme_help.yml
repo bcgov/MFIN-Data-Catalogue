@@ -1,0 +1,22 @@
+uuid: 8236f103-7973-479d-873c-d4dc0ec1237a
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - bcbb_theme
+_core:
+  default_config_hash: 2Sb7OjWq2isTuwEX64881Pw1gRFrkq5--2lIZ4tubGE
+id: bcbb_theme_help
+theme: bcbb_theme
+region: content
+weight: -3
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

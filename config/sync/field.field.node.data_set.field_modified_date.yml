@@ -1,0 +1,24 @@
+uuid: 540080a8-a138-4731-86d7-955fe0638b7b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_modified_date
+    - node.type.data_set
+  module:
+    - datetime
+id: node.data_set.field_modified_date
+field_name: field_modified_date
+entity_type: node
+bundle: data_set
+label: 'Modified date'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

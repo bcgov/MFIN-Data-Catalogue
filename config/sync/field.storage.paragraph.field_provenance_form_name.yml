@@ -1,0 +1,21 @@
+uuid: ce9552a6-e796-4bb5-8d2e-a73a5ac1292e
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_provenance_form_name
+field_name: field_provenance_form_name
+entity_type: paragraph
+type: string
+settings:
+  max_length: 1024
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

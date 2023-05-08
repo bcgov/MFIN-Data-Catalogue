@@ -1,0 +1,29 @@
+uuid: 559f1c64-8533-4eaa-ae8a-a85ae85bcfbd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_source_system
+    - node.type.data_set
+    - taxonomy.vocabulary.data_system
+id: node.data_set.field_source_system
+field_name: field_source_system
+entity_type: node
+bundle: data_set
+label: 'Source system'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      data_system: data_system
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

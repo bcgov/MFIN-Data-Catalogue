@@ -1,0 +1,22 @@
+uuid: 99d3f3ca-7939-443e-b201-29bae4694cb6
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bcbb_theme
+_core:
+  default_config_hash: lzGvt88HjcMtSoBbfcNfKb9zw28SxIawxUKaPGzL2yc
+id: bcbb_theme_powered_by_drupal
+theme: bcbb_theme
+region: footer
+weight: 0
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

@@ -1,0 +1,19 @@
+uuid: 1d327805-1cde-4bbf-8cf5-be95d33fc4e3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_column_size
+    - paragraphs.paragraphs_type.data_column
+id: paragraph.data_column.field_column_size
+field_name: field_column_size
+entity_type: paragraph
+bundle: data_column
+label: 'Column size'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

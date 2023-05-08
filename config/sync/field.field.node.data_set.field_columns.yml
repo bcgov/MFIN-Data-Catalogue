@@ -1,0 +1,31 @@
+uuid: a4ecaad9-d4d8-4223-8870-262cc53c6fbc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_columns
+    - node.type.data_set
+    - paragraphs.paragraphs_type.data_column
+  module:
+    - entity_reference_revisions
+id: node.data_set.field_columns
+field_name: field_columns
+entity_type: node
+bundle: data_set
+label: Columns
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      data_column: data_column
+    negate: 0
+    target_bundles_drag_drop:
+      data_column:
+        weight: 2
+        enabled: true
+field_type: entity_reference_revisions

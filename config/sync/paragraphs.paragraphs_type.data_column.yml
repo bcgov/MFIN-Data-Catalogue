@@ -1,0 +1,10 @@
+uuid: 49ff1406-6da7-4afb-be3c-639dced96655
+langcode: en
+status: true
+dependencies: {  }
+id: data_column
+label: 'Data column'
+icon_uuid: null
+icon_default: null
+description: 'Describes one column of data from a data set.'
+behavior_plugins: {  }

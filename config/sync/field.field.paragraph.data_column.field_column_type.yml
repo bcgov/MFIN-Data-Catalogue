@@ -1,0 +1,29 @@
+uuid: d7eea596-d936-4ccb-9abc-adee632f3051
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_column_type
+    - paragraphs.paragraphs_type.data_column
+    - taxonomy.vocabulary.data_type
+id: paragraph.data_column.field_column_type
+field_name: field_column_type
+entity_type: paragraph
+bundle: data_column
+label: 'Column type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      data_type: data_type
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

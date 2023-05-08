@@ -1,0 +1,8 @@
+uuid: 5037b587-ea43-44c7-8659-f8ce132fdf63
+langcode: en
+status: true
+dependencies: {  }
+name: 'Metadata type'
+vid: metadata_type
+description: ''
+weight: 0

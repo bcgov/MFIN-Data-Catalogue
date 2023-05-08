@@ -1,0 +1,27 @@
+uuid: ed8e278e-23eb-4386-9309-ce013a6e8cc4
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.account
+  module:
+    - system
+  theme:
+    - bcbb_theme
+_core:
+  default_config_hash: tEVswtpcr2M4ePxS7qQA_ip48yLsXIb0rPgCMuw3v64
+id: bcbb_theme_account_menu
+theme: bcbb_theme
+region: nav_additional
+weight: -7
+provider: null
+plugin: 'system_menu_block:account'
+settings:
+  id: 'system_menu_block:account'
+  label: 'User account menu'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

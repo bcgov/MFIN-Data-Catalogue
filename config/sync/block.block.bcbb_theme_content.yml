@@ -1,0 +1,22 @@
+uuid: 90eeca9c-be0e-4327-b1ed-f734bf00dae9
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bcbb_theme
+_core:
+  default_config_hash: aF1kknODWzkst2UlmGblHKLJJkOTI1exrI8YFu5ecWw
+id: bcbb_theme_content
+theme: bcbb_theme
+region: content
+weight: -1
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

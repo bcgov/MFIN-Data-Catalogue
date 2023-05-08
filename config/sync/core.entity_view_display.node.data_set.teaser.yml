@@ -1,0 +1,56 @@
+uuid: 5de5dc4d-1be8-484c-b238-924c4c1b5d27
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.data_set.body
+    - field.field.node.data_set.field_columns
+    - field.field.node.data_set.field_data_quality_issues
+    - field.field.node.data_set.field_data_set_format
+    - field.field.node.data_set.field_data_set_historical_change
+    - field.field.node.data_set.field_data_set_type
+    - field.field.node.data_set.field_granularity
+    - field.field.node.data_set.field_modified_date
+    - field.field.node.data_set.field_owner_organization
+    - field.field.node.data_set.field_published_date
+    - field.field.node.data_set.field_security_classification
+    - field.field.node.data_set.field_series
+    - field.field.node.data_set.field_source_system
+    - field.field.node.data_set.field_used_in_products
+    - node.type.data_set
+  module:
+    - text
+    - user
+id: node.data_set.teaser
+targetEntityType: node
+bundle: data_set
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_columns: true
+  field_data_quality_issues: true
+  field_data_set_format: true
+  field_data_set_historical_change: true
+  field_data_set_type: true
+  field_granularity: true
+  field_modified_date: true
+  field_owner_organization: true
+  field_published_date: true
+  field_security_classification: true
+  field_series: true
+  field_source_system: true
+  field_used_in_products: true

@@ -1,0 +1,8 @@
+uuid: d77ce90f-ad6e-4dc0-9c18-fb0cf98675b1
+langcode: en
+status: true
+dependencies: {  }
+name: 'Data set format'
+vid: data_set_format
+description: ''
+weight: 0
