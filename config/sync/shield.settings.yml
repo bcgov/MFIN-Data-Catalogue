@@ -14,4 +14,4 @@ method: 0
 paths: ''
 allowlist: ''
 http_method_allowlist: {  }
-domains: ''
+domains: dv21.openplus.ca
