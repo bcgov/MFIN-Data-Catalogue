@@ -3,3 +3,16 @@ description: 'Functionality specific to the BC Data Catalogue.'
 type: module
 core_version_requirement: ^10.1
 package: 'BC Base Build'
+dependencies:
+  - datetime:datetime
+  - drupal:field
+  - drupal:layout_builder
+  - drupal:layout_discovery
+  - drupal:menu_ui
+  - drupal:node
+  - drupal:taxonomy
+  - drupal:text
+  - drupal:user
+  - entity_reference_revisions:entity_reference_revisions
+  - form_mode_control:form_mode_control
+  - paragraphs:paragraphs
