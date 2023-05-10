@@ -53,6 +53,7 @@ module:
   views_ui: 0
   views: 10
   paragraphs: 11
+  tac_lite: 100
   standard: 1000
 theme:
   claro: 0
