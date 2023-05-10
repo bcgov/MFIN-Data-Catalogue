@@ -7,6 +7,7 @@ namespace Drupal\Tests\bc_dc\ExistingSite;
 require_once DRUPAL_ROOT . '/modules/contrib/bcbb/tests/src/ExistingSite/BcbbExistingSiteBase.php';
 
 use Drupal\Tests\bcbb\ExistingSite\BcbbExistingSiteBase;
+use Drupal\user\Entity\Role;
 use Drupal\user\Entity\User;
 
 /**
@@ -53,6 +54,17 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     $this->createTestUser('Test Data administrator', ['data_administrator']);
     $this->createTestUser('Test Data custodian', ['data_custodian']);
     $this->createTestUser('Test Data catalogue user', ['data_catalogue_user']);
+
+    // Test that roles exist.
+    $roles = [
+      'data_administrator',
+      'data_custodian',
+      'data_catalogue_user',
+    ];
+    foreach ($roles as $role_id) {
+      $role = Role::load($role_id);
+      $this->assertSession()->assert($role instanceof Role, 'Role ' . $role_id . ' should exist.');
+    }
   }
 
 }
