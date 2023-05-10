@@ -2,6 +2,10 @@
 
 namespace Drupal\Tests\bc_dc\ExistingSite;
 
+// This should not be needed because of autoloading, but without this, it cannot
+// find BcbbExistingSiteBase.
+require_once DRUPAL_ROOT . '/modules/contrib/bcbb/tests/src/ExistingSite/BcbbExistingSiteBase.php';
+
 use Drupal\Tests\bcbb\ExistingSite\BcbbExistingSiteBase;
 
 /**
