@@ -2,7 +2,7 @@ _core:
   default_config_hash: VDJxTZtQR21qB4lvOq8zszJZLvLKrSPQpdn2E3T71Ww
 langcode: en
 uuid: d278b011-3757-41cd-9173-38dfb8874f4c
-name: 'Drush Site-Install'
+name: 'BC Ministry of Finance Data Catalogue'
 mail: admin@example.com
 slogan: ''
 page:
