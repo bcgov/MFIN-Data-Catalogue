@@ -16,6 +16,18 @@
         {
             "type": "vcs",
             "url": "https://github.com/bcgov/bcbb-theme"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "drupaloverride/tac_lite",
+                "version": "1.6",
+                "type": "drupal-module",
+                "dist": {
+                    "url": "https://ftp.drupal.org/files/projects/tac_lite-8.x-1.6.tar.gz",
+                    "type": "tar"
+                }
+            }
         }
     ],
     "require": {
@@ -24,6 +36,7 @@
         "composer/installers": "^2.0",
         "drupal/core-composer-scaffold": "^10.1",
         "drupal/core-recommended": "^10.1",
+        "drupaloverride/tac_lite": "^1.6",
         "weitzman/drupal-test-traits": "^2.1"
     },
     "conflict": {
@@ -75,6 +88,11 @@
             "html/themes/custom/{$name}": [
                 "type:drupal-custom-theme"
             ]
+        },
+        "patches": {
+            "drupaloverride/tac_lite": {
+                "3325055 - Drupal 10 compatibility": "https://www.drupal.org/files/issues/2022-12-02/3325055-drupal-10-compatibility-02.patch"
+            }
         }
     },
     "require-dev": {

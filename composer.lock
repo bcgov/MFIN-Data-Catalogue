@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0909436922dbcb4092928340f6cce4c0",
+    "content-hash": "8e3ec5f034cd3e0c5a2c40db1f39baa6",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3931,6 +3931,15 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/upgrade_status"
             }
+        },
+        {
+            "name": "drupaloverride/tac_lite",
+            "version": "1.6",
+            "dist": {
+                "type": "tar",
+                "url": "https://ftp.drupal.org/files/projects/tac_lite-8.x-1.6.tar.gz"
+            },
+            "type": "drupal-module"
         },
         {
             "name": "drush/drush",
