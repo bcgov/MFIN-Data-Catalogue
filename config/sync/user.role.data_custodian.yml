@@ -1,0 +1,9 @@
+uuid: 773c53f6-2f96-4a42-aa87-f1f279155c86
+langcode: en
+status: true
+dependencies: {  }
+id: data_custodian
+label: 'Data custodian'
+weight: 5
+is_admin: null
+permissions: {  }

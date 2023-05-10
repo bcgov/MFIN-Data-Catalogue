@@ -1,0 +1,14 @@
+uuid: 11d6bb45-7e4a-4acc-8f83-177561b3dce3
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.data_administrator
+  module:
+    - user
+id: user_remove_role_action.data_administrator
+label: 'Remove the Data administrator role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: data_administrator

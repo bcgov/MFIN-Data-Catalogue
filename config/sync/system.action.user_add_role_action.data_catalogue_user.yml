@@ -1,0 +1,14 @@
+uuid: ea2b6ed5-e0a2-4490-a8a7-c72a68e51d32
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.data_catalogue_user
+  module:
+    - user
+id: user_add_role_action.data_catalogue_user
+label: 'Add the Data catalogue user role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: data_catalogue_user

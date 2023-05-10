@@ -1,0 +1,9 @@
+uuid: aa2af30f-4e3a-4e6b-a643-9b4f83764e74
+langcode: en
+status: true
+dependencies: {  }
+id: data_administrator
+label: 'Data administrator'
+weight: 4
+is_admin: null
+permissions: {  }

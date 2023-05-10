@@ -1,0 +1,14 @@
+uuid: a27d8902-9814-49eb-885a-3e10a2667434
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.data_custodian
+  module:
+    - user
+id: user_remove_role_action.data_custodian
+label: 'Remove the Data custodian role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: data_custodian

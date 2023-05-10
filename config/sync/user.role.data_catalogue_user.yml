@@ -1,0 +1,9 @@
+uuid: 12d9e20f-53d5-477a-8500-7a4f35f574e4
+langcode: en
+status: true
+dependencies: {  }
+id: data_catalogue_user
+label: 'Data catalogue user'
+weight: 6
+is_admin: null
+permissions: {  }
