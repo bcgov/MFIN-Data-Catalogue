@@ -16,3 +16,4 @@ dependencies:
   - entity_reference_revisions:entity_reference_revisions
   - form_mode_control:form_mode_control
   - paragraphs:paragraphs
+  - registration_role:registration_role

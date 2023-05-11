@@ -87,12 +87,23 @@ class BcDcFunctionalTest extends BrowserTestBase {
       $this->assertSession()->assert($role instanceof Role, 'Role ' . $role_id . ' should exist.');
     }
 
+    // Configure registration_role module.
+    // @todo Remove this section and have the config come in from config import.
+    $this->drupalGet('admin/people/registration-role');
+    $edit = [
+      'edit-role-to-select-data-catalogue-user' => TRUE,
+      'edit-registration-mode-admin' => 'admin',
+    ];
+    $this->submitForm($edit, 'Save configuration');
+
     // Create test users.
     $this->createTestUser('Test Data administrator', ['data_administrator']);
     $this->createTestUser('Test Data custodian', ['data_custodian']);
     $this->createTestUser('Test Data catalogue user', ['data_catalogue_user']);
 
     // Test that new users are assigned role data_catalogue_user.
+    // This only works because of the registration_role module config done
+    // above.
     foreach (array_keys($this->users) as $username) {
       $account = user_load_by_name($username);
       $this->assertSession()->assert($account->hasRole('data_catalogue_user'), 'Test user ' . $username . ' should have role data_catalogue_user.');
