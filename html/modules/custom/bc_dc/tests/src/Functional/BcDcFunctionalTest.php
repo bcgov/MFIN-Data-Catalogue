@@ -34,6 +34,18 @@ class BcDcFunctionalTest extends BrowserTestBase {
   protected $users = [];
 
   /**
+   * {@inheritdoc}
+   */
+  protected function setUp() : void {
+    parent::setUp();
+
+    // Import config, like `drush config:import`.
+    $config_path = DRUPAL_ROOT . '/../config/sync';
+    $config_source = new FileStorage($config_path);
+    \Drupal::service('config.installer')->installOptionalConfig($config_source);
+  }
+
+  /**
    * Create a user with roles.
    */
   protected function createTestUser(string $name, array $roles = []): User|false {
@@ -63,11 +75,6 @@ class BcDcFunctionalTest extends BrowserTestBase {
 
     // Login as admin.
     $this->drupalLogin($this->rootUser);
-
-    // Import config, like `drush config:import`.
-    $config_path = DRUPAL_ROOT . '/../config/sync';
-    $config_source = new FileStorage($config_path);
-    \Drupal::service('config.installer')->installOptionalConfig($config_source);
 
     // Test that roles exist.
     $roles = [
