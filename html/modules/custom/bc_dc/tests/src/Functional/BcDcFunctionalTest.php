@@ -92,6 +92,12 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->createTestUser('Test Data custodian', ['data_custodian']);
     $this->createTestUser('Test Data catalogue user', ['data_catalogue_user']);
 
+    // Test that new users are assigned role data_catalogue_user.
+    foreach (array_keys($this->users) as $username) {
+      $account = user_load_by_name($username);
+      $this->assertSession()->assert($account->hasRole('data_catalogue_user'), 'Test user ' . $username . ' should have role data_catalogue_user.');
+    }
+
     // Create a data_set node.
     $this->drupalGet('node/add/data_set', ['query' => ['display' => 'data_set_description']]);
     $this->assertSession()->statusCodeEquals(200);
