@@ -17,3 +17,4 @@ dependencies:
   - form_mode_control:form_mode_control
   - paragraphs:paragraphs
   - registration_role:registration_role
+  - tac_lite:tac_lite
