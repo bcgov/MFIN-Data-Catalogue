@@ -12,6 +12,6 @@ unset_basic_auth_headers: true
 print: Hello!
 method: 0
 paths: ''
-allowlist: ''
+allowlist: 15.223.84.36
 http_method_allowlist: {  }
-domains: dv21.openplus.ca
+domains: ''
