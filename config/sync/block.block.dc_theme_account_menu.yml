@@ -1,0 +1,27 @@
+uuid: a258cf1c-9585-467a-9228-0d60b8086bc3
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.account
+  module:
+    - system
+  theme:
+    - dc_theme
+_core:
+  default_config_hash: tEVswtpcr2M4ePxS7qQA_ip48yLsXIb0rPgCMuw3v64
+id: dc_theme_account_menu
+theme: dc_theme
+region: nav_additional
+weight: -7
+provider: null
+plugin: 'system_menu_block:account'
+settings:
+  id: 'system_menu_block:account'
+  label: 'User account menu'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

@@ -1,0 +1,22 @@
+uuid: 31fdcfc0-cceb-4313-ae02-12e9533db13e
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - dc_theme
+_core:
+  default_config_hash: kT3xzqAg9A6B1stxNUMbHy_5dzmVsUg-XO0w_k39BZo
+id: dc_theme_messages
+theme: dc_theme
+region: content
+weight: -7
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: Messages
+  label_display: '0'
+  provider: system
+visibility: {  }

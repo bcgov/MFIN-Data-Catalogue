@@ -1,0 +1,20 @@
+uuid: 000fd30d-64fa-400a-9450-cd2002cf5699
+langcode: en
+status: true
+dependencies:
+  theme:
+    - dc_theme
+_core:
+  default_config_hash: x5FOOzWN4_HqrY1HMHMJs4s8BmJe1Es-J1_SCHJc1Tk
+id: dc_theme_page_title
+theme: dc_theme
+region: content
+weight: -6
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility: {  }

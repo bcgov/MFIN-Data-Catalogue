@@ -1,0 +1,27 @@
+uuid: 2613cf63-fbdc-4b28-8cd1-52e19e4a21e6
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - dc_theme
+_core:
+  default_config_hash: xRpQMvmDo4piOvJIOu3bEiotyWji2neffbBWeGHgr0I
+id: dc_theme_main_navigation
+theme: dc_theme
+region: nav_main
+weight: 0
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: true
+visibility: {  }

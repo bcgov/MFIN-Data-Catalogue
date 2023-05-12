@@ -1,0 +1,25 @@
+uuid: 55b41f90-31cd-46ef-80c1-f73fdce3f30d
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - dc_theme
+_core:
+  default_config_hash: jddjLDEu-c8gqvK5es7A__WnTl6lG0nlcmSuVZ6YfGA
+id: dc_theme_branding
+theme: dc_theme
+region: nav_branding
+weight: -6
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: false
+visibility: {  }
