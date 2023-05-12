@@ -93,7 +93,8 @@
         "patches": {
             "drupaloverride/tac_lite": {
                 "3295203 - Check for scheme name before using": "https://www.drupal.org/files/issues/2023-05-10/tac_lite-undefined_scheme_name-3295203-6.patch",
-                "3325055 - Drupal 10 compatibility": "https://www.drupal.org/files/issues/2022-12-02/3325055-drupal-10-compatibility-02.patch"
+                "3325055 - Drupal 10 compatibility": "https://www.drupal.org/files/issues/2022-12-02/3325055-drupal-10-compatibility-02.patch",
+                "3359802 - Add schema for tac_lite.settings": "https://www.drupal.org/files/issues/2023-05-11/tac_lite-schema-3359802-2.patch"
             }
         }
     },
