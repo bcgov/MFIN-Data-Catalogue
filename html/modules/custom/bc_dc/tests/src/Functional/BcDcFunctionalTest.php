@@ -118,13 +118,13 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->submitForm($edit, 'Save');
     $this->assertSession()->pageTextContains('Data set ' . $edit['edit-title-0-value'] . ' has been created');
 
-    // Admin has access to build page.
+    // Admin has access to data_set build page.
     $this->drupalGet('node/1/build');
     $this->assertSession()->statusCodeEquals(200);
     // Page has ISO dates.
     $this->isoDateTest();
 
-    // Anonymous has no access to build page.
+    // Anonymous has no access to data_set build page.
     $this->drupalLogout();
     $this->drupalGet('node/1/build');
     $this->assertSession()->statusCodeEquals(403);
