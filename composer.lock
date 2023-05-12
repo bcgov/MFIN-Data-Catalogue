@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d3549b608678e4b30d234acda875f69f",
+    "content-hash": "7847e5f9e841add0bbb58e924eb0de66",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -68,12 +68,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb.git",
-                "reference": "a120781619ffa04028e534877f04fc9a6c601fe1"
+                "reference": "7f340ae530b2f72ca99c63e4ca95d4e605d39ad3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/a120781619ffa04028e534877f04fc9a6c601fe1",
-                "reference": "a120781619ffa04028e534877f04fc9a6c601fe1",
+                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/7f340ae530b2f72ca99c63e4ca95d4e605d39ad3",
+                "reference": "7f340ae530b2f72ca99c63e4ca95d4e605d39ad3",
                 "shasum": ""
             },
             "require": {
@@ -92,6 +92,7 @@
                 "drupal/openid_connect": "^3.0@alpha",
                 "drupal/panels": "^4.7",
                 "drupal/paragraphs": "^1.15",
+                "drupal/pathauto": "^1.11",
                 "drupal/search_api": "^1.29",
                 "drupal/shield": "^1.7",
                 "drupal/structure_sync": "^2.0",
@@ -118,7 +119,7 @@
                 "source": "https://github.com/bcgov/bcbb/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb/issues"
             },
-            "time": "2023-05-10T15:16:41+00:00"
+            "time": "2023-05-12T20:17:53+00:00"
         },
         {
             "name": "bcgov/bcbb_theme",
@@ -3490,6 +3491,74 @@
             "homepage": "https://www.drupal.org/project/paragraphs",
             "support": {
                 "source": "https://git.drupalcode.org/project/paragraphs"
+            }
+        },
+        {
+            "name": "drupal/pathauto",
+            "version": "1.11.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/pathauto.git",
+                "reference": "8.x-1.11"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/pathauto-8.x-1.11.zip",
+                "reference": "8.x-1.11",
+                "shasum": "a006fe9e6046a9833711a1ae56aa4752e65bcdc8"
+            },
+            "require": {
+                "drupal/core": "^9.3 || ^10",
+                "drupal/ctools": "*",
+                "drupal/token": "*"
+            },
+            "suggest": {
+                "drupal/redirect": "When installed Pathauto will provide a new \"Update Action\" in case your URLs change. This is the recommended update action and is considered the best practice for SEO and usability."
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.11",
+                    "datestamp": "1660129564",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9 || ^10"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Berdir",
+                    "homepage": "https://www.drupal.org/user/214652"
+                },
+                {
+                    "name": "Dave Reid",
+                    "homepage": "https://www.drupal.org/user/53892"
+                },
+                {
+                    "name": "Freso",
+                    "homepage": "https://www.drupal.org/user/27504"
+                },
+                {
+                    "name": "greggles",
+                    "homepage": "https://www.drupal.org/user/36762"
+                }
+            ],
+            "description": "Provides a mechanism for modules to automatically generate aliases for the content they manage.",
+            "homepage": "https://www.drupal.org/project/pathauto",
+            "support": {
+                "source": "https://cgit.drupalcode.org/pathauto",
+                "issues": "https://www.drupal.org/project/issues/pathauto",
+                "documentation": "https://www.drupal.org/docs/8/modules/pathauto"
             }
         },
         {
