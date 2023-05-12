@@ -126,6 +126,10 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->drupalLogout();
     $this->drupalGet('node/1/build');
     $this->assertSession()->statusCodeEquals(403);
+
+    // Anonymous has access to view page.
+    $this->drupalGet('node/1');
+    $this->assertSession()->statusCodeEquals(200);
   }
 
 }
