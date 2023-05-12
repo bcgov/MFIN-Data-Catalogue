@@ -112,8 +112,9 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Create a data_set node.
     $this->drupalGet('node/add/data_set', ['query' => ['display' => 'data_set_description']]);
     $this->assertSession()->statusCodeEquals(200);
+    $randomMachineName = $this->randomMachineName();
     $edit = [
-      'edit-title-0-value' => 'Data set ' . $this->randomString(),
+      'edit-title-0-value' => 'Test data set ' . $randomMachineName . $this->randomString(),
     ];
     $this->submitForm($edit, 'Save');
     $this->assertSession()->pageTextContains('Data set ' . $edit['edit-title-0-value'] . ' has been created');
@@ -123,6 +124,20 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSession()->statusCodeEquals(200);
     // Page has ISO dates.
     $this->isoDateTest();
+    // Page links to pathauto path for this page.
+    $this->assertSession()->linkByHrefExists('/data-set/test-data-set-' . strtolower($randomMachineName));
+
+    // Create a basic page node.
+    $this->drupalGet('node/add/page');
+    $this->assertSession()->statusCodeEquals(200);
+    $randomMachineName = $this->randomMachineName();
+    $edit = [
+      'edit-title-0-value' => 'Test basic page ' . $randomMachineName . $this->randomString(),
+    ];
+    $this->submitForm($edit, 'Save');
+    $this->assertSession()->pageTextContains('Basic page ' . $edit['edit-title-0-value'] . ' has been created');
+    // Page links to pathauto path for this page.
+    $this->assertSession()->linkByHrefExists('/test-basic-page-' . strtolower($randomMachineName));
 
     // Anonymous has no access to data_set build page.
     $this->drupalLogout();
