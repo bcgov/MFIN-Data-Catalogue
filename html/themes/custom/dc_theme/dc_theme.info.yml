@@ -1,0 +1,15 @@
+name: 'Data Catalogue'
+type: theme
+description: 'Theme for the Data Catalogue based on BC Base Build theme.'
+core_version_requirement: ^10.1
+'base theme': bcbb_theme
+regions:
+  header: Header
+  nav_branding: 'Navigation branding region'
+  nav_main: 'Main navigation region'
+  nav_additional: 'Additional navigation region (eg search form, social icons, etc)'
+  breadcrumb: Breadcrumbs
+  content: 'Main content'
+  sidebar_first: 'Sidebar first'
+  sidebar_second: 'Sidebar second'
+  footer: Footer
