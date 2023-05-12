@@ -1,0 +1,22 @@
+uuid: 4394dd2e-e34d-43dd-bc18-a262e979102e
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: data_set
+label: 'Data set'
+type: 'canonical_entities:node'
+pattern: '/data-set/[node:title]'
+selection_criteria:
+  ff8d4fde-3200-4737-bbe4-cf40bd4a06d6:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: ff8d4fde-3200-4737-bbe4-cf40bd4a06d6
+    context_mapping:
+      node: node
+    bundles:
+      data_set: data_set
+selection_logic: and
+weight: -10
+relationships: {  }
