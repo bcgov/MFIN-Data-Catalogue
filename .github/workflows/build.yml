@@ -30,8 +30,21 @@ jobs:
         docker ps -a
         sleep 10
 
-    - name: Run installation and tests
+    - name: Run installation
       run: |
         export DB_TYPE=mysql
         export DB_PORT=3306
         make drupal_install
+
+    - name: Run tests
+      run: |
+        export DB_TYPE=mysql
+        export DB_PORT=3306
+        ./docker/bin/phpcs --standard=/var/www/html/core/phpcs.xml \
+            --extensions=php,module,inc,install,test,profile,theme \
+            --report=full \
+            --colors \
+            /var/www/html/modules/contrib/bcbb \
+            /var/www/html/modules/custom/bc_dc \
+            /var/www/html/themes/contrib/bcbb_theme \
+            /var/www/html/themes/custom/dc_theme
