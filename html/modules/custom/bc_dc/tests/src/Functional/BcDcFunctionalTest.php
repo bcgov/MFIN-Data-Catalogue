@@ -24,7 +24,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  protected $defaultTheme = 'stark';
+  protected $defaultTheme = 'dc_theme';
 
   /**
    * {@inheritdoc}
@@ -172,7 +172,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
       $position = strpos($page_content, $date_type);
       $position = strpos($page_content, '<time ', $position);
       $time_element = substr($page_content, $position, 100);
-      $match = preg_match(',<time datetime="(\d\d\d\d-[01]\d-[0-3]\d)[^"]+">([^<]+)</time>,', $time_element, $matches);
+      $match = preg_match(',<time(?: [^>]+)? datetime="(\d\d\d\d-[01]\d-[0-3]\d)[^"]+"(?: [^>]+)?>([^<]+)</time>,', $time_element, $matches);
       $this->assertSession()->assert($match && $matches[1] === $matches[2], $date_type . ' element should contain ISO date.');
 
       // XPath would be better, but that resulted in out-of-memory errors.
