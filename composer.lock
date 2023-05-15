@@ -127,12 +127,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb-theme.git",
-                "reference": "e0f9badb9e676b95b90b35607c31ca2cc545484e"
+                "reference": "af86c2b4027f06c9cba1ded1b570919a6c898142"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb-theme/zipball/e0f9badb9e676b95b90b35607c31ca2cc545484e",
-                "reference": "e0f9badb9e676b95b90b35607c31ca2cc545484e",
+                "url": "https://api.github.com/repos/bcgov/bcbb-theme/zipball/af86c2b4027f06c9cba1ded1b570919a6c898142",
+                "reference": "af86c2b4027f06c9cba1ded1b570919a6c898142",
                 "shasum": ""
             },
             "require": {
@@ -149,7 +149,7 @@
                 "source": "https://github.com/bcgov/bcbb-theme/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb-theme/issues"
             },
-            "time": "2023-05-03T18:27:06+00:00"
+            "time": "2023-05-15T17:11:49+00:00"
         },
         {
             "name": "brick/varexporter",
