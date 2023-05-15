@@ -3,6 +3,7 @@
 namespace Drupal\bc_dc\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
 
 /**
@@ -37,7 +38,15 @@ class BcDcPageController extends ControllerBase {
   public function dataSetDashboardPage(): array {
     $page = [];
 
-    $page['placeholder'] = ['#markup' => '<p>Data sets dashboard.</p>'];
+    // Button to create a data_set.
+    $page['add-new'] = [
+      '#title' => $this->t('Add new data set'),
+      '#type' => 'link',
+      '#url' => Url::fromRoute('node.add', ['node_type' => 'data_set'], ['query' => ['display' => 'data_set_description']]),
+      '#attributes' => [
+        'class' => ['button', 'button--action', 'button--primary'],
+      ],
+    ];
 
     return $page;
   }

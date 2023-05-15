@@ -148,6 +148,12 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Page links to pathauto path for this page.
     $this->linkByHrefStartsWithExists('/test-basic-page-' . strtolower($randomMachineName));
 
+    // Data set dashboard.
+    $this->drupalGet('data-set');
+    $this->assertSession()->statusCodeEquals(200);
+    // The create-new link exists.
+    $this->assertSession()->elementExists('xpath', '//a[@href = "/node/add/data_set?display=data_set_description"][text() = "Add new data set"]');
+
     // Anonymous has no access to data_set build page.
     $this->drupalLogout();
     $this->drupalGet('node/1/build');
