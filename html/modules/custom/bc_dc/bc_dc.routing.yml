@@ -18,3 +18,5 @@ bc_dc.data_set_dashboard:
     _title: 'Data sets'
   requirements:
     _permission: 'edit any data_set content'
+  options:
+    no_cache: TRUE
