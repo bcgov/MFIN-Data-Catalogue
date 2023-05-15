@@ -38,9 +38,9 @@
         "drupal/core-recommended": "^10.1",
         "drupal/registration_role": "dev-1.x#a3a3d15",
         "drupaloverride/tac_lite": "^1.6",
-        "weitzman/drupal-test-traits": "^2.1",
         "vlucas/phpdotenv": "^5.1",
-        "webflo/drupal-finder": "^1.2"
+        "webflo/drupal-finder": "^1.2",
+        "weitzman/drupal-test-traits": "^2.1"
     },
     "conflict": {
         "drupal/drupal": "*"
