@@ -125,6 +125,8 @@ class BcDcFunctionalTest extends BrowserTestBase {
     ];
     $this->submitForm($edit, 'Save');
     $this->assertSession()->pageTextContains('Data set ' . $edit['edit-title-0-value'] . ' has been created');
+    // Test for breadcrumb link.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "region-breadcrumb")]//li[@class = "breadcrumb-item"]//a[@href = "/data-set"]');
 
     // Admin has access to data_set build page.
     $this->drupalGet('node/1/build');

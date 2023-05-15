@@ -10,3 +10,11 @@ bc_dc.data_set_build_page:
         type: entity:node
         bundle:
           - data_set
+
+bc_dc.data_set_dashboard:
+  path: '/data-set'
+  defaults:
+    _controller: '\Drupal\bc_dc\Controller\BcDcPageController::dataSetDashboardPage'
+    _title: 'Data sets'
+  requirements:
+    _permission: 'edit any data_set content'

@@ -28,4 +28,18 @@ class BcDcPageController extends ControllerBase {
       ->view($node, 'data_set_build_page');
   }
 
+  /**
+   * Page callback for the data set dashboard.
+   *
+   * @return array
+   *   A render array for the build page.
+   */
+  public function dataSetDashboardPage(): array {
+    $page = [];
+
+    $page['placeholder'] = ['#markup' => '<p>Data sets dashboard.</p>'];
+
+    return $page;
+  }
+
 }
