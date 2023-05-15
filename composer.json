@@ -38,7 +38,9 @@
         "drupal/core-recommended": "^10.1",
         "drupal/registration_role": "dev-1.x#a3a3d15",
         "drupaloverride/tac_lite": "^1.6",
-        "weitzman/drupal-test-traits": "^2.1"
+        "weitzman/drupal-test-traits": "^2.1",
+        "vlucas/phpdotenv": "^5.1",
+        "webflo/drupal-finder": "^1.2"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -54,6 +56,26 @@
             "cweagans/composer-patches": true
         },
         "sort-packages": true
+    },
+    "autoload": {
+        "classmap": [
+            "scripts/ScriptHandler.php"
+        ],
+        "files": ["load.environment.php"]
+    },
+    "scripts": {
+        "pre-install-cmd": [
+            "BCGovC\\MfinDataCatalogue\\ScriptHandler::checkComposerVersion"
+        ],
+        "pre-update-cmd": [
+            "BCGovC\\MfinDataCatalogue\\ScriptHandler::checkComposerVersion"
+        ],
+        "post-install-cmd": [
+            "BCGovC\\MfinDataCatalogue\\ScriptHandler::createRequiredFiles"
+        ],
+        "post-update-cmd": [
+            "BCGovC\\MfinDataCatalogue\\ScriptHandler::createRequiredFiles"
+        ]
     },
     "extra": {
         "drupal-scaffold": {
@@ -90,6 +112,7 @@
                 "type:drupal-custom-theme"
             ]
         },
+        "composer-exit-on-patch-failure": true,
         "patches": {
             "drupaloverride/tac_lite": {
                 "3295203 - Check for scheme name before using": "https://www.drupal.org/files/issues/2023-05-10/tac_lite-undefined_scheme_name-3295203-6.patch",

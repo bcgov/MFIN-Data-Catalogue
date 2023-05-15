@@ -1,0 +1,50 @@
+name: Build
+on:
+  pull_request:
+  push:
+    branches:
+      - 1.0.x
+    paths-ignore:
+    - 'README.md'
+
+env:
+  COMPOSER_MEMORY_LIMIT: -1
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@master
+
+    - uses: statcan/actions/composer@master
+      with:
+        args: install --prefer-dist --no-interaction
+
+    - name: Build out the Drupal infrastructure
+      run: |
+        export DB_TYPE=mysql
+        export DB_PORT=3306
+        git clone --branch 10.1.x https://github.com/drupalwxt/docker-scaffold.git docker
+        make build
+        docker compose -f docker-compose.ci.yml up -d
+        docker ps -a
+        sleep 10
+
+    - name: Run installation
+      run: |
+        export DB_TYPE=mysql
+        export DB_PORT=3306
+        make drupal_install
+
+    - name: Run tests
+      run: |
+        export DB_TYPE=mysql
+        export DB_PORT=3306
+        ./docker/bin/phpcs --standard=/var/www/html/core/phpcs.xml \
+            --extensions=php,module,inc,install,test,profile,theme \
+            --report=full \
+            --colors \
+            /var/www/html/modules/contrib/bcbb \
+            /var/www/html/modules/custom/bc_dc \
+            /var/www/html/themes/contrib/bcbb_theme \
+            /var/www/html/themes/custom/dc_theme
