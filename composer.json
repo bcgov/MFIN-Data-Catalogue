@@ -39,7 +39,6 @@
         "drupal/registration_role": "dev-1.x#a3a3d15",
         "drupaloverride/tac_lite": "^1.6",
         "weitzman/drupal-test-traits": "^2.1",
-        "drush/drush": "^11.4.0",
         "vlucas/phpdotenv": "^5.1",
         "webflo/drupal-finder": "^1.2"
     },
@@ -114,9 +113,6 @@
             ]
         },
         "composer-exit-on-patch-failure": true,
-        "patchLevel": {
-            "drupal/core": "-p2"
-        },
         "patches": {
             "drupaloverride/tac_lite": {
                 "3295203 - Check for scheme name before using": "https://www.drupal.org/files/issues/2023-05-10/tac_lite-undefined_scheme_name-3295203-6.patch",
