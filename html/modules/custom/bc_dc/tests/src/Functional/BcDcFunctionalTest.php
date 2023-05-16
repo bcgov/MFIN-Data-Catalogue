@@ -7,6 +7,7 @@ namespace Drupal\Tests\bc_dc\Functional;
 require_once DRUPAL_ROOT . '/modules/contrib/bcbb/tests/src/BcbbTestingTrait.php';
 
 use Drupal\Core\Config\FileStorage;
+use Drupal\node\Entity\Node;
 use Drupal\Tests\bcbb\BcbbTestingTrait;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\user\Entity\Role;
@@ -124,6 +125,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $data_set_path = '/data-set/test-data-set-' . strtolower($randomMachineName);
     $edit = [
       'edit-title-0-value' => $data_set_title,
+      'edit-status-value' => FALSE,
     ];
     $this->submitForm($edit, 'Save');
     $this->assertSession()->pageTextContains('Data set ' . $edit['edit-title-0-value'] . ' has been created');
@@ -155,6 +157,28 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSession()->statusCodeEquals(200);
     // The create-new link exists.
     $this->assertSession()->elementExists('xpath', '//a[@href = "/node/add/data_set?display=data_set_description"][text() = "Add new data set"]');
+    // View link.
+    $args = [
+      ':data_set_title' => 'View ' . $data_set_title,
+      ':data_set_path' => $data_set_path,
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "data-set-table")]//tr/td/a[text() = "View"][@class = "button"][@aria-label = :data_set_title][starts-with(@href, :data_set_path)]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+    // Build link.
+    $args = [
+      ':data_set_title' => 'Build ' . $data_set_title,
+      ':data_set_path' => $data_set_path,
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "data-set-table")]//tr/td/a[text() = "Build"][@class = "button"][@aria-label = :data_set_title][@href = "/node/1/build"]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+    // No empty message.
+    $this->assertSession()->elementNotExists('xpath', '//table[contains(@class, "data-set-table")]//tr/td[text() = "No data sets to show."]');
+    // Publish the data_set and there are no data rows, just the empty message.
+    $data_set = Node::load(1);
+    $data_set->setPublished()->save();
+    $this->drupalGet('data-set');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->elementExists('xpath', '//table[contains(@class, "data-set-table")]//tr/td[text() = "No data sets to show."]');
 
     // Anonymous has no access to data_set build page.
     $this->drupalLogout();
