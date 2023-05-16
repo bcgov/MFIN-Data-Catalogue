@@ -1,0 +1,30 @@
+uuid: 2e3d34f8-aebe-45a8-a748-2f4e33c72ddd
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: bookmark
+label: Bookmark
+bundles:
+  - data_set
+entity_type: node
+global: false
+flag_short: Bookmark
+flag_long: 'Add this item to your bookmarks'
+flag_message: 'Item added to your bookmarks'
+unflag_short: Bookmarked
+unflag_long: 'Remove this item from your bookmarks'
+unflag_message: 'This item has been removed from your bookmarks'
+unflag_denied_text: ''
+weight: 0
+flag_type: 'entity:node'
+link_type: reload
+flagTypeConfig:
+  show_in_links: {  }
+  show_as_field: true
+  show_on_form: false
+  show_contextual_link: false
+  extra_permissions:
+    owner: '0'
+linkTypeConfig: {  }
