@@ -4591,16 +4591,16 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "7.5.2",
+            "version": "7.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "4019c94f08689e8b67b44800407d52133291dd4c"
+                "reference": "584d1f06b5caa07b0587f5054d551ed65460ce5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/4019c94f08689e8b67b44800407d52133291dd4c",
-                "reference": "4019c94f08689e8b67b44800407d52133291dd4c",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/584d1f06b5caa07b0587f5054d551ed65460ce5d",
+                "reference": "584d1f06b5caa07b0587f5054d551ed65460ce5d",
                 "shasum": ""
             },
             "require": {
@@ -4696,7 +4696,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/guzzle/issues",
-                "source": "https://github.com/guzzle/guzzle/tree/7.5.2"
+                "source": "https://github.com/guzzle/guzzle/tree/7.5.3"
             },
             "funding": [
                 {
@@ -4712,7 +4712,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-05-14T09:20:02+00:00"
+            "time": "2023-05-15T20:42:18+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -13024,16 +13024,16 @@
         },
         {
             "name": "slevomat/coding-standard",
-            "version": "8.12.0",
+            "version": "8.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slevomat/coding-standard.git",
-                "reference": "cc04334ed0ce5a251389112fbd2dbe1dbc931ae8"
+                "reference": "f69e2524e8770efb9b3e5ac4a0ebc0d54eb446d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/cc04334ed0ce5a251389112fbd2dbe1dbc931ae8",
-                "reference": "cc04334ed0ce5a251389112fbd2dbe1dbc931ae8",
+                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/f69e2524e8770efb9b3e5ac4a0ebc0d54eb446d7",
+                "reference": "f69e2524e8770efb9b3e5ac4a0ebc0d54eb446d7",
                 "shasum": ""
             },
             "require": {
@@ -13073,7 +13073,7 @@
             ],
             "support": {
                 "issues": "https://github.com/slevomat/coding-standard/issues",
-                "source": "https://github.com/slevomat/coding-standard/tree/8.12.0"
+                "source": "https://github.com/slevomat/coding-standard/tree/8.12.1"
             },
             "funding": [
                 {
@@ -13085,7 +13085,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-05-14T20:06:01+00:00"
+            "time": "2023-05-15T21:42:25+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
