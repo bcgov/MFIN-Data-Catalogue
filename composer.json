@@ -36,6 +36,7 @@
         "composer/installers": "^2.0",
         "drupal/core-composer-scaffold": "^10.1",
         "drupal/core-recommended": "^10.1",
+        "drupal/flag": "^4.0",
         "drupal/registration_role": "dev-1.x#a3a3d15",
         "drupaloverride/tac_lite": "^1.6",
         "vlucas/phpdotenv": "^5.1",

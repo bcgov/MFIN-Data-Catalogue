@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7ad941d6bba0646edf34fac8bd73df41",
+    "content-hash": "4c69274bc7cf462e46da8aeb50342e61",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2703,6 +2703,82 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/field_group",
                 "issues": "https://www.drupal.org/project/issues/field_group"
+            }
+        },
+        {
+            "name": "drupal/flag",
+            "version": "4.0.0-beta4",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/flag.git",
+                "reference": "8.x-4.0-beta4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/flag-8.x-4.0-beta4.zip",
+                "reference": "8.x-4.0-beta4",
+                "shasum": "2779804f23685e1bb68a2a7b9517932dde3b1d4e"
+            },
+            "require": {
+                "drupal/core": "^9.1 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-4.0-beta4",
+                    "datestamp": "1670487892",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Berdir",
+                    "homepage": "https://www.drupal.org/user/214652"
+                },
+                {
+                    "name": "fago",
+                    "homepage": "https://www.drupal.org/user/16747"
+                },
+                {
+                    "name": "fubhy",
+                    "homepage": "https://www.drupal.org/user/761344"
+                },
+                {
+                    "name": "joachim",
+                    "homepage": "https://www.drupal.org/user/107701"
+                },
+                {
+                    "name": "merlinofchaos",
+                    "homepage": "https://www.drupal.org/user/26979"
+                },
+                {
+                    "name": "mooffie",
+                    "homepage": "https://www.drupal.org/user/78454"
+                },
+                {
+                    "name": "quicksketch",
+                    "homepage": "https://www.drupal.org/user/35821"
+                },
+                {
+                    "name": "shabana.navas",
+                    "homepage": "https://www.drupal.org/user/1311398"
+                },
+                {
+                    "name": "socketwench",
+                    "homepage": "https://www.drupal.org/user/65793"
+                }
+            ],
+            "description": "Create customized flags that users can set on entities.",
+            "homepage": "https://www.drupal.org/project/flag",
+            "support": {
+                "source": "https://git.drupalcode.org/project/flag"
             }
         },
         {
