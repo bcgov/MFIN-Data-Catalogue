@@ -120,8 +120,10 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->drupalGet('node/add/data_set', ['query' => ['display' => 'data_set_description']]);
     $this->assertSession()->statusCodeEquals(200);
     $randomMachineName = $this->randomMachineName();
+    $data_set_title = 'Test data set ' . $randomMachineName . $this->randomString();
+    $data_set_path = '/data-set/test-data-set-' . strtolower($randomMachineName);
     $edit = [
-      'edit-title-0-value' => 'Test data set ' . $randomMachineName . $this->randomString(),
+      'edit-title-0-value' => $data_set_title,
     ];
     $this->submitForm($edit, 'Save');
     $this->assertSession()->pageTextContains('Data set ' . $edit['edit-title-0-value'] . ' has been created');
@@ -134,7 +136,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Page has ISO dates.
     $this->isoDateTest();
     // Page links to pathauto path for this page.
-    $this->linkByHrefStartsWithExists('/data-set/test-data-set-' . strtolower($randomMachineName));
+    $this->linkByHrefStartsWithExists($data_set_path);
 
     // Create a basic page node.
     $this->drupalGet('node/add/page');
