@@ -4,12 +4,34 @@ namespace Drupal\bc_dc\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Url;
+use Drupal\flag\FlagLinkBuilder;
 use Drupal\node\NodeInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Page callbacks.
  */
 class BcDcPageController extends ControllerBase {
+
+  /**
+   * Create a BcDcPageController instance.
+   *
+   * @param \Drupal\flag\FlagLinkBuilder $flagLinkBuilder
+   *   The flag.link_builder service.
+   */
+  public function __construct(
+    protected FlagLinkBuilder $flagLinkBuilder,
+  ) {
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container): object {
+    return new static(
+      $container->get('flag.link_builder'),
+    );
+  }
 
   /**
    * Page callback to display a build page for a dataset.
@@ -92,6 +114,12 @@ class BcDcPageController extends ControllerBase {
           ],
         ],
       ];
+
+      // Bookmark link.
+      $flag_link = $this->flagLinkBuilder->build('node', $data_set->id(), 'bookmark');
+      unset($flag_link['#attributes']['title']);
+      $flag_link['#attributes']['class'][] = 'button';
+      $row[1]['data']['bookmark'] = $flag_link;
 
       $rows[] = $row;
     }
