@@ -67,7 +67,7 @@ class BcDcPageController extends ControllerBase {
     foreach ($data_set_nids as $nid) {
       $data_set = $this->entityTypeManager()->getStorage('node')->load($nid);
 
-      $rows[] = [
+      $row = [
         $data_set->getTitle(),
         [
           'data' => [
@@ -92,6 +92,8 @@ class BcDcPageController extends ControllerBase {
           ],
         ],
       ];
+
+      $rows[] = $row;
     }
     // Theme the table.
     $page['data_set-table'] = [
