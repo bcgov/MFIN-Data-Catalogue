@@ -81,6 +81,14 @@ class BcDcPageController extends ControllerBase {
     $data_set_nids = $query->execute();
     $page['data_set-table'] = $this->dataSetTableTheme($data_set_nids, 'data-set-table', $this->t('My unpublished data sets'));
 
+    // Table of data_set nodes bookmarked by this user.
+    $query = $this->entityTypeManager()->getStorage('flagging')->getQuery();
+    $query->accessCheck(FALSE);
+    $query->condition('flag_id', 'bookmark');
+    $query->condition('uid', $this->currentUser()->id());
+    $bookmark_nids = $query->execute();
+    $page['bookmark-table'] = $this->dataSetTableTheme($bookmark_nids, 'bookmark-table', $this->t('Bookmarked data sets'));
+
     return $page;
   }
 
