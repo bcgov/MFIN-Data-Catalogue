@@ -117,6 +117,18 @@ class BcDcFunctionalTest extends BrowserTestBase {
       $this->assertSession()->assert($account->hasRole('data_catalogue_user'), 'Test user ' . $username . ' should have role data_catalogue_user.');
     }
 
+    // Create a basic page node.
+    $this->drupalGet('node/add/page');
+    $this->assertSession()->statusCodeEquals(200);
+    $randomMachineName = $this->randomMachineName();
+    $edit = [
+      'edit-title-0-value' => 'Test basic page ' . $randomMachineName . $this->randomString(),
+    ];
+    $this->submitForm($edit, 'Save');
+    $this->assertSession()->pageTextContains('Basic page ' . $edit['edit-title-0-value'] . ' has been created');
+    // Page links to pathauto path for this page.
+    $this->linkByHrefStartsWithExists('/test-basic-page-' . strtolower($randomMachineName));
+
     // Create a data_set node.
     $this->drupalGet('node/add/data_set', ['query' => ['display' => 'data_set_description']]);
     $this->assertSession()->statusCodeEquals(200);
@@ -133,24 +145,12 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "region-breadcrumb")]//li[@class = "breadcrumb-item"]//a[@href = "/data-set"]');
 
     // Admin has access to data_set build page.
-    $this->drupalGet('node/1/build');
+    $this->drupalGet('node/2/build');
     $this->assertSession()->statusCodeEquals(200);
     // Page has ISO dates.
     $this->isoDateTest();
     // Page links to pathauto path for this page.
     $this->linkByHrefStartsWithExists($data_set_path);
-
-    // Create a basic page node.
-    $this->drupalGet('node/add/page');
-    $this->assertSession()->statusCodeEquals(200);
-    $randomMachineName = $this->randomMachineName();
-    $edit = [
-      'edit-title-0-value' => 'Test basic page ' . $randomMachineName . $this->randomString(),
-    ];
-    $this->submitForm($edit, 'Save');
-    $this->assertSession()->pageTextContains('Basic page ' . $edit['edit-title-0-value'] . ' has been created');
-    // Page links to pathauto path for this page.
-    $this->linkByHrefStartsWithExists('/test-basic-page-' . strtolower($randomMachineName));
 
     // Data set dashboard.
     $this->drupalGet('data-set');
@@ -169,7 +169,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
       ':data_set_title' => 'Build ' . $data_set_title,
       ':data_set_path' => $data_set_path,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "data-set-table")]//tr/td/a[text() = "Build"][@class = "button"][@aria-label = :data_set_title][@href = "/node/1/build"]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "data-set-table")]//tr/td/a[text() = "Build"][@class = "button"][@aria-label = :data_set_title][@href = "/node/2/build"]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     // No empty message.
     $this->assertSession()->elementNotExists('xpath', '//table[contains(@class, "data-set-table")]//tr/td[text() = "No data sets to show."]');
@@ -181,12 +181,12 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Bookmark an item.
     $this->clickLink('Bookmark');
     $this->assertSession()->pageTextContains('Item added to your bookmarks');
-    $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "bookmark-table")]//tr/td/a[text() = "Build"][@class = "button"][@aria-label = :data_set_title][@href = "/node/1/build"]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "bookmark-table")]//tr/td/a[text() = "Build"][@class = "button"][@aria-label = :data_set_title][@href = "/node/2/build"]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     $this->assertSession()->elementNotExists('xpath', '//table[contains(@class, "bookmark-table")]//tr/td[text() = "No data sets to show."]');
 
     // Publish the data_set and there are no data rows, just the empty message.
-    $data_set = Node::load(1);
+    $data_set = Node::load(2);
     $data_set->setPublished()->save();
     $this->drupalGet('data-set');
     $this->assertSession()->statusCodeEquals(200);
@@ -194,11 +194,11 @@ class BcDcFunctionalTest extends BrowserTestBase {
 
     // Anonymous has no access to data_set build page.
     $this->drupalLogout();
-    $this->drupalGet('node/1/build');
+    $this->drupalGet('node/2/build');
     $this->assertSession()->statusCodeEquals(403);
 
     // Anonymous has access to view page.
-    $this->drupalGet('node/1');
+    $this->drupalGet('node/2');
     $this->assertSession()->statusCodeEquals(200);
     // Page has ISO dates.
     $this->isoDateTest();
