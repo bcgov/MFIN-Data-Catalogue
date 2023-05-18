@@ -86,7 +86,15 @@ class BcDcPageController extends ControllerBase {
     $query->accessCheck(FALSE);
     $query->condition('flag_id', 'bookmark');
     $query->condition('uid', $this->currentUser()->id());
-    $bookmark_nids = $query->execute();
+    $bookmark_flagging_ids = $query->execute();
+    // Convert the array of IDs of the bookmark flags into an array of IDs of
+    // the nodes that are bookmarked.
+    $bookmarks = $this->entityTypeManager()->getStorage('flagging')->loadMultiple($bookmark_flagging_ids);
+    $bookmark_nids = [];
+    foreach ($bookmarks as $bookmark) {
+      $bookmark_nids[] = $bookmark->getFlaggableId();
+    }
+    // Generate the table.
     $page['bookmark-table'] = $this->dataSetTableTheme($bookmark_nids, 'bookmark-table', $this->t('Bookmarked data sets'));
 
     return $page;
