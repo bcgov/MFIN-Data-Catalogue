@@ -159,14 +159,14 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSession()->elementExists('xpath', '//a[@href = "/node/add/data_set?display=data_set_description"][text() = "Add new data set"]');
     // View link.
     $args = [
-      ':data_set_title' => 'View ' . $data_set_title,
+      ':data_set_title' => 'View "' . $data_set_title . '".',
       ':data_set_path' => $data_set_path,
     ];
     $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "data-set-table")]//tr/td/a[text() = "View"][@class = "button"][@aria-label = :data_set_title][starts-with(@href, :data_set_path)]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     // Build link.
     $args = [
-      ':data_set_title' => 'Build ' . $data_set_title,
+      ':data_set_title' => 'Build "' . $data_set_title . '".',
       ':data_set_path' => $data_set_path,
     ];
     $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "data-set-table")]//tr/td/a[text() = "Build"][@class = "button"][@aria-label = :data_set_title][@href = "/node/2/build"]', $args);

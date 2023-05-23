@@ -134,7 +134,7 @@ class BcDcPageController extends ControllerBase {
               '#url' => $data_set->toUrl(),
               '#attributes' => [
                 'class' => ['button'],
-                'aria-label' => $this->t('View @title', ['@title' => $data_set->getTitle()]),
+                'aria-label' => $this->t('View "@title".', ['@title' => $data_set->getTitle()]),
               ],
             ],
             'build' => [
@@ -143,7 +143,7 @@ class BcDcPageController extends ControllerBase {
               '#url' => Url::fromRoute('bc_dc.data_set_build_page', ['node' => $data_set->id()]),
               '#attributes' => [
                 'class' => ['button'],
-                'aria-label' => $this->t('Build @title', ['@title' => $data_set->getTitle()]),
+                'aria-label' => $this->t('Build "@title".', ['@title' => $data_set->getTitle()]),
               ],
             ],
           ],
