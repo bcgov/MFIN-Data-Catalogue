@@ -153,7 +153,9 @@ class BcDcPageController extends ControllerBase {
       // Bookmark link.
       $flag_link = $this->flagLinkBuilder->build('node', $data_set->id(), 'bookmark');
       unset($flag_link['#attributes']['title']);
+      // Theme like a button.
       $flag_link['#attributes']['class'][] = 'button';
+      // Add to actions.
       $row[1]['data']['bookmark'] = $flag_link;
 
       $rows[] = $row;
