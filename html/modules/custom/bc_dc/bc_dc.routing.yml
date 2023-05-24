@@ -15,7 +15,7 @@ bc_dc.data_set_dashboard:
   path: '/data-set'
   defaults:
     _controller: '\Drupal\bc_dc\Controller\BcDcPageController::dataSetDashboardPage'
-    _title: 'Data sets'
+    _title: 'Dashboard'
   requirements:
     _permission: 'edit any data_set content'
   options:
