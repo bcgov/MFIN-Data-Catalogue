@@ -2,3 +2,24 @@
  * @file
  * CSS needed during development
  */
+
+/* Display bookmark buttons inline. */
+div.flag-bookmark {
+  display: inline;
+}
+
+/* Margin above dashboard tables. */
+table.dc-dashboard-table {
+  margin-top: 1em;
+}
+
+table.dc-dashboard-table > thead > tr > th:last-child {
+  width: 18em;
+}
+
+/* Make dashboard table captions look like h2. */
+table.dc-dashboard-table > caption {
+  color: black;
+  font-weight: bold;
+  font-size: 2rem;
+}
