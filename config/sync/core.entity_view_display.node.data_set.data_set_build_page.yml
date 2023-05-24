@@ -102,12 +102,15 @@ third_party_settings:
             region: content
             configuration:
               id: 'field_block:node:data_set:field_data_set_type'
+              label: 'Data set type'
               label_display: '0'
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
+                view_mode: view_mode
               formatter:
                 type: entity_reference_label
-                label: above
+                label: inline
                 settings:
                   link: true
                 third_party_settings: {  }
@@ -118,12 +121,15 @@ third_party_settings:
             region: content
             configuration:
               id: 'field_block:node:data_set:field_data_set_format'
+              label: 'Data set format'
               label_display: '0'
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
+                view_mode: view_mode
               formatter:
                 type: entity_reference_label
-                label: above
+                label: inline
                 settings:
                   link: true
                 third_party_settings: {  }
@@ -142,7 +148,7 @@ third_party_settings:
                 view_mode: view_mode
               formatter:
                 type: datetime_default
-                label: above
+                label: inline
                 settings:
                   timezone_override: ''
                   format_type: html_date
@@ -169,12 +175,15 @@ third_party_settings:
             region: content
             configuration:
               id: 'field_block:node:data_set:field_series'
+              label: Series
               label_display: '0'
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
+                view_mode: view_mode
               formatter:
                 type: entity_reference_label
-                label: above
+                label: inline
                 settings:
                   link: true
                 third_party_settings: {  }
