@@ -1,0 +1,4 @@
+devel:
+  css:
+    theme:
+      css/devel.css: {}
