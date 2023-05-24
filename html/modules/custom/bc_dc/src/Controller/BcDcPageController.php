@@ -66,7 +66,11 @@ class BcDcPageController extends ControllerBase {
       '#type' => 'link',
       '#url' => Url::fromRoute('node.add', ['node_type' => 'data_set'], ['query' => ['display' => 'data_set_description']]),
       '#attributes' => [
-        'class' => ['button', 'button--action', 'button--primary'],
+        'class' => [
+          'button',
+          'button--action',
+          'button--primary',
+        ],
       ],
     ];
 
