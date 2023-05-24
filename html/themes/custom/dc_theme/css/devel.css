@@ -8,9 +8,10 @@ div.flag-bookmark {
   display: inline;
 }
 
-/* Margin above dashboard tables. */
+/* Margin between dashboard items. */
+a.dc-dashboard-button-add-dataset,
 table.dc-dashboard-table {
-  margin-top: 1em;
+  margin-top: 2em;
 }
 
 table.dc-dashboard-table > thead > tr > th:last-child {
@@ -22,4 +23,10 @@ table.dc-dashboard-table > caption {
   color: black;
   font-weight: bold;
   font-size: 2rem;
+}
+
+/* No left padding in first table column on dashboard. */
+table.dc-dashboard-table > :not(caption) > * > th:first-child,
+table.dc-dashboard-table > :not(caption) > * > td:first-child {
+  padding-left: 0;
 }
