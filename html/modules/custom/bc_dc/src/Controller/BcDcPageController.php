@@ -79,7 +79,8 @@ class BcDcPageController extends ControllerBase {
     $query->condition('uid', $this->currentUser()->id());
     $query->condition('status', NodeInterface::NOT_PUBLISHED);
     $data_set_nids = $query->execute();
-    $page['data_set-table'] = $this->dataSetTableTheme($data_set_nids, 'data-set-table', $this->t('My unpublished data sets'));
+    $classes = ['data-set-table'];
+    $page['data_set-table'] = $this->dataSetTableTheme($data_set_nids, $classes, $this->t('My unpublished data sets'));
 
     // Table of data_set nodes bookmarked by this user.
     $query = $this->entityTypeManager()->getStorage('flagging')->getQuery();
@@ -95,7 +96,8 @@ class BcDcPageController extends ControllerBase {
       $bookmark_nids[] = $bookmark->getFlaggableId();
     }
     // Generate the table.
-    $page['bookmark-table'] = $this->dataSetTableTheme($bookmark_nids, 'bookmark-table', $this->t('Bookmarked data sets'));
+    $classes = ['bookmark-table'];
+    $page['bookmark-table'] = $this->dataSetTableTheme($bookmark_nids, $classes, $this->t('Bookmarked data sets'));
 
     return $page;
   }
@@ -105,15 +107,15 @@ class BcDcPageController extends ControllerBase {
    *
    * @param int[] $data_set_nids
    *   The NIDs of the nodes to display.
-   * @param string $class
-   *   The class to set on the table.
+   * @param array $classes
+   *   The classes to set on the table.
    * @param string $caption
    *   The table caption.
    *
    * @return array
    *   A render array.
    */
-  public function dataSetTableTheme(array $data_set_nids, string $class, string $caption): array {
+  public function dataSetTableTheme(array $data_set_nids, array $classes, string $caption): array {
     // Table headers.
     $header = [
       $this->t('Title'),
@@ -166,7 +168,7 @@ class BcDcPageController extends ControllerBase {
       '#rows' => $rows,
       '#sticky' => TRUE,
       '#attributes' => [
-        'class' => [$class],
+        'class' => $classes,
       ],
     ];
   }
