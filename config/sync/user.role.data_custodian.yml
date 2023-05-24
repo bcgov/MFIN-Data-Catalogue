@@ -1,9 +1,22 @@
 uuid: 773c53f6-2f96-4a42-aa87-f1f279155c86
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - node.type.data_set
+  module:
+    - form_mode_control
+    - node
 id: data_custodian
 label: 'Data custodian'
 weight: 5
 is_admin: null
-permissions: {  }
+permissions:
+  - 'create data_set content'
+  - 'delete own data_set content'
+  - 'edit any data_set content'
+  - 'edit own data_set content'
+  - 'revert data_set revisions'
+  - 'use  The form mode data_set_columns linked to  node entity( data_set )'
+  - 'use  The form mode data_set_description linked to  node entity( data_set )'
+  - 'view data_set revisions'
