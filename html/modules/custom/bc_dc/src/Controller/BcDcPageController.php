@@ -79,7 +79,7 @@ class BcDcPageController extends ControllerBase {
     $query->condition('uid', $this->currentUser()->id());
     $query->condition('status', NodeInterface::NOT_PUBLISHED);
     $data_set_nids = $query->execute();
-    $classes = ['data-set-table'];
+    $classes = ['dc-dashboard-table', 'dc-dashboard-table-mydatasets'];
     $page['data_set-table'] = $this->dataSetTableTheme($data_set_nids, $classes, $this->t('My unpublished data sets'));
 
     // Table of data_set nodes bookmarked by this user.
@@ -96,7 +96,7 @@ class BcDcPageController extends ControllerBase {
       $bookmark_nids[] = $bookmark->getFlaggableId();
     }
     // Generate the table.
-    $classes = ['bookmark-table'];
+    $classes = ['dc-dashboard-table', 'dc-dashboard-table-bookmarks'];
     $page['bookmark-table'] = $this->dataSetTableTheme($bookmark_nids, $classes, $this->t('Bookmarked data sets'));
 
     return $page;

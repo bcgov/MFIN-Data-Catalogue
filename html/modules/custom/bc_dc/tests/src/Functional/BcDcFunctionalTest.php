@@ -162,35 +162,35 @@ class BcDcFunctionalTest extends BrowserTestBase {
       ':data_set_title' => 'View "' . $data_set_title . '".',
       ':data_set_path' => $data_set_path,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "data-set-table")]//tr/td/a[text() = "View"][@class = "button"][@aria-label = :data_set_title][starts-with(@href, :data_set_path)]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "dc-dashboard-table-mydatasets")]//tr/td/a[text() = "View"][@class = "button"][@aria-label = :data_set_title][starts-with(@href, :data_set_path)]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     // Build link.
     $args = [
       ':data_set_title' => 'Build "' . $data_set_title . '".',
       ':data_set_path' => $data_set_path,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "data-set-table")]//tr/td/a[text() = "Build"][@class = "button"][@aria-label = :data_set_title][@href = "/node/2/build"]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "dc-dashboard-table-mydatasets")]//tr/td/a[text() = "Build"][@class = "button"][@aria-label = :data_set_title][@href = "/node/2/build"]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     // No empty message.
-    $this->assertSession()->elementNotExists('xpath', '//table[contains(@class, "data-set-table")]//tr/td[text() = "No data sets to show."]');
+    $this->assertSession()->elementNotExists('xpath', '//table[contains(@class, "dc-dashboard-table-mydatasets")]//tr/td[text() = "No data sets to show."]');
 
     // Test bookmarks.
     //
     // No items bookmarked.
-    $this->assertSession()->elementExists('xpath', '//table[contains(@class, "bookmark-table")]//tr/td[text() = "No data sets to show."]');
+    $this->assertSession()->elementExists('xpath', '//table[contains(@class, "dc-dashboard-table-bookmarks")]//tr/td[text() = "No data sets to show."]');
     // Bookmark an item.
     $this->clickLink('Bookmark');
     $this->assertSession()->pageTextContains('Item added to your bookmarks');
-    $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "bookmark-table")]//tr/td/a[text() = "Build"][@class = "button"][@aria-label = :data_set_title][@href = "/node/2/build"]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "dc-dashboard-table-bookmarks")]//tr/td/a[text() = "Build"][@class = "button"][@aria-label = :data_set_title][@href = "/node/2/build"]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
-    $this->assertSession()->elementNotExists('xpath', '//table[contains(@class, "bookmark-table")]//tr/td[text() = "No data sets to show."]');
+    $this->assertSession()->elementNotExists('xpath', '//table[contains(@class, "dc-dashboard-table-bookmarks")]//tr/td[text() = "No data sets to show."]');
 
     // Publish the data_set and there are no data rows, just the empty message.
     $data_set = Node::load(2);
     $data_set->setPublished()->save();
     $this->drupalGet('data-set');
     $this->assertSession()->statusCodeEquals(200);
-    $this->assertSession()->elementExists('xpath', '//table[contains(@class, "data-set-table")]//tr/td[text() = "No data sets to show."]');
+    $this->assertSession()->elementExists('xpath', '//table[contains(@class, "dc-dashboard-table-mydatasets")]//tr/td[text() = "No data sets to show."]');
 
     // Anonymous has no access to data_set build page.
     $this->drupalLogout();
