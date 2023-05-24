@@ -70,6 +70,7 @@ class BcDcPageController extends ControllerBase {
           'button',
           'button--action',
           'button--primary',
+          'dc-dashboard-button-add-dataset',
         ],
       ],
     ];
