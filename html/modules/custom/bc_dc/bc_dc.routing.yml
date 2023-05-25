@@ -20,3 +20,11 @@ bc_dc.data_set_dashboard:
     _permission: 'edit any data_set content'
   options:
     no_cache: TRUE
+
+bc_dc.data_set_landing:
+  path: '/data-set'
+  defaults:
+    _controller: '\Drupal\bc_dc\Controller\BcDcPageController::dataSetLandingPage'
+    _title: 'Data sets'
+  requirements:
+    _permission: 'edit any data_set content'

@@ -192,6 +192,10 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSession()->statusCodeEquals(200);
     $this->assertSession()->elementExists('xpath', '//table[contains(@class, "dc-dashboard-table-mydatasets")]//tr/td[text() = "No data sets to show."]');
 
+    // Data set landing page.
+    $this->drupalGet('data-set');
+    $this->assertSession()->statusCodeEquals(200);
+
     // Anonymous has no access to data_set build page.
     $this->drupalLogout();
     $this->drupalGet('node/2/build');
