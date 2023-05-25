@@ -66,6 +66,16 @@ third_party_settings:
               query_param: data_set_columns
             weight: 1
             additional: {  }
+          b42ed32e-1ca3-44c4-bc59-7ed5c16001b2:
+            uuid: b42ed32e-1ca3-44c4-bc59-7ed5c16001b2
+            region: first
+            configuration:
+              id: 'extra_field_block:node:data_set:flag_bookmark'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            weight: 2
+            additional: {  }
         third_party_settings: {  }
       -
         layout_id: layout_onecol
@@ -453,6 +463,11 @@ content:
     third_party_settings: {  }
     weight: 111
     region: content
+  flag_bookmark:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 10
+    region: first
   links:
     settings: {  }
     third_party_settings: {  }
