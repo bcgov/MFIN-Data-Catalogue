@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - block_content.type.basic
     - core.entity_view_mode.node.data_set_build_page
     - field.field.node.data_set.body
     - field.field.node.data_set.field_columns
@@ -21,7 +20,6 @@ dependencies:
     - field.field.node.data_set.field_used_in_products
     - node.type.data_set
   module:
-    - bc_dc
     - datetime
     - entity_reference_revisions
     - layout_builder
@@ -34,66 +32,32 @@ third_party_settings:
     allow_custom: false
     sections:
       -
-        layout_id: layout_twocol_section
+        layout_id: layout_onecol
         layout_settings:
           label: ''
-          context_mapping: {  }
-          column_widths: 50-50
         components:
-          ec64ac8c-7a00-4719-b298-810a0345c197:
-            uuid: ec64ac8c-7a00-4719-b298-810a0345c197
-            region: first
-            configuration:
-              id: bc_dc_edit_button
-              label: 'Edit section button'
-              label_display: '0'
-              provider: bc_dc
-              context_mapping:
-                node: layout_builder.entity
-              query_param: data_set_description
-            weight: 1
-            additional: {  }
-          742a25ec-0b8f-4cc1-9f7b-b78277880911:
-            uuid: 742a25ec-0b8f-4cc1-9f7b-b78277880911
-            region: second
-            configuration:
-              id: bc_dc_edit_button
-              label: 'Edit section button'
-              label_display: '0'
-              provider: bc_dc
-              context_mapping:
-                node: layout_builder.entity
-              query_param: data_set_columns
-            weight: 1
-            additional: {  }
-          b42ed32e-1ca3-44c4-bc59-7ed5c16001b2:
-            uuid: b42ed32e-1ca3-44c4-bc59-7ed5c16001b2
+          044f7aad-b2e3-47fb-98ff-df07d08bdb27:
+            uuid: 044f7aad-b2e3-47fb-98ff-df07d08bdb27
             region: first
             configuration:
               id: 'extra_field_block:node:data_set:flag_bookmark'
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-            weight: 2
+            weight: 0
             additional: {  }
-        third_party_settings: {  }
-      -
-        layout_id: layout_onecol
-        layout_settings:
-          label: ''
-        components:
-          e5dc193f-e689-4c77-906f-656fd880d1a3:
-            uuid: e5dc193f-e689-4c77-906f-656fd880d1a3
+          f17b8a42-3cd5-4911-8283-ff9f79b4de36:
+            uuid: f17b8a42-3cd5-4911-8283-ff9f79b4de36
             region: content
             configuration:
               id: 'extra_field_block:node:data_set:links'
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-            weight: -7
+            weight: 0
             additional: {  }
-          43b785b9-c8dc-4c9f-b1a8-d43e220f4a6b:
-            uuid: 43b785b9-c8dc-4c9f-b1a8-d43e220f4a6b
+          369af974-1525-423f-b6a5-4af131f2ac8f:
+            uuid: 369af974-1525-423f-b6a5-4af131f2ac8f
             region: content
             configuration:
               id: 'field_block:node:data_set:body'
@@ -105,68 +69,59 @@ third_party_settings:
                 label: hidden
                 settings: {  }
                 third_party_settings: {  }
-            weight: -5
+            weight: 1
             additional: {  }
-          335213e7-a120-4747-b2cc-ee1679cd5f16:
-            uuid: 335213e7-a120-4747-b2cc-ee1679cd5f16
+          89607b48-54ca-4a4f-82fa-d92e299571f3:
+            uuid: 89607b48-54ca-4a4f-82fa-d92e299571f3
             region: content
             configuration:
               id: 'field_block:node:data_set:field_data_set_type'
-              label: 'Data set type'
               label_display: '0'
-              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
-                view_mode: view_mode
               formatter:
                 type: entity_reference_label
-                label: inline
+                label: above
                 settings:
                   link: true
                 third_party_settings: {  }
-            weight: -4
+            weight: 2
             additional: {  }
-          9c14684c-e45f-4170-938c-d6b12548eddd:
-            uuid: 9c14684c-e45f-4170-938c-d6b12548eddd
+          eb9bc91a-e225-48a5-8cfb-b0d51bcd68c8:
+            uuid: eb9bc91a-e225-48a5-8cfb-b0d51bcd68c8
             region: content
             configuration:
               id: 'field_block:node:data_set:field_data_set_format'
-              label: 'Data set format'
               label_display: '0'
-              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
-                view_mode: view_mode
               formatter:
                 type: entity_reference_label
-                label: inline
+                label: above
                 settings:
                   link: true
                 third_party_settings: {  }
-            weight: -3
+            weight: 3
             additional: {  }
-          54ec6ca1-3c41-4edd-a7b8-53a27975e941:
-            uuid: 54ec6ca1-3c41-4edd-a7b8-53a27975e941
+          4751dce3-78b2-4e52-9437-c9f6cb036c87:
+            uuid: 4751dce3-78b2-4e52-9437-c9f6cb036c87
             region: content
             configuration:
               id: 'field_block:node:data_set:field_published_date'
-              label: 'Published date'
               label_display: '0'
-              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
-                view_mode: view_mode
               formatter:
                 type: datetime_default
-                label: inline
+                label: above
                 settings:
                   timezone_override: ''
-                  format_type: html_date
+                  format_type: medium
                 third_party_settings: {  }
-            weight: -2
+            weight: 4
             additional: {  }
-          d8e4e780-3189-4564-82db-0162e2e026b6:
-            uuid: d8e4e780-3189-4564-82db-0162e2e026b6
+          38c0c1a0-056c-42f2-b63a-6d86b3ca3b6b:
+            uuid: 38c0c1a0-056c-42f2-b63a-6d86b3ca3b6b
             region: content
             configuration:
               id: 'field_block:node:data_set:field_data_quality_issues'
@@ -178,29 +133,26 @@ third_party_settings:
                 label: above
                 settings: {  }
                 third_party_settings: {  }
-            weight: 0
+            weight: 5
             additional: {  }
-          88aea1b3-285a-44a2-bdc2-38fc3276f472:
-            uuid: 88aea1b3-285a-44a2-bdc2-38fc3276f472
+          a7600624-1bb9-4652-a981-ca76f58f24fd:
+            uuid: a7600624-1bb9-4652-a981-ca76f58f24fd
             region: content
             configuration:
               id: 'field_block:node:data_set:field_series'
-              label: Series
               label_display: '0'
-              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
-                view_mode: view_mode
               formatter:
                 type: entity_reference_label
-                label: inline
+                label: above
                 settings:
                   link: true
                 third_party_settings: {  }
-            weight: 1
+            weight: 6
             additional: {  }
-          f90828ec-5067-4f93-b9fa-c8a27a7484f5:
-            uuid: f90828ec-5067-4f93-b9fa-c8a27a7484f5
+          c87d7e19-a5a3-4fcb-900b-54cd2b9f8a46:
+            uuid: c87d7e19-a5a3-4fcb-900b-54cd2b9f8a46
             region: content
             configuration:
               id: 'field_block:node:data_set:field_data_set_historical_change'
@@ -212,10 +164,10 @@ third_party_settings:
                 label: above
                 settings: {  }
                 third_party_settings: {  }
-            weight: 2
+            weight: 7
             additional: {  }
-          03f58cda-b0fa-4992-83e1-d32c64a190d5:
-            uuid: 03f58cda-b0fa-4992-83e1-d32c64a190d5
+          ce861934-49a1-4fe9-82ca-18aee0d87eb1:
+            uuid: ce861934-49a1-4fe9-82ca-18aee0d87eb1
             region: content
             configuration:
               id: 'field_block:node:data_set:field_owner_organization'
@@ -228,10 +180,10 @@ third_party_settings:
                 settings:
                   link: true
                 third_party_settings: {  }
-            weight: 3
+            weight: 8
             additional: {  }
-          78f5ba50-439e-49d6-847f-83b2a73bd5ef:
-            uuid: 78f5ba50-439e-49d6-847f-83b2a73bd5ef
+          3549f5d0-d07a-4f3c-a54d-44c637b12be5:
+            uuid: 3549f5d0-d07a-4f3c-a54d-44c637b12be5
             region: content
             configuration:
               id: 'field_block:node:data_set:field_source_system'
@@ -244,10 +196,10 @@ third_party_settings:
                 settings:
                   link: true
                 third_party_settings: {  }
-            weight: 4
+            weight: 9
             additional: {  }
-          41f46ab9-04ef-418f-aa03-de3a0b9faf82:
-            uuid: 41f46ab9-04ef-418f-aa03-de3a0b9faf82
+          70be2674-bd5e-4a8c-be80-1cc115330e91:
+            uuid: 70be2674-bd5e-4a8c-be80-1cc115330e91
             region: content
             configuration:
               id: 'field_block:node:data_set:field_granularity'
@@ -260,10 +212,10 @@ third_party_settings:
                 settings:
                   link: true
                 third_party_settings: {  }
-            weight: 5
+            weight: 10
             additional: {  }
-          a0c1f300-8615-4d99-b8f3-5a791a3be8c2:
-            uuid: a0c1f300-8615-4d99-b8f3-5a791a3be8c2
+          4e2e271b-a35c-49ed-b6c5-9afe922d3854:
+            uuid: 4e2e271b-a35c-49ed-b6c5-9afe922d3854
             region: content
             configuration:
               id: 'field_block:node:data_set:field_used_in_products'
@@ -276,10 +228,10 @@ third_party_settings:
                 settings:
                   link: true
                 third_party_settings: {  }
-            weight: 6
+            weight: 11
             additional: {  }
-          e829fe49-c0ee-423f-b48b-69cafd09b872:
-            uuid: e829fe49-c0ee-423f-b48b-69cafd09b872
+          0ee38bc1-242d-4b22-ba02-dc89570f4f8c:
+            uuid: 0ee38bc1-242d-4b22-ba02-dc89570f4f8c
             region: content
             configuration:
               id: 'field_block:node:data_set:field_columns'
@@ -293,10 +245,10 @@ third_party_settings:
                   view_mode: default
                   link: ''
                 third_party_settings: {  }
-            weight: 7
+            weight: 12
             additional: {  }
-          b38c0ecd-cf84-4ba1-bfa1-cccf35f5e929:
-            uuid: b38c0ecd-cf84-4ba1-bfa1-cccf35f5e929
+          b829185e-0c0c-46b6-a3c2-db988e9d69c9:
+            uuid: b829185e-0c0c-46b6-a3c2-db988e9d69c9
             region: content
             configuration:
               id: 'field_block:node:data_set:field_security_classification'
@@ -309,41 +261,24 @@ third_party_settings:
                 settings:
                   link: true
                 third_party_settings: {  }
-            weight: -6
+            weight: 13
             additional: {  }
-          0bb2d337-1fad-44dc-91af-ed6cf21c7f89:
-            uuid: 0bb2d337-1fad-44dc-91af-ed6cf21c7f89
+          89a34022-1bb0-49f0-acc3-562ab366bc0f:
+            uuid: 89a34022-1bb0-49f0-acc3-562ab366bc0f
             region: content
             configuration:
               id: 'field_block:node:data_set:field_modified_date'
-              label: 'Modified date'
               label_display: '0'
-              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
-                view_mode: view_mode
               formatter:
                 type: datetime_default
                 label: above
                 settings:
                   timezone_override: ''
-                  format_type: html_date
+                  format_type: medium
                 third_party_settings: {  }
-            weight: -1
-            additional: {  }
-          823d83e8-5665-4e29-8d00-92d523995c80:
-            uuid: 823d83e8-5665-4e29-8d00-92d523995c80
-            region: content
-            configuration:
-              id: 'inline_block:basic'
-              label: 'This is the data set content items layout'
-              label_display: visible
-              provider: layout_builder
-              view_mode: full
-              context_mapping: {  }
-              block_revision_id: 1
-              block_serialized: null
-            weight: -8
+            weight: 14
             additional: {  }
         third_party_settings: {  }
 id: node.data_set.data_set_build_page
