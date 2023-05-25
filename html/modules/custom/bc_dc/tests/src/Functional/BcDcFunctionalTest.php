@@ -153,7 +153,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->linkByHrefStartsWithExists($data_set_path);
 
     // Data set dashboard.
-    $this->drupalGet('data-set');
+    $this->drupalGet('user/1');
     $this->assertSession()->statusCodeEquals(200);
     // The create-new link exists.
     $this->assertSession()->elementExists('xpath', '//a[@href = "/node/add/data_set?display=data_set_description"][text() = "Add new data set"]');
@@ -188,7 +188,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Publish the data_set and there are no data rows, just the empty message.
     $data_set = Node::load(2);
     $data_set->setPublished()->save();
-    $this->drupalGet('data-set');
+    $this->drupalGet('user/1');
     $this->assertSession()->statusCodeEquals(200);
     $this->assertSession()->elementExists('xpath', '//table[contains(@class, "dc-dashboard-table-mydatasets")]//tr/td[text() = "No data sets to show."]');
 

@@ -12,7 +12,7 @@ bc_dc.data_set_build_page:
           - data_set
 
 bc_dc.data_set_dashboard:
-  path: '/data-set'
+  path: '/user/{user}'
   defaults:
     _controller: '\Drupal\bc_dc\Controller\BcDcPageController::dataSetDashboardPage'
     _title: 'Dashboard'
