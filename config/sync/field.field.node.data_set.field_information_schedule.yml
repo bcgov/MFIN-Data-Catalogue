@@ -1,0 +1,29 @@
+uuid: 5815e980-598a-4dee-b5ff-29a472c34917
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_information_schedule
+    - node.type.data_set
+    - taxonomy.vocabulary.information_schedule
+id: node.data_set.field_information_schedule
+field_name: field_information_schedule
+entity_type: node
+bundle: data_set
+label: 'Information schedule'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      information_schedule: information_schedule
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

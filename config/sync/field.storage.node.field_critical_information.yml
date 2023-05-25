@@ -1,16 +1,14 @@
-uuid: 41348f99-a044-442c-8d51-3deafcc9fae9
+uuid: cd0d6de3-d0bd-4e07-b057-f915a4d2b334
 langcode: en
 status: true
 dependencies:
   module:
     - node
-    - taxonomy
-id: node.field_owner_organization
-field_name: field_owner_organization
+id: node.field_critical_information
+field_name: field_critical_information
 entity_type: node
-type: entity_reference
-settings:
-  target_type: taxonomy_term
+type: boolean
+settings: {  }
 module: core
 locked: false
 cardinality: 1

@@ -4,18 +4,26 @@ status: true
 dependencies:
   config:
     - field.field.node.data_set.body
+    - field.field.node.data_set.field_authoritative_info
     - field.field.node.data_set.field_columns
+    - field.field.node.data_set.field_critical_information
     - field.field.node.data_set.field_data_quality_issues
     - field.field.node.data_set.field_data_set_format
     - field.field.node.data_set.field_data_set_historical_change
     - field.field.node.data_set.field_data_set_type
     - field.field.node.data_set.field_granularity
+    - field.field.node.data_set.field_high_value_info
+    - field.field.node.data_set.field_information_schedule
+    - field.field.node.data_set.field_information_schedule_1
+    - field.field.node.data_set.field_information_schedule_2
     - field.field.node.data_set.field_modified_date
-    - field.field.node.data_set.field_owner_organization
+    - field.field.node.data_set.field_primary_responsibility_org
+    - field.field.node.data_set.field_product_type
     - field.field.node.data_set.field_published_date
     - field.field.node.data_set.field_security_classification
     - field.field.node.data_set.field_series
     - field.field.node.data_set.field_source_system
+    - field.field.node.data_set.field_unique_identifier
     - field.field.node.data_set.field_used_in_products
     - node.type.data_set
   module:
@@ -35,6 +43,16 @@ content:
     third_party_settings: {  }
     weight: 6
     region: content
+  field_authoritative_info:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 20
+    region: content
   field_columns:
     type: entity_reference_revisions_entity_view
     label: above
@@ -43,6 +61,16 @@ content:
       link: ''
     third_party_settings: {  }
     weight: 14
+    region: content
+  field_critical_information:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 19
     region: content
   field_data_quality_issues:
     type: text_default
@@ -82,6 +110,42 @@ content:
     third_party_settings: {  }
     weight: 12
     region: content
+  field_high_value_info:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 21
+    region: content
+  field_information_schedule:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 15
+    region: content
+  field_information_schedule_1:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 16
+    region: content
+  field_information_schedule_2:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 17
+    region: content
   field_modified_date:
     type: datetime_default
     label: above
@@ -91,13 +155,21 @@ content:
     third_party_settings: {  }
     weight: 5
     region: content
-  field_owner_organization:
+  field_primary_responsibility_org:
     type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    weight: 10
+    weight: 18
+    region: content
+  field_product_type:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 23
     region: content
   field_published_date:
     type: datetime_default
@@ -131,6 +203,14 @@ content:
       link: true
     third_party_settings: {  }
     weight: 11
+    region: content
+  field_unique_identifier:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 22
     region: content
   field_used_in_products:
     type: entity_reference_label

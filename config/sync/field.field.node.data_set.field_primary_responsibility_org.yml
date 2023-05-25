@@ -1,16 +1,16 @@
-uuid: 4311e9ff-e7a5-45ef-9358-bc6906b88376
+uuid: a3b4e0a4-c5ef-4f60-afb9-2fc16e01e98a
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_owner_organization
+    - field.storage.node.field_primary_responsibility_org
     - node.type.data_set
     - taxonomy.vocabulary.organization
-id: node.data_set.field_owner_organization
-field_name: field_owner_organization
+id: node.data_set.field_primary_responsibility_org
+field_name: field_primary_responsibility_org
 entity_type: node
 bundle: data_set
-label: 'Owner organization'
+label: 'Office of primary responsibility'
 description: ''
 required: false
 translatable: false

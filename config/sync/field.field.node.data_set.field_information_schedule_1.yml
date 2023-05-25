@@ -1,0 +1,23 @@
+uuid: a333197c-8622-437d-98ca-d6867dc54b62
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_information_schedule_1
+    - node.type.data_set
+id: node.data_set.field_information_schedule_1
+field_name: field_information_schedule_1
+entity_type: node
+bundle: data_set
+label: 'Information schedule primary'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

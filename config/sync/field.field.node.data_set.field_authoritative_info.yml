@@ -1,0 +1,21 @@
+uuid: 5f138cc7-f214-4279-bf49-1a4aad0a464a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_authoritative_info
+    - node.type.data_set
+id: node.data_set.field_authoritative_info
+field_name: field_authoritative_info
+entity_type: node
+bundle: data_set
+label: 'Authoritative info'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,20 @@
+uuid: f09d2f58-8676-4072-87ec-e28239fa889a
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_primary_responsibility_org
+field_name: field_primary_responsibility_org
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

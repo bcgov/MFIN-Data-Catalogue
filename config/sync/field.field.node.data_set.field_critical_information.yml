@@ -1,0 +1,21 @@
+uuid: 7ee7d9e4-c877-415d-8b08-cdde70b5f567
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_critical_information
+    - node.type.data_set
+id: node.data_set.field_critical_information
+field_name: field_critical_information
+entity_type: node
+bundle: data_set
+label: 'Critical information'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
