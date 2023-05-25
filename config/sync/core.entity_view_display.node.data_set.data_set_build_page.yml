@@ -108,9 +108,12 @@ third_party_settings:
             region: content
             configuration:
               id: 'field_block:node:data_set:field_published_date'
+              label: 'Published date'
               label_display: '0'
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
+                view_mode: view_mode
               formatter:
                 type: datetime_default
                 label: above
@@ -268,9 +271,12 @@ third_party_settings:
             region: content
             configuration:
               id: 'field_block:node:data_set:field_modified_date'
+              label: 'Modified date'
               label_display: '0'
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
+                view_mode: view_mode
               formatter:
                 type: datetime_default
                 label: above
