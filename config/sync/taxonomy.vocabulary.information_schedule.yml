@@ -1,0 +1,8 @@
+uuid: ad7fdadd-a01c-488b-972d-724266036dbc
+langcode: en
+status: true
+dependencies: {  }
+name: 'Information schedule'
+vid: information_schedule
+description: ''
+weight: 0

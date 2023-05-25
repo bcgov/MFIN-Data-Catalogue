@@ -1,0 +1,8 @@
+uuid: fabc2761-02d8-4cce-a649-a176cf01ce4b
+langcode: en
+status: true
+dependencies: {  }
+name: 'Used in products'
+vid: used_in_products
+description: ''
+weight: 0
