@@ -41,7 +41,7 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 10
+    weight: 3
     region: content
   field_authoritative_info:
     type: boolean
@@ -51,7 +51,7 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 16
+    weight: 11
     region: content
   field_columns:
     type: entity_reference_revisions_entity_view
@@ -70,14 +70,14 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 15
+    weight: 10
     region: content
   field_data_quality_issues:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 11
+    weight: 7
     region: content
   field_data_set_format:
     type: entity_reference_label
@@ -85,14 +85,14 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 4
+    weight: 17
     region: content
   field_data_set_historical_change:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 13
+    weight: 8
     region: content
   field_data_set_type:
     type: entity_reference_label
@@ -100,7 +100,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 3
+    weight: 16
     region: content
   field_granularity:
     type: entity_reference_label
@@ -108,7 +108,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 20
+    weight: 15
     region: content
   field_high_value_info:
     type: boolean
@@ -118,7 +118,7 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 17
+    weight: 12
     region: content
   field_information_schedule:
     type: entity_reference_label
@@ -126,7 +126,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 7
+    weight: 20
     region: content
   field_information_schedule_1:
     type: number_integer
@@ -135,7 +135,7 @@ content:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 8
+    weight: 21
     region: content
   field_information_schedule_2:
     type: number_integer
@@ -144,7 +144,7 @@ content:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 9
+    weight: 22
     region: content
   field_modified_date:
     type: datetime_default
@@ -161,7 +161,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 14
+    weight: 2
     region: content
   field_product_type:
     type: entity_reference_label
@@ -169,7 +169,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 21
+    weight: 18
     region: content
   field_published_date:
     type: datetime_default
@@ -186,7 +186,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 2
+    weight: 9
     region: content
   field_series:
     type: entity_reference_label
@@ -194,7 +194,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 12
+    weight: 4
     region: content
   field_source_system:
     type: entity_reference_label
@@ -202,7 +202,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 19
+    weight: 14
     region: content
   field_unique_identifier:
     type: string
@@ -210,7 +210,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 18
+    weight: 13
     region: content
   field_used_in_products:
     type: entity_reference_label
@@ -218,7 +218,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 22
+    weight: 19
     region: content
   flag_bookmark:
     settings: {  }
