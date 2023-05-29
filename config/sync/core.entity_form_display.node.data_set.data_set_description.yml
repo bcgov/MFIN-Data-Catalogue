@@ -68,14 +68,10 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_data_set_format:
-    type: entity_reference_autocomplete
+    type: options_select
     weight: 17
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   field_data_set_historical_change:
     type: text_textarea
@@ -86,24 +82,16 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_data_set_type:
-    type: entity_reference_autocomplete
+    type: options_select
     weight: 16
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   field_granularity:
-    type: entity_reference_autocomplete
+    type: options_buttons
     weight: 15
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   field_high_value_info:
     type: boolean_checkbox
@@ -113,14 +101,10 @@ content:
       display_label: true
     third_party_settings: {  }
   field_information_schedule:
-    type: entity_reference_autocomplete
+    type: options_select
     weight: 20
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   field_information_schedule_1:
     type: number
@@ -153,14 +137,10 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_product_type:
-    type: entity_reference_autocomplete
+    type: options_select
     weight: 18
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   field_published_date:
     type: datetime_default
@@ -179,24 +159,16 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_series:
-    type: entity_reference_autocomplete
+    type: options_select
     weight: 4
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   field_source_system:
-    type: entity_reference_autocomplete
+    type: options_select
     weight: 14
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   field_unique_identifier:
     type: string_textfield
