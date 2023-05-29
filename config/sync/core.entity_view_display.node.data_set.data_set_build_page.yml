@@ -31,7 +31,6 @@ dependencies:
     - datetime
     - entity_reference_revisions
     - layout_builder
-    - layout_discovery
     - text
     - user
 third_party_settings:
@@ -147,11 +146,6 @@ content:
     third_party_settings: {  }
     weight: 111
     region: content
-  flag_bookmark:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 10
-    region: first
   links:
     settings: {  }
     third_party_settings: {  }
@@ -167,3 +161,4 @@ hidden:
   field_primary_responsibility_org: true
   field_product_type: true
   field_unique_identifier: true
+  flag_bookmark: true
