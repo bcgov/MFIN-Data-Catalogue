@@ -11,18 +11,18 @@ div.flag-bookmark {
 /* Margin between dashboard items. */
 a.dc-dashboard-button-add-dataset,
 table.dc-dashboard-table {
-  margin-top: 2em;
+  margin-top: 2.25em;
 }
 
 table.dc-dashboard-table > thead > tr > th:last-child {
-  width: 18em;
+  width: 19em;
 }
 
 /* Make dashboard table captions look like h2. */
 table.dc-dashboard-table > caption {
   color: black;
-  font-weight: bold;
-  font-size: 2rem;
+  font-size: 1.728em;
+  margin-bottom: -.5em;
 }
 
 /* No left padding in first table column on dashboard. */
