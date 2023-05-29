@@ -1,16 +1,3 @@
-bc_dc.data_set_build_page:
-  path: '/node/{node}/build'
-  defaults:
-    _controller: '\Drupal\bc_dc\Controller\BcDcPageController::buildPage'
-  requirements:
-    _permission: 'edit any data_set content'
-  options:
-    parameters:
-      node:
-        type: entity:node
-        bundle:
-          - data_set
-
 bc_dc.data_set_dashboard:
   path: '/user/{user}'
   defaults:

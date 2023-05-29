@@ -1,0 +1,45 @@
+uuid: fa75d068-d02d-4786-a461-4ba8ea0feed5
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.data_set_build
+  module:
+    - bc_dc
+id: data_set_build-block_display-0
+label: 'Block page'
+weight: 0
+variant: block_display
+variant_settings:
+  id: block_display
+  label: null
+  weight: 0
+  uuid: be8cae63-cfdd-4f90-832b-4d2b01382bbe
+  blocks:
+    8790ffef-e6ad-43da-b42c-b04d9dc85fc1:
+      id: bc_dc_edit_button
+      label: 'Edit description'
+      label_display: visible
+      provider: bc_dc
+      context_mapping:
+        node: node
+      region: top
+      weight: -10
+      uuid: 8790ffef-e6ad-43da-b42c-b04d9dc85fc1
+      query_param: data_set_description
+    9e1d7d7b-d972-40c4-9854-8c56126c2552:
+      id: bc_dc_edit_button
+      label: 'Edit columns'
+      label_display: visible
+      provider: bc_dc
+      context_mapping:
+        node: node
+      region: top
+      weight: -9
+      uuid: 9e1d7d7b-d972-40c4-9854-8c56126c2552
+      query_param: data_set_columns
+  page_title: 'Build: [node:title]'
+page: data_set_build
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

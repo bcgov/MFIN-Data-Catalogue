@@ -1,0 +1,17 @@
+uuid: b735fc99-2500-44d5-8110-84af0b839ec8
+langcode: en
+status: true
+dependencies: {  }
+id: data_set_build
+label: 'Data set build'
+description: ''
+use_admin_theme: false
+path: '/node/{node}/build'
+access_logic: and
+access_conditions: {  }
+parameters:
+  node:
+    machine_name: node
+    label: ''
+    type: 'entity:node'
+    optional: false
