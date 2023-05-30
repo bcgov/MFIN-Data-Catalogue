@@ -43,6 +43,7 @@ module:
   page_manager_ui: 0
   path: 0
   path_alias: 0
+  realname: 0
   registration_role: 0
   search: 0
   shield: 0
