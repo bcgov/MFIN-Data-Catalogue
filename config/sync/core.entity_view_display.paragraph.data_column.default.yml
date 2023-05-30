@@ -30,21 +30,21 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 23
+    weight: 3
     region: content
   field_column_data_quality:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 19
+    weight: 8
     region: content
   field_column_description:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 20
+    weight: 5
     region: content
   field_column_name:
     type: string
@@ -52,7 +52,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 15
+    weight: 0
     region: content
   field_column_size:
     type: string
@@ -60,14 +60,14 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 16
+    weight: 2
     region: content
   field_column_transformations:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 21
+    weight: 6
     region: content
   field_column_type:
     type: entity_reference_label
@@ -91,7 +91,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 17
+    weight: 11
     region: content
   field_provenance_field_number:
     type: string
@@ -99,14 +99,14 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 11
+    weight: 12
     region: content
   field_provenance_field_question:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 22
+    weight: 13
     region: content
   field_provenance_form_name:
     type: string
@@ -114,7 +114,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 18
+    weight: 9
     region: content
   field_provenance_form_number:
     type: string
@@ -122,7 +122,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 9
+    weight: 10
     region: content
   field_references:
     type: entity_reference_label

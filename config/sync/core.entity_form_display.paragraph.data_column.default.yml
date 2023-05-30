@@ -27,7 +27,7 @@ mode: default
 content:
   field_column_allowed_values:
     type: text_textarea
-    weight: 18
+    weight: 3
     region: content
     settings:
       rows: 5
@@ -35,7 +35,7 @@ content:
     third_party_settings: {  }
   field_column_data_quality:
     type: text_textarea
-    weight: 14
+    weight: 8
     region: content
     settings:
       rows: 5
@@ -43,7 +43,7 @@ content:
     third_party_settings: {  }
   field_column_description:
     type: text_textarea
-    weight: 15
+    weight: 5
     region: content
     settings:
       rows: 5
@@ -67,41 +67,25 @@ content:
     third_party_settings: {  }
   field_column_transformations:
     type: text_textarea
-    weight: 16
+    weight: 6
     region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
   field_column_type:
-    type: entity_reference_autocomplete
+    type: options_select
     weight: 1
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   field_metadata_type:
-    type: entity_reference_autocomplete
+    type: options_select
     weight: 4
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   field_provenance_field_name:
-    type: string_textfield
-    weight: 12
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_provenance_field_number:
     type: string_textfield
     weight: 11
     region: content
@@ -109,9 +93,17 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_provenance_field_number:
+    type: string_textfield
+    weight: 12
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_provenance_field_question:
     type: text_textarea
-    weight: 17
+    weight: 13
     region: content
     settings:
       rows: 5
@@ -119,7 +111,7 @@ content:
     third_party_settings: {  }
   field_provenance_form_name:
     type: string_textfield
-    weight: 10
+    weight: 9
     region: content
     settings:
       size: 60
@@ -127,7 +119,7 @@ content:
     third_party_settings: {  }
   field_provenance_form_number:
     type: string_textfield
-    weight: 9
+    weight: 10
     region: content
     settings:
       size: 60
