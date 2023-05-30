@@ -1,0 +1,174 @@
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+{{ attach_library('bootstrap5/node') }}
+<article{{ attributes.addClass(classes) }}>
+
+  {{ title_prefix }}
+  {% if label and not page %}
+    <h2{{ title_attributes }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h2>
+  {% endif %}
+  {{ title_suffix }}
+
+  <div{{ content_attributes.addClass('node__content') }}>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 order-md-2">
+
+          <div class="card text-bg-light mb-3 p-3 small">
+
+            <div class="d-inline mb-3">
+              <b>{{ 'Data custodian'|t }}:</b> {{ author_name|striptags }}
+            </div>
+
+            {% if not node.field_primary_responsibility_org.isempty %}
+              <div class="mb-3">
+                {{ node.field_primary_responsibility_org|view }}
+              </div>
+            {% endif %}
+
+            {% if not node.field_published_date.isempty %}
+              <div class="mb-3">
+                {{ node.field_published_date|view }}
+              </div>
+            {% endif %}
+
+            {% if not node.field_modified_date.isempty %}
+              <div class="mb-3">
+                {{ node.field_modified_date|view }}
+              </div>
+            {% endif %}
+
+            {% if not node.field_unique_identifier.isempty %}
+              <div class="mb-3">
+                {{ node.field_unique_identifier|view }}
+              </div>
+            {% endif %}
+
+            <hr>
+
+            <div class="mt-3 small dc-fields">
+
+              {% if not node.field_security_classification.isempty %}
+                <div class="mb-3">
+                  {{ node.field_security_classification|view }}
+                </div>
+              {% endif %}
+  
+              {% if not node.field_critical_information.isempty %}
+                <div class="mb-3">
+                  {{ node.field_critical_information|view }}
+                </div>
+              {% endif %}
+  
+              {% if not node.field_authoritative_info.isempty %}
+                <div class="mb-3">
+                  {{ node.field_authoritative_info|view }}
+                </div>
+              {% endif %}
+  
+              {% if not node.field_high_value_info.isempty %}
+                <div class="mb-3">
+                  {{ node.field_high_value_info|view }}
+                </div>
+              {% endif %}
+  
+              {% if not node.field_source_system.isempty %}
+                <div class="mb-3">
+                  {{ node.field_source_system|view }}
+                </div>
+              {% endif %}
+  
+              {% if not node.field_granularity.isempty %}
+                <div class="mb-3">
+                  {{ node.field_granularity|view }}
+                </div>
+              {% endif %}
+  
+              {% if not node.field_data_set_type.isempty %}
+                <div class="mb-3">
+                  {{ node.field_data_set_type|view }}
+                </div>
+              {% endif %}
+  
+              {% if not node.field_data_set_format.isempty %}
+                <div class="mb-3">
+                  {{ node.field_data_set_format|view }}
+                </div>
+              {% endif %}
+
+              {% if not node.field_product_type.isempty %}
+                <div class="mb-3">
+                  {{ node.field_product_type|view }}
+                </div>
+              {% endif %}
+  
+              {% if not node.field_used_in_products.isempty %}
+                <div class="mb-3">
+                  {{ node.field_used_in_products|view }}
+                </div>
+              {% endif %}
+
+              {% if not node.field_information_schedule_1.isempty %}
+                <div class="mb-3">
+                  {{ node.field_information_schedule_1|view }}
+                </div>
+              {% endif %}
+
+              {% if not node.field_information_schedule_2.isempty %}
+                <div class="mb-3">
+                  {{ node.field_information_schedule_2|view }}
+                </div>
+              {% endif %}
+  
+            </div>
+
+          </div>
+
+          
+          
+        </div>
+        
+        <div class="col-md-7 order-md-1">
+
+          {% if not node.body.isempty %}
+            <div class="mb-3">
+              {{ node.body|view }}
+            </div>
+          {% endif %}
+
+          {% if not node.field_series.isempty %}
+            <div class="mb-3">
+              {{ node.field_series|view }}
+            </div>
+          {% endif %}
+
+          {% if not node.field_data_set_historical_change.isempty %}
+          <div class="mb-3">
+            {{ node.field_data_set_historical_change|view }}
+          </div>
+        {% endif %}
+
+        </div>
+      </div>
+    </div>
+
+    
+      {% if not node.field_modified_date.isempty %}
+      <hr>
+      <h2>{{ 'Data dictionary'|t }}</h2>
+        {{ node.field_columns|view }}
+      {% endif %} 
+
+  </div>
+
+</article>

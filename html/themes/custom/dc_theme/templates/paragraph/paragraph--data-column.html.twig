@@ -1,0 +1,20 @@
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+{% block paragraph %}
+  <div{{ attributes.addClass(classes) }}>
+    {% block content %}
+      <details>
+        <summary><span class="h5">{{ paragraph.field_column_name.value }}</span></summary>
+        <div class="p-3 dc-dictionary">
+          {{ content|without('field_column_name') }}
+        </div>
+      </details>
+    {% endblock %}
+  </div>
+{% endblock paragraph %}

@@ -1,0 +1,37 @@
+{#
+/**
+ * @file
+ * Default theme implementation for flag links.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the link element.
+ * - title: The flag link title.
+ * - action: 'flag' or 'unflag'
+ * - flag: The flag object.
+ * - flaggable: The flaggable entity.
+ */
+#}
+{% spaceless %}
+{# Attach the flag CSS library.#}
+{{ attach_library('flag/flag.link') }}
+
+{# Set the remaining Flag CSS classes. #}
+{% set classes = [
+'btn',
+'btn-default',
+'pull-right',
+'flag',
+'flag-' ~ flag.id(),
+'flag-' ~ flag.id() ~ '-' ~ flaggable.id(),
+action_class
+] %}
+
+{# Set nofollow to prevent search bots from crawling anonymous flag links #}
+{% set attributes = attributes.setAttribute('rel', 'nofollow').setAttribute('role', 'button') %}
+
+{% set fa_class = 'fa-bookmark' %}
+
+<div class="container">
+  <button class="{{classes|join(' ')}}"><a{{ attributes }}><i class="fas {{ fa_class }} fa-fw" aria-hidden="true"></i>{{ title }}</a></button>
+</div>
+{% endspaceless %}
