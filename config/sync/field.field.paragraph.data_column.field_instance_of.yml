@@ -1,0 +1,29 @@
+uuid: a7cf9cac-2907-4ac5-815d-ee4da862723c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_instance_of
+    - paragraphs.paragraphs_type.data_column
+    - taxonomy.vocabulary.common_data
+id: paragraph.data_column.field_instance_of
+field_name: field_instance_of
+entity_type: paragraph
+bundle: data_column
+label: 'Instance of'
+description: 'This indicates that this field is an instance of a field that appears in more than one data set.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      common_data: common_data
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

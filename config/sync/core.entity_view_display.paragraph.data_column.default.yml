@@ -10,13 +10,13 @@ dependencies:
     - field.field.paragraph.data_column.field_column_size
     - field.field.paragraph.data_column.field_column_transformations
     - field.field.paragraph.data_column.field_column_type
+    - field.field.paragraph.data_column.field_instance_of
     - field.field.paragraph.data_column.field_metadata_type
     - field.field.paragraph.data_column.field_provenance_field_name
     - field.field.paragraph.data_column.field_provenance_field_number
     - field.field.paragraph.data_column.field_provenance_field_question
     - field.field.paragraph.data_column.field_provenance_form_name
     - field.field.paragraph.data_column.field_provenance_form_number
-    - field.field.paragraph.data_column.field_references
     - paragraphs.paragraphs_type.data_column
   module:
     - text
@@ -77,6 +77,14 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
+  field_instance_of:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 7
+    region: content
   field_metadata_type:
     type: entity_reference_label
     label: above
@@ -123,13 +131,5 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 10
-    region: content
-  field_references:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: false
-    third_party_settings: {  }
-    weight: 7
     region: content
 hidden: {  }

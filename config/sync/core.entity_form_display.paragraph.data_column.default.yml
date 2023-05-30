@@ -10,13 +10,13 @@ dependencies:
     - field.field.paragraph.data_column.field_column_size
     - field.field.paragraph.data_column.field_column_transformations
     - field.field.paragraph.data_column.field_column_type
+    - field.field.paragraph.data_column.field_instance_of
     - field.field.paragraph.data_column.field_metadata_type
     - field.field.paragraph.data_column.field_provenance_field_name
     - field.field.paragraph.data_column.field_provenance_field_number
     - field.field.paragraph.data_column.field_provenance_field_question
     - field.field.paragraph.data_column.field_provenance_form_name
     - field.field.paragraph.data_column.field_provenance_form_number
-    - field.field.paragraph.data_column.field_references
     - paragraphs.paragraphs_type.data_column
   module:
     - text
@@ -79,6 +79,12 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_instance_of:
+    type: options_select
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_metadata_type:
     type: options_select
     weight: 4
@@ -122,16 +128,6 @@ content:
     weight: 10
     region: content
     settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_references:
-    type: entity_reference_autocomplete
-    weight: 7
-    region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
