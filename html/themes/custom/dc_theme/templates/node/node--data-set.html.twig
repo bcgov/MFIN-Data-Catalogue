@@ -131,11 +131,7 @@
               {% endif %}
   
             </div>
-
-          </div>
-
-          
-          
+          </div>               
         </div>
         
         <div class="col-md-7 order-md-1">
@@ -152,11 +148,17 @@
             </div>
           {% endif %}
 
+          {% if not node.field_data_quality_issues.isempty %}
+            <div class="mb-3">
+              {{ node.field_data_quality_issues|view }}
+            </div>
+          {% endif %}
+
           {% if not node.field_data_set_historical_change.isempty %}
-          <div class="mb-3">
-            {{ node.field_data_set_historical_change|view }}
-          </div>
-        {% endif %}
+            <div class="mb-3">
+              {{ node.field_data_set_historical_change|view }}
+            </div>
+          {% endif %}
 
         </div>
       </div>
