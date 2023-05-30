@@ -27,7 +27,7 @@
           <div class="card text-bg-light mb-3 p-3 small">
 
             <div class="d-inline mb-3">
-              <b>{{ 'Data custodian'|t }}:</b> {{ author_name|striptags }}
+              <b>{{ 'Data custodian'|t }}:</b> <a href="mailto:{{ node.uid.entity.mail.value }}">{{ node.uid.entity.realname }}</a>
             </div>
 
             {% if not node.field_primary_responsibility_org.isempty %}
