@@ -100,8 +100,7 @@ class EditSectionBtn extends BlockBase implements ContainerFactoryPluginInterfac
       'attributes' => [
         'class' => [
           'btn',
-          'btn-default',
-          'btn-raised',
+          'btn-primary',
         ],
         'aria-label' => $this->t('Edit @form_mode_label', ['@form_mode_label' => $form_mode_label]),
       ],
@@ -120,8 +119,8 @@ class EditSectionBtn extends BlockBase implements ContainerFactoryPluginInterfac
     ];
     $link = Link::createFromRoute($this->t('Edit'), 'entity.node.edit_form', $route_parameters, $link_options)->toRenderable();
 
-    $link['#prefix'] = '<div class="row"><div class="col-md-12"><div class="pull-right edit-section-btn">';
-    $link['#suffix'] = '</div></div></div>';
+    $link['#prefix'] = '<div class="edit-section-btn">';
+    $link['#suffix'] = '</div>';
 
     $build = [
       'link' => $link,

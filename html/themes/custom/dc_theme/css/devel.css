@@ -65,3 +65,37 @@ table.dc-dashboard-table > :not(caption) > * > td:first-child {
 .dc-dictionary .field:last-child {
   border-bottom: 0px solid transparent;
 }
+
+/* Build page */
+
+/* Edit buttons next to header. */
+div.block-bc-dc-edit-button {
+  margin-top: 2.25em;
+  margin-bottom: 0.5em;
+  display: grid;
+}
+div.block-bc-dc-edit-button > *:first-child {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+div.block-bc-dc-edit-button > *:last-child {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  justify-self: end;
+}
+
+/* No space above first edit button. */
+div.block-bc-dc-edit-button:first-child {
+  margin-top: 0;
+}
+
+/* Alignment for inline labels. */
+.field--label-inline > .field__label {
+  min-width: 12em;
+  text-align: right;
+}
+
+/* Space above block labels. */
+div.field--label-above {
+  margin-top: 1em;
+}
