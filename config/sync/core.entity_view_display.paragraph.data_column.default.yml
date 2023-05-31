@@ -27,28 +27,28 @@ mode: default
 content:
   field_column_allowed_values:
     type: text_default
-    label: above
+    label: inline
     settings: {  }
     third_party_settings: {  }
     weight: 3
     region: content
   field_column_data_quality:
     type: text_default
-    label: above
+    label: inline
     settings: {  }
     third_party_settings: {  }
     weight: 8
     region: content
   field_column_description:
     type: text_default
-    label: above
+    label: inline
     settings: {  }
     third_party_settings: {  }
     weight: 5
     region: content
   field_column_name:
     type: string
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -56,7 +56,7 @@ content:
     region: content
   field_column_size:
     type: string
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -64,14 +64,14 @@ content:
     region: content
   field_column_transformations:
     type: text_default
-    label: above
+    label: inline
     settings: {  }
     third_party_settings: {  }
     weight: 6
     region: content
   field_column_type:
     type: entity_reference_label
-    label: above
+    label: inline
     settings:
       link: false
     third_party_settings: {  }
@@ -79,7 +79,7 @@ content:
     region: content
   field_instance_of:
     type: entity_reference_label
-    label: above
+    label: inline
     settings:
       link: true
     third_party_settings: {  }
@@ -87,7 +87,7 @@ content:
     region: content
   field_metadata_type:
     type: entity_reference_label
-    label: above
+    label: inline
     settings:
       link: false
     third_party_settings: {  }
@@ -95,7 +95,7 @@ content:
     region: content
   field_provenance_field_name:
     type: string
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -103,7 +103,7 @@ content:
     region: content
   field_provenance_field_number:
     type: string
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -111,14 +111,14 @@ content:
     region: content
   field_provenance_field_question:
     type: text_default
-    label: above
+    label: inline
     settings: {  }
     third_party_settings: {  }
     weight: 13
     region: content
   field_provenance_form_name:
     type: string
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -126,7 +126,7 @@ content:
     region: content
   field_provenance_form_number:
     type: string
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }

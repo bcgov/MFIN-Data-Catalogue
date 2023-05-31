@@ -1,0 +1,75 @@
+uuid: be2a30dc-a2e3-480d-b013-5d071d958580
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.data_set_columns
+    - field.field.node.data_set.body
+    - field.field.node.data_set.field_authoritative_info
+    - field.field.node.data_set.field_columns
+    - field.field.node.data_set.field_critical_information
+    - field.field.node.data_set.field_data_quality_issues
+    - field.field.node.data_set.field_data_set_format
+    - field.field.node.data_set.field_data_set_historical_change
+    - field.field.node.data_set.field_data_set_type
+    - field.field.node.data_set.field_granularity
+    - field.field.node.data_set.field_high_value_info
+    - field.field.node.data_set.field_information_schedule
+    - field.field.node.data_set.field_information_schedule_1
+    - field.field.node.data_set.field_information_schedule_2
+    - field.field.node.data_set.field_modified_date
+    - field.field.node.data_set.field_primary_responsibility_org
+    - field.field.node.data_set.field_product_type
+    - field.field.node.data_set.field_published_date
+    - field.field.node.data_set.field_security_classification
+    - field.field.node.data_set.field_series
+    - field.field.node.data_set.field_source_system
+    - field.field.node.data_set.field_unique_identifier
+    - field.field.node.data_set.field_used_in_products
+    - node.type.data_set
+  module:
+    - entity_reference_revisions
+    - layout_builder
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.data_set.data_set_columns
+targetEntityType: node
+bundle: data_set
+mode: data_set_columns
+content:
+  field_columns:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  body: true
+  field_authoritative_info: true
+  field_critical_information: true
+  field_data_quality_issues: true
+  field_data_set_format: true
+  field_data_set_historical_change: true
+  field_data_set_type: true
+  field_granularity: true
+  field_high_value_info: true
+  field_information_schedule: true
+  field_information_schedule_1: true
+  field_information_schedule_2: true
+  field_modified_date: true
+  field_primary_responsibility_org: true
+  field_product_type: true
+  field_published_date: true
+  field_security_classification: true
+  field_series: true
+  field_source_system: true
+  field_unique_identifier: true
+  field_used_in_products: true
+  flag_bookmark: true
+  links: true

@@ -1,0 +1,10 @@
+uuid: bb91fc72-f2b9-4ab6-afe0-3da31668c58f
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.data_set_columns
+label: 'Data set columns'
+targetEntityType: node
+cache: true
