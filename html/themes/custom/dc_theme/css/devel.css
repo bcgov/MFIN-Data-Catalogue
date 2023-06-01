@@ -89,6 +89,11 @@ div.block-bc-dc-edit-button:first-child {
   margin-top: 0;
 }
 
+/* Width for build page content. */
+article.dc-data-set-build-page {
+  max-width: 50em;
+}
+
 /* Alignment for inline labels. */
 article.dc-data-set-build-page .field--label-inline > .field__label {
   min-width: 12em;
