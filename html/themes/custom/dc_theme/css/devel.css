@@ -97,7 +97,7 @@ article.dc-data-set-build-page {
 /* Alignment for inline labels. */
 article.dc-data-set-build-page .field--label-inline > .field__label {
   min-width: 12em;
-  text-align: right;
+  font-weight: normal;
 }
 
 /* Space above block labels. */
