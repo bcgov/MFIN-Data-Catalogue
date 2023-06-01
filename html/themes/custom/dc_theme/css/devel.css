@@ -105,3 +105,11 @@ article.dc-data-set-build-page div.field--label-above {
   margin-top: 1em;
   margin-bottom: 1em;
 }
+
+article.dc-data-set-build-page div.field--label-above > div.field__item * {
+  display: inline;
+  padding: 0;
+}
+article.dc-data-set-build-page div.field--label-above > div.field__item::after {
+  content: '…';
+}

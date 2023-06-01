@@ -42,9 +42,10 @@ bundle: data_set
 mode: data_set_build_page
 content:
   body:
-    type: text_default
+    type: text_trimmed
     label: above
-    settings: {  }
+    settings:
+      trim_length: 200
     third_party_settings: {  }
     weight: 2
     region: content
@@ -69,9 +70,10 @@ content:
     weight: 9
     region: content
   field_data_quality_issues:
-    type: text_default
+    type: text_trimmed
     label: above
-    settings: {  }
+    settings:
+      trim_length: 200
     third_party_settings: {  }
     weight: 6
     region: content
@@ -84,9 +86,10 @@ content:
     weight: 16
     region: content
   field_data_set_historical_change:
-    type: text_default
+    type: text_trimmed
     label: above
-    settings: {  }
+    settings:
+      trim_length: 200
     third_party_settings: {  }
     weight: 7
     region: content
