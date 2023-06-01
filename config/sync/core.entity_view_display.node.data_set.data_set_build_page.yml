@@ -79,7 +79,7 @@ content:
     type: entity_reference_label
     label: inline
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     weight: 16
     region: content
@@ -94,7 +94,7 @@ content:
     type: entity_reference_label
     label: inline
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     weight: 15
     region: content
@@ -102,7 +102,7 @@ content:
     type: entity_reference_label
     label: inline
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     weight: 14
     region: content
@@ -120,7 +120,7 @@ content:
     type: entity_reference_label
     label: inline
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     weight: 19
     region: content
@@ -155,7 +155,7 @@ content:
     type: entity_reference_label
     label: inline
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     weight: 1
     region: content
@@ -163,7 +163,7 @@ content:
     type: entity_reference_label
     label: inline
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     weight: 17
     region: content
@@ -180,7 +180,7 @@ content:
     type: entity_reference_label
     label: inline
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     weight: 8
     region: content
@@ -188,7 +188,7 @@ content:
     type: entity_reference_label
     label: inline
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     weight: 3
     region: content
@@ -196,7 +196,7 @@ content:
     type: entity_reference_label
     label: inline
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     weight: 13
     region: content
@@ -212,7 +212,7 @@ content:
     type: entity_reference_label
     label: above
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     weight: 18
     region: content
