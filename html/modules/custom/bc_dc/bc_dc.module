@@ -5,6 +5,8 @@
  * Module file.
  */
 
+use Drupal\Core\Render\Element;
+
 /**
  * Implements hook_preprocess_HOOK().
  */
@@ -18,4 +20,44 @@ function bc_dc_preprocess_flag(array &$variables): void {
 
   // Theme like a button.
   $variables['attributes']['class'][] = 'button';
+}
+
+/**
+ * Implements hook_entity_display_build_alter().
+ *
+ * Based on hook implementation in empty_fields module.
+ */
+function bc_dc_entity_display_build_alter(array &$build, array $context): void {
+  /** @var \Drupal\Core\Entity\EntityInterface $entity */
+  $entity = $context['entity'];
+  /** @var \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display */
+  $display = $context['display'];
+  foreach (Element::children($build) as $field_name) {
+    if ($entity->get($field_name)->isEmpty()) {
+      $definition = $entity->get($field_name)->getFieldDefinition();
+      $component = $display->getComponent($field_name);
+
+      $empty_text = $definition->isRequired() ? t('Required') : t('Optional');
+      $markup = ['#markup' => '<em>' . $empty_text . '</em>'];
+
+      $build[$field_name] = [
+        '#theme' => 'field',
+        '#title' => $definition->getLabel(),
+        '#label_display' => $component['label'],
+        '#view_mode' => $context['view_mode'],
+        '#language' => $entity->get($field_name)->getLangcode(),
+        '#field_name' => $definition->getName(),
+        '#field_type' => 'string',
+        '#field_translatable' => $definition->isTranslatable(),
+        '#entity_type' => $entity->getEntityTypeId(),
+        '#bundle' => $entity->bundle(),
+        '#object' => $entity,
+        '#items' => [(object) ['_attributes' => []]],
+        '#is_multiple' => FALSE,
+        // Use simple formatter.
+        '#formatter' => 'string',
+        '0' => $markup,
+      ] + $build[$field_name];
+    }
+  }
 }
