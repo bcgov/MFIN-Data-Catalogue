@@ -90,12 +90,12 @@ div.block-bc-dc-edit-button:first-child {
 }
 
 /* Alignment for inline labels. */
-.field--label-inline > .field__label {
+article.dc-data-set-build-page .field--label-inline > .field__label {
   min-width: 12em;
   text-align: right;
 }
 
 /* Space above block labels. */
-div.field--label-above {
+article.dc-data-set-build-page div.field--label-above {
   margin-top: 1em;
 }
