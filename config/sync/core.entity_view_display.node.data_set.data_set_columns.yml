@@ -28,7 +28,7 @@ dependencies:
     - field.field.node.data_set.field_used_in_products
     - node.type.data_set
   module:
-    - entity_reference_revisions
+    - bc_dc
     - layout_builder
     - user
 third_party_settings:
@@ -41,11 +41,9 @@ bundle: data_set
 mode: data_set_columns
 content:
   field_columns:
-    type: entity_reference_revisions_entity_view
+    type: data_set_column_name
     label: hidden
-    settings:
-      view_mode: default
-      link: ''
+    settings: {  }
     third_party_settings: {  }
     weight: 0
     region: content
