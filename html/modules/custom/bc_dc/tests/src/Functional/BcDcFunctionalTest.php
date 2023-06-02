@@ -122,6 +122,10 @@ class BcDcFunctionalTest extends BrowserTestBase {
       $this->assertSession()->assert($account->hasRole('data_catalogue_user'), 'Test user ' . $username . ' should have role data_catalogue_user.');
     }
 
+    // Re-save page_manager build page. Without this, the route is not created.
+    $this->drupalGet('admin/structure/page_manager/manage/data_set_build/general');
+    $this->submitForm([], 'Update and save');
+
     // Create a basic page node.
     $this->drupalGet('node/add/page');
     $this->assertSession()->statusCodeEquals(200);
