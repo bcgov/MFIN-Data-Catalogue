@@ -9,7 +9,8 @@ weight: 0
 stackable: false
 storage: folder
 folder: ../config/split/dev
-module: {  }
+module:
+  devel: 0
 theme: {  }
 complete_list: {  }
 partial_list:
