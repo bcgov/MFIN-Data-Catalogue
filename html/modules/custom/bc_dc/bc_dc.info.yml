@@ -16,6 +16,8 @@ dependencies:
   - entity_reference_revisions:entity_reference_revisions
   - flag:flag
   - form_mode_control:form_mode_control
+  - page_manager:page_manager
+  - page_manager:page_manager_ui
   - paragraphs:paragraphs
   - pathauto:pathauto
   - registration_role:registration_role
