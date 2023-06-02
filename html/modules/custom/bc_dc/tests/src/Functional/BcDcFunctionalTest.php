@@ -30,6 +30,11 @@ class BcDcFunctionalTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+  protected $profile = 'standard';
+
+  /**
+   * {@inheritdoc}
+   */
   protected static $modules = [
     'bc_dc',
   ];
