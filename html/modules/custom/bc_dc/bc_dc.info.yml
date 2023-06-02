@@ -22,3 +22,4 @@ dependencies:
   - pathauto:pathauto
   - registration_role:registration_role
   - tac_lite:tac_lite
+  - twig_tweak:twig_tweak
