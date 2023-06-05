@@ -160,6 +160,82 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->isoDateTest();
     // Page links to pathauto path for this page.
     $this->linkByHrefStartsWithExists($data_set_path);
+    // Section headers and edit links.
+    // Check for: A div.block-bc-dc-edit-button that has an 'h2' child with the
+    // correct contents and an 'a' descendent with button classes, @aria-label,
+    // @href, and text.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Data description"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Data set description"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=data_set_description")]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Data columns"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Data set columns"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=data_set_columns")]');
+
+    // Check for fields that are optional and have inline labels.
+    $fields_inline_optional = [
+      'field--name-field-primary-responsibility-org' => 'Office of primary responsibility',
+      'field--name-field-series' => 'Series',
+      'field--name-field-security-classification' => 'Security classification',
+      'field--name-field-unique-identifier' => 'Unique identifier',
+      'field--name-field-source-system' => 'Source system',
+      'field--name-field-granularity' => 'Granularity',
+      'field--name-field-data-set-type' => 'Data set type',
+      'field--name-field-data-set-format' => 'Data set format',
+      'field--name-field-product-type' => 'Product type',
+      'field--name-field-information-schedule' => 'Information schedule',
+      'field--name-field-information-schedule-1' => 'Information schedule primary',
+      'field--name-field-information-schedule-2' => 'Information schedule secondary',
+    ];
+    foreach ($fields_inline_optional as $class => $label) {
+      $args = [
+        ':class' => $class,
+        ':label' => $label,
+      ];
+      $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div/em[text() = "Optional"]', $args);
+      $this->assertSession()->elementExists('xpath', $xpath);
+    }
+    // Check for fields that are dates and have inline labels.
+    // The time formats are tested elsewhere.
+    $fields_inline_optional = [
+      'field--name-field-published-date' => 'Published date',
+      'field--name-field-modified-date' => 'Modified date',
+    ];
+    foreach ($fields_inline_optional as $class => $label) {
+      $args = [
+        ':class' => $class,
+        ':label' => $label,
+      ];
+      $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div/time', $args);
+      $this->assertSession()->elementExists('xpath', $xpath);
+    }
+    // Check for fields that are boolean and have inline labels.
+    $fields_inline_optional = [
+      'field--name-field-critical-information' => 'Critical information',
+      'field--name-field-authoritative-info' => 'Authoritative info',
+      'field--name-field-high-value-info' => 'High value info',
+    ];
+    foreach ($fields_inline_optional as $class => $label) {
+      $args = [
+        ':class' => $class,
+        ':label' => $label,
+      ];
+      $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div[text() = "No"]', $args);
+      $this->assertSession()->elementExists('xpath', $xpath);
+    }
+    // Check for fields that are optional and have labels above.
+    $fields_inline_optional = [
+      'field--name-body' => 'Data set description',
+      'field--name-field-data-quality-issues' => 'Data quality issues',
+      'field--name-field-data-set-historical-change' => 'Data set historical change',
+      'field--name-field-used-in-products' => 'Used in products',
+    ];
+    foreach ($fields_inline_optional as $class => $label) {
+      $args = [
+        ':class' => $class,
+        ':label' => $label,
+      ];
+      $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-above")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div/em[text() = "Optional"]', $args);
+      $this->assertSession()->elementExists('xpath', $xpath);
+    }
+
+    // Empty column names section.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--name-field-columns")]/em[text() = "Optional"]');
 
     // Data set dashboard.
     $this->drupalGet('user/1');
