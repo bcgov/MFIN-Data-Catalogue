@@ -10,6 +10,9 @@ use DrupalFinder\DrupalFinder;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Path;
 
+/**
+ * Based on Script Handler from Drupal Project.
+ */
 class ScriptHandler {
 
   /**
@@ -40,15 +43,15 @@ class ScriptHandler {
       'themes',
     ];
 
-    // Required for unit testing
+    // Required for unit testing.
     foreach ($dirs as $dir) {
-      if (!$fs->exists($drupalRoot . '/'. $dir)) {
-        $fs->mkdir($drupalRoot . '/'. $dir);
-        $fs->touch($drupalRoot . '/'. $dir . '/.gitkeep');
+      if (!$fs->exists($drupalRoot . '/' . $dir)) {
+        $fs->mkdir($drupalRoot . '/' . $dir);
+        $fs->touch($drupalRoot . '/' . $dir . '/.gitkeep');
       }
     }
 
-    // Prepare the settings file for installation
+    // Prepare the settings file for installation.
     if (!$fs->exists($drupalRoot . '/sites/default/settings.php') && $fs->exists($drupalRoot . '/sites/default/default.settings.php')) {
       $fs->copy($drupalRoot . '/sites/default/default.settings.php', $drupalRoot . '/sites/default/settings.php');
       require_once $drupalRoot . '/core/includes/bootstrap.inc';
@@ -63,7 +66,7 @@ class ScriptHandler {
       $event->getIO()->write("Created a sites/default/settings.php file with chmod 0666");
     }
 
-    // Create the files directory with chmod 0777
+    // Create the files directory with chmod 0777.
     if (!$fs->exists($drupalRoot . '/sites/default/files')) {
       $oldmask = umask(0);
       $fs->mkdir($drupalRoot . '/sites/default/files', 0777);
@@ -129,13 +132,14 @@ class ScriptHandler {
       if (!empty($projectName)) {
         $file_contents = str_replace("$name", $projectName, $file->getContents());
         file_put_contents($file->getRealPath(), $file_contents);
-        // reset the project name via reflection.
+        // Reset the project name via reflection.
         $package = $composer->getPackage();
         $refl = new \ReflectionProperty(get_class($package), 'name');
-        $refl->setAccessible(true);
+        $refl->setAccessible(TRUE);
         $refl->setValue($package, $projectName);
       }
     }
 
   }
+
 }
