@@ -68,12 +68,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb.git",
-                "reference": "d1a88d23c682ab3b4b2f5641d9bfc44a952736b9"
+                "reference": "fecccb8580ac80daef592da204e43dfd76c5d895"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/d1a88d23c682ab3b4b2f5641d9bfc44a952736b9",
-                "reference": "d1a88d23c682ab3b4b2f5641d9bfc44a952736b9",
+                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/fecccb8580ac80daef592da204e43dfd76c5d895",
+                "reference": "fecccb8580ac80daef592da204e43dfd76c5d895",
                 "shasum": ""
             },
             "require": {
@@ -103,6 +103,7 @@
                 "drupal/token_filter": "^2.0",
                 "drupal/twig_tweak": "^3.2",
                 "drupal/upgrade_status": "^4.0",
+                "drupal/views_bulk_edit": "^2.8",
                 "drupal/views_bulk_operations": "^4.2",
                 "drush/drush": "^11.0"
             },
@@ -124,7 +125,7 @@
                 "source": "https://github.com/bcgov/bcbb/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb/issues"
             },
-            "time": "2023-06-05T15:36:00+00:00"
+            "time": "2023-06-05T15:55:41+00:00"
         },
         {
             "name": "bcgov/bcbb_theme",
@@ -4587,6 +4588,61 @@
             "homepage": "http://drupal.org/project/upgrade_status",
             "support": {
                 "source": "https://git.drupalcode.org/project/upgrade_status"
+            }
+        },
+        {
+            "name": "drupal/views_bulk_edit",
+            "version": "2.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/views_bulk_edit.git",
+                "reference": "8.x-2.8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/views_bulk_edit-8.x-2.8.zip",
+                "reference": "8.x-2.8",
+                "shasum": "8600f5688d21d5d98e56b5f8c154997f6cb190c1"
+            },
+            "require": {
+                "drupal/core": "^9.1 || ^10"
+            },
+            "require-dev": {
+                "drupal/views_bulk_operations": "~3.0"
+            },
+            "suggest": {
+                "drupal/views_bulk_operations": "Get VBO for all the views benefits like batching, ability to select all view results or persistent selection across pages"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-2.8",
+                    "datestamp": "1666257164",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Marcin Grabias",
+                    "homepage": "https://www.drupal.org/u/graber"
+                },
+                {
+                    "name": "Graber",
+                    "homepage": "https://www.drupal.org/user/1599440"
+                }
+            ],
+            "description": "Allows bulk edition of entity field values.",
+            "homepage": "https://www.drupal.org/project/views_bulk_edit",
+            "support": {
+                "source": "https://git.drupalcode.org/project/views_bulk_edit",
+                "issues": "https://www.drupal.org/project/issues/views_bulk_edit?version=8.x"
             }
         },
         {
