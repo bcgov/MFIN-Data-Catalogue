@@ -257,6 +257,12 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // The other fields do not appear.
     $this->assertSession()->pageTextNotContains('Data set column 1 description');
 
+    // Data description edit page.
+    $this->click('a[aria-label = "Edit Data set description"]');
+    $this->assertSession()->statusCodeEquals(200);
+    // Test that field_security_classification widget is radio buttons.
+    $this->assertSession()->elementExists('xpath', '//div[@id = "edit-field-security-classification"]//input[@type = "radio"]');
+
     // Data set dashboard.
     $this->drupalGet('user/1');
     $this->assertSession()->statusCodeEquals(200);
