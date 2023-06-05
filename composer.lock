@@ -68,12 +68,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb.git",
-                "reference": "355b19f2b2735c6313c68cff864617b7347872ea"
+                "reference": "d1a88d23c682ab3b4b2f5641d9bfc44a952736b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/355b19f2b2735c6313c68cff864617b7347872ea",
-                "reference": "355b19f2b2735c6313c68cff864617b7347872ea",
+                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/d1a88d23c682ab3b4b2f5641d9bfc44a952736b9",
+                "reference": "d1a88d23c682ab3b4b2f5641d9bfc44a952736b9",
                 "shasum": ""
             },
             "require": {
@@ -88,8 +88,8 @@
                 "drupal/diff": "^1.1",
                 "drupal/field_group": "^3.4",
                 "drupal/form_mode_control": "^2.1",
-                "drupal/inline_entity_form": "^1.0@RC",
-                "drupal/linkit": "^6.0@beta",
+                "drupal/inline_entity_form": "^2.0",
+                "drupal/linkit": "^6.1",
                 "drupal/openid_connect": "^3.0@alpha",
                 "drupal/page_manager": "^4.0",
                 "drupal/panels": "^4.7",
@@ -124,7 +124,7 @@
                 "source": "https://github.com/bcgov/bcbb/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb/issues"
             },
-            "time": "2023-06-05T15:06:45+00:00"
+            "time": "2023-06-05T15:36:00+00:00"
         },
         {
             "name": "bcgov/bcbb_theme",
@@ -3012,20 +3012,21 @@
         },
         {
             "name": "drupal/inline_entity_form",
-            "version": "1.0.0-rc15",
+            "version": "2.0.0-rc4",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/inline_entity_form.git",
-                "reference": "8.x-1.0-rc15"
+                "reference": "2.0.0-rc4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/inline_entity_form-8.x-1.0-rc15.zip",
-                "reference": "8.x-1.0-rc15",
-                "shasum": "7702801f7e599956fc3d10cff8257809f53ac3ec"
+                "url": "https://ftp.drupal.org/files/projects/inline_entity_form-2.0.0-rc4.zip",
+                "reference": "2.0.0-rc4",
+                "shasum": "8f5f3e831117b223f60c8bee43a22d3ee1020bfd"
             },
             "require": {
-                "drupal/core": "^8.8 || ^9 || ^10",
+                "drupal/core": "^9.1 || ^10",
+                "drupal/rat": "^1.0.0@rc",
                 "php": ">=7.1"
             },
             "require-dev": {
@@ -3034,8 +3035,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.0-rc15",
-                    "datestamp": "1678126675",
+                    "version": "2.0.0-rc4",
+                    "datestamp": "1685028830",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "RC releases are not covered by Drupal security advisories."
@@ -3910,6 +3911,39 @@
                 "issues": "https://www.drupal.org/project/issues/pathauto",
                 "documentation": "https://www.drupal.org/docs/8/modules/pathauto"
             }
+        },
+        {
+            "name": "drupal/rat",
+            "version": "1.0.0-rc2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/rat.git",
+                "reference": "6d1d2af01e03b773f8413686863de581586959a6"
+            },
+            "require": {
+                "php": "^7.4 || ^8.0"
+            },
+            "require-dev": {
+                "drupal/core": "^9.4",
+                "drupal/core-dev": "^9.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Drupal\\rat\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "gpl-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Merlin",
+                    "email": "merlin@geeks4change.net"
+                }
+            ],
+            "time": "2022-11-09T20:50:47+00:00"
         },
         {
             "name": "drupal/realname",
