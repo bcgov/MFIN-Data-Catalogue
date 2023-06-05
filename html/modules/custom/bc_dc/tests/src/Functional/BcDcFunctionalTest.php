@@ -236,6 +236,26 @@ class BcDcFunctionalTest extends BrowserTestBase {
 
     // Empty column names section.
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--name-field-columns")]/em[text() = "Optional"]');
+    // No columns exist on column edit page.
+    $this->click('a[aria-label = "Edit Data set columns"]');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->pageTextContains('No Paragraph added yet');
+    // Add a column.
+    $this->click('input#edit-field-columns-add-more-add-more-button-data-column');
+    $this->assertSession()->statusCodeEquals(200);
+    $edit = [
+      'edit-field-columns-0-subform-field-column-name-0-value' => 'Data set column 1 name ' . $this->randomString(),
+      'edit-field-columns-0-subform-field-column-description-0-value' => 'Data set column 1 description ' . $this->randomString(),
+    ];
+    $this->submitForm($edit, 'Save');
+    // The column name appears in a list.
+    $args = [
+      ':column_name' => $edit['edit-field-columns-0-subform-field-column-name-0-value'],
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-columns")]/div/div/ul/li[text() = :column_name]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+    // The other fields do not appear.
+    $this->assertSession()->pageTextNotContains('Data set column 1 description');
 
     // Data set dashboard.
     $this->drupalGet('user/1');
