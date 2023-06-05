@@ -47,6 +47,8 @@ module:
   realname: 0
   registration_role: 0
   search: 0
+  search_api: 0
+  search_api_db: 0
   shield: 0
   shortcut: 0
   system: 0
@@ -58,6 +60,8 @@ module:
   twig_tweak: 0
   update: 0
   user: 0
+  views_bulk_edit: 0
+  views_bulk_operations: 0
   views_ui: 0
   pathauto: 1
   views: 10
