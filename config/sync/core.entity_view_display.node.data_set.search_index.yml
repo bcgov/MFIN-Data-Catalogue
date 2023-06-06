@@ -1,8 +1,9 @@
-uuid: 6d5bdd65-a50b-4092-aac7-92ca69d57ff0
+uuid: 05f7b622-a90f-4e96-8ee0-5e9f93e60af4
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.search_index
     - field.field.node.data_set.body
     - field.field.node.data_set.field_authoritative_info
     - field.field.node.data_set.field_columns
@@ -29,12 +30,17 @@ dependencies:
   module:
     - datetime
     - entity_reference_revisions
+    - layout_builder
     - text
     - user
-id: node.data_set.default
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.data_set.search_index
 targetEntityType: node
 bundle: data_set
-mode: default
+mode: search_index
 content:
   body:
     type: text_default
@@ -230,5 +236,9 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-hidden:
-  search_api_excerpt: true
+  search_api_excerpt:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 24
+    region: content
+hidden: {  }
