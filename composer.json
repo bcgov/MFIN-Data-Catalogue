@@ -18,6 +18,10 @@
             "url": "https://github.com/bcgov/bcbb-theme"
         },
         {
+            "type": "vcs",
+            "url": "https://github.com/openplus/opbb"
+        },
+        {
             "type": "package",
             "package": {
                 "name": "drupaloverride/tac_lite",
@@ -39,6 +43,7 @@
         "drupal/flag": "^4.0",
         "drupal/registration_role": "dev-1.x#a3a3d15",
         "drupaloverride/tac_lite": "^1.6",
+        "openplus/opbb": "1.0.x-dev",
         "vlucas/phpdotenv": "^5.1",
         "webflo/drupal-finder": "^1.2",
         "weitzman/drupal-test-traits": "^2.1"
