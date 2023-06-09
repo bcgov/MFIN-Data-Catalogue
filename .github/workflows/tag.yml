@@ -1,0 +1,98 @@
+name: Tag
+on:
+  push:
+    tags:
+    - '*'
+    paths-ignore:
+    - 'README.md'
+
+env:
+  COMPOSER_MEMORY_LIMIT: -1
+  CONTAINER_IMAGE_NAME: mfin-data-catalogue
+  CONTAINER_REGISTRY: ${{ secrets.CONTAINER_REGISTRY }}
+  CONTAINER_REGISTRY_USERNAME: ${{ secrets.CONTAINER_REGISTRY_USERNAME }}
+  CONTAINER_REGISTRY_PASSWORD: ${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@master
+
+    - uses: statcan/actions/composer@master
+      with:
+        args: install --prefer-dist --no-interaction
+
+    - name: Build out the Drupal infrastructure
+      run: |
+        export DB_TYPE=mysql
+        export DB_PORT=3306
+        git clone --branch 10.1.x https://github.com/drupalwxt/docker-scaffold.git docker
+        make build
+        docker compose -f docker-compose.ci.yml up -d
+        docker ps -a
+        sleep 10
+
+    - name: Run installation
+      run: |
+        export DB_TYPE=mysql
+        export DB_PORT=3306
+        make drupal_install
+
+    - name: Run tests
+      run: |
+        export DB_TYPE=mysql
+        export DB_PORT=3306
+        ./docker/bin/phpcs --standard=/var/www/html/core/phpcs.xml \
+            --extensions=php,module,inc,install,test,profile,theme \
+            --report=full \
+            --colors \
+            /var/www/html/modules/contrib/bcbb \
+            /var/www/html/modules/custom/bc_dc \
+            /var/www/html/themes/contrib/bcbb_theme \
+            /var/www/html/themes/custom/dc_theme
+
+    - name: Export github reference var
+      run: echo "GITHUB_REFERENCE=$(echo ${GITHUB_REF#refs/tags/})" >> $GITHUB_ENV
+
+    - name: Login to Container Registry 🐸
+      uses: docker/login-action@v2
+      with:
+        registry: ${{ env.CONTAINER_REGISTRY }}
+        username: ${{ env.CONTAINER_REGISTRY_USERNAME }}
+        password: ${{ env.CONTAINER_REGISTRY_PASSWORD }}
+
+    - name: Build and push PHP-FPM 🐳
+      run: |
+        docker tag mfin-data-catalogue-web:latest ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}:${{ env.GITHUB_REFERENCE }}
+        docker push ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}:${{ env.GITHUB_REFERENCE }}
+
+    - name: Build and push Nginx 🐳
+      run: |
+        docker tag mfin-data-catalogue-nginx:latest ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}-nginx:${{ env.GITHUB_REFERENCE }}
+        docker push ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}-nginx:${{ env.GITHUB_REFERENCE }}
+
+    - name: Checkout Tenant GitOps Repo
+      uses: actions/checkout@v3
+      with:
+        repository: bcgov-c/tenant-gitops-ea352d
+        path: tenant-gitops
+        ssh-key: ${{ secrets.SSH_KEY }}
+
+    - name: Update Argo CD
+      uses: fjogeleit/yaml-update-action@main
+      with:
+        valueFile: 'helm-drupal/values-mfin-data-catalogue.yaml'
+        changes: |
+          {
+            "drupal.tag": "${{ env.GITHUB_REFERENCE }}",
+            "nginx.tag": "${{ env.GITHUB_REFERENCE }}"
+          }
+        workdir: tenant-gitops
+        message: 'feat(helm): Update container images to ${{ env.GITHUB_REFERENCE }}'
+        repository: bcgov-c/tenant-gitops-ea352d
+        masterBranchName: main
+        targetBranch: main
+        branch: main
+        commitChange: true
+        token: ${{ secrets.GH_TOKEN }}
