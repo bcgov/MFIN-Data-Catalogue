@@ -27,6 +27,7 @@ dependencies:
     - field.field.node.data_set.field_used_in_products
     - node.type.data_set
   module:
+    - bc_dc
     - datetime
     - entity_reference_revisions
     - text
@@ -156,10 +157,9 @@ content:
     weight: 6
     region: content
   field_primary_responsibility_org:
-    type: entity_reference_label
+    type: data_set_facet_search_link
     label: inline
-    settings:
-      link: true
+    settings: {  }
     third_party_settings: {  }
     weight: 2
     region: content
@@ -189,18 +189,16 @@ content:
     weight: 9
     region: content
   field_series:
-    type: entity_reference_label
+    type: data_set_facet_search_link
     label: inline
-    settings:
-      link: true
+    settings: {  }
     third_party_settings: {  }
     weight: 4
     region: content
   field_source_system:
-    type: entity_reference_label
+    type: data_set_facet_search_link
     label: inline
-    settings:
-      link: true
+    settings: {  }
     third_party_settings: {  }
     weight: 14
     region: content
