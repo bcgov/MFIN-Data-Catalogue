@@ -65,43 +65,43 @@
                   {{ node.field_security_classification|view }}
                 </div>
               {% endif %}
-  
+
               {% if not node.field_critical_information.isempty %}
                 <div class="mb-3">
                   {{ node.field_critical_information|view }}
                 </div>
               {% endif %}
-  
+
               {% if not node.field_authoritative_info.isempty %}
                 <div class="mb-3">
                   {{ node.field_authoritative_info|view }}
                 </div>
               {% endif %}
-  
+
               {% if not node.field_high_value_info.isempty %}
                 <div class="mb-3">
                   {{ node.field_high_value_info|view }}
                 </div>
               {% endif %}
-  
+
               {% if not node.field_source_system.isempty %}
                 <div class="mb-3">
                   {{ node.field_source_system|view }}
                 </div>
               {% endif %}
-  
+
               {% if not node.field_granularity.isempty %}
                 <div class="mb-3">
                   {{ node.field_granularity|view }}
                 </div>
               {% endif %}
-  
+
               {% if not node.field_data_set_type.isempty %}
                 <div class="mb-3">
                   {{ node.field_data_set_type|view }}
                 </div>
               {% endif %}
-  
+
               {% if not node.field_data_set_format.isempty %}
                 <div class="mb-3">
                   {{ node.field_data_set_format|view }}
@@ -113,7 +113,7 @@
                   {{ node.field_product_type|view }}
                 </div>
               {% endif %}
-  
+
               {% if not node.field_used_in_products.isempty %}
                 <div class="mb-3">
                   {{ node.field_used_in_products|view }}
@@ -131,11 +131,11 @@
                   {{ node.field_information_schedule_2|view }}
                 </div>
               {% endif %}
-  
+
             </div>
-          </div>               
+          </div>
         </div>
-        
+
         <div class="col-md-7 order-md-1">
 
           {% if not node.body.isempty %}
@@ -166,12 +166,12 @@
       </div>
     </div>
 
-    
+
       {% if not node.field_modified_date.isempty %}
       <hr>
       <h2>{{ 'Data dictionary'|t }}</h2>
         {{ node.field_columns|view }}
-      {% endif %} 
+      {% endif %}
 
   </div>
 

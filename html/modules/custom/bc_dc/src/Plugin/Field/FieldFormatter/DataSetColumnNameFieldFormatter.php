@@ -2,8 +2,8 @@
 
 namespace Drupal\bc_dc\Plugin\Field\FieldFormatter;
 
-use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\Core\Field\FormatterBase;
 
 /**
  * Field Formatter that displays just the name of a data_set column.
