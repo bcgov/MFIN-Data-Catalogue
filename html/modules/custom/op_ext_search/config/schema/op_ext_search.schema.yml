@@ -15,6 +15,18 @@ block.settings.custom_search_api_block:
         search_btn_label:
           type: label
           label: 'Button label'
+        search_url:
+          type: string
+          label: 'Search URL'
+        label_sr_only:
+          type: boolean
+          label: 'Label shown on screen reader only'
+        search_input_size:
+          type: boolean
+          label: 'Set search input size'
+        search_input_size_value:
+          type: integer
+          label: 'search input size'
     facets:
       label: 'Facet configuration'
       type: sequence
