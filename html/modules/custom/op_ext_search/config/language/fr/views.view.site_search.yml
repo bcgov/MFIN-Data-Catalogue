@@ -1,0 +1,29 @@
+display:
+  default:
+    display_title: 'Par défaut'
+    display_options:
+      fields:
+        title:
+          separator: ', '
+        body:
+          separator: ', '
+      pager:
+        options:
+          tags:
+            next: 'Suivant ›'
+            previous: '‹ Précédent'
+            first: '« Premier'
+            last: 'Dernier »'
+          expose:
+            items_per_page_label: 'Éléments par page'
+            items_per_page_options_all_label: '- Tout -'
+            offset_label: Décalage
+      exposed_form:
+        options:
+          submit_button: Recherche
+          reset_button_label: Réinitialiser
+          exposed_sorts_label: 'Trier par'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+  block_1:
+    display_title: Bloc

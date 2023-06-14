@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * @file
+ * Update functions for the op_ext_search module.
+ */
+
+use Drupal\path_alias\Entity\PathAlias;
+use Drupal\wxt_translation\TranslationHelper;
+
+/**
+ * Implements hook_install().
+ */
+function op_ext_search_install() {
+  // Add URL alias for news listing page.
+  $path_alias = PathAlias::create([
+    'path' => '/search/site',
+    'alias' => '/recherche/site',
+    'langcode' => 'fr',
+  ]);
+
+  $path_alias->save();
+
+  // Install French config.
+  $moduleHandler = \Drupal::service('module_handler');
+
+  if ($moduleHandler->moduleExists('wxt_translation')) {
+    TranslationHelper::importTranslations('op_ext_search');
+  }
+}

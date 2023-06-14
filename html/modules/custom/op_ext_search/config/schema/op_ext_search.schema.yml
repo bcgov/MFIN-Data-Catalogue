@@ -1,0 +1,25 @@
+block.settings.custom_search_api_block:
+  type: block_settings
+  label: 'Custom Search API Blocks'
+  mapping:
+    search:
+      type: mapping
+      label: 'Search configuration'
+      mapping:
+        search_label:
+          type: label
+          label: 'Search label'
+        search_placeholder:
+          type: label
+          label: 'Placeholder'
+        search_btn_label:
+          type: label
+          label: 'Button label'
+    facets:
+      label: 'Facet configuration'
+      type: sequence
+      sequence:
+        type: mapping
+        mapping:
+          title:
+            type: label

@@ -1,0 +1,99 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.content_type
+    - page_manager.page.site_search
+    - views.view.site_search
+  module:
+    - facets
+    - panels
+    - views
+_core:
+  default_config_hash: L8yZJERwIYfavdnZ-MnTeZaRXg-8OD1pU6XSjq80rwY
+id: site_search-panels_variant-0
+label: 'Search site'
+weight: 0
+variant: panels_variant
+variant_settings:
+  id: panels_variant
+  label: null
+  weight: 0
+  uuid: 967380c9-4f82-4f33-9856-6ee7d8e6143d
+  blocks:
+    8c022726-d5ca-4c3a-a35d-c5dfa0457ebd:
+      id: 'views_block:site_search-block_1'
+      label: ''
+      label_display: '0'
+      provider: views
+      context_mapping: {  }
+      views_label: ''
+      items_per_page: none
+      region: right
+      weight: 0
+      uuid: 8c022726-d5ca-4c3a-a35d-c5dfa0457ebd
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    6590bdd8-89f5-4e2b-bf71-4dc7658a611d:
+      id: 'facet_block:content_type'
+      label: 'Content type'
+      label_display: visible
+      provider: facets
+      context_mapping: {  }
+      region: left
+      weight: 0
+      uuid: 6590bdd8-89f5-4e2b-bf71-4dc7658a611d
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+  page_title: Search
+  layout: bs_2col_stacked
+  layout_settings:
+    label: ''
+    layout:
+      wrapper: div
+      classes:
+        row: row
+      add_layout_class: 1
+      attributes: ''
+    regions:
+      top:
+        wrapper: div
+        classes:
+          col-sm-12: col-sm-12
+        add_region_classes: 1
+        attributes: ''
+      left:
+        wrapper: div
+        classes:
+          col-sm-12: col-sm-12
+          col-md-3: col-md-3
+        add_region_classes: 1
+        attributes: class|pull-right
+      right:
+        wrapper: div
+        classes:
+          col-sm-12: col-sm-12
+          col-md-9: col-md-9
+        add_region_classes: 1
+        attributes: class|pull-left
+      bottom:
+        wrapper: div
+        classes:
+          col-sm-12: col-sm-12
+        add_region_classes: 1
+        attributes: ''
+  builder: standard
+  storage_type: page_manager
+  storage_id: site_search-panels_variant-0
+  css_classes:
+    - ''
+  html_id: ''
+  css_styles: ''
+page: site_search
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }
