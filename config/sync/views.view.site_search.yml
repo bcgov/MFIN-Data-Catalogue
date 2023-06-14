@@ -1,11 +1,13 @@
-uuid: ec907b66-3bbf-4e3f-99ee-e30b25c2f424
+uuid: d7235fa7-d9d3-4773-9642-255df304ddc4
 langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.node.body
     - search_api.index.default_index
   module:
     - search_api
+    - text
 _core:
   default_config_hash: Jq3AmjWxoeQWINyX8s37DBT1vSzY-khpkG1ZNYdC9lk
 id: site_search
@@ -300,10 +302,9 @@ display:
               authenticated: authenticated
               anonymous: '0'
               administrator: '0'
-              creator: '0'
-              reviewer: '0'
-              content_administrator: '0'
-              content_manager: '0'
+              data_administrator: '0'
+              data_custodian: '0'
+              data_catalogue_user: '0'
             expose_fields: false
             placeholder: ''
             searched_fields_id: search_api_fulltext_searched_fields
@@ -321,7 +322,8 @@ display:
             group_items: {  }
           parse_mode: terms
           min_length: null
-          fields: {  }
+          fields:
+            - rendered_item
         search_api_language:
           id: search_api_language
           table: search_api_index_default_index
@@ -401,6 +403,7 @@ display:
       tags:
         - 'config:field.storage.node.body'
         - 'config:search_api.index.default_index'
+        - 'search_api_list:default_index'
   block_1:
     id: block_1
     display_title: Block
@@ -423,3 +426,4 @@ display:
       tags:
         - 'config:field.storage.node.body'
         - 'config:search_api.index.default_index'
+        - 'search_api_list:default_index'

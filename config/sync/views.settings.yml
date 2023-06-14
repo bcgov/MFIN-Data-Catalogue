@@ -6,15 +6,15 @@ sql_signature: false
 ui:
   show:
     additional_queries: false
-    advanced_column: false
-    default_display: false
+    advanced_column: true
+    default_display: true
     performance_statistics: false
     preview_information: true
     sql_query:
-      enabled: false
-      where: above
+      enabled: true
+      where: below
     display_embed: false
-  always_live_preview: true
+  always_live_preview: false
   exposed_filter_any_label: old_any
 field_rewrite_elements:
   div: DIV

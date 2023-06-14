@@ -1,8 +1,9 @@
-uuid: dbe1aa33-a14b-4ea4-a1e1-882fbfb4f2f5
+uuid: 64f42985-50e2-47e1-b406-3079ead93b46
 langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.node.body
     - search_api.server.default_server
     - core.entity_view_mode.node.search_index
   module:
@@ -25,6 +26,14 @@ field_settings:
       module:
         - node
         - user
+  body:
+    label: 'Data set description'
+    datasource_id: 'entity:node'
+    property_path: body
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.body
   changed:
     label: Changed
     datasource_id: 'entity:node'
@@ -49,7 +58,7 @@ field_settings:
     type_locked: true
     hidden: true
   rendered_item:
-    label: 'Rendered item'
+    label: 'Rendered HTML output'
     property_path: rendered_item
     type: text
     configuration:
@@ -57,7 +66,8 @@ field_settings:
         - anonymous
       view_mode:
         'entity:node':
-          page: search_index
+          data_set: search_index
+          page: ''
   status:
     label: 'Publishing status'
     datasource_id: 'entity:node'
@@ -108,7 +118,8 @@ datasource_settings:
     bundles:
       default: false
       selected:
-        - webpage
+        - data_set
+        - page
     languages:
       default: true
       selected: {  }
@@ -127,13 +138,28 @@ processor_settings:
     weights:
       preprocess_index: -10
   entity_type: {  }
+  highlight:
+    weights:
+      postprocess_query: 0
+    prefix: '<strong>'
+    suffix: '</strong>'
+    excerpt: true
+    excerpt_always: false
+    excerpt_length: 256
+    exclude_fields: {  }
+    highlight: always
+    highlight_partial: false
   html_filter:
     weights:
       preprocess_index: -3
       preprocess_query: -6
     all_fields: false
     fields:
+      - author
+      - body
       - rendered_item
+      - title
+      - type
     title: true
     alt: true
     tags:
@@ -155,62 +181,6 @@ processor_settings:
     weights:
       add_properties: 0
       pre_index_save: -10
-  stopwords:
-    weights:
-      preprocess_index: -5
-      preprocess_query: -10
-    all_fields: false
-    fields:
-      - rendered_item
-      - title
-    stopwords:
-      - a
-      - an
-      - and
-      - are
-      - as
-      - at
-      - be
-      - but
-      - by
-      - for
-      - if
-      - in
-      - into
-      - is
-      - it
-      - 'no'
-      - not
-      - of
-      - 'on'
-      - or
-      - s
-      - such
-      - t
-      - that
-      - the
-      - their
-      - then
-      - there
-      - these
-      - they
-      - this
-      - to
-      - was
-      - will
-      - with
-  tokenizer:
-    weights:
-      preprocess_index: -2
-      preprocess_query: -5
-    all_fields: false
-    fields:
-      - rendered_item
-      - title
-    spaces: ''
-    ignored: ._-
-    overlap_cjk: 1
-    minimum_word_size: '3'
   transliteration:
     weights:
       preprocess_index: -4
@@ -223,7 +193,7 @@ tracker_settings:
   default:
     indexing_order: fifo
 options:
-  cron_limit: 50
+  cron_limit: 200
   index_directly: true
   track_changes_in_references: true
 server: default_server
