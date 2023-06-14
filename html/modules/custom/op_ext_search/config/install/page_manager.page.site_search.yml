@@ -1,3 +1,4 @@
+enforced: true
 langcode: en
 status: true
 dependencies: {  }
