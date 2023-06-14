@@ -11,6 +11,5 @@ dependencies:
   - 'drupal:views'
   - 'facets:facets_summary'
   - 'facets:facets'
-  - 'op_ext:op_ext_base'
   - 'panels:panels'
   - 'search_api:search_api'
