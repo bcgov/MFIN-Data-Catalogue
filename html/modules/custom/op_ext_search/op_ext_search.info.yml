@@ -1,5 +1,5 @@
-name: 'OpenPlus Extend - Search (optional)'
-description: 'Enables site search.'
+name: 'OpenPlus Search'
+description: 'Provides site search block and faceted search configuration.'
 type: module
 core_version_requirement: '^9.5 || ^10'
 package: OpenPlus
