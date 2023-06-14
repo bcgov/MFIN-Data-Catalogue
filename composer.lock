@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "56007eeccff637157aaca90c0a584671",
+    "content-hash": "cf19330a9c0b966d7b1b20084a0135f0",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6237,33 +6237,6 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v4.15.5"
             },
             "time": "2023-05-19T20:20:00+00:00"
-        },
-        {
-            "name": "openplus/opbb",
-            "version": "1.0.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/openplus/opbb.git",
-                "reference": "6995d6ffc1dae4bfb427bbdef9e418ef6d3012f5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/openplus/opbb/zipball/6995d6ffc1dae4bfb427bbdef9e418ef6d3012f5",
-                "reference": "6995d6ffc1dae4bfb427bbdef9e418ef6d3012f5",
-                "shasum": ""
-            },
-            "default-branch": true,
-            "type": "drupal-module",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "description": "OpenPlus Base Build",
-            "homepage": "https://github.com/openplus/opbb",
-            "support": {
-                "source": "https://github.com/openplus/opbb/tree/1.0.x",
-                "issues": "https://github.com/openplus/opbb/issues"
-            },
-            "time": "2023-06-08T20:23:49+00:00"
         },
         {
             "name": "pear/archive_tar",
@@ -14482,8 +14455,7 @@
     "stability-flags": {
         "bcgov/bcbb": 20,
         "bcgov/bcbb_theme": 20,
-        "drupal/registration_role": 20,
-        "openplus/opbb": 20
+        "drupal/registration_role": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
