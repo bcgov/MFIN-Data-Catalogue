@@ -4,6 +4,10 @@ status: true
 dependencies:
   config:
     - facets.facet.content_type
+    - facets.facet.office_of_primary_responsibility
+    - facets.facet.series
+    - facets.facet.source_system
+    - facets.facet.used_in_products
     - page_manager.page.site_search
     - views.view.site_search
   module:
@@ -50,6 +54,42 @@ variant_settings:
         - ''
       html_id: ''
       css_styles: ''
+    45bd33b3-e11b-449a-b245-fa168912e091:
+      id: 'facet_block:office_of_primary_responsibility'
+      label: 'Office of primary responsibility'
+      label_display: visible
+      provider: facets
+      context_mapping: {  }
+      region: right
+      weight: 0
+      uuid: 45bd33b3-e11b-449a-b245-fa168912e091
+    b073add7-06f8-4bf9-9531-e1d52439f4c5:
+      id: 'facet_block:series'
+      label: Series
+      label_display: visible
+      provider: facets
+      context_mapping: {  }
+      region: right
+      weight: 0
+      uuid: b073add7-06f8-4bf9-9531-e1d52439f4c5
+    b3a5361e-8717-4a04-b844-e142215690b9:
+      id: 'facet_block:source_system'
+      label: 'Source system'
+      label_display: visible
+      provider: facets
+      context_mapping: {  }
+      region: right
+      weight: 0
+      uuid: b3a5361e-8717-4a04-b844-e142215690b9
+    7413324e-643a-48b5-a689-9362681ca9eb:
+      id: 'facet_block:used_in_products'
+      label: 'Used in products'
+      label_display: visible
+      provider: facets
+      context_mapping: {  }
+      region: right
+      weight: 0
+      uuid: 7413324e-643a-48b5-a689-9362681ca9eb
   page_title: Search
   layout: bs_2col_stacked
   layout_settings:

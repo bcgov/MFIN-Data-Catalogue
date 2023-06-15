@@ -4,6 +4,10 @@ status: true
 dependencies:
   config:
     - field.storage.node.body
+    - field.storage.node.field_primary_responsibility_org
+    - field.storage.node.field_series
+    - field.storage.node.field_source_system
+    - field.storage.node.field_used_in_products
     - search_api.server.default_server
     - core.entity_view_mode.node.search_index
   module:
@@ -50,6 +54,38 @@ field_settings:
     dependencies:
       module:
         - node
+  field_primary_responsibility_org:
+    label: 'Office of primary responsibility'
+    datasource_id: 'entity:node'
+    property_path: field_primary_responsibility_org
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_primary_responsibility_org
+  field_series:
+    label: Series
+    datasource_id: 'entity:node'
+    property_path: field_series
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_series
+  field_source_system:
+    label: 'Source system'
+    datasource_id: 'entity:node'
+    property_path: field_source_system
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_source_system
+  field_used_in_products:
+    label: 'Used in products'
+    datasource_id: 'entity:node'
+    property_path: field_used_in_products
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_used_in_products
   node_grants:
     label: 'Node access information'
     property_path: search_api_node_grants
