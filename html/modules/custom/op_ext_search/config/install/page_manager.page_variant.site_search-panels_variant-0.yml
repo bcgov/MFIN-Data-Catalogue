@@ -71,14 +71,14 @@ variant_settings:
         wrapper: div
         classes:
           col-sm-12: col-sm-12
-          col-md-3: col-md-3
+          col-md-9: col-md-9
         add_region_classes: 1
         attributes: class|pull-right
       right:
         wrapper: div
         classes:
           col-sm-12: col-sm-12
-          col-md-9: col-md-9
+          col-md-3: col-md-3
         add_region_classes: 1
         attributes: class|pull-left
       bottom:
