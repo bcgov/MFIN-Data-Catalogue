@@ -389,7 +389,7 @@ display:
           admin_label: ''
           plugin_id: result
           empty: false
-          content: '<h2 class="h4">Displaying @start to @end of @total items.</h2>'
+          content: '<div class="alert alert-info mrgn-tp-lg"><p>Displaying @start - @end of @total results.</p></div>'
       footer: {  }
       display_extenders: {  }
     cache_metadata:
@@ -410,6 +410,10 @@ display:
     display_plugin: block
     position: 1
     display_options:
+      cache:
+        type: none
+      defaults:
+        cache: false
       display_extenders:
         metatag_display_extender:
           metatags: {  }
