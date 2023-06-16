@@ -55,3 +55,9 @@ facets:
     separator: ', '
     show_count: false
     weight: 0
+  metadata_type:
+    checked: true
+    label: 'Metadata type'
+    separator: ', '
+    show_count: false
+    weight: 0

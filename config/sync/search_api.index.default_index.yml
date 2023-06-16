@@ -3,6 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.node.field_columns
+    - field.storage.paragraph.field_metadata_type
     - field.storage.node.body
     - field.storage.node.field_primary_responsibility_org
     - field.storage.node.field_series
@@ -13,6 +15,7 @@ dependencies:
   module:
     - node
     - user
+    - paragraphs
     - search_api
 _core:
   default_config_hash: JcLgB23sCRVVdElVJTslifP47-KFrXMLcNWjz_0v8Wg
@@ -54,6 +57,17 @@ field_settings:
     dependencies:
       module:
         - node
+  field_metadata_type:
+    label: 'Columns » Paragraph » Metadata type'
+    datasource_id: 'entity:node'
+    property_path: 'field_columns:entity:field_metadata_type'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_columns
+        - field.storage.paragraph.field_metadata_type
+      module:
+        - paragraphs
   field_primary_responsibility_org:
     label: 'Office of primary responsibility'
     datasource_id: 'entity:node'
