@@ -95,8 +95,8 @@ variant_settings:
       uuid: 7413324e-643a-48b5-a689-9362681ca9eb
     a78f5c87-f560-4137-996d-c1fcb2b09db1:
       id: 'facets_summary_block:facets_summary'
-      label: 'Facets summary'
-      label_display: '0'
+      label: 'Current search filters'
+      label_display: visible
       provider: facets_summary
       context_mapping: {  }
       region: top
