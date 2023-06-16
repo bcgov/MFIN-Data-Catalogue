@@ -1,0 +1,57 @@
+uuid: 1caf85cc-dbe9-491b-b85b-7b2075a03493
+langcode: en
+status: true
+dependencies:
+  config:
+    - search_api.index.default_index
+    - views.view.site_search
+  module:
+    - search_api
+id: facets_summary
+name: 'Facets summary'
+facet_source_id: 'search_api:views_block__site_search__block_1'
+processor_configs:
+  reset_facets:
+    processor_id: reset_facets
+    weights:
+      build: '30'
+    settings:
+      link_text: 'Clear all'
+      position: after
+facets:
+  author_id:
+    checked: true
+    label: 'Author ID'
+    separator: ', '
+    show_count: false
+    weight: 0
+  content_type:
+    checked: true
+    label: 'Content type'
+    separator: ', '
+    show_count: false
+    weight: 0
+  office_of_primary_responsibility:
+    checked: true
+    label: 'Office of primary responsibility'
+    separator: ', '
+    show_count: false
+    weight: 0
+  series:
+    checked: true
+    label: Series
+    separator: ', '
+    show_count: false
+    weight: 0
+  source_system:
+    checked: true
+    label: 'Source system'
+    separator: ', '
+    show_count: false
+    weight: 0
+  used_in_products:
+    checked: true
+    label: 'Used in products'
+    separator: ', '
+    show_count: false
+    weight: 0

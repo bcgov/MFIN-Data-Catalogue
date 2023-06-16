@@ -8,10 +8,12 @@ dependencies:
     - facets.facet.series
     - facets.facet.source_system
     - facets.facet.used_in_products
+    - facets_summary.facets_summary.facets_summary
     - page_manager.page.site_search
     - views.view.site_search
   module:
     - facets
+    - facets_summary
     - panels
     - views
 _core:
@@ -90,6 +92,15 @@ variant_settings:
       region: right
       weight: 0
       uuid: 7413324e-643a-48b5-a689-9362681ca9eb
+    a78f5c87-f560-4137-996d-c1fcb2b09db1:
+      id: 'facets_summary_block:facets_summary'
+      label: 'Facets summary'
+      label_display: '0'
+      provider: facets_summary
+      context_mapping: {  }
+      region: top
+      weight: 0
+      uuid: a78f5c87-f560-4137-996d-c1fcb2b09db1
   page_title: Search
   layout: bs_2col_stacked
   layout_settings:
