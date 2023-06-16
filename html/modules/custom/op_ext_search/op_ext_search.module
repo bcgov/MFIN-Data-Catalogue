@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * @file
+ * Module file.
+ */
+
+/**
+ * Implements hook_preprocess_HOOK() for block--facets-summary.html.twig.
+ */
+function op_ext_search_preprocess_block__facets_summary(array &$variables): void {
+  // Do not show the block label when there are no facets selected.
+  if (!$variables['content']['#items']) {
+    $variables['label'] = NULL;
+  }
+}
