@@ -5,7 +5,7 @@ dependencies:
   config:
     - facets.facet.content_type
     - facets.facet.metadata_type
-    - facets.facet.office_of_primary_responsibility
+    - facets.facet.primary_responsibility_org
     - facets.facet.series
     - facets.facet.source_system
     - facets.facet.used_in_products
@@ -58,7 +58,7 @@ variant_settings:
       html_id: ''
       css_styles: ''
     45bd33b3-e11b-449a-b245-fa168912e091:
-      id: 'facet_block:office_of_primary_responsibility'
+      id: 'facet_block:primary_responsibility_org'
       label: 'Office of primary responsibility'
       label_display: visible
       provider: facets

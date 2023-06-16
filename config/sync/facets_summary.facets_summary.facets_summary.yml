@@ -31,7 +31,7 @@ facets:
     separator: ', '
     show_count: false
     weight: 0
-  office_of_primary_responsibility:
+  primary_responsibility_org:
     checked: true
     label: 'Office of primary responsibility'
     separator: ', '

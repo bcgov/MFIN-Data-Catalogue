@@ -7,13 +7,13 @@ dependencies:
     - views.view.site_search
   module:
     - search_api
-id: office_of_primary_responsibility
+id: primary_responsibility_org
 name: 'Office of primary responsibility'
 weight: 0
 min_count: 1
 missing: false
 missing_label: others
-url_alias: office_of_primary_responsibility
+url_alias: primary_responsibility_org
 facet_source_id: 'search_api:views_block__site_search__block_1'
 field_identifier: field_primary_responsibility_org
 query_operator: or
