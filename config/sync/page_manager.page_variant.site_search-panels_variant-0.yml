@@ -5,6 +5,7 @@ dependencies:
   config:
     - facets.facet.content_type
     - facets.facet.metadata_type
+    - facets.facet.modified_date
     - facets.facet.primary_responsibility_org
     - facets.facet.series
     - facets.facet.source_system
@@ -111,6 +112,15 @@ variant_settings:
       region: right
       weight: 2
       uuid: f75cbe03-d3a1-4a2a-9779-efc2e8df7857
+    43f01f02-1576-4149-b2d5-c68026f50666:
+      id: 'facet_block:modified_date'
+      label: 'Modified date'
+      label_display: visible
+      provider: facets
+      context_mapping: {  }
+      region: right
+      weight: 0
+      uuid: 43f01f02-1576-4149-b2d5-c68026f50666
   page_title: Search
   layout: bs_2col_stacked
   layout_settings:

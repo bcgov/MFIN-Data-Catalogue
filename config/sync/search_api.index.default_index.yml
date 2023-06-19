@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.field_columns
     - field.storage.paragraph.field_metadata_type
     - field.storage.node.body
+    - field.storage.node.field_modified_date
     - field.storage.node.field_primary_responsibility_org
     - field.storage.node.field_series
     - field.storage.node.field_source_system
@@ -68,6 +69,14 @@ field_settings:
         - field.storage.paragraph.field_metadata_type
       module:
         - paragraphs
+  field_modified_date:
+    label: 'Modified date'
+    datasource_id: 'entity:node'
+    property_path: field_modified_date
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_modified_date
   field_primary_responsibility_org:
     label: 'Office of primary responsibility'
     datasource_id: 'entity:node'
