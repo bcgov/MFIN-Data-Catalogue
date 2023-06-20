@@ -67,6 +67,10 @@ variant_settings:
       region: right
       weight: -2
       uuid: 45bd33b3-e11b-449a-b245-fa168912e091
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
     b073add7-06f8-4bf9-9531-e1d52439f4c5:
       id: 'facet_block:series'
       label: Series
