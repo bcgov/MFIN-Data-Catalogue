@@ -2,7 +2,7 @@
     "name": "bcgov-c/mfin-data-catalogue",
     "description": "BC MFIN Data Catalogue",
     "type": "project",
-    "license": "proprietary",
+    "license": "GPL-2.0-or-later",
     "homepage": "https://github.com/bcgov-c/MFIN-Data-Catalogue",
     "repositories": [
         {
