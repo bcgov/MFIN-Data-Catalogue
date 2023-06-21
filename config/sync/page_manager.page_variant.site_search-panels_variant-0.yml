@@ -105,7 +105,7 @@ variant_settings:
       provider: facets_summary
       context_mapping: {  }
       region: top
-      weight: 0
+      weight: -3
       uuid: a78f5c87-f560-4137-996d-c1fcb2b09db1
     f75cbe03-d3a1-4a2a-9779-efc2e8df7857:
       id: 'facet_block:metadata_type'
@@ -125,6 +125,20 @@ variant_settings:
       region: right
       weight: 0
       uuid: 43f01f02-1576-4149-b2d5-c68026f50666
+    3bdd5181-a961-471f-973d-86fb762a0737:
+      id: 'views_exposed_filter_block:site_search-block_1'
+      label: ''
+      label_display: '0'
+      provider: views
+      context_mapping: {  }
+      views_label: ''
+      region: top
+      weight: -4
+      uuid: 3bdd5181-a961-471f-973d-86fb762a0737
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
   page_title: Search
   layout: bs_2col_stacked
   layout_settings:
