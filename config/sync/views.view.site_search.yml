@@ -92,7 +92,7 @@ display:
               action_id: vbo_export_generate_csv_action
               preconfiguration:
                 add_confirmation: false
-                strip_tags: false
+                strip_tags: true
                 field_override: false
                 field_config:
                   title:
@@ -118,7 +118,7 @@ display:
               action_id: vbo_export_generate_xlsx_action
               preconfiguration:
                 add_confirmation: false
-                strip_tags: false
+                strip_tags: true
                 field_override: false
                 field_config:
                   title:
