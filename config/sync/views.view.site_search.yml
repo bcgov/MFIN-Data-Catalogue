@@ -283,8 +283,8 @@ display:
           label: ''
           exclude: true
           alter:
-            alter_text: true
-            text: '{{ field_primary_responsibility_org }} | '
+            alter_text: false
+            text: ''
             make_link: false
             path: ''
             absolute: false
@@ -700,8 +700,8 @@ display:
           label: ''
           exclude: true
           alter:
-            alter_text: true
-            text: ' | {{ field_modified_date }}'
+            alter_text: false
+            text: ''
             make_link: false
             path: ''
             absolute: false
@@ -2625,7 +2625,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<h2 class=\"h4\">{{ title }}</h2>\r\n<div class=\"views-field views-field-search-api-excerpt\">\r\n  {{ search_api_excerpt }}\r\n</div>\r\n<span class=\"small text-black-50\">{{ field_primary_responsibility_org }}{{ uid }}{{ field_modified_date }}</span>"
+            text: "<h2 class=\"h4\">{{ title }}</h2>\r\n<div class=\"views-field views-field-search-api-excerpt\">\r\n  {{ search_api_excerpt }}\r\n</div>\r\n<span class=\"small text-black-50\">{{ field_primary_responsibility_org }} | {{ uid }} | {{ field_modified_date }}</span>"
             make_link: false
             path: ''
             absolute: false
