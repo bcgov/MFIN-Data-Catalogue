@@ -260,7 +260,7 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          field_rendering: false
+          field_rendering: true
           fallback_handler: search_api_entity
           fallback_options:
             link_to_item: false
