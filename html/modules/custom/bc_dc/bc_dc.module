@@ -28,6 +28,15 @@ function bc_dc_preprocess_flag(array &$variables): void {
  * Based on hook implementation in empty_fields module.
  */
 function bc_dc_entity_display_build_alter(array &$build, array $context): void {
+  // Act only on build page view modes. Return early otherwise.
+  $view_modes = [
+    'data_set_build_page',
+    'data_set_columns',
+  ];
+  if (!in_array($context['view_mode'], $view_modes, TRUE)) {
+    return;
+  }
+
   /** @var \Drupal\Core\Entity\EntityInterface $entity */
   $entity = $context['entity'];
   /** @var \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display */
