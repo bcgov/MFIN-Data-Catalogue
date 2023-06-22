@@ -234,14 +234,14 @@ display:
             trim: false
             preserve_tags: ''
             html: false
-          element_type: span
-          element_class: 'small text-black-50'
+          element_type: ''
+          element_class: ''
           element_label_type: ''
           element_label_class: ''
           element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: false
+          element_default_classes: true
           empty: ''
           hide_empty: true
           empty_zero: false
@@ -249,7 +249,7 @@ display:
           click_sort_column: target_id
           type: entity_reference_label
           settings:
-            link: true
+            link: false
           group_column: target_id
           group_columns: {  }
           group_rows: true
@@ -309,14 +309,14 @@ display:
             trim: false
             preserve_tags: ''
             html: false
-          element_type: span
-          element_class: 'small text-black-50'
+          element_type: ''
+          element_class: ''
           element_label_type: ''
           element_label_class: ''
           element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: false
+          element_default_classes: true
           empty: ''
           hide_empty: true
           empty_zero: false
@@ -726,14 +726,14 @@ display:
             trim: false
             preserve_tags: ''
             html: false
-          element_type: span
-          element_class: 'small text-black-50'
+          element_type: ''
+          element_class: ''
           element_label_type: ''
           element_label_class: ''
           element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: false
+          element_default_classes: true
           empty: ''
           hide_empty: true
           empty_zero: false
@@ -2625,7 +2625,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<h2 class=\"h4\">{{ title }}</h2>\r\n<div class=\"views-field views-field-search-api-excerpt\">\r\n  {{ search_api_excerpt }}\r\n</div>\r\n<span class=\"small text-black-50\">{{ field_primary_responsibility_org }} | {{ uid }} | {{ field_modified_date }}</span>"
+            text: "<h2 class=\"h4\">{{ title }}</h2>\r\n<div class=\"views-field views-field-search-api-excerpt\">\r\n  {{ search_api_excerpt }}\r\n</div>\r\n<ul class=\"small text-black-50 bcbb-inline-list\">\r\n  <li>{{ field_primary_responsibility_org }}</li>\r\n  <li>{{ uid }}</li>\r\n  <li>{{ field_modified_date }}</li>\r\n</ul>"
             make_link: false
             path: ''
             absolute: false
