@@ -93,8 +93,8 @@ display:
           element_label_type: ''
           element_label_class: ''
           element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_type: div
+          element_wrapper_class: col-1
           element_default_classes: true
           empty: ''
           hide_empty: false
@@ -133,6 +133,9 @@ display:
                   field_modified_date:
                     active: true
                     label: modified_date
+                  nothing:
+                    active: false
+                    label: ''
                   created:
                     active: true
                     label: created_date
@@ -222,6 +225,9 @@ display:
                   field_modified_date:
                     active: true
                     label: modified_date
+                  nothing:
+                    active: false
+                    label: ''
                   created:
                     active: true
                     label: created_date
@@ -295,7 +301,7 @@ display:
           entity_type: node
           plugin_id: search_api_field
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -435,7 +441,7 @@ display:
           admin_label: ''
           plugin_id: search_api
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -489,10 +495,10 @@ display:
           entity_type: node
           plugin_id: search_api_field
           label: ''
-          exclude: false
+          exclude: true
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '{{ field_primary_responsibility_org }} | '
             make_link: false
             path: ''
             absolute: false
@@ -593,7 +599,7 @@ display:
           entity_type: node
           plugin_id: search_api_field
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -668,10 +674,10 @@ display:
           entity_type: node
           plugin_id: search_api_field
           label: ''
-          exclude: false
+          exclude: true
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: ' | {{ field_modified_date }}'
             make_link: false
             path: ''
             absolute: false
@@ -730,6 +736,55 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
+        nothing:
+          id: nothing
+          table: views
+          field: nothing
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: custom
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: "<h2 class=\"h4\">{{ title }}</h2>\r\n<div class=\"views-field views-field-search-api-excerpt\">\r\n  {{ search_api_excerpt }}\r\n</div>\r\n<span class=\"small text-black-50\">{{ field_primary_responsibility_org }}{{ uid }}{{ field_modified_date }}</span>"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: div
+          element_wrapper_class: col-11
+          element_default_classes: false
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
         created:
           id: created
           table: search_api_datasource_default_index_entity_node
@@ -2777,16 +2832,13 @@ display:
         type: default
         options:
           grouping: {  }
-          row_class: 'border-bottom pb-2 mb-2 pb-md-4 mb-md-4'
+          row_class: 'row border-bottom pb-2 mb-2 pb-md-4 mb-md-4'
           default_row_class: false
       row:
         type: fields
         options:
           default_field_elements: true
-          inline:
-            field_primary_responsibility_org: field_primary_responsibility_org
-            uid: uid
-            field_modified_date: field_modified_date
+          inline: {  }
           separator: ' | '
           hide_empty: true
       query:
@@ -2796,6 +2848,7 @@ display:
           skip_access: false
           preserve_facet_query_args: false
       relationships: {  }
+      css_class: container
       show_admin_links: false
       header:
         result:
