@@ -1,3 +1,11 @@
+field.formatter.settings.data_set_column_name:
+  type: mapping
+  label: 'Data set column name settings'
+  mapping:
+    display_inline:
+      type: boolean
+      label: 'Display inline'
+
 page_manager.block_plugin.bc_dc_edit_button:
   type: block.settings.[id]
   mapping:
