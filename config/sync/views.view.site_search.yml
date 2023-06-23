@@ -2861,7 +2861,7 @@ display:
           admin_label: ''
           plugin_id: result
           empty: false
-          content: '<div class="bc-gov-alertbanner bc-gov-alertbanner-info"><p>Displaying @start - @end of @total results.</p></div>'
+          content: '<p class="fst-italic">Displaying @start - @end of @total results.</p>'
       footer: {  }
       display_extenders: {  }
     cache_metadata:
