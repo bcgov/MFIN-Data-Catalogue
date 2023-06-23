@@ -241,9 +241,9 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // No columns exist on column edit page.
     $this->click('a[aria-label = "Edit Data set columns"]');
     $this->assertSession()->statusCodeEquals(200);
-    $this->assertSession()->pageTextContains('No Paragraph added yet');
+    $this->assertSession()->elementsCount('xpath', '//table[@id = "field-columns-values"]//tr', 1);
     // Add a column.
-    $this->click('input#edit-field-columns-add-more-add-more-button-data-column');
+    $this->click('input#field-columns-data-column-add-more');
     $this->assertSession()->statusCodeEquals(200);
     $edit = [
       'edit-field-columns-0-subform-field-column-name-0-value' => 'Data set column 1 name ' . $this->randomString(),
