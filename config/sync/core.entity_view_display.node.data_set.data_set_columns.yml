@@ -70,4 +70,6 @@ hidden:
   field_unique_identifier: true
   field_used_in_products: true
   flag_bookmark: true
+  langcode: true
   links: true
+  search_api_excerpt: true

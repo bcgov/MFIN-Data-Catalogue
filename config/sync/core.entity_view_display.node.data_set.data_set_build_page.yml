@@ -227,3 +227,5 @@ content:
 hidden:
   field_columns: true
   flag_bookmark: true
+  langcode: true
+  search_api_excerpt: true

@@ -3,21 +3,68 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.node.body
     - field.storage.node.field_columns
     - field.storage.paragraph.field_metadata_type
-    - field.storage.node.body
     - field.storage.node.field_modified_date
     - field.storage.node.field_primary_responsibility_org
     - field.storage.node.field_series
     - field.storage.node.field_source_system
     - field.storage.node.field_used_in_products
-    - search_api.server.default_server
+    - search_api.server.solr
     - core.entity_view_mode.node.search_index
   module:
+    - search_api_solr
     - node
     - user
     - paragraphs
     - search_api
+third_party_settings:
+  search_api_solr:
+    finalize: false
+    commit_before_finalize: false
+    commit_after_finalize: false
+    debug_finalize: false
+    highlighter:
+      maxAnalyzedChars: 51200
+      fragmenter: gap
+      usePhraseHighlighter: true
+      highlightMultiTerm: true
+      preserveMulti: false
+      regex:
+        slop: 0.5
+        pattern: blank
+        maxAnalyzedChars: 10000
+      highlight:
+        mergeContiguous: false
+        requireFieldMatch: false
+        snippets: 3
+        fragsize: 0
+    mlt:
+      mintf: 1
+      mindf: 1
+      maxdf: 0
+      maxdfpct: 0
+      minwl: 0
+      maxwl: 0
+      maxqt: 100
+      maxntp: 2000
+      boost: false
+      interestingTerms: none
+    term_modifiers:
+      slop: 3
+      fuzzy: 1
+    advanced:
+      index_prefix: ''
+      collection: ''
+      timezone: ''
+    multilingual:
+      limit_to_content_language: false
+      include_language_independent: true
+      use_language_undefined_as_fallback_language: false
+      specific_languages:
+        en: '0'
+      use_universal_collation: false
 _core:
   default_config_hash: JcLgB23sCRVVdElVJTslifP47-KFrXMLcNWjz_0v8Wg
 id: default_index
@@ -189,6 +236,7 @@ processor_settings:
   aggregated_field:
     weights:
       add_properties: 20
+  auto_aggregated_fulltext_field: {  }
   content_access:
     weights:
       preprocess_index: -6
@@ -227,52 +275,14 @@ processor_settings:
       h2: 3
       h3: 2
       string: 2
-  ignorecase:
-    weights:
-      preprocess_index: -5
-      preprocess_query: -8
-    all_fields: false
-    fields:
-      - rendered_item
-      - title
   language_with_fallback: {  }
   rendered_item:
     weights:
       add_properties: 0
       pre_index_save: -10
-  stemmer:
+  solr_date_range:
     weights:
       preprocess_index: 0
-      preprocess_query: 0
-    all_fields: false
-    fields:
-      - body
-      - rendered_item
-      - title
-    exceptions:
-      mexican: mexic
-      texan: texa
-  tokenizer:
-    weights:
-      preprocess_index: -6
-      preprocess_query: -6
-    all_fields: false
-    fields:
-      - body
-      - rendered_item
-      - title
-    spaces: ''
-    ignored: ._-
-    overlap_cjk: 1
-    minimum_word_size: '3'
-  transliteration:
-    weights:
-      preprocess_index: -4
-      preprocess_query: -7
-    all_fields: false
-    fields:
-      - rendered_item
-      - title
 tracker_settings:
   default:
     indexing_order: fifo
@@ -280,4 +290,4 @@ options:
   cron_limit: 200
   index_directly: true
   track_changes_in_references: true
-server: default_server
+server: solr

@@ -32,5 +32,7 @@ content:
 hidden:
   field_first_name: true
   field_last_name: true
+  langcode: true
   member_for: true
   realname: true
+  search_api_excerpt: true

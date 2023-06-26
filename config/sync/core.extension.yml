@@ -39,6 +39,7 @@ module:
   jquery_ui_datepicker: 0
   jquery_ui_slider: 0
   jquery_ui_touch_punch: 0
+  language: 0
   layout_builder: 0
   layout_discovery: 0
   link: 0
@@ -59,6 +60,8 @@ module:
   search_api: 0
   search_api_db: 0
   search_api_db_defaults: 0
+  search_api_solr: 0
+  search_api_solr_admin: 0
   shield: 0
   shortcut: 0
   system: 0

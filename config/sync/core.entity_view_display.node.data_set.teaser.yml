@@ -75,3 +75,5 @@ hidden:
   field_source_system: true
   field_unique_identifier: true
   field_used_in_products: true
+  langcode: true
+  search_api_excerpt: true
