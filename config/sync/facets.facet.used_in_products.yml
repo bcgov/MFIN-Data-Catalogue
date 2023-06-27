@@ -16,7 +16,7 @@ missing_label: others
 url_alias: used_in_products
 facet_source_id: 'search_api:views_block__site_search__block_1'
 field_identifier: field_used_in_products
-query_operator: or
+query_operator: and
 hard_limit: 0
 exclude: false
 use_hierarchy: false

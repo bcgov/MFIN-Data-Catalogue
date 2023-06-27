@@ -16,7 +16,7 @@ missing_label: others
 url_alias: series
 facet_source_id: 'search_api:views_block__site_search__block_1'
 field_identifier: field_series
-query_operator: or
+query_operator: and
 hard_limit: 0
 exclude: false
 use_hierarchy: false

@@ -18,7 +18,7 @@ missing_label: others
 url_alias: content_type
 facet_source_id: 'search_api:views_block__site_search__block_1'
 field_identifier: type
-query_operator: or
+query_operator: and
 hard_limit: 0
 exclude: false
 use_hierarchy: false
