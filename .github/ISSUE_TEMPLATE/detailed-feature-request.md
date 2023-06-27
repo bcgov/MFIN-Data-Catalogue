@@ -37,7 +37,6 @@ So that …
 
 <!-- delete things that don't apply -->
 
- - less than a day
 - 1 day
 - 2 days
 - 3 days
