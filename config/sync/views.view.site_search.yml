@@ -2737,6 +2737,19 @@ display:
             label: ''
             field_identifier: ''
           exposed: false
+        field_modified_date:
+          id: field_modified_date
+          table: search_api_index_default_index
+          field: field_modified_date
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api
+          order: DESC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
       arguments: {  }
       filters:
         search_api_fulltext:
