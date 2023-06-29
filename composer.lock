@@ -68,12 +68,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb.git",
-                "reference": "848afe1e0d10359b44e13cc6f27ace50c40c9c87"
+                "reference": "e913a59c953a408c978477da748bac6c78e7b401"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/848afe1e0d10359b44e13cc6f27ace50c40c9c87",
-                "reference": "848afe1e0d10359b44e13cc6f27ace50c40c9c87",
+                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/e913a59c953a408c978477da748bac6c78e7b401",
+                "reference": "e913a59c953a408c978477da748bac6c78e7b401",
                 "shasum": ""
             },
             "require": {
@@ -121,6 +121,9 @@
                     "drupal/panels": {
                         "2849867 - Custom attributes in panels blocks and variants": "https://www.drupal.org/files/issues/2022-11-17/panels_custom_attributes_in_panels_blocks-2849867-89.patch",
                         "2910704 - IPE toggle preview not working in IE": "https://www.drupal.org/files/issues/panels-ipe-card-flip-ie-error-2910704.diff"
+                    },
+                    "drupal/vbo_export": {
+                        "3257067 - Ensure PrivateTempStore key is not too long": "https://www.drupal.org/files/issues/2023-06-29/vbo_export-cid_too_long-3257067-9.patch"
                     }
                 }
             },
@@ -133,7 +136,7 @@
                 "source": "https://github.com/bcgov/bcbb/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb/issues"
             },
-            "time": "2023-06-26T13:59:24+00:00"
+            "time": "2023-06-29T18:58:29+00:00"
         },
         {
             "name": "bcgov/bcbb_theme",
