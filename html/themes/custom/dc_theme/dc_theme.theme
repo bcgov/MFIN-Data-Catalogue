@@ -6,10 +6,13 @@
  */
 
 /**
- * Implements hook_preprocess_HOOK() for node--data-set-build-page.html.twig.
+ * Implements hook_preprocess_HOOK() for block--facets-summary-block.html.twig.
  */
-function dc_theme_preprocess_node__data_set_build_page(array &$variables): void {
-  $variables['attributes']['class'][] = 'dc-data-set-build-page';
+function dc_theme_preprocess_block__facets_summary_block(array &$variables): void {
+  // Hide search facet summary block label when the block is empty.
+  if (empty($variables['content']['#items'])) {
+    $variables['label'] = NULL;
+  }
 }
 
 /**
@@ -23,11 +26,8 @@ function dc_theme_preprocess_input__submit(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_HOOK() for block--facets-summary-block.html.twig.
+ * Implements hook_preprocess_HOOK() for node--data-set-build-page.html.twig.
  */
-function dc_theme_preprocess_block__facets_summary_block(array &$variables): void {
-  // Hide search facet summary block label when the block is empty.
-  if (empty($variables['content']['#items'])) {
-    $variables['label'] = NULL;
-  }
+function dc_theme_preprocess_node__data_set_build_page(array &$variables): void {
+  $variables['attributes']['class'][] = 'dc-data-set-build-page';
 }
