@@ -91,11 +91,21 @@ class EditSectionBtn extends BlockBase implements ContainerFactoryPluginInterfac
 
     $form_mode = $this->configuration['query_param'];
 
+    $links = [];
+
+    $route_parameters = [
+      // When editing the layout, there is no node context. But there must be an
+      // NID for Link::createFromRoute(). Default to 1 so the link is generated.
+      // The link does not work anyway, so it does not matter if it points to
+      // the wrong node.
+      'node' => $node->id() ?? 1,
+    ];
+
+    // Edit links.
     $form_mode_label = $this->entityTypeManager
       ->getStorage('entity_form_mode')
       ->load('node.' . $form_mode)
       ->label();
-
     $link_options = [
       'attributes' => [
         'class' => [
@@ -109,22 +119,18 @@ class EditSectionBtn extends BlockBase implements ContainerFactoryPluginInterfac
         'destination' => $this->redirectDestination->get(),
       ],
     ];
+    $links[] = Link::createFromRoute($this->t('Edit'), 'entity.node.edit_form', $route_parameters, $link_options)->toRenderable();
 
-    $route_parameters = [
-      // When editing the layout, there is no node context. But there must be an
-      // NID for Link::createFromRoute(). Default to 1 so the link is generated.
-      // The link does not work anyway, so it does not matter if it points to
-      // the wrong node.
-      'node' => $node->id() ?? 1,
-    ];
-    $link = Link::createFromRoute($this->t('Edit'), 'entity.node.edit_form', $route_parameters, $link_options)->toRenderable();
-
-    $link['#prefix'] = '<div class="edit-section-btn">';
-    $link['#suffix'] = '</div>';
-
+    // Assemble block.
     $build = [
-      'link' => $link,
+      'block' => [
+        '#type' => 'container',
+        '#attributes' => [
+          'class' => ['edit-section-btn'],
+        ],
+      ],
     ];
+    $build['block'] += $links;
     return $build;
   }
 
