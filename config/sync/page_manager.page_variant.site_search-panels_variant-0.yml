@@ -12,11 +12,13 @@ dependencies:
     - facets.facet.used_in_products
     - facets_summary.facets_summary.facets_summary
     - page_manager.page.site_search
+    - search_api_saved_searches.type.default
     - views.view.site_search
   module:
     - facets
     - facets_summary
     - panels
+    - search_api_saved_searches
     - views
 _core:
   default_config_hash: MONvVrPBeEoPpHKYK6PWhH1dI9e0x-5_nn-ElsbUqIQ
@@ -52,7 +54,7 @@ variant_settings:
       provider: facets
       context_mapping: {  }
       region: right
-      weight: -3
+      weight: -4
       uuid: 6590bdd8-89f5-4e2b-bf71-4dc7658a611d
       css_classes:
         - ''
@@ -65,7 +67,7 @@ variant_settings:
       provider: facets
       context_mapping: {  }
       region: right
-      weight: -2
+      weight: -3
       uuid: 45bd33b3-e11b-449a-b245-fa168912e091
       css_classes:
         - ''
@@ -78,7 +80,7 @@ variant_settings:
       provider: facets
       context_mapping: {  }
       region: right
-      weight: -1
+      weight: -2
       uuid: b073add7-06f8-4bf9-9531-e1d52439f4c5
     b3a5361e-8717-4a04-b844-e142215690b9:
       id: 'facet_block:source_system'
@@ -123,7 +125,7 @@ variant_settings:
       provider: facets
       context_mapping: {  }
       region: right
-      weight: 0
+      weight: -1
       uuid: 43f01f02-1576-4149-b2d5-c68026f50666
     3bdd5181-a961-471f-973d-86fb762a0737:
       id: 'views_exposed_filter_block:site_search-block_1'
@@ -135,6 +137,20 @@ variant_settings:
       region: top
       weight: -4
       uuid: 3bdd5181-a961-471f-973d-86fb762a0737
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    21415e5c-5257-4d25-9538-e985174cd278:
+      id: search_api_saved_searches
+      label: 'Save search'
+      label_display: visible
+      provider: search_api_saved_searches
+      context_mapping: {  }
+      type: default
+      region: right
+      weight: -5
+      uuid: 21415e5c-5257-4d25-9538-e985174cd278
       css_classes:
         - ''
       html_id: ''

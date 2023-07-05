@@ -1,0 +1,44 @@
+uuid: 35339a4f-6437-42a7-b3d9-d66730bf915a
+langcode: en
+status: true
+dependencies:
+  module:
+    - search_api_saved_searches
+_core:
+  default_config_hash: aaBdiTCRivoJi_WYkc944L3IL5FgkUK_8HbkEvMhEO8
+id: default
+label: Default
+description: 'A default type created automatically at module installation.'
+notification_settings:
+  email:
+    registered_choose_mail: false
+    activate:
+      send: true
+      title: 'Activate your saved search at [site:name]'
+      body: |
+        [user:display-name],
+
+        A saved search on [site:name] with this e-mail address was created.
+        To activate this saved search, click the following link:
+
+        [search-api-saved-search:activate-url]
+
+        If you didn't create this saved search, just ignore this mail and the saved search will be deleted.
+
+        Further links for managing your saved search:
+        - View: [search-api-saved-search:view-url]
+        - Edit: [search-api-saved-search:edit-url]
+        - Delete: [search-api-saved-search:delete-url]
+
+        --  [site:name] team
+    notification:
+      title: 'New results for your saved search at [site:name]'
+      body: |
+        [user:display-name],
+
+        There are new results for your saved search "[search-api-saved-search:label]":
+
+        [search-api-saved-search-results:links]
+
+        --  [site:name] team
+options: {  }

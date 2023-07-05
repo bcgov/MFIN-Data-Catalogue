@@ -1,0 +1,30 @@
+uuid: d2c3b17e-e20b-4393-a955-f4690af61b27
+langcode: en
+status: true
+dependencies:
+  config:
+    - search_api_saved_searches.type.default
+id: search_api_saved_search.default.default
+targetEntityType: search_api_saved_search
+bundle: default
+mode: default
+content:
+  label:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  langcode: true
+  last_executed: true
+  mail: true
+  next_execution: true
+  notify_interval: true
+  path: true
+  search_keywords: true
+  status: true
+  uid: true
