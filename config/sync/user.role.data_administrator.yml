@@ -7,11 +7,13 @@ dependencies:
   module:
     - form_mode_control
     - node
+    - paragraphs
 id: data_administrator
 label: 'Data administrator'
 weight: 4
 is_admin: null
 permissions:
+  - 'administer nodes'
   - 'create data_set content'
   - 'delete own data_set content'
   - 'edit any data_set content'
@@ -20,3 +22,5 @@ permissions:
   - 'use  The form mode data_set_columns linked to  node entity( data_set )'
   - 'use  The form mode data_set_description linked to  node entity( data_set )'
   - 'view data_set revisions'
+  - 'view own unpublished content'
+  - 'view unpublished paragraphs'
