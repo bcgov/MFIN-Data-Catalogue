@@ -1,0 +1,11 @@
+uuid: 800239c2-1da6-4599-9d95-39a0262aa819
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.data_set
+id: node.data_set
+target_entity_type_id: node
+target_bundle: data_set
+default_langcode: site_default
+language_alterable: false
