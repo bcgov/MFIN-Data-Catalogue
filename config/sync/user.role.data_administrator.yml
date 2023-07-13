@@ -5,6 +5,7 @@ dependencies:
   config:
     - node.type.data_set
   module:
+    - flag
     - form_mode_control
     - node
     - paragraphs
@@ -18,7 +19,9 @@ permissions:
   - 'delete own data_set content'
   - 'edit any data_set content'
   - 'edit own data_set content'
+  - 'flag bookmark'
   - 'revert data_set revisions'
+  - 'unflag bookmark'
   - 'use  The form mode data_set_columns linked to  node entity( data_set )'
   - 'use  The form mode data_set_description linked to  node entity( data_set )'
   - 'view data_set revisions'
