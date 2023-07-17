@@ -6453,16 +6453,16 @@
         },
         {
             "name": "mck89/peast",
-            "version": "v1.15.1",
+            "version": "v1.15.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mck89/peast.git",
-                "reference": "cf06286910b7efc9dce7503553ebee314df3d3d3"
+                "reference": "07d82a271d372c6f37897a70b0381ca2ec2e364a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mck89/peast/zipball/cf06286910b7efc9dce7503553ebee314df3d3d3",
-                "reference": "cf06286910b7efc9dce7503553ebee314df3d3d3",
+                "url": "https://api.github.com/repos/mck89/peast/zipball/07d82a271d372c6f37897a70b0381ca2ec2e364a",
+                "reference": "07d82a271d372c6f37897a70b0381ca2ec2e364a",
                 "shasum": ""
             },
             "require": {
@@ -6475,7 +6475,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.15.1-dev"
+                    "dev-master": "1.15.2-dev"
                 }
             },
             "autoload": {
@@ -6497,9 +6497,9 @@
             "description": "Peast is PHP library that generates AST for JavaScript code",
             "support": {
                 "issues": "https://github.com/mck89/peast/issues",
-                "source": "https://github.com/mck89/peast/tree/v1.15.1"
+                "source": "https://github.com/mck89/peast/tree/v1.15.2"
             },
-            "time": "2023-01-21T13:18:17+00:00"
+            "time": "2023-07-15T12:25:27+00:00"
         },
         {
             "name": "mglaman/phpstan-drupal",
@@ -7929,16 +7929,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.11.18",
+            "version": "v0.11.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "4f00ee9e236fa6a48f4560d1300b9c961a70a7ec"
+                "reference": "1724ceff278daeeac5a006744633bacbb2dc4706"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/4f00ee9e236fa6a48f4560d1300b9c961a70a7ec",
-                "reference": "4f00ee9e236fa6a48f4560d1300b9c961a70a7ec",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/1724ceff278daeeac5a006744633bacbb2dc4706",
+                "reference": "1724ceff278daeeac5a006744633bacbb2dc4706",
                 "shasum": ""
             },
             "require": {
@@ -7999,9 +7999,9 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
-                "source": "https://github.com/bobthecow/psysh/tree/v0.11.18"
+                "source": "https://github.com/bobthecow/psysh/tree/v0.11.19"
             },
-            "time": "2023-05-23T02:31:11+00:00"
+            "time": "2023-07-15T19:42:19+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
