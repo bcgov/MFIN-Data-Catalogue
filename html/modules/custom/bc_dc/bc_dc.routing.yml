@@ -8,6 +8,18 @@ bc_dc.data_set_dashboard:
   options:
     no_cache: TRUE
 
+bc_dc.data_set_edit_add_columns:
+  path: '/node/{node}/add-columns'
+  defaults:
+    _title: 'Add columns'
+    _form: '\Drupal\bc_dc\Form\BcDcAddColumnsForm'
+  requirements:
+    _permission: 'edit any data_set content'
+  options:
+    parameters:
+      node:
+        type: entity:node
+
 bc_dc.data_set_landing:
   path: '/data-set'
   defaults:

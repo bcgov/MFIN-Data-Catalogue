@@ -113,3 +113,8 @@ article.dc-data-set-build-page div.field--label-above > div.field__item * {
 article.dc-data-set-build-page div.field--label-above > div.field__item::after {
   content: '…';
 }
+
+/* Data column upload table. */
+form.bc-dc-add-columns-form table > tbody > tr > td.error {
+  background-color: #ffece8;
+}
