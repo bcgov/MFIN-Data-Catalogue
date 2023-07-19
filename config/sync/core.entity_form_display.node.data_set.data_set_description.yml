@@ -24,7 +24,6 @@ dependencies:
     - field.field.node.data_set.field_security_classification
     - field.field.node.data_set.field_series
     - field.field.node.data_set.field_source_system
-    - field.field.node.data_set.field_unique_identifier
     - field.field.node.data_set.field_used_in_products
     - node.type.data_set
   module:
@@ -165,14 +164,6 @@ content:
     weight: 14
     region: content
     settings: {  }
-    third_party_settings: {  }
-  field_unique_identifier:
-    type: string_textfield
-    weight: 13
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
     third_party_settings: {  }
   field_used_in_products:
     type: entity_reference_autocomplete

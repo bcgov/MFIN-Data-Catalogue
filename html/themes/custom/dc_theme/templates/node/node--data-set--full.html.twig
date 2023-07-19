@@ -32,27 +32,21 @@
               <b>{{ 'Data custodian'|t }}:</b> {{ author_link }}
             </div>
 
-            {% if not node.field_primary_responsibility_org.isempty %}
+            {% if node.field_primary_responsibility_org and not node.field_primary_responsibility_org.isempty %}
               <div class="mb-3">
                 {{ node.field_primary_responsibility_org|view }}
               </div>
             {% endif %}
 
-            {% if not node.field_published_date.isempty %}
+            {% if node.field_published_date and not node.field_published_date.isempty %}
               <div class="mb-3">
                 {{ node.field_published_date|view }}
               </div>
             {% endif %}
 
-            {% if not node.field_modified_date.isempty %}
+            {% if node.field_modified_date and not node.field_modified_date.isempty %}
               <div class="mb-3">
                 {{ node.field_modified_date|view }}
-              </div>
-            {% endif %}
-
-            {% if not node.field_unique_identifier.isempty %}
-              <div class="mb-3">
-                {{ node.field_unique_identifier|view }}
               </div>
             {% endif %}
 
@@ -60,73 +54,73 @@
 
             <div class="mt-3 small dc-fields">
 
-              {% if not node.field_security_classification.isempty %}
+              {% if node.field_security_classification and not node.field_security_classification.isempty %}
                 <div class="mb-3">
                   {{ node.field_security_classification|view }}
                 </div>
               {% endif %}
 
-              {% if not node.field_critical_information.isempty %}
+              {% if node.field_critical_information and not node.field_critical_information.isempty %}
                 <div class="mb-3">
                   {{ node.field_critical_information|view }}
                 </div>
               {% endif %}
 
-              {% if not node.field_authoritative_info.isempty %}
+              {% if node.field_authoritative_info and not node.field_authoritative_info.isempty %}
                 <div class="mb-3">
                   {{ node.field_authoritative_info|view }}
                 </div>
               {% endif %}
 
-              {% if not node.field_high_value_info.isempty %}
+              {% if node.field_high_value_info and not node.field_high_value_info.isempty %}
                 <div class="mb-3">
                   {{ node.field_high_value_info|view }}
                 </div>
               {% endif %}
 
-              {% if not node.field_source_system.isempty %}
+              {% if node.field_source_system and not node.field_source_system.isempty %}
                 <div class="mb-3">
                   {{ node.field_source_system|view }}
                 </div>
               {% endif %}
 
-              {% if not node.field_granularity.isempty %}
+              {% if node.field_granularity and not node.field_granularity.isempty %}
                 <div class="mb-3">
                   {{ node.field_granularity|view }}
                 </div>
               {% endif %}
 
-              {% if not node.field_data_set_type.isempty %}
+              {% if node.field_data_set_type and not node.field_data_set_type.isempty %}
                 <div class="mb-3">
                   {{ node.field_data_set_type|view }}
                 </div>
               {% endif %}
 
-              {% if not node.field_data_set_format.isempty %}
+              {% if node.field_data_set_format and not node.field_data_set_format.isempty %}
                 <div class="mb-3">
                   {{ node.field_data_set_format|view }}
                 </div>
               {% endif %}
 
-              {% if not node.field_product_type.isempty %}
+              {% if node.field_product_type and not node.field_product_type.isempty %}
                 <div class="mb-3">
                   {{ node.field_product_type|view }}
                 </div>
               {% endif %}
 
-              {% if not node.field_used_in_products.isempty %}
+              {% if node.field_used_in_products and not node.field_used_in_products.isempty %}
                 <div class="mb-3">
                   {{ node.field_used_in_products|view }}
                 </div>
               {% endif %}
 
-              {% if not node.field_information_schedule_1.isempty %}
+              {% if node.field_information_schedule_1 and not node.field_information_schedule_1.isempty %}
                 <div class="mb-3">
                   {{ node.field_information_schedule_1|view }}
                 </div>
               {% endif %}
 
-              {% if not node.field_information_schedule_2.isempty %}
+              {% if node.field_information_schedule_2 and not node.field_information_schedule_2.isempty %}
                 <div class="mb-3">
                   {{ node.field_information_schedule_2|view }}
                 </div>
@@ -138,25 +132,25 @@
 
         <div class="col-md-7 order-md-1">
 
-          {% if not node.body.isempty %}
+          {% if node.body and not node.body.isempty %}
             <div class="mb-3">
               {{ node.body|view }}
             </div>
           {% endif %}
 
-          {% if not node.field_series.isempty %}
+          {% if node.field_series and not node.field_series.isempty %}
             <div class="mb-3">
               {{ node.field_series|view }}
             </div>
           {% endif %}
 
-          {% if not node.field_data_quality_issues.isempty %}
+          {% if node.field_data_quality_issues and not node.field_data_quality_issues.isempty %}
             <div class="mb-3">
               {{ node.field_data_quality_issues|view }}
             </div>
           {% endif %}
 
-          {% if not node.field_data_set_historical_change.isempty %}
+          {% if node.field_data_set_historical_change and not node.field_data_set_historical_change.isempty %}
             <div class="mb-3">
               {{ node.field_data_set_historical_change|view }}
             </div>
@@ -167,7 +161,7 @@
     </div>
 
 
-      {% if not node.field_modified_date.isempty %}
+      {% if node.field_modified_date and not node.field_modified_date.isempty %}
       <hr>
       <h2>{{ 'Data dictionary'|t }}</h2>
         {{ node.field_columns|view }}
