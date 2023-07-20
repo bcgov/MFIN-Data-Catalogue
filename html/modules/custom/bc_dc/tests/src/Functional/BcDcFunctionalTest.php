@@ -316,9 +316,78 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->drupalGet('data-set');
     $this->assertSession()->statusCodeEquals(200);
 
+    // Import data columns page.
+    $this->drupalGet('node/2/build');
+    $this->assertSession()->elementExists('xpath', '//a[@href = "/node/2/add-columns?destination=/node/2/build"][text() = "Import data columns"]');
+    $this->clickLink('Import data columns');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->elementExists('xpath', '//h1[text() = "Add columns"]');
+    $this->assertSession()->pageTextContains('Add columns to this data set.');
+    $this->assertSession()->elementExists('xpath', '//a[@href = "/node/2/build"][text() = "Cancel"]');
+    // File upload tests.
+    $tests = [
+      // File with an unsupported extension.
+      'test-empty.txt' => 'Only files with the following extensions are allowed:',
+      // Empty 'tsv' file.
+      'test-empty.tsv' => 'Uploaded file was empty.',
+      // File with a data row longer than the header row.
+      'test-no-header-col.csv' => 'Uploaded file has at least one data row with no header (row is longer than header row).',
+      // File with an empty header.
+      'test-empty-header.csv' => 'Uploaded file has at least one column with an empty header.',
+      // Duplicate column header.
+      'test-duplicate-column.csv' => 'Uploaded file contains duplicate column headers: header 1',
+      // Unknown fields.
+      'test-unknown-column.csv' => 'File contains unknown fields: header 1, header 2, header 3',
+      // No data rows.
+      'test-no-data-rows.csv' => 'Uploaded file had no data rows. The first row must be column headers.',
+      // Invalid value in entitiy reference column.
+      'test-invalid-rows.csv' => 'Uploaded file had invalid values in some columns. The invalid values are shown below.',
+    ];
+    foreach ($tests as $filename => $error_message) {
+      // Upload test file.
+      $edit = [
+        'edit-import-file-upload' => __DIR__ . '/../../files/' . $filename,
+      ];
+      $this->submitForm($edit, 'Upload');
+      // Check for error message.
+      $args = [
+        ':error_message' => $error_message,
+      ];
+      $xpath = $this->assertSession()->buildXPathQuery('//div[@role = "alert"][contains(@class, "alert-error")]//*[contains(text(), :error_message)]', $args);
+      $this->assertSession()->elementExists('xpath', $xpath);
+    }
+    // Test for error message for invalid value in entitiy reference column.
+    $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr/td[@class = "error"][text() = "Invalid: integer"]');
+    // Upload valie import file.
+    $edit = [
+      'edit-import-file-upload' => __DIR__ . '/../../files/test-valid.csv',
+    ];
+    $this->submitForm($edit, 'Upload');
+    // Confirmation page.
+    // This would normally be done with ::elementExists() but for an unknown
+    // reason, it always fails.
+    $this->assertSession()->elementTextEquals('xpath', '//div[@role = "alert"][contains(@class, "alert-warning")]', 'Warning message Existing columns will be deleted when these new columns are imported.');
+    // Importa data table.
+    $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/thead/tr/th[1][text() = "column_name"]');
+    $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/thead/tr/th[2][text() = "column_size"]');
+    $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr/td[1][text() = "Name"]');
+    $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr/td[2][text() = "50"]');
+    // Complete import.
+    $this->submitForm([], 'Import');
+    // Success page.
+    $this->assertSession()->elementExists('xpath', '//div[@role = "alert"][contains(@class, "alert-success")]//*[contains(text(), "Added 1 data columns from imported file.")]');
+    // List of columns.
+    $elements = $this->xpath('//div[contains(@class, "field--name-field-columns")]/div/div/ul/li');
+    $this->assertCount(1, $elements, 'There is exactly 1 column name shown.');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--name-field-columns")]/div/div/ul/li[text() = "Name"]');
+
     // Anonymous has no access to data_set build page.
     $this->drupalLogout();
     $this->drupalGet('node/2/build');
+    $this->assertSession()->statusCodeEquals(403);
+
+    // Anonymous has no access to data_set add-columns page.
+    $this->drupalGet('node/2/add-columns');
     $this->assertSession()->statusCodeEquals(403);
 
     // Anonymous has access to view page.
