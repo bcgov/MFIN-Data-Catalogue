@@ -3165,17 +3165,17 @@
         },
         {
             "name": "drupal/inline_entity_form",
-            "version": "2.0.0-rc5",
+            "version": "2.0.0-rc7",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/inline_entity_form.git",
-                "reference": "2.0.0-rc5"
+                "reference": "2.0.0-rc7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/inline_entity_form-2.0.0-rc5.zip",
-                "reference": "2.0.0-rc5",
-                "shasum": "2e76e97bccecc394bdbcb9f6ecbf1d1211731aec"
+                "url": "https://ftp.drupal.org/files/projects/inline_entity_form-2.0.0-rc7.zip",
+                "reference": "2.0.0-rc7",
+                "shasum": "bebc0b16bf992320513c7036bff243c59dad4f56"
             },
             "require": {
                 "drupal/core": "^9.1 || ^10",
@@ -3188,8 +3188,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.0.0-rc5",
-                    "datestamp": "1688112645",
+                    "version": "2.0.0-rc7",
+                    "datestamp": "1689779483",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "RC releases are not covered by Drupal security advisories."
@@ -4067,11 +4067,11 @@
         },
         {
             "name": "drupal/rat",
-            "version": "1.0.0-rc2",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/rat.git",
-                "reference": "6d1d2af01e03b773f8413686863de581586959a6"
+                "reference": "28202b02262a39ac8dbbfd43696b67c0c8c46b71"
             },
             "require": {
                 "php": "^7.4 || ^8.0"
@@ -4096,7 +4096,7 @@
                     "email": "merlin@geeks4change.net"
                 }
             ],
-            "time": "2022-11-09T20:50:47+00:00"
+            "time": "2023-07-19T20:22:22+00:00"
         },
         {
             "name": "drupal/realname",
