@@ -1,0 +1,10 @@
+uuid: 7ae13e39-ed20-416d-90ef-6ffbe2bad7f8
+langcode: en
+status: false
+dependencies: {  }
+id: o365
+label: 'Office 365'
+description: ''
+oauth2_client_plugin_id: o365
+credential_provider: oauth2_client
+credential_storage_key: ''

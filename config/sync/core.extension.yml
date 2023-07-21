@@ -47,6 +47,7 @@ module:
   menu_ui: 0
   mysql: 0
   node: 0
+  oauth2_client: 0
   op_ext_search: 0
   options: 0
   page_cache: 0
@@ -78,8 +79,10 @@ module:
   views_bulk_operations: 0
   views_ui: 0
   pathauto: 1
+  externalauth: 10
   views: 10
   paragraphs: 11
+  o365: 100
   tac_lite: 100
   standard: 1000
 theme:
