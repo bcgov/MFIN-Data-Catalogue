@@ -15,7 +15,7 @@ table.dc-dashboard-table {
 }
 
 table.dc-dashboard-table > thead > tr > th:last-child {
-  width: 19em;
+  width: 22em;
 }
 
 /* Make dashboard table captions look like h2. */
