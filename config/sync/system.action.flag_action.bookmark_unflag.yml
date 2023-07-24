@@ -7,7 +7,7 @@ dependencies:
   module:
     - flag
 id: flag_action.bookmark_unflag
-label: Bookmarked
+label: 'Remove bookmark'
 type: node
 plugin: 'flag_action:bookmark_unflag'
 configuration:

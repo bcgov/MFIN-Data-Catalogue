@@ -13,7 +13,7 @@ global: false
 flag_short: Bookmark
 flag_long: 'Add this item to your bookmarks'
 flag_message: 'Item added to your bookmarks'
-unflag_short: Bookmarked
+unflag_short: 'Remove bookmark'
 unflag_long: 'Remove this item from your bookmarks'
 unflag_message: 'This item has been removed from your bookmarks'
 unflag_denied_text: ''

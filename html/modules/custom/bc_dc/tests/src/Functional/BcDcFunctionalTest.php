@@ -302,13 +302,18 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Test bookmarks.
     //
     // No items bookmarked.
+    $this->assertSession()->linkNotExistsExact('Remove bookmark');
     $this->assertSession()->elementExists('xpath', '//table[contains(@class, "dc-dashboard-table-bookmarks")]//tr/td[text() = "No data sets to show."]');
     // Bookmark an item.
     $this->clickLink('Bookmark');
     $this->assertSession()->pageTextContains('Item added to your bookmarks');
+    $this->assertSession()->linkExistsExact('Remove bookmark');
     $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "dc-dashboard-table-bookmarks")]//tr/td/a[text() = "Build"][@class = "button"][@aria-label = :data_set_title][@href = "/node/2/build"]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     $this->assertSession()->elementNotExists('xpath', '//table[contains(@class, "dc-dashboard-table-bookmarks")]//tr/td[text() = "No data sets to show."]');
+    // View page has link to remove bookmark.
+    $this->drupalGet('node/2');
+    $this->assertSession()->linkExistsExact('Remove bookmark');
 
     // Publish the data_set and there are no data rows, just the empty message.
     $data_set = Node::load(2);
