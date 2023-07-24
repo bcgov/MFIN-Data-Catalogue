@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "45a311f13163332cc30d0ec867ec0c7b",
+    "content-hash": "fc49f5f07107c1e9e4123a75be01a042",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4464,6 +4464,58 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/search_api",
                 "issues": "https://www.drupal.org/project/issues/search_api",
+                "irc": "irc://irc.freenode.org/drupal-search-api"
+            }
+        },
+        {
+            "name": "drupal/search_api_saved_searches",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/search_api_saved_searches.git",
+                "reference": "901cc394d971c00c05e5ab89ab3e50696b582040"
+            },
+            "require": {
+                "drupal/core": "^9.2 || ^10",
+                "drupal/search_api": "^1.20"
+            },
+            "require-dev": {
+                "drupal/facets": "@dev",
+                "drupal/search_api_page": "@dev"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-alpha3+15-dev",
+                    "datestamp": "1687009256",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Thomas Seidl",
+                    "homepage": "https://www.drupal.org/u/drunken-monkey"
+                },
+                {
+                    "name": "See other contributors",
+                    "homepage": "https://www.drupal.org/node/1142202/committers"
+                }
+            ],
+            "description": "Allows visitors to bookmark searches and get notifications for new results.",
+            "homepage": "https://www.drupal.org/project/search_api_saved_searches",
+            "support": {
+                "source": "http://git.drupal.org/project/search_api_saved_searches.git",
+                "issues": "https://www.drupal.org/project/issues/search_api_saved_searches",
                 "irc": "irc://irc.freenode.org/drupal-search-api"
             }
         },
@@ -15661,7 +15713,8 @@
     "stability-flags": {
         "bcgov/bcbb": 20,
         "bcgov/bcbb_theme": 20,
-        "drupal/registration_role": 20
+        "drupal/registration_role": 20,
+        "drupal/search_api_saved_searches": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
