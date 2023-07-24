@@ -5,6 +5,7 @@
  * Module file.
  */
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Render\Element;
 
 /**
@@ -20,6 +21,20 @@ function bc_dc_preprocess_flag(array &$variables): void {
 
   // Theme like a button.
   $variables['attributes']['class'][] = 'button';
+}
+
+/**
+ * Return the number of bookmarks on a given entity.
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ *   The entity to count on.
+ *
+ * @return int
+ *   The number of bookmarks on the given entity.
+ */
+function bc_dc_count_node_bookmarks(EntityInterface $entity): int {
+  $count = \Drupal::service('flag.count')->getEntityFlagCounts($entity);
+  return isset($count['bookmark']) ? ((int) $count['bookmark']) : 0;
 }
 
 /**
