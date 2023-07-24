@@ -1,0 +1,31 @@
+uuid: f28cf23f-5b76-4fc2-86e2-2f90575e9298
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.search_api_saved_search.create
+    - search_api_saved_searches.type.default
+id: search_api_saved_search.default.create
+targetEntityType: search_api_saved_search
+bundle: default
+mode: create
+content:
+  label:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  langcode: true
+  last_executed: true
+  mail: true
+  next_execution: true
+  notify_interval: true
+  path: true
+  search_keywords: true
+  status: true
+  uid: true

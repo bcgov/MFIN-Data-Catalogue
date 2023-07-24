@@ -43,6 +43,7 @@
         "drupal/flag": "^4.0",
         "drupal/o365": "^3.0",
         "drupal/registration_role": "dev-1.x#a3a3d15",
+        "drupal/search_api_saved_searches": "1.x@dev",
         "drupaloverride/tac_lite": "^1.6",
         "vlucas/phpdotenv": "^5.1",
         "webflo/drupal-finder": "^1.2",

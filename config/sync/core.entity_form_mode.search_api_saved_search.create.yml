@@ -1,0 +1,12 @@
+uuid: 50b593ea-7380-4023-899a-7e05fe826907
+langcode: en
+status: true
+dependencies:
+  module:
+    - search_api_saved_searches
+_core:
+  default_config_hash: q3YSBzu6aeTqkiTdpkuIVCrgERUtrTUzSIdlNsz_Tnc
+id: search_api_saved_search.create
+label: Create
+targetEntityType: search_api_saved_search
+cache: true
