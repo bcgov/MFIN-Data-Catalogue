@@ -174,7 +174,6 @@ class BcDcFunctionalTest extends BrowserTestBase {
       'field--name-field-primary-responsibility-org' => 'Office of primary responsibility',
       'field--name-field-series' => 'Series',
       'field--name-field-security-classification' => 'Security classification',
-      'field--name-field-unique-identifier' => 'Unique identifier',
       'field--name-field-source-system' => 'Source system',
       'field--name-field-granularity' => 'Granularity',
       'field--name-field-data-set-type' => 'Data set type',
