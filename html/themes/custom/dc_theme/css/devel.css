@@ -8,6 +8,12 @@ div.flag-bookmark {
   display: inline;
 }
 
+/* Bookmark count messages. */
+div.flag-bookmark > a > span.count {
+  font-size: 80%;
+  display: block;
+}
+
 /* Margin between dashboard items. */
 div.dc-dashboard-actions,
 table.dc-dashboard-table {
@@ -15,7 +21,7 @@ table.dc-dashboard-table {
 }
 
 table.dc-dashboard-table > thead > tr > th:last-child {
-  width: 22em;
+  width: 23em;
 }
 
 /* Make dashboard table captions look like h2. */

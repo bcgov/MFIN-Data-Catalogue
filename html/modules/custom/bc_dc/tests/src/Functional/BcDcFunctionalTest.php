@@ -302,18 +302,18 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Test bookmarks.
     //
     // No items bookmarked.
-    $this->assertSession()->linkNotExistsExact('Remove bookmark');
+    $this->assertSession()->linkNotExists('Remove bookmark');
     $this->assertSession()->elementExists('xpath', '//table[contains(@class, "dc-dashboard-table-bookmarks")]//tr/td[text() = "No data sets to show."]');
     // Bookmark an item.
     $this->clickLink('Bookmark');
     $this->assertSession()->pageTextContains('Item added to your bookmarks');
-    $this->assertSession()->linkExistsExact('Remove bookmark');
+    $this->assertSession()->elementExists('xpath', '//a[*[@class = "title"][text() = "Remove bookmark"]][*[@class = "count"][text() = "Bookmarked by 1 person"]]');
     $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "dc-dashboard-table-bookmarks")]//tr/td/a[text() = "Build"][@class = "button"][@aria-label = :data_set_title][@href = "/node/2/build"]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     $this->assertSession()->elementNotExists('xpath', '//table[contains(@class, "dc-dashboard-table-bookmarks")]//tr/td[text() = "No data sets to show."]');
     // View page has link to remove bookmark.
     $this->drupalGet('node/2');
-    $this->assertSession()->linkExistsExact('Remove bookmark');
+    $this->assertSession()->elementExists('xpath', '//a[*[@class = "title"][text() = "Remove bookmark"]][*[@class = "count"][text() = "Bookmarked by 1 person"]]');
 
     // Publish the data_set and there are no data rows, just the empty message.
     $data_set = Node::load(2);
@@ -405,6 +405,16 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSession()->statusCodeEquals(200);
     // Page has ISO dates.
     $this->isoDateTest();
+
+    // Test adding bookmarks.
+    $this->drupalLogin($this->users['Test Data catalogue user']);
+    $this->drupalGet('node/2');
+    // Bookmarked by 1.
+    $this->assertSession()->elementExists('xpath', '//a[*[@class = "title"][text() = "Bookmark"]][*[@class = "count"][text() = "Bookmarked by 1 person"]]');
+    // Add a bookmark.
+    $this->click('div.flag-bookmark.action-flag > a');
+    // Bookmarked by 2.
+    $this->assertSession()->elementExists('xpath', '//a[*[@class = "title"][text() = "Remove bookmark"]][*[@class = "count"][text() = "Bookmarked by 2 people"]]');
   }
 
   /**

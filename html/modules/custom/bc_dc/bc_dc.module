@@ -21,6 +21,17 @@ function bc_dc_preprocess_flag(array &$variables): void {
 
   // Theme like a button.
   $variables['attributes']['class'][] = 'button';
+
+  // Bookmark count message.
+  // If at least one user has bookmarked an item, add a message with the count.
+  $node_bookmark_count = bc_dc_count_node_bookmarks($variables['flaggable']);
+  if ($node_bookmark_count > 0) {
+    $args = [
+      '@count' => $node_bookmark_count,
+    ];
+    $count_message = \Drupal::translation()->formatPlural($node_bookmark_count, 'Bookmarked by 1 person', 'Bookmarked by @count people', $args);
+    $variables['title']['#markup'] = '<span class="title">' . $variables['title']['#markup'] . '</span> <span class="count">' . $count_message->render() . '</span>';
+  }
 }
 
 /**
