@@ -271,11 +271,17 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSession()->pageTextContains('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
     $this->assertSession()->pageTextNotContains('Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.');
 
+    // Saved-searches page exists.
+    $this->drupalGet('user/1/saved-searches');
+    $this->assertSession()->statusCodeEquals(200);
+
     // Data set dashboard.
     $this->drupalGet('user/1');
     $this->assertSession()->statusCodeEquals(200);
     // The create-new link exists.
     $this->assertSession()->elementExists('xpath', '//a[@href = "/node/add/data_set?display=data_set_description"][text() = "Add new data set"]');
+    // The saved-searches link exists.
+    $this->assertSession()->elementExists('xpath', '//a[@href = "/user/1/saved-searches"][text() = "My saved searches"]');
     // View link.
     $args = [
       ':data_set_title' => 'View "' . $data_set_title . '".',
