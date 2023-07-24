@@ -66,6 +66,18 @@ class BcDcPageController extends ControllerBase {
       ],
     ];
 
+    // Link to saved searches.
+    $page['actions']['saved-searches'] = [
+      '#title' => $this->t('My saved searches'),
+      '#type' => 'link',
+      '#url' => Url::fromRoute('view.saved_searches.page', ['user' => $this->currentUser()->id()]),
+      '#attributes' => [
+        'class' => [
+          'button',
+        ],
+      ],
+    ];
+
     // Table of data_set nodes.
     //
     // Query for data_set nodes by this user that are unpublished.
