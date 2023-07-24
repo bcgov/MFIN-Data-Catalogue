@@ -304,6 +304,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // No items bookmarked.
     $this->assertSession()->linkNotExists('Remove bookmark');
     $this->assertSession()->elementExists('xpath', '//table[contains(@class, "dc-dashboard-table-bookmarks")]//tr/td[text() = "No data sets to show."]');
+    $this->assertSession()->elementExists('xpath', '//table[contains(@class, "dc-dashboard-table-datasets-bookmarks")]//tr/td[text() = "No data sets to show."]');
     // Bookmark an item.
     $this->clickLink('Bookmark');
     $this->assertSession()->pageTextContains('Item added to your bookmarks');
@@ -311,6 +312,10 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "dc-dashboard-table-bookmarks")]//tr/td/a[text() = "Build"][@class = "button"][@aria-label = :data_set_title][@href = "/node/2/build"]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     $this->assertSession()->elementNotExists('xpath', '//table[contains(@class, "dc-dashboard-table-bookmarks")]//tr/td[text() = "No data sets to show."]');
+    // Table of my data sets that are bookmarked.
+    $this->assertSession()->elementNotExists('xpath', '//table[contains(@class, "dc-dashboard-table-datasets-bookmarks")]//tr/td[text() = "No data sets to show."]');
+    $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "dc-dashboard-table-datasets-bookmarks")]//tr/td/a[text() = "Build"][@class = "button"][@aria-label = :data_set_title][@href = "/node/2/build"]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
     // View page has link to remove bookmark.
     $this->drupalGet('node/2');
     $this->assertSession()->elementExists('xpath', '//a[*[@class = "title"][text() = "Remove bookmark"]][*[@class = "count"][text() = "Bookmarked by 1 person"]]');

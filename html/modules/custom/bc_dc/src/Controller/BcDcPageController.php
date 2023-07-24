@@ -118,6 +118,15 @@ class BcDcPageController extends ControllerBase {
     $classes = ['dc-dashboard-table', 'dc-dashboard-table-bookmarks'];
     $page['bookmark-table'] = $this->dataSetTableTheme($bookmark_nids, $classes, $this->t('Bookmarked data sets'));
 
+    // Table of data_set nodes by this user with total bookmark counts.
+    $query = $this->entityTypeManager()->getStorage('node')->getQuery();
+    $query->accessCheck(FALSE);
+    $query->condition('type', 'data_set');
+    $query->condition('uid', $this->currentUser()->id());
+    $data_set_nids = $query->execute();
+    $classes = ['dc-dashboard-table', 'dc-dashboard-table-datasets-bookmarks'];
+    $page['data_set-bookmarks'] = $this->dataSetTableTheme($data_set_nids, $classes, $this->t('My data sets bookmarked by at least one user'), TRUE);
+
     return $page;
   }
 
@@ -130,11 +139,13 @@ class BcDcPageController extends ControllerBase {
    *   The classes to set on the table.
    * @param string $caption
    *   The table caption.
+   * @param bool $only_bookmarked
+   *   Only show items that have at least one bookmark by anyone.
    *
    * @return array
    *   A render array.
    */
-  public function dataSetTableTheme(array $data_set_nids, array $classes, string $caption): array {
+  public function dataSetTableTheme(array $data_set_nids, array $classes, string $caption, bool $only_bookmarked = FALSE): array {
     // Table headers.
     $header = [
       $this->t('Title'),
@@ -144,6 +155,11 @@ class BcDcPageController extends ControllerBase {
     $rows = [];
     foreach ($data_set_nids as $nid) {
       $data_set = $this->entityTypeManager()->getStorage('node')->load($nid);
+
+      // Only show items that have at least one bookmark by anyone.
+      if ($only_bookmarked && \bc_dc_count_node_bookmarks($data_set) < 1) {
+        continue;
+      }
 
       $row = [
         $data_set->getTitle(),
