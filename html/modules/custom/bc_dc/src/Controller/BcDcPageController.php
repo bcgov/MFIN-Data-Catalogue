@@ -42,8 +42,18 @@ class BcDcPageController extends ControllerBase {
   public function dataSetDashboardPage(): array {
     $page = [];
 
+    // Wrapper element for actions.
+    $page['actions'] = [
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => [
+          'dc-dashboard-actions',
+        ],
+      ],
+    ];
+
     // Button to create a data_set.
-    $page['add-new'] = [
+    $page['actions']['add-new'] = [
       '#title' => $this->t('Add new data set'),
       '#type' => 'link',
       '#url' => Url::fromRoute('node.add', ['node_type' => 'data_set'], ['query' => ['display' => 'data_set_description']]),
@@ -52,7 +62,6 @@ class BcDcPageController extends ControllerBase {
           'button',
           'button--action',
           'button--primary',
-          'dc-dashboard-button-add-dataset',
         ],
       ],
     ];

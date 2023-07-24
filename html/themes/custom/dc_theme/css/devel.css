@@ -9,7 +9,7 @@ div.flag-bookmark {
 }
 
 /* Margin between dashboard items. */
-a.dc-dashboard-button-add-dataset,
+div.dc-dashboard-actions,
 table.dc-dashboard-table {
   margin-top: 2.25em;
 }
