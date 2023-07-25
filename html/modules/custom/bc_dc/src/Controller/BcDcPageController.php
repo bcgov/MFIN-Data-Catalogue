@@ -40,6 +40,11 @@ class BcDcPageController extends ControllerBase {
    *   A render array for the build page.
    */
   public function dataSetDashboardPage(): array {
+    // Anonymous cannot have a dashboard.
+    if (!$this->currentUser()->id()) {
+      throw new NotFoundHttpException();
+    }
+
     $page = [];
 
     // Wrapper element for actions.
