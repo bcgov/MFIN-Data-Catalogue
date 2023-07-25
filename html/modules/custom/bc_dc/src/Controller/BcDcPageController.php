@@ -161,28 +161,26 @@ class BcDcPageController extends ControllerBase {
         continue;
       }
 
-      $row = [
-        $data_set->toLink(),
-        [
-          'data' => [
-            'build' => [
-              '#title' => $this->t('Build'),
-              '#type' => 'link',
-              '#url' => Url::fromRoute('page_manager.page_view_data_set_build_data_set_build-block_display-0', ['node' => $data_set->id()]),
-              '#attributes' => [
-                'class' => ['button'],
-                'aria-label' => $this->t('Build "@title".', ['@title' => $data_set->getTitle()]),
-              ],
-            ],
-          ],
+      $actions = [];
+
+      // Build link.
+      $url = Url::fromRoute('page_manager.page_view_data_set_build_data_set_build-block_display-0', ['node' => $data_set->id()]);
+      $actions['build'] = [
+        '#title' => $this->t('Build'),
+        '#type' => 'link',
+        '#url' => $url,
+        '#attributes' => [
+          'class' => ['button'],
+          'aria-label' => $this->t('Build "@title".', ['@title' => $data_set->getTitle()]),
         ],
       ];
 
       // Bookmark link.
-      $flag_link = $this->flagLinkBuilder->build('node', $data_set->id(), 'bookmark');
-      // Add to actions.
-      $row[1]['data']['bookmark'] = $flag_link;
+      $actions['bookmark'] = $this->flagLinkBuilder->build('node', $data_set->id(), 'bookmark');
 
+      $row = [];
+      $row[] = $data_set->toLink();
+      $row[] = ['data' => $actions];
       $rows[] = $row;
     }
     // Theme the table.
