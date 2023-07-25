@@ -14,6 +14,8 @@ module:
   ckeditor5: 0
   comment: 0
   config: 0
+  config_filter: 0
+  config_ignore: 0
   config_split: 0
   contact: 0
   contextual: 0
@@ -49,6 +51,7 @@ module:
   node: 0
   oauth2_client: 0
   op_ext_search: 0
+  openid_connect: 0
   options: 0
   page_cache: 0
   page_manager: 0
