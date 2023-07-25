@@ -148,41 +148,63 @@ class BcDcPageController extends ControllerBase {
   public function dataSetTableTheme(array $data_set_nids, array $classes, string $caption, bool $only_bookmarked = FALSE): array {
     // Table headers.
     $header = [
-      $this->t('Title'),
-      $this->t('Actions'),
+      'title' => $this->t('Title'),
     ];
+    if ($only_bookmarked) {
+      $header['count'] = $this->t('Bookmark count');
+    }
+    else {
+      $header['actions'] = $this->t('Actions');
+    }
     // Table rows. One row per data_set.
     $rows = [];
     foreach ($data_set_nids as $nid) {
       $data_set = $this->entityTypeManager()->getStorage('node')->load($nid);
 
       // Only show items that have at least one bookmark by anyone.
-      if ($only_bookmarked && \bc_dc_count_node_bookmarks($data_set) < 1) {
-        continue;
+      if ($only_bookmarked) {
+        $count = \bc_dc_count_node_bookmarks($data_set);
+        if ($count < 1) {
+          continue;
+        }
       }
-
-      $actions = [];
-
-      // Build link.
-      $url = Url::fromRoute('page_manager.page_view_data_set_build_data_set_build-block_display-0', ['node' => $data_set->id()]);
-      if ($url->access()) {
-        $actions['build'] = [
-          '#title' => $this->t('Build'),
-          '#type' => 'link',
-          '#url' => $url,
-          '#attributes' => [
-            'class' => ['button'],
-            'aria-label' => $this->t('Build "@title".', ['@title' => $data_set->getTitle()]),
-          ],
-        ];
-      }
-
-      // Bookmark link.
-      $actions['bookmark'] = $this->flagLinkBuilder->build('node', $data_set->id(), 'bookmark');
 
       $row = [];
-      $row[] = $data_set->toLink();
-      $row[] = ['data' => $actions];
+
+      // Display only columns that appear in $headers.
+      foreach (array_keys($header) as $column_key) {
+        switch ($column_key) {
+          case 'title':
+            $cell = $data_set->toLink();
+            break;
+
+          case 'count':
+            $cell = $count;
+            break;
+
+          case 'actions':
+            $actions = [];
+            // Build link.
+            $url = Url::fromRoute('page_manager.page_view_data_set_build_data_set_build-block_display-0', ['node' => $data_set->id()]);
+            if ($url->access()) {
+              $actions['build'] = [
+                '#title' => $this->t('Build'),
+                '#type' => 'link',
+                '#url' => $url,
+                '#attributes' => [
+                  'class' => ['button'],
+                  'aria-label' => $this->t('Build "@title".', ['@title' => $data_set->getTitle()]),
+                ],
+              ];
+            }
+            // Bookmark link.
+            $actions['bookmark'] = $this->flagLinkBuilder->build('node', $data_set->id(), 'bookmark');
+            $cell = ['data' => $actions];
+            break;
+        }
+        $row[$column_key] = $cell;
+      }
+
       $rows[] = $row;
     }
     // Theme the table.
