@@ -284,10 +284,10 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSession()->elementExists('xpath', '//a[@href = "/user/1/saved-searches"][text() = "My saved searches"]');
     // View link.
     $args = [
-      ':data_set_title' => 'View "' . $data_set_title . '".',
+      ':data_set_title' => $data_set_title,
       ':data_set_path' => $data_set_path,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "dc-dashboard-table-mydatasets")]//tr/td/a[text() = "View"][@class = "button"][@aria-label = :data_set_title][starts-with(@href, :data_set_path)]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "dc-dashboard-table-mydatasets")]//tr/td/a[text() = :data_set_title][starts-with(@href, :data_set_path)]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     // Build link.
     $args = [

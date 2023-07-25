@@ -162,18 +162,9 @@ class BcDcPageController extends ControllerBase {
       }
 
       $row = [
-        $data_set->getTitle(),
+        $data_set->toLink(),
         [
           'data' => [
-            'view' => [
-              '#title' => $this->t('View'),
-              '#type' => 'link',
-              '#url' => $data_set->toUrl(),
-              '#attributes' => [
-                'class' => ['button'],
-                'aria-label' => $this->t('View "@title".', ['@title' => $data_set->getTitle()]),
-              ],
-            ],
             'build' => [
               '#title' => $this->t('Build'),
               '#type' => 'link',
