@@ -2,8 +2,11 @@ uuid: 12d9e20f-53d5-477a-8500-7a4f35f574e4
 langcode: en
 status: true
 dependencies:
+  config:
+    - node.type.data_set
   module:
     - flag
+    - node
 id: data_catalogue_user
 label: 'Data catalogue user'
 weight: 6
@@ -11,3 +14,4 @@ is_admin: null
 permissions:
   - 'flag bookmark'
   - 'unflag bookmark'
+  - 'view data_set revisions'
