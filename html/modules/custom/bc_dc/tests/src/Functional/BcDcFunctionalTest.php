@@ -411,33 +411,16 @@ class BcDcFunctionalTest extends BrowserTestBase {
    * Test for ISO dates in page content.
    */
   protected function isoDateTest(): void {
-    $page_content = $this->getSession()->getPage()->getContent();
-
     $date_types = [
       'Published date',
       'Modified date',
     ];
     foreach ($date_types as $date_type) {
-      $position = strpos($page_content, $date_type);
-      $position = strpos($page_content, '<time ', $position);
-      $time_element = substr($page_content, $position, 100);
-      $match = preg_match(',<time(?: [^>]+)? datetime="(\d\d\d\d-[01]\d-[0-3]\d)[^"]+"(?: [^>]+)?>([^<]+)</time>,', $time_element, $matches);
-      $this->assertSession()->assert($match && $matches[1] === $matches[2], $date_type . ' element should contain ISO date.');
-
-      // XPath would be better, but that resulted in out-of-memory errors.
-      // @code
-      // $time_element = $this->xpath('//div[contains(text(), "' . $date_type .
-      // '")]//time');
-      // $time_element = reset($time_element);
-      // $this->assertSession()->assert((bool) $time_element, $date_type .
-      // ' element should exist.');
-      // $this->assertSession()->assert(preg_match('/^(\d\d\d\d-[01]\d-[0-3]\d)T/',
-      // $time_element->getAttribute('datetime'), $matches), $date_type .
-      // ' should have ISO-formatted datetime attribute.');
-      // $this->assertSession()->assert($time_element->textContent ===
-      // $matches[1], $date_type .
-      // ' contens should match date in datetime attribute.');
-      // @endcode
+      $time_element = $this->xpath('//div[contains(@class, "field--type-datetime")][div[text() = "' . $date_type . '"]]//time');
+      $time_element = reset($time_element);
+      $this->assertSession()->assert((bool) $time_element, $date_type . ' element should exist.');
+      $this->assertSession()->assert(preg_match('/^(\d\d\d\d-[01]\d-[0-3]\d)T/', $time_element->getAttribute('datetime'), $matches), $date_type . ' should have ISO-formatted datetime attribute.');
+      $this->assertSession()->assert($time_element->getText() === $matches[1], $date_type . ' contents should match date in datetime attribute.');
     }
   }
 
