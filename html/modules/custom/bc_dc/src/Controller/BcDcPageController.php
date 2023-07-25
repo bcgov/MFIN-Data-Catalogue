@@ -165,15 +165,17 @@ class BcDcPageController extends ControllerBase {
 
       // Build link.
       $url = Url::fromRoute('page_manager.page_view_data_set_build_data_set_build-block_display-0', ['node' => $data_set->id()]);
-      $actions['build'] = [
-        '#title' => $this->t('Build'),
-        '#type' => 'link',
-        '#url' => $url,
-        '#attributes' => [
-          'class' => ['button'],
-          'aria-label' => $this->t('Build "@title".', ['@title' => $data_set->getTitle()]),
-        ],
-      ];
+      if ($url->access()) {
+        $actions['build'] = [
+          '#title' => $this->t('Build'),
+          '#type' => 'link',
+          '#url' => $url,
+          '#attributes' => [
+            'class' => ['button'],
+            'aria-label' => $this->t('Build "@title".', ['@title' => $data_set->getTitle()]),
+          ],
+        ];
+      }
 
       // Bookmark link.
       $actions['bookmark'] = $this->flagLinkBuilder->build('node', $data_set->id(), 'bookmark');
