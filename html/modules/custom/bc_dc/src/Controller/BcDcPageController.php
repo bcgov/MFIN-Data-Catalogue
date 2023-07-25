@@ -58,30 +58,36 @@ class BcDcPageController extends ControllerBase {
     ];
 
     // Button to create a data_set.
-    $page['actions']['add-new'] = [
-      '#title' => $this->t('Add new data set'),
-      '#type' => 'link',
-      '#url' => Url::fromRoute('node.add', ['node_type' => 'data_set'], ['query' => ['display' => 'data_set_description']]),
-      '#attributes' => [
-        'class' => [
-          'button',
-          'button--action',
-          'button--primary',
+    $url = Url::fromRoute('node.add', ['node_type' => 'data_set'], ['query' => ['display' => 'data_set_description']]);
+    if ($url->access()) {
+      $page['actions']['add-new'] = [
+        '#title' => $this->t('Add new data set'),
+        '#type' => 'link',
+        '#url' => $url,
+        '#attributes' => [
+          'class' => [
+            'button',
+            'button--action',
+            'button--primary',
+          ],
         ],
-      ],
-    ];
+      ];
+    }
 
     // Link to saved searches.
-    $page['actions']['saved-searches'] = [
-      '#title' => $this->t('My saved searches'),
-      '#type' => 'link',
-      '#url' => Url::fromRoute('view.saved_searches.page', ['user' => $this->currentUser()->id()]),
-      '#attributes' => [
-        'class' => [
-          'button',
+    $url = Url::fromRoute('view.saved_searches.page', ['user' => $this->currentUser()->id()]);
+    if ($url->access()) {
+      $page['actions']['saved-searches'] = [
+        '#title' => $this->t('My saved searches'),
+        '#type' => 'link',
+        '#url' => $url,
+        '#attributes' => [
+          'class' => [
+            'button',
+          ],
         ],
-      ],
-    ];
+      ];
+    }
 
     // Table of data_set nodes.
     //
