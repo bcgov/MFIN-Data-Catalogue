@@ -102,14 +102,13 @@ class BcDcPageController extends ControllerBase {
     $page['data_set-table'] = $this->dataSetTableTheme($data_set_nids, $classes, $this->t('My unpublished data sets'));
 
     // Table of data_set nodes bookmarked by this user.
-    $query = $this->entityTypeManager()->getStorage('flagging')->getQuery();
-    $query->accessCheck(FALSE);
-    $query->condition('flag_id', 'bookmark');
-    $query->condition('uid', $this->currentUser()->id());
-    $bookmark_flagging_ids = $query->execute();
-    // Convert the array of IDs of the bookmark flags into an array of IDs of
-    // the nodes that are bookmarked.
-    $bookmarks = $this->entityTypeManager()->getStorage('flagging')->loadMultiple($bookmark_flagging_ids);
+    // Get all bookmark flags for this user.
+    $values = [
+      'flag_id' => 'bookmark',
+      'uid' => $this->currentUser()->id(),
+    ];
+    $bookmarks = $this->entityTypeManager()->getStorage('flagging')->loadByProperties($values);
+    // Make array of bookmarked nodes.
     $bookmark_nids = [];
     foreach ($bookmarks as $bookmark) {
       $bookmark_nids[] = $bookmark->getFlaggableId();
