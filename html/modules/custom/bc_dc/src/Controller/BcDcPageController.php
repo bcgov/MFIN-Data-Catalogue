@@ -207,6 +207,17 @@ class BcDcPageController extends ControllerBase {
 
       $rows[] = $row;
     }
+
+    // Sort the rows.
+    if ($only_bookmarked) {
+      // Sort by bookmark count, title.
+      array_multisort(array_column($rows, 'count'), SORT_DESC, array_column($rows, 'title'), SORT_ASC, $rows);
+    }
+    else {
+      // Sort by title.
+      array_multisort(array_column($rows, 'title'), SORT_ASC, $rows);
+    }
+
     // Theme the table.
     return [
       '#type' => 'table',
