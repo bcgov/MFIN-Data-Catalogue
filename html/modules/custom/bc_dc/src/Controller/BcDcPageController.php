@@ -127,6 +127,31 @@ class BcDcPageController extends ControllerBase {
     $classes = ['dc-dashboard-table', 'dc-dashboard-table-datasets-bookmarks'];
     $page['data_set-bookmarks'] = $this->dataSetTableTheme($data_set_nids, $classes, $this->t('My data sets bookmarked by at least one user'), TRUE);
 
+    // Table of data_set nodes with the most bookmarks.
+    // Get all bookmark flags.
+    $values = [
+      'flag_id' => 'bookmark',
+    ];
+    $bookmarks = $this->entityTypeManager()->getStorage('flagging')->loadByProperties($values);
+    // Make an array of bookmark counts keyed by NID.
+    $bookmark_nids = [];
+    foreach ($bookmarks as $bookmark) {
+      $node = $bookmark->getFlaggable();
+      // Remove duplicates.
+      if (isset($bookmark_nids[$node->id()])) {
+        continue;
+      }
+      // Store count of bookmarks on this node.
+      $bookmark_nids[$node->id()] = \bc_dc_count_node_bookmarks($node);
+    }
+    // Sort by bookmark count.
+    asort($bookmark_nids, SORT_NUMERIC);
+    // Take the top 10.
+    $bookmark_nids = array_slice($bookmark_nids, 0, 10, TRUE);
+    // Generate the table.
+    $classes = ['dc-dashboard-table', 'dc-dashboard-table-most-bookmarked'];
+    $page['most-bookmark-table'] = $this->dataSetTableTheme(array_keys($bookmark_nids), $classes, $this->t('Most bookmarked data sets'), TRUE);
+
     return $page;
   }
 
