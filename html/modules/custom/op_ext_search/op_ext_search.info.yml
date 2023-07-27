@@ -9,7 +9,7 @@ dependencies:
   - drupal:text
   - drupal:user
   - drupal:views
-  - facets:facets_summary
   - facets:facets
+  - facets:facets_summary
   - panels:panels
   - search_api:search_api
