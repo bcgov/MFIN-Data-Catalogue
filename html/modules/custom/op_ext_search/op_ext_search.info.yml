@@ -1,15 +1,15 @@
-name: 'OpenPlus Search'
-description: 'Provides site search block and faceted search configuration.'
+name: OpenPlus Search
+description: Provides site search block and faceted search configuration.
 type: module
-core_version_requirement: '^9.5 || ^10'
+core_version_requirement: ^9.5 || ^10
 package: OpenPlus
 dependencies:
-  - 'bootstrap_layouts:bootstrap_layouts'
-  - 'drupal:node'
-  - 'drupal:text'
-  - 'drupal:user'
-  - 'drupal:views'
-  - 'facets:facets_summary'
-  - 'facets:facets'
-  - 'panels:panels'
-  - 'search_api:search_api'
+  - bootstrap_layouts:bootstrap_layouts
+  - drupal:node
+  - drupal:text
+  - drupal:user
+  - drupal:views
+  - facets:facets_summary
+  - facets:facets
+  - panels:panels
+  - search_api:search_api
