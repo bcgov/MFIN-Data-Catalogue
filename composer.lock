@@ -68,12 +68,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb.git",
-                "reference": "15c6ea3194d463055a2ffa6d8bef35db94ccd380"
+                "reference": "0341a6a7956588d8f9189776ddf0799810b573b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/15c6ea3194d463055a2ffa6d8bef35db94ccd380",
-                "reference": "15c6ea3194d463055a2ffa6d8bef35db94ccd380",
+                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/0341a6a7956588d8f9189776ddf0799810b573b7",
+                "reference": "0341a6a7956588d8f9189776ddf0799810b573b7",
                 "shasum": ""
             },
             "require": {
@@ -81,7 +81,6 @@
                 "drupal/admin_toolbar": "^3.0",
                 "drupal/allowed_formats": "^2.0",
                 "drupal/better_exposed_filters": "^6.0",
-                "drupal/bootstrap_layouts": "^5.3",
                 "drupal/config_filter": "^2.4",
                 "drupal/config_ignore": "^2.4",
                 "drupal/config_split": "^2.0",
@@ -136,7 +135,7 @@
                 "source": "https://github.com/bcgov/bcbb/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb/issues"
             },
-            "time": "2023-07-21T21:10:15+00:00"
+            "time": "2023-07-27T17:41:08+00:00"
         },
         {
             "name": "bcgov/bcbb_theme",
@@ -1961,58 +1960,6 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/bootstrap5",
                 "issues": "https://www.drupal.org/project/issues/bootstrap5"
-            }
-        },
-        {
-            "name": "drupal/bootstrap_layouts",
-            "version": "5.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/bootstrap_layouts.git",
-                "reference": "8.x-5.3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/bootstrap_layouts-8.x-5.3.zip",
-                "reference": "8.x-5.3",
-                "shasum": "0ca3a76594a9483235920964c56effcf0fdfe06e"
-            },
-            "require": {
-                "drupal/core": "^9.3 || ^10"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "8.x-5.3",
-                    "datestamp": "1675341751",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "darol100",
-                    "homepage": "https://www.drupal.org/user/2667123"
-                },
-                {
-                    "name": "hctom",
-                    "homepage": "https://www.drupal.org/user/112790"
-                },
-                {
-                    "name": "Rajab Natshah",
-                    "homepage": "https://www.drupal.org/user/1414312"
-                }
-            ],
-            "description": "This module is going to generate layouts with Bootstrap grid system.",
-            "homepage": "https://www.drupal.org/project/bootstrap_layouts",
-            "support": {
-                "source": "https://git.drupalcode.org/project/bootstrap_layouts"
             }
         },
         {
