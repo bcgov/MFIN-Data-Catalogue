@@ -4,7 +4,7 @@ type: module
 core_version_requirement: ^9.5 || ^10
 package: OpenPlus
 dependencies:
-  - bootstrap_layouts:bootstrap_layouts
+  - bcbb:bcbb_layouts
   - drupal:node
   - drupal:text
   - drupal:user
