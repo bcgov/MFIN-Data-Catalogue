@@ -66,3 +66,18 @@ function dc_theme_preprocess_node__data_set_build_page(array &$variables): void 
 function dc_theme_preprocess_page__node__add_columns(array &$variables): void {
   $variables['b5_top_container'] = 'container-fluid';
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for views-view-field.html.twig.
+ */
+function dc_theme_preprocess_views_view_fields(array &$variables): void {
+  // For 'nothing' fields, remove the wrapper element if it is a 'div' or 'span'
+  // with no attributes.
+  $element_names = [
+    'div',
+    'span',
+  ];
+  if (isset($variables['fields']['nothing']) && in_array($variables['fields']['nothing']?->element_type, $element_names, TRUE) && empty($variables['fields']['nothing']->element_attributes->storage())) {
+    $variables['fields']['nothing']->element_type = NULL;
+  }
+}
