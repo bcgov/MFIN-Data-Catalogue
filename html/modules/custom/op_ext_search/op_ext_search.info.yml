@@ -5,6 +5,8 @@ core_version_requirement: ^9.5 || ^10
 package: OpenPlus
 dependencies:
   - bcbb:bcbb_layouts
+  - better_exposed_filters:better_exposed_filters
+  - datetime:datetime
   - drupal:node
   - drupal:text
   - drupal:user
@@ -12,4 +14,6 @@ dependencies:
   - facets:facets
   - facets:facets_summary
   - panels:panels
+  - search_api_saved_searches:search_api_saved_searches
   - search_api:search_api
+  - views_bulk_operations:views_bulk_operations
