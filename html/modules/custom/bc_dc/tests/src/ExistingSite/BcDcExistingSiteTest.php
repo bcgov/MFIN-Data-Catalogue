@@ -6,6 +6,7 @@ namespace Drupal\Tests\bc_dc\ExistingSite;
 // find BcbbExistingSiteBase.
 require_once DRUPAL_ROOT . '/modules/contrib/bcbb/tests/src/ExistingSite/BcbbExistingSiteBase.php';
 
+use Drupal\search_api\Entity\Server as SearchApiServer;
 use Drupal\Tests\bcbb\ExistingSite\BcbbExistingSiteBase;
 
 /**
@@ -74,6 +75,12 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     // Clear facets.
     $this->clickLink('Clear all');
     $container = $this->assertSession()->pageTextNotContains('Current search filters');
+
+    // Check that search_api_solr is installed and Solr server is available.
+    $moduleHandler = \Drupal::service('module_handler');
+    $this->assertTrue($moduleHandler->moduleExists('search_api_solr'), 'Module search_api_solr should be installed.');
+    $solr_backend = SearchApiServer::load('solr')->getBackend();
+    $this->assertTrue($solr_backend->isAvailable(), 'Solr server should be available.');
   }
 
 }
