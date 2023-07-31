@@ -27,6 +27,30 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     $this->createUser([], 'test_user');
     $account = user_load_by_name('test_user');
     $this->assertSession()->assert($account->hasRole('data_catalogue_user'), 'Test user should have role data_catalogue_user.');
+
+    // Test search page.
+    $this->drupalGet('search/site');
+    $this->assertSession()->statusCodeEquals(200);
+    // Components of search results.
+    $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-id-site_search")]//div[contains(@class, "row")]/div[contains(@class, "search-result")]');
+    $this->assertSession()->elementExists('xpath', 'h2', $container);
+    $this->assertSession()->elementExists('xpath', 'h2/a[starts-with(@href, "/data-set/")]', $container);
+    $this->assertSession()->elementExists('xpath', 'div[contains(@class, "views-field-search-api-excerpt")]', $container);
+    // Check that no excerpts are longer than 255, adding 1 for the ellipsis.
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "view-id-site_search")]//div[contains(@class, "row")]/div[contains(@class, "search-result")]/div[contains(@class, "views-field-search-api-excerpt")][string-length(normalize-space(text())) > 256]');
+    // Check that no excerpts contain HTML tags.
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "view-id-site_search")]//div[contains(@class, "row")]/div[contains(@class, "search-result")]/div[contains(@class, "views-field-search-api-excerpt")]/*');
+    // Check for an excerpt ends in ellipsis.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-id-site_search")]//div[contains(@class, "row")]/div[contains(@class, "search-result")]/div[contains(@class, "views-field-search-api-excerpt")][substring(normalize-space(text()), string-length(normalize-space(text()))) = "…"]');
+    // List of metadata.
+    $this->assertSession()->elementExists('xpath', 'ul[contains(@class, "bcbb-inline-list")]', $container);
+    // There are exactly 3 items in the list.
+    $this->assertSession()->elementExists('xpath', 'ul[contains(@class, "bcbb-inline-list")]/li[3]', $container);
+    $this->assertSession()->elementNotExists('xpath', 'ul[contains(@class, "bcbb-inline-list")]/li[4]', $container);
+    // Check classes of items.
+    $this->assertSession()->elementExists('xpath', 'ul[contains(@class, "bcbb-inline-list")]/li[@class = "primary_responsibility_org"]', $container);
+    $this->assertSession()->elementExists('xpath', 'ul[contains(@class, "bcbb-inline-list")]/li[@class = "data_custodian"]', $container);
+    $this->assertSession()->elementExists('xpath', 'ul[contains(@class, "bcbb-inline-list")]/li[@class = "modified_date"]', $container);
   }
 
 }
