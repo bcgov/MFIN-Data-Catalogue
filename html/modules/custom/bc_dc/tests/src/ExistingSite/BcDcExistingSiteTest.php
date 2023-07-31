@@ -51,6 +51,11 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     $this->assertSession()->elementExists('xpath', 'ul[contains(@class, "bcbb-inline-list")]/li[@class = "primary_responsibility_org"]', $container);
     $this->assertSession()->elementExists('xpath', 'ul[contains(@class, "bcbb-inline-list")]/li[@class = "data_custodian"]', $container);
     $this->assertSession()->elementExists('xpath', 'ul[contains(@class, "bcbb-inline-list")]/li[@class = "modified_date"]', $container);
+
+    // Search results download.
+    $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-id-site_search")]//div[contains(@class, "row")]/div[contains(@class, "views-field-views-bulk-operations-bulk-form")]');
+    $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-id-site_search")]//input[@id = "edit-select-all"][contains(@class, "vbo-select-all")]');
+    $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-id-site_search")]//input[@value = "Generate csv from selected view results"]');
   }
 
 }
