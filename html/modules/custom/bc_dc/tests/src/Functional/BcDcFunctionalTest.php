@@ -376,7 +376,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     }
     // Test for error message for invalid value in entitiy reference column.
     $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr/td[@class = "error"][text() = "Invalid: integer"]');
-    // Upload valie import file.
+    // Upload valid import file.
     $edit = [
       'edit-import-file-upload' => __DIR__ . '/../../files/test-valid.csv',
     ];
