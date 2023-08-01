@@ -1,0 +1,24 @@
+uuid: 08bad234-650e-408a-a3b8-ca78ab384495
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.flagging.field_last_viewed_date
+    - flag.flag.bookmark
+  module:
+    - datetime
+id: flagging.bookmark.field_last_viewed_date
+field_name: field_last_viewed_date
+entity_type: flagging
+bundle: bookmark
+label: 'Last viewed date'
+description: 'The timestamp of the last time this user viewed this piece of content.'
+required: true
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

@@ -1,0 +1,21 @@
+uuid: f5fbbd6f-74fd-4252-a599-e7273c639b71
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.flagging.bookmark.field_last_viewed_date
+    - flag.flag.bookmark
+  module:
+    - datetime
+id: flagging.bookmark.default
+targetEntityType: flagging
+bundle: bookmark
+mode: default
+content:
+  field_last_viewed_date:
+    type: datetime_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }
