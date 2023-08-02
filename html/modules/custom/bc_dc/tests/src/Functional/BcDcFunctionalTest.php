@@ -345,6 +345,26 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSession()->statusCodeEquals(200);
     $this->assertSession()->elementExists('xpath', '//table[contains(@class, "dc-dashboard-table-mydatasets")]//tr/td[text() = "No data sets to show."]');
 
+    // The bookmark field_last_viewed_date gets updated when visiting a page.
+    //
+    // Get needed services.
+    $flagService = \Drupal::service('flag');
+    $bookmark_flag = $flagService->getFlagById('bookmark');
+    $bookmark_flagging = $flagService->getFlagging($bookmark_flag, $data_set);
+    // Set the field_last_viewed_date to yesterday.
+    $date_yesterday = (new \DateTime('yesterday'))->format('Y-m-d\TH:i:s');
+    $bookmark_flagging->set('field_last_viewed_date', $date_yesterday)->save();
+    // Visit the page to update the last-visited time.
+    $this->drupalGet('node/2');
+    // The field_last_viewed_date should now be later.
+    $field_last_viewed_date = $flagService->getFlagging($bookmark_flag, $data_set)->get('field_last_viewed_date')->value;
+    // Ensure comparisons are between ISO dates.
+    $this->assertMatchesRegularExpression('/^\d\d\d\d-\d\d-\d\dT/', $date_yesterday);
+    $this->assertMatchesRegularExpression('/^\d\d\d\d-\d\d-\d\dT/', $field_last_viewed_date);
+    // Check that field_last_viewed_date is now greater than what it was set to.
+    $this->assertGreaterThan(1, 2);
+    $this->assertGreaterThan($date_yesterday, $field_last_viewed_date);
+
     // Data set landing page.
     $this->drupalGet('data-set');
     $this->assertSession()->statusCodeEquals(200);
