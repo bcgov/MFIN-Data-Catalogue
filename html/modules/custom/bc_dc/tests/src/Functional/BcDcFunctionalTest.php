@@ -37,6 +37,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
    */
   protected static $modules = [
     'bc_dc',
+    'dblog',
   ];
 
   /**
@@ -356,6 +357,25 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSession()->elementExists('xpath', '//table[contains(@class, "dc-dashboard-table-bookmarks")]//tr
       [td/span[@class = "updated"][text() = "Updated:"]]
       [td/a[@href = "/node/2/build"]]');
+
+    // Examine logs to check that update notification emails would have been
+    // sent to users who bookmarked the updated data_set.
+    $options = [
+      'query' => ['type' => ['bc_dc', 'message_gcnotify']],
+    ];
+    $this->drupalGet('admin/reports/dblog', $options);
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-watchdog")]/div/table/tbody/tr/td/a[text() = "Sent message to 1 users when updating data_set 2."]');
+    // Get from @title the request that would have been sent to GC Notify.
+    $element = $this->xpath('//div[contains(@class, "view-watchdog")]/div/table/tbody/tr/td/a[contains(@title, "A dataset you have bookmarked has been updated")]');
+    $element = reset($element);
+    $title = $element->getAttribute('title');
+    preg_match('/^GC Notify disabled[^:]+: (.+)/', $title, $matches);
+    $gcnotify_request = json_decode($matches[1]);
+    // Run tests on the request.
+    $this->assertEquals('A dataset you have bookmarked has been updated', $gcnotify_request->rows[1][1]);
+    $this->assertMatchesRegularExpression(',The following dataset has been updated:
+' . preg_quote($data_set_title) . '
+https?://[^/]+/node/2,', htmlspecialchars_decode($gcnotify_request->rows[1][2]));
 
     // The bookmark field_last_viewed_date gets updated when visiting a page.
     //

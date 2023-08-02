@@ -8,6 +8,7 @@
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Render\Element;
+use Drupal\message_gcnotify\Service\GcNotifyApiService;
 use Drupal\node\NodeInterface;
 
 /**
@@ -121,4 +122,82 @@ function bc_dc_node_view(array &$build, NodeInterface $entity, EntityViewDisplay
   // Record that the node has been viewed. Update field_last_viewed_date to now.
   $bookmark_flagging->set('field_last_viewed_date', date('Y-m-d\TH:i:s'));
   $bookmark_flagging->save();
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_update() for node.
+ */
+function bc_dc_node_update(NodeInterface $entity): void {
+  // Send a notification to all users who have bookmarked this data_set and who
+  // last viewed it before the modified_date.
+  //
+  // Act only on data_set nodes.
+  if ($entity->bundle() !== 'data_set') {
+    return;
+  }
+
+  // If field_modified_date is not made greater than it was, do nothing.
+  $old_modified_date = $entity->original->field_modified_date->value;
+  $new_modified_date = $entity->field_modified_date->value;
+  if ($new_modified_date <= $old_modified_date) {
+    return;
+  }
+
+  // Load an array of all bookmarks.
+  $flag_service = \Drupal::service('flag');
+  $bookmark_flag = $flag_service->getFlagById('bookmark');
+  /** @var \Drupal\flag\FlaggingInterface[] $bookmark_flaggings Array of flaggings. */
+  $bookmark_flaggings = $flag_service->getEntityFlaggings($bookmark_flag, $entity);
+
+  // Create an array of users who need to be notified of the change.
+  /** @var string[] $send_to Array of email addresses. */
+  $send_to = [];
+  // Add to the list if the data set was modified after the last viewed date.
+  // We compare dates because field_modified_date might not be set to now, but
+  // some time in the past when it was know that an update was made.
+  foreach ($bookmark_flaggings as $bookmark_flagging) {
+    if ($new_modified_date > $bookmark_flagging->get('field_last_viewed_date')->value) {
+      $email = $bookmark_flagging->getOwner()->getEmail();
+      if ($email) {
+        $send_to[] = $email;
+      }
+    }
+  }
+
+  // No recipients.
+  if (!$send_to) {
+    $context = [
+      '@nid' => $entity->id(),
+    ];
+    \Drupal::logger('bc_dc')->notice('No messages to send when updating data_set @nid.', $context);
+    return;
+  }
+
+  // Send the notifications.
+  //
+  // Message subject.
+  $subject = t('A dataset you have bookmarked has been updated');
+  // Message body.
+  $context = [
+    '@title' => $entity->getTitle(),
+    '@link' => $entity->toUrl('canonical', ['absolute' => TRUE])->toString(),
+  ];
+  $body = t('The following dataset has been updated:
+@title
+@link', $context);
+  // Send the message and log the result.
+  $success = GcNotifyApiService::sendMessage($send_to, $subject, $body);
+  if ($success) {
+    $context = [
+      '@count' => count($send_to),
+      '@nid' => $entity->id(),
+    ];
+    \Drupal::logger('bc_dc')->notice('Sent message to @count users when updating data_set @nid.', $context);
+  }
+  else {
+    $context = [
+      '@nid' => $entity->id(),
+    ];
+    \Drupal::logger('bc_dc')->error('Failed sending message when updating data_set @nid.', $context);
+  }
 }
