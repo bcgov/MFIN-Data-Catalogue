@@ -5,6 +5,7 @@ namespace Drupal\bc_dc\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Url;
 use Drupal\flag\FlagLinkBuilder;
+use Drupal\flag\FlagService;
 use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -16,10 +17,13 @@ class BcDcPageController extends ControllerBase {
   /**
    * Create a BcDcPageController instance.
    *
+   * @param \Drupal\flag\FlagService $flagService
+   *   The flag service.
    * @param \Drupal\flag\FlagLinkBuilder $flagLinkBuilder
    *   The flag.link_builder service.
    */
   public function __construct(
+    protected FlagService $flagService,
     protected FlagLinkBuilder $flagLinkBuilder,
   ) {
   }
@@ -29,6 +33,7 @@ class BcDcPageController extends ControllerBase {
    */
   public static function create(ContainerInterface $container): object {
     return new static(
+      $container->get('flag'),
       $container->get('flag.link_builder'),
     );
   }
@@ -170,6 +175,8 @@ class BcDcPageController extends ControllerBase {
    *   A render array.
    */
   public function dataSetTableTheme(array $data_set_nids, array $classes, string $caption, bool $only_bookmarked = FALSE): array {
+    $bookmark_flag = $this->flagService->getFlagById('bookmark');
+
     // Table headers.
     $header = [
       'title' => $this->t('Title'),
@@ -202,7 +209,13 @@ class BcDcPageController extends ControllerBase {
       foreach (array_keys($header) as $column_key) {
         switch ($column_key) {
           case 'title':
-            $cell = $data_set->toLink();
+            $cell = ['data' => $data_set->toLink()->toRenderable()];
+            // Display indication that data_set has been modified since view.
+            $bookmark_flagging = $this->flagService->getFlagging($bookmark_flag, $data_set);
+            $field_last_viewed_date = $bookmark_flagging?->get('field_last_viewed_date')->value;
+            if ($field_last_viewed_date && $data_set->field_modified_date->value > $field_last_viewed_date) {
+              $cell['data']['#prefix'] = '<span class="updated">Updated:</span> ';
+            }
             break;
 
           case 'count':

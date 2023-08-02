@@ -345,6 +345,18 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSession()->statusCodeEquals(200);
     $this->assertSession()->elementExists('xpath', '//table[contains(@class, "dc-dashboard-table-mydatasets")]//tr/td[text() = "No data sets to show."]');
 
+    // Test data set update message.
+    //
+    // Recently-bookmarked data set has no data set updated message.
+    $this->assertSession()->pageTextNotContains('Updated:');
+    // Set the updated date later than the bookmark date.
+    $data_set->set('field_modified_date', (new \DateTime('tomorrow'))->format('Y-m-d'))->save();
+    // The data set updated message should appear.
+    $this->drupalGet('user/1');
+    $this->assertSession()->elementExists('xpath', '//table[contains(@class, "dc-dashboard-table-bookmarks")]//tr
+      [td/span[@class = "updated"][text() = "Updated:"]]
+      [td/a[@href = "/node/2/build"]]');
+
     // The bookmark field_last_viewed_date gets updated when visiting a page.
     //
     // Get needed services.
