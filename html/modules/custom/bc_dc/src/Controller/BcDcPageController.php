@@ -195,6 +195,9 @@ class BcDcPageController extends ControllerBase {
 
       $row = [];
 
+      // Add column for sorting.
+      $row['sort'] = $data_set->getTitle();
+
       // Display only columns that appear in $headers.
       foreach (array_keys($header) as $column_key) {
         switch ($column_key) {
@@ -235,11 +238,16 @@ class BcDcPageController extends ControllerBase {
     // Sort the rows.
     if ($only_bookmarked) {
       // Sort by bookmark count, title.
-      array_multisort(array_column($rows, 'count'), SORT_DESC, array_column($rows, 'title'), SORT_ASC, $rows);
+      array_multisort(array_column($rows, 'count'), SORT_DESC, array_column($rows, 'sort'), SORT_ASC, $rows);
     }
     else {
       // Sort by title.
-      array_multisort(array_column($rows, 'title'), SORT_ASC, $rows);
+      array_multisort(array_column($rows, 'sort'), SORT_ASC, $rows);
+    }
+
+    // Remove column for sorting.
+    foreach ($rows as &$row) {
+      unset($row['sort']);
     }
 
     // Theme the table.
