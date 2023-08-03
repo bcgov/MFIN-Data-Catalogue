@@ -5,6 +5,8 @@
  * Theme file.
  */
 
+use Drupal\Core\Link;
+
 /**
  * Implements hook_preprocess_HOOK() for block--facets-summary-block.html.twig.
  */
@@ -23,6 +25,24 @@ function dc_theme_preprocess_input__submit(array &$variables): void {
   if ($variables['element']['#id'] === 'edit-reset') {
     $variables['attributes']['class'][] = 'button--danger';
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node--data-set--full.html.twig.
+ */
+function dc_theme_preprocess_node__data_set__full(array &$variables): void {
+  // Author of this node.
+  $author = $variables['node']->getRevisionUser();
+  // Query string for searching for the author as a facet.
+  $options = [
+    'query' => [
+      'f' => [
+        'author_id:' . $author->id(),
+      ],
+    ],
+  ];
+  // Make link to search for this author available to template.
+  $variables['author_link'] = Link::createFromRoute($author->getDisplayName(), 'page_manager.page_view_site_search_site_search-panels_variant-0', [], $options);
 }
 
 /**
