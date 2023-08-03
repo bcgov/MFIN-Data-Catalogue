@@ -41,6 +41,7 @@
         "drupal/core-composer-scaffold": "^10.1",
         "drupal/core-recommended": "^10.1",
         "drupal/flag": "^4.0",
+        "drupal/message_gcnotify": "dev-1.0.x",
         "drupal/o365": "^3.0",
         "drupal/registration_role": "dev-1.x#a3a3d15",
         "drupal/search_api_saved_searches": "1.x@dev",

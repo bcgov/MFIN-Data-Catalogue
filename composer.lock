@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fc49f5f07107c1e9e4123a75be01a042",
+    "content-hash": "4d402bffeaf7ea8740bf816f9b825071",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3645,6 +3645,59 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/linkit",
                 "issues": "http://drupal.org/project/linkit"
+            }
+        },
+        {
+            "name": "drupal/message_gcnotify",
+            "version": "dev-1.0.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/message_gcnotify.git",
+                "reference": "739ddeca3395f2f265935a440fb98fcb169545fd"
+            },
+            "require": {
+                "drupal/core": "^9.5 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.0.x": "1.0.x-dev"
+                },
+                "drupal": {
+                    "version": "1.0.0+8-dev",
+                    "datestamp": "1691155646",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "gurjinder_pabla",
+                    "homepage": "https://www.drupal.org/user/2321532"
+                },
+                {
+                    "name": "jmdeleon",
+                    "homepage": "https://www.drupal.org/user/531108"
+                },
+                {
+                    "name": "joel_osc",
+                    "homepage": "https://www.drupal.org/user/124931"
+                },
+                {
+                    "name": "Liam Morland",
+                    "homepage": "https://www.drupal.org/user/493050"
+                }
+            ],
+            "description": "Sends messages via the GC Notify service. Also provides a Notifier plugin for message_notify.",
+            "homepage": "https://www.drupal.org/project/message_gcnotify",
+            "support": {
+                "source": "https://git.drupalcode.org/project/message_gcnotify"
             }
         },
         {
@@ -15782,6 +15835,7 @@
     "stability-flags": {
         "bcgov/bcbb": 20,
         "bcgov/bcbb_theme": 20,
+        "drupal/message_gcnotify": 20,
         "drupal/registration_role": 20,
         "drupal/search_api_saved_searches": 20
     },
