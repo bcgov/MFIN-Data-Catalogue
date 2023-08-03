@@ -1,0 +1,11 @@
+_core:
+  default_config_hash: RFpONvnSH8Y8NdP8EFbIOlUkEwRb6a0DA1qgQIxDz9w
+enabled: false
+mode: 0
+debug_mode: false
+baseurl: 'https://api.notification.canada.ca/'
+prod_apikey: key
+prod_template: key
+test_apikey: key
+team_apikey: key
+test_template: key
