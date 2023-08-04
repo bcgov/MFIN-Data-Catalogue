@@ -28,8 +28,11 @@
 
           <div class="card text-bg-light mb-3 p-3 small">
 
-            <div class="d-inline mb-3">
-              <b>{{ 'Data custodian'|t }}:</b> {{ author_link }}
+            <div class="mb-3">
+              <div class="field field--name-field-uid field--type-entity-reference field--label-inline clearfix">
+                <div class="field__label">{{ 'Data custodian'|t }}</div>
+                <div class="field__item">{{ author_link }}</div>
+              </div>
             </div>
 
             {% if node.field_primary_responsibility_org and not node.field_primary_responsibility_org.isempty %}
