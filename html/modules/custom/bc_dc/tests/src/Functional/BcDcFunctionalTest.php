@@ -322,6 +322,9 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // View page has link to remove bookmark.
     $this->drupalGet('node/2');
     $this->assertSession()->elementExists('xpath', '//a[*[@class = "title"][text() = "Remove bookmark"]][*[@class = "count"][text() = "Bookmarked by 1 person"]]');
+    // Revisions and diff are enabled and available.
+    $this->assertSession()->elementExists('xpath', '//nav[contains(@class, "tabs")]/ul/li/a[@href = "/node/2/revisions"]');
+    $this->assertTrue(\Drupal::service('module_handler')->moduleExists('diff'), 'Module diff should be enabled.');
 
     // Publish the data_set and there are no data rows, just the empty message.
     $data_set = Node::load(2);
