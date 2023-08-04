@@ -81,6 +81,23 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     $this->assertTrue($moduleHandler->moduleExists('search_api_solr'), 'Module search_api_solr should be installed.');
     $solr_backend = SearchApiServer::load('solr')->getBackend();
     $this->assertTrue($solr_backend->isAvailable(), 'Solr server should be available.');
+
+    // Test that certain fields on data_set view pages link to a facet search
+    // for that value.
+    $this->drupalGet('data-set/test-set');
+    $this->assertSession()->statusCodeEquals(200);
+    $container = $this->assertSession()->elementExists('xpath', '//div
+      [*[text() = "Data custodian"]]
+      [div/a[starts-with(@href, "/search/site?f%5B0%5D=author_id%3A")]]');
+    $container = $this->assertSession()->elementExists('xpath', '//div
+      [*[text() = "Office of primary responsibility"]]
+      [div/a[starts-with(@href, "/search/site?f%5B0%5D=primary_responsibility_org%3A")]]');
+    $container = $this->assertSession()->elementExists('xpath', '//div
+      [*[text() = "Source system"]]
+      [div/a[starts-with(@href, "/search/site?f%5B0%5D=source_system%3A")]]');
+    $container = $this->assertSession()->elementExists('xpath', '//div
+      [*[text() = "Series"]]
+      [div/a[starts-with(@href, "/search/site?f%5B0%5D=series%3A")]]');
   }
 
 }
