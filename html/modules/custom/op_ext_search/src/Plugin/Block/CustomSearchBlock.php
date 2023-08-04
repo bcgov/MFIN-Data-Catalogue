@@ -86,7 +86,7 @@ class CustomSearchBlock extends BlockBase implements ContainerFactoryPluginInter
     $facetsList = [];
 
     // Store Facets block list.
-    $facets = $this->entityTypeManager->getStorage('facets_facet')->getQuery()->execute();
+    $facets = $this->entityTypeManager->getStorage('facets_facet')->getQuery()->accessCheck(FALSE)->execute();
     foreach ($facets as $value) {
       $facetsLoad = $this->entityTypeManager->getStorage('facets_facet')->load($value);
 
