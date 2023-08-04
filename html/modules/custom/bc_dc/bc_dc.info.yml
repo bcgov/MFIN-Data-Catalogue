@@ -5,6 +5,7 @@ core_version_requirement: ^10.1
 package: BC Base Build
 dependencies:
   - datetime:datetime
+  - diff:diff
   - drupal:field
   - drupal:layout_builder
   - drupal:layout_discovery
