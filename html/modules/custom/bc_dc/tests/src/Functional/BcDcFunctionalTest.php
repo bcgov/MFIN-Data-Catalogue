@@ -89,6 +89,18 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Login as admin.
     $this->drupalLogin($this->rootUser);
 
+    // Test config for message_gcnotify. Ensures tests cannot send messages.
+    $this->drupalGet('admin/config/message/message-gcnotify');
+    $edit = [
+      'enabled' => 0,
+      'prod_apikey' => 'test-prod_apikey',
+      'prod_template' => 'test-prod_template',
+      'test_apikey' => 'test-test_apikey',
+      'team_apikey' => 'test-team_apikey',
+      'test_template' => 'test-test_template',
+    ];
+    $this->submitForm($edit, 'Save configuration');
+
     // Test that roles exist.
     $roles = [
       'data_administrator',
