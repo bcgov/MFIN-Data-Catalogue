@@ -14,6 +14,7 @@ label: 'Data administrator'
 weight: 4
 is_admin: null
 permissions:
+  - 'access content overview'
   - 'administer nodes'
   - 'create data_set content'
   - 'delete own data_set content'
