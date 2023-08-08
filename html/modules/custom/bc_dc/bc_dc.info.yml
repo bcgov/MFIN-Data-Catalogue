@@ -24,7 +24,6 @@ dependencies:
   - pathauto:pathauto
   - registration_role:registration_role
   - search_api_saved_searches:search_api_saved_searches
-  - tac_lite:tac_lite
   - twig_tweak:twig_tweak
   - views_bulk_edit:views_bulk_edit
   - views_bulk_operations:views_bulk_operations

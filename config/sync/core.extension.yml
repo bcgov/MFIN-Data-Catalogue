@@ -87,7 +87,6 @@ module:
   views: 10
   paragraphs: 11
   o365: 100
-  tac_lite: 100
   standard: 1000
 theme:
   claro: 0
