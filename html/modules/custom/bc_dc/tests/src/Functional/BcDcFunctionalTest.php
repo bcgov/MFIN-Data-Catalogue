@@ -371,11 +371,8 @@ class BcDcFunctionalTest extends BrowserTestBase {
       ];
       $this->submitForm($edit, 'Upload');
       // Check for error message.
-      $args = [
-        ':error_message' => $error_message,
-      ];
-      $xpath = $this->assertSession()->buildXPathQuery('//div[@role = "alert"][contains(@class, "alert-error")]//*[contains(text(), :error_message)]', $args);
-      $this->assertSession()->elementExists('xpath', $xpath);
+      $text = $this->assertSession()->elementExists('xpath', '//div[@role = "alert"][contains(@class, "alert-error")]')->getText();
+      $this->assertStringContainsString($error_message, $text);
     }
     // Test for error message for invalid value in entitiy reference column.
     $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr/td[@class = "error"][text() = "Invalid: integer"]');
@@ -387,7 +384,8 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Confirmation page.
     // This would normally be done with ::elementExists() but for an unknown
     // reason, it always fails.
-    $this->assertSession()->elementTextEquals('xpath', '//div[@role = "alert"][contains(@class, "alert-warning")]', 'Warning message Existing columns will be deleted when these new columns are imported.');
+    $text = $this->assertSession()->elementExists('xpath', '//div[@role = "alert"][contains(@class, "alert-warning")]')->getText();
+    $this->assertStringContainsString('Warning message Existing columns will be deleted when these new columns are imported.', $text);
     // Importa data table.
     $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/thead/tr/th[1][text() = "column_name"]');
     $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/thead/tr/th[2][text() = "column_size"]');
@@ -396,7 +394,8 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Complete import.
     $this->submitForm([], 'Import');
     // Success page.
-    $this->assertSession()->elementExists('xpath', '//div[@role = "alert"][contains(@class, "alert-success")]//*[contains(text(), "Added 1 data columns from imported file.")]');
+    $text = $this->assertSession()->elementExists('xpath', '//div[@role = "alert"][contains(@class, "alert-success")]')->getText();
+    $this->assertStringContainsString('Added 1 data columns from imported file.', $text);
     // List of columns.
     $elements = $this->xpath('//div[contains(@class, "field--name-field-columns")]/div/div/ul/li');
     $this->assertCount(1, $elements, 'There is exactly 1 column name shown.');
