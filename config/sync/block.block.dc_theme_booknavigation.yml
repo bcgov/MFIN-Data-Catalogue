@@ -1,0 +1,29 @@
+uuid: ee62860a-68ed-4bad-8c27-9a9ce3364edf
+langcode: en
+status: true
+dependencies:
+  module:
+    - book
+    - node
+  theme:
+    - dc_theme
+id: dc_theme_booknavigation
+theme: dc_theme
+region: sidebar_second
+weight: 0
+provider: null
+plugin: book_navigation
+settings:
+  id: book_navigation
+  label: 'Book navigation'
+  label_display: '0'
+  provider: book
+  block_mode: 'book pages'
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      book: book
