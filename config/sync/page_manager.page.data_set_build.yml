@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - node
     - user
 id: data_set_build
 label: 'Data set build'
@@ -21,6 +22,13 @@ access_conditions:
       data_administrator: data_administrator
       data_custodian: data_custodian
       data_catalogue_user: data_catalogue_user
+  -
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: node
+    bundles:
+      data_set: data_set
 parameters:
   node:
     machine_name: node
