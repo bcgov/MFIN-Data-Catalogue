@@ -5,6 +5,7 @@ dependencies:
   config:
     - node.type.data_set
   module:
+    - book
     - flag
     - node
 id: data_catalogue_user
@@ -12,6 +13,7 @@ label: 'Data catalogue user'
 weight: 6
 is_admin: null
 permissions:
+  - 'access printer-friendly version'
   - 'flag bookmark'
   - 'unflag bookmark'
   - 'view data_set revisions'

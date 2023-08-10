@@ -3,8 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
+    - node.type.book
     - node.type.data_set
   module:
+    - book
     - flag
     - form_mode_control
     - node
@@ -15,7 +17,11 @@ weight: 4
 is_admin: null
 permissions:
   - 'access content overview'
+  - 'access printer-friendly version'
+  - 'add content to books'
+  - 'administer book outlines'
   - 'administer nodes'
+  - 'create book content'
   - 'create data_set content'
   - 'delete own data_set content'
   - 'edit any data_set content'

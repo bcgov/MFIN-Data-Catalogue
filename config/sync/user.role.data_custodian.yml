@@ -5,6 +5,7 @@ dependencies:
   config:
     - node.type.data_set
   module:
+    - book
     - flag
     - form_mode_control
     - node
@@ -14,6 +15,7 @@ label: 'Data custodian'
 weight: 5
 is_admin: null
 permissions:
+  - 'access printer-friendly version'
   - 'administer nodes'
   - 'create data_set content'
   - 'delete own data_set content'
