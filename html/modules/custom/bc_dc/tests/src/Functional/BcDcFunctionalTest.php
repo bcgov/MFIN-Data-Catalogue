@@ -428,8 +428,17 @@ class BcDcFunctionalTest extends BrowserTestBase {
 
     // Test book module.
     //
-    // Create a Book as admin.
+    // Login as admin.
     $this->drupalLogin($this->rootUser);
+    // Configure toc_filter. This ought to happen by config import but does not.
+    // @todo Remove this section and have the config come in from config import.
+    $this->drupalGet('admin/config/content/formats/manage/basic_html');
+    $edit_book = [
+      'edit-filters-toc-filter-status' => 1,
+      'edit-filters-toc-filter-settings-type' => 'full',
+    ];
+    $this->submitForm($edit_book, 'Save configuration');
+    // Create a Book as admin.
     $this->drupalGet('node/add/book');
     $this->assertSession()->statusCodeEquals(200);
     $edit_book = [
@@ -445,9 +454,11 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->drupalGet($book_url);
     $this->clickLink('Add child page');
     $this->assertSession()->statusCodeEquals(200);
+    $test_header = 'Test Header 3 ' . $this->randomString();
     $edit_child = [
       'edit-title-0-value' => 'Test Book Child Page ' . $this->randomString(),
       'edit-body-0-summary' => 'Test Book Child Summary ' . $this->randomString(),
+      'edit-body-0-value' => '<p>[toc]</p><p>Lorem ipsum dolor sit amet.</p><h2>Header 2</h2><p>Lorem ipsum dolor sit amet.</p><h3>' . $test_header . '</h3><p>Lorem ipsum dolor sit amet.</p><h2>Header 2</h2><p>Lorem ipsum dolor sit amet.</p>',
     ];
     $this->submitForm($edit_child, 'Save');
     $text = $this->assertSession()->elementExists('xpath', '//h1')->getText();
@@ -490,6 +501,12 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->drupalGet($child_url);
     // Child page does not have list of child pages.
     $this->assertSession()->elementNotExists('xpath', '//nav[@class = "book-navigation"]/ul[not(@aria-label)]');
+    // Child page has a table of contents from toc_filter.
+    $args = [
+      ':header' => $test_header,
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "toc-tree")]/ol/li/ol/li/a[text() = :header]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
   }
 
   /**
