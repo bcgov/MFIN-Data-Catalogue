@@ -12,12 +12,3 @@ https://github.com/bcgov/MFIN-Data-Catalogue/labels/question
 ---
 
 ## What's your Question?
-
-
-
-
-
-
-
-
-
