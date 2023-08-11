@@ -1,7 +1,9 @@
 uuid: 81203590-e799-4b45-9ebd-1dfab1eb4a65
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - toc_filter
 _core:
   default_config_hash: oz6NyPDAB4HB6N9hgH2LwNVtCd-sXbMG1fbn5KsRIDI
 name: 'Restricted HTML'
@@ -30,3 +32,13 @@ filters:
     weight: 0
     settings:
       filter_url_length: 72
+  toc_filter:
+    id: toc_filter
+    provider: toc_filter
+    status: false
+    weight: 0
+    settings:
+      type: default
+      auto: ''
+      block: '0'
+      exclude_above: '0'
