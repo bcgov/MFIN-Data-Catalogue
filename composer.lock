@@ -6836,16 +6836,16 @@
         },
         {
             "name": "microsoft/microsoft-graph",
-            "version": "1.103.0",
+            "version": "1.104.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/microsoftgraph/msgraph-sdk-php.git",
-                "reference": "6e325c22145dbed4e51970ffecca4d7648c3c27e"
+                "reference": "fc2a3549e8efc9501dbf5d55d350882d8d641295"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/microsoftgraph/msgraph-sdk-php/zipball/6e325c22145dbed4e51970ffecca4d7648c3c27e",
-                "reference": "6e325c22145dbed4e51970ffecca4d7648c3c27e",
+                "url": "https://api.github.com/repos/microsoftgraph/msgraph-sdk-php/zipball/fc2a3549e8efc9501dbf5d55d350882d8d641295",
+                "reference": "fc2a3549e8efc9501dbf5d55d350882d8d641295",
                 "shasum": ""
             },
             "require": {
@@ -6882,9 +6882,9 @@
             "homepage": "https://developer.microsoft.com/en-us/graph",
             "support": {
                 "issues": "https://github.com/microsoftgraph/msgraph-sdk-php/issues",
-                "source": "https://github.com/microsoftgraph/msgraph-sdk-php/tree/1.103.0"
+                "source": "https://github.com/microsoftgraph/msgraph-sdk-php/tree/1.104.0"
             },
-            "time": "2023-07-19T03:27:15+00:00"
+            "time": "2023-08-11T07:41:39+00:00"
         },
         {
             "name": "mkalkbrenner/php-htmldiff-advanced",
