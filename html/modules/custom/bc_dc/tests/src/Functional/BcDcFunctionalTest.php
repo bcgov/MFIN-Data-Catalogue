@@ -436,7 +436,11 @@ class BcDcFunctionalTest extends BrowserTestBase {
       'Modified date',
     ];
     foreach ($date_types as $date_type) {
-      $time_element = $this->xpath('//div[contains(@class, "field--type-datetime")][div[text() = "' . $date_type . '"]]//time');
+      $args = [
+        ':date_type' => $date_type,
+      ];
+      $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--type-datetime")][div[text() = :date_type]]//time', $args);
+      $time_element = $this->xpath($xpath);
       $time_element = reset($time_element);
       $this->assertSession()->assert((bool) $time_element, $date_type . ' element should exist.');
       $this->assertSession()->assert(preg_match('/^(\d\d\d\d-[01]\d-[0-3]\d)T/', $time_element->getAttribute('datetime'), $matches), $date_type . ' should have ISO-formatted datetime attribute.');
