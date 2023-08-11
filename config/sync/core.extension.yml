@@ -74,6 +74,8 @@ module:
   system: 0
   taxonomy: 0
   text: 0
+  toc_api: 0
+  toc_filter: 0
   token: 0
   toolbar: 0
   tour: 0
