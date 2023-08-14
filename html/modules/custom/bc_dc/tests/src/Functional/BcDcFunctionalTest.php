@@ -253,7 +253,11 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // No columns exist on column edit page.
     $this->click('a[aria-label = "Edit Data set columns"]');
     $this->assertSession()->statusCodeEquals(200);
-    $this->assertSession()->elementsCount('xpath', '//table[@id = "field-columns-values"]//tr', 1);
+    // There should not be any rows under 'tbody', however after hiding items
+    // under header_actions in bc_dc_form_node_data_set_edit_form_alter(), one
+    // empty row appears. This tests that the row is empty, that is, not
+    // containing any information about a column.
+    $this->assertSession()->elementNotExists('xpath', '//table[@id = "field-columns-values"]/tbody/tr/td/*');
     // Add a column.
     $this->click('input#field-columns-data-column-add-more');
     $this->assertSession()->statusCodeEquals(200);
@@ -270,8 +274,14 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSession()->elementExists('xpath', $xpath);
     // The other fields do not appear.
     $this->assertSession()->pageTextNotContains('Data set column 1 description');
+    // Check that "Edit all" and "Collapse all" controls do not exist.
+    $this->click('a[aria-label = "Edit Data set columns"]');
+    $this->click('input#field-columns-data-column-add-more');
+    $this->assertSession()->elementNotExists('xpath', '//input[@value = "Edit all"]');
+    $this->assertSession()->elementNotExists('xpath', '//input[@value = "Collapse all"]');
 
     // Data description edit page.
+    $this->clickLink('Build');
     $this->click('a[aria-label = "Edit Data set description"]');
     $this->assertSession()->statusCodeEquals(200);
     // Test that field_security_classification widget is radio buttons.

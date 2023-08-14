@@ -7,6 +7,7 @@
 
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\message_gcnotify\Service\GcNotifyApiService;
 use Drupal\node\NodeInterface;
@@ -200,4 +201,14 @@ function bc_dc_node_update(NodeInterface $entity): void {
     ];
     \Drupal::logger('bc_dc')->error('Failed sending message when updating data_set @nid.', $context);
   }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function bc_dc_form_node_data_set_edit_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
+  // Remove the "Edit all" button.
+  $form['field_columns']['widget']['header_actions']['actions']['edit_all']['#access'] = FALSE;
+  // Remove the "Collapse all" action.
+  $form['field_columns']['widget']['header_actions']['dropdown_actions']['collapse_all']['#access'] = FALSE;
 }
