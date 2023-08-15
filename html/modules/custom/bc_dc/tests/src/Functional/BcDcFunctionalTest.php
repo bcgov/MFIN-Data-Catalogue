@@ -559,8 +559,8 @@ https?://[^/]+/node/2,', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
 
     // Main book page.
     $this->drupalGet($book_url);
-    // Main book page has book navigation block in sidebar.
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "region-sidebar-second")]/div[@id = "block-dc-theme-booknavigation"]');
+    // Main book page does not have book navigation block.
+    $this->assertSession()->elementNotExists('xpath', '//div[@id = "block-dc-theme-booknavigation"]');
     // Summary appears in list of child pages.
     $args = [
       ':summary' => $edit_child['edit-body-0-summary'],

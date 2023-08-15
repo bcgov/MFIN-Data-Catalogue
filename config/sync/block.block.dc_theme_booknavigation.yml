@@ -5,6 +5,7 @@ dependencies:
   module:
     - book
     - node
+    - system
   theme:
     - dc_theme
 id: dc_theme_booknavigation
@@ -27,3 +28,7 @@ visibility:
       node: '@node.node_route_context:node'
     bundles:
       book: book
+  request_path:
+    id: request_path
+    negate: true
+    pages: /documentation
