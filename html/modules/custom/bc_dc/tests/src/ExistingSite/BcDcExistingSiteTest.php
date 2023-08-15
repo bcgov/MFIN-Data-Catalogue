@@ -22,6 +22,9 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     $this->drupalGet('');
     $this->assertSession()->statusCodeEquals(200);
 
+    // Robots control.
+    $this->assertSession()->elementExists('xpath', '/head/meta[@name = "robots"][@content = "noindex, nofollow"]');
+
     // Test that new users are assigned role data_catalogue_user.
     // There is also a functional test for this. That test sets its own config
     // instead of the config coming in by import.
