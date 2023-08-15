@@ -20,18 +20,6 @@
         {
             "type": "vcs",
             "url": "https://github.com/openplus/opbb"
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "drupaloverride/tac_lite",
-                "version": "1.6",
-                "type": "drupal-module",
-                "dist": {
-                    "url": "https://ftp.drupal.org/files/projects/tac_lite-8.x-1.6.tar.gz",
-                    "type": "tar"
-                }
-            }
         }
     ],
     "require": {
@@ -45,7 +33,7 @@
         "drupal/o365": "^3.0",
         "drupal/registration_role": "dev-1.x#a3a3d15",
         "drupal/search_api_saved_searches": "1.x@dev",
-        "drupaloverride/tac_lite": "^1.6",
+        "drupal/tac_lite": "^1.7",
         "vlucas/phpdotenv": "^5.1",
         "webflo/drupal-finder": "^1.2",
         "weitzman/drupal-test-traits": "^2.1"
@@ -125,9 +113,7 @@
         },
         "composer-exit-on-patch-failure": true,
         "patches": {
-            "drupaloverride/tac_lite": {
-                "3295203 - Check for scheme name before using": "https://www.drupal.org/files/issues/2023-05-10/tac_lite-undefined_scheme_name-3295203-6.patch",
-                "3325055 - Drupal 10 compatibility": "https://www.drupal.org/files/issues/2022-12-02/3325055-drupal-10-compatibility-02.patch",
+            "drupal/tac_lite": {
                 "3359802 - Add schema for tac_lite.settings": "https://www.drupal.org/files/issues/2023-05-11/tac_lite-schema-3359802-2.patch"
             }
         }
