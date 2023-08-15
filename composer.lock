@@ -149,12 +149,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb-theme.git",
-                "reference": "4d2d8f52532fac05a56ea1c3c6d5fae1f35498b6"
+                "reference": "aa7f63d37157670c456cf7184f802dfbabbea880"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb-theme/zipball/4d2d8f52532fac05a56ea1c3c6d5fae1f35498b6",
-                "reference": "4d2d8f52532fac05a56ea1c3c6d5fae1f35498b6",
+                "url": "https://api.github.com/repos/bcgov/bcbb-theme/zipball/aa7f63d37157670c456cf7184f802dfbabbea880",
+                "reference": "aa7f63d37157670c456cf7184f802dfbabbea880",
                 "shasum": ""
             },
             "require": {
@@ -171,7 +171,7 @@
                 "source": "https://github.com/bcgov/bcbb-theme/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb-theme/issues"
             },
-            "time": "2023-08-11T18:29:13+00:00"
+            "time": "2023-08-15T21:04:01+00:00"
         },
         {
             "name": "caxy/php-htmldiff",
