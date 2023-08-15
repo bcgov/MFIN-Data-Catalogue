@@ -65,6 +65,7 @@ module:
   path_alias: 0
   realname: 0
   registration_role: 0
+  robotstxt: 0
   search_api: 0
   search_api_db: 0
   search_api_db_defaults: 0
