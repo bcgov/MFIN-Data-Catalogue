@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ed7249a18945692c90201ea6724ae57f",
+    "content-hash": "f1ab5173f01212da5f33d3d29aa0befb",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4409,26 +4409,29 @@
         },
         {
             "name": "drupal/registration_role",
-            "version": "dev-1.x",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/registration_role.git",
-                "reference": "a3a3d15"
+                "reference": "2.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/registration_role-2.0.0.zip",
+                "reference": "2.0.0",
+                "shasum": "3d3b9d1068e80a47e14e0e1d64498bf1e0d3075c"
             },
             "require": {
                 "drupal/core": "^8 || ^9 || ^10"
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
-                    "version": "8.x-1.1+9-dev",
-                    "datestamp": "1661742487",
+                    "version": "2.0.0",
+                    "datestamp": "1689039865",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Dev releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -16005,7 +16008,6 @@
         "bcgov/bcbb": 20,
         "bcgov/bcbb_theme": 20,
         "drupal/message_gcnotify": 20,
-        "drupal/registration_role": 20,
         "drupal/search_api_saved_searches": 20
     },
     "prefer-stable": true,
