@@ -4,9 +4,9 @@ type: module
 core_version_requirement: ^10.1
 package: BC Base Build
 dependencies:
-  - datetime:datetime
   - bcbb:bcbb_book
   - diff:diff
+  - drupal:datetime
   - drupal:field
   - drupal:layout_builder
   - drupal:layout_discovery
