@@ -1,6 +1,6 @@
 _core:
   default_config_hash: FLJZME3II5fjmMSrdEvJHp95ZJf8V_X0jbX0VdVU1BU
-shield_enable: true
+shield_enable: false
 credential_provider: shield
 credentials:
   shield:
