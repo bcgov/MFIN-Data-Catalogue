@@ -556,9 +556,12 @@ https?://[^/]+/node/2,', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     ];
     $xpath = $this->assertSession()->buildXPathQuery('//nav/ol[@class = "breadcrumb"]/li/a[text() = :title]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
+
     // Main book page.
-    // Summary appears in list of child pages.
     $this->drupalGet($book_url);
+    // Main book page has book navigation block in sidebar.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "region-sidebar-second")]/div[@id = "block-dc-theme-booknavigation"]');
+    // Summary appears in list of child pages.
     $args = [
       ':summary' => $edit_child['edit-body-0-summary'],
     ];
@@ -574,8 +577,11 @@ https?://[^/]+/node/2,', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->pageTextNotContains('Book traversal links');
     // Printer-friendly version.
     $this->assertSession()->elementExists('xpath', '//div[@class = "node__links"]/ul/li/a[text() = "Printer-friendly version"]');
+
     // Child page.
     $this->drupalGet($child_url);
+    // Child page has book navigation block in sidebar.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "region-sidebar-second")]/div[@id = "block-dc-theme-booknavigation"]');
     // Child page does not have list of child pages.
     $this->assertSession()->elementNotExists('xpath', '//nav[@class = "book-navigation"]/ul[not(@aria-label)]');
     // Child page has a table of contents from toc_filter.
