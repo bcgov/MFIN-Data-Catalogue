@@ -124,3 +124,9 @@ article.dc-data-set-build-page div.field--label-above > div.field__item::after {
 form.bc-dc-add-columns-form table > tbody > tr > td.error {
   background-color: #ffece8;
 }
+
+/* Save search block */
+
+.search-api-saved-search-form input[value="Saved search"] {
+  font-size: smaller;
+}
