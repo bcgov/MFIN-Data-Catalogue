@@ -20,12 +20,12 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 98
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 101
+    weight: 99
     region: content
 hidden:
   langcode: true
