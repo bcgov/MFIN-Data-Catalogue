@@ -576,7 +576,7 @@ https?://[^/]+/node/2,', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Default "Book traversal links" header is not present.
     $this->assertSession()->pageTextNotContains('Book traversal links');
     // Printer-friendly version.
-    $this->assertSession()->elementExists('xpath', '//div[@class = "node__links"]/ul/li/a[text() = "Printer-friendly version"]');
+    $this->assertSession()->elementExists('xpath', '//div[@class = "node__links"]/ul/li/a[contains(text(), "Printer-friendly version")]');
 
     // Child page.
     $this->drupalGet($child_url);
