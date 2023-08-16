@@ -519,6 +519,8 @@ https?://[^/]+/node/2,', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $edit_book = [
       'edit-title-0-value' => 'Test Book ' . $this->randomString(),
       'edit-book-bid' => 'new',
+      'edit-path-0-pathauto' => FALSE,
+      'edit-path-0-alias' => '/documentation',
     ];
     $this->submitForm($edit_book, 'Save');
     $text = $this->assertSession()->elementExists('xpath', '//h1')->getText();
