@@ -1,0 +1,33 @@
+uuid: 9c748e51-b3ac-4680-b023-74f13f93b79c
+langcode: en
+status: true
+dependencies:
+  module:
+    - bcbb_search
+    - system
+  theme:
+    - dc_theme
+id: dc_theme_bcbbsearchapiblock
+theme: dc_theme
+region: search
+weight: 0
+provider: null
+plugin: bcbb_search_api_block
+settings:
+  id: bcbb_search_api_block
+  label: 'BCbb Search API Block'
+  label_display: '0'
+  provider: bcbb_search
+  search:
+    search_label: Search
+    search_placeholder: ''
+    search_btn_label: ''
+    search_url: /search/site
+    label_sr_only: false
+    search_input_size: false
+    search_input_size_value: null
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: '/search/*'
