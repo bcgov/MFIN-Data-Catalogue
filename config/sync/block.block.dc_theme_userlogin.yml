@@ -1,0 +1,20 @@
+uuid: 179aa2b8-11ee-4d17-a44b-37c5cad3c08a
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+  theme:
+    - dc_theme
+id: dc_theme_userlogin
+theme: dc_theme
+region: header
+weight: 0
+provider: null
+plugin: user_login_block
+settings:
+  id: user_login_block
+  label: 'User login'
+  label_display: '0'
+  provider: user
+visibility: {  }
