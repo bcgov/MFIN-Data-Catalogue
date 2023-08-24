@@ -23,7 +23,7 @@ settings:
     search_placeholder: ''
     search_btn_label: ''
     search_url: /search/site
-    label_sr_only: false
+    label_sr_only: true
     search_input_size: false
     search_input_size_value: null
 visibility:
