@@ -2791,7 +2791,7 @@ display:
           skip_access: false
           preserve_facet_query_args: false
       relationships: {  }
-      css_class: container
+      css_class: ''
       show_admin_links: false
       header:
         result:
