@@ -1,0 +1,19 @@
+uuid: b0c38367-82ad-406e-9d57-bddc97221291
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_abbr_full_name
+    - taxonomy.vocabulary.record_life_cycle_duration
+id: taxonomy_term.record_life_cycle_duration.field_abbr_full_name
+field_name: field_abbr_full_name
+entity_type: taxonomy_term
+bundle: record_life_cycle_duration
+label: 'Duration full name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

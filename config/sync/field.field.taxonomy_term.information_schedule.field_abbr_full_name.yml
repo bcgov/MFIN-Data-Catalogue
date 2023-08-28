@@ -1,0 +1,19 @@
+uuid: 7511b040-f907-4c75-8e3d-fbc45e286ff2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_abbr_full_name
+    - taxonomy.vocabulary.information_schedule
+id: taxonomy_term.information_schedule.field_abbr_full_name
+field_name: field_abbr_full_name
+entity_type: taxonomy_term
+bundle: information_schedule
+label: 'Schedule full name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

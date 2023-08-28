@@ -1,0 +1,60 @@
+uuid: d49eeb0b-a6a9-4818-87a3-a36ed234e004
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.record_special_flags.field_abbr_full_name
+    - taxonomy.vocabulary.record_special_flags
+  module:
+    - path
+    - text
+id: taxonomy_term.record_special_flags.default
+targetEntityType: taxonomy_term
+bundle: record_special_flags
+mode: default
+content:
+  description:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_abbr_full_name:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 3
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 5
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden: {  }

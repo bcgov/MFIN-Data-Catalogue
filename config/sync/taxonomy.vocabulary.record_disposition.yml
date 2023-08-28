@@ -1,0 +1,8 @@
+uuid: be9e1d41-06f0-4a0a-96ef-bc7f517cf5e2
+langcode: en
+status: true
+dependencies: {  }
+name: 'record disposition'
+vid: record_disposition
+description: 'Used in information schedule, Final disposition categories'
+weight: 0

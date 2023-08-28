@@ -1,0 +1,19 @@
+uuid: b17c0bf2-ea37-4552-84ce-b4cbdf078328
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_abbr_full_name
+    - taxonomy.vocabulary.record_special_flags
+id: taxonomy_term.record_special_flags.field_abbr_full_name
+field_name: field_abbr_full_name
+entity_type: taxonomy_term
+bundle: record_special_flags
+label: 'Special flag full name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,117 @@
+uuid: 6af06db2-a013-4711-ade5-2696fa186c9d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.information_schedule.field_abbr_full_name
+    - field.field.taxonomy_term.information_schedule.field_active_period
+    - field.field.taxonomy_term.information_schedule.field_active_period_extension
+    - field.field.taxonomy_term.information_schedule.field_final_disposition
+    - field.field.taxonomy_term.information_schedule.field_schedule_code
+    - field.field.taxonomy_term.information_schedule.field_schedule_number
+    - field.field.taxonomy_term.information_schedule.field_semi_active_extension
+    - field.field.taxonomy_term.information_schedule.field_semi_active_period
+    - field.field.taxonomy_term.information_schedule.field_special_flags
+    - taxonomy.vocabulary.information_schedule
+  module:
+    - path
+    - text
+id: taxonomy_term.information_schedule.default
+targetEntityType: taxonomy_term
+bundle: information_schedule
+mode: default
+content:
+  description:
+    type: text_textarea
+    weight: 9
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_abbr_full_name:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_active_period:
+    type: options_select
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_active_period_extension:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_final_disposition:
+    type: options_select
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_schedule_number:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_semi_active_extension:
+    type: string_textfield
+    weight: 6
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_semi_active_period:
+    type: options_select
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_special_flags:
+    type: options_select
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 10
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 11
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 12
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  field_schedule_code: true

@@ -119,18 +119,40 @@
                 </div>
               {% endif %}
 
-              {% if node.field_information_schedule_1 and not node.field_information_schedule_1.isempty %}
+              {% if not node.field_information_schedule.isempty %}
+                <hr>
                 <div class="mb-3">
-                  {{ node.field_information_schedule_1|view }}
+                  <div class="field field--name-field-information-schedule field--type-entity-reference field--label-inline clearfix">
+                    <div class="field__label">{{ node.field_information_schedule.fielddefinition.label }}</div>
+                    <div class="field__item">
+                      <div>{{ field_information_schedule_display_name }}</div>
+                      {% if node.field_information_schedule.entity.field_schedule_code.value %}
+                        <div>{{ node.field_information_schedule.entity.field_schedule_code.value }}</div>
+                      {% endif %}
+                    </div>
+                  </div>
                 </div>
+                {% if node.field_active_period.value|trim %}
+                  <div class="mb-3">
+                    {{ node.field_active_period|view }}
+                  </div>
+                {% endif %}
+                {% if node.field_semi_active_period.value|trim %}
+                  <div class="mb-3">
+                    {{ node.field_semi_active_period|view }}
+                  </div>
+                {% endif %}
+                {% if node.field_final_disposition.value|trim %}
+                  <div class="mb-3">
+                    {{ node.field_final_disposition|view }}
+                  </div>
+                {% endif %}
+                {% if node.field_special_flags.value|trim %}
+                  <div class="mb-3">
+                    {{ node.field_special_flags|view }}
+                  </div>
+                {% endif %}
               {% endif %}
-
-              {% if node.field_information_schedule_2 and not node.field_information_schedule_2.isempty %}
-                <div class="mb-3">
-                  {{ node.field_information_schedule_2|view }}
-                </div>
-              {% endif %}
-
             </div>
           </div>
         </div>

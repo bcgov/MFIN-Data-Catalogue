@@ -1,0 +1,23 @@
+uuid: be53d9f5-b3da-4d0e-85f2-6869ca90342a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_semi_active_period
+    - node.type.data_set
+  module:
+    - field_token_value
+id: node.data_set.field_semi_active_period
+field_name: field_semi_active_period
+entity_type: node
+bundle: data_set
+label: 'Semi-active period'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  field_value: '[node:field_information_schedule:entity:field_semi_active_period:entity:field_abbr_full_name] [node:field_information_schedule:entity:field_semi_active_extension]'
+  remove_empty: 1
+field_type: field_token_value

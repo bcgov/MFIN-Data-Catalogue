@@ -1,0 +1,29 @@
+uuid: ced6f098-f46d-40bd-aeb8-1810f12e6eae
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_special_flags
+    - taxonomy.vocabulary.information_schedule
+  content:
+    - 'taxonomy_term:record_special_flags:f55159f7-bbd0-4e46-a69c-017def8065a2'
+id: taxonomy_term.information_schedule.field_special_flags
+field_name: field_special_flags
+entity_type: taxonomy_term
+bundle: information_schedule
+label: 'Special flags'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    target_uuid: f55159f7-bbd0-4e46-a69c-017def8065a2
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: information_schedule_values
+      display_name: entity_reference_3
+      arguments: {  }
+field_type: entity_reference

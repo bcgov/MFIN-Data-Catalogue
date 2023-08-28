@@ -1,0 +1,19 @@
+uuid: ae136d06-720b-4e88-8faa-67b086af4401
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_active_period_extension
+    - taxonomy.vocabulary.information_schedule
+id: taxonomy_term.information_schedule.field_active_period_extension
+field_name: field_active_period_extension
+entity_type: taxonomy_term
+bundle: information_schedule
+label: 'Extend active period'
+description: 'Extend the active period by a set time range, for example, <i>+ 1y</i> for plus one year, <i>+ 2w</i> for plus two weeks. '
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

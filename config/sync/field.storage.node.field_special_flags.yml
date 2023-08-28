@@ -1,17 +1,16 @@
-uuid: 61051a3e-80ed-48c8-9eb5-f69838bc82da
+uuid: 33243b21-7458-4f54-ad0c-faa60f157dfc
 langcode: en
 status: true
 dependencies:
   module:
+    - field_token_value
     - node
-id: node.field_information_schedule_2
-field_name: field_information_schedule_2
+id: node.field_special_flags
+field_name: field_special_flags
 entity_type: node
-type: integer
-settings:
-  unsigned: false
-  size: normal
-module: core
+type: field_token_value
+settings: {  }
+module: field_token_value
 locked: false
 cardinality: 1
 translatable: true

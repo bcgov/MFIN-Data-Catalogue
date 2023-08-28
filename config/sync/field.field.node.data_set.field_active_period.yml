@@ -1,0 +1,23 @@
+uuid: 0be9e89f-4078-4a0e-a0d3-1438ba26a8b4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_active_period
+    - node.type.data_set
+  module:
+    - field_token_value
+id: node.data_set.field_active_period
+field_name: field_active_period
+entity_type: node
+bundle: data_set
+label: 'Active period'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  field_value: '[node:field_information_schedule:entity:field_active_period:entity:field_abbr_full_name]'
+  remove_empty: 1
+field_type: field_token_value

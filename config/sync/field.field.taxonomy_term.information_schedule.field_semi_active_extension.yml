@@ -1,0 +1,19 @@
+uuid: aedca6b7-f34f-4b80-b74e-0e4a54e15b21
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_semi_active_extension
+    - taxonomy.vocabulary.information_schedule
+id: taxonomy_term.information_schedule.field_semi_active_extension
+field_name: field_semi_active_extension
+entity_type: taxonomy_term
+bundle: information_schedule
+label: 'Extend semi-active period'
+description: 'Extend the semi-active period by a set time range, for example, <i>+ 1y</i> for plus one year, <i>+ 2w</i> for plus two weeks.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

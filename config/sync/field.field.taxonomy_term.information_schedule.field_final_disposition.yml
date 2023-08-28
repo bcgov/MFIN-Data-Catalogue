@@ -1,0 +1,25 @@
+uuid: 5c2ba1b1-57cf-49c7-a5a6-a6d02cb0721a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_final_disposition
+    - taxonomy.vocabulary.information_schedule
+id: taxonomy_term.information_schedule.field_final_disposition
+field_name: field_final_disposition
+entity_type: taxonomy_term
+bundle: information_schedule
+label: 'Final disposition'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: information_schedule_values
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference

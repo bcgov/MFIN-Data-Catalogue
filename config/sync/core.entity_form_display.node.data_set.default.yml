@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.data_set.body
+    - field.field.node.data_set.field_active_period
     - field.field.node.data_set.field_authoritative_info
     - field.field.node.data_set.field_columns
     - field.field.node.data_set.field_critical_information
@@ -11,23 +12,26 @@ dependencies:
     - field.field.node.data_set.field_data_set_format
     - field.field.node.data_set.field_data_set_historical_change
     - field.field.node.data_set.field_data_set_type
+    - field.field.node.data_set.field_final_disposition
     - field.field.node.data_set.field_granularity
     - field.field.node.data_set.field_high_value_info
     - field.field.node.data_set.field_information_schedule
-    - field.field.node.data_set.field_information_schedule_1
-    - field.field.node.data_set.field_information_schedule_2
     - field.field.node.data_set.field_modified_date
     - field.field.node.data_set.field_primary_responsibility_org
     - field.field.node.data_set.field_product_type
     - field.field.node.data_set.field_published_date
     - field.field.node.data_set.field_security_classification
+    - field.field.node.data_set.field_semi_active_period
     - field.field.node.data_set.field_series
     - field.field.node.data_set.field_source_system
+    - field.field.node.data_set.field_special_flags
     - field.field.node.data_set.field_used_in_products
     - node.type.data_set
   module:
     - datetime
+    - field_token_value
     - paragraphs
+    - shs
     - text
 id: node.data_set.default
 targetEntityType: node
@@ -36,7 +40,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 3
+    weight: 4
     region: content
     settings:
       rows: 9
@@ -44,16 +48,22 @@ content:
       placeholder: ''
       show_summary: false
     third_party_settings: {  }
+  field_active_period:
+    type: field_token_value_default
+    weight: 29
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_authoritative_info:
     type: boolean_checkbox
-    weight: 11
+    weight: 12
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_columns:
     type: paragraphs
-    weight: 23
+    weight: 21
     region: content
     settings:
       title: Paragraph
@@ -71,14 +81,14 @@ content:
     third_party_settings: {  }
   field_critical_information:
     type: boolean_checkbox
-    weight: 10
+    weight: 11
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_data_quality_issues:
     type: text_textarea
-    weight: 7
+    weight: 8
     region: content
     settings:
       rows: 5
@@ -92,7 +102,7 @@ content:
     third_party_settings: {  }
   field_data_set_historical_change:
     type: text_textarea
-    weight: 8
+    weight: 9
     region: content
     settings:
       rows: 5
@@ -104,6 +114,12 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_final_disposition:
+    type: field_token_value_default
+    weight: 27
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_granularity:
     type: options_buttons
     weight: 15
@@ -112,40 +128,30 @@ content:
     third_party_settings: {  }
   field_high_value_info:
     type: boolean_checkbox
-    weight: 12
+    weight: 13
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_information_schedule:
-    type: options_select
+    type: options_shs
     weight: 20
     region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_information_schedule_1:
-    type: number
-    weight: 21
-    region: content
     settings:
-      placeholder: ''
-    third_party_settings: {  }
-  field_information_schedule_2:
-    type: number
-    weight: 22
-    region: content
-    settings:
-      placeholder: ''
+      display_node_count: false
+      create_new_items: false
+      create_new_levels: false
+      force_deepest: true
     third_party_settings: {  }
   field_modified_date:
     type: datetime_default
-    weight: 6
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
   field_primary_responsibility_org:
     type: entity_reference_autocomplete
-    weight: 2
+    weight: 3
     region: content
     settings:
       match_operator: CONTAINS
@@ -161,25 +167,37 @@ content:
     third_party_settings: {  }
   field_published_date:
     type: datetime_default
-    weight: 5
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
   field_security_classification:
     type: options_buttons
-    weight: 9
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_semi_active_period:
+    type: field_token_value_default
+    weight: 26
     region: content
     settings: {  }
     third_party_settings: {  }
   field_series:
     type: options_select
-    weight: 4
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
   field_source_system:
     type: options_select
     weight: 14
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_special_flags:
+    type: field_token_value_default
+    weight: 28
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -202,7 +220,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 24
+    weight: 22
     region: content
     settings:
       display_label: true

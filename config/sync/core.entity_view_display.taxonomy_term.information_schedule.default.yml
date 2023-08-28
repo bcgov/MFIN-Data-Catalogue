@@ -1,0 +1,103 @@
+uuid: 2d2f9476-c865-4a26-a48d-f50463a879bf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.information_schedule.field_abbr_full_name
+    - field.field.taxonomy_term.information_schedule.field_active_period
+    - field.field.taxonomy_term.information_schedule.field_active_period_extension
+    - field.field.taxonomy_term.information_schedule.field_final_disposition
+    - field.field.taxonomy_term.information_schedule.field_schedule_code
+    - field.field.taxonomy_term.information_schedule.field_schedule_number
+    - field.field.taxonomy_term.information_schedule.field_semi_active_extension
+    - field.field.taxonomy_term.information_schedule.field_semi_active_period
+    - field.field.taxonomy_term.information_schedule.field_special_flags
+    - taxonomy.vocabulary.information_schedule
+  module:
+    - text
+id: taxonomy_term.information_schedule.default
+targetEntityType: taxonomy_term
+bundle: information_schedule
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_abbr_full_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_active_period:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_active_period_extension:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_final_disposition:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_schedule_code:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_schedule_number:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_semi_active_extension:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_semi_active_period:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_special_flags:
+    type: entity_reference_entity_id
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 8
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

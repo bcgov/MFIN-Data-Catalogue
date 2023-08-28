@@ -1,0 +1,32 @@
+uuid: 58163547-fcdc-4edf-b167-ce57d99339d8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.record_special_flags.field_abbr_full_name
+    - taxonomy.vocabulary.record_special_flags
+  module:
+    - text
+id: taxonomy_term.record_special_flags.default
+targetEntityType: taxonomy_term
+bundle: record_special_flags
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_abbr_full_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

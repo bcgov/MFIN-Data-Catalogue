@@ -1,0 +1,19 @@
+uuid: aea07f33-9e1e-4a61-971e-bcbc7f622391
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: taxonomy_term.field_special_flags
+field_name: field_special_flags
+entity_type: taxonomy_term
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

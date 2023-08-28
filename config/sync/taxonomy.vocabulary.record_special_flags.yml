@@ -1,0 +1,8 @@
+uuid: 5c1766e8-cabc-44ee-a3a9-5c956308edd6
+langcode: en
+status: true
+dependencies: {  }
+name: 'record special flags'
+vid: record_special_flags
+description: 'Used in information schedule'
+weight: 0

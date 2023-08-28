@@ -1,0 +1,11 @@
+uuid: 1c3b364e-ccf5-439c-9c34-255cb6b17c37
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.record_life_cycle_duration
+id: taxonomy_term.record_life_cycle_duration
+target_entity_type_id: taxonomy_term
+target_bundle: record_life_cycle_duration
+default_langcode: site_default
+language_alterable: false

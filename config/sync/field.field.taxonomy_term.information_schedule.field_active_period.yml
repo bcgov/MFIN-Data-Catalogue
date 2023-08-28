@@ -1,0 +1,25 @@
+uuid: 6cd0d059-5597-43e9-86fa-cde6b15977b0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_active_period
+    - taxonomy.vocabulary.information_schedule
+id: taxonomy_term.information_schedule.field_active_period
+field_name: field_active_period
+entity_type: taxonomy_term
+bundle: information_schedule
+label: 'Active period'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: information_schedule_values
+      display_name: entity_reference_2
+      arguments: {  }
+field_type: entity_reference

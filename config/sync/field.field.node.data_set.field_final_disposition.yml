@@ -1,0 +1,23 @@
+uuid: fb92608a-39bf-4814-b852-4e5f64f49224
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_final_disposition
+    - node.type.data_set
+  module:
+    - field_token_value
+id: node.data_set.field_final_disposition
+field_name: field_final_disposition
+entity_type: node
+bundle: data_set
+label: 'Final disposition'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  field_value: '[node:field_information_schedule:entity:field_final_disposition:entity:field_abbr_full_name]'
+  remove_empty: 1
+field_type: field_token_value

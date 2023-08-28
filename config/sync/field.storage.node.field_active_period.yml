@@ -1,17 +1,16 @@
-uuid: 9359cb74-2a6b-42b4-98c9-861718a8bb9a
+uuid: b629325d-6bb7-4cdb-953a-62ac5ec58944
 langcode: en
 status: true
 dependencies:
   module:
+    - field_token_value
     - node
-id: node.field_information_schedule_1
-field_name: field_information_schedule_1
+id: node.field_active_period
+field_name: field_active_period
 entity_type: node
-type: integer
-settings:
-  unsigned: false
-  size: normal
-module: core
+type: field_token_value
+settings: {  }
+module: field_token_value
 locked: false
 cardinality: 1
 translatable: true

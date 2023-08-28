@@ -1,0 +1,8 @@
+uuid: d950d7cd-4773-4b3d-a8a8-c62dbe2d39d4
+langcode: en
+status: true
+dependencies: {  }
+name: 'record life cycle duration'
+vid: record_life_cycle_duration
+description: 'Used in information schedule, time period for record availability'
+weight: 0

@@ -1,0 +1,32 @@
+uuid: 02be46d5-5bf3-49a3-8088-f16ef8c4f8c5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.record_life_cycle_duration.field_abbr_full_name
+    - taxonomy.vocabulary.record_life_cycle_duration
+  module:
+    - text
+id: taxonomy_term.record_life_cycle_duration.default
+targetEntityType: taxonomy_term
+bundle: record_life_cycle_duration
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_abbr_full_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

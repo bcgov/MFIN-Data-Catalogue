@@ -1,0 +1,19 @@
+uuid: 6b4e6642-8637-4ef6-857e-6707f79d9029
+langcode: en
+status: true
+dependencies:
+  module:
+    - field_token_value
+    - node
+id: node.field_semi_active_period
+field_name: field_semi_active_period
+entity_type: node
+type: field_token_value
+settings: {  }
+module: field_token_value
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

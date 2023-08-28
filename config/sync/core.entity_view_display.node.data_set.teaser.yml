@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.data_set.body
+    - field.field.node.data_set.field_active_period
     - field.field.node.data_set.field_authoritative_info
     - field.field.node.data_set.field_columns
     - field.field.node.data_set.field_critical_information
@@ -12,18 +13,19 @@ dependencies:
     - field.field.node.data_set.field_data_set_format
     - field.field.node.data_set.field_data_set_historical_change
     - field.field.node.data_set.field_data_set_type
+    - field.field.node.data_set.field_final_disposition
     - field.field.node.data_set.field_granularity
     - field.field.node.data_set.field_high_value_info
     - field.field.node.data_set.field_information_schedule
-    - field.field.node.data_set.field_information_schedule_1
-    - field.field.node.data_set.field_information_schedule_2
     - field.field.node.data_set.field_modified_date
     - field.field.node.data_set.field_primary_responsibility_org
     - field.field.node.data_set.field_product_type
     - field.field.node.data_set.field_published_date
     - field.field.node.data_set.field_security_classification
+    - field.field.node.data_set.field_semi_active_period
     - field.field.node.data_set.field_series
     - field.field.node.data_set.field_source_system
+    - field.field.node.data_set.field_special_flags
     - field.field.node.data_set.field_used_in_products
     - node.type.data_set
   module:
@@ -53,6 +55,7 @@ content:
     weight: 100
     region: content
 hidden:
+  field_active_period: true
   field_authoritative_info: true
   field_columns: true
   field_critical_information: true
@@ -60,18 +63,19 @@ hidden:
   field_data_set_format: true
   field_data_set_historical_change: true
   field_data_set_type: true
+  field_final_disposition: true
   field_granularity: true
   field_high_value_info: true
   field_information_schedule: true
-  field_information_schedule_1: true
-  field_information_schedule_2: true
   field_modified_date: true
   field_primary_responsibility_org: true
   field_product_type: true
   field_published_date: true
   field_security_classification: true
+  field_semi_active_period: true
   field_series: true
   field_source_system: true
+  field_special_flags: true
   field_used_in_products: true
   langcode: true
   search_api_excerpt: true

@@ -1,0 +1,19 @@
+uuid: 93eeeb16-8e15-44ac-8d3d-84ee575dc464
+langcode: en
+status: true
+dependencies:
+  module:
+    - field_token_value
+    - node
+id: node.field_final_disposition
+field_name: field_final_disposition
+entity_type: node
+type: field_token_value
+settings: {  }
+module: field_token_value
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
