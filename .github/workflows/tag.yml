@@ -78,21 +78,23 @@ jobs:
         repository: bcgov-c/tenant-gitops-ea352d
         path: tenant-gitops
         ssh-key: ${{ secrets.SSH_KEY }}
+        persist-credentials: true
 
     - name: Update Argo CD
-      uses: fjogeleit/yaml-update-action@main
+      uses: mikefarah/yq@v4.34.1
       with:
-        valueFile: 'helm-drupal/values-mfin-data-catalogue.yaml'
-        changes: |
-          {
-            "drupal.tag": "${{ env.GITHUB_REFERENCE }}",
-            "nginx.tag": "${{ env.GITHUB_REFERENCE }}"
-          }
-        workdir: tenant-gitops
-        message: 'feat(helm): Update container images to ${{ env.GITHUB_REFERENCE }}'
-        repository: bcgov-c/tenant-gitops-ea352d
-        masterBranchName: main
-        targetBranch: main
+        cmd: |
+          yq -i '.drupal.tag = strenv(GITHUB_REFERENCE) |
+                 .nginx.tag = strenv(GITHUB_REFERENCE) ' tenant-gitops/helm-drupal/values-mfin-data-catalogue.yaml
+
+    - name: Commit files
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git commit -a -m "feat(helm): Update container images to ${{ env.GITHUB_REFERENCE }}"
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        ssh: true
         branch: main
-        commitChange: true
-        token: ${{ secrets.GH_TOKEN }}
