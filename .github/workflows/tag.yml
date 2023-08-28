@@ -100,3 +100,4 @@ jobs:
         ssh: true
         branch: main
         directory: tenant-gitops
+        repository: bcgov-c/tenant-gitops-ea352d
