@@ -68,12 +68,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb.git",
-                "reference": "c621b2ca28c4cd52437c500c685cf65b73960036"
+                "reference": "84a703a80e8ea1b733b9fab25864675f88bba0a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/c621b2ca28c4cd52437c500c685cf65b73960036",
-                "reference": "c621b2ca28c4cd52437c500c685cf65b73960036",
+                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/84a703a80e8ea1b733b9fab25864675f88bba0a9",
+                "reference": "84a703a80e8ea1b733b9fab25864675f88bba0a9",
                 "shasum": ""
             },
             "require": {
@@ -103,6 +103,7 @@
                 "drupal/search_api_solr": "^4.2",
                 "drupal/shield": "^1.7",
                 "drupal/structure_sync": "^2.0",
+                "drupal/taxonomy_manager": "^2.0",
                 "drupal/toc_filter": "^2.1",
                 "drupal/token": "^1.11",
                 "drupal/token_filter": "^2.0",
@@ -141,7 +142,7 @@
                 "source": "https://github.com/bcgov/bcbb/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb/issues"
             },
-            "time": "2023-08-21T14:28:10+00:00"
+            "time": "2023-08-28T14:43:31+00:00"
         },
         {
             "name": "bcgov/bcbb_theme",
@@ -4958,6 +4959,91 @@
             "homepage": "https://www.drupal.org/project/tac_lite",
             "support": {
                 "source": "https://git.drupalcode.org/project/tac_lite"
+            }
+        },
+        {
+            "name": "drupal/taxonomy_manager",
+            "version": "2.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/taxonomy_manager.git",
+                "reference": "2.0.9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/taxonomy_manager-2.0.9.zip",
+                "reference": "2.0.9",
+                "shasum": "c1956d809ba2149b294eb68fe2f06ada34f4cadc"
+            },
+            "require": {
+                "drupal/core": "^9.3 || ^10",
+                "drupal/jquery_ui": "^1.4"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.9",
+                    "datestamp": "1691588453",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "alesbencina",
+                    "homepage": "https://www.drupal.org/user/3558110"
+                },
+                {
+                    "name": "Andriy Khomych",
+                    "homepage": "https://www.drupal.org/user/3287133"
+                },
+                {
+                    "name": "aurelianzaha",
+                    "homepage": "https://www.drupal.org/user/3575026"
+                },
+                {
+                    "name": "dragan_bp",
+                    "homepage": "https://www.drupal.org/user/3578037"
+                },
+                {
+                    "name": "JacobSanford",
+                    "homepage": "https://www.drupal.org/user/806538"
+                },
+                {
+                    "name": "joaogarin",
+                    "homepage": "https://www.drupal.org/user/612814"
+                },
+                {
+                    "name": "kalinchernev",
+                    "homepage": "https://www.drupal.org/user/231185"
+                },
+                {
+                    "name": "klausi",
+                    "homepage": "https://www.drupal.org/user/262198"
+                },
+                {
+                    "name": "mh86",
+                    "homepage": "https://www.drupal.org/user/59747"
+                },
+                {
+                    "name": "VladimirAus",
+                    "homepage": "https://www.drupal.org/user/673120"
+                }
+            ],
+            "description": "This module provides a powerful interface for managing taxonomies.",
+            "homepage": "https://www.drupal.org/project/taxonomy_manager",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/taxonomy_manager",
+                "issues": "https://www.drupal.org/project/issues/taxonomy_manager"
             }
         },
         {
