@@ -3,7 +3,7 @@ name: Question
 about: Use this to post questions
 title: ''
 labels: question
-assignees: 'NicoledeGreef'
+assignees: NicoledeGreef
 
 ---
 
