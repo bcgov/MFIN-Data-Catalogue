@@ -22,6 +22,18 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     $this->drupalGet('');
     $this->assertSession()->statusCodeEquals(200);
 
+    // Login page.
+    $this->drupalGet('user/login');
+    $this->assertSession()->statusCodeEquals(200);
+    // No link to password reset page.
+    $this->assertSession()->linkByHrefNotExists('user/password');
+
+    // Login page with 'showcore' set.
+    $this->drupalGet('user/login', ['query' => ['showcore' => '']]);
+    $this->assertSession()->statusCodeEquals(200);
+    // Link to password reset page.
+    $this->assertSession()->linkByHrefExists('user/password');
+
     // Robots control.
     $this->assertSession()->elementExists('xpath', '/head/meta[@name = "robots"][@content = "noindex, nofollow"]');
     $this->drupalGet('robots.txt');
@@ -37,6 +49,12 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     // Test search page.
     $this->drupalGet('search/site');
     $this->assertSession()->statusCodeEquals(200);
+
+    // Login button in the header.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "region-header")]/div[contains(@class, "block-user-login-block")]//input[@value = "Log in with IDIR"]');
+    // No links in login block. By default, a password reset link appears.
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "region-header")]/div[contains(@class, "block-user-login-block")]//a');
+
     // Components of search results.
     $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-id-site_search")]//div[contains(@class, "row")]/div[contains(@class, "search-result")]');
     $this->assertSession()->elementExists('xpath', 'h2', $container);
