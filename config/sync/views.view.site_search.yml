@@ -2709,8 +2709,8 @@ display:
               authenticated: authenticated
               anonymous: '0'
               administrator: '0'
-              data_administrator: '0'
-              data_custodian: '0'
+              data_catalogue_administrator: '0'
+              data_catalogue_editor: '0'
               data_catalogue_user: '0'
             expose_fields: false
             placeholder: ''

@@ -1,4 +1,4 @@
-uuid: 773c53f6-2f96-4a42-aa87-f1f279155c86
+uuid: fc0a8838-2b10-4044-9afd-fc111b4b2099
 langcode: en
 status: true
 dependencies:
@@ -10,8 +10,8 @@ dependencies:
     - form_mode_control
     - node
     - paragraphs
-id: data_custodian
-label: 'Data custodian'
+id: data_catalogue_editor
+label: 'Data catalogue editor'
 weight: 5
 is_admin: null
 permissions:
