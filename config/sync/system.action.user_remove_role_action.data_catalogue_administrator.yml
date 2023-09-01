@@ -1,0 +1,14 @@
+uuid: a3aa338a-2153-4621-9ee1-75b73ec1eb33
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.data_catalogue_administrator
+  module:
+    - user
+id: user_remove_role_action.data_catalogue_administrator
+label: 'Remove the Data catalogue administrator role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: data_catalogue_administrator

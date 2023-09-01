@@ -19,8 +19,8 @@ access_conditions:
       user: '@user.current_user_context:current_user'
     roles:
       administrator: administrator
-      data_administrator: data_administrator
-      data_custodian: data_custodian
+      data_catalogue_administrator: data_catalogue_administrator
+      data_catalogue_editor: data_catalogue_editor
       data_catalogue_user: data_catalogue_user
   -
     id: 'entity_bundle:node'

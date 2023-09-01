@@ -1,9 +1,8 @@
-uuid: aa2af30f-4e3a-4e6b-a643-9b4f83764e74
+uuid: fc0a8838-2b10-4044-9afd-fc111b4b2099
 langcode: en
 status: true
 dependencies:
   config:
-    - node.type.book
     - node.type.data_set
   module:
     - book
@@ -11,17 +10,12 @@ dependencies:
     - form_mode_control
     - node
     - paragraphs
-id: data_administrator
-label: 'Data administrator'
-weight: 4
+id: data_catalogue_editor
+label: 'Data catalogue editor'
+weight: 5
 is_admin: null
 permissions:
-  - 'access content overview'
   - 'access printer-friendly version'
-  - 'add content to books'
-  - 'administer book outlines'
-  - 'administer nodes'
-  - 'create book content'
   - 'create data_set content'
   - 'delete own data_set content'
   - 'edit any data_set content'

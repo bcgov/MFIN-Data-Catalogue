@@ -1,0 +1,14 @@
+uuid: fec443aa-8d0e-4517-ba7a-98f4d21cd3bc
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.data_catalogue_editor
+  module:
+    - user
+id: user_remove_role_action.data_catalogue_editor
+label: 'Remove the Data catalogue editor role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: data_catalogue_editor

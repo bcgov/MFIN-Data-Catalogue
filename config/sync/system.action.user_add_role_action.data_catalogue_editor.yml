@@ -1,0 +1,14 @@
+uuid: 1e981133-a96f-47d2-b9d8-906f3ca37428
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.data_catalogue_editor
+  module:
+    - user
+id: user_add_role_action.data_catalogue_editor
+label: 'Add the Data catalogue editor role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: data_catalogue_editor

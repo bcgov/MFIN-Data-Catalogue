@@ -2555,7 +2555,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<h2 class=\"h4\">{{ title }}</h2>\r\n<div class=\"views-field views-field-search-api-excerpt\">\r\n  {{ search_api_excerpt }}\r\n</div>\r\n<ul class=\"small text-black-50 bcbb-inline-list m-0 p-0\">\r\n  <li class=\"primary_responsibility_org\">{{ field_primary_responsibility_org }}</li>\r\n  <li class=\"data_custodian\">{{ uid }}</li>\r\n  <li class=\"modified_date\">{{ field_modified_date }}</li>\r\n</ul>"
+            text: "<h2 class=\"h4\">{{ title }}</h2>\r\n<div class=\"views-field views-field-search-api-excerpt\">\r\n  {{ search_api_excerpt }}\r\n</div>\r\n<ul class=\"small text-black-50 bcbb-inline-list m-0 p-0\">\r\n  <li class=\"primary_responsibility_org\">{{ field_primary_responsibility_org }}</li>\r\n  <li class=\"data_set_editor\">{{ uid }}</li>\r\n  <li class=\"modified_date\">{{ field_modified_date }}</li>\r\n</ul>"
             make_link: false
             path: ''
             absolute: false
@@ -2709,8 +2709,8 @@ display:
               authenticated: authenticated
               anonymous: '0'
               administrator: '0'
-              data_administrator: '0'
-              data_custodian: '0'
+              data_catalogue_administrator: '0'
+              data_catalogue_editor: '0'
               data_catalogue_user: '0'
             expose_fields: false
             placeholder: ''

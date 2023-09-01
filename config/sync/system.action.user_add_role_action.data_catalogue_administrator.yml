@@ -1,0 +1,14 @@
+uuid: 230a817d-e7f5-463c-b9dc-d8c1ee63f220
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.data_catalogue_administrator
+  module:
+    - user
+id: user_add_role_action.data_catalogue_administrator
+label: 'Add the Data catalogue administrator role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: data_catalogue_administrator
