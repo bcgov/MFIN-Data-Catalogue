@@ -16,7 +16,6 @@ weight: 5
 is_admin: null
 permissions:
   - 'access printer-friendly version'
-  - 'administer nodes'
   - 'create data_set content'
   - 'delete own data_set content'
   - 'edit any data_set content'
