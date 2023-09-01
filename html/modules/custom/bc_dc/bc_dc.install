@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @file
+ * Installation hooks.
+ */
+
+/**
+ * Implements hook_requirements().
+ */
+function bc_dc_requirements(string $phase): array {
+  $requirements = [];
+
+  if (!class_exists('ZipArchive')) {
+    $requirements['bc_dc_ZipArchive'] = [
+      'title' => t('BC Data Catalogue Module'),
+      'description' => t('Class ZipArchive is missing. The PHP Zip extension must be installed.'),
+      'severity' => REQUIREMENT_ERROR,
+    ];
+  }
+
+  return $requirements;
+}
