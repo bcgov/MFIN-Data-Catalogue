@@ -73,7 +73,7 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     $this->assertSession()->elementNotExists('xpath', 'ul[contains(@class, "bcbb-inline-list")]/li[4]', $container);
     // Check classes of items.
     $this->assertSession()->elementExists('xpath', 'ul[contains(@class, "bcbb-inline-list")]/li[@class = "primary_responsibility_org"]', $container);
-    $this->assertSession()->elementExists('xpath', 'ul[contains(@class, "bcbb-inline-list")]/li[@class = "data_custodian"]', $container);
+    $this->assertSession()->elementExists('xpath', 'ul[contains(@class, "bcbb-inline-list")]/li[@class = "data_set_editor"]', $container);
     $this->assertSession()->elementExists('xpath', 'ul[contains(@class, "bcbb-inline-list")]/li[@class = "modified_date"]', $container);
 
     // Search results download.
@@ -110,7 +110,7 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     $this->drupalGet('data-set/test-set');
     $this->assertSession()->statusCodeEquals(200);
     $container = $this->assertSession()->elementExists('xpath', '//div
-      [*[text() = "Data custodian"]]
+      [*[text() = "Data set editor"]]
       [div/a[starts-with(@href, "/search/site?f%5B0%5D=author_id%3A")]]');
     $container = $this->assertSession()->elementExists('xpath', '//div
       [*[text() = "Office of primary responsibility"]]
