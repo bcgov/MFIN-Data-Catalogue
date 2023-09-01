@@ -154,7 +154,7 @@ class BcDcAddColumnsForm extends FormBase {
    * @return array|null
    *   An array of file data or NULL if fopen() failed.
    */
-  private static function readCsv(FileInterface $file): ?array {
+  private static function readSpreadsheet(FileInterface $file): ?array {
     // Get the filename.
     $filename = $file->getFilename();
     if (!$filename) {
@@ -199,7 +199,7 @@ class BcDcAddColumnsForm extends FormBase {
    * @return string[]
    *   Array of field keys which have at least one invalid value in $contents.
    */
-  public function processCsv(array $header, array &$contents): array {
+  public function processSpreadsheet(array $header, array &$contents): array {
     $definitions = static::getDataSetFieldDefinitions();
 
     // Array of field keys which have at least one invalid value in $contents.
@@ -404,7 +404,7 @@ class BcDcAddColumnsForm extends FormBase {
     }
 
     // File uploaded. Read its contents into array and delete.
-    $import_file_contents = static::readCsv($import_file_upload);
+    $import_file_contents = static::readSpreadsheet($import_file_upload);
     $import_file_upload->delete();
     // Handle errors. In normal use, this will not happen.
     if ($import_file_contents === NULL) {
@@ -479,7 +479,7 @@ class BcDcAddColumnsForm extends FormBase {
     // Check for invalid values and save with form if there are any. Invalid
     // values will be displayed to the user to allow them to fix their upload.
     // This check does not call return because it needs the header and content.
-    if ($error_columns = $this->processCsv($import_file_header, $import_file_contents)) {
+    if ($error_columns = $this->processSpreadsheet($import_file_header, $import_file_contents)) {
       $form_state->set('error_columns', $error_columns);
       $form_state->set('error', $this->t('Uploaded file had invalid values in some columns. The invalid values are shown below.'));
     }
