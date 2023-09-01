@@ -431,8 +431,6 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       'test-empty.txt' => 'Only files with the following extensions are allowed:',
       // Empty 'tsv' file.
       'test-empty.tsv' => 'Uploaded file was empty.',
-      // File with a data row longer than the header row.
-      'test-no-header-col.csv' => 'Uploaded file has at least one data row with no header (row is longer than header row).',
       // File with an empty header.
       'test-empty-header.csv' => 'Uploaded file has at least one column with an empty header.',
       // Duplicate column header.

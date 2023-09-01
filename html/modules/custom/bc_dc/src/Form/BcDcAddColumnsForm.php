@@ -8,6 +8,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\file\FileInterface;
 use Drupal\node\NodeInterface;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -146,42 +147,48 @@ class BcDcAddColumnsForm extends FormBase {
   }
 
   /**
-   * Read a CSV/TSV file and return an array of its contents.
+   * Read a spreadsheet file and return an array of data from the first sheet.
+   *
+   * All formats supported by PhpSpreadsheet are supported.
    *
    * @param \Drupal\file\FileInterface $file
    *   The file to read.
    *
-   * @return array|null
-   *   An array of file data or NULL if fopen() failed.
+   * @return array
+   *   An array of file data.
    */
-  private static function readSpreadsheet(FileInterface $file): ?array {
+  private static function readSpreadsheet(FileInterface $file): array {
     // Get the filename.
     $filename = $file->getFilename();
     if (!$filename) {
       throw new \Exception('Unable to get file name.');
     }
 
-    // Get the CSV/TSV field separator based on the file extension.
-    $separator = match(substr($filename, -4)) {
-      '.csv' => ',',
-      '.tsv' => "\t",
-      // This should never be triggered because file extensions are filtered
-      // when file_save_upload() is called.
-      default => throw new \Exception('File must be csv or tsv.'),
-    };
+    $fileUri = $file->getFileUri();
 
-    // Open the file, returning NULL if that fails.
-    $handle = fopen($file->getFileUri(), 'r');
-    if (!$handle) {
-      return NULL;
+    // Create a reader for this type of file.
+    $inputFileType = IOFactory::identify($fileUri);
+    $reader = IOFactory::createReader($inputFileType);
+
+    // If the format supports multiple sheets per file, import the first.
+    if (method_exists($reader, 'listWorksheetNames')) {
+      $worksheetNames = $reader->listWorksheetNames($fileUri);
+      $first_sheet_name = reset($worksheetNames);
+      $reader->setLoadSheetsOnly($first_sheet_name);
     }
 
-    // Read the file and return its contents as an array.
-    $data = [];
-    while (($line = fgetcsv($handle, NULL, $separator)) !== FALSE) {
-      $data[] = $line;
+    // Load the file.
+    $reader->setReadDataOnly(TRUE);
+    $spreadsheet = $reader->load($fileUri);
+
+    // Get array of cell data.
+    $data = $spreadsheet->getActiveSheet()->toArray();
+
+    // Return empty file as empty array instead of a single NULL cell.
+    if ($data === [[NULL]]) {
+      $data = [];
     }
-    fclose($handle);
+
     return $data;
   }
 
@@ -421,6 +428,8 @@ class BcDcAddColumnsForm extends FormBase {
     $import_file_header = array_shift($import_file_contents);
 
     // Check import file for data rows longer than the header row.
+    // This will likely never happen because PhpSpreadsheet always returns an
+    // array with all rows the same length.
     $header_col_count = count($import_file_header);
     foreach ($import_file_contents as $import_line) {
       if (isset($import_line[$header_col_count])) {
@@ -431,11 +440,11 @@ class BcDcAddColumnsForm extends FormBase {
 
     // Remove the last column if it is completely empty, header and data.
     $last_col_key = array_key_last($import_file_header);
-    if ($import_file_header[$last_col_key] === '') {
+    if ($import_file_header[$last_col_key] === NULL) {
       // Check all the rows to see if they have a value in the last col.
       $last_col_empty = TRUE;
       foreach ($import_file_contents as $import_line) {
-        if (isset($import_line[$last_col_key]) && $import_line[$last_col_key] !== '') {
+        if (isset($import_line[$last_col_key]) && $import_line[$last_col_key] !== NULL) {
           $last_col_empty = FALSE;
           break;
         }
@@ -447,7 +456,7 @@ class BcDcAddColumnsForm extends FormBase {
     }
 
     // Check for empty headers.
-    if (array_search('', $import_file_header, TRUE)) {
+    if (array_search(NULL, $import_file_header, TRUE)) {
       $form_state->set('error', $this->t('Uploaded file has at least one column with an empty header.'));
       return;
     }
