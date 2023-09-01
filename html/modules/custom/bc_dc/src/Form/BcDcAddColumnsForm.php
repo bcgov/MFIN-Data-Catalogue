@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
- * Implements a form to add data_set columns from CSV import.
+ * Implements a form to add data_set columns from CSV or spreadsheet import.
  *
  * Normal flow:
  * 1. ::buildForm() displays page 1 of the form. User uploads a file.
@@ -313,13 +313,13 @@ class BcDcAddColumnsForm extends FormBase {
         $fields = static::getDataSetFields();
         $sample_file = implode(',', $fields) . "\n";
         $form['help_text'] = [
-          '#markup' => $this->t('Add columns to this data set. Upload a CSV file. For each row, it will add a column to this data set based on the contents of that row. <a href="data:text/plain,@file" download="sample.csv">Download sample file</a>.', ['@file' => urlencode($sample_file)]),
+          '#markup' => $this->t('Add columns to this data set. Upload a CSV or spreadsheet file. For each row, it will add a column to this data set based on the contents of that row. <a href="data:text/plain,@file" download="sample.csv">Download sample file</a>.', ['@file' => urlencode($sample_file)]),
         ];
 
         // Upload component.
         $form['import_file_upload'] = [
           '#type' => 'file',
-          '#title' => $this->t('CSV import file'),
+          '#title' => $this->t('Import file'),
           '#required' => TRUE,
         ];
 
@@ -400,7 +400,7 @@ class BcDcAddColumnsForm extends FormBase {
 
     // Save the uploaded file to the file system, checking its extension.
     $validators = [
-      'file_validate_extensions' => ['csv tsv'],
+      'file_validate_extensions' => ['csv tsv gnm gnumeric ods xls xlsx xml'],
     ];
     $import_file_upload = file_save_upload('import_file_upload', $validators);
     $import_file_upload = is_array($import_file_upload) ? reset($import_file_upload) : NULL;
