@@ -452,7 +452,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       $this->submitForm($edit, 'Upload');
       // Check for error message.
       $text = $this->assertSession()->elementExists('xpath', '//div[@role = "alert"][contains(@class, "alert-error")]')->getText();
-      $this->assertStringContainsString($error_message, $text);
+      $this->assertStringContainsString($error_message, $text, 'Error file: ' . $filename);
     }
     // Test for error message for invalid value in entitiy reference column.
     $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr/td[@class = "error"][text() = "Invalid: integer"]');
