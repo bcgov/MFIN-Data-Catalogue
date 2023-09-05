@@ -454,7 +454,7 @@ https?://[^/]+/node/2,', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // reason, it always fails.
     $text = $this->assertSession()->elementExists('xpath', '//div[@role = "alert"][contains(@class, "alert-warning")]')->getText();
     $this->assertStringContainsString('Warning message Existing columns will be deleted when these new columns are imported.', $text);
-    // Importa data table.
+    // Import data table.
     $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/thead/tr/th[1][text() = "column_name"]');
     $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/thead/tr/th[2][text() = "column_size"]');
     $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr/td[1][text() = "Name"]');
