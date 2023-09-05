@@ -187,12 +187,60 @@ class BcDcAddColumnsForm extends FormBase {
     // Get array of cell data.
     $data = $spreadsheet->getActiveSheet()->toArray();
 
-    // Return empty file as empty array instead of a single NULL cell.
-    if ($data === [[NULL]]) {
-      $data = [];
-    }
+    $data = static::removeEmptyRowsCols($data);
 
     return $data;
+  }
+
+  /**
+   * Remove empty trailing rows and columns from an array.
+   *
+   * @param array $array
+   *   The array to act on.
+   *
+   * @return array
+   *   The array with trailing rows and columns removed if all values are NULL.
+   */
+  private static function removeEmptyRowsCols(array $array): array {
+    // Remove trailing rows that consist entirely of cells that are NULL.
+    $row_empty = TRUE;
+    while ($row_empty) {
+      $last_row_key = array_key_last($array);
+      // Empty array.
+      if (is_null($last_row_key)) {
+        break;
+      }
+      foreach ($array[$last_row_key] as $cell) {
+        if (!is_null($cell)) {
+          $row_empty = FALSE;
+          break;
+        }
+      }
+      if ($row_empty) {
+        unset($array[$last_row_key]);
+      }
+    }
+
+    // Remove trailing columns that consist entirely of cells that are NULL.
+    // This assumes that all rows are the same length, which ::toArray() does.
+    $col_empty = TRUE;
+    $first_row_key = array_key_first($array);
+    while ($col_empty && !is_null($first_row_key)) {
+      $last_col_key = array_key_last($array[$first_row_key]);
+      foreach ($array as $row) {
+        if (!is_null($row[$last_col_key])) {
+          $col_empty = FALSE;
+          break;
+        }
+      }
+      if ($col_empty) {
+        foreach (array_keys($array) as $row_key) {
+          unset($array[$row_key][$last_col_key]);
+        }
+      }
+    }
+
+    return $array;
   }
 
   /**
