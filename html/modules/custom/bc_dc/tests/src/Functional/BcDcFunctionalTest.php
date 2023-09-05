@@ -377,9 +377,9 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $gcnotify_request = json_decode($matches[1]);
     // Run tests on the request.
     $this->assertEquals('A dataset you have bookmarked has been updated', $gcnotify_request->rows[1][1]);
-    $this->assertMatchesRegularExpression(',The following dataset has been updated:
+    $this->assertMatchesRegularExpression('(The following dataset has been updated:
 ' . preg_quote($data_set_title) . '
-https?://[^/]+/node/2,', htmlspecialchars_decode($gcnotify_request->rows[1][2]));
+https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]));
 
     // The bookmark field_last_viewed_date gets updated when visiting a page.
     //
