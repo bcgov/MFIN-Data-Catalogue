@@ -11,6 +11,7 @@ dependencies:
     - form_mode_control
     - node
     - paragraphs
+    - system
 id: data_catalogue_administrator
 label: 'Data catalogue administrator'
 weight: 4
@@ -20,6 +21,7 @@ permissions:
   - 'access printer-friendly version'
   - 'add content to books'
   - 'administer book outlines'
+  - 'administer menu'
   - 'administer nodes'
   - 'create book content'
   - 'create data_set content'
