@@ -536,6 +536,14 @@ class BcDcAddColumnsForm extends FormBase {
       return;
     }
 
+    $column_name_key = array_search('column_name', $import_file_header, TRUE);
+
+    // Check for missing column_name field.
+    if ($column_name_key === FALSE) {
+      $form_state->set('error', $this->t('Uploaded file does not have a column_name field.'));
+      return;
+    }
+
     // Check for invalid values and save with form if there are any. Invalid
     // values will be displayed to the user to allow them to fix their upload.
     // This check does not call return because it needs the header and content.
