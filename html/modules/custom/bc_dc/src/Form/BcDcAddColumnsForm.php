@@ -164,22 +164,25 @@ class BcDcAddColumnsForm extends FormBase {
       throw new \Exception('Unable to get file name.');
     }
 
-    $fileUri = $file->getFileUri();
+    $filePath = $file->getFileUri();
+    // The Xlsx reader cannot handle stream wrappers.
+    // @see https://github.com/PHPOffice/PhpSpreadsheet/issues/1931
+    $filePath = \Drupal::service('file_system')->realpath($filePath);
 
     // Create a reader for this type of file.
-    $inputFileType = IOFactory::identify($fileUri);
+    $inputFileType = IOFactory::identify($filePath);
     $reader = IOFactory::createReader($inputFileType);
 
     // If the format supports multiple sheets per file, import the first.
     if (method_exists($reader, 'listWorksheetNames')) {
-      $worksheetNames = $reader->listWorksheetNames($fileUri);
+      $worksheetNames = $reader->listWorksheetNames($filePath);
       $first_sheet_name = reset($worksheetNames);
       $reader->setLoadSheetsOnly($first_sheet_name);
     }
 
     // Load the file.
     $reader->setReadDataOnly(TRUE);
-    $spreadsheet = $reader->load($fileUri);
+    $spreadsheet = $reader->load($filePath);
 
     // Get array of cell data.
     $data = $spreadsheet->getActiveSheet()->toArray();
