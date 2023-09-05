@@ -60,6 +60,18 @@ class BcDcFunctionalTest extends BrowserTestBase {
   }
 
   /**
+   * {@inheritdoc}
+   *
+   * Same as parent except that it will not return a less-than character, which
+   * can be interpreted as the start of an HTML tag.
+   */
+  public function randomString($length = 8) {
+    $string = parent::randomString($length);
+    $string = str_replace('<', 'a', $string);
+    return $string;
+  }
+
+  /**
    * Create a user with roles.
    */
   protected function createTestUser(string $name, array $roles = []): User|false {
