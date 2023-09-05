@@ -35,4 +35,5 @@ permissions:
   - 'use  The form mode data_set_description linked to  node entity( data_set )'
   - 'view data_set revisions'
   - 'view own unpublished content'
+  - 'view the administration theme'
   - 'view unpublished paragraphs'
