@@ -441,6 +441,8 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       'test-no-data-rows.csv' => 'Uploaded file had no data rows. The first row must be column headers.',
       // No column_name.
       'test-no-column_name.csv' => 'Uploaded file does not have a column_name field.',
+      // Empty column_name.
+      'test-empty-column_name.csv' => 'Uploaded file has at least one empty column_name field.',
       // Invalid value in entitiy reference column.
       'test-invalid-rows.csv' => 'Uploaded file had invalid values in some columns. The invalid values are shown below.',
     ];

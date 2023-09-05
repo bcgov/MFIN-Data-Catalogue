@@ -544,6 +544,14 @@ class BcDcAddColumnsForm extends FormBase {
       return;
     }
 
+    // Check for empty column_name fields.
+    foreach ($import_file_contents as $row) {
+      if ((string) $row[$column_name_key] === '') {
+        $form_state->set('error', $this->t('Uploaded file has at least one empty column_name field.'));
+        return;
+      }
+    }
+
     // Check for invalid values and save with form if there are any. Invalid
     // values will be displayed to the user to allow them to fix their upload.
     // This check does not call return because it needs the header and content.
