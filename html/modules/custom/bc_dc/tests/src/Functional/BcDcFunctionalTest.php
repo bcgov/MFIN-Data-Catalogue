@@ -454,21 +454,32 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     }
     // Test for error message for invalid value in entitiy reference column.
     $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr/td[@class = "error"][text() = "Invalid: integer"]');
-    // Upload valid import file.
-    $edit = [
-      'edit-import-file-upload' => __DIR__ . '/../../files/test-valid.csv',
+
+    // Test value import files.
+    $file_types_to_test = [
+      'csv',
+      'ods',
+      'xlsx',
     ];
-    $this->submitForm($edit, 'Upload');
-    // Confirmation page.
-    // This would normally be done with ::elementExists() but for an unknown
-    // reason, it always fails.
-    $text = $this->assertSession()->elementExists('xpath', '//div[@role = "alert"][contains(@class, "alert-warning")]')->getText();
-    $this->assertStringContainsString('Warning message Existing columns will be deleted when these new columns are imported.', $text);
-    // Import data table.
-    $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/thead/tr/th[1][text() = "column_name"]');
-    $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/thead/tr/th[2][text() = "column_size"]');
-    $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr/td[1][text() = "Name"]');
-    $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr/td[2][text() = "50"]');
+    foreach ($file_types_to_test as $file_extension) {
+      $this->drupalGet('node/2/add-columns', ['query' => ['destination' => '/node/2/build']]);
+      // Upload valid import file.
+      $edit = [
+        'edit-import-file-upload' => __DIR__ . '/../../files/test-valid.' . $file_extension,
+      ];
+      $this->submitForm($edit, 'Upload');
+      // Confirmation page.
+      // This would normally be done with ::elementExists() but for an unknown
+      // reason, it always fails.
+      $text = $this->assertSession()->elementExists('xpath', '//div[@role = "alert"][contains(@class, "alert-warning")]')->getText();
+      $this->assertStringContainsString('Warning message Existing columns will be deleted when these new columns are imported.', $text);
+      // Import data table.
+      $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/thead/tr/th[1][text() = "column_name"]');
+      $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/thead/tr/th[2][text() = "column_size"]');
+      $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr/td[1][text() = "Name ' . $file_extension . '"]');
+      $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr/td[2][text() = "50"]');
+    }
+
     // Complete import.
     $this->submitForm([], 'Import');
     // Success page.
@@ -477,7 +488,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // List of columns.
     $elements = $this->xpath('//div[contains(@class, "field--name-field-columns")]/div/div/ul/li');
     $this->assertCount(1, $elements, 'There is exactly 1 column name shown.');
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--name-field-columns")]/div/div/ul/li[text() = "Name"]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--name-field-columns")]/div/div/ul/li[text() = "Name ' . $file_extension . '"]');
 
     // Anonymous has no access to data_set build page.
     $this->drupalLogout();
