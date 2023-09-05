@@ -15,6 +15,7 @@ label: 'Data catalogue editor'
 weight: 5
 is_admin: null
 permissions:
+  - 'access content overview'
   - 'access printer-friendly version'
   - 'create data_set content'
   - 'delete own data_set content'
