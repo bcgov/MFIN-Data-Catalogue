@@ -8,6 +8,7 @@ require_once DRUPAL_ROOT . '/modules/contrib/bcbb/tests/src/BcbbTestingTrait.php
 
 use Drupal\Core\Config\FileStorage;
 use Drupal\node\Entity\Node;
+use Drupal\taxonomy\Entity\Term;
 use Drupal\Tests\bcbb\BcbbTestingTrait;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\user\Entity\Role;
@@ -425,6 +426,11 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->elementExists('xpath', '//h1[text() = "Add columns"]');
     $this->assertSession()->pageTextContains('Upload a file to add columns to the data dictionary.');
     $this->assertSession()->elementExists('xpath', '//a[@href = "/node/2/build"][text() = "Cancel"]');
+    // Create a term in the data_type taxonomy for later use.
+    Term::create([
+      'vid' => 'data_type',
+      'name' => 'Integer',
+    ])->save();
     // File upload tests.
     $tests = [
       // File with an unsupported extension.
@@ -457,7 +463,14 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       $this->assertStringContainsString($error_message, $text, 'Error file: ' . $filename);
     }
     // Test for error message for invalid value in entitiy reference column.
-    $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr/td[@class = "error"][text() = "Invalid: integer"]');
+    $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr[1]/td[text() = "Name 1"]');
+    $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr[1]/td[@class = "error"][text() = "Invalid: integer"]');
+    // Plain label for valid value in entitiy reference column.
+    $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr[2]/td[text() = "Name 2"]');
+    $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr[2]/td[not(@class)][text() = "Integer"]');
+    // Empty for empty value in entitiy reference column.
+    $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr[3]/td[text() = "Name 3"]');
+    $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr[3]/td[not(@class)][not(text())]');
 
     // Test value import files.
     $file_types_to_test = [
