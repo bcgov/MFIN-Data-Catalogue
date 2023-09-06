@@ -25,6 +25,22 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class BcDcAddColumnsForm extends FormBase {
 
   /**
+   * File extensions of allowed upload formats.
+   *
+   * @var array
+   */
+  public static $allowedFormats = [
+    'csv',
+    'tsv',
+    'gnm',
+    'gnumeric',
+    'ods',
+    'xls',
+    'xlsx',
+    'xml',
+  ];
+
+  /**
    * Constructor.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
@@ -451,7 +467,7 @@ class BcDcAddColumnsForm extends FormBase {
 
     // Save the uploaded file to the file system, checking its extension.
     $validators = [
-      'file_validate_extensions' => ['csv tsv gnm gnumeric ods xls xlsx xml'],
+      'file_validate_extensions' => [implode(' ', static::$allowedFormats)],
     ];
     $import_file_upload = file_save_upload('import_file_upload', $validators);
     $import_file_upload = is_array($import_file_upload) ? reset($import_file_upload) : NULL;
