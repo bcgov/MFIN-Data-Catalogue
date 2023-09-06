@@ -423,7 +423,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->clickLink('Import data columns');
     $this->assertSession()->statusCodeEquals(200);
     $this->assertSession()->elementExists('xpath', '//h1[text() = "Add columns"]');
-    $this->assertSession()->pageTextContains('Add columns to this data set.');
+    $this->assertSession()->pageTextContains('Upload a file to add columns to the data dictionary.');
     $this->assertSession()->elementExists('xpath', '//a[@href = "/node/2/build"][text() = "Cancel"]');
     // File upload tests.
     $tests = [

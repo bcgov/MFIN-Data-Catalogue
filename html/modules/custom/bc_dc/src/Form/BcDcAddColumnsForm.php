@@ -380,7 +380,10 @@ class BcDcAddColumnsForm extends FormBase {
         $fields = static::getDataSetFields();
         $sample_file = implode(',', $fields) . "\n";
         $form['help_text'] = [
-          '#markup' => $this->t('Add columns to this data set. Upload a CSV or spreadsheet file. For each row, it will add a column to this data set based on the contents of that row. <a href="data:text/plain,@file" download="sample.csv">Download sample file</a>.', ['@file' => urlencode($sample_file)]),
+          '#markup' => $this->t('<p>Upload a file to add columns to the data dictionary. For each row, it will add a column to this data set based on the contents of that row.<br> <span class="fs-6 fst-italic">allowed formats: @formats</span></p> <p><a href="data:text/plain,@file" download="sample.csv">Download sample file</a>.</p>', [
+            '@formats' => implode(', ', static::$allowedFormats),
+            '@file' => urlencode($sample_file),
+          ]),
         ];
 
         // Upload component.
