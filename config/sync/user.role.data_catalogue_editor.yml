@@ -11,6 +11,7 @@ dependencies:
     - node
     - paragraphs
     - system
+    - toolbar
 id: data_catalogue_editor
 label: 'Data catalogue editor'
 weight: 5
@@ -18,6 +19,7 @@ is_admin: null
 permissions:
   - 'access content overview'
   - 'access printer-friendly version'
+  - 'access toolbar'
   - 'administer menu'
   - 'create data_set content'
   - 'delete own data_set content'

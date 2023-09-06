@@ -5,6 +5,21 @@ dependencies:
   config:
     - node.type.book
     - node.type.data_set
+    - taxonomy.vocabulary.common_data
+    - taxonomy.vocabulary.data_granularity
+    - taxonomy.vocabulary.data_product
+    - taxonomy.vocabulary.data_set_format
+    - taxonomy.vocabulary.data_set_series
+    - taxonomy.vocabulary.data_set_type
+    - taxonomy.vocabulary.data_system
+    - taxonomy.vocabulary.data_type
+    - taxonomy.vocabulary.information_schedule
+    - taxonomy.vocabulary.metadata_type
+    - taxonomy.vocabulary.organization
+    - taxonomy.vocabulary.product_type
+    - taxonomy.vocabulary.security_classification
+    - taxonomy.vocabulary.source_system
+    - taxonomy.vocabulary.tags
   module:
     - book
     - flag
@@ -12,22 +27,72 @@ dependencies:
     - node
     - paragraphs
     - system
+    - taxonomy
+    - toolbar
 id: data_catalogue_administrator
 label: 'Data catalogue administrator'
 weight: 4
 is_admin: null
 permissions:
+  - 'access administration pages'
   - 'access content overview'
   - 'access printer-friendly version'
+  - 'access taxonomy overview'
+  - 'access toolbar'
   - 'add content to books'
   - 'administer book outlines'
   - 'administer menu'
   - 'administer nodes'
   - 'create book content'
   - 'create data_set content'
+  - 'create terms in common_data'
+  - 'create terms in data_granularity'
+  - 'create terms in data_product'
+  - 'create terms in data_set_format'
+  - 'create terms in data_set_series'
+  - 'create terms in data_set_type'
+  - 'create terms in data_system'
+  - 'create terms in data_type'
+  - 'create terms in information_schedule'
+  - 'create terms in metadata_type'
+  - 'create terms in organization'
+  - 'create terms in product_type'
+  - 'create terms in security_classification'
+  - 'create terms in source_system'
+  - 'create terms in tags'
   - 'delete own data_set content'
+  - 'delete terms in common_data'
+  - 'delete terms in data_granularity'
+  - 'delete terms in data_product'
+  - 'delete terms in data_set_format'
+  - 'delete terms in data_set_series'
+  - 'delete terms in data_set_type'
+  - 'delete terms in data_system'
+  - 'delete terms in data_type'
+  - 'delete terms in information_schedule'
+  - 'delete terms in metadata_type'
+  - 'delete terms in organization'
+  - 'delete terms in product_type'
+  - 'delete terms in security_classification'
+  - 'delete terms in source_system'
+  - 'delete terms in tags'
   - 'edit any data_set content'
   - 'edit own data_set content'
+  - 'edit terms in common_data'
+  - 'edit terms in data_granularity'
+  - 'edit terms in data_product'
+  - 'edit terms in data_set_format'
+  - 'edit terms in data_set_series'
+  - 'edit terms in data_set_type'
+  - 'edit terms in data_system'
+  - 'edit terms in data_type'
+  - 'edit terms in information_schedule'
+  - 'edit terms in metadata_type'
+  - 'edit terms in organization'
+  - 'edit terms in product_type'
+  - 'edit terms in security_classification'
+  - 'edit terms in source_system'
+  - 'edit terms in tags'
   - 'flag bookmark'
   - 'revert data_set revisions'
   - 'unflag bookmark'
