@@ -15,7 +15,11 @@ modification+administrator+node+data_set: node.data_set.default
 'use  The form mode default linked to  search_api_saved_search entity( default )': search_api_saved_search.default.default
 'use  The form mode default linked to  flagging entity( bookmark )': flagging.bookmark.default
 'use  The form mode default linked to  node entity( book )': node.book.default
+'use  The form mode default linked to  taxonomy_term entity( information_schedule )': taxonomy_term.information_schedule.default
 'use  The form mode default linked to  taxonomy_term entity( organization )': taxonomy_term.organization.default
+'use  The form mode default linked to  taxonomy_term entity( record_disposition )': taxonomy_term.record_disposition.default
+'use  The form mode default linked to  taxonomy_term entity( record_life_cycle_duration )': taxonomy_term.record_life_cycle_duration.default
+'use  The form mode default linked to  taxonomy_term entity( record_special_flags )': taxonomy_term.record_special_flags.default
 'use  The form mode default linked to  media entity( audio )': media.audio.default
 'use  The form mode default linked to  media entity( document )': media.document.default
 'use  The form mode default linked to  media entity( image )': media.image.default

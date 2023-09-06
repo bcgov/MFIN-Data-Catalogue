@@ -16,6 +16,7 @@ dependencies:
   - drupal:text
   - drupal:user
   - entity_reference_revisions:entity_reference_revisions
+  - field_token_value:field_token_value
   - flag:flag
   - form_mode_control:form_mode_control
   - message_gcnotify:message_gcnotify
