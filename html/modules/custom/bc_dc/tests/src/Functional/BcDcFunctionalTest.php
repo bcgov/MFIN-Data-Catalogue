@@ -206,8 +206,6 @@ class BcDcFunctionalTest extends BrowserTestBase {
       'field--name-field-data-set-format' => 'Data set format',
       'field--name-field-product-type' => 'Product type',
       'field--name-field-information-schedule' => 'Information schedule',
-      'field--name-field-information-schedule-1' => 'Information schedule primary',
-      'field--name-field-information-schedule-2' => 'Information schedule secondary',
     ];
     foreach ($fields_inline_optional as $class => $label) {
       $args = [
