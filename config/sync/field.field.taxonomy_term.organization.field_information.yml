@@ -1,0 +1,24 @@
+uuid: 49be96ce-7e4e-41ff-9188-80e8d98f63c7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_information
+    - filter.format.basic_html
+    - taxonomy.vocabulary.organization
+  module:
+    - text
+id: taxonomy_term.organization.field_information
+field_name: field_information
+entity_type: taxonomy_term
+bundle: organization
+label: 'Additional information'
+description: 'Additional information about this OPR, for example the specific person to contact about a data sets the custodian is responsible for.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+field_type: text_long

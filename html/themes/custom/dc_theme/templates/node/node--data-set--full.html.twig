@@ -38,6 +38,8 @@
             {% if node.field_primary_responsibility_org and not node.field_primary_responsibility_org.isempty %}
               <div class="mb-3">
                 {{ node.field_primary_responsibility_org|view }}
+                {{ node.field_primary_responsibility_org.entity.field_data_custodian|view }}
+                {{ node.field_primary_responsibility_org.entity.field_information|view}}
               </div>
             {% endif %}
 

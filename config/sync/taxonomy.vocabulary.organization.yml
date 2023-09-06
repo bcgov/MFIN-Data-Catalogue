@@ -2,7 +2,7 @@ uuid: 50e3384a-e4d7-494b-bbf5-7559f3810c3f
 langcode: en
 status: true
 dependencies: {  }
-name: Organization
+name: 'Office of primary responsibility'
 vid: organization
 description: ''
 weight: 0
