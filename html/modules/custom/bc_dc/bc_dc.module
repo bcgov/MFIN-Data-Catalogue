@@ -11,6 +11,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\message_gcnotify\Service\GcNotifyApiService;
 use Drupal\node\NodeInterface;
+use Drupal\taxonomy\TermInterface;
 
 /**
  * Implements hook_preprocess_HOOK().
@@ -211,4 +212,37 @@ function bc_dc_form_node_data_set_edit_form_alter(array &$form, FormStateInterfa
   $form['field_columns']['widget']['header_actions']['actions']['edit_all']['#access'] = FALSE;
   // Remove the "Collapse all" action.
   $form['field_columns']['widget']['header_actions']['dropdown_actions']['collapse_all']['#access'] = FALSE;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function bc_dc_taxonomy_term_presave(TermInterface $term): void {
+  // Only act on information_schedule terms.
+  if ($term->bundle() !== 'information_schedule') {
+    return;
+  }
+
+  // Set the value for field_schedule_code.
+  // If this item's own field_schedule_number is empty, use empty. Otherwise,
+  // combine with the non-empty values from the ancestor terms.
+  if ((string) $term->field_schedule_number->value === '') {
+    $new_code = NULL;
+  }
+  else {
+    $term_parents = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadAllParents($term->id());
+    $new_code = [];
+    foreach ($term_parents as $term_parent) {
+      $term_parent_number = (string) $term_parent->field_schedule_number->value;
+      if ($term_parent_number !== '') {
+        $new_code[] = $term_parent_number;
+      }
+    }
+    // ::loadAllParents() gives them in reverse order to what we want.
+    $new_code = implode('-', array_reverse($new_code));
+  }
+  // Update code if it has changed.
+  if ($new_code !== $term->field_schedule_code->value) {
+    $term->set('field_schedule_code', $new_code);
+  }
 }
