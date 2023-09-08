@@ -2176,16 +2176,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "10.1.2",
+            "version": "10.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "949779f2244b955bdd6946c8af5dee8054501fe6"
+                "reference": "0943d60970670a7f7c18ee24a800b3b87aac4641"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/949779f2244b955bdd6946c8af5dee8054501fe6",
-                "reference": "949779f2244b955bdd6946c8af5dee8054501fe6",
+                "url": "https://api.github.com/repos/drupal/core/zipball/0943d60970670a7f7c18ee24a800b3b87aac4641",
+                "reference": "0943d60970670a7f7c18ee24a800b3b87aac4641",
                 "shasum": ""
             },
             "require": {
@@ -2330,13 +2330,13 @@
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
             "support": {
-                "source": "https://github.com/drupal/core/tree/10.1.2"
+                "source": "https://github.com/drupal/core/tree/10.1.3"
             },
-            "time": "2023-08-02T10:10:11+00:00"
+            "time": "2023-09-07T15:19:51+00:00"
         },
         {
             "name": "drupal/core-composer-scaffold",
-            "version": "10.1.2",
+            "version": "10.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-composer-scaffold.git",
@@ -2380,22 +2380,22 @@
                 "drupal"
             ],
             "support": {
-                "source": "https://github.com/drupal/core-composer-scaffold/tree/10.1.2"
+                "source": "https://github.com/drupal/core-composer-scaffold/tree/10.1.3"
             },
             "time": "2023-04-30T16:15:32+00:00"
         },
         {
             "name": "drupal/core-recommended",
-            "version": "10.1.2",
+            "version": "10.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-recommended.git",
-                "reference": "f3d23274697b82081765296727ae765b7522caf5"
+                "reference": "d32977bba64355e7399cf63db4cea41b3172d6fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core-recommended/zipball/f3d23274697b82081765296727ae765b7522caf5",
-                "reference": "f3d23274697b82081765296727ae765b7522caf5",
+                "url": "https://api.github.com/repos/drupal/core-recommended/zipball/d32977bba64355e7399cf63db4cea41b3172d6fa",
+                "reference": "d32977bba64355e7399cf63db4cea41b3172d6fa",
                 "shasum": ""
             },
             "require": {
@@ -2404,12 +2404,12 @@
                 "doctrine/annotations": "~1.14.3",
                 "doctrine/deprecations": "~v1.1.1",
                 "doctrine/lexer": "~2.1.0",
-                "drupal/core": "10.1.2",
+                "drupal/core": "10.1.3",
                 "egulias/email-validator": "~4.0.1",
                 "guzzlehttp/guzzle": "~7.7.0",
                 "guzzlehttp/psr7": "~2.5.0",
                 "masterminds/html5": "~2.8.0",
-                "mck89/peast": "~v1.15.2",
+                "mck89/peast": "~v1.15.4",
                 "pear/archive_tar": "~1.4.14",
                 "pear/console_getopt": "~v1.4.3",
                 "pear/pear-core-minimal": "~v1.10.13",
@@ -2461,9 +2461,9 @@
             ],
             "description": "Core and its dependencies with known-compatible minor versions. Require this project INSTEAD OF drupal/core.",
             "support": {
-                "source": "https://github.com/drupal/core-recommended/tree/10.1.2"
+                "source": "https://github.com/drupal/core-recommended/tree/10.1.3"
             },
-            "time": "2023-08-02T10:10:11+00:00"
+            "time": "2023-09-07T15:19:51+00:00"
         },
         {
             "name": "drupal/ctools",
@@ -7256,16 +7256,16 @@
         },
         {
             "name": "microsoft/microsoft-graph",
-            "version": "1.105.0",
+            "version": "1.106.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/microsoftgraph/msgraph-sdk-php.git",
-                "reference": "d137bb44a1f4ec949c814471ee94265db002fc2c"
+                "reference": "a9f43d74131bb13cb1b5a999101d486b26601b8f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/microsoftgraph/msgraph-sdk-php/zipball/d137bb44a1f4ec949c814471ee94265db002fc2c",
-                "reference": "d137bb44a1f4ec949c814471ee94265db002fc2c",
+                "url": "https://api.github.com/repos/microsoftgraph/msgraph-sdk-php/zipball/a9f43d74131bb13cb1b5a999101d486b26601b8f",
+                "reference": "a9f43d74131bb13cb1b5a999101d486b26601b8f",
                 "shasum": ""
             },
             "require": {
@@ -7302,9 +7302,9 @@
             "homepage": "https://developer.microsoft.com/en-us/graph",
             "support": {
                 "issues": "https://github.com/microsoftgraph/msgraph-sdk-php/issues",
-                "source": "https://github.com/microsoftgraph/msgraph-sdk-php/tree/1.105.0"
+                "source": "https://github.com/microsoftgraph/msgraph-sdk-php/tree/1.106.0"
             },
-            "time": "2023-08-22T13:28:28+00:00"
+            "time": "2023-09-08T06:02:27+00:00"
         },
         {
             "name": "mkalkbrenner/php-htmldiff-advanced",
@@ -12894,7 +12894,7 @@
         },
         {
             "name": "drupal/core-dev",
-            "version": "10.1.2",
+            "version": "10.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-dev.git",
@@ -12942,7 +12942,7 @@
             ],
             "description": "require-dev dependencies from drupal/drupal; use in addition to drupal/core-recommended to run tests from drupal/core.",
             "support": {
-                "source": "https://github.com/drupal/core-dev/tree/10.1.2"
+                "source": "https://github.com/drupal/core-dev/tree/10.1.3"
             },
             "time": "2023-05-25T11:39:24+00:00"
         },
@@ -13699,16 +13699,16 @@
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "1.23.1",
+            "version": "1.24.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "846ae76eef31c6d7790fac9bc399ecee45160b26"
+                "reference": "3510b0a6274cc42f7219367cb3abfc123ffa09d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/846ae76eef31c6d7790fac9bc399ecee45160b26",
-                "reference": "846ae76eef31c6d7790fac9bc399ecee45160b26",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/3510b0a6274cc42f7219367cb3abfc123ffa09d6",
+                "reference": "3510b0a6274cc42f7219367cb3abfc123ffa09d6",
                 "shasum": ""
             },
             "require": {
@@ -13740,9 +13740,9 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.23.1"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.24.0"
             },
-            "time": "2023-08-03T16:32:59+00:00"
+            "time": "2023-09-07T20:46:32+00:00"
         },
         {
             "name": "phpstan/phpstan-phpunit",
