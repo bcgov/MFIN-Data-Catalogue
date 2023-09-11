@@ -46,6 +46,9 @@ class FacetSearchLinkFieldFormatter extends FormatterBase {
     $element = [];
 
     foreach ($items as $item) {
+      if (!$item->entity) {
+        continue;
+      }
       // Remove 'field_' from start.
       $facet_key = substr($item->getFieldDefinition()->getName(), 6);
       // Query string for searching for this value as a facet.
