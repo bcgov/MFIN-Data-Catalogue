@@ -16,3 +16,13 @@ modification+administrator+node+data_set: node.data_set.default
 'use  The form mode default linked to  flagging entity( bookmark )': flagging.bookmark.default
 'use  The form mode default linked to  node entity( book )': node.book.default
 'use  The form mode default linked to  taxonomy_term entity( organization )': taxonomy_term.organization.default
+'use  The form mode default linked to  media entity( audio )': media.audio.default
+'use  The form mode default linked to  media entity( document )': media.document.default
+'use  The form mode default linked to  media entity( image )': media.image.default
+'use  The form mode default linked to  media entity( remote_video )': media.remote_video.default
+'use  The form mode default linked to  media entity( video )': media.video.default
+'use  The form mode media_library linked to  media entity( audio )': media.audio.media_library
+'use  The form mode media_library linked to  media entity( document )': media.document.media_library
+'use  The form mode media_library linked to  media entity( image )': media.image.media_library
+'use  The form mode media_library linked to  media entity( remote_video )': media.remote_video.media_library
+'use  The form mode media_library linked to  media entity( video )': media.video.media_library
