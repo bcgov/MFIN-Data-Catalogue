@@ -8,7 +8,7 @@ id: full_numbered
 label: 'Full - Numbered'
 options:
   template: responsive
-  title: 'Table of Contents'
+  title: 'On this page'
   block: false
   header_count: 2
   header_min: 2
@@ -27,3 +27,4 @@ options:
     number_type: decimal
     number_prefix: ''
     number_suffix: ') '
+  headers: {  }
