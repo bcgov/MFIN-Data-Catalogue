@@ -42,7 +42,6 @@ permissions:
   - 'access user profiles'
   - 'add content to books'
   - 'administer book outlines'
-  - 'administer menu'
   - 'administer nodes'
   - 'administer permissions'
   - 'administer users'

@@ -41,7 +41,6 @@ permissions:
   - 'access toolbar'
   - 'add content to books'
   - 'administer book outlines'
-  - 'administer menu'
   - 'administer nodes'
   - 'create book content'
   - 'create data_set content'
