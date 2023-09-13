@@ -20,7 +20,6 @@ permissions:
   - 'access content overview'
   - 'access printer-friendly version'
   - 'access toolbar'
-  - 'administer menu'
   - 'create data_set content'
   - 'delete own data_set content'
   - 'edit any data_set content'

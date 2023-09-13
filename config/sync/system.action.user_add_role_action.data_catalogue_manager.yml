@@ -1,0 +1,14 @@
+uuid: 4cadbb2c-f363-4b2a-9b55-ea339ffca1a8
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.data_catalogue_manager
+  module:
+    - user
+id: user_add_role_action.data_catalogue_manager
+label: 'Add the Data catalogue manager role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: data_catalogue_manager
