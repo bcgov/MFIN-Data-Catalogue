@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - editor
+    - media
     - toc_filter
 _core:
   default_config_hash: HvAE4vD_4-nvhwLobIN3k5rTE9zq9AQG8UScfnwuKQo
@@ -60,3 +61,12 @@ filters:
       auto: ''
       block: '0'
       exclude_above: '0'
+  media_embed:
+    id: media_embed
+    provider: media
+    status: true
+    weight: 100
+    settings:
+      default_view_mode: default
+      allowed_view_modes: {  }
+      allowed_media_types: {  }

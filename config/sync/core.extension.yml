@@ -50,6 +50,8 @@ module:
   layout_discovery: 0
   link: 0
   linkit: 0
+  media: 0
+  media_library: 0
   menu_link_content: 0
   menu_ui: 0
   message_gcnotify: 0
@@ -68,6 +70,7 @@ module:
   path_alias: 0
   realname: 0
   registration_role: 0
+  responsive_image: 0
   robotstxt: 0
   search_api: 0
   search_api_db: 0
@@ -77,6 +80,8 @@ module:
   search_api_solr_admin: 0
   shield: 0
   shortcut: 0
+  svg_image: 0
+  svg_image_responsive: 0
   system: 0
   taxonomy: 0
   text: 0
