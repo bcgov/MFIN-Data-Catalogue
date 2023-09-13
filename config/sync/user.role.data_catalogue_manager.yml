@@ -1,4 +1,4 @@
-uuid: 9ab98f7f-fe6e-4f17-afc3-d4771670779e
+uuid: 65fbb4ad-4a98-4ab4-8371-17d060f1124f
 langcode: en
 status: true
 dependencies:
@@ -29,9 +29,9 @@ dependencies:
     - system
     - taxonomy
     - toolbar
-id: data_catalogue_administrator
-label: 'Data catalogue administrator'
-weight: 3
+id: data_catalogue_manager
+label: 'Data catalogue manager'
+weight: 4
 is_admin: null
 permissions:
   - 'access administration pages'
