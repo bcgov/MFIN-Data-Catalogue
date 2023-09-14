@@ -626,6 +626,85 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     ];
     $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "toc-tree")]/ol/li/ol/li/a[text() = :header]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
+
+    // Test information schedule taxonomy terms.
+    //
+    // Create test terms.
+    $info_schedule_values = [];
+    $info_schedule_terms = [];
+    // First.
+    $info_schedule_values[0] = [
+      'vid' => 'information_schedule',
+      'name' => 'First ' . $this->randomString(),
+      'field_abbr_full_name' => 'First full name',
+    ];
+    $info_schedule_terms[0] = Term::create($info_schedule_values[0]);
+    $info_schedule_terms[0]->save();
+    // Second.
+    $info_schedule_values[1] = [
+      'vid' => 'information_schedule',
+      'name' => 'Second ' . $this->randomString(),
+      'field_schedule_number' => $this->randomMachineName(),
+      'parent' => $info_schedule_terms[0]->id(),
+    ];
+    $info_schedule_terms[1] = Term::create($info_schedule_values[1]);
+    $info_schedule_terms[1]->save();
+    // Third.
+    $info_schedule_values[2] = [
+      'vid' => 'information_schedule',
+      'name' => 'Third ' . $this->randomString(),
+      'parent' => $info_schedule_terms[1]->id(),
+      'field_schedule_number' => $this->randomMachineName(),
+    ];
+    $info_schedule_terms[2] = Term::create($info_schedule_values[2]);
+    $info_schedule_terms[2]->save();
+    // Save to generate field_schedule_code.
+    $this->drupalGet('taxonomy/term/' . $info_schedule_terms[2]->id() . '/edit');
+    $this->submitForm([], 'Save');
+    // Attach term to data set.
+    $data_set = Node::load(2);
+    $data_set->set('field_information_schedule', $info_schedule_terms[2]->id())->save();
+
+    // Test that the information schedule appears correctly.
+    $this->drupalGet('node/2');
+    // Looking for a 'div' containing label "Information schedule" and content
+    // being the formatted name and number.
+    $args = [
+      ':field_information_schedule_display_name' => $info_schedule_values[0]['name'] . ': ' . $info_schedule_values[2]['name'],
+      ':field_schedule_code' => $info_schedule_values[1]['field_schedule_number'] . '-' . $info_schedule_values[2]['field_schedule_number'],
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-information-schedule")]
+      [div[@class = "field__label"][normalize-space(text()) = "Information schedule"]]
+      [div[@class = "field__item"]
+        [div[text() = :field_information_schedule_display_name]]
+        [div[text() = :field_schedule_code]]
+      ]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+    // No special flags field appears.
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "field--name-field-special-flags")]');
+    $this->assertSession()->pageTextNotContains('Special flags');
+
+    // Create a record_special_flags term.
+    $special_flag_values = [
+      'vid' => 'record_special_flags',
+      'name' => 'Special Flag ' . $this->randomString(),
+      'field_abbr_full_name' => 'Special Flag full name ' . $this->randomString(),
+    ];
+    $special_flag_term = Term::create($special_flag_values);
+    $special_flag_term->save();
+    // Attach the special flag to the information schedule.
+    $info_schedule_terms[2]->set('field_special_flags', $special_flag_term->id())->save();
+    // Resave the data set so that it picks up the information schedule change.
+    $this->drupalGet('node/2/edit', ['query' => ['display' => 'data_set_description']]);
+    $this->submitForm([], 'Save');
+    // Special flags field appears.
+    $args = [
+      ':field_special_flags' => $special_flag_values['field_abbr_full_name'],
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-special-flags")]
+      [div[@class = "field__label"][normalize-space(text()) = "Special flags"]]
+      [div[@class = "field__item"][text() = :field_special_flags]]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
   }
 
   /**
