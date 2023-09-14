@@ -130,3 +130,8 @@ form.bc-dc-add-columns-form table > tbody > tr > td.error {
 .search-api-saved-search-form input[value="Saved search"] {
   font-size: smaller;
 }
+
+/* Hidden form controls are un-hidden by Bootstrap. Restore them as hidden. */
+.form-control.hidden {
+  display: none;
+}
