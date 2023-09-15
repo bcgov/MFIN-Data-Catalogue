@@ -21,7 +21,6 @@ dependencies:
   - form_mode_control:form_mode_control
   - message_gcnotify:message_gcnotify
   - metatag:metatag
-  - op_ext_search:op_ext_search
   - page_manager:page_manager
   - page_manager:page_manager_ui
   - paragraphs:paragraphs
