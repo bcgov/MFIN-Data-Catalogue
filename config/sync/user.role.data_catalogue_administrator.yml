@@ -26,6 +26,7 @@ dependencies:
     - form_mode_control
     - node
     - paragraphs
+    - role_delegation
     - system
     - taxonomy
     - toolbar
@@ -43,8 +44,11 @@ permissions:
   - 'add content to books'
   - 'administer book outlines'
   - 'administer nodes'
-  - 'administer permissions'
   - 'administer users'
+  - 'assign data_catalogue_administrator role'
+  - 'assign data_catalogue_editor role'
+  - 'assign data_catalogue_manager role'
+  - 'assign data_catalogue_user role'
   - 'create book content'
   - 'create data_set content'
   - 'create terms in common_data'

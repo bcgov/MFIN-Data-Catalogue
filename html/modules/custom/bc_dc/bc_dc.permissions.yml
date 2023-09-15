@@ -1,0 +1,12 @@
+'assign data_catalogue_administrator role':
+  title: 'Assign role data_catalogue_administrator'
+  description: 'Used by role_delegation. Declared here so that tests will run.'
+'assign data_catalogue_editor role':
+  title: 'Assign role data_catalogue_editor'
+  description: 'Used by role_delegation. Declared here so that tests will run.'
+'assign data_catalogue_manager role':
+  title: 'Assign role data_catalogue_manager'
+  description: 'Used by role_delegation. Declared here so that tests will run.'
+'assign data_catalogue_user role':
+  title: 'Assign role data_catalogue_user'
+  description: 'Used by role_delegation. Declared here so that tests will run.'
