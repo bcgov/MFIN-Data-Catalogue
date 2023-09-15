@@ -132,7 +132,7 @@
                     </div>
                   </div>
                 </div>
-                {% if node.field_active_period.value %}
+                {% if node.field_active_period.value|render|trim %}
                   <div class="mb-3">
                     {{ node.field_active_period|view }}
                   </div>
