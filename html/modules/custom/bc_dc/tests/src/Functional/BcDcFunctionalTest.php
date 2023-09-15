@@ -655,6 +655,8 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       'name' => 'Third ' . $this->randomString(),
       'parent' => $info_schedule_terms[1]->id(),
       'field_schedule_number' => $this->randomMachineName(),
+      'field_active_period_extension' => $this->randomMachineName(),
+      'field_semi_active_extension' => $this->randomMachineName(),
     ];
     $info_schedule_terms[2] = Term::create($info_schedule_values[2]);
     $info_schedule_terms[2]->save();
@@ -679,6 +681,20 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
         [div[text() = :field_information_schedule_display_name]]
         [div[text() = :field_schedule_code]]
       ]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+    // Value of field_active_period_extension. Space is added because that is
+    // the separator from field_active_period.
+    $args = [
+      ':field_active_period_extension' => ' ' . $info_schedule_values[2]['field_active_period_extension'],
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-active-period")]/div[text() = :field_active_period_extension]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+    // Value of field_semi_active_extension. Space is added because that is the
+    // separator from field_semi_active_period.
+    $args = [
+      ':field_semi_active_extension' => ' ' . $info_schedule_values[2]['field_semi_active_extension'],
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-semi-active-period")]/div[text() = :field_semi_active_extension]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     // No special flags field appears.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "field--name-field-special-flags")]');
