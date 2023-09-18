@@ -2,6 +2,7 @@ name: BC Data Catalogue Module
 description: Functionality specific to the BC Data Catalogue.
 type: module
 core_version_requirement: ^10.1
+configure: bc_dc.settings
 package: BC Base Build
 dependencies:
   - bcbb:bcbb_book

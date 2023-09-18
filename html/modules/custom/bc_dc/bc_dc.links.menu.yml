@@ -1,0 +1,5 @@
+bc_dc.settings:
+  title: 'BC Data Catalogue Module settings'
+  description: 'Configure BC Data Catalogue Module.'
+  route_name: bc_dc.settings
+  parent: system.admin_config_content

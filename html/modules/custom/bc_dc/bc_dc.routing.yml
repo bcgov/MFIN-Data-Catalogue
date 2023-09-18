@@ -1,3 +1,11 @@
+bc_dc.settings:
+  path: /admin/config/data-catalogue
+  defaults:
+    _title: 'Administer the BC Data Catalogue Module'
+    _form: '\Drupal\bc_dc\Form\BcDcSettingsForm'
+  requirements:
+    _permission: 'administer site configuration'
+
 bc_dc.data_set_dashboard:
   path: '/user/{user}'
   defaults:
