@@ -16,10 +16,12 @@ dependencies:
     - field.field.node.data_set.field_granularity
     - field.field.node.data_set.field_high_value_info
     - field.field.node.data_set.field_information_schedule
+    - field.field.node.data_set.field_last_review_date
     - field.field.node.data_set.field_modified_date
     - field.field.node.data_set.field_primary_responsibility_org
     - field.field.node.data_set.field_product_type
     - field.field.node.data_set.field_published_date
+    - field.field.node.data_set.field_review_interval
     - field.field.node.data_set.field_security_classification
     - field.field.node.data_set.field_semi_active_period
     - field.field.node.data_set.field_series
@@ -143,6 +145,12 @@ content:
       create_new_levels: false
       force_deepest: true
     third_party_settings: {  }
+  field_last_review_date:
+    type: datetime_default
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_modified_date:
     type: datetime_default
     weight: 7
@@ -170,6 +178,13 @@ content:
     weight: 6
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_review_interval:
+    type: number
+    weight: 31
+    region: content
+    settings:
+      placeholder: ''
     third_party_settings: {  }
   field_security_classification:
     type: options_buttons

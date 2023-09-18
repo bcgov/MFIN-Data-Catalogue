@@ -1,0 +1,21 @@
+uuid: 507a1c31-501e-4a6a-bdfc-ee29f6894aab
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_last_review_date
+    - node.type.data_set
+  module:
+    - datetime
+id: node.data_set.field_last_review_date
+field_name: field_last_review_date
+entity_type: node
+bundle: data_set
+label: 'Last review date'
+description: 'The date on which this record last had a full review.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

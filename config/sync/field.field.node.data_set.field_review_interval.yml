@@ -1,0 +1,25 @@
+uuid: 396e02e6-be4d-460b-ae50-05dd72d7c707
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_review_interval
+    - node.type.data_set
+id: node.data_set.field_review_interval
+field_name: field_review_interval
+entity_type: node
+bundle: data_set
+label: 'Review interval'
+description: 'The number of months between full reviews. Leave blank to disable review reminders.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 12
+default_value_callback: ''
+settings:
+  min: 1
+  max: null
+  prefix: ''
+  suffix: ' month| months'
+field_type: integer
