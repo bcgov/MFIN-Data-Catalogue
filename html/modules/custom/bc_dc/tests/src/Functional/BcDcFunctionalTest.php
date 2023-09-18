@@ -199,6 +199,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $fields_inline_optional = [
       'field--name-field-primary-responsibility-org' => 'Office of primary responsibility',
       'field--name-field-series' => 'Series',
+      'field--name-field-last-review-date' => 'Last review date',
       'field--name-field-security-classification' => 'Security classification',
       'field--name-field-source-system' => 'Source system',
       'field--name-field-granularity' => 'Granularity',
@@ -211,8 +212,9 @@ class BcDcFunctionalTest extends BrowserTestBase {
       $args = [
         ':class' => $class,
         ':label' => $label,
+        ':text' => $class === 'field--name-field-last-review-date' ? 'Never' : 'Optional',
       ];
-      $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div/em[text() = "Optional"]', $args);
+      $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div/em[text() = :text]', $args);
       $this->assertSession()->elementExists('xpath', $xpath);
     }
     // Check for fields that are dates and have inline labels.
@@ -229,6 +231,14 @@ class BcDcFunctionalTest extends BrowserTestBase {
       $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div/time', $args);
       $this->assertSession()->elementExists('xpath', $xpath);
     }
+    // Default value for field_review_interval.
+    $args = [
+      ':class' => 'field--name-field-review-interval',
+      ':label' => 'Review interval',
+      ':text' => '12 months',
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div[text() = :text]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
     // Check for fields that are boolean and have inline labels.
     $fields_inline_optional = [
       'field--name-field-critical-information' => 'Critical information',

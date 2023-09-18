@@ -74,6 +74,7 @@ function bc_dc_entity_display_build_alter(array &$build, array $context): void {
       $component = $display->getComponent($field_name);
 
       $empty_text = match($field_name) {
+        'field_last_review_date' => t('Never'),
         default => $definition->isRequired() ? t('Required') : t('Optional'),
       };
       $markup = ['#markup' => '<em>' . $empty_text . '</em>'];
