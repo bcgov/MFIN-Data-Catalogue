@@ -73,7 +73,9 @@ function bc_dc_entity_display_build_alter(array &$build, array $context): void {
       $definition = $entity->get($field_name)->getFieldDefinition();
       $component = $display->getComponent($field_name);
 
-      $empty_text = $definition->isRequired() ? t('Required') : t('Optional');
+      $empty_text = match($field_name) {
+        default => $definition->isRequired() ? t('Required') : t('Optional'),
+      };
       $markup = ['#markup' => '<em>' . $empty_text . '</em>'];
 
       $build[$field_name] = [
