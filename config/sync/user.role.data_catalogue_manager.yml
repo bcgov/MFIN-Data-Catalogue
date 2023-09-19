@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - media.type.image
     - node.type.book
     - node.type.data_set
     - taxonomy.vocabulary.common_data
@@ -27,6 +28,7 @@ dependencies:
     - book
     - flag
     - form_mode_control
+    - media
     - node
     - paragraphs
     - system
@@ -39,6 +41,7 @@ is_admin: null
 permissions:
   - 'access administration pages'
   - 'access content overview'
+  - 'access media overview'
   - 'access printer-friendly version'
   - 'access taxonomy overview'
   - 'access toolbar'
@@ -47,6 +50,7 @@ permissions:
   - 'administer nodes'
   - 'create book content'
   - 'create data_set content'
+  - 'create image media'
   - 'create terms in common_data'
   - 'create terms in data_granularity'
   - 'create terms in data_product'
@@ -65,6 +69,7 @@ permissions:
   - 'create terms in security_classification'
   - 'create terms in source_system'
   - 'create terms in tags'
+  - 'delete any image media'
   - 'delete own data_set content'
   - 'delete terms in common_data'
   - 'delete terms in data_granularity'
@@ -85,6 +90,7 @@ permissions:
   - 'delete terms in source_system'
   - 'delete terms in tags'
   - 'edit any data_set content'
+  - 'edit any image media'
   - 'edit own data_set content'
   - 'edit terms in common_data'
   - 'edit terms in data_granularity'
@@ -109,7 +115,9 @@ permissions:
   - 'unflag bookmark'
   - 'use  The form mode data_set_columns linked to  node entity( data_set )'
   - 'use  The form mode data_set_description linked to  node entity( data_set )'
+  - 'view all media revisions'
   - 'view data_set revisions'
   - 'view own unpublished content'
+  - 'view own unpublished media'
   - 'view the administration theme'
   - 'view unpublished paragraphs'
