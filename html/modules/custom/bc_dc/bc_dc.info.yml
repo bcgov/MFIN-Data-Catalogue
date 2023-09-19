@@ -8,6 +8,7 @@ dependencies:
   - diff:diff
   - drupal:datetime
   - drupal:field
+  - drupal:filter
   - drupal:layout_builder
   - drupal:layout_discovery
   - drupal:media

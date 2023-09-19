@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - filter.format.full_html
     - media.type.image
     - node.type.book
     - node.type.data_set
@@ -26,6 +27,7 @@ dependencies:
     - taxonomy.vocabulary.tags
   module:
     - book
+    - filter
     - flag
     - form_mode_control
     - media
@@ -115,6 +117,7 @@ permissions:
   - 'unflag bookmark'
   - 'use  The form mode data_set_columns linked to  node entity( data_set )'
   - 'use  The form mode data_set_description linked to  node entity( data_set )'
+  - 'use text format full_html'
   - 'view all media revisions'
   - 'view data_set revisions'
   - 'view own unpublished content'
