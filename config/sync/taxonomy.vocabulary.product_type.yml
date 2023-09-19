@@ -4,5 +4,5 @@ status: true
 dependencies: {  }
 name: 'Product type'
 vid: product_type
-description: ''
+description: " \tThis will be removed. see https://github.com/bcgov/MFIN-Data-Catalogue/issues/171"
 weight: 0

@@ -1,0 +1,11 @@
+uuid: e4ef2fcb-2363-46e4-a87d-a8b6ce76e7b4
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.information_schedule
+id: taxonomy_term.information_schedule
+target_entity_type_id: taxonomy_term
+target_bundle: information_schedule
+default_langcode: site_default
+language_alterable: false

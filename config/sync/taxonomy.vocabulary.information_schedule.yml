@@ -4,5 +4,5 @@ status: true
 dependencies: {  }
 name: 'Information schedule'
 vid: information_schedule
-description: ''
+description: 'Referenced by <i>field_information_schedule</i>  in data set.<br><i>Information schedule</i> in CA.'
 weight: 0

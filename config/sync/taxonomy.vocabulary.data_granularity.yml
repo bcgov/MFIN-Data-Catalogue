@@ -4,5 +4,5 @@ status: true
 dependencies: {  }
 name: 'Data granularity'
 vid: data_granularity
-description: ''
+description: 'Referenced by <i>field_granularity</i>  in data set.<br><i>Granularity</i> in CA.'
 weight: 0

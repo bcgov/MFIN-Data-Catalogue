@@ -4,5 +4,5 @@ status: true
 dependencies: {  }
 name: 'Metadata type'
 vid: metadata_type
-description: ''
+description: 'Referenced by <i> field_metadata_type</i>  in data dictionary.<br><i>Metadata type</i> in CA.'
 weight: 0

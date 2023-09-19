@@ -4,5 +4,5 @@ status: true
 dependencies: {  }
 name: 'Data product'
 vid: data_product
-description: ''
+description: 'This may be removed. see https://github.com/bcgov/MFIN-Data-Catalogue/issues/19'
 weight: 0

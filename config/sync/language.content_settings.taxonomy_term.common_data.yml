@@ -1,0 +1,11 @@
+uuid: fb471d87-3752-4dbc-ac24-27afc327d15e
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.common_data
+id: taxonomy_term.common_data
+target_entity_type_id: taxonomy_term
+target_bundle: common_data
+default_langcode: site_default
+language_alterable: false

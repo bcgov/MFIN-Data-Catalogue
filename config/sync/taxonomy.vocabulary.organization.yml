@@ -4,5 +4,5 @@ status: true
 dependencies: {  }
 name: Organization
 vid: organization
-description: ''
+description: 'Referenced by <i> field_primary_responsibility_org</i>  in data set.<br><i>Organization</i> in CA.'
 weight: 0

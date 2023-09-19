@@ -4,5 +4,5 @@ status: true
 dependencies: {  }
 name: 'Data set format'
 vid: data_set_format
-description: ''
+description: 'This will be removed.  see https://github.com/bcgov/MFIN-Data-Catalogue/issues/171'
 weight: 0

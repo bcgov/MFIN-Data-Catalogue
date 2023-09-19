@@ -1,0 +1,11 @@
+uuid: 2116474d-9b80-45bd-a6f6-e9bd29ca09bc
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.data_set_series
+id: taxonomy_term.data_set_series
+target_entity_type_id: taxonomy_term
+target_bundle: data_set_series
+default_langcode: site_default
+language_alterable: false

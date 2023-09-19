@@ -4,5 +4,5 @@ status: true
 dependencies: {  }
 name: 'Common data'
 vid: common_data
-description: 'These are fields that appear as a column in more than one data set.'
+description: 'Referenced by <i>field_instance_of</i>  in data dictionary.<br><i>Instance of</i> in CA.'
 weight: 0

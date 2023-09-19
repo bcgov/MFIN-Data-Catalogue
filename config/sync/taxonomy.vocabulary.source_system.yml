@@ -4,5 +4,5 @@ status: true
 dependencies: {  }
 name: 'Source system'
 vid: source_system
-description: ''
+description: 'Referenced by <i>field_source_system</i>  in data set.<br><i>Source system</i> in CA.'
 weight: 0

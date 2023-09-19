@@ -4,5 +4,5 @@ status: true
 dependencies: {  }
 name: 'Data type'
 vid: data_type
-description: ''
+description: 'Referenced by <i>field_column_type</i>  in data dictionary.<br><i>Column type</i> in CA.'
 weight: 0
