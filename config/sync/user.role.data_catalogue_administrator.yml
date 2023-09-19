@@ -17,6 +17,9 @@ dependencies:
     - taxonomy.vocabulary.metadata_type
     - taxonomy.vocabulary.organization
     - taxonomy.vocabulary.product_type
+    - taxonomy.vocabulary.record_disposition
+    - taxonomy.vocabulary.record_life_cycle_duration
+    - taxonomy.vocabulary.record_special_flags
     - taxonomy.vocabulary.security_classification
     - taxonomy.vocabulary.source_system
     - taxonomy.vocabulary.tags
@@ -63,6 +66,9 @@ permissions:
   - 'create terms in metadata_type'
   - 'create terms in organization'
   - 'create terms in product_type'
+  - 'create terms in record_disposition'
+  - 'create terms in record_life_cycle_duration'
+  - 'create terms in record_special_flags'
   - 'create terms in security_classification'
   - 'create terms in source_system'
   - 'create terms in tags'
@@ -79,6 +85,9 @@ permissions:
   - 'delete terms in metadata_type'
   - 'delete terms in organization'
   - 'delete terms in product_type'
+  - 'delete terms in record_disposition'
+  - 'delete terms in record_life_cycle_duration'
+  - 'delete terms in record_special_flags'
   - 'delete terms in security_classification'
   - 'delete terms in source_system'
   - 'delete terms in tags'
@@ -96,6 +105,9 @@ permissions:
   - 'edit terms in metadata_type'
   - 'edit terms in organization'
   - 'edit terms in product_type'
+  - 'edit terms in record_disposition'
+  - 'edit terms in record_life_cycle_duration'
+  - 'edit terms in record_special_flags'
   - 'edit terms in security_classification'
   - 'edit terms in source_system'
   - 'edit terms in tags'
