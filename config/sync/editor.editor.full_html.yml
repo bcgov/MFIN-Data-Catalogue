@@ -31,6 +31,7 @@ settings:
       - horizontalLine
       - '|'
       - heading
+      - style
       - codeBlock
       - '|'
       - sourceEditing
@@ -91,6 +92,32 @@ settings:
       startIndex: true
     ckeditor5_sourceEditing:
       allowed_tags: {  }
+    ckeditor5_style:
+      styles:
+        -
+          label: 'Alert primary'
+          element: '<p class="alert alert-primary">'
+        -
+          label: 'Alert secondary'
+          element: '<p class="alert alert-secondary">'
+        -
+          label: 'Alert success'
+          element: '<p class="alert alert-success">'
+        -
+          label: 'Alert danger'
+          element: '<p class="alert alert-danger">'
+        -
+          label: 'Alert warning'
+          element: '<p class="alert alert-warning">'
+        -
+          label: 'Alert info'
+          element: '<p class="alert alert-info">'
+        -
+          label: 'Alert light'
+          element: '<p class="alert alert-light">'
+        -
+          label: 'Alert dark'
+          element: '<p class="alert alert-dark">'
     linkit_extension:
       linkit_enabled: true
       linkit_profile: default

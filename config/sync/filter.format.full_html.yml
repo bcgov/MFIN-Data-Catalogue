@@ -48,7 +48,7 @@ filters:
     status: false
     weight: -10
     settings:
-      allowed_html: ''
+      allowed_html: '<p class="alert alert-primary alert-secondary alert-success alert-danger alert-warning alert-info alert-light alert-dark">'
       filter_html_help: true
       filter_html_nofollow: false
   toc_filter:
