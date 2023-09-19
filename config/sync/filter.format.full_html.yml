@@ -69,4 +69,5 @@ filters:
     settings:
       default_view_mode: default
       allowed_view_modes: {  }
-      allowed_media_types: {  }
+      allowed_media_types:
+        image: image
