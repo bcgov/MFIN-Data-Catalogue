@@ -660,9 +660,6 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     ];
     $info_schedule_terms[2] = Term::create($info_schedule_values[2]);
     $info_schedule_terms[2]->save();
-    // Save to generate field_schedule_code.
-    $this->drupalGet('taxonomy/term/' . $info_schedule_terms[2]->id() . '/edit');
-    $this->submitForm([], 'Save');
     // Attach term to data set.
     $data_set = Node::load(2);
     $data_set->set('field_information_schedule', $info_schedule_terms[2]->id())->save();

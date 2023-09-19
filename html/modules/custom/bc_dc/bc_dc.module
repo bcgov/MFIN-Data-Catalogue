@@ -230,8 +230,10 @@ function bc_dc_taxonomy_term_presave(TermInterface $term): void {
     $new_code = NULL;
   }
   else {
-    $term_parents = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadAllParents($term->id());
-    $new_code = [];
+    // Start with code of current term.
+    $new_code = [$term->field_schedule_number->value];
+    // Add the codes of ancestor terms.
+    $term_parents = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadAllParents($term->parent->target_id);
     foreach ($term_parents as $term_parent) {
       $term_parent_number = (string) $term_parent->field_schedule_number->value;
       if ($term_parent_number !== '') {
