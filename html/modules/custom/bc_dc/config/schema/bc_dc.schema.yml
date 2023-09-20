@@ -5,6 +5,12 @@ bc_dc.settings:
     data_set_review_period_alert:
       type: integer
       label: 'Review period alert'
+    review_needed_message:
+      type: label
+      label: 'Review needed message'
+    review_overdue_message:
+      type: label
+      label: 'Review overdue message'
 
 field.formatter.settings.data_set_column_name:
   type: mapping

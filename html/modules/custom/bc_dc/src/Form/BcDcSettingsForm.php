@@ -41,6 +41,20 @@ class BcDcSettingsForm extends ConfigFormBase {
       '#min' => 1,
       '#step' => 1,
     ];
+    $form['review_needed_message'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Review needed message'),
+      '#description' => $this->t('The message to appear when a data set is within the configured review period of its review date.'),
+      '#required' => TRUE,
+      '#default_value' => $bc_dc_settings->get('review_needed_message'),
+    ];
+    $form['review_overdue_message'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Review overdue message'),
+      '#description' => $this->t('The message to appear when a data set is after its review date.'),
+      '#required' => TRUE,
+      '#default_value' => $bc_dc_settings->get('review_overdue_message'),
+    ];
 
     return $form;
   }
@@ -55,6 +69,8 @@ class BcDcSettingsForm extends ConfigFormBase {
     $bc_dc_settings = $this->config('bc_dc.settings');
     $fields_to_save = [
       'data_set_review_period_alert',
+      'review_needed_message',
+      'review_overdue_message',
     ];
     foreach ($fields_to_save as $field) {
       $bc_dc_settings->set($field, $form_state->getValue($field));
