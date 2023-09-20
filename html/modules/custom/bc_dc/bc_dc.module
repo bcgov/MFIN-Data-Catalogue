@@ -111,19 +111,16 @@ function bc_dc_node_view(array &$build, NodeInterface $entity, EntityViewDisplay
     return;
   }
 
+  // If there is a bookmark by the user, record that the node has been viewed.
   // Load the bookmark for this user for this node.
   $flag_service = \Drupal::service('flag');
   $bookmark_flag = $flag_service->getFlagById('bookmark');
   $bookmark_flagging = $flag_service->getFlagging($bookmark_flag, $entity);
-
-  // Return if no bookmark on this node by the current user.
-  if (!$bookmark_flagging) {
-    return;
+  // Update field_last_viewed_date to now.
+  if ($bookmark_flagging) {
+    $bookmark_flagging->set('field_last_viewed_date', date('Y-m-d\TH:i:s'));
+    $bookmark_flagging->save();
   }
-
-  // Record that the node has been viewed. Update field_last_viewed_date to now.
-  $bookmark_flagging->set('field_last_viewed_date', date('Y-m-d\TH:i:s'));
-  $bookmark_flagging->save();
 }
 
 /**
