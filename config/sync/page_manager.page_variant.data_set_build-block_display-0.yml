@@ -25,7 +25,7 @@ variant_settings:
       context_mapping:
         node: node
       region: top
-      weight: -10
+      weight: 1
       uuid: 8790ffef-e6ad-43da-b42c-b04d9dc85fc1
       query_param: data_set_description
     9e1d7d7b-d972-40c4-9854-8c56126c2552:
@@ -36,7 +36,7 @@ variant_settings:
       context_mapping:
         node: node
       region: top
-      weight: -8
+      weight: 3
       uuid: 9e1d7d7b-d972-40c4-9854-8c56126c2552
       query_param: data_set_columns
     d6dcf9b6-e8b9-4e5f-b4f4-6f33aa83b8e8:
@@ -48,7 +48,7 @@ variant_settings:
       context_mapping:
         entity: node
       region: top
-      weight: -9
+      weight: 2
       uuid: d6dcf9b6-e8b9-4e5f-b4f4-6f33aa83b8e8
     b7d0209d-718c-4963-9b37-4f220da4ea7f:
       id: 'entity_view:node'
@@ -59,8 +59,17 @@ variant_settings:
       context_mapping:
         entity: node
       region: top
-      weight: 0
+      weight: 4
       uuid: b7d0209d-718c-4963-9b37-4f220da4ea7f
+    8c84e50d-0caf-4536-848c-10bddf79acd1:
+      id: bc_dc_review_needed_message
+      label: 'Review needed message'
+      label_display: '0'
+      provider: bc_dc
+      context_mapping: {  }
+      region: top
+      weight: 0
+      uuid: 8c84e50d-0caf-4536-848c-10bddf79acd1
   page_title: 'Build: [node:title]'
 page: data_set_build
 selection_criteria: {  }
