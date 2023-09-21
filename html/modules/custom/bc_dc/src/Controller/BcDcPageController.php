@@ -2,6 +2,7 @@
 
 namespace Drupal\bc_dc\Controller;
 
+use Drupal\bc_dc\Trait\ReviewReminderTrait;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Url;
 use Drupal\flag\FlagLinkBuilder;
@@ -13,6 +14,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Page callbacks.
  */
 class BcDcPageController extends ControllerBase {
+
+  use ReviewReminderTrait;
+
+  const REVIEW_NEEDED = 1;
+  const REVIEW_OVERDUE = 2;
 
   /**
    * Create a BcDcPageController instance.
@@ -177,6 +183,9 @@ class BcDcPageController extends ControllerBase {
   public function dataSetTableTheme(array $data_set_nids, array $classes, string $caption, bool $only_bookmarked = FALSE): array {
     $bookmark_flag = $this->flagService->getFlagById('bookmark');
 
+    $review_needed_message = trim($this->config('bc_dc.settings')->get('review_needed_message'), '.');
+    $review_overdue_message = trim($this->config('bc_dc.settings')->get('review_overdue_message'), '.');
+
     // Table headers.
     $header = [
       'title' => $this->t('Title'),
@@ -219,6 +228,12 @@ class BcDcPageController extends ControllerBase {
             if ($field_last_viewed_date && $data_set->field_modified_date->value > $field_last_viewed_date) {
               $badges[] = '<span class="badge text-bg-success">' . $this->t('Updated') . '</span>';
             }
+
+            match (static::dataSetReviewNeeded($data_set)) {
+              static::REVIEW_NEEDED => $badges[] = '<span class="badge text-bg-warning">' . $review_needed_message . '</span>',
+              static::REVIEW_OVERDUE => $badges[] = '<span class="badge text-bg-danger">' . $review_overdue_message . '</span>',
+              default => NULL,
+            };
 
             // Combine badges, adding a trailing space.
             $badges[] = '';
