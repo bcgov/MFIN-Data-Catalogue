@@ -738,6 +738,43 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       [div[@class = "field__label"][normalize-space(text()) = "Special flags"]]
       [div[@class = "field__item"][text() = :field_special_flags]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
+
+    // Test "Review needed" messages.
+    //
+    // Configure "Review needed" messages.
+    $review_needed_messages = [
+      'review_needed_message' => 'Review needed. ' . $this->randomString(),
+      'review_overdue_message' => 'Review overdue. ' . $this->randomString(),
+    ];
+    $this->config('bc_dc.settings')
+      // Ensure an item with a 1 month interval will appear as needing review.
+      ->set('data_set_review_period_alert', 40)
+      ->set('review_needed_message', $review_needed_messages['review_needed_message'])
+      ->set('review_overdue_message', $review_needed_messages['review_overdue_message'])
+      ->save();
+
+    // No "Review needed" message appears.
+    $this->drupalGet('node/2');
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "dc-review")]');
+
+    // Set field_review_interval so that review_needed_message should appear.
+    $data_set = Node::load(2);
+    $data_set->set('field_review_interval', 1)->save();
+    $this->drupalGet('node/2');
+    $args = [
+      ':message' => $review_needed_messages['review_needed_message'],
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "alert alert-warning dc-review")][text() = :message]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+
+    // Set field_last_review_date so that review_overdue_message should appear.
+    $data_set->set('field_last_review_date', (new \DateTime('2 months ago'))->format('Y-m-d'))->save();
+    $this->drupalGet('node/2');
+    $args = [
+      ':message' => $review_needed_messages['review_overdue_message'],
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "alert alert-error alert-danger dc-review")][text() = :message]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
   }
 
   /**
