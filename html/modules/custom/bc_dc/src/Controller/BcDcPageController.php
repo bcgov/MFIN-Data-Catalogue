@@ -162,6 +162,17 @@ class BcDcPageController extends ControllerBase {
     $classes = ['dc-dashboard-table', 'dc-dashboard-table-most-bookmarked'];
     $page['most-bookmark-table'] = $this->dataSetTableTheme(array_keys($bookmark_nids), $classes, $this->t('Most bookmarked data sets'), TRUE);
 
+    // Table of data_set nodes by this user that need review.
+    $data_set_nids_need_review = [];
+    $data_sets = $this->entityTypeManager()->getStorage('node')->loadMultiple($data_set_nids);
+    foreach ($data_sets as $data_set) {
+      if (static::dataSetReviewNeeded($data_set)) {
+        $data_set_nids_need_review[] = $data_set->id();
+      }
+    }
+    $classes = ['dc-dashboard-table', 'dc-dashboard-table-my-review-data-sets'];
+    $page['data_set-need-review-table'] = $this->dataSetTableTheme($data_set_nids_need_review, $classes, $this->t('My data sets that need review'));
+
     return $page;
   }
 
