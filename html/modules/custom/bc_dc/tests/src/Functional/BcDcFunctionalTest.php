@@ -390,7 +390,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // The data set updated message should appear.
     $this->drupalGet('user/1');
     $this->assertSession()->elementExists('xpath', '//table[contains(@class, "dc-dashboard-table-bookmarks")]//tr
-      [td/span[@class = "updated"][text() = "Updated:"]]
+      [td/span[@class = "badge text-bg-success"][text() = "Updated"]]
       [td/a[@href = "/node/2/build"]]');
 
     // Examine logs to check that update notification emails would have been

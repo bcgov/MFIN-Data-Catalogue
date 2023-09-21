@@ -210,12 +210,19 @@ class BcDcPageController extends ControllerBase {
         switch ($column_key) {
           case 'title':
             $cell = ['data' => $data_set->toLink()->toRenderable()];
+
+            $badges = [];
+
             // Display indication that data_set has been modified since view.
             $bookmark_flagging = $this->flagService->getFlagging($bookmark_flag, $data_set);
             $field_last_viewed_date = $bookmark_flagging?->get('field_last_viewed_date')->value;
             if ($field_last_viewed_date && $data_set->field_modified_date->value > $field_last_viewed_date) {
-              $cell['data']['#prefix'] = '<span class="updated">Updated:</span> ';
+              $badges[] = '<span class="badge text-bg-success">' . $this->t('Updated') . '</span>';
             }
+
+            // Combine badges, adding a trailing space.
+            $badges[] = '';
+            $cell['data']['#prefix'] = implode(' ', $badges);
             break;
 
           case 'count':
