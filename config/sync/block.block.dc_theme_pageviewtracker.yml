@@ -1,0 +1,36 @@
+uuid: 97fa5b89-e5b9-4b11-8313-36bae1f98d66
+langcode: en
+status: true
+dependencies:
+  module:
+    - bc_dc
+    - node
+    - user
+  theme:
+    - dc_theme
+id: dc_theme_pageviewtracker
+theme: dc_theme
+region: header
+weight: 0
+provider: null
+plugin: bc_dc_page_view_tracker
+settings:
+  id: bc_dc_page_view_tracker
+  label: 'Page view tracker'
+  label_display: '0'
+  provider: bc_dc
+visibility:
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      authenticated: authenticated
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      data_set: data_set
