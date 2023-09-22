@@ -380,6 +380,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->drupalGet('user/1');
     $this->assertSession()->statusCodeEquals(200);
     $this->assertSession()->elementExists('xpath', '//table[contains(@class, "dc-dashboard-table-mydatasets")]//tr/td[text() = "No data sets to show."]');
+    $this->assertSession()->elementExists('xpath', '//table[contains(@class, "dc-dashboard-table-my-review-data-sets")]//tr/td[text() = "No data sets to show."]');
 
     // Test data set update message.
     //
@@ -774,6 +775,20 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       ':message' => $review_needed_messages['review_overdue_message'],
     ];
     $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "alert alert-error alert-danger dc-review")][text() = :message]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+
+    // Test "My data sets that need review" table.
+    $this->drupalLogin($this->rootUser);
+    $this->drupalGet('user/1');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->elementNotExists('xpath', '//table[contains(@class, "dc-dashboard-table-my-review-data-sets")]//tr/td[text() = "No data sets to show."]');
+    $args = [
+      ':review_overdue_message' => $review_needed_messages['review_overdue_message'],
+      ':data_set_title' => $data_set_title,
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "dc-dashboard-table-my-review-data-sets")]//tr/td
+      [span[@class = "badge text-bg-danger"][text() = :review_overdue_message]]
+      [a[text() = :data_set_title]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
   }
 
