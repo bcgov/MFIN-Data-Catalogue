@@ -34,7 +34,7 @@ function dc_theme_preprocess_node__data_set__full(array &$variables): void {
   // Make author name available in the template.
   //
   // Author of this node.
-  $author = $variables['node']->getRevisionUser();
+  $author = $variables['node']->getOwner();
 
   // If the search page route exists, make the author name be a link to it.
   if (\Drupal::service('router.route_provider')->getRoutesByNames(['page_manager.page_view_site_search_site_search-panels_variant-0'])) {
