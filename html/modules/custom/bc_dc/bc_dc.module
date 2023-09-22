@@ -5,7 +5,6 @@
  * Module file.
  */
 
-use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
@@ -96,27 +95,6 @@ function bc_dc_entity_display_build_alter(array &$build, array $context): void {
         '0' => $markup,
       ] + $build[$field_name];
     }
-  }
-}
-
-/**
- * Implements hook_ENTITY_TYPE_view() for node.
- */
-function bc_dc_node_view(array &$build, NodeInterface $entity, EntityViewDisplayInterface $display, string $view_mode): void {
-  // Act only on data_set nodes.
-  if ($entity->bundle() !== 'data_set') {
-    return;
-  }
-
-  // If there is a bookmark by the user, record that the node has been viewed.
-  // Load the bookmark for this user for this node.
-  $flag_service = \Drupal::service('flag');
-  $bookmark_flag = $flag_service->getFlagById('bookmark');
-  $bookmark_flagging = $flag_service->getFlagging($bookmark_flag, $entity);
-  // Update field_last_viewed_date to now.
-  if ($bookmark_flagging) {
-    $bookmark_flagging->set('field_last_viewed_date', date('Y-m-d\TH:i:s'));
-    $bookmark_flagging->save();
   }
 }
 
