@@ -258,3 +258,21 @@ function bc_dc_taxonomy_term_presave(TermInterface $term): void {
     $term->set('field_schedule_code', $new_code);
   }
 }
+
+/**
+ * Implements hook_cron().
+ */
+function bc_dc_cron(): void {
+  // Limit to running once a day.
+  $request_time = \Drupal::time()->getRequestTime();
+  $cron_last_run = \Drupal::state()->get('bc_dc.cron_last_run', 0);
+  if (date('Y-m-d', $request_time) === date('Y-m-d', $cron_last_run)) {
+    return;
+  }
+  // Record that this function has run.
+  \Drupal::state()->set('bc_dc.cron_last_run', $request_time);
+
+  // Send review reminders.
+  $reviewReminder = \Drupal::service('bc_dc.review_reminder');
+  $reviewReminder->sendRemindersToAllUsers();
+}
