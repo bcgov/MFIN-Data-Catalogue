@@ -8,7 +8,7 @@ third_party_settings:
   menu_ui:
     available_menus: {  }
     parent: ''
-name: 'Data set'
+name: 'Metadata record'
 type: data_set
 description: ''
 help: ''
