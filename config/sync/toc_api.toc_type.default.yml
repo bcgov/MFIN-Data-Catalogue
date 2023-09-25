@@ -16,7 +16,7 @@ options:
   header_allowed_tags: '<em> <b> <del> <i> <mark> <s> <span> <strong> <sup> <sub> <em> <b> <del> <i> <mark> <s> <span> <strong> <sup> <sub>'
   header_id: title
   header_id_prefix: section
-  header_exclude_xpath: ''
+  header_exclude_xpath: '//*[contains(@class,"toc-ignore")]'
   top_label: 'Back to top'
   top_min: 2
   top_max: 2
