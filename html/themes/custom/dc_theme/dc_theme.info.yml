@@ -17,3 +17,4 @@ regions:
 
 libraries:
   - dc_theme/devel
+  - dc_theme/style

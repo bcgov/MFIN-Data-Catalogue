@@ -1,0 +1,11 @@
+// BC data catalogue styles
+
+@import
+//get variables, functions and mixins from bcbb theme
+'../../../contrib/bcbb_theme/scss/variables',
+'../../../contrib/bcbb_theme/scss/functions',
+'../../../contrib/bcbb_theme/scss/mixins';
+
+@import
+// local styles
+'./components/bookmark';

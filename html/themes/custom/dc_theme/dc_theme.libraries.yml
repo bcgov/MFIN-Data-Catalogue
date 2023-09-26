@@ -2,3 +2,8 @@ devel:
   css:
     theme:
       css/devel.css: {}
+
+style:
+  css:
+    theme:
+      css/style.css: {}
