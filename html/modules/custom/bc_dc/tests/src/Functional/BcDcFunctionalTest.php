@@ -175,7 +175,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
       'edit-status-value' => FALSE,
     ];
     $this->submitForm($edit, 'Save');
-    $this->assertSession()->pageTextContains('Data set ' . $edit['edit-title-0-value'] . ' has been created');
+    $this->assertSession()->pageTextContains('Metadata record ' . $edit['edit-title-0-value'] . ' has been created');
     // Test for breadcrumb link.
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "region-breadcrumb")]//li[@class = "breadcrumb-item"]//a[@href = "/data-set"]');
 
