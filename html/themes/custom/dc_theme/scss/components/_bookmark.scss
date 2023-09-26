@@ -1,0 +1,25 @@
+.flag-bookmark {
+  a {
+    text-decoration: none;
+    line-height: 1.15;
+  }
+  .title {
+    display: flex;
+    align-items: center;
+    .dc-icon {
+      display: inline-block;
+      margin-right: .5em;
+      font-size: 1.15em;
+    }
+    &:hover,
+    &:active,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+  .count {
+    display: block;
+    margin-left: 1.65em;
+  }
+  margin-bottom: 1em;
+}

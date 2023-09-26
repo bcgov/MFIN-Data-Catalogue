@@ -3,16 +3,6 @@
  * CSS needed during development
  */
 
-/* Display bookmark buttons inline. */
-div.flag-bookmark {
-  display: inline;
-}
-
-/* Bookmark count messages. */
-div.flag-bookmark > a > span.count {
-  font-size: 80%;
-  display: block;
-}
 
 /* Margin between dashboard items. */
 div.dc-dashboard-actions,
