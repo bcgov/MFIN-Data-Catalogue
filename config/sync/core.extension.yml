@@ -59,7 +59,6 @@ module:
   metatag: 0
   mysql: 0
   node: 0
-  oauth2_client: 0
   openid_connect: 0
   options: 0
   page_cache: 0
@@ -103,7 +102,6 @@ module:
   externalauth: 10
   views: 10
   paragraphs: 11
-  o365: 100
   standard: 1000
 theme:
   claro: 0
