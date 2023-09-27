@@ -336,7 +336,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Bookmark an item.
     $this->clickLink('Bookmark');
     $this->assertSession()->pageTextContains('Item added to your bookmarks');
-    $this->assertSession()->elementExists('xpath', '//a[*[@class = "title"][text() = "Remove bookmark"]][*[@class = "count"][text() = "Bookmarked by 1 person"]]');
+    $this->assertSession()->elementExists('xpath', '//a[*[contains(@class, "title")][contains(text(), "Remove bookmark")]][*[contains(@class, "count")][contains(text(), "Bookmarked by 1 person")]]');
     $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "dc-dashboard-table-bookmarks")]//tr/td/a[text() = "Build"][@class = "button"][@aria-label = :data_set_title][@href = "/node/2/build"]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     $this->assertSession()->elementNotExists('xpath', '//table[contains(@class, "dc-dashboard-table-bookmarks")]//tr/td[text() = "No data sets to show."]');
@@ -349,7 +349,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSession()->elementExists('xpath', $xpath);
     // View page has link to remove bookmark.
     $this->drupalGet('node/2');
-    $this->assertSession()->elementExists('xpath', '//a[*[@class = "title"][text() = "Remove bookmark"]][*[@class = "count"][text() = "Bookmarked by 1 person"]]');
+    $this->assertSession()->elementExists('xpath', '//a[*[contains(@class, "title")][contains(text(), "Remove bookmark")]][*[contains(@class, "count")][contains(text(), "Bookmarked by 1 person")]]');
     // Revisions and diff are enabled and available.
     $this->assertSession()->elementExists('xpath', '//nav[contains(@class, "tabs")]/ul/li/a[@href = "/node/2/revisions"]');
     $this->assertTrue(\Drupal::service('module_handler')->moduleExists('diff'), 'Module diff should be enabled.');
@@ -524,11 +524,11 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->drupalLogin($this->users['Test Data catalogue user']);
     $this->drupalGet('node/2');
     // Bookmarked by 1.
-    $this->assertSession()->elementExists('xpath', '//a[*[@class = "title"][text() = "Bookmark"]][*[@class = "count"][text() = "Bookmarked by 1 person"]]');
+    $this->assertSession()->elementExists('xpath', '//a[*[contains(@class, "title")][contains(text(), "Bookmark")]][*[contains(@class, "count")][contains(text(), "Bookmarked by 1 person")]]');
     // Add a bookmark.
     $this->click('div.flag-bookmark.action-flag > a');
     // Bookmarked by 2.
-    $this->assertSession()->elementExists('xpath', '//a[*[@class = "title"][text() = "Remove bookmark"]][*[@class = "count"][text() = "Bookmarked by 2 people"]]');
+    $this->assertSession()->elementExists('xpath', '//a[*[contains(@class, "title")][contains(text(), "Remove bookmark")]][*[contains(@class, "count")][contains(text(), "Bookmarked by 2 people")]]');
 
     // Saved searches.
     //
