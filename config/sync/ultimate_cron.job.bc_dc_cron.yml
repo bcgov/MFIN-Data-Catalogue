@@ -1,0 +1,17 @@
+uuid: 3e4d45de-4b9b-4741-9664-5409916dad81
+langcode: en
+status: true
+dependencies:
+  module:
+    - bc_dc
+title: 'Default cron handler'
+id: bc_dc_cron
+weight: 0
+module: bc_dc
+callback: bc_dc_cron
+scheduler:
+  id: simple
+launcher:
+  id: serial
+logger:
+  id: database

@@ -1,0 +1,17 @@
+uuid: 3a2f1f4b-72c4-4fc0-a523-a3e3003624fb
+langcode: en
+status: true
+dependencies:
+  module:
+    - message_gcnotify
+title: 'Default cron handler'
+id: message_gcnotify_cron
+weight: 0
+module: message_gcnotify
+callback: message_gcnotify_cron
+scheduler:
+  id: simple
+launcher:
+  id: serial
+logger:
+  id: database
