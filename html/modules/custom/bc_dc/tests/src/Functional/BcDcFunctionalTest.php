@@ -307,13 +307,23 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSession()->statusCodeEquals(200);
     // Test that field_security_classification widget is radio buttons.
     $this->assertSession()->elementExists('xpath', '//div[@id = "edit-field-security-classification"]//input[@type = "radio"]');
-    // Test that long text gets trimmed.
+    // Submit with some updates.
     $edit = [
       'edit-body-0-value' => 'Data set description ' . $this->randomString() . ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+      'edit-field-is-complete-review-value' => TRUE,
     ];
     $this->submitForm($edit, 'Save');
+    // Test that long text gets trimmed.
     $this->assertSession()->pageTextContains('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
     $this->assertSession()->pageTextNotContains('Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.');
+    // field_last_review should display today.
+    $args = [
+      ':class' => 'field--name-field-last-review-date',
+      ':label' => 'Last review date',
+      ':text' => date('Y-m-d'),
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div/time[text() = :text]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
 
     // Data set dashboard.
     $this->drupalGet('user/1');
