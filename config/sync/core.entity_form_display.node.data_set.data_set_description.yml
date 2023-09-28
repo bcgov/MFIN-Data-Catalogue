@@ -17,6 +17,7 @@ dependencies:
     - field.field.node.data_set.field_granularity
     - field.field.node.data_set.field_high_value_info
     - field.field.node.data_set.field_information_schedule
+    - field.field.node.data_set.field_is_complete_review
     - field.field.node.data_set.field_last_review_date
     - field.field.node.data_set.field_modified_date
     - field.field.node.data_set.field_primary_responsibility_org
@@ -114,6 +115,13 @@ content:
       create_new_levels: false
       force_deepest: true
     third_party_settings: {  }
+  field_is_complete_review:
+    type: boolean_checkbox
+    weight: 22
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_modified_date:
     type: datetime_default
     weight: 7
@@ -186,7 +194,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 22
+    weight: 23
     region: content
     settings:
       display_label: true

@@ -1,0 +1,21 @@
+uuid: ce15d8cd-a9db-4e50-81b5-a2804fb6eee5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_is_complete_review
+    - node.type.data_set
+id: node.data_set.field_is_complete_review
+field_name: field_is_complete_review
+entity_type: node
+bundle: data_set
+label: 'Check this if this is a complete review'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

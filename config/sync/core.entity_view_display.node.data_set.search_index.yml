@@ -17,6 +17,7 @@ dependencies:
     - field.field.node.data_set.field_granularity
     - field.field.node.data_set.field_high_value_info
     - field.field.node.data_set.field_information_schedule
+    - field.field.node.data_set.field_is_complete_review
     - field.field.node.data_set.field_last_review_date
     - field.field.node.data_set.field_modified_date
     - field.field.node.data_set.field_primary_responsibility_org
@@ -221,6 +222,7 @@ content:
 hidden:
   field_active_period: true
   field_final_disposition: true
+  field_is_complete_review: true
   field_last_review_date: true
   field_review_interval: true
   field_semi_active_period: true
