@@ -102,6 +102,22 @@ function bc_dc_entity_display_build_alter(array &$build, array $context): void {
 }
 
 /**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function bc_dc_node_presave(NodeInterface $entity): void {
+  // Act only on data_set nodes.
+  if ($entity->bundle() !== 'data_set') {
+    return;
+  }
+
+  // When is_complete_review is checked, set field_last_review_date to now.
+  if ($entity->get('field_is_complete_review')->value) {
+    $entity->set('field_last_review_date', date('Y-m-d'));
+    $entity->set('field_is_complete_review', FALSE);
+  }
+}
+
+/**
  * Implements hook_ENTITY_TYPE_update() for node.
  */
 function bc_dc_node_update(NodeInterface $entity): void {
