@@ -203,6 +203,11 @@ function bc_dc_form_node_data_set_edit_form_alter(array &$form, FormStateInterfa
   $form['field_columns']['widget']['header_actions']['actions']['edit_all']['#access'] = FALSE;
   // Remove the "Collapse all" action.
   $form['field_columns']['widget']['header_actions']['dropdown_actions']['collapse_all']['#access'] = FALSE;
+
+  // Disable if no review interval is set.
+  if (isset($form['field_is_complete_review'])) {
+    $form['field_is_complete_review']['#states']['disabled'][':input[id="edit-field-review-interval-0-value"]'] = ['empty' => TRUE];
+  }
 }
 
 /**
