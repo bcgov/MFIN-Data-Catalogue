@@ -790,6 +790,52 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       [span[@class = "badge text-bg-danger"][text() = :review_overdue_message]]
       [a[text() = :data_set_title]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
+
+    // Test bc_dc.review_reminder service, ReviewReminder class.
+    $bc_dc_review_reminder = \Drupal::service('bc_dc.review_reminder');
+    $data_set_url = $data_set->toUrl('canonical', ['absolute' => TRUE])->toString();
+    // Test ::getReminders().
+    $reminders = $bc_dc_review_reminder->getReminders();
+    $expected = [
+      1 => [
+        $bc_dc_review_reminder::REVIEW_OVERDUE => [
+          [
+            'title' => $data_set_title,
+            'url' => $data_set_url,
+          ],
+        ],
+      ],
+    ];
+    $this->assertSame($reminders, $expected);
+    // Test ::generateBody().
+    // Generate empty reminder body.
+    $reminderBody = $bc_dc_review_reminder->generateBody([]);
+    $this->assertNull($reminderBody);
+    // Generate reminder body for user 1.
+    $reminderBody = $bc_dc_review_reminder->generateBody($reminders[1]);
+    $expected = $review_needed_messages['review_overdue_message'] . ':
+
+' . $data_set_title . '
+' . $data_set_url;
+    $this->assertSame($reminderBody, $expected);
+    // Test ::sendRemindersToOneUser().
+    // Non-existant user.
+    $return = $bc_dc_review_reminder->sendRemindersToOneUser(10000, $reminders[1]);
+    $this->assertSame($return, NULL);
+    // Valid user, no data.
+    $return = $bc_dc_review_reminder->sendRemindersToOneUser(1, []);
+    $this->assertSame($return, NULL);
+    // Valid user, valid data, message gets sent.
+    $return = $bc_dc_review_reminder->sendRemindersToOneUser(1, $reminders[1]);
+    $this->assertTrue($return);
+    // Log entries for the above.
+    $options = [
+      'query' => ['type' => ['bc_dc', 'message_gcnotify']],
+    ];
+    $this->drupalGet('admin/reports/dblog', $options);
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-watchdog")]/div/table/tbody/tr/td/a[text() = "ReviewReminder: User 10000 has no email address."]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-watchdog")]/div/table/tbody/tr/td/a[text() = "ReviewReminder: Empty message for user 1."]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-watchdog")]/div/table/tbody/tr/td/a[text() = "Sent ReviewReminder message to user 1."]');
   }
 
   /**
