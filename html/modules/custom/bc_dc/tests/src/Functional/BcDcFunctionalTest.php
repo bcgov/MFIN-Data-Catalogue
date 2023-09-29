@@ -494,6 +494,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Test value import files.
     $file_types_to_test = [
       'csv',
+      'tsv',
       'ods',
       'xlsx',
     ];

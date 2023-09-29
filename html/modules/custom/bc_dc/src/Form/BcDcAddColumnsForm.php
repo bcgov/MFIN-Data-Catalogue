@@ -189,6 +189,19 @@ class BcDcAddColumnsForm extends FormBase {
     $inputFileType = IOFactory::identify($filePath);
     $reader = IOFactory::createReader($inputFileType);
 
+    // For CSV/TSV, set delimiter by filename.
+    if ($inputFileType === 'Csv') {
+      $delimiter = match (substr($filename, -4, 4)) {
+        '.csv' => ',',
+        '.tsv' => "\t",
+        default => NULL,
+      };
+      // Default to whatever was auto-detected.
+      if ($delimiter) {
+        $reader->setDelimiter($delimiter);
+      }
+    }
+
     // If the format supports multiple sheets per file, import the first.
     if (method_exists($reader, 'listWorksheetNames')) {
       $worksheetNames = $reader->listWorksheetNames($filePath);
