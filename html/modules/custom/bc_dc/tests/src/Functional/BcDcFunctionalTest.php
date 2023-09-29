@@ -481,15 +481,18 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       $text = $this->assertSession()->elementExists('xpath', '//div[@role = "alert"][contains(@class, "alert-error")]')->getText();
       $this->assertStringContainsString($error_message, $text, 'Error file: ' . $filename);
     }
-    // Test for error message for invalid value in entitiy reference column.
+    // Case is ignored in entitiy reference column comparison.
     $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr[1]/td[text() = "Name 1"]');
-    $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr[1]/td[@class = "error"][text() = "Invalid: integer"]');
+    $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr[1]/td[not(@class)][text() = "Integer"]');
     // Plain label for valid value in entitiy reference column.
     $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr[2]/td[text() = "Name 2"]');
     $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr[2]/td[not(@class)][text() = "Integer"]');
     // Empty for empty value in entitiy reference column.
     $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr[3]/td[text() = "Name 3"]');
     $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr[3]/td[not(@class)][not(text())]');
+    // Test for error message for invalid value in entitiy reference column.
+    $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr[4]/td[text() = "Name 4"]');
+    $this->assertSession()->elementExists('xpath', '//table[@id = "edit-import-data-table"]/tbody/tr[4]/td[@class = "error"][text() = "Invalid: invalid"]');
 
     // Test value import files.
     $file_types_to_test = [

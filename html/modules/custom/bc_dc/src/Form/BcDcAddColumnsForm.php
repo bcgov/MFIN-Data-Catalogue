@@ -111,7 +111,8 @@ class BcDcAddColumnsForm extends FormBase {
 
     $terms = [];
     foreach ($term_objects as $tid => $term) {
-      $terms[$tid] = $term->label();
+      // Setup for case-insensitive comparisons.
+      $terms[$tid] = strtolower($term->label());
     }
 
     return $terms;
@@ -319,7 +320,8 @@ class BcDcAddColumnsForm extends FormBase {
         // end of a line may not exist at all. Skip them.
         $this_value = $row[$column_index] ?? NULL;
         if (isset($this_value)) {
-          $this_tid = array_search($this_value, $terms);
+          // Use lowercase to do case-insensitive comparisons.
+          $this_tid = array_search(strtolower($this_value), $terms);
           if ($this_tid) {
             // Valid value.
             $this_value = [

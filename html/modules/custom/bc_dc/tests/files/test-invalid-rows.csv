@@ -2,3 +2,4 @@ column_name,column_type
 Name 1,integer
 Name 2,Integer
 Name 3,
+Name 4,invalid
