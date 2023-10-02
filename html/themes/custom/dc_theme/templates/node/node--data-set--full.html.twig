@@ -192,6 +192,12 @@
             </div>
           {% endif %}
 
+          {% if drupal_view_result('used_in_data_sets', 'block_1', node.nid.value) is not empty %}
+            <div class="mb-3">
+              {{ drupal_view('used_in_data_sets', 'block_1', node.nid.value) }}
+            </div>
+          {% endif %}
+
         </div>
       </div>
     </div>
