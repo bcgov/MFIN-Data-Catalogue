@@ -1,0 +1,28 @@
+uuid: 0740aaf0-a9bf-469f-9440-f713f0fca66b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_data_sets_used
+    - node.type.data_set
+id: node.data_set.field_data_sets_used
+field_name: field_data_sets_used
+entity_type: node
+bundle: data_set
+label: 'Data sets used'
+description: 'Metadata records for data sets that are used in the generation of the data set that this metadata record is about.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      data_set: data_set
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

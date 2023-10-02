@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.data_set.field_data_set_format
     - field.field.node.data_set.field_data_set_historical_change
     - field.field.node.data_set.field_data_set_type
+    - field.field.node.data_set.field_data_sets_used
     - field.field.node.data_set.field_final_disposition
     - field.field.node.data_set.field_granularity
     - field.field.node.data_set.field_high_value_info
@@ -59,6 +60,7 @@ hidden:
   field_data_set_format: true
   field_data_set_historical_change: true
   field_data_set_type: true
+  field_data_sets_used: true
   field_final_disposition: true
   field_granularity: true
   field_high_value_info: true

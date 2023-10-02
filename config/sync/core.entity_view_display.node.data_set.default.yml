@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.data_set.field_data_set_format
     - field.field.node.data_set.field_data_set_historical_change
     - field.field.node.data_set.field_data_set_type
+    - field.field.node.data_set.field_data_sets_used
     - field.field.node.data_set.field_final_disposition
     - field.field.node.data_set.field_granularity
     - field.field.node.data_set.field_high_value_info
@@ -115,6 +116,14 @@ content:
       link: false
     third_party_settings: {  }
     weight: 15
+    region: content
+  field_data_sets_used:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 26
     region: content
   field_final_disposition:
     type: field_token_value_text
