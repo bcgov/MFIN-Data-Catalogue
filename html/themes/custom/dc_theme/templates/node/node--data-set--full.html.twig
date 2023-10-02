@@ -186,6 +186,12 @@
             </div>
           {% endif %}
 
+          {% if node.field_data_sets_used and not node.field_data_sets_used.isempty %}
+            <div class="mb-3">
+              {{ node.field_data_sets_used|view }}
+            </div>
+          {% endif %}
+
         </div>
       </div>
     </div>
