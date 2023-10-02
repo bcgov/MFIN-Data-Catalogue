@@ -20,7 +20,6 @@ dependencies:
     - field.storage.node.field_security_classification
     - field.storage.node.field_series
     - field.storage.node.field_source_system
-    - field.storage.node.field_used_in_products
     - field.storage.paragraph.field_metadata_type
     - search_api.index.default_index
   module:
@@ -344,8 +343,6 @@ display:
                 display_method: label
               data_granularity:
                 display_method: label
-              data_product:
-                display_method: label
               data_set_format:
                 display_method: label
               data_set_series:
@@ -369,8 +366,6 @@ display:
               source_system:
                 display_method: label
               tags:
-                display_method: label
-              used_in_products:
                 display_method: label
         body:
           id: body
@@ -571,8 +566,6 @@ display:
                 display_method: label
               data_granularity:
                 display_method: label
-              data_product:
-                display_method: label
               data_set_format:
                 display_method: label
               data_set_series:
@@ -596,8 +589,6 @@ display:
               source_system:
                 display_method: label
               tags:
-                display_method: label
-              used_in_products:
                 display_method: label
         created:
           id: created
@@ -973,8 +964,6 @@ display:
                 display_method: label
               data_granularity:
                 display_method: label
-              data_product:
-                display_method: label
               data_set_format:
                 display_method: label
               data_set_series:
@@ -998,8 +987,6 @@ display:
               source_system:
                 display_method: label
               tags:
-                display_method: label
-              used_in_products:
                 display_method: label
         field_critical_information:
           id: field_critical_information
@@ -1308,8 +1295,6 @@ display:
                 display_method: label
               data_granularity:
                 display_method: label
-              data_product:
-                display_method: label
               data_set_format:
                 display_method: label
               data_set_series:
@@ -1333,8 +1318,6 @@ display:
               source_system:
                 display_method: label
               tags:
-                display_method: label
-              used_in_products:
                 display_method: label
         field_granularity:
           id: field_granularity
@@ -1412,8 +1395,6 @@ display:
                 display_method: label
               data_granularity:
                 display_method: label
-              data_product:
-                display_method: label
               data_set_format:
                 display_method: label
               data_set_series:
@@ -1437,8 +1418,6 @@ display:
               source_system:
                 display_method: label
               tags:
-                display_method: label
-              used_in_products:
                 display_method: label
         field_data_set_type:
           id: field_data_set_type
@@ -1516,8 +1495,6 @@ display:
                 display_method: label
               data_granularity:
                 display_method: label
-              data_product:
-                display_method: label
               data_set_format:
                 display_method: label
               data_set_series:
@@ -1541,8 +1518,6 @@ display:
               source_system:
                 display_method: label
               tags:
-                display_method: label
-              used_in_products:
                 display_method: label
         field_data_set_format:
           id: field_data_set_format
@@ -1620,8 +1595,6 @@ display:
                 display_method: label
               data_granularity:
                 display_method: label
-              data_product:
-                display_method: label
               data_set_format:
                 display_method: label
               data_set_series:
@@ -1645,8 +1618,6 @@ display:
               source_system:
                 display_method: label
               tags:
-                display_method: label
-              used_in_products:
                 display_method: label
         field_product_type:
           id: field_product_type
@@ -1724,8 +1695,6 @@ display:
                 display_method: label
               data_granularity:
                 display_method: label
-              data_product:
-                display_method: label
               data_set_format:
                 display_method: label
               data_set_series:
@@ -1749,112 +1718,6 @@ display:
               source_system:
                 display_method: label
               tags:
-                display_method: label
-              used_in_products:
-                display_method: label
-        field_used_in_products:
-          id: field_used_in_products
-          table: search_api_datasource_default_index_entity_node
-          field: field_used_in_products
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          plugin_id: search_api_field
-          label: ''
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: true
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: false
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          field_rendering: true
-          fallback_handler: search_api_entity
-          fallback_options:
-            link_to_item: false
-            use_highlighting: false
-            multi_type: separator
-            multi_separator: ', '
-            display_methods:
-              common_data:
-                display_method: label
-              data_granularity:
-                display_method: label
-              data_product:
-                display_method: label
-              data_set_format:
-                display_method: label
-              data_set_series:
-                display_method: label
-              data_set_type:
-                display_method: label
-              data_system:
-                display_method: label
-              data_type:
-                display_method: label
-              information_schedule:
-                display_method: label
-              metadata_type:
-                display_method: label
-              organization:
-                display_method: label
-              product_type:
-                display_method: label
-              security_classification:
-                display_method: label
-              source_system:
-                display_method: label
-              tags:
-                display_method: label
-              used_in_products:
                 display_method: label
         field_information_schedule:
           id: field_information_schedule
@@ -1932,8 +1795,6 @@ display:
                 display_method: label
               data_granularity:
                 display_method: label
-              data_product:
-                display_method: label
               data_set_format:
                 display_method: label
               data_set_series:
@@ -1957,8 +1818,6 @@ display:
               source_system:
                 display_method: label
               tags:
-                display_method: label
-              used_in_products:
                 display_method: label
         field_columns:
           id: field_columns
@@ -2106,8 +1965,6 @@ display:
                 display_method: label
               data_granularity:
                 display_method: label
-              data_product:
-                display_method: label
               data_set_format:
                 display_method: label
               data_set_series:
@@ -2131,8 +1988,6 @@ display:
               source_system:
                 display_method: label
               tags:
-                display_method: label
-              used_in_products:
                 display_method: label
         views_bulk_operations_bulk_form:
           id: views_bulk_operations_bulk_form
@@ -2280,9 +2135,6 @@ display:
                   field_unique_identifier:
                     active: true
                     label: unique_identifier
-                  field_used_in_products:
-                    active: true
-                    label: used_in_products
                 separator: ;
             10:
               action_id: vbo_export_generate_xlsx_action
@@ -2372,9 +2224,6 @@ display:
                   field_unique_identifier:
                     active: true
                     label: unique_identifier
-                  field_used_in_products:
-                    active: true
-                    label: used_in_products
         nothing:
           id: nothing
           table: views
@@ -2664,7 +2513,6 @@ display:
         - 'config:field.storage.node.field_security_classification'
         - 'config:field.storage.node.field_series'
         - 'config:field.storage.node.field_source_system'
-        - 'config:field.storage.node.field_used_in_products'
         - 'config:field.storage.paragraph.field_metadata_type'
         - 'config:search_api.index.default_index'
         - 'search_api_list:default_index'
@@ -2710,7 +2558,6 @@ display:
         - 'config:field.storage.node.field_security_classification'
         - 'config:field.storage.node.field_series'
         - 'config:field.storage.node.field_source_system'
-        - 'config:field.storage.node.field_used_in_products'
         - 'config:field.storage.paragraph.field_metadata_type'
         - 'config:search_api.index.default_index'
         - 'search_api_list:default_index'

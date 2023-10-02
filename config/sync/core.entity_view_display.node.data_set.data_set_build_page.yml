@@ -29,7 +29,6 @@ dependencies:
     - field.field.node.data_set.field_series
     - field.field.node.data_set.field_source_system
     - field.field.node.data_set.field_special_flags
-    - field.field.node.data_set.field_used_in_products
     - node.type.data_set
   module:
     - datetime
@@ -206,14 +205,6 @@ content:
       link: false
     third_party_settings: {  }
     weight: 14
-    region: content
-  field_used_in_products:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: false
-    third_party_settings: {  }
-    weight: 19
     region: content
   links:
     settings: {  }

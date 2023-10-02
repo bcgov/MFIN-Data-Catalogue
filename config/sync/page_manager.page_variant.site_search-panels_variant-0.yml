@@ -9,7 +9,6 @@ dependencies:
     - facets.facet.primary_responsibility_org
     - facets.facet.series
     - facets.facet.source_system
-    - facets.facet.used_in_products
     - facets_summary.facets_summary.facets_summary
     - page_manager.page.site_search
     - search_api_saved_searches.type.default
@@ -91,15 +90,6 @@ variant_settings:
       region: sidebar
       weight: 0
       uuid: b3a5361e-8717-4a04-b844-e142215690b9
-    7413324e-643a-48b5-a689-9362681ca9eb:
-      id: 'facet_block:used_in_products'
-      label: 'Used in products'
-      label_display: visible
-      provider: facets
-      context_mapping: {  }
-      region: sidebar
-      weight: 1
-      uuid: 7413324e-643a-48b5-a689-9362681ca9eb
     a78f5c87-f560-4137-996d-c1fcb2b09db1:
       id: 'facets_summary_block:facets_summary'
       label: 'Current search filters'

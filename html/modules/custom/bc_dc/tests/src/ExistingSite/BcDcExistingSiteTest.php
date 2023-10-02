@@ -85,7 +85,6 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "sidebar-region")]/div/section[contains(@class, "block-facet-blockprimary-responsibility-org")]/header/h2');
     $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "sidebar-region")]/div/section[contains(@class, "block-facet-blockseries")]/header/h2');
     $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "sidebar-region")]/div/section[contains(@class, "block-facet-blocksource-system")]/header/h2');
-    $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "sidebar-region")]/div/section[contains(@class, "block-facet-blockused-in-products")]/header/h2');
     $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "sidebar-region")]/div/section[contains(@class, "block-facet-blockmetadata-type")]/header/h2');
     // Facet summary does not exist when no facets are selected.
     $container = $this->assertSession()->pageTextNotContains('Current search filters');

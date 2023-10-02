@@ -10,7 +10,6 @@ dependencies:
     - field.storage.node.field_primary_responsibility_org
     - field.storage.node.field_series
     - field.storage.node.field_source_system
-    - field.storage.node.field_used_in_products
     - search_api.server.solr
     - core.entity_view_mode.node.search_index
   module:
@@ -148,14 +147,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_source_system
-  field_used_in_products:
-    label: 'Used in products'
-    datasource_id: 'entity:node'
-    property_path: field_used_in_products
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_used_in_products
   node_grants:
     label: 'Node access information'
     property_path: search_api_node_grants

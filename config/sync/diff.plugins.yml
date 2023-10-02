@@ -269,12 +269,6 @@ fields:
       settings:
         show_header: 1
         markdown: drupal_html_to_text
-    field_used_in_products:
-      type: entity_reference_field_diff_builder
-      settings:
-        show_header: 1
-        markdown: drupal_html_to_text
-        compare_entity_reference: 1
   path_alias:
     langcode:
       type: core_field_diff_builder

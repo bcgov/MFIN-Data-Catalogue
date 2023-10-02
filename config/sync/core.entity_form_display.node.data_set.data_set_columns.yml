@@ -29,7 +29,6 @@ dependencies:
     - field.field.node.data_set.field_series
     - field.field.node.data_set.field_source_system
     - field.field.node.data_set.field_special_flags
-    - field.field.node.data_set.field_used_in_products
     - node.type.data_set
   module:
     - paragraphs
@@ -90,7 +89,6 @@ hidden:
   field_series: true
   field_source_system: true
   field_special_flags: true
-  field_used_in_products: true
   path: true
   promote: true
   status: true

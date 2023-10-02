@@ -258,7 +258,6 @@ class BcDcFunctionalTest extends BrowserTestBase {
       'field--name-body' => 'Data set description',
       'field--name-field-data-quality-issues' => 'Data quality issues',
       'field--name-field-data-set-historical-change' => 'Data set historical change',
-      'field--name-field-used-in-products' => 'Used in products',
     ];
     foreach ($fields_inline_optional as $class => $label) {
       $args = [
