@@ -839,6 +839,38 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-watchdog")]/div/table/tbody/tr/td/a[text() = "ReviewReminder: User 10000 has no email address."]');
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-watchdog")]/div/table/tbody/tr/td/a[text() = "ReviewReminder: Empty message for user 1."]');
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-watchdog")]/div/table/tbody/tr/td/a[text() = "Sent ReviewReminder message to user 1."]');
+
+    // Test field_data_sets_used.
+    // Create a data_set node.
+    $this->drupalGet('node/add/data_set', ['query' => ['display' => 'data_set_description']]);
+    $this->assertSession()->statusCodeEquals(200);
+    $data_set_title_2 = 'Test data set Two ' . $this->randomString();
+    $edit = [
+      'edit-title-0-value' => $data_set_title_2,
+      'edit-status-value' => TRUE,
+      // Set node/2 as a data_set used by this data_set.
+      'edit-field-data-sets-used-0-target-id' => 'Title (2)',
+    ];
+    $this->submitForm($edit, 'Save');
+    // Page has "Data sets used" with link to node/2.
+    $args = [
+      ':data_set_title' => $data_set_title,
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div
+      [//div[text() = "Data sets used"]]
+      [//a[text() = :data_set_title]]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+    $this->assertSession()->elementNotExists('xpath', '//div[text() = "Used-in data sets"]');
+    // Check node/2 for link back.
+    $this->drupalGet('node/2');
+    $args = [
+      ':data_set_title_2' => $data_set_title_2,
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div
+      [//div[text() = "Used-in data sets"]]
+      [//a[text() = :data_set_title_2]]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+    $this->assertSession()->elementNotExists('xpath', '//div[text() = "Data sets used"]');
   }
 
   /**
