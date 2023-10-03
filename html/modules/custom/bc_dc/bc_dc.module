@@ -45,7 +45,7 @@ function bc_dc_preprocess_flag(array &$variables): void {
       '@count' => $node_bookmark_count,
     ];
     $count_message = \Drupal::translation()->formatPlural($node_bookmark_count, 'Bookmarked by 1 person', 'Bookmarked by @count people', $args);
-    $variables['title']['#markup'] = '<span class="title dc-label"><span class="dc-icon fa-solid fa-bookmark"></span> ' . $variables['title']['#markup'] . '</span> <span class="count small">' . $count_message->render() . '</span>';
+    $variables['title']['#markup'] = '<span class="title dc-label icon-bi-bookmark-dash-fill">' . $variables['title']['#markup'] . '</span> <span class="count small">' . $count_message->render() . '</span>';
   }
 }
 
