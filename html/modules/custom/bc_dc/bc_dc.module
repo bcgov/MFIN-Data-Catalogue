@@ -278,7 +278,6 @@ function bc_dc_cron(): void {
 }
 
 /**
- *
  * Implements hook_form_alter.
  */
 function bc_dc_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
@@ -289,8 +288,8 @@ function bc_dc_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_sta
     if ($paragraph_field_items) {
       $form['data_dictionary'] = [
         '#markup' =>
-          '<p><a href="/node/'. $nid['nid'] . '/download/columns/csv">Download current data dictionary file to CSV</a></p>
-         <p><a href="/node/'. $nid['nid'] . '/download/columns/excel">Download current data dictionary file to Excel</a></p>',
+          '<p><a href="/node/' . $nid['nid'] . '/download/columns/csv">Download current data dictionary file to CSV</a></p>
+         <p><a href="/node/' . $nid['nid'] . '/download/columns/xlsx">Download current data dictionary file to Excel</a></p>',
       ];
       $form['data_dictionary']['#weight'] = 0;
     }
