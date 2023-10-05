@@ -97,6 +97,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
    * Tests.
    */
   public function test(): void {
+    
     $this->drupalGet('');
     $this->assertSession()->statusCodeEquals(200);
 
@@ -535,7 +536,15 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->statusCodeEquals(200);
     // Page has ISO dates.
     $this->isoDateTest();
+    
+    // Anonymous has access to download csv of data dictionary.
+    $this->drupalGet('node/19/download/columns/csv');
+    $this->assertFileExists('/var/www/html/html/sites/default/files/data_dictionary/Property Transfer Tax (PTT) Audit Cases_ID_19.csv');
 
+    // Anonymous has access to download excel of data dictionary.
+    $this->drupalGet('node/19/download/columns/excel');
+    $this->assertFileExists('/var/www/html/html/sites/default/files/data_dictionary/Property Transfer Tax (PTT) Audit Cases_ID_19.xlsx');
+     
     // Test adding bookmarks.
     $this->drupalLogin($this->users['Test Data catalogue user']);
     $this->drupalGet('node/2');
