@@ -19,15 +19,15 @@ class BcDcCreateFileController extends ControllerBase {
   /**
    * Returns a downloadable file.
    */
-public function createFile($node, $param) 
+public function createFile($node, $param)
 {
     $nid = $node->get('nid')->getValue()[0]['value'];
     $alias = \Drupal::service('path_alias.manager')->getAliasByPath('/node/'.$nid);
     $path = str_replace("/data-set/", "", $alias);
-
-    if ($param === 'csv' || $param === 'xlsx') {
-        $paragraph = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
-        $paragraph_field_items = $paragraph->get('field_columns')->referencedEntities();
+    $allowedExt = ['csv', 'xlsx'];
+    if (in_array($param, $allowedExt)) {
+        $entity = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
+        $paragraph_field_items = $entity->get('field_columns')->referencedEntities();
         foreach ($paragraph_field_items as $paragraph) {
             // Get the translation
             $paragraph = \Drupal::service('entity.repository')->getTranslationFromContext($paragraph);
@@ -60,32 +60,32 @@ public function createFile($node, $param)
         ];
 
         $spreadsheet = new Spreadsheet();
-
-        if ($param === 'xlsx') {
+        switch ($param) {
+          case 'csv':
             $filename = $path . '_ID_' . $nid . '.xlsx';
             // Save to file.
             $worksheets = new \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet($spreadsheet, "Sheet 1");
             $spreadsheet->addSheet($worksheets, 0);
             $worksheets->fromArray($sheetData);
             foreach ($worksheets as $worksheet) {
-                foreach ($worksheet->getColumnIterator() as $column) {
-                    $worksheet->getColumnDimension($column->getColumnIndex())->setAutoSize(TRUE);
-                }
+              foreach ($worksheet->getColumnIterator() as $column) {
+                $worksheet->getColumnDimension($column->getColumnIndex())->setAutoSize(TRUE);
+              }
             }
             $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
             $directory = 'public://data_dictionary/' . $filename;
             $writer->save($directory);
 
-        } elseif ($param === 'csv') {
+          case 'xlsx':
             $filename = $path . '_ID_' . $nid . '.csv';
             $mySpreadsheet = new Spreadsheet();
             $worksheets = new \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet($mySpreadsheet, "Sheet 1");
             $mySpreadsheet->addSheet($worksheets, 0);
             $worksheets->fromArray($sheetData);
             foreach ($worksheets as $worksheet) {
-                foreach ($worksheet->getColumnIterator() as $column) {
-                    $worksheet->getColumnDimension($column->getColumnIndex())->setAutoSize(TRUE);
-                }
+              foreach ($worksheet->getColumnIterator() as $column) {
+                $worksheet->getColumnDimension($column->getColumnIndex())->setAutoSize(TRUE);
+              }
             }
             $writer = new \PhpOffice\PhpSpreadsheet\Writer\Csv($mySpreadsheet);
             $directory = 'public://data_dictionary/' . $filename;
@@ -94,18 +94,15 @@ public function createFile($node, $param)
             $writer->setLineEnding("\r\n");
             $writer->setSheetIndex(0);
             $writer->save($directory);
-
         }
     } else {
         throw new NotFoundHttpException();
     }
 
-    // $uri = $directory;
     header("Content-Transfer-Encoding: Binary");
     header("Content-disposition: attachment; filename=\"" . basename($filename) . "\"");
 
     return new BinaryFileResponse($directory, 200);
-    // return $build = [];
-  
+
 }
 }

@@ -283,8 +283,8 @@ function bc_dc_cron(): void {
 function bc_dc_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
   if ($form['form_id']['#id'] === 'edit-bc-dc-add-columns-form') {
     $nid = $form_state->getStorage('nid');
-    $paragraph = \Drupal::entityTypeManager()->getStorage('node')->load($nid['nid']);
-    $paragraph_field_items = $paragraph->get('field_columns')->referencedEntities();
+    $entity = \Drupal::entityTypeManager()->getStorage('node')->load($nid['nid']);
+    $paragraph_field_items = $entity->get('field_columns')->referencedEntities();
     if ($paragraph_field_items) {
       $form['data_dictionary'] = [
         '#markup' =>
