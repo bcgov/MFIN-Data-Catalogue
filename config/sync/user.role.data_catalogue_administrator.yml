@@ -7,6 +7,7 @@ dependencies:
     - media.type.image
     - node.type.book
     - node.type.data_set
+    - node.type.page
     - taxonomy.vocabulary.common_data
     - taxonomy.vocabulary.data_granularity
     - taxonomy.vocabulary.data_product
@@ -60,6 +61,7 @@ permissions:
   - 'create book content'
   - 'create data_set content'
   - 'create image media'
+  - 'create page content'
   - 'create terms in common_data'
   - 'create terms in data_granularity'
   - 'create terms in data_product'
@@ -78,7 +80,9 @@ permissions:
   - 'create terms in security_classification'
   - 'create terms in source_system'
   - 'create terms in tags'
+  - 'delete any book content'
   - 'delete any image media'
+  - 'delete any page content'
   - 'delete own data_set content'
   - 'delete terms in common_data'
   - 'delete terms in data_granularity'
@@ -98,8 +102,10 @@ permissions:
   - 'delete terms in security_classification'
   - 'delete terms in source_system'
   - 'delete terms in tags'
+  - 'edit any book content'
   - 'edit any data_set content'
   - 'edit any image media'
+  - 'edit any page content'
   - 'edit own data_set content'
   - 'edit terms in common_data'
   - 'edit terms in data_granularity'
