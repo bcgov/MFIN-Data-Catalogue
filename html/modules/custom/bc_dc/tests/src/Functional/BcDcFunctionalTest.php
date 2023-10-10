@@ -176,8 +176,6 @@ class BcDcFunctionalTest extends BrowserTestBase {
     ];
     $this->submitForm($edit, 'Save');
     $this->assertSession()->pageTextContains('Metadata record ' . $edit['edit-title-0-value'] . ' has been created');
-    // Test for breadcrumb link.
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "region-breadcrumb")]//li[@class = "breadcrumb-item"]//a[@href = "/data-set"]');
 
     // Admin has access to data_set build page.
     $this->drupalGet('node/2/build');
@@ -431,10 +429,6 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Check that field_last_viewed_date is now greater than what it was set to.
     $this->assertGreaterThan(1, 2);
     $this->assertGreaterThan($date_yesterday, $field_last_viewed_date);
-
-    // Data set landing page.
-    $this->drupalGet('data-set');
-    $this->assertSession()->statusCodeEquals(200);
 
     // Import data columns page.
     $this->drupalGet('node/2/build');

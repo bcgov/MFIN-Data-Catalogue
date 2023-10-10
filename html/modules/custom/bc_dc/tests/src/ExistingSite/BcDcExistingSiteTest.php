@@ -43,7 +43,7 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     $this->assertSession()->assert($account->hasRole('data_catalogue_user'), 'Test user should have role data_catalogue_user.');
 
     // Test search page.
-    $this->drupalGet('search/site');
+    $this->drupalGet('data-set');
     $this->assertSession()->statusCodeEquals(200);
 
     // Login button in the header.
@@ -106,16 +106,18 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     $this->assertSession()->statusCodeEquals(200);
     $container = $this->assertSession()->elementExists('xpath', '//div
       [*[text() = "Data set editor"]]
-      [div/a[starts-with(@href, "/search/site?f%5B0%5D=author_id%3A")]]');
+      [div/a[starts-with(@href, "/data-set?f%5B0%5D=author_id%3A")]]');
     $container = $this->assertSession()->elementExists('xpath', '//div
       [*[text() = "Office of primary responsibility"]]
-      [div/a[starts-with(@href, "/search/site?f%5B0%5D=primary_responsibility_org%3A")]]');
+      [div/a[starts-with(@href, "/data-set?f%5B0%5D=primary_responsibility_org%3A")]]');
     $container = $this->assertSession()->elementExists('xpath', '//div
       [*[text() = "Source system"]]
-      [div/a[starts-with(@href, "/search/site?f%5B0%5D=source_system%3A")]]');
+      [div/a[starts-with(@href, "/data-set?f%5B0%5D=source_system%3A")]]');
     $container = $this->assertSession()->elementExists('xpath', '//div
       [*[text() = "Series"]]
-      [div/a[starts-with(@href, "/search/site?f%5B0%5D=series%3A")]]');
+      [div/a[starts-with(@href, "/data-set?f%5B0%5D=series%3A")]]');
+    // Test breadcrumb on data_set view page.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "region-breadcrumb")]//li[@class = "breadcrumb-item"]//a[@href = "/data-set"]');
   }
 
 }

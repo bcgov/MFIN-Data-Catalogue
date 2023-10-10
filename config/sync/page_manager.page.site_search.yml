@@ -5,10 +5,10 @@ dependencies: {  }
 _core:
   default_config_hash: DbO1O-w-0kEHR3T6z1gAR-7HSS5-LSle4YpWIVFm3_Y
 id: site_search
-label: 'Site search'
+label: 'Data sets'
 description: ''
 use_admin_theme: false
-path: /search/site
+path: /data-set
 access_logic: and
 access_conditions: {  }
 parameters: {  }

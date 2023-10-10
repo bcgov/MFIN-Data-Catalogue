@@ -22,7 +22,7 @@ dependencies:
 _core:
   default_config_hash: MONvVrPBeEoPpHKYK6PWhH1dI9e0x-5_nn-ElsbUqIQ
 id: site_search-panels_variant-0
-label: 'Search site'
+label: 'Data set'
 weight: 0
 variant: panels_variant
 variant_settings:
@@ -145,7 +145,7 @@ variant_settings:
         - ''
       html_id: ''
       css_styles: ''
-  page_title: Search
+  page_title: 'Data sets'
   layout: bcbb_main_sidebar_right
   layout_settings: {  }
   builder: standard

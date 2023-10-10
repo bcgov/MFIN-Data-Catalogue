@@ -22,7 +22,7 @@ settings:
     search_label: Search
     search_placeholder: ''
     search_btn_label: ''
-    search_url: /search/site
+    search_url: /data-set
     label_sr_only: true
     search_input_size: false
     search_input_size_value: null
@@ -30,4 +30,4 @@ visibility:
   request_path:
     id: request_path
     negate: true
-    pages: '/search/*'
+    pages: /data-set
