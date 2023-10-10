@@ -23,7 +23,7 @@ class BcDcCreateFileController extends ControllerBase {
     $alias = \Drupal::service('path_alias.manager')->getAliasByPath('/node/' . $nid);
     $path = str_replace("/data-set/", "", $alias);
     $allowedExt = ['csv', 'xlsx'];
-    if(!in_array($param, $allowedExt, TRUE)) {
+    if (!in_array($param, $allowedExt, TRUE)) {
       throw new NotFoundHttpException();
     }
     $entity = $this->entityTypeManager()->getStorage('node')->load($nid);
@@ -86,7 +86,7 @@ class BcDcCreateFileController extends ControllerBase {
             $worksheet->getColumnDimension($column->getColumnIndex())->setAutoSize(TRUE);
           }
         }
-        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Csv($spreadsheet);
+        $writer = new Csv($spreadsheet);
         $directory = 'html/sites/default/files/' . $filename;
         $writer->setDelimiter(',');
         $writer->setEnclosure('');
