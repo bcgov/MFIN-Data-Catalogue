@@ -15,7 +15,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class BcDcCreateFileController extends ControllerBase {
 
-  const FILE_EXTENSION = array('csv', 'xlsx');
   /**
    * Returns a downloadable file.
    */
@@ -24,7 +23,7 @@ class BcDcCreateFileController extends ControllerBase {
     $alias = \Drupal::service('path_alias.manager')->getAliasByPath('/node/' . $nid);
     $path = str_replace("/data-set/", "", $alias);
     $allowedExt = ['csv', 'xlsx'];
-    if(!in_array($param, FILE_EXTENSION, TRUE)) {
+    if(!in_array($param, $allowedExt, TRUE)) {
       throw new NotFoundHttpException();
     }
     $entity = $this->entityTypeManager()->getStorage('node')->load($nid);
@@ -74,22 +73,21 @@ class BcDcCreateFileController extends ControllerBase {
           }
         }
         $writer = new Xlsx($spreadsheet);
-        $directory = 'public://data_dictionary/' . $filename;
+        $directory = '/html/sites/default/files/' . $filename;
         $writer->save($directory);
 
       case 'csv':
         $filename = $path . '_ID_' . $nid . '.csv';
-        $mySpreadsheet = new Spreadsheet();
-        $worksheets = new Worksheet($mySpreadsheet, "Sheet 1");
-        $mySpreadsheet->addSheet($worksheets, 0);
+        $worksheets = new Worksheet($spreadsheet, "Sheet 1");
+        $spreadsheet->addSheet($worksheets, 0);
         $worksheets->fromArray($sheetData);
         foreach ($worksheets as $worksheet) {
           foreach ($worksheet->getColumnIterator() as $column) {
             $worksheet->getColumnDimension($column->getColumnIndex())->setAutoSize(TRUE);
           }
         }
-        $writer = new Csv($mySpreadsheet);
-        $directory = 'public://data_dictionary/' . $filename;
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Csv($spreadsheet);
+        $directory = 'html/sites/default/files/' . $filename;
         $writer->setDelimiter(',');
         $writer->setEnclosure('');
         $writer->setLineEnding("\r\n");
