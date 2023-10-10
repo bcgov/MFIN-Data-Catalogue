@@ -9,7 +9,6 @@ dependencies:
     - field.field.node.data_set.field_columns
     - field.field.node.data_set.field_critical_information
     - field.field.node.data_set.field_data_quality_issues
-    - field.field.node.data_set.field_data_set_format
     - field.field.node.data_set.field_data_set_historical_change
     - field.field.node.data_set.field_data_set_type
     - field.field.node.data_set.field_data_sets_used
@@ -21,7 +20,6 @@ dependencies:
     - field.field.node.data_set.field_last_review_date
     - field.field.node.data_set.field_modified_date
     - field.field.node.data_set.field_primary_responsibility_org
-    - field.field.node.data_set.field_product_type
     - field.field.node.data_set.field_published_date
     - field.field.node.data_set.field_review_interval
     - field.field.node.data_set.field_security_classification
@@ -93,14 +91,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 7
-    region: content
-  field_data_set_format:
-    type: entity_reference_label
-    label: inline
-    settings:
-      link: false
-    third_party_settings: {  }
-    weight: 16
     region: content
   field_data_set_historical_change:
     type: text_default
@@ -175,14 +165,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 2
-    region: content
-  field_product_type:
-    type: entity_reference_label
-    label: inline
-    settings:
-      link: false
-    third_party_settings: {  }
-    weight: 17
     region: content
   field_published_date:
     type: datetime_default

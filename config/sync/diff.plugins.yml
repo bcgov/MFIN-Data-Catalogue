@@ -163,12 +163,6 @@ fields:
         show_header: 1
         markdown: drupal_html_to_text
         compare_format: 0
-    field_data_set_format:
-      type: entity_reference_field_diff_builder
-      settings:
-        show_header: 1
-        markdown: drupal_html_to_text
-        compare_entity_reference: 1
     field_data_set_historical_change:
       type: text_field_diff_builder
       settings:
@@ -224,12 +218,6 @@ fields:
         show_header: 1
         markdown: drupal_html_to_text
     field_primary_responsibility_org:
-      type: entity_reference_field_diff_builder
-      settings:
-        show_header: 1
-        markdown: drupal_html_to_text
-        compare_entity_reference: 1
-    field_product_type:
       type: entity_reference_field_diff_builder
       settings:
         show_header: 1

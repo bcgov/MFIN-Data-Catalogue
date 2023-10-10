@@ -202,8 +202,6 @@ class BcDcFunctionalTest extends BrowserTestBase {
       'field--name-field-source-system' => 'Source system',
       'field--name-field-granularity' => 'Granularity',
       'field--name-field-data-set-type' => 'Data set type',
-      'field--name-field-data-set-format' => 'Data set format',
-      'field--name-field-product-type' => 'Product type',
       'field--name-field-information-schedule' => 'Information schedule',
     ];
     foreach ($fields_inline_optional as $class => $label) {

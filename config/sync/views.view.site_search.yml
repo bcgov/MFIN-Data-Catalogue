@@ -8,7 +8,6 @@ dependencies:
     - field.storage.node.field_columns
     - field.storage.node.field_critical_information
     - field.storage.node.field_data_quality_issues
-    - field.storage.node.field_data_set_format
     - field.storage.node.field_data_set_historical_change
     - field.storage.node.field_data_set_type
     - field.storage.node.field_granularity
@@ -16,7 +15,6 @@ dependencies:
     - field.storage.node.field_information_schedule
     - field.storage.node.field_modified_date
     - field.storage.node.field_primary_responsibility_org
-    - field.storage.node.field_product_type
     - field.storage.node.field_security_classification
     - field.storage.node.field_series
     - field.storage.node.field_source_system
@@ -343,8 +341,6 @@ display:
                 display_method: label
               data_granularity:
                 display_method: label
-              data_set_format:
-                display_method: label
               data_set_series:
                 display_method: label
               data_set_type:
@@ -358,8 +354,6 @@ display:
               metadata_type:
                 display_method: label
               organization:
-                display_method: label
-              product_type:
                 display_method: label
               security_classification:
                 display_method: label
@@ -566,8 +560,6 @@ display:
                 display_method: label
               data_granularity:
                 display_method: label
-              data_set_format:
-                display_method: label
               data_set_series:
                 display_method: label
               data_set_type:
@@ -581,8 +573,6 @@ display:
               metadata_type:
                 display_method: label
               organization:
-                display_method: label
-              product_type:
                 display_method: label
               security_classification:
                 display_method: label
@@ -964,8 +954,6 @@ display:
                 display_method: label
               data_granularity:
                 display_method: label
-              data_set_format:
-                display_method: label
               data_set_series:
                 display_method: label
               data_set_type:
@@ -979,8 +967,6 @@ display:
               metadata_type:
                 display_method: label
               organization:
-                display_method: label
-              product_type:
                 display_method: label
               security_classification:
                 display_method: label
@@ -1295,8 +1281,6 @@ display:
                 display_method: label
               data_granularity:
                 display_method: label
-              data_set_format:
-                display_method: label
               data_set_series:
                 display_method: label
               data_set_type:
@@ -1310,8 +1294,6 @@ display:
               metadata_type:
                 display_method: label
               organization:
-                display_method: label
-              product_type:
                 display_method: label
               security_classification:
                 display_method: label
@@ -1395,8 +1377,6 @@ display:
                 display_method: label
               data_granularity:
                 display_method: label
-              data_set_format:
-                display_method: label
               data_set_series:
                 display_method: label
               data_set_type:
@@ -1410,8 +1390,6 @@ display:
               metadata_type:
                 display_method: label
               organization:
-                display_method: label
-              product_type:
                 display_method: label
               security_classification:
                 display_method: label
@@ -1495,8 +1473,6 @@ display:
                 display_method: label
               data_granularity:
                 display_method: label
-              data_set_format:
-                display_method: label
               data_set_series:
                 display_method: label
               data_set_type:
@@ -1510,208 +1486,6 @@ display:
               metadata_type:
                 display_method: label
               organization:
-                display_method: label
-              product_type:
-                display_method: label
-              security_classification:
-                display_method: label
-              source_system:
-                display_method: label
-              tags:
-                display_method: label
-        field_data_set_format:
-          id: field_data_set_format
-          table: search_api_datasource_default_index_entity_node
-          field: field_data_set_format
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          plugin_id: search_api_field
-          label: ''
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: true
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: false
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          field_rendering: true
-          fallback_handler: search_api_entity
-          fallback_options:
-            link_to_item: false
-            use_highlighting: false
-            multi_type: separator
-            multi_separator: ', '
-            display_methods:
-              common_data:
-                display_method: label
-              data_granularity:
-                display_method: label
-              data_set_format:
-                display_method: label
-              data_set_series:
-                display_method: label
-              data_set_type:
-                display_method: label
-              data_system:
-                display_method: label
-              data_type:
-                display_method: label
-              information_schedule:
-                display_method: label
-              metadata_type:
-                display_method: label
-              organization:
-                display_method: label
-              product_type:
-                display_method: label
-              security_classification:
-                display_method: label
-              source_system:
-                display_method: label
-              tags:
-                display_method: label
-        field_product_type:
-          id: field_product_type
-          table: search_api_datasource_default_index_entity_node
-          field: field_product_type
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          plugin_id: search_api_field
-          label: ''
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: true
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: false
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          field_rendering: true
-          fallback_handler: search_api_entity
-          fallback_options:
-            link_to_item: false
-            use_highlighting: false
-            multi_type: separator
-            multi_separator: ', '
-            display_methods:
-              common_data:
-                display_method: label
-              data_granularity:
-                display_method: label
-              data_set_format:
-                display_method: label
-              data_set_series:
-                display_method: label
-              data_set_type:
-                display_method: label
-              data_system:
-                display_method: label
-              data_type:
-                display_method: label
-              information_schedule:
-                display_method: label
-              metadata_type:
-                display_method: label
-              organization:
-                display_method: label
-              product_type:
                 display_method: label
               security_classification:
                 display_method: label
@@ -1795,8 +1569,6 @@ display:
                 display_method: label
               data_granularity:
                 display_method: label
-              data_set_format:
-                display_method: label
               data_set_series:
                 display_method: label
               data_set_type:
@@ -1810,8 +1582,6 @@ display:
               metadata_type:
                 display_method: label
               organization:
-                display_method: label
-              product_type:
                 display_method: label
               security_classification:
                 display_method: label
@@ -1965,8 +1735,6 @@ display:
                 display_method: label
               data_granularity:
                 display_method: label
-              data_set_format:
-                display_method: label
               data_set_series:
                 display_method: label
               data_set_type:
@@ -1980,8 +1748,6 @@ display:
               metadata_type:
                 display_method: label
               organization:
-                display_method: label
-              product_type:
                 display_method: label
               security_classification:
                 display_method: label
@@ -2096,9 +1862,6 @@ display:
                   field_data_quality_issues:
                     active: true
                     label: data_quality_issues
-                  field_data_set_format:
-                    active: true
-                    label: data_set_format
                   field_data_set_historical_change:
                     active: true
                     label: data_set_historical_change
@@ -2120,9 +1883,6 @@ display:
                   field_information_schedule_2:
                     active: true
                     label: information_schedule_2
-                  field_product_type:
-                    active: true
-                    label: product_type
                   field_security_classification:
                     active: true
                     label: security_classification
@@ -2185,9 +1945,6 @@ display:
                   field_data_quality_issues:
                     active: true
                     label: data_quality_issues
-                  field_data_set_format:
-                    active: true
-                    label: data_set_format
                   field_data_set_historical_change:
                     active: true
                     label: data_set_historical_change
@@ -2209,9 +1966,6 @@ display:
                   field_information_schedule_2:
                     active: true
                     label: information_schedule_2
-                  field_product_type:
-                    active: true
-                    label: product_type
                   field_security_classification:
                     active: true
                     label: security_classification
@@ -2501,7 +2255,6 @@ display:
         - 'config:field.storage.node.field_columns'
         - 'config:field.storage.node.field_critical_information'
         - 'config:field.storage.node.field_data_quality_issues'
-        - 'config:field.storage.node.field_data_set_format'
         - 'config:field.storage.node.field_data_set_historical_change'
         - 'config:field.storage.node.field_data_set_type'
         - 'config:field.storage.node.field_granularity'
@@ -2509,7 +2262,6 @@ display:
         - 'config:field.storage.node.field_information_schedule'
         - 'config:field.storage.node.field_modified_date'
         - 'config:field.storage.node.field_primary_responsibility_org'
-        - 'config:field.storage.node.field_product_type'
         - 'config:field.storage.node.field_security_classification'
         - 'config:field.storage.node.field_series'
         - 'config:field.storage.node.field_source_system'
@@ -2546,7 +2298,6 @@ display:
         - 'config:field.storage.node.field_columns'
         - 'config:field.storage.node.field_critical_information'
         - 'config:field.storage.node.field_data_quality_issues'
-        - 'config:field.storage.node.field_data_set_format'
         - 'config:field.storage.node.field_data_set_historical_change'
         - 'config:field.storage.node.field_data_set_type'
         - 'config:field.storage.node.field_granularity'
@@ -2554,7 +2305,6 @@ display:
         - 'config:field.storage.node.field_information_schedule'
         - 'config:field.storage.node.field_modified_date'
         - 'config:field.storage.node.field_primary_responsibility_org'
-        - 'config:field.storage.node.field_product_type'
         - 'config:field.storage.node.field_security_classification'
         - 'config:field.storage.node.field_series'
         - 'config:field.storage.node.field_source_system'
