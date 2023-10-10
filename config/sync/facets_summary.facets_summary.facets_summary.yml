@@ -33,12 +33,6 @@ facets:
     separator: ', '
     show_count: false
     weight: 0
-  content_type:
-    checked: true
-    label: 'Content type'
-    separator: ', '
-    show_count: false
-    weight: 0
   primary_responsibility_org:
     checked: true
     label: 'Office of primary responsibility'

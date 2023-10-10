@@ -216,7 +216,6 @@ datasource_settings:
       default: false
       selected:
         - data_set
-        - page
     languages:
       default: true
       selected: {  }

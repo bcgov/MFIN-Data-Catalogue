@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - facets.facet.content_type
     - facets.facet.metadata_type
     - facets.facet.modified_date
     - facets.facet.primary_responsibility_org
@@ -42,19 +41,6 @@ variant_settings:
       region: main
       weight: -10
       uuid: 8c022726-d5ca-4c3a-a35d-c5dfa0457ebd
-      css_classes:
-        - ''
-      html_id: ''
-      css_styles: ''
-    6590bdd8-89f5-4e2b-bf71-4dc7658a611d:
-      id: 'facet_block:content_type'
-      label: 'Content type'
-      label_display: visible
-      provider: facets
-      context_mapping: {  }
-      region: sidebar
-      weight: -4
-      uuid: 6590bdd8-89f5-4e2b-bf71-4dc7658a611d
       css_classes:
         - ''
       html_id: ''
