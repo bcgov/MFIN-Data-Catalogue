@@ -325,7 +325,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSession()->elementExists('xpath', $xpath);
 
     // Data set dashboard.
-    $this->drupalGet('user/1');
+    $this->drupalGet('dashboard');
     $this->assertSession()->statusCodeEquals(200);
     // The create-new link exists.
     $this->assertSession()->elementExists('xpath', '//a[@href = "/node/add/data_set?display=data_set_description"][text() = "Add new data set"]');
@@ -376,7 +376,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Publish the data_set and there are no data rows, just the empty message.
     $data_set = Node::load(2);
     $data_set->setPublished()->save();
-    $this->drupalGet('user/1');
+    $this->drupalGet('dashboard');
     $this->assertSession()->statusCodeEquals(200);
     $this->assertSession()->elementExists('xpath', '//table[contains(@class, "dc-dashboard-table-mydatasets")]//tr/td[text() = "No data sets to show."]');
     $this->assertSession()->elementExists('xpath', '//table[contains(@class, "dc-dashboard-table-my-review-data-sets")]//tr/td[text() = "No data sets to show."]');
@@ -388,7 +388,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Set the updated date later than the bookmark date.
     $data_set->set('field_modified_date', (new \DateTime('tomorrow'))->format('Y-m-d'))->save();
     // The data set updated message should appear.
-    $this->drupalGet('user/1');
+    $this->drupalGet('dashboard');
     $this->assertSession()->elementExists('xpath', '//table[contains(@class, "dc-dashboard-table-bookmarks")]//tr
       [td/span[@class = "badge text-bg-success"][text() = "Updated"]]
       [td/a[@href = "/node/2/build"]]');
@@ -557,7 +557,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Saved searches.
     //
     // The saved-searches link exists on the dashboard and the page exists.
-    $this->drupalGet('user');
+    $this->drupalGet('dashboard');
     $this->clickLink('My saved searches');
     $this->assertSession()->statusCodeEquals(200);
 
@@ -782,7 +782,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
 
     // Test "My data sets that need review" table.
     $this->drupalLogin($this->rootUser);
-    $this->drupalGet('user/1');
+    $this->drupalGet('dashboard');
     $this->assertSession()->statusCodeEquals(200);
     $this->assertSession()->elementNotExists('xpath', '//table[contains(@class, "dc-dashboard-table-my-review-data-sets")]//tr/td[text() = "No data sets to show."]');
     $args = [

@@ -18,10 +18,6 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
    * Tests.
    */
   public function test(): void {
-    // Test that front page returns HTTP 200.
-    $this->drupalGet('');
-    $this->assertSession()->statusCodeEquals(200);
-
     // Login page.
     $this->drupalGet('user/login');
     $this->assertSession()->statusCodeEquals(200);

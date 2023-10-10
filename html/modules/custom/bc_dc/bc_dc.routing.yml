@@ -7,7 +7,7 @@ bc_dc.settings:
     _permission: 'administer site configuration'
 
 bc_dc.data_set_dashboard:
-  path: '/user/{user}'
+  path: '/dashboard'
   defaults:
     _controller: '\Drupal\bc_dc\Controller\BcDcPageController::dataSetDashboardPage'
     _title: 'Dashboard'
