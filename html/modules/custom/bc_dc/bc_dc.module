@@ -299,7 +299,7 @@ function bc_dc_form_alter(&$form, FormStateInterface $form_state, $form_id) {
       );
       $items = [
         $linkcsv,
-        $linkexcel
+        $linkexcel,
       ];
       $form['data_dictionary'] = [
         '#theme' => 'item_list',
