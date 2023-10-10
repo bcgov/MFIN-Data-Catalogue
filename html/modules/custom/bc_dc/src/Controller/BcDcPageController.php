@@ -310,16 +310,4 @@ class BcDcPageController extends ControllerBase {
     ];
   }
 
-  /**
-   * Page callback for the data set landing page.
-   *
-   * @return array
-   *   A Drupal render array.
-   */
-  public function dataSetLandingPage(): array {
-    $page = [];
-
-    return $page;
-  }
-
 }
