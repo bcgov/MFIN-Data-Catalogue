@@ -287,20 +287,6 @@ function bc_dc_form_alter(&$form, FormStateInterface $form_state, $form_id) {
     $entity = \Drupal::entityTypeManager()->getStorage('node')->load($nid['nid']);
     $paragraph_field_items = $entity->get('field_columns')->referencedEntities();
     if ($paragraph_field_items) {
-      // $linkcsv = Link::createFromRoute(
-      //        t('Download current data dictionary file to CSV'),
-      //        'bc_dc.create_columns_file',
-      //        ['node' => $nid['nid'], 'param' => 'csv'],
-      //      );
-      //      $linkexcel = Link::createFromRoute(
-      //        t('Download current data dictionary file to Excel'),
-      //        'bc_dc.create_columns_file',
-      //        ['node' => $nid['nid'], 'param' => 'xlsx'],
-      //      );
-      //      $items = [
-      //        $linkcsv,
-      //        $linkexcel,
-      //      ];
       $formats = [
         'csv',
         'xlsx',
