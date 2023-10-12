@@ -60,14 +60,14 @@ class BcDcCreateFileController extends ControllerBase {
    *   The file to download.
    */
   public function createFile(NodeInterface $node, string $param): BinaryFileResponse {
-    $nid = $node->get('nid')->getValue()[0]['value'];
-    $alias = $this->pathAliasManager->getAliasByPath('/node/' . $nid);
-    $path = str_replace("/data-set/", "", $alias);
+    // Not Found if $param is not a supported file extension.
     if (!in_array($param, static::SUPPORTED_EXTENSIONS, TRUE)) {
       throw new NotFoundHttpException();
     }
-    $entity = $this->entityTypeManager()->getStorage('node')->load($nid);
-    $paragraph_field_items = $entity->get('field_columns')->referencedEntities();
+
+    $alias = $this->pathAliasManager->getAliasByPath('/node/' . $node->id());
+    $path = str_replace("/data-set/", "", $alias);
+    $paragraph_field_items = $node->get('field_columns')->referencedEntities();
     foreach ($paragraph_field_items as $paragraph) {
       // Get the translation.
       $paragraph = $this->entityRepository->getTranslationFromContext($paragraph);
