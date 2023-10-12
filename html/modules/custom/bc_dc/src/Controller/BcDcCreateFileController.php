@@ -104,12 +104,16 @@ class BcDcCreateFileController extends ControllerBase {
       ],
     ];
 
+    // Make a filename like "node-file-path_ID_12.csv".
     $node_path = $this->pathAliasManager->getAliasByPath('/node/' . $node->id());
     $node_path = basename($node_path);
     $filename = $node_path . '_ID_' . $node->id() . '.' . $param;
 
+    // Create a file path to the temp directory. PhpSpreadsheet does not work
+    // with stream wrappers.
     $file_path = $this->fileSystem->getTempDirectory() . '/' . $filename;
 
+    // Generate the spreadsheet object and save to $file_path.
     $spreadsheet = new Spreadsheet();
     $worksheets = new Worksheet($spreadsheet, 'Sheet 1');
     $spreadsheet->addSheet($worksheets, 0);
@@ -134,8 +138,9 @@ class BcDcCreateFileController extends ControllerBase {
     }
     $writer->save($file_path);
 
+    // Cause the browser to save the file with the specified filename.
     header('Content-Disposition: attachment; filename="' . $filename . '"');
-
+    // Serve the file.
     return new BinaryFileResponse($file_path, 200);
   }
 
