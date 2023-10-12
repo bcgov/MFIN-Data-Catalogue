@@ -134,7 +134,6 @@ class BcDcCreateFileController extends ControllerBase {
     }
     $writer->save($file_path);
 
-    header('Content-Transfer-Encoding: Binary');
     header('Content-Disposition: attachment; filename="' . $filename . '"');
 
     return new BinaryFileResponse($file_path, 200);
