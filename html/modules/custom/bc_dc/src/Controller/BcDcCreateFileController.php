@@ -104,7 +104,7 @@ class BcDcCreateFileController extends ControllerBase {
     $spreadsheet = new Spreadsheet();
     $filename = $path . '_ID_' . $node->id() . '.' . $param;
     $directory = 'html/sites/default/files/' . $filename;
-    $worksheets = new Worksheet($spreadsheet, "Sheet 1");
+    $worksheets = new Worksheet($spreadsheet, 'Sheet 1');
     $spreadsheet->addSheet($worksheets, 0);
     $worksheets->fromArray($sheetData);
     foreach ($worksheets as $worksheet) {
@@ -127,8 +127,8 @@ class BcDcCreateFileController extends ControllerBase {
     }
     $writer->save($directory);
 
-    header("Content-Transfer-Encoding: Binary");
-    header("Content-disposition: attachment; filename=\"" . basename($filename) . "\"");
+    header('Content-Transfer-Encoding: Binary');
+    header('Content-Disposition: attachment; filename="' . basename($filename) . '"');
 
     return new BinaryFileResponse($directory, 200);
   }
