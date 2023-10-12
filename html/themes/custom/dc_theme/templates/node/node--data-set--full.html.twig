@@ -196,7 +196,7 @@
       <h2>{{ 'Data dictionary'|t }}</h2>
         {% if node.field_columns and not node.field_columns.isempty %}
           <p><a href="/node/{{ node.id }}/download/columns/csv">Export data dictionary to csv</a></p>
-          <p><a href="/node/{{ node.id }}/download/columns/xlsx">Export data dictionary to Excel</a></p>
+          <p><a href="/node/{{ node.id }}/download/columns/xlsx">Export data dictionary to XLSX</a></p>
         {% endif %}
         {{ node.field_columns|view }}
       {% endif %}

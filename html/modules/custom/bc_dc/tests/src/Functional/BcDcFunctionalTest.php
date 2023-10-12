@@ -540,8 +540,8 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->drupalGet('node/19/download/columns/csv');
     $this->assertFileExists('/var/www/html/html/sites/default/files/data_dictionary/Property Transfer Tax (PTT) Audit Cases_ID_19.csv');
 
-    // Anonymous has access to download excel of data dictionary.
-    $this->drupalGet('node/19/download/columns/excel');
+    // Anonymous has access to download XLSX of data dictionary.
+    $this->drupalGet('node/19/download/columns/xlsx');
     $this->assertFileExists('/var/www/html/html/sites/default/files/data_dictionary/Property Transfer Tax (PTT) Audit Cases_ID_19.xlsx');
 
     // Test adding bookmarks.
