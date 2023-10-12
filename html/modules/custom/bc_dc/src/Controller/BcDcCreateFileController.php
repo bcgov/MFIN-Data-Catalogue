@@ -4,6 +4,7 @@ namespace Drupal\bc_dc\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Entity\EntityRepositoryInterface;
+use Drupal\node\NodeInterface;
 use Drupal\path_alias\AliasManagerInterface;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
@@ -48,9 +49,17 @@ class BcDcCreateFileController extends ControllerBase {
   }
 
   /**
-   * Returns a downloadable file.
+   * Generate the download file and serves it to the browser.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The node.
+   * @param string $param
+   *   The format of the file to serve.
+   *
+   * @return Symfony\Component\HttpFoundation\BinaryFileResponse
+   *   The file to download.
    */
-  public function createFile($node, $param) {
+  public function createFile(NodeInterface $node, string $param): BinaryFileResponse {
     $nid = $node->get('nid')->getValue()[0]['value'];
     $alias = $this->pathAliasManager->getAliasByPath('/node/' . $nid);
     $path = str_replace("/data-set/", "", $alias);
