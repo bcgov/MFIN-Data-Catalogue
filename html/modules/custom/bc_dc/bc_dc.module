@@ -5,6 +5,7 @@
  * Module file.
  */
 
+use Drupal\bc_dc\Controller\BcDcCreateFileController;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -306,12 +307,8 @@ function bc_dc_get_data_dictionary_download_links(FieldableEntityInterface $enti
     return NULL;
   }
 
-  $formats = [
-    'csv',
-    'xlsx',
-  ];
   $items = [];
-  foreach ($formats as $format) {
+  foreach (BcDcCreateFileController::SUPPORTED_EXTENSIONS as $format) {
     $items[] = Link::createFromRoute(
       t('Download current data dictionary file to @format', ['@format' => strtoupper($format)]),
       'bc_dc.create_columns_file',

@@ -18,6 +18,11 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class BcDcCreateFileController extends ControllerBase {
 
+  const SUPPORTED_EXTENSIONS = [
+    'csv',
+    'xlsx',
+  ];
+
   /**
    * Create a BcDcCreateFileController instance.
    *
@@ -49,8 +54,7 @@ class BcDcCreateFileController extends ControllerBase {
     $nid = $node->get('nid')->getValue()[0]['value'];
     $alias = $this->pathAliasManager->getAliasByPath('/node/' . $nid);
     $path = str_replace("/data-set/", "", $alias);
-    $allowedExt = ['csv', 'xlsx'];
-    if (!in_array($param, $allowedExt, TRUE)) {
+    if (!in_array($param, static::SUPPORTED_EXTENSIONS, TRUE)) {
       throw new NotFoundHttpException();
     }
     $entity = $this->entityTypeManager()->getStorage('node')->load($nid);
