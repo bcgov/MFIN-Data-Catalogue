@@ -33,6 +33,7 @@ dependencies:
     - datetime
     - entity_reference_revisions
     - field_token_value
+    - shs
     - text
     - user
 id: node.data_set.default
@@ -100,7 +101,7 @@ content:
     weight: 8
     region: content
   field_data_set_type:
-    type: entity_reference_label
+    type: entity_reference_shs
     label: inline
     settings:
       link: false

@@ -32,6 +32,7 @@ dependencies:
   module:
     - datetime
     - layout_builder
+    - shs
     - text
     - user
 third_party_settings:
@@ -88,7 +89,7 @@ content:
     weight: 9
     region: content
   field_data_set_type:
-    type: entity_reference_label
+    type: entity_reference_shs
     label: inline
     settings:
       link: false
