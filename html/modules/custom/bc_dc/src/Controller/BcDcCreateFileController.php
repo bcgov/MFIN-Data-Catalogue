@@ -73,7 +73,8 @@ class BcDcCreateFileController extends ControllerBase {
       $paragraph = $this->entityRepository->getTranslationFromContext($paragraph);
     }
     $sheetData = [
-      ['column_allowed_values',
+      [
+        'column_allowed_values',
         'column_data_quality',
         'column_description',
         'column_name',
@@ -85,7 +86,8 @@ class BcDcCreateFileController extends ControllerBase {
         'provenance_form_name',
         'provenance_form_number',
       ],
-      [$paragraph->get('field_column_allowed_values')->value,
+      [
+        $paragraph->get('field_column_allowed_values')->value,
         $paragraph->get('field_column_data_quality')->value,
         $paragraph->get('field_column_description')->value,
         $paragraph->get('field_column_name')->value,
