@@ -3,10 +3,13 @@
 namespace Drupal\bc_dc\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Entity\EntityRepositoryInterface;
+use Drupal\path_alias\AliasManagerInterface;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -16,11 +19,35 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class BcDcCreateFileController extends ControllerBase {
 
   /**
+   * Create a BcDcCreateFileController instance.
+   *
+   * @param \Drupal\Core\Entity\EntityRepositoryInterface $entityRepository
+   *   The entity.repository service.
+   * @param \Drupal\path_alias\AliasManagerInterface $pathAliasManager
+   *   The path_alias.manager service.
+   */
+  public function __construct(
+    protected EntityRepositoryInterface $entityRepository,
+    protected AliasManagerInterface $pathAliasManager,
+  ) {
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container): object {
+    return new static(
+      $container->get('entity.repository'),
+      $container->get('path_alias.manager'),
+    );
+  }
+
+  /**
    * Returns a downloadable file.
    */
   public function createFile($node, $param) {
     $nid = $node->get('nid')->getValue()[0]['value'];
-    $alias = \Drupal::service('path_alias.manager')->getAliasByPath('/node/' . $nid);
+    $alias = $this->pathAliasManager->getAliasByPath('/node/' . $nid);
     $path = str_replace("/data-set/", "", $alias);
     $allowedExt = ['csv', 'xlsx'];
     if (!in_array($param, $allowedExt, TRUE)) {
@@ -30,7 +57,7 @@ class BcDcCreateFileController extends ControllerBase {
     $paragraph_field_items = $entity->get('field_columns')->referencedEntities();
     foreach ($paragraph_field_items as $paragraph) {
       // Get the translation.
-      $paragraph = \Drupal::service('entity.repository')->getTranslationFromContext($paragraph);
+      $paragraph = $this->entityRepository->getTranslationFromContext($paragraph);
     }
     $sheetData = [
       ['column_allowed_values',
