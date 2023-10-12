@@ -4,6 +4,7 @@ namespace Drupal\bc_dc\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Entity\EntityRepositoryInterface;
+use Drupal\Core\File\FileSystemInterface;
 use Drupal\node\NodeInterface;
 use Drupal\path_alias\AliasManagerInterface;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -29,11 +30,14 @@ class BcDcCreateFileController extends ControllerBase {
    *
    * @param \Drupal\Core\Entity\EntityRepositoryInterface $entityRepository
    *   The entity.repository service.
+   * @param \Drupal\Core\File\FileSystemInterface $fileSystem
+   *   The file_system service.
    * @param \Drupal\path_alias\AliasManagerInterface $pathAliasManager
    *   The path_alias.manager service.
    */
   public function __construct(
     protected EntityRepositoryInterface $entityRepository,
+    protected FileSystemInterface $fileSystem,
     protected AliasManagerInterface $pathAliasManager,
   ) {
   }
@@ -44,6 +48,7 @@ class BcDcCreateFileController extends ControllerBase {
   public static function create(ContainerInterface $container): object {
     return new static(
       $container->get('entity.repository'),
+      $container->get('file_system'),
       $container->get('path_alias.manager'),
     );
   }
@@ -65,8 +70,6 @@ class BcDcCreateFileController extends ControllerBase {
       throw new NotFoundHttpException();
     }
 
-    $alias = $this->pathAliasManager->getAliasByPath('/node/' . $node->id());
-    $path = str_replace("/data-set/", "", $alias);
     $paragraph_field_items = $node->get('field_columns')->referencedEntities();
     foreach ($paragraph_field_items as $paragraph) {
       // Get the translation.
@@ -101,9 +104,13 @@ class BcDcCreateFileController extends ControllerBase {
       ],
     ];
 
+    $node_path = $this->pathAliasManager->getAliasByPath('/node/' . $node->id());
+    $node_path = basename($node_path);
+    $filename = $node_path . '_ID_' . $node->id() . '.' . $param;
+
+    $file_path = $this->fileSystem->getTempDirectory() . '/' . $filename;
+
     $spreadsheet = new Spreadsheet();
-    $filename = $path . '_ID_' . $node->id() . '.' . $param;
-    $directory = 'html/sites/default/files/' . $filename;
     $worksheets = new Worksheet($spreadsheet, 'Sheet 1');
     $spreadsheet->addSheet($worksheets, 0);
     $worksheets->fromArray($sheetData);
@@ -125,12 +132,12 @@ class BcDcCreateFileController extends ControllerBase {
         $writer->setSheetIndex(0);
         break;
     }
-    $writer->save($directory);
+    $writer->save($file_path);
 
     header('Content-Transfer-Encoding: Binary');
-    header('Content-Disposition: attachment; filename="' . basename($filename) . '"');
+    header('Content-Disposition: attachment; filename="' . $filename . '"');
 
-    return new BinaryFileResponse($directory, 200);
+    return new BinaryFileResponse($file_path, 200);
   }
 
 }
