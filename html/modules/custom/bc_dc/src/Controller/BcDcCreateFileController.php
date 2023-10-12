@@ -100,46 +100,35 @@ class BcDcCreateFileController extends ControllerBase {
     ];
 
     $spreadsheet = new Spreadsheet();
+    $filename = $path . '_ID_' . $node->id() . '.' . $param;
+    $directory = 'html/sites/default/files/' . $filename;
+    $worksheets = new Worksheet($spreadsheet, "Sheet 1");
+    $spreadsheet->addSheet($worksheets, 0);
+    $worksheets->fromArray($sheetData);
+    foreach ($worksheets as $worksheet) {
+      foreach ($worksheet->getColumnIterator() as $column) {
+        $worksheet->getColumnDimension($column->getColumnIndex())->setAutoSize(TRUE);
+      }
+    }
     switch ($param) {
       case 'xlsx':
-        $filename = $path . '_ID_' . $nid . '.xlsx';
-        // Save to file.
-        $worksheets = new Worksheet($spreadsheet, "Sheet 1");
-        $spreadsheet->addSheet($worksheets, 0);
-        $worksheets->fromArray($sheetData);
-        foreach ($worksheets as $worksheet) {
-          foreach ($worksheet->getColumnIterator() as $column) {
-            $worksheet->getColumnDimension($column->getColumnIndex())->setAutoSize(TRUE);
-          }
-        }
         $writer = new Xlsx($spreadsheet);
-        $directory = '/html/sites/default/files/' . $filename;
-        $writer->save($directory);
+        break;
 
       case 'csv':
-        $filename = $path . '_ID_' . $nid . '.csv';
-        $worksheets = new Worksheet($spreadsheet, "Sheet 1");
-        $spreadsheet->addSheet($worksheets, 0);
-        $worksheets->fromArray($sheetData);
-        foreach ($worksheets as $worksheet) {
-          foreach ($worksheet->getColumnIterator() as $column) {
-            $worksheet->getColumnDimension($column->getColumnIndex())->setAutoSize(TRUE);
-          }
-        }
         $writer = new Csv($spreadsheet);
-        $directory = 'html/sites/default/files/' . $filename;
         $writer->setDelimiter(',');
         $writer->setEnclosure('');
         $writer->setLineEnding("\r\n");
         $writer->setSheetIndex(0);
-        $writer->save($directory);
+        break;
     }
+    $writer->save($directory);
 
     header("Content-Transfer-Encoding: Binary");
     header("Content-disposition: attachment; filename=\"" . basename($filename) . "\"");
 
     return new BinaryFileResponse($directory, 200);
-
   }
 
 }
