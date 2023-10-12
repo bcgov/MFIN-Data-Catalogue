@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Render\Element;
@@ -284,24 +285,41 @@ function bc_dc_cron(): void {
 function bc_dc_form_bc_dc_add_columns_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   $nid = $form_state->get('nid');
   $entity = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
-  $paragraph_field_items = $entity->get('field_columns')->referencedEntities();
-  if ($paragraph_field_items) {
-    $formats = [
-      'csv',
-      'xlsx',
-    ];
-    $items = [];
-    foreach ($formats as $format) {
-      $items[] = Link::createFromRoute(
-        t('Download current data dictionary file to @format', ['@format' => strtoupper($format)]),
-            'bc_dc.create_columns_file',
-            ['node' => $nid['nid'], 'param' => $format],
-      );
-    }
-    $form['data_dictionary'] = [
-      '#theme' => 'item_list',
-      '#items' => $items,
-    ];
+  $data_dictionary_download_links = bc_dc_get_data_dictionary_download_links($entity);
+  if ($data_dictionary_download_links) {
+    $form['data_dictionary'] = $data_dictionary_download_links;
     $form['data_dictionary']['#weight'] = 0;
   }
+}
+
+/**
+ * Return a renderable list of links to download column import files.
+ *
+ * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
+ *   The entity.
+ *
+ * @return array|null
+ *   A Drupal render array or NULL if there are no columns.
+ */
+function bc_dc_get_data_dictionary_download_links(FieldableEntityInterface $entity): ?array {
+  if (!$entity->get('field_columns')->referencedEntities()) {
+    return NULL;
+  }
+
+  $formats = [
+    'csv',
+    'xlsx',
+  ];
+  $items = [];
+  foreach ($formats as $format) {
+    $items[] = Link::createFromRoute(
+      t('Download current data dictionary file to @format', ['@format' => strtoupper($format)]),
+      'bc_dc.create_columns_file',
+      ['node' => $entity->id(), 'param' => $format],
+    );
+  }
+  return [
+    '#theme' => 'item_list',
+    '#items' => $items,
+  ];
 }
