@@ -282,8 +282,8 @@ function bc_dc_cron(): void {
  * Implements hook_form_FORM_ID_alter().
  */
 function bc_dc_form_bc_dc_add_columns_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  $nid = $form_state->getStorage('nid');
-  $entity = \Drupal::entityTypeManager()->getStorage('node')->load($nid['nid']);
+  $nid = $form_state->get('nid');
+  $entity = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
   $paragraph_field_items = $entity->get('field_columns')->referencedEntities();
   if ($paragraph_field_items) {
     $formats = [
