@@ -194,10 +194,7 @@
       {% if node.field_modified_date and not node.field_modified_date.isempty %}
       <hr>
       <h2>{{ 'Data dictionary'|t }}</h2>
-        {% if node.field_columns and not node.field_columns.isempty %}
-          <p><a href="/node/{{ node.id }}/download/columns/csv">Export data dictionary to csv</a></p>
-          <p><a href="/node/{{ node.id }}/download/columns/xlsx">Export data dictionary to XLSX</a></p>
-        {% endif %}
+        {{ data_dictionary_download_links }}
         {{ node.field_columns|view }}
       {% endif %}
 
