@@ -536,6 +536,12 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Page has ISO dates.
     $this->isoDateTest();
 
+    $this->drupalGet('node/2/download/columns/csv');
+    $this->assertSession()->statusCodeEquals(200);
+
+    $this->drupalGet('node/2/download/columns/xlsx');
+    $this->assertSession()->statusCodeEquals(200);
+
     // Test adding bookmarks.
     $this->drupalLogin($this->users['Test Data catalogue user']);
     $this->drupalGet('node/2');
