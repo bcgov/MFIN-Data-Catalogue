@@ -116,11 +116,15 @@ class BcDcCreateFileController extends ControllerBase {
     // Generate the spreadsheet object and save to $file_path.
     $spreadsheet = new Spreadsheet();
     $worksheets = new Worksheet($spreadsheet);
-    $spreadsheet->addSheet($worksheets, 0);
+    $spreadsheet->addSheet($worksheets);
     $worksheets->fromArray($sheetData);
+    $sheetIndex = $spreadsheet->getIndex(
+      $spreadsheet->getSheetByName('Worksheet')
+    );
+    $spreadsheet->removeSheetByIndex($sheetIndex);
     foreach ($worksheets as $worksheet) {
-      foreach ($worksheets->getColumnIterator() as $column) {
-        $worksheets->getColumnDimension($column->getColumnIndex())->setAutoSize(TRUE);
+      foreach ($worksheet->getColumnIterator() as $column) {
+        $worksheet->getColumnDimension($column->getColumnIndex())->setAutoSize(TRUE);
       }
     }
     switch ($format) {
