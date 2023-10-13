@@ -29,7 +29,7 @@ bc_dc.data_set_edit_add_columns:
         type: entity:node
 
 bc_dc.create_columns_file:
-  path: '/node/{node}/download/columns/{param}'
+  path: '/node/{node}/download/columns/{format}'
   defaults:
     _controller: '\Drupal\bc_dc\Controller\BcDcCreateFileController::createFile'
     _title: 'Generate file from columns'

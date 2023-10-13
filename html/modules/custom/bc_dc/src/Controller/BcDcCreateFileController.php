@@ -58,15 +58,15 @@ class BcDcCreateFileController extends ControllerBase {
    *
    * @param \Drupal\node\NodeInterface $node
    *   The node.
-   * @param string $param
+   * @param string $format
    *   The format of the file to serve.
    *
    * @return Symfony\Component\HttpFoundation\BinaryFileResponse
    *   The file to download.
    */
-  public function createFile(NodeInterface $node, string $param): BinaryFileResponse {
-    // Not Found if $param is not a supported file extension.
-    if (!in_array($param, static::SUPPORTED_EXTENSIONS, TRUE)) {
+  public function createFile(NodeInterface $node, string $format): BinaryFileResponse {
+    // Not Found if $format is not a supported file extension.
+    if (!in_array($format, static::SUPPORTED_EXTENSIONS, TRUE)) {
       throw new NotFoundHttpException();
     }
 
@@ -107,7 +107,7 @@ class BcDcCreateFileController extends ControllerBase {
     // Make a filename like "node-file-path_ID_12.csv".
     $node_path = $this->pathAliasManager->getAliasByPath('/node/' . $node->id());
     $node_path = basename($node_path);
-    $filename = $node_path . '_ID_' . $node->id() . '.' . $param;
+    $filename = $node_path . '_ID_' . $node->id() . '.' . $format;
 
     // Create a file path to the temp directory. PhpSpreadsheet does not work
     // with stream wrappers.
@@ -115,15 +115,15 @@ class BcDcCreateFileController extends ControllerBase {
 
     // Generate the spreadsheet object and save to $file_path.
     $spreadsheet = new Spreadsheet();
-    $worksheets = new Worksheet($spreadsheet, 'Sheet 1');
+    $worksheets = new Worksheet($spreadsheet);
     $spreadsheet->addSheet($worksheets, 0);
     $worksheets->fromArray($sheetData);
     foreach ($worksheets as $worksheet) {
-      foreach ($worksheet->getColumnIterator() as $column) {
-        $worksheet->getColumnDimension($column->getColumnIndex())->setAutoSize(TRUE);
+      foreach ($worksheets->getColumnIterator() as $column) {
+        $worksheets->getColumnDimension($column->getColumnIndex())->setAutoSize(TRUE);
       }
     }
-    switch ($param) {
+    switch ($format) {
       case 'xlsx':
         $writer = new Xlsx($spreadsheet);
         break;
