@@ -194,6 +194,7 @@
       {% if node.field_modified_date and not node.field_modified_date.isempty %}
       <hr>
       <h2>{{ 'Data dictionary'|t }}</h2>
+        {{ data_dictionary_download_links }}
         {{ node.field_columns|view }}
       {% endif %}
 

@@ -68,6 +68,9 @@ function dc_theme_preprocess_node__data_set__full(array &$variables): void {
     $name_parts[] = $information_schedule_term->label();
     $variables['field_information_schedule_display_name'] = implode(': ', $name_parts);
   }
+
+  // Data dictionary download links.
+  $variables['data_dictionary_download_links'] = bc_dc_get_data_dictionary_download_links($variables['node']);
 }
 
 /**

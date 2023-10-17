@@ -5,8 +5,11 @@
  * Module file.
  */
 
+use Drupal\bc_dc\Controller\BcDcCreateFileController;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Link;
 use Drupal\Core\Render\Element;
 use Drupal\message_gcnotify\Service\GcNotifyApiService;
 use Drupal\node\NodeInterface;
@@ -275,4 +278,45 @@ function bc_dc_cron(): void {
   // Send review reminders.
   $reviewReminder = \Drupal::service('bc_dc.review_reminder');
   $reviewReminder->sendRemindersToAllUsers();
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function bc_dc_form_bc_dc_add_columns_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
+  $nid = $form_state->get('nid');
+  $entity = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
+  $data_dictionary_download_links = bc_dc_get_data_dictionary_download_links($entity);
+  if ($data_dictionary_download_links) {
+    $form['data_dictionary'] = $data_dictionary_download_links;
+    $form['data_dictionary']['#weight'] = 0;
+  }
+}
+
+/**
+ * Return a renderable list of links to download column import files.
+ *
+ * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
+ *   The entity.
+ *
+ * @return array|null
+ *   A Drupal render array or NULL if there are no columns.
+ */
+function bc_dc_get_data_dictionary_download_links(FieldableEntityInterface $entity): ?array {
+  if (!$entity->get('field_columns')->referencedEntities()) {
+    return NULL;
+  }
+
+  $items = [];
+  foreach (BcDcCreateFileController::SUPPORTED_EXTENSIONS as $format) {
+    $items[] = Link::createFromRoute(
+      t('Download current data dictionary file to @format', ['@format' => strtoupper($format)]),
+      'bc_dc.create_columns_file',
+      ['node' => $entity->id(), 'format' => $format],
+    );
+  }
+  return [
+    '#theme' => 'item_list',
+    '#items' => $items,
+  ];
 }

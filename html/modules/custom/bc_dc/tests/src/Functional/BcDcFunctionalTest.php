@@ -536,6 +536,16 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Page has ISO dates.
     $this->isoDateTest();
 
+    // Anonymous has access to download csv for Metadata record when file has
+    // been uploaded.
+    $this->drupalGet('node/2/download/columns/csv');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->responseContains('Name');
+    // Anonymous has access to download xlsx for Metadata record when file has
+    // been uploaded.
+    $this->drupalGet('node/2/download/columns/xlsx');
+    $this->assertSession()->statusCodeEquals(200);
+
     // Test adding bookmarks.
     $this->drupalLogin($this->users['Test Data catalogue user']);
     $this->drupalGet('node/2');
