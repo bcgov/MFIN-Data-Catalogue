@@ -79,9 +79,9 @@ class BcDcCreateFileController extends ControllerBase {
       $rows = [];
       foreach ($fields as $field) {
         $row = $paragraph->get('field_' . $field)->value;
-        $rows [] = $row;
+        $rows[] = $row;
       }
-      $results [] = $rows;
+      $results[] = $rows;
     }
 
     // Make a filename like "node-file-path_ID_12.csv".
