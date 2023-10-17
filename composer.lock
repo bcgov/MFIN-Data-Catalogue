@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e9f0cc28f346d66aed4ca4015e82b12f",
+    "content-hash": "f8c322ff665de4abd74f8d041b87e43b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3874,156 +3874,6 @@
             }
         },
         {
-            "name": "drupal/o365",
-            "version": "3.0.25",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/o365.git",
-                "reference": "3.0.25"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/o365-3.0.25.zip",
-                "reference": "3.0.25",
-                "shasum": "49a119f9059ef35ade5eb1964e21c9e0d1c32701"
-            },
-            "require": {
-                "drupal/core": "^9.4 || ^10",
-                "drupal/externalauth": "^2.0",
-                "drupal/oauth2_client": "^4.0",
-                "microsoft/microsoft-graph": "^1.40",
-                "xantios/mimey": "^2.2"
-            },
-            "require-dev": {
-                "drupal/ckeditor": "*",
-                "drupal/coder": "^8.3",
-                "drupal/externalauth": "*",
-                "drupal/group": "*",
-                "drupal/o365_profile": "*",
-                "drupal/o365_sso": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "3.0.25",
-                    "datestamp": "1686645720",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "bramtenhove",
-                    "homepage": "https://www.drupal.org/user/1549848"
-                },
-                {
-                    "name": "denysyukm@gmail.com",
-                    "homepage": "https://www.drupal.org/user/3579282"
-                },
-                {
-                    "name": "fabianderijk",
-                    "homepage": "https://www.drupal.org/user/278745"
-                },
-                {
-                    "name": "immoreel",
-                    "homepage": "https://www.drupal.org/user/1695422"
-                },
-                {
-                    "name": "Jesse van de Water",
-                    "homepage": "https://www.drupal.org/user/3662705"
-                },
-                {
-                    "name": "mikechan",
-                    "homepage": "https://www.drupal.org/user/3719002"
-                },
-                {
-                    "name": "tomvv",
-                    "homepage": "https://www.drupal.org/user/2748021"
-                }
-            ],
-            "description": "Office 365 Connector module",
-            "homepage": "https://www.drupal.org/project/o365",
-            "support": {
-                "source": "http://cgit.drupalcode.org/o365",
-                "issues": "https://www.drupal.org/project/issues/o365"
-            }
-        },
-        {
-            "name": "drupal/oauth2_client",
-            "version": "4.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/oauth2_client.git",
-                "reference": "4.1.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/oauth2_client-4.1.0.zip",
-                "reference": "4.1.0",
-                "shasum": "4881f0d8ab2a1730367250ee664fb4c4666d37ec"
-            },
-            "require": {
-                "drupal/core": "^9.4 || ^10",
-                "league/oauth2-client": "^2.6",
-                "php": ">=8.1"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "4.1.0",
-                    "datestamp": "1691415949",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Shawn Duncan (FatherShawn)",
-                    "homepage": "https://www.drupal.org/u/fathershawn",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "dashohoxha",
-                    "homepage": "https://www.drupal.org/u/dashohoxha",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "FatherShawn",
-                    "homepage": "https://www.drupal.org/user/628748"
-                },
-                {
-                    "name": "Jaypan",
-                    "homepage": "https://www.drupal.org/user/324696"
-                },
-                {
-                    "name": "perelesnyk",
-                    "homepage": "https://www.drupal.org/user/2605196"
-                },
-                {
-                    "name": "voleger",
-                    "homepage": "https://www.drupal.org/user/3260314"
-                }
-            ],
-            "description": "Provides OAuth2 client functionality.",
-            "homepage": "https://drupal.org/project/oauth2_client",
-            "support": {
-                "source": "https://cgit.drupalcode.org/oauth2_client",
-                "issues": "https://drupal.org/project/issues/oauth2_client"
-            }
-        },
-        {
             "name": "drupal/openid_connect",
             "version": "3.0.0-alpha2",
             "source": {
@@ -7179,76 +7029,6 @@
             "time": "2021-11-16T10:29:06+00:00"
         },
         {
-            "name": "league/oauth2-client",
-            "version": "2.7.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/oauth2-client.git",
-                "reference": "160d6274b03562ebeb55ed18399281d8118b76c8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/oauth2-client/zipball/160d6274b03562ebeb55ed18399281d8118b76c8",
-                "reference": "160d6274b03562ebeb55ed18399281d8118b76c8",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/guzzle": "^6.0 || ^7.0",
-                "paragonie/random_compat": "^1 || ^2 || ^9.99",
-                "php": "^5.6 || ^7.0 || ^8.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.3.5",
-                "php-parallel-lint/php-parallel-lint": "^1.3.1",
-                "phpunit/phpunit": "^5.7 || ^6.0 || ^9.5",
-                "squizlabs/php_codesniffer": "^2.3 || ^3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-2.x": "2.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "League\\OAuth2\\Client\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Alex Bilbie",
-                    "email": "hello@alexbilbie.com",
-                    "homepage": "http://www.alexbilbie.com",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Woody Gilk",
-                    "homepage": "https://github.com/shadowhand",
-                    "role": "Contributor"
-                }
-            ],
-            "description": "OAuth 2.0 Client Library",
-            "keywords": [
-                "Authentication",
-                "SSO",
-                "authorization",
-                "identity",
-                "idp",
-                "oauth",
-                "oauth2",
-                "single sign on"
-            ],
-            "support": {
-                "issues": "https://github.com/thephpleague/oauth2-client/issues",
-                "source": "https://github.com/thephpleague/oauth2-client/tree/2.7.0"
-            },
-            "time": "2023-04-16T18:19:15+00:00"
-        },
-        {
             "name": "maennchen/zipstream-php",
             "version": "3.1.0",
             "source": {
@@ -7708,58 +7488,6 @@
             "time": "2023-08-24T20:32:56+00:00"
         },
         {
-            "name": "microsoft/microsoft-graph",
-            "version": "1.108.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/microsoftgraph/msgraph-sdk-php.git",
-                "reference": "96b940ab530c693832648bdf5ffbb975e29d2233"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/microsoftgraph/msgraph-sdk-php/zipball/96b940ab530c693832648bdf5ffbb975e29d2233",
-                "reference": "96b940ab530c693832648bdf5ffbb975e29d2233",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "guzzlehttp/guzzle": "^6.0 || ^7.0",
-                "php": "^8.0 || ^7.3",
-                "psr/http-message": "^1.0 || ^2.0"
-            },
-            "require-dev": {
-                "guzzlehttp/promises": "^1.0 || ^2.0",
-                "mikey179/vfsstream": "^1.2",
-                "phpstan/phpstan": "^0.12.90 || ^1.0.0",
-                "phpunit/phpunit": "^8.0 || ^9.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Microsoft\\Graph\\": "src/",
-                    "Beta\\Microsoft\\Graph\\": "src/Beta/Microsoft/Graph/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Microsoft Graph Client Tooling",
-                    "email": "graphtooling@service.microsoft.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "The Microsoft Graph SDK for PHP",
-            "homepage": "https://developer.microsoft.com/en-us/graph",
-            "support": {
-                "issues": "https://github.com/microsoftgraph/msgraph-sdk-php/issues",
-                "source": "https://github.com/microsoftgraph/msgraph-sdk-php/tree/1.108.0"
-            },
-            "time": "2023-10-11T11:00:38+00:00"
-        },
-        {
             "name": "mkalkbrenner/php-htmldiff-advanced",
             "version": "0.0.8",
             "source": {
@@ -7855,56 +7583,6 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v4.17.1"
             },
             "time": "2023-08-13T19:53:39+00:00"
-        },
-        {
-            "name": "paragonie/random_compat",
-            "version": "v9.99.100",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "996434e5492cb4c3edcb9168db6fbb1359ef965a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/996434e5492cb4c3edcb9168db6fbb1359ef965a",
-                "reference": "996434e5492cb4c3edcb9168db6fbb1359ef965a",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">= 7"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "4.*|5.*",
-                "vimeo/psalm": "^1"
-            },
-            "suggest": {
-                "ext-libsodium": "Provides a modern crypto API that can be used to generate random bytes."
-            },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Paragon Initiative Enterprises",
-                    "email": "security@paragonie.com",
-                    "homepage": "https://paragonie.com"
-                }
-            ],
-            "description": "PHP 5.x polyfill for random_bytes() and random_int() from PHP 7",
-            "keywords": [
-                "csprng",
-                "polyfill",
-                "pseudorandom",
-                "random"
-            ],
-            "support": {
-                "email": "info@paragonie.com",
-                "issues": "https://github.com/paragonie/random_compat/issues",
-                "source": "https://github.com/paragonie/random_compat"
-            },
-            "time": "2020-10-15T08:29:30+00:00"
         },
         {
             "name": "pear/archive_tar",
@@ -12274,54 +11952,6 @@
             ],
             "description": "Traits for testing Drupal sites that have user content (versus unpopulated sites).",
             "time": "2023-10-13T22:55:15+00:00"
-        },
-        {
-            "name": "xantios/mimey",
-            "version": "v2.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Xantios/mimey.git",
-                "reference": "8cb6f0c29b8eadde38777ed947847f4253c00b60"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Xantios/mimey/zipball/8cb6f0c29b8eadde38777ed947847f4253c00b60",
-                "reference": "8cb6f0c29b8eadde38777ed947847f4253c00b60",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.0"
-            },
-            "require-dev": {
-                "php-coveralls/php-coveralls": "^2.4",
-                "phpunit/phpunit": "^9.4"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Mimey\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Xantios Krugor",
-                    "email": "git@xantios.nl"
-                },
-                {
-                    "name": "Ralph Khattar",
-                    "email": "ralph.khattar@gmail.com"
-                }
-            ],
-            "description": "PHP package for converting file extensions to MIME types and vice versa.",
-            "support": {
-                "issues": "https://github.com/Xantios/mimey/issues",
-                "source": "https://github.com/Xantios/mimey/tree/v2.2.0"
-            },
-            "time": "2021-06-12T14:33:14+00:00"
         }
     ],
     "packages-dev": [

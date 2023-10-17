@@ -31,7 +31,6 @@
         "drupal/field_token_value": "^3.0",
         "drupal/flag": "^4.0",
         "drupal/message_gcnotify": "dev-1.0.x",
-        "drupal/o365": "^3.0",
         "drupal/registration_role": "^2.0",
         "drupal/search_api_saved_searches": "1.x@dev",
         "drupal/shs": "^2.0@RC",
