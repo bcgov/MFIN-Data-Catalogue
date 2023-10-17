@@ -2,6 +2,7 @@
 
 namespace Drupal\bc_dc\Controller;
 
+use Drupal\bc_dc\Form\BcDcAddColumnsForm;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\File\FileSystemInterface;
@@ -69,53 +70,19 @@ class BcDcCreateFileController extends ControllerBase {
     if (!in_array($format, static::SUPPORTED_EXTENSIONS, TRUE)) {
       throw new NotFoundHttpException();
     }
-    $columnHeaders = [
-[
-        'column_allowed_values',
-        'column_data_quality',
-        'column_description',
-        'column_name',
-        'column_size',
-        'column_transformations',
-        'column_type',
-        'instance_of',
-        'metadata_type',
-        'provenance_field_name',
-        'provenance_field_number',
-        'provenance_field_question',
-        'provenance_form_name',
-        'provenance_form_number',
-]
-    ];
-    $results = array();
-//    $results = array_merge($results, $columnHeaders);
+    $fields = BcDcAddColumnsForm::getDataSetFields();
+    $results = [$fields];
     $paragraph_field_items = $node->get('field_columns')->referencedEntities();
     foreach ($paragraph_field_items as $paragraph) {
       // Get the translation.
       $paragraph = $this->entityRepository->getTranslationFromContext($paragraph);
-      $rows = [
-        $paragraph->get('field_column_allowed_values')->value,
-        $paragraph->get('field_column_data_quality')->value,
-        $paragraph->get('field_column_description')->value,
-        $paragraph->get('field_column_name')->value,
-        $paragraph->get('field_column_size')->value,
-        $paragraph->get('field_column_transformations')->value,
-        $paragraph->get('field_column_type')->value,
-        $paragraph->get('field_instance_of')->value,
-        $paragraph->get('field_metadata_type')->value,
-        $paragraph->get('field_provenance_field_name')->value,
-        $paragraph->get('field_provenance_field_number')->value,
-        $paragraph->get('field_provenance_field_question')->value,
-        $paragraph->get('field_provenance_form_name')->value,
-        $paragraph->get('field_provenance_form_number')->value,
-      ];
-
-//      $results = array_merge($results, $rows);
-      $results[] = $rows;
+      $rows = [];
+      foreach ($fields as $field) {
+        $row = $paragraph->get('field_' . $field)->value;
+        $rows [] = $row;
+      }
+      $results [] = $rows;
     }
-
-    $sheetData = array_merge($columnHeaders, $results);
-
 
     // Make a filename like "node-file-path_ID_12.csv".
     $node_path = $this->pathAliasManager->getAliasByPath('/node/' . $node->id());
@@ -130,8 +97,8 @@ class BcDcCreateFileController extends ControllerBase {
     $spreadsheet = new Spreadsheet();
     $worksheets = new Worksheet($spreadsheet);
     $spreadsheet->addSheet($worksheets);
-    $worksheets->fromArray($sheetData);
-    // Remove first blank worksheet
+    $worksheets->fromArray($results);
+    // Remove first blank worksheet.
     $sheetIndex = $spreadsheet->getIndex(
       $spreadsheet->getSheetByName('Worksheet')
     );
@@ -145,7 +112,7 @@ class BcDcCreateFileController extends ControllerBase {
       case 'csv':
         $writer = new Csv($spreadsheet);
         $writer->setDelimiter(',');
-        $writer->setEnclosure('');
+        $writer->setEnclosure('"');
         $writer->setLineEnding("\r\n");
         $writer->setSheetIndex(0);
         break;
