@@ -14,6 +14,7 @@ use Drupal\Core\Render\Element;
 use Drupal\message_gcnotify\Service\GcNotifyApiService;
 use Drupal\node\NodeInterface;
 use Drupal\taxonomy\TermInterface;
+use Drupal\views\ViewExecutable;
 
 /**
  * Implements hook_theme().
@@ -319,4 +320,14 @@ function bc_dc_get_data_dictionary_download_links(FieldableEntityInterface $enti
     '#theme' => 'item_list',
     '#items' => $items,
   ];
+}
+
+/**
+ * Implements hook_views_pre_build().
+ */
+function bc_dc_views_pre_build(ViewExecutable $view): void {
+  // Hide vbo_export on search pages for anonymous users.
+  if ($view->id() === 'site_search' && \Drupal::currentUser()->isAnonymous()) {
+    unset($view->field['views_bulk_operations_bulk_form']);
+  }
 }
