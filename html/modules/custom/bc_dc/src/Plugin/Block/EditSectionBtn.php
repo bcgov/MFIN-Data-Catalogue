@@ -114,7 +114,7 @@ class EditSectionBtn extends BlockBase implements ContainerFactoryPluginInterfac
           'destination' => $this->redirectDestination->get(),
         ],
       ];
-      $links[] = Link::createFromRoute($this->t('Import data columns'), 'bc_dc.data_set_edit_add_columns', $route_parameters, $link_options)->toRenderable();
+      $links[] = Link::createFromRoute($this->t('Import data columns'), 'bc_dc.data_set_edit_add_columns', $route_parameters, $link_options);
     }
 
     // Edit links.
@@ -135,7 +135,17 @@ class EditSectionBtn extends BlockBase implements ContainerFactoryPluginInterfac
         'destination' => $this->redirectDestination->get(),
       ],
     ];
-    $links[] = Link::createFromRoute($this->t('Edit'), 'entity.node.edit_form', $route_parameters, $link_options)->toRenderable();
+    $links[] = Link::createFromRoute($this->t('Edit'), 'entity.node.edit_form', $route_parameters, $link_options);
+
+    // Remove links with no access.
+    foreach ($links as $key => $link) {
+      if ($link->getUrl()->access()) {
+        $links[$key] = $link->toRenderable();
+      }
+      else {
+        unset($links[$key]);
+      }
+    }
 
     // Assemble block.
     $build = [
