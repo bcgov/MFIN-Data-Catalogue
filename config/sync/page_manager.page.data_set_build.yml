@@ -21,7 +21,6 @@ access_conditions:
       administrator: administrator
       data_catalogue_administrator: data_catalogue_administrator
       data_catalogue_editor: data_catalogue_editor
-      data_catalogue_user: data_catalogue_user
   -
     id: 'entity_bundle:node'
     negate: false
