@@ -38,7 +38,7 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     // Test that new users are assigned role data_catalogue_user.
     // There is also a functional test for this. That test sets its own config
     // instead of the config coming in by import.
-    $this->createUser([], 'test_user');
+    $test_user = $this->createUser([], 'test_user');
     $account = user_load_by_name('test_user');
     $this->assertSession()->assert($account->hasRole('data_catalogue_user'), 'Test user should have role data_catalogue_user.');
 
@@ -71,6 +71,19 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     $this->assertSession()->elementExists('xpath', 'ul[contains(@class, "bcbb-inline-list")]/li[@class = "primary_responsibility_org"]', $container);
     $this->assertSession()->elementExists('xpath', 'ul[contains(@class, "bcbb-inline-list")]/li[@class = "data_set_editor"]', $container);
     $this->assertSession()->elementExists('xpath', 'ul[contains(@class, "bcbb-inline-list")]/li[@class = "modified_date"]', $container);
+
+    // No search results download as anon.
+    $container = $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "view-id-site_search")]//div[contains(@class, "row")]/div[contains(@class, "views-field-views-bulk-operations-bulk-form")]');
+
+    // Login as regular user.
+    $this->drupalGet('user/login', ['query' => ['showcore' => '']]);
+    $this->submitForm([
+      'name' => $test_user->getAccountName(),
+      'pass' => $test_user->passRaw,
+    ], 'Log in');
+    // Return to search page.
+    $this->drupalGet('data-set');
+    $this->assertSession()->statusCodeEquals(200);
 
     // Search results download.
     $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-id-site_search")]//div[contains(@class, "row")]/div[contains(@class, "views-field-views-bulk-operations-bulk-form")]');
