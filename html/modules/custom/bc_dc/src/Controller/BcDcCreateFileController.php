@@ -122,7 +122,9 @@ class BcDcCreateFileController extends ControllerBase {
     // Cause the browser to save the file with the specified filename.
     header('Content-Disposition: attachment; filename="' . $filename . '"');
     // Serve the file.
-    return new BinaryFileResponse($file_path, 200);
+    $response = new BinaryFileResponse($file_path, 200);
+    $response->deleteFileAfterSend();
+    return $response;
   }
 
 }
