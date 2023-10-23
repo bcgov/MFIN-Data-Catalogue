@@ -31,6 +31,6 @@ access_conditions:
 parameters:
   node:
     machine_name: node
-    label: ''
+    label: Node
     type: 'entity:node'
     optional: false
