@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - bc_dc
     - node
     - user
 id: data_set_build
@@ -28,6 +29,11 @@ access_conditions:
       node: node
     bundles:
       data_set: data_set
+  -
+    id: bc_dc_build_edit_access
+    negate: false
+    context_mapping:
+      node: node
 parameters:
   node:
     machine_name: node
