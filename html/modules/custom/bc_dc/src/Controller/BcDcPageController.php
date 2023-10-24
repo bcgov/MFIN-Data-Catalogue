@@ -9,6 +9,7 @@ use Drupal\flag\FlagLinkBuilder;
 use Drupal\flag\FlagService;
 use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Page callbacks.
