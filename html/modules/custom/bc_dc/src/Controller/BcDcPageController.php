@@ -52,7 +52,7 @@ class BcDcPageController extends ControllerBase {
    */
   public function dataSetDashboardPage(): array {
     // Anonymous cannot have a dashboard.
-    if (!$this->currentUser()->id()) {
+    if ($this->currentUser()->isAnonymous()) {
       throw new NotFoundHttpException();
     }
 
