@@ -37,7 +37,7 @@ class BcDcPageController extends ControllerBase {
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container): object {
+  public static function create(ContainerInterface $container): static {
     return new static(
       $container->get('flag'),
       $container->get('flag.link_builder'),
