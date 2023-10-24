@@ -48,7 +48,7 @@ class BcDcPageController extends ControllerBase {
    * Page callback for the data set dashboard.
    *
    * @return array
-   *   A render array for the build page.
+   *   A Drupal render array.
    */
   public function dataSetDashboardPage(): array {
     // Anonymous cannot have a dashboard.
