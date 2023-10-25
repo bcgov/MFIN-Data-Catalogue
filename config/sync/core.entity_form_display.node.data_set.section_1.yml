@@ -1,0 +1,96 @@
+uuid: 57b2b5a1-6897-4a7d-b2d8-7e368fab69ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.node.section_1
+    - field.field.node.data_set.body
+    - field.field.node.data_set.field_active_period
+    - field.field.node.data_set.field_authoritative_info
+    - field.field.node.data_set.field_columns
+    - field.field.node.data_set.field_critical_information
+    - field.field.node.data_set.field_data_quality_issues
+    - field.field.node.data_set.field_data_set_historical_change
+    - field.field.node.data_set.field_data_set_type
+    - field.field.node.data_set.field_data_sets_used
+    - field.field.node.data_set.field_final_disposition
+    - field.field.node.data_set.field_high_value_info
+    - field.field.node.data_set.field_information_schedule
+    - field.field.node.data_set.field_is_complete_review
+    - field.field.node.data_set.field_last_review_date
+    - field.field.node.data_set.field_modified_date
+    - field.field.node.data_set.field_primary_responsibility_org
+    - field.field.node.data_set.field_published_date
+    - field.field.node.data_set.field_review_interval
+    - field.field.node.data_set.field_security_classification
+    - field.field.node.data_set.field_semi_active_period
+    - field.field.node.data_set.field_series
+    - field.field.node.data_set.field_source_system
+    - field.field.node.data_set.field_special_flags
+    - node.type.data_set
+id: node.data_set.section_1
+targetEntityType: node
+bundle: data_set
+mode: section_1
+content:
+  field_data_set_type:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_is_complete_review:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_series:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 5
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  body: true
+  created: true
+  field_active_period: true
+  field_authoritative_info: true
+  field_columns: true
+  field_critical_information: true
+  field_data_quality_issues: true
+  field_data_set_historical_change: true
+  field_data_sets_used: true
+  field_final_disposition: true
+  field_high_value_info: true
+  field_information_schedule: true
+  field_last_review_date: true
+  field_modified_date: true
+  field_primary_responsibility_org: true
+  field_published_date: true
+  field_review_interval: true
+  field_security_classification: true
+  field_semi_active_period: true
+  field_source_system: true
+  field_special_flags: true
+  langcode: true
+  path: true
+  promote: true
+  sticky: true
+  uid: true

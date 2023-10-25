@@ -1,0 +1,220 @@
+uuid: 78e33b1c-d1bf-4b88-85e6-07c946852b73
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.data_set_build
+  module:
+    - bc_dc
+    - ctools
+    - node
+    - panels
+id: data_set_build-panels_variant-0
+label: 'Build Page'
+weight: -10
+variant: panels_variant
+variant_settings:
+  id: panels_variant
+  label: null
+  weight: 0
+  uuid: 5a718141-d2fa-486e-a96e-0838b70bcae2
+  blocks:
+    0552e311-d766-4d1c-b1f3-5f87e5000e94:
+      id: 'entity_view:node'
+      label: 'Section 1: Details'
+      label_display: '0'
+      provider: ctools
+      view_mode: section_1
+      context_mapping:
+        entity: node
+      region: main
+      weight: -5
+      uuid: 0552e311-d766-4d1c-b1f3-5f87e5000e94
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    3e40db8e-7871-483c-9ed0-6580c5a54c15:
+      id: bc_dc_review_needed_message
+      label: 'Review needed message'
+      label_display: '0'
+      provider: bc_dc
+      context_mapping: {  }
+      region: sidebar
+      weight: -6
+      uuid: 3e40db8e-7871-483c-9ed0-6580c5a54c15
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    63ffa688-4aca-4966-a552-34baa2764859:
+      id: bc_dc_edit_button
+      label: 'Section 1: Details'
+      label_display: visible
+      provider: bc_dc
+      context_mapping:
+        node: node
+      region: main
+      weight: -6
+      uuid: 63ffa688-4aca-4966-a552-34baa2764859
+      query_param: section_1
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    388dd9c1-d0f4-49b7-865e-31fa611b4b8d:
+      id: 'entity_view:node'
+      label: 'Section 2: Data description'
+      label_display: '0'
+      provider: ctools
+      view_mode: section_2
+      context_mapping:
+        entity: node
+      region: main
+      weight: -3
+      uuid: 388dd9c1-d0f4-49b7-865e-31fa611b4b8d
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    700e9be9-41b5-4654-b046-584ba675c1d8:
+      id: bc_dc_edit_button
+      label: 'Section 2: Data description'
+      label_display: visible
+      provider: bc_dc
+      context_mapping:
+        node: node
+      region: main
+      weight: -4
+      uuid: 700e9be9-41b5-4654-b046-584ba675c1d8
+      query_param: section_2
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    c3f9fa35-60ef-4caf-84f1-a57981624283:
+      id: 'entity_view:node'
+      label: 'Section 3: Data usage'
+      label_display: '0'
+      provider: ctools
+      view_mode: section_3
+      context_mapping:
+        entity: node
+      region: main
+      weight: -1
+      uuid: c3f9fa35-60ef-4caf-84f1-a57981624283
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    15af6cc8-647a-4705-9a60-009230f61c10:
+      id: bc_dc_edit_button
+      label: 'Section 3: Data usage'
+      label_display: visible
+      provider: bc_dc
+      context_mapping:
+        node: node
+      region: main
+      weight: -2
+      uuid: 15af6cc8-647a-4705-9a60-009230f61c10
+      query_param: section_3
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    fdee6d41-ceb6-43cf-8f6f-ede4a05dd278:
+      id: 'entity_view:node'
+      label: 'Section 4: Data value'
+      label_display: '0'
+      provider: ctools
+      view_mode: section_4
+      context_mapping:
+        entity: node
+      region: main
+      weight: 1
+      uuid: fdee6d41-ceb6-43cf-8f6f-ede4a05dd278
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    e1c27330-6c4f-444e-94d3-3c0af55f8205:
+      id: 'entity_view:node'
+      label: 'Section 5: Data dictionary'
+      label_display: '0'
+      provider: ctools
+      view_mode: section_5
+      context_mapping:
+        entity: node
+      region: main
+      weight: 3
+      uuid: e1c27330-6c4f-444e-94d3-3c0af55f8205
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    c06bbb1b-e4c7-403c-b728-6adb7d1ef658:
+      id: bc_dc_edit_button
+      label: 'Section 5: Data dictionary'
+      label_display: visible
+      provider: bc_dc
+      context_mapping:
+        node: node
+      region: main
+      weight: 2
+      uuid: c06bbb1b-e4c7-403c-b728-6adb7d1ef658
+      query_param: section_5
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    6d7b192c-7273-4995-b54a-fb3f4578ef89:
+      id: bc_dc_edit_button
+      label: 'Section 4: Data value'
+      label_display: visible
+      provider: bc_dc
+      context_mapping:
+        node: node
+      region: main
+      weight: 0
+      uuid: 6d7b192c-7273-4995-b54a-fb3f4578ef89
+      query_param: section_4
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    2148a34f-e8b4-4fb8-806c-ed4c8c19739f:
+      id: 'entity_view:node'
+      label: 'Last review date'
+      label_display: '0'
+      provider: ctools
+      view_mode: revision_mode
+      context_mapping:
+        entity: node
+      region: sidebar
+      weight: -5
+      uuid: 2148a34f-e8b4-4fb8-806c-ed4c8c19739f
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+  page_title: 'Build: [node:title]'
+  layout: bcbb_main_sidebar_right
+  layout_settings: {  }
+  builder: standard
+  storage_type: page_manager
+  storage_id: data_set_build-panels_variant-0
+  css_classes:
+    - ar-build
+  html_id: ''
+  css_styles: ''
+page: data_set_build
+selection_criteria:
+  1:
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: node
+    bundles:
+      data_set: data_set
+selection_logic: and
+static_context: {  }

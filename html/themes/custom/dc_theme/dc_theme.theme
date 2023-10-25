@@ -8,6 +8,24 @@
 use Drupal\Core\Link;
 
 /**
+ * Implements hook_preprocess_HOOK() for block--bc-dc-edit-button.html.twig.
+ */
+function dc_theme_preprocess_block__bc_dc_edit_button(array &$variables): void {
+  // Add custom classes to data_set build page section headers.
+  $variables['title_attributes']['class'][] = 'h4';
+  $variables['title_attributes']['class'][] = 'fw-bold';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block--entity-view--node.html.twig.
+ */
+function dc_theme_preprocess_block__entity_view__node(array &$variables): void {
+  // Adjust spacing.
+  $variables['attributes']['class'][] = 'mb-3';
+  $variables['attributes']['class'][] = 'pb-3';
+}
+
+/**
  * Implements hook_preprocess_HOOK() for block--facets-summary-block.html.twig.
  */
 function dc_theme_preprocess_block__facets_summary_block(array &$variables): void {
@@ -40,6 +58,14 @@ function dc_theme_preprocess_input__submit(array &$variables): void {
   if ($variables['element']['#id'] === 'edit-reset') {
     $variables['attributes']['class'][] = 'button--danger';
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node--data-set.html.twig.
+ */
+function dc_theme_preprocess_node__data_set(array &$variables): void {
+  // Prevent page title from appearing in an 'h2' element at the top.
+  $variables['page'] = TRUE;
 }
 
 /**

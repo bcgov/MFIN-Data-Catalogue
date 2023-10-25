@@ -1,0 +1,87 @@
+uuid: 1189c4a5-af71-4e43-b34c-4f56038534e4
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.node.section_5
+    - field.field.node.data_set.body
+    - field.field.node.data_set.field_active_period
+    - field.field.node.data_set.field_authoritative_info
+    - field.field.node.data_set.field_columns
+    - field.field.node.data_set.field_critical_information
+    - field.field.node.data_set.field_data_quality_issues
+    - field.field.node.data_set.field_data_set_historical_change
+    - field.field.node.data_set.field_data_set_type
+    - field.field.node.data_set.field_data_sets_used
+    - field.field.node.data_set.field_final_disposition
+    - field.field.node.data_set.field_high_value_info
+    - field.field.node.data_set.field_information_schedule
+    - field.field.node.data_set.field_is_complete_review
+    - field.field.node.data_set.field_last_review_date
+    - field.field.node.data_set.field_modified_date
+    - field.field.node.data_set.field_primary_responsibility_org
+    - field.field.node.data_set.field_published_date
+    - field.field.node.data_set.field_review_interval
+    - field.field.node.data_set.field_security_classification
+    - field.field.node.data_set.field_semi_active_period
+    - field.field.node.data_set.field_series
+    - field.field.node.data_set.field_source_system
+    - field.field.node.data_set.field_special_flags
+    - node.type.data_set
+  module:
+    - paragraphs
+id: node.data_set.section_5
+targetEntityType: node
+bundle: data_set
+mode: section_5
+content:
+  field_columns:
+    type: paragraphs
+    weight: 0
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: all
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: data_column
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
+hidden:
+  body: true
+  created: true
+  field_active_period: true
+  field_authoritative_info: true
+  field_critical_information: true
+  field_data_quality_issues: true
+  field_data_set_historical_change: true
+  field_data_set_type: true
+  field_data_sets_used: true
+  field_final_disposition: true
+  field_high_value_info: true
+  field_information_schedule: true
+  field_is_complete_review: true
+  field_last_review_date: true
+  field_modified_date: true
+  field_primary_responsibility_org: true
+  field_published_date: true
+  field_review_interval: true
+  field_security_classification: true
+  field_semi_active_period: true
+  field_series: true
+  field_source_system: true
+  field_special_flags: true
+  langcode: true
+  path: true
+  promote: true
+  status: true
+  sticky: true
+  title: true
+  uid: true

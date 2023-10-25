@@ -1,0 +1,10 @@
+uuid: 424567ac-bd54-4e08-b5a1-6253272b1a0f
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.section_3
+label: 'Section 3'
+targetEntityType: node
+cache: true

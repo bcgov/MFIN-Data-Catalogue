@@ -30,3 +30,8 @@ modification+administrator+node+data_set: node.data_set.default
 'use  The form mode media_library linked to  media entity( image )': media.image.media_library
 'use  The form mode media_library linked to  media entity( remote_video )': media.remote_video.media_library
 'use  The form mode media_library linked to  media entity( video )': media.video.media_library
+'use  The form mode section_1 linked to  node entity( data_set )': node.data_set.section_1
+'use  The form mode section_2 linked to  node entity( data_set )': node.data_set.section_2
+'use  The form mode section_3 linked to  node entity( data_set )': node.data_set.section_3
+'use  The form mode section_4 linked to  node entity( data_set )': node.data_set.section_4
+'use  The form mode section_5 linked to  node entity( data_set )': node.data_set.section_5
