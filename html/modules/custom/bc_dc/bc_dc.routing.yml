@@ -6,16 +6,6 @@ bc_dc.settings:
   requirements:
     _permission: 'administer site configuration'
 
-bc_dc.data_set_dashboard:
-  path: '/dashboard'
-  defaults:
-    _controller: '\Drupal\bc_dc\Controller\BcDcPageController::dataSetDashboardPage'
-    _title: 'Dashboard'
-  requirements:
-    _permission: 'view data_set revisions'
-  options:
-    no_cache: TRUE
-
 bc_dc.data_set_edit_add_columns:
   path: '/node/{node}/add-columns'
   defaults:
