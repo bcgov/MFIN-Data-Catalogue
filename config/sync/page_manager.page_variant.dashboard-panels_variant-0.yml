@@ -1,0 +1,82 @@
+uuid: e0c5d8d1-122a-477a-95d0-b46788d8d27c
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.dashboard
+  module:
+    - bcbb_other
+    - bcbb_search
+    - panels
+    - user
+id: dashboard-panels_variant-0
+label: 'Anonymous dashboard'
+weight: -10
+variant: panels_variant
+variant_settings:
+  id: panels_variant
+  label: null
+  weight: 0
+  uuid: 3ba510f7-b699-4eb5-a6cd-8ae1d5b01317
+  blocks:
+    911500f9-9c75-43ca-a73c-1551a9b198fa:
+      id: bcbb_search_api_block
+      label: 'BCbb Search API Block'
+      label_display: '0'
+      provider: bcbb_search
+      context_mapping: {  }
+      search:
+        search_label: 'Find metadata records'
+        search_placeholder: ''
+        search_btn_label: ''
+        search_url: /data-set
+        label_sr_only: false
+        search_input_size: false
+        search_input_size_value: null
+        show_advanced_link: true
+      region: second
+      weight: 0
+      uuid: 911500f9-9c75-43ca-a73c-1551a9b198fa
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    2ea835da-546b-4c16-8a3e-bb775482cf43:
+      id: bcbb_text_block
+      label: 'Ministry of Finance Data catalogue'
+      label_display: '0'
+      provider: bcbb_other
+      context_mapping: {  }
+      content:
+        value: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>'
+        format: basic_html
+      region: first
+      weight: 0
+      uuid: 2ea835da-546b-4c16-8a3e-bb775482cf43
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+  page_title: 'Ministry of Finance Data catalogue'
+  layout: layout_twocol_section
+  layout_settings:
+    label: ''
+    column_widths: 50-50
+  builder: standard
+  storage_type: page_manager
+  storage_id: dashboard-panels_variant-0
+  css_classes:
+    - ''
+  html_id: ''
+  css_styles: ''
+page: dashboard
+selection_criteria:
+  -
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      anonymous: anonymous
+selection_logic: and
+static_context: {  }

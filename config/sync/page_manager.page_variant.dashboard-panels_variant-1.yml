@@ -1,0 +1,148 @@
+uuid: 78ef81df-569a-4ca6-91b3-115591e27eef
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.dashboard
+  module:
+    - bc_dc
+    - bcbb_search
+    - panels
+    - user
+id: dashboard-panels_variant-1
+label: 'Authenticated dashboard'
+weight: 0
+variant: panels_variant
+variant_settings:
+  id: panels_variant
+  label: null
+  weight: 0
+  uuid: 9adfd4ef-21b8-48dc-8613-5b4f531939a7
+  blocks:
+    c9dd60b1-c7cb-41ce-a830-f5d460e884cf:
+      id: bcbb_search_api_block
+      label: 'BCbb Search API Block'
+      label_display: '0'
+      provider: bcbb_search
+      context_mapping: {  }
+      search:
+        search_label: 'Find metadata records'
+        search_placeholder: ''
+        search_btn_label: ''
+        search_url: /data-set
+        label_sr_only: false
+        search_input_size: false
+        search_input_size_value: null
+        show_advanced_link: true
+      region: content
+      weight: 0
+      uuid: c9dd60b1-c7cb-41ce-a830-f5d460e884cf
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    f1a1b0d8-f640-45cc-96c4-afd7ac7bccf2:
+      id: bc_dc_data_set_table
+      label: 'My unpublished data sets'
+      label_display: '0'
+      provider: bc_dc
+      context_mapping: {  }
+      table_type: user_unpublished
+      region: content
+      weight: 1
+      uuid: f1a1b0d8-f640-45cc-96c4-afd7ac7bccf2
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    66bebbb5-d0e6-4e22-b334-592fc8fcb8db:
+      id: bc_dc_data_set_table
+      label: 'Bookmarked data sets'
+      label_display: '0'
+      provider: bc_dc
+      context_mapping: {  }
+      table_type: user_bookmarked
+      region: content
+      weight: 2
+      uuid: 66bebbb5-d0e6-4e22-b334-592fc8fcb8db
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    728cdb21-f13d-4735-b501-37f1699673c5:
+      id: bc_dc_data_set_table
+      label: ' My data sets bookmarked by at least one user '
+      label_display: '0'
+      provider: bc_dc
+      context_mapping: {  }
+      table_type: user_bookmark_counts
+      region: content
+      weight: 3
+      uuid: 728cdb21-f13d-4735-b501-37f1699673c5
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    dfaf47b4-387e-4cd6-84c6-a0d50418ade7:
+      id: bc_dc_data_set_table
+      label: 'Most bookmarked data sets'
+      label_display: '0'
+      provider: bc_dc
+      context_mapping: {  }
+      table_type: most_bookmarked
+      region: content
+      weight: 4
+      uuid: dfaf47b4-387e-4cd6-84c6-a0d50418ade7
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    f79b9472-0537-4208-b8d8-99c776d28ce0:
+      id: bc_dc_data_set_table
+      label: 'My data sets that need review'
+      label_display: '0'
+      provider: bc_dc
+      context_mapping: {  }
+      table_type: user_need_review
+      region: content
+      weight: 5
+      uuid: f79b9472-0537-4208-b8d8-99c776d28ce0
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    2dd274a5-1bf9-42aa-a373-7bfb9a39b43c:
+      id: bc_dc_dashboard_actions
+      label: 'Dashboard actions'
+      label_display: '0'
+      provider: bc_dc
+      context_mapping: {  }
+      region: content
+      weight: -1
+      uuid: 2dd274a5-1bf9-42aa-a373-7bfb9a39b43c
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+  page_title: Dashboard
+  layout: layout_onecol
+  layout_settings:
+    label: ''
+  builder: standard
+  storage_type: page_manager
+  storage_id: dashboard-panels_variant-1
+  css_classes:
+    - ''
+  html_id: ''
+  css_styles: ''
+page: dashboard
+selection_criteria:
+  -
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      authenticated: authenticated
+selection_logic: and
+static_context: {  }

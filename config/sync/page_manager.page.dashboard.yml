@@ -1,0 +1,12 @@
+uuid: 2f0aa5e0-46a0-4b52-ac19-a582498fae89
+langcode: en
+status: true
+dependencies: {  }
+id: dashboard
+label: Dashboard
+description: ''
+use_admin_theme: false
+path: /dashboard
+access_logic: and
+access_conditions: {  }
+parameters: {  }
