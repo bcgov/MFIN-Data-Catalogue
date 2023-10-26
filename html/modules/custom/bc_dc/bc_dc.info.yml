@@ -6,6 +6,7 @@ configure: bc_dc.settings
 package: BC Base Build
 dependencies:
   - bcbb:bcbb_book
+  - bcbb:bcbb_other
   - diff:diff
   - drupal:datetime
   - drupal:field
