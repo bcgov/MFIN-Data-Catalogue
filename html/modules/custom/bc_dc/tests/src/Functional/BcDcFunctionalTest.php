@@ -747,17 +747,23 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
 
     // Test "Review needed" messages.
     //
-    // Configure "Review needed" messages.
+    // Generate "Review needed" messages.
     $review_needed_messages = [
       'review_needed_message' => 'Review needed. ' . $this->randomString(),
       'review_overdue_message' => 'Review overdue. ' . $this->randomString(),
     ];
-    $this->config('bc_dc.settings')
+    // Save messages and review interval in config. This used to be done with
+    // $this->config(), but that no longer works.
+    $this->drupalLogin($this->rootUser);
+    $this->drupalGet('admin/config/data-catalogue');
+    $edit = [
       // Ensure an item with a 1 month interval will appear as needing review.
-      ->set('data_set_review_period_alert', 40)
-      ->set('review_needed_message', $review_needed_messages['review_needed_message'])
-      ->set('review_overdue_message', $review_needed_messages['review_overdue_message'])
-      ->save();
+      'edit-data-set-review-period-alert' => 40,
+      'edit-review-needed-message' => $review_needed_messages['review_needed_message'],
+      'edit-review-overdue-message' => $review_needed_messages['review_overdue_message'],
+    ];
+    $this->submitForm($edit, 'Save configuration');
+    $this->drupalLogin($this->users['Test Data catalogue administrator']);
 
     // No "Review needed" message appears.
     $this->drupalGet('node/2');
