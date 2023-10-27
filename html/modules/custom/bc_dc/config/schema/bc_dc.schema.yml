@@ -20,8 +20,8 @@ field.formatter.settings.data_set_column_name:
       type: boolean
       label: 'Display inline'
 
-page_manager.block_plugin.bc_dc_edit_button:
-  type: block.settings.[id]
+block.settings.bc_dc_edit_button:
+  type: block_settings
   mapping:
     region:
       type: string
