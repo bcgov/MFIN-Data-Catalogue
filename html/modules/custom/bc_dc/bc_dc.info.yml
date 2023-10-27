@@ -28,6 +28,7 @@ dependencies:
   - metatag:metatag
   - page_manager:page_manager
   - page_manager:page_manager_ui
+  - panels:panels
   - paragraphs:paragraphs
   - pathauto:pathauto
   - registration_role:registration_role
