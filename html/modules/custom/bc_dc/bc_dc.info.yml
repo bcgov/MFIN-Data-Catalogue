@@ -7,6 +7,7 @@ package: BC Base Build
 dependencies:
   - bcbb:bcbb_book
   - bcbb:bcbb_other
+  - bcbb:bcbb_search
   - diff:diff
   - drupal:datetime
   - drupal:field
