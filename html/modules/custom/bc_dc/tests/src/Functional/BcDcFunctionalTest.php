@@ -546,6 +546,13 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->drupalGet('node/2/download/columns/xlsx');
     $this->assertSession()->statusCodeEquals(200);
 
+    // Anonymous dashboard.
+    $this->drupalGet('dashboard');
+    // Content block exists.
+    $this->assertSession()->elementExists('xpath', '//div[@id = "block-dc-theme-content"]');
+    // Search block exists.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "bcbb-search-api-form")]//div[@id = "edit-search-keyword--description"]/a[@href = "/data-set"][text() = "Advanced search"]');
+
     // Test adding bookmarks.
     $this->drupalLogin($this->users['Test Data catalogue user']);
     $this->drupalGet('node/2');
