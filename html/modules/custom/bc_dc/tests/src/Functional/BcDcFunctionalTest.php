@@ -126,14 +126,23 @@ class BcDcFunctionalTest extends BrowserTestBase {
       $this->assertSession()->assert($role instanceof Role, 'Role ' . $role_id . ' should exist.');
     }
 
-    // Configure registration_role module.
+    // Module configuration.
     // @todo Remove this section and have the config come in from config import.
+    //
+    // Configure registration_role module.
     $this->drupalGet('admin/people/registration-role');
     $edit = [
       'edit-role-to-select-data-catalogue-user' => TRUE,
       'edit-registration-mode-admin' => 'admin',
     ];
     $this->submitForm($edit, 'Save configuration');
+    // Configure toc_filter.
+    $this->drupalGet('admin/config/content/formats/manage/basic_html');
+    $edit_book = [
+      'edit-filters-toc-filter-status' => 1,
+      'edit-filters-toc-filter-settings-type' => 'full',
+    ];
+    $this->submitForm($edit_book, 'Save configuration');
 
     // Create test users.
     $this->createTestUser('Test Data catalogue administrator', ['data_catalogue_administrator']);
@@ -574,14 +583,6 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     //
     // Login as admin.
     $this->drupalLogin($this->rootUser);
-    // Configure toc_filter. This ought to happen by config import but does not.
-    // @todo Remove this section and have the config come in from config import.
-    $this->drupalGet('admin/config/content/formats/manage/basic_html');
-    $edit_book = [
-      'edit-filters-toc-filter-status' => 1,
-      'edit-filters-toc-filter-settings-type' => 'full',
-    ];
-    $this->submitForm($edit_book, 'Save configuration');
     // Create a Book as admin.
     $this->drupalGet('node/add/book');
     $this->assertSession()->statusCodeEquals(200);
