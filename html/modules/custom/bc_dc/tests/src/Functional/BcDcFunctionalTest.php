@@ -173,6 +173,14 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Page links to pathauto path for this page.
     $this->linkByHrefStartsWithExists('/test-basic-page-' . strtolower($randomMachineName));
 
+    // Create an organization term.
+    $test_org = Term::create([
+      'vid' => 'organization',
+      'name' => 'Test organization ' . $this->randomString(),
+    ]);
+    $save = $test_org->save();
+    $this->assertSame($save, SAVED_NEW);
+
     // Create a data_set node.
     $this->drupalGet('node/add/data_set', ['query' => ['display' => 'data_set_description']]);
     $this->assertSession()->statusCodeEquals(200);
@@ -181,6 +189,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $data_set_path = '/data-set/test-data-set-' . strtolower($randomMachineName);
     $edit = [
       'edit-title-0-value' => $data_set_title,
+      'edit-field-primary-responsibility-org-0-target-id' => 'Term (' . $test_org->id() . ')',
       'edit-status-value' => FALSE,
     ];
     $this->submitForm($edit, 'Save');
@@ -204,7 +213,6 @@ class BcDcFunctionalTest extends BrowserTestBase {
 
     // Check for fields that are optional and have inline labels.
     $fields_inline_optional = [
-      'field--name-field-primary-responsibility-org' => 'Office of primary responsibility',
       'field--name-field-series' => 'Series',
       'field--name-field-last-review-date' => 'Last review date',
       'field--name-field-security-classification' => 'Security classification',
@@ -863,6 +871,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $data_set_title_2 = 'Test data set Two ' . $this->randomString();
     $edit = [
       'edit-title-0-value' => $data_set_title_2,
+      'edit-field-primary-responsibility-org-0-target-id' => 'Term (' . $test_org->id() . ')',
       'edit-status-value' => TRUE,
       // Set node/2 as a data_set used by this data_set.
       'edit-field-data-sets-used-0-target-id' => 'Title (2)',
