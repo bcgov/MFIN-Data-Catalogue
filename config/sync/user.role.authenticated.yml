@@ -6,7 +6,6 @@ dependencies:
     - filter.format.basic_html
   module:
     - comment
-    - contact
     - environment_indicator
     - file
     - filter
@@ -26,7 +25,6 @@ permissions:
   - 'access content'
   - 'access environment indicator'
   - 'access shortcuts'
-  - 'access site-wide contact form'
   - 'delete own files'
   - 'post comments'
   - 'skip comment approval'
