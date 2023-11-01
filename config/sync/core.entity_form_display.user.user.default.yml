@@ -5,11 +5,8 @@ dependencies:
   config:
     - field.field.user.user.field_first_name
     - field.field.user.user.field_last_name
-    - field.field.user.user.user_picture
-    - image.style.thumbnail
   module:
     - path
-    - svg_image
     - user
 _core:
   default_config_hash: FaQ9Ptcpxpg30AtiqRDtl_8zbJArHP1LPfug_s59TOA
@@ -52,13 +49,5 @@ content:
   timezone:
     weight: 6
     region: content
-  user_picture:
-    type: image_image
-    weight: -1
-    region: content
-    settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
-    third_party_settings: {  }
 hidden:
   langcode: true
