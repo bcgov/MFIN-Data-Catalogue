@@ -154,12 +154,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb-theme.git",
-                "reference": "7cb685d404341539b36031d4d9d6d4a2ef089c1e"
+                "reference": "5e36ee5ef7e2ae183a299ebd7996989edffe55a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb-theme/zipball/7cb685d404341539b36031d4d9d6d4a2ef089c1e",
-                "reference": "7cb685d404341539b36031d4d9d6d4a2ef089c1e",
+                "url": "https://api.github.com/repos/bcgov/bcbb-theme/zipball/5e36ee5ef7e2ae183a299ebd7996989edffe55a8",
+                "reference": "5e36ee5ef7e2ae183a299ebd7996989edffe55a8",
                 "shasum": ""
             },
             "require": {
@@ -176,7 +176,7 @@
                 "source": "https://github.com/bcgov/bcbb-theme/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb-theme/issues"
             },
-            "time": "2023-11-01T01:19:07+00:00"
+            "time": "2023-11-02T02:12:41+00:00"
         },
         {
             "name": "caxy/php-htmldiff",
@@ -3226,17 +3226,17 @@
         },
         {
             "name": "drupal/inline_entity_form",
-            "version": "2.0.0-rc9",
+            "version": "2.0.0-rc10",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/inline_entity_form.git",
-                "reference": "2.0.0-rc9"
+                "reference": "2.0.0-rc10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/inline_entity_form-2.0.0-rc9.zip",
-                "reference": "2.0.0-rc9",
-                "shasum": "aa3a2b086088b2819b9524b88876f0ca14f690e8"
+                "url": "https://ftp.drupal.org/files/projects/inline_entity_form-2.0.0-rc10.zip",
+                "reference": "2.0.0-rc10",
+                "shasum": "f984e26786c5c5187246e8ee9f54d43f44b0ca53"
             },
             "require": {
                 "drupal/core": "^9.1 || ^10",
@@ -3249,8 +3249,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.0.0-rc9",
-                    "datestamp": "1694533805",
+                    "version": "2.0.0-rc10",
+                    "datestamp": "1698919897",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "RC releases are not covered by Drupal security advisories."
