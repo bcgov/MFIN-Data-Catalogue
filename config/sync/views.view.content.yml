@@ -82,26 +82,26 @@ display:
           clear_on_exposed: true
           force_selection_info: false
           selected_actions:
-            2:
+            0:
               action_id: bc_dc_node_assign_owner_action
               preconfiguration:
                 add_confirmation: false
-            8:
+            12:
               action_id: views_bulk_edit
               preconfiguration:
                 add_confirmation: false
                 get_bundles_from_results: true
-            9:
+            13:
               action_id: views_bulk_operations_delete_entity
-            10:
+            14:
               action_id: 'entity:publish_action:node'
               preconfiguration:
                 add_confirmation: false
-            11:
+            15:
               action_id: 'entity:save_action:node'
               preconfiguration:
                 add_confirmation: false
-            12:
+            16:
               action_id: 'entity:unpublish_action:node'
               preconfiguration:
                 add_confirmation: false
