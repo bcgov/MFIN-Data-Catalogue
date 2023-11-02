@@ -83,7 +83,7 @@ display:
           force_selection_info: false
           selected_actions:
             2:
-              action_id: node_assign_owner_action
+              action_id: bc_dc_node_assign_owner_action
               preconfiguration:
                 add_confirmation: false
             8:
