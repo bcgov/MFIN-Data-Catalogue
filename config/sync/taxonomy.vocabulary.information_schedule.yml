@@ -1,7 +1,12 @@
 uuid: ad7fdadd-a01c-488b-972d-724266036dbc
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - taxonomy_max_depth
+third_party_settings:
+  taxonomy_max_depth:
+    max_depth: 4
 name: 'Information schedule'
 vid: information_schedule
 description: 'Referenced by <i>field_information_schedule</i>  in data set.<br><i>Information schedule</i> in CA.'

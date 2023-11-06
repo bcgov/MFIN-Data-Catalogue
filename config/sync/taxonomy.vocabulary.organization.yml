@@ -1,7 +1,12 @@
 uuid: 50e3384a-e4d7-494b-bbf5-7559f3810c3f
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - taxonomy_max_depth
+third_party_settings:
+  taxonomy_max_depth:
+    max_depth: 0
 name: Organization
 vid: organization
 description: 'Referenced by <i> field_primary_responsibility_org</i>  in data set.<br><i>Organization</i> in CA.'

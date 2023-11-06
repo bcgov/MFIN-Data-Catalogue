@@ -36,6 +36,7 @@ dependencies:
   - role_delegation:role_delegation
   - search_api_saved_searches:search_api_saved_searches
   - shs:shs
+  - taxonomy_max_depth:taxonomy_max_depth
   - twig_tweak:twig_tweak
   - views_bulk_edit:views_bulk_edit
   - views_bulk_operations:views_bulk_operations

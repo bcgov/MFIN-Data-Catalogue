@@ -23,3 +23,17 @@
   display: block;
   margin-left: 1.65em;
 }
+
+.dc-2col-table .dc-table-row .dc-table-col-last {
+  width: 25%;
+}
+.dc-2col-table caption {
+  font-weight: 600;
+  font-size: 1.25em;
+}
+.dc-2col-table table {
+  margin-bottom: 3em;
+}
+.dc-2col-table table:last-child {
+  margin-bottom: auto;
+}

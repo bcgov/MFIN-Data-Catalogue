@@ -36,6 +36,8 @@
         "drupal/shs": "^2.0@RC",
         "drupal/svg_image": "^3.0",
         "drupal/tac_lite": "^1.7",
+        "drupal/taxonomy_import": "^2.0",
+        "drupal/taxonomy_max_depth": "^2.0",
         "phpoffice/phpspreadsheet": "^1.29",
         "vlucas/phpdotenv": "^5.1",
         "webflo/drupal-finder": "^1.2",

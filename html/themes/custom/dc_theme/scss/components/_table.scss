@@ -1,0 +1,18 @@
+.dc-2col-table {
+  .dc-table-row {
+    .dc-table-col-last {
+      width: 25%;
+    }
+  }
+  caption {
+    font-weight: 600;
+    font-size: 1.25em;
+  }
+
+  table {
+    margin-bottom: 3em;
+    &:last-child {
+      margin-bottom: auto;
+    }
+  }
+}

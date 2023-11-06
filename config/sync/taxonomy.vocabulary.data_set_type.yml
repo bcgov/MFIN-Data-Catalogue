@@ -1,7 +1,12 @@
 uuid: e76c4230-8595-4969-8b9d-575f1d668330
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - taxonomy_max_depth
+third_party_settings:
+  taxonomy_max_depth:
+    max_depth: 3
 name: 'Data set type'
 vid: data_set_type
 description: 'Referenced by <i>field_data_set_type</i>  in data set.<br><i>type</i> in CA.'
