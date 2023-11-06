@@ -33,6 +33,7 @@ dependencies:
     - paragraphs
     - system
     - taxonomy
+    - taxonomy_import
     - toolbar
 id: data_catalogue_manager
 label: 'Data catalogue manager'
@@ -48,6 +49,7 @@ permissions:
   - 'add content to books'
   - 'administer book outlines'
   - 'administer nodes'
+  - 'administer taxonomy import'
   - 'create book content'
   - 'create data_set content'
   - 'create image media'
