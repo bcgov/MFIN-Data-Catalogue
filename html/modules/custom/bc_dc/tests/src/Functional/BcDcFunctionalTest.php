@@ -772,7 +772,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $args = [
       ':message' => $review_needed_messages['review_needed_message'],
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "alert alert-warning dc-review")][text() = :message]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "badge text-bg-warning dc-review")][text() = :message]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
 
     // Set field_last_review_date so that review_overdue_message should appear.
@@ -781,7 +781,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $args = [
       ':message' => $review_needed_messages['review_overdue_message'],
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "alert alert-error alert-danger dc-review")][text() = :message]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "badge text-bg-danger dc-review")][text() = :message]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
 
     // Test "My data sets that need review" table.

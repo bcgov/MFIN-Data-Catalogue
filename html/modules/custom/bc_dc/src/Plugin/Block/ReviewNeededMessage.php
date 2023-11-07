@@ -70,12 +70,12 @@ class ReviewNeededMessage extends BlockBase implements ContainerFactoryPluginInt
     // Get variables for the correct version of the message.
     $review_needed = match(static::dataSetReviewNeeded($node)) {
       static::REVIEW_OVERDUE => [
-        '#classes' => 'alert alert-error alert-danger dc-review',
-        '#content' => $this->configFactory->get('bc_dc.settings')->get('review_overdue_message'),
+        '#classes' => 'badge text-bg-danger dc-review',
+        '#content' => rtrim($this->configFactory->get('bc_dc.settings')->get('review_overdue_message'), '.'),
       ],
       static::REVIEW_NEEDED => [
-        '#classes' => 'alert alert-warning dc-review',
-        '#content' => $this->configFactory->get('bc_dc.settings')->get('review_needed_message'),
+        '#classes' => 'badge text-bg-warning dc-review',
+        '#content' => rtrim($this->configFactory->get('bc_dc.settings')->get('review_needed_message'), '.'),
       ],
       default => NULL,
     };
