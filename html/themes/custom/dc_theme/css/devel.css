@@ -117,6 +117,10 @@ form.bc-dc-add-columns-form table > tbody > tr > td.error {
 
 /* Save search block */
 
+div.block-search-api-saved-searches > div {
+  font-size: 0.875em;
+}
+
 .search-api-saved-search-form input[value="Saved search"] {
   font-size: smaller;
 }

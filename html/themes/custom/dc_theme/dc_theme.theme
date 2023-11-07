@@ -18,6 +18,21 @@ function dc_theme_preprocess_block__facets_summary_block(array &$variables): voi
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for block--search-api-saved-searches.html.twig.
+ */
+function dc_theme_preprocess_block__search_api_saved_searches(array &$variables): void {
+  $variables['attributes']['class'][] = 'card';
+  $variables['attributes']['class'][] = 'text-bg-light';
+  $variables['attributes']['class'][] = 'p-1';
+  $variables['attributes']['class'][] = 'p-md-3';
+  $variables['attributes']['class'][] = 'mb-3';
+
+  $variables['title_attributes']['class'][] = 'panel-title';
+  $variables['title_attributes']['class'][] = 'h6';
+  $variables['title_attributes']['class'][] = 'icon-bi-bookmark-plus';
+}
+
+/**
  * Implements hook_preprocess_HOOK() for input--submit.html.twig.
  */
 function dc_theme_preprocess_input__submit(array &$variables): void {
