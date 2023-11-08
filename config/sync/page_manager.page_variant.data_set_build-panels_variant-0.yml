@@ -197,6 +197,20 @@ variant_settings:
         - ''
       html_id: ''
       css_styles: ''
+    b74b78e3-c9c1-4cc9-898a-b4d5731444ab:
+      id: bc_dc_workflow_block
+      label: 'Metadata record workflow block'
+      label_display: '0'
+      provider: bc_dc
+      context_mapping:
+        node: node
+      region: sidebar
+      weight: 0
+      uuid: b74b78e3-c9c1-4cc9-898a-b4d5731444ab
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
   page_title: 'Build: [node:title]'
   layout: bcbb_main_sidebar_right
   layout_settings: {  }
