@@ -16,7 +16,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @Block(
  *   id = "bc_dc_edit_button",
  *   admin_label = @Translation("Edit section button"),
- *   category = @Translation("BC Data Catalog"),
  *   context_definitions = {
  *     "node" = @ContextDefinition("entity:node")
  *   }

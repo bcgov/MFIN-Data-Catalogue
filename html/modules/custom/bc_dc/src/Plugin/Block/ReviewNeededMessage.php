@@ -15,7 +15,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @Block(
  *   id = "bc_dc_review_needed_message",
  *   admin_label = @Translation("Review needed message"),
- *   category = @Translation("BC Data Catalog"),
  * )
  */
 class ReviewNeededMessage extends BlockBase implements ContainerFactoryPluginInterface {

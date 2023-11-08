@@ -22,7 +22,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @Block(
  *   id = "bc_dc_data_set_table",
  *   admin_label = @Translation("Metadata record table"),
- *   category = @Translation("BC Data Catalog"),
  * )
  */
 class BcDcDataSetTables extends BlockBase implements ContainerFactoryPluginInterface {

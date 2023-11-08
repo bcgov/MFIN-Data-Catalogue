@@ -14,7 +14,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @Block(
  *   id = "bc_dc_dashboard_actions",
  *   admin_label = @Translation("Dashboard actions"),
- *   category = @Translation("BC Data Catalog"),
  * )
  */
 class BcDcDashboardActions extends BlockBase implements ContainerFactoryPluginInterface {
