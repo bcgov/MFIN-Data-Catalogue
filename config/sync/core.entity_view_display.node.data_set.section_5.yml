@@ -42,10 +42,9 @@ bundle: data_set
 mode: section_5
 content:
   field_columns:
-    type: data_set_column_name
-    label: hidden
-    settings:
-      display_inline: false
+    type: bc_dc_item_count
+    label: inline
+    settings: {  }
     third_party_settings: {  }
     weight: 0
     region: content

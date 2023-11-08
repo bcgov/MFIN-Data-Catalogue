@@ -304,11 +304,8 @@ class BcDcFunctionalTest extends BrowserTestBase {
       'edit-field-columns-0-subform-field-column-description-0-value' => 'Data set column 1 description ' . $this->randomString(),
     ];
     $this->submitForm($edit, 'Save');
-    // The column name appears in a list.
-    $args = [
-      ':column_name' => $edit['edit-field-columns-0-subform-field-column-name-0-value'],
-    ];
-    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-columns")]/div/div/ul/li[text() = :column_name]', $args);
+    // The column count appears.
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-columns")]/div/div[text() = "1"]');
     $this->assertSession()->elementExists('xpath', $xpath);
     // The other fields do not appear.
     $this->assertSession()->pageTextNotContains('Data set column 1 description');
@@ -538,10 +535,8 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Success page.
     $text = $this->assertSession()->elementExists('xpath', '//div[@role = "alert"][contains(@class, "alert-success")]')->getText();
     $this->assertStringContainsString('Added 1 data columns from imported file.', $text);
-    // List of columns.
-    $elements = $this->xpath('//div[contains(@class, "field--name-field-columns")]/div/div/ul/li');
-    $this->assertCount(1, $elements, 'There is exactly 1 column name shown.');
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--name-field-columns")]/div/div/ul/li[text() = "Name ' . $file_extension . '"]');
+    // Count of columns.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--name-field-columns")]/div/div[text() = "1"]');
 
     // Anonymous has no access to data_set build page.
     $this->drupalLogout();
