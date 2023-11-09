@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6648261808483f3da479b0b3934a7960",
+    "content-hash": "7889dd559645305638a9e9df6dcdc3af",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4963,6 +4963,64 @@
             "homepage": "https://www.drupal.org/project/shs",
             "support": {
                 "source": "https://git.drupalcode.org/project/shs"
+            }
+        },
+        {
+            "name": "drupal/smart_trim",
+            "version": "dev-2.1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/smart_trim.git",
+                "reference": "1a243dd"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9 || ^10",
+                "drupal/token": "^1.0",
+                "php": ">=7.4.0"
+            },
+            "require-dev": {
+                "drupal/token_filter": "^2.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.1.x": "2.1.x-dev"
+                },
+                "drupal": {
+                    "version": "2.1.0+12-dev",
+                    "datestamp": "1693840545",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Casias (markie)",
+                    "homepage": "https://www.drupal.org/u/markie",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "AmyJune Hineline (volkswagenchick)",
+                    "homepage": "https://www.drupal.org/u/volkswagenchick",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Michael Anello (ultimike)",
+                    "homepage": "https://www.drupal.org/u/ultimike",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Provides a more robust alternative to 'summary or trimmed' textfield format.",
+            "homepage": "https://drupal.org/project/smart_trim",
+            "support": {
+                "source": "https://git.drupalcode.org/project/smart_trim",
+                "issues": "https://drupal.org/project/issues/smart_trim"
             }
         },
         {
@@ -16298,7 +16356,8 @@
         "bcgov/bcbb_theme": 20,
         "drupal/message_gcnotify": 20,
         "drupal/search_api_saved_searches": 20,
-        "drupal/shs": 5
+        "drupal/shs": 5,
+        "drupal/smart_trim": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
