@@ -29,6 +29,7 @@ dependencies:
     - field.field.node.data_set.field_special_flags
     - node.type.data_set
   module:
+    - bc_dc
     - datetime
     - layout_builder
     - user
@@ -51,11 +52,9 @@ content:
     weight: 0
     region: content
   field_review_interval:
-    type: number_integer
+    type: bc_dc_review_interval_date
     label: hidden
-    settings:
-      thousand_separator: ''
-      prefix_suffix: true
+    settings: {  }
     third_party_settings: {  }
     weight: 1
     region: content
