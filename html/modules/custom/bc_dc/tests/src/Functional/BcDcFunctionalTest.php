@@ -328,7 +328,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     ];
     $this->submitForm($edit, 'Save');
     // Test that long text gets trimmed.
-    $this->assertSession()->pageTextContains('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
+    $this->assertSession()->pageTextContains('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna');
     $this->assertSession()->pageTextNotContains('Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.');
     // field_last_review should display today.
     $args = [

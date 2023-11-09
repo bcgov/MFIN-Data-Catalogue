@@ -30,7 +30,7 @@ dependencies:
     - node.type.data_set
   module:
     - layout_builder
-    - text
+    - smart_trim
     - user
 third_party_settings:
   layout_builder:
@@ -42,10 +42,26 @@ bundle: data_set
 mode: section_3
 content:
   field_data_quality_issues:
-    type: text_trimmed
+    type: smart_trim
     label: above
     settings:
       trim_length: 150
+      trim_type: chars
+      trim_suffix: ' …'
+      wrap_output: false
+      wrap_class: trimmed
+      more:
+        display_link: false
+        target_blank: false
+        link_trim_only: false
+        class: more-link
+        text: More
+        aria_label: 'Read more about [node:title]'
+      summary_handler: full
+      trim_options:
+        text: true
+        trim_zero: false
+        replace_tokens: false
     third_party_settings: {  }
     weight: 2
     region: content
