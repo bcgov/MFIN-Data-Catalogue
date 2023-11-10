@@ -14,7 +14,6 @@ dependencies:
     - field.field.node.data_set.field_data_set_type
     - field.field.node.data_set.field_data_sets_used
     - field.field.node.data_set.field_final_disposition
-    - field.field.node.data_set.field_granularity
     - field.field.node.data_set.field_high_value_info
     - field.field.node.data_set.field_information_schedule
     - field.field.node.data_set.field_is_complete_review
@@ -103,14 +102,6 @@ content:
       link: true
     third_party_settings: {  }
     weight: 20
-    region: content
-  field_granularity:
-    type: entity_reference_label
-    label: inline
-    settings:
-      link: false
-    third_party_settings: {  }
-    weight: 15
     region: content
   field_high_value_info:
     type: boolean

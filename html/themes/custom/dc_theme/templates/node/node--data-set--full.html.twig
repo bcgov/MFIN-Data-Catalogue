@@ -92,12 +92,6 @@
                 </div>
               {% endif %}
 
-              {% if node.field_granularity and not node.field_granularity.isempty %}
-                <div class="mb-3">
-                  {{ node.field_granularity|view }}
-                </div>
-              {% endif %}
-
               {% if node.field_data_set_type and not node.field_data_set_type.isempty %}
                 <div class="mb-3">
                   {{ node.field_data_set_type|view }}

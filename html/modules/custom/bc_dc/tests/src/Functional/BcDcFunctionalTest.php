@@ -217,7 +217,6 @@ class BcDcFunctionalTest extends BrowserTestBase {
       'field--name-field-last-review-date' => 'Last review date',
       'field--name-field-security-classification' => 'Security classification',
       'field--name-field-source-system' => 'Source system',
-      'field--name-field-granularity' => 'Granularity',
       'field--name-field-data-set-type' => 'Data set type',
       'field--name-field-information-schedule' => 'Information schedule',
     ];

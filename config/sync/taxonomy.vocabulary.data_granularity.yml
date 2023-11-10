@@ -1,8 +1,0 @@
-uuid: 7cc0c77d-32ec-40cf-a2dd-d7f151487b2f
-langcode: en
-status: true
-dependencies: {  }
-name: 'Data granularity'
-vid: data_granularity
-description: 'Referenced by <i>field_granularity</i>  in data set.<br><i>Granularity</i> in CA.'
-weight: 0
