@@ -98,7 +98,8 @@ function bc_dc_entity_display_build_alter(array &$build, array $context): void {
         'field_last_review_date' => t('Never'),
         default => $definition->isRequired() ? t('Required') : t('Optional'),
       };
-      $markup = ['#markup' => '<em>' . $empty_text . '</em>'];
+      $class = $definition->isRequired() ? 'field-required' : 'field-optional';
+      $markup = ['#markup' => '<em class="' . $class . '">' . $empty_text . '</em>'];
 
       $build[$field_name] = [
         '#theme' => 'field',
