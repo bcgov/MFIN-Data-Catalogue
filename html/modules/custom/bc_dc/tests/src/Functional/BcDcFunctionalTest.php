@@ -212,8 +212,11 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Check for: A div.block-bc-dc-edit-button that has an 'h2' child with the
     // correct contents and an 'a' descendent with button classes, @aria-label,
     // @href, and text.
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Data description"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Data set description"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=data_set_description")]');
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Data columns"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Data set columns"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=data_set_columns")]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 1: Details"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 1"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_1")]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 2: Data description"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 2"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_2")]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 3: Data usage"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 3"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_3")]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 4: Data value"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 4"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_4")]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 5: Data dictionary"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 5"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_5")]');
     // Build page does not link to referenced entities.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "field--type-entity-reference")]//a');
 
@@ -249,14 +252,6 @@ class BcDcFunctionalTest extends BrowserTestBase {
       $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div/time', $args);
       $this->assertSession()->elementExists('xpath', $xpath);
     }
-    // Default value for field_review_interval.
-    $args = [
-      ':class' => 'field--name-field-review-interval',
-      ':label' => 'Review interval',
-      ':text' => '12 months',
-    ];
-    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div[text() = :text]', $args);
-    $this->assertSession()->elementExists('xpath', $xpath);
     // Check for fields that are boolean and have inline labels.
     $fields_inline_optional = [
       'field--name-field-critical-information' => 'Critical information',
@@ -271,7 +266,8 @@ class BcDcFunctionalTest extends BrowserTestBase {
       $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div[text() = "No"]', $args);
       $this->assertSession()->elementExists('xpath', $xpath);
     }
-    // Check for fields that are optional and have labels above.
+    // Check for fields that are optional and normally have labels above.
+    // Labels are inline when the field is empty.
     $fields_inline_optional = [
       'field--name-body' => 'Data set description',
       'field--name-field-data-quality-issues' => 'Data quality issues',
@@ -282,14 +278,14 @@ class BcDcFunctionalTest extends BrowserTestBase {
         ':class' => $class,
         ':label' => $label,
       ];
-      $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-above")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div/em[text() = "Optional"]', $args);
+      $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div/em[text() = "Optional"]', $args);
       $this->assertSession()->elementExists('xpath', $xpath);
     }
 
     // Empty column names section.
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--name-field-columns")]/em[text() = "Optional"]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--name-field-columns")]/div/em[text() = "Optional"]');
     // No columns exist on column edit page.
-    $this->click('a[aria-label = "Edit Data set columns"]');
+    $this->click('a[aria-label = "Edit Section 5"]');
     $this->assertSession()->statusCodeEquals(200);
     // There should not be any rows under 'tbody', however after hiding items
     // under header_actions in bc_dc_form_node_data_set_edit_form_alter(), one
@@ -310,20 +306,29 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // The other fields do not appear.
     $this->assertSession()->pageTextNotContains('Data set column 1 description');
     // Check that "Edit all" and "Collapse all" controls do not exist.
-    $this->click('a[aria-label = "Edit Data set columns"]');
+    $this->click('a[aria-label = "Edit Section 5"]');
     $this->click('input#field-columns-data-column-add-more');
     $this->assertSession()->elementNotExists('xpath', '//input[@value = "Edit all"]');
     $this->assertSession()->elementNotExists('xpath', '//input[@value = "Collapse all"]');
 
-    // Data description edit page.
+    // Section 4 edit page.
     $this->clickLink('Build');
-    $this->click('a[aria-label = "Edit Data set description"]');
+    $this->click('a[aria-label = "Edit Section 4"]');
     $this->assertSession()->statusCodeEquals(200);
     // Test that field_security_classification widget is radio buttons.
     $this->assertSession()->elementExists('xpath', '//div[@id = "edit-field-security-classification"]//input[@type = "radio"]');
+    // Section 2 edit page.
+    $this->clickLink('Build');
+    $this->click('a[aria-label = "Edit Section 2"]');
     // Submit with some updates.
     $edit = [
       'edit-body-0-value' => 'Data set description ' . $this->randomString() . ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+    ];
+    $this->submitForm($edit, 'Save');
+    // Section 1 edit page.
+    $this->click('a[aria-label = "Edit Section 1"]');
+    // Submit with some updates.
+    $edit = [
       'edit-field-is-complete-review-value' => TRUE,
     ];
     $this->submitForm($edit, 'Save');
@@ -449,8 +454,9 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
 
     // Import data columns page.
     $this->drupalGet('node/2/build');
-    $this->assertSession()->elementExists('xpath', '//a[@href = "/node/2/add-columns?destination=/node/2/build"][text() = "Import data columns"]');
-    $this->clickLink('Import data columns');
+    $this->click('a[aria-label = "Edit Section 5"]');
+    $this->assertSession()->elementExists('xpath', '//a[@href = "/node/2/add-columns?destination=/node/2/build"][text() = "Import/export data columns"]');
+    $this->clickLink('Import/export data columns');
     $this->assertSession()->statusCodeEquals(200);
     $this->assertSession()->elementExists('xpath', '//h1[text() = "Add columns"]');
     $this->assertSession()->pageTextContains('Upload a file to add columns to the data dictionary.');
