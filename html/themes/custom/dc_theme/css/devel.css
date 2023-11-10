@@ -106,6 +106,11 @@ article.dc-data-set-build-page .field--label-inline > .field__label {
   font-weight: normal;
 }
 
+/* Build page "Required" markers. */
+article.node--type-data-set .field__item > em.field-required {
+  color: red;
+}
+
 /* Borders between sections. */
 .page-node-type-data-set .main-region div.block-entity-viewnode {
   border-bottom: 1px solid var(--bs-light-border-subtle);
