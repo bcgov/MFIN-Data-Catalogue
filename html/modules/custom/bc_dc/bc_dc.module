@@ -90,12 +90,9 @@ function bc_dc_entity_display_build_alter(array &$build, array $context): void {
 
   /** @var \Drupal\Core\Entity\EntityInterface $entity */
   $entity = $context['entity'];
-  /** @var \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display */
-  $display = $context['display'];
   foreach (Element::children($build) as $field_name) {
     if ($entity->get($field_name)->isEmpty()) {
       $definition = $entity->get($field_name)->getFieldDefinition();
-      $component = $display->getComponent($field_name);
 
       $empty_text = match($field_name) {
         'field_last_review_date' => t('Never'),
@@ -106,7 +103,7 @@ function bc_dc_entity_display_build_alter(array &$build, array $context): void {
       $build[$field_name] = [
         '#theme' => 'field',
         '#title' => $definition->getLabel(),
-        '#label_display' => $component['label'],
+        '#label_display' => 'inline',
         '#view_mode' => $context['view_mode'],
         '#language' => $entity->get($field_name)->getLangcode(),
         '#field_name' => $definition->getName(),
