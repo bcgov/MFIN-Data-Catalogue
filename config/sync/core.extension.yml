@@ -66,6 +66,7 @@ module:
   panels: 0
   path: 0
   path_alias: 0
+  rabbit_hole: 0
   realname: 0
   registration_role: 0
   responsive_image: 0

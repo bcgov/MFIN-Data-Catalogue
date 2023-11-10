@@ -31,6 +31,7 @@ dependencies:
   - panels:panels
   - paragraphs:paragraphs
   - pathauto:pathauto
+  - rabbit_hole:rabbit_hole
   - registration_role:registration_role
   - robotstxt:robotstxt
   - role_delegation:role_delegation
