@@ -31,6 +31,7 @@ dependencies:
     - media
     - node
     - paragraphs
+    - rabbit_hole
     - system
     - taxonomy
     - taxonomy_import
@@ -50,6 +51,7 @@ permissions:
   - 'add content to books'
   - 'administer book outlines'
   - 'administer nodes'
+  - 'administer rabbit_hole settings'
   - 'administer taxonomy import'
   - 'administer users'
   - 'assign data_catalogue_administrator role'
