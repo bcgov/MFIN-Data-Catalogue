@@ -441,11 +441,19 @@ class BcDcAddColumnsForm extends FormBase {
         break;
     }
 
-    // Cancel link back to where we came from.
+    // Cancel link back to where we came from. Use the 'destination' param if it
+    // exists, otherwise, link to the build page.
+    $destination = $this->getRequest()->get('destination');
+    if ($destination) {
+      $cancel_url = Url::fromUserInput($this->getRedirectDestination()->get());
+    }
+    else {
+      $cancel_url = Url::fromRoute('page_manager.page_view_data_set_build_data_set_build-block_display-0', ['node' => $node->id()]);
+    }
     $form['actions']['cancel'] = [
       '#type' => 'link',
       '#title' => $this->t('Cancel'),
-      '#url' => Url::fromUserInput($this->getRedirectDestination()->get()),
+      '#url' => $cancel_url,
     ];
 
     return $form;
