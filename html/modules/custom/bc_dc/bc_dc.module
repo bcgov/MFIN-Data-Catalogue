@@ -230,6 +230,31 @@ function bc_dc_form_node_data_set_edit_form_alter(array &$form, FormStateInterfa
   if (isset($form['field_is_complete_review'])) {
     $form['field_is_complete_review']['#states']['disabled'][':input[id="edit-field-review-interval-0-value"]'] = ['empty' => TRUE];
   }
+
+  // On the section 5 build form, add a link to the import/export page.
+  $node = $form_state->getFormObject()?->getEntity();
+  $form_display = \Drupal::request()->get('display');
+  if ($node instanceof NodeInterface && $form_display === 'section_5') {
+    // Generate the link.
+    $route_parameters = [
+      'node' => $node->id(),
+    ];
+    $link_options = [
+      'attributes' => [
+        'class' => [
+          'btn',
+          'btn-primary',
+        ],
+      ],
+      'query' => [
+        'destination' => \Drupal::service('redirect.destination')->get(),
+      ],
+    ];
+    $link = Link::createFromRoute(t('Import/export data columns'), 'bc_dc.data_set_edit_add_columns', $route_parameters, $link_options);
+    // Add link to top of form.
+    $form['add_columns_link'] = $link->toRenderable();
+    $form['add_columns_link']['#weight'] = -100;
+  }
 }
 
 /**
