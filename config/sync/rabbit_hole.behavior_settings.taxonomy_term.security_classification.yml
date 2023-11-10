@@ -1,0 +1,13 @@
+uuid: 6d2f6a6b-1353-4706-aa87-fe90dcba4f94
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.security_classification
+id: taxonomy_term.security_classification
+targetEntityType: taxonomy_term
+bundle: security_classification
+action: page_not_found
+no_bypass: false
+bypass_message: false
+configuration: {  }

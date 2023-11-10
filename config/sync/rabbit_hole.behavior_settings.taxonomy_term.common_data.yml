@@ -1,0 +1,13 @@
+uuid: f387faea-64c1-4bc1-9614-0b5581fc83fb
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.common_data
+id: taxonomy_term.common_data
+targetEntityType: taxonomy_term
+bundle: common_data
+action: page_not_found
+no_bypass: false
+bypass_message: false
+configuration: {  }

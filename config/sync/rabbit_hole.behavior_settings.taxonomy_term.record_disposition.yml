@@ -1,0 +1,13 @@
+uuid: 270c90a0-fb80-468e-b2d7-77a88c7e7527
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.record_disposition
+id: taxonomy_term.record_disposition
+targetEntityType: taxonomy_term
+bundle: record_disposition
+action: page_not_found
+no_bypass: false
+bypass_message: false
+configuration: {  }

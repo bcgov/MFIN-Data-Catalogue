@@ -1,0 +1,13 @@
+uuid: fa33e7f5-4ee1-4c5e-87cb-84fda2fa3867
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.metadata_type
+id: taxonomy_term.metadata_type
+targetEntityType: taxonomy_term
+bundle: metadata_type
+action: page_not_found
+no_bypass: false
+bypass_message: false
+configuration: {  }

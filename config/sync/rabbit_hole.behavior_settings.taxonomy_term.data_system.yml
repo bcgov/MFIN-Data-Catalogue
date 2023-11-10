@@ -1,0 +1,13 @@
+uuid: 1f5d7e33-f63a-4faf-b8ce-beb2b25f335a
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.data_system
+id: taxonomy_term.data_system
+targetEntityType: taxonomy_term
+bundle: data_system
+action: page_not_found
+no_bypass: false
+bypass_message: false
+configuration: {  }

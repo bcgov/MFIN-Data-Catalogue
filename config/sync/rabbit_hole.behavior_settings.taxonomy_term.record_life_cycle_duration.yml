@@ -1,0 +1,13 @@
+uuid: e189ab07-a7de-48f6-97d9-fb09f1a6b8be
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.record_life_cycle_duration
+id: taxonomy_term.record_life_cycle_duration
+targetEntityType: taxonomy_term
+bundle: record_life_cycle_duration
+action: page_not_found
+no_bypass: false
+bypass_message: false
+configuration: {  }

@@ -1,0 +1,13 @@
+uuid: edd47322-0638-4854-a2d4-39384305b543
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.data_set_series
+id: taxonomy_term.data_set_series
+targetEntityType: taxonomy_term
+bundle: data_set_series
+action: page_not_found
+no_bypass: false
+bypass_message: false
+configuration: {  }

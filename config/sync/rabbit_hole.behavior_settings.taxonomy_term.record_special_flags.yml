@@ -1,0 +1,13 @@
+uuid: b656240f-e6f7-4f2b-85aa-2c73edc5b6af
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.record_special_flags
+id: taxonomy_term.record_special_flags
+targetEntityType: taxonomy_term
+bundle: record_special_flags
+action: page_not_found
+no_bypass: false
+bypass_message: false
+configuration: {  }

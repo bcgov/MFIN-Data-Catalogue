@@ -1,0 +1,13 @@
+uuid: 7fd0a29f-adfb-439a-98a0-187c51a7c527
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.information_schedule
+id: taxonomy_term.information_schedule
+targetEntityType: taxonomy_term
+bundle: information_schedule
+action: display_page
+no_bypass: false
+bypass_message: false
+configuration: {  }
