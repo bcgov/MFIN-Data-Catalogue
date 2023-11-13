@@ -106,16 +106,25 @@
 
               {% if not node.field_information_schedule.isempty %}
                 <hr>
+                <div class="field__label mb-1">
+                  {{ 'Information management'|t }}
+                </div>
                 <div class="mb-3">
-                  <div class="field field--name-field-information-schedule field--type-entity-reference field--label-inline clearfix">
-                    <div class="field__label">{{ node.field_information_schedule.fielddefinition.label }}</div>
-                    <div class="field__item">
-                      <div>{{ field_information_schedule_display_name }}</div>
-                      {% if node.field_information_schedule.entity.field_schedule_code.value %}
-                        <div>{{ node.field_information_schedule.entity.field_schedule_code.value }}</div>
-                      {% endif %}
+                  {% if information_schedule_type %}
+                    <div class="field field--name-field-information-schedule field--type-entity-reference field--label-inline clearfix">
+                      <div class="field__label">{{ 'Information schedule type'|t }}</div>
+                      <div class="field__item">{{ information_schedule_type }}</div>
                     </div>
-                  </div>
+                  {% endif %}
+                  {% if information_schedule_details %}
+                    <div class="field field--name-field-information-schedule field--type-entity-reference field--label-inline clearfix">
+                      <div class="field__label">{{ 'IM classification details'|t }}</div>
+                      <div class="field__item">{{ information_schedule_details }}</div>
+                    </div>
+                  {% endif %}
+                  {% if node.field_information_schedule.entity.field_schedule_code %}
+                    {{ node.field_information_schedule.entity.field_schedule_code|view}}
+                  {% endif %}
                 </div>
               {% endif %}
             </div>
