@@ -448,7 +448,7 @@ class BcDcAddColumnsForm extends FormBase {
       $cancel_url = Url::fromUserInput($this->getRedirectDestination()->get());
     }
     else {
-      $cancel_url = Url::fromRoute('page_manager.page_view_data_set_build_data_set_build-block_display-0', ['node' => $node->id()]);
+      $cancel_url = Url::fromRoute('page_manager.page_view_data_set_build_data_set_build-panels_variant-0', ['node' => $node->id()]);
     }
     $form['actions']['cancel'] = [
       '#type' => 'link',
