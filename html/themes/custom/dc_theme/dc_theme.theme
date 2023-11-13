@@ -71,17 +71,17 @@ function dc_theme_preprocess_node__data_set__full(array &$variables): void {
   $information_schedule_term = $variables['elements']['field_information_schedule'][0]['#entity'] ?? NULL;
   if ($information_schedule_term) {
     $parents = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadAllParents($information_schedule_term->id());
-    $information_schedule_root_term = end($parents);
-    // Array to assemble into field_information_schedule_display_name.
+
+    $information_schedule_root_term = array_pop($parents);
+    $variables['information_schedule_type'] = $information_schedule_root_term->label();
+
     $name_parts = [];
-    // Add the root term label if it is not the same as the term and it has a
-    // full name value.
-    if ($information_schedule_term->id() !== $information_schedule_root_term->id() && $information_schedule_root_term->field_abbr_full_name->value) {
-      $name_parts[] = $information_schedule_root_term->label();
+    foreach ($parents as $term) {
+      if ($term->field_schedule_number->value) {
+        array_unshift($name_parts, $term->label());
+      }
     }
-    // Add term label and join.
-    $name_parts[] = $information_schedule_term->label();
-    $variables['field_information_schedule_display_name'] = implode(': ', $name_parts);
+    $variables['information_schedule_details'] = implode(': ', $name_parts);
   }
 
   // Data dictionary download links.
