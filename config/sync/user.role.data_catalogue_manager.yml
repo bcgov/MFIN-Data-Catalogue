@@ -104,8 +104,6 @@ permissions:
   - 'flag bookmark'
   - 'revert data_set revisions'
   - 'unflag bookmark'
-  - 'use  The form mode data_set_columns linked to  node entity( data_set )'
-  - 'use  The form mode data_set_description linked to  node entity( data_set )'
   - 'use text format full_html'
   - 'view all media revisions'
   - 'view data_set revisions'

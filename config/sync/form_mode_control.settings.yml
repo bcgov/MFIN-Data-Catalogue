@@ -1,15 +1,11 @@
 'use  The form mode default linked to  block_content entity( basic )': block_content.basic.default
 'use  The form mode default linked to  comment entity( comment )': comment.comment.default
 'use  The form mode default linked to  node entity( article )': node.article.default
-'use  The form mode data_set_columns linked to  node entity( data_set )': node.data_set.data_set_columns
-'use  The form mode data_set_description linked to  node entity( data_set )': node.data_set.data_set_description
 'use  The form mode default linked to  node entity( data_set )': node.data_set.default
 'use  The form mode default linked to  node entity( page )': node.page.default
 'use  The form mode default linked to  paragraph entity( data_column )': paragraph.data_column.default
 'use  The form mode default linked to  user entity( user )': user.user.default
-creation+content_editor+node+data_set: node.data_set.data_set_description
 creation+administrator+node+data_set: node.data_set.default
-modification+content_editor+node+data_set: node.data_set.data_set_description
 modification+administrator+node+data_set: node.data_set.default
 'use  The form mode create linked to  search_api_saved_search entity( default )': search_api_saved_search.default.create
 'use  The form mode default linked to  search_api_saved_search entity( default )': search_api_saved_search.default.default
