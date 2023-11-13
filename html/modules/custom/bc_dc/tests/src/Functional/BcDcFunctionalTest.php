@@ -143,6 +143,12 @@ class BcDcFunctionalTest extends BrowserTestBase {
       'edit-filters-toc-filter-settings-type' => 'full',
     ];
     $this->submitForm($edit_book, 'Save configuration');
+    // Configure rabbit_hole.
+    $this->drupalGet('admin/config/content/rabbit-hole');
+    $edit = [
+      'edit-entity-types-taxonomy-term' => TRUE,
+    ];
+    $this->submitForm($edit, 'Save configuration');
 
     // Create test users.
     $this->createTestUser('Test Data catalogue administrator', ['data_catalogue_administrator']);
@@ -870,6 +876,19 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       [//a[text() = :data_set_title_2]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     $this->assertSession()->elementNotExists('xpath', '//div[text() = "Data sets used"]');
+
+    // Check access to taxonomy term pages. They should be 404 except for
+    // information_schedule.
+    $this->drupalLogout();
+    $taxonomy_terms = \Drupal::entityQuery('taxonomy_term')
+      ->accessCheck(FALSE)
+      ->execute();
+    $taxonomy_terms = Term::loadMultiple($taxonomy_terms);
+    foreach ($taxonomy_terms as $term) {
+      $this->drupalGet('taxonomy/term/' . $term->id());
+      $expected_status = $term->bundle() === 'information_schedule' ? 200 : 404;
+      $this->assertSession()->statusCodeEquals($expected_status);
+    }
   }
 
   /**
