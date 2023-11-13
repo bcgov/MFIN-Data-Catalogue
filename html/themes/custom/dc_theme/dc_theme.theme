@@ -123,13 +123,6 @@ function dc_theme_preprocess_node__data_set_build_page(array &$variables): void 
 }
 
 /**
- * Implements hook_preprocess_HOOK() for node--data-set-columns.html.twig.
- */
-function dc_theme_preprocess_node__data_set_columns(array &$variables): void {
-  $variables['page'] = TRUE;
-}
-
-/**
  * Implements hook_preprocess_HOOK() for page--node--add-columns.html.twig.
  */
 function dc_theme_preprocess_page__node__add_columns(array &$variables): void {

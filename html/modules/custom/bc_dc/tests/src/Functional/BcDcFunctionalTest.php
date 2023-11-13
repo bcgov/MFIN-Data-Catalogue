@@ -188,14 +188,13 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSame($save, SAVED_NEW);
 
     // Create a data_set node.
-    $this->drupalGet('node/add/data_set', ['query' => ['display' => 'data_set_description']]);
+    $this->drupalGet('node/add/data_set', ['query' => ['display' => 'section_1']]);
     $this->assertSession()->statusCodeEquals(200);
     $randomMachineName = $this->randomMachineName();
     $data_set_title = 'Test data set ' . $randomMachineName . $this->randomString();
     $data_set_path = '/data-set/test-data-set-' . strtolower($randomMachineName);
     $edit = [
       'edit-title-0-value' => $data_set_title,
-      'edit-field-primary-responsibility-org-0-target-id' => 'Term (' . $test_org->id() . ')',
       'edit-status-value' => FALSE,
     ];
     $this->submitForm($edit, 'Save');
@@ -252,6 +251,10 @@ class BcDcFunctionalTest extends BrowserTestBase {
       $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div/time', $args);
       $this->assertSession()->elementExists('xpath', $xpath);
     }
+
+    // Save Section 4 so that the boolean values are FALSE instead of empty.
+    $this->click('a[aria-label = "Edit Section 4"]');
+    $this->submitForm([], 'Save');
     // Check for fields that are boolean and have inline labels.
     $fields_inline_optional = [
       'field--name-field-critical-information' => 'Critical information',
@@ -323,6 +326,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Submit with some updates.
     $edit = [
       'edit-body-0-value' => 'Data set description ' . $this->randomString() . ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+      'edit-field-primary-responsibility-org-0-target-id' => 'Term (' . $test_org->id() . ')',
     ];
     $this->submitForm($edit, 'Save');
     // Section 1 edit page.
@@ -348,7 +352,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->drupalGet('dashboard');
     $this->assertSession()->statusCodeEquals(200);
     // The create-new link exists.
-    $this->assertSession()->elementExists('xpath', '//a[@href = "/node/add/data_set?display=data_set_description"][text() = "Add new data set"]');
+    $this->assertSession()->elementExists('xpath', '//a[@href = "/node/add/data_set?display=section_1"][text() = "Add new data set"]');
     // View link.
     $args = [
       ':data_set_title' => $data_set_title,
@@ -847,14 +851,18 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
 
     // Test field_data_sets_used.
     // Create a data_set node.
-    $this->drupalGet('node/add/data_set', ['query' => ['display' => 'data_set_description']]);
+    $this->drupalGet('node/add/data_set', ['query' => ['display' => 'section_1']]);
     $this->assertSession()->statusCodeEquals(200);
     $data_set_title_2 = 'Test data set Two ' . $this->randomString();
     $edit = [
       'edit-title-0-value' => $data_set_title_2,
-      'edit-field-primary-responsibility-org-0-target-id' => 'Term (' . $test_org->id() . ')',
       'edit-status-value' => TRUE,
-      // Set node/2 as a data_set used by this data_set.
+    ];
+    $this->submitForm($edit, 'Save');
+    // Set node/2 as a data_set used by this data_set.
+    $this->clickLink('Build');
+    $this->click('a[aria-label = "Edit Section 3"]');
+    $edit = [
       'edit-field-data-sets-used-0-target-id' => 'Title (2)',
     ];
     $this->submitForm($edit, 'Save');

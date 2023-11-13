@@ -75,8 +75,6 @@ function bc_dc_count_node_bookmarks(EntityInterface $entity): int {
 function bc_dc_entity_display_build_alter(array &$build, array $context): void {
   // Act only on build page view modes. Return early otherwise.
   $view_modes = [
-    'data_set_build_page',
-    'data_set_columns',
     'section_1',
     'section_2',
     'section_3',

@@ -34,13 +34,13 @@ class BuildEditAccess extends ConditionPluginBase {
     }
 
     // Give access based on whether the user has access to the edit path for
-    // data_set_description.
+    // section_1.
     $route_parameters = [
       'node' => $entity->id(),
     ];
     $options = [
       'query' => [
-        'display' => 'data_set_description',
+        'display' => 'section_1',
       ],
     ];
     $access = Url::fromRoute('entity.node.edit_form', $route_parameters, $options)->access();

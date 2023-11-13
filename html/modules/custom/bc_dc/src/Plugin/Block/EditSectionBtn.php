@@ -100,22 +100,6 @@ class EditSectionBtn extends BlockBase implements ContainerFactoryPluginInterfac
       'node' => $node->id() ?? 1,
     ];
 
-    // Import link.
-    if ($form_mode === 'data_set_columns') {
-      $link_options = [
-        'attributes' => [
-          'class' => [
-            'btn',
-            'btn-primary',
-          ],
-        ],
-        'query' => [
-          'destination' => $this->redirectDestination->get(),
-        ],
-      ];
-      $links[] = Link::createFromRoute($this->t('Import data columns'), 'bc_dc.data_set_edit_add_columns', $route_parameters, $link_options);
-    }
-
     // Edit links.
     $form_mode_label = $this->entityTypeManager
       ->getStorage('entity_form_mode')
