@@ -26,6 +26,7 @@
         "bcgov/bcbb": "1.0.x@dev",
         "bcgov/bcbb_theme": "1.0.x@dev",
         "composer/installers": "^2.0",
+        "drupal/clipboardjs": "dev-2.0.x#adb3f68",
         "drupal/core-composer-scaffold": "^10.1",
         "drupal/core-recommended": "^10.1",
         "drupal/field_token_value": "^3.0",
@@ -39,10 +40,12 @@
         "drupal/tac_lite": "^1.7",
         "drupal/taxonomy_import": "^2.0",
         "drupal/taxonomy_max_depth": "^2.0",
+        "oomphinc/composer-installers-extender": "^2.0",
         "phpoffice/phpspreadsheet": "^1.29",
         "vlucas/phpdotenv": "^5.1",
         "webflo/drupal-finder": "^1.2",
-        "weitzman/drupal-test-traits": "^2.1"
+        "weitzman/drupal-test-traits": "^2.1",
+        "wikimedia/composer-merge-plugin": "^2.1"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -55,7 +58,9 @@
             "drupal/core-composer-scaffold": true,
             "phpstan/extension-installer": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
-            "cweagans/composer-patches": true
+            "cweagans/composer-patches": true,
+            "wikimedia/composer-merge-plugin": true,
+            "oomphinc/composer-installers-extender": true
         },
         "sort-packages": true
     },
@@ -118,6 +123,11 @@
             ]
         },
         "composer-exit-on-patch-failure": true,
+        "merge-plugin": {
+            "include": [
+                "html/modules/contrib/clipboardjs/composer.libraries.json"
+            ]
+        },
         "patches": {
             "drupal/shs": {
                 "3284824 - Schema definition for entity_reference_shs field formatter missing": "https://www.drupal.org/files/issues/2022-06-09/shs-schema_formatter_missing-3284824-2.patch"
