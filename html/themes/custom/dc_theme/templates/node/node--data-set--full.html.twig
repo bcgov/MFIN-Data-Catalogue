@@ -117,26 +117,6 @@
                     </div>
                   </div>
                 </div>
-                {% if node.field_active_period.value|render|trim %}
-                  <div class="mb-3">
-                    {{ node.field_active_period|view }}
-                  </div>
-                {% endif %}
-                {% if node.field_semi_active_period.value|render|trim %}
-                  <div class="mb-3">
-                    {{ node.field_semi_active_period|view }}
-                  </div>
-                {% endif %}
-                {% if node.field_final_disposition.value %}
-                  <div class="mb-3">
-                    {{ node.field_final_disposition|view }}
-                  </div>
-                {% endif %}
-                {% if node.field_special_flags.value %}
-                  <div class="mb-3">
-                    {{ node.field_special_flags|view }}
-                  </div>
-                {% endif %}
               {% endif %}
             </div>
           </div>
