@@ -892,6 +892,8 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // "Personal information" badge appears.
     $this->drupalGet('node/6');
     $this->assertSession()->elementExists('xpath', '//span[contains(@class, "badge text-bg-warning")][text() = "Personal information"]');
+    // Permalink appears.
+    $this->assertSession()->elementExists('xpath', '//section[@id = "author_permalink"]//input[substring(@value, string-length(@value) - 6) = "/node/6"]');
 
     // Check access to taxonomy term pages. They should be 404 except for
     // information_schedule.
