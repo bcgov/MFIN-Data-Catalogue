@@ -37,3 +37,10 @@
 .dc-2col-table table:last-child {
   margin-bottom: auto;
 }
+
+.bcbb-theme .clipboardjs-button {
+  background-image: none;
+}
+.bcbb-theme .clipboardjs-button .tooltip {
+  opacity: 1;
+}
