@@ -8,6 +8,7 @@ dependencies:
   - bcbb:bcbb_book
   - bcbb:bcbb_other
   - bcbb:bcbb_search
+  - clipboardjs:clipboardjs
   - diff:diff
   - drupal:datetime
   - drupal:field
