@@ -167,7 +167,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->drupalGet('admin/structure/page_manager/manage/data_set_build/general');
     $this->submitForm([], 'Update and save');
 
-    // Create a basic page node.
+    // Create a basic page node. node/1.
     $this->drupalGet('node/add/page');
     $this->assertSession()->statusCodeEquals(200);
     $randomMachineName = $this->randomMachineName();
@@ -187,7 +187,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $save = $test_org->save();
     $this->assertSame($save, SAVED_NEW);
 
-    // Create a data_set node.
+    // Create a data_set node. node/2.
     $this->drupalGet('node/add/data_set', ['query' => ['display' => 'section_1']]);
     $this->assertSession()->statusCodeEquals(200);
     $randomMachineName = $this->randomMachineName();
@@ -601,7 +601,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     //
     // Login as admin.
     $this->drupalLogin($this->rootUser);
-    // Create a Book as admin.
+    // Create a Book as admin. node/3.
     $this->drupalGet('node/add/book');
     $this->assertSession()->statusCodeEquals(200);
     $edit_book = [
@@ -614,7 +614,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $text = $this->assertSession()->elementExists('xpath', '//h1')->getText();
     $this->assertStringContainsString($edit_book['edit-title-0-value'], $text);
     $book_url = $this->getUrl();
-    // Create child page as Test Data catalogue administrator.
+    // Create child page as Test Data catalogue administrator. node/4.
     $this->drupalLogin($this->users['Test Data catalogue administrator']);
     $this->drupalGet($book_url);
     $this->clickLink('Add child page');
@@ -629,7 +629,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $text = $this->assertSession()->elementExists('xpath', '//h1')->getText();
     $this->assertStringContainsString($edit_child['edit-title-0-value'], $text);
     $child_url = $this->getUrl();
-    // Create grandchild.
+    // Create grandchild. node/5.
     $this->clickLink('Add child page');
     $this->assertSession()->statusCodeEquals(200);
     $edit = [
@@ -850,7 +850,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-watchdog")]/div/table/tbody/tr/td/a[text() = "Sent ReviewReminder message to user 1."]');
 
     // Test field_data_sets_used.
-    // Create a data_set node.
+    // Create a data_set node. node/6.
     $this->drupalGet('node/add/data_set', ['query' => ['display' => 'section_1']]);
     $this->assertSession()->statusCodeEquals(200);
     $data_set_title_2 = 'Test data set Two ' . $this->randomString();
