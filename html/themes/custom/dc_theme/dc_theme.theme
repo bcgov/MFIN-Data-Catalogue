@@ -72,6 +72,8 @@ function dc_theme_preprocess_node__data_set(array &$variables): void {
  * Implements hook_preprocess_HOOK() for node--data-set--full.html.twig.
  */
 function dc_theme_preprocess_node__data_set__full(array &$variables): void {
+  global $base_url;
+
   // Make author name available in the template.
   //
   // Author of this node.
@@ -112,6 +114,15 @@ function dc_theme_preprocess_node__data_set__full(array &$variables): void {
 
   // Data dictionary download links.
   $variables['data_dictionary_download_links'] = bc_dc_get_data_dictionary_download_links($variables['node']);
+
+  // Permalink.
+  $variables['permalink'] = [
+    '#theme' => 'clipboardjs_textfield',
+    '#value' => $base_url . '/node/' . $variables['node']->id(),
+    '#label' => t('Copy permalink'),
+    '#alert_style' => 'tooltip',
+    '#alert_text' => t('Copied!'),
+  ];
 }
 
 /**
