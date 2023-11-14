@@ -859,11 +859,15 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       'edit-status-value' => TRUE,
     ];
     $this->submitForm($edit, 'Save');
+    // "Personal information" badge does not appear.
+    $this->assertSession()->elementNotExists('xpath', '//span[contains(@class, "badge text-bg-warning")][text() = "Personal information"]');
     // Set node/2 as a data_set used by this data_set.
     $this->clickLink('Build');
     $this->click('a[aria-label = "Edit Section 3"]');
     $edit = [
       'edit-field-data-sets-used-0-target-id' => 'Title (2)',
+      // Add "Personal information" badge.
+      'edit-field-personal-information-1' => TRUE,
     ];
     $this->submitForm($edit, 'Save');
     // Page has "Data sets used" with link to node/2.
@@ -885,6 +889,9 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       [//a[text() = :data_set_title_2]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     $this->assertSession()->elementNotExists('xpath', '//div[text() = "Data sets used"]');
+    // "Personal information" badge appears.
+    $this->drupalGet('node/6');
+    $this->assertSession()->elementExists('xpath', '//span[contains(@class, "badge text-bg-warning")][text() = "Personal information"]');
 
     // Check access to taxonomy term pages. They should be 404 except for
     // information_schedule.
