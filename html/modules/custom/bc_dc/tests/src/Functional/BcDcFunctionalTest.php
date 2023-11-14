@@ -191,8 +191,8 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->drupalGet('node/add/data_set', ['query' => ['display' => 'section_1']]);
     $this->assertSession()->statusCodeEquals(200);
     $randomMachineName = $this->randomMachineName();
-    $data_set_title = 'Test data set ' . $randomMachineName . $this->randomString();
-    $data_set_path = '/data-set/test-data-set-' . strtolower($randomMachineName);
+    $data_set_title = 'Test data set One ' . $randomMachineName . $this->randomString();
+    $data_set_path = '/data-set/test-data-set-one-' . strtolower($randomMachineName);
     $edit = [
       'edit-title-0-value' => $data_set_title,
       'edit-status-value' => FALSE,
