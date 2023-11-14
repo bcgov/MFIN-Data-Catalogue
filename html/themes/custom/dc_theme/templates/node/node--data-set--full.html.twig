@@ -37,13 +37,6 @@
 
           <div class="card text-bg-light mb-3 p-3 small">
 
-            <div class="mb-3">
-              <div class="field field--name-field-uid field--type-entity-reference field--label-inline clearfix">
-                <div class="field__label">{{ 'Data set editor'|t }}</div>
-                <div class="field__item">{{ author_link }}</div>
-              </div>
-            </div>
-
             {% if node.field_primary_responsibility_org and not node.field_primary_responsibility_org.isempty %}
               <div class="mb-3">
                 {{ node.field_primary_responsibility_org|view }}
@@ -186,6 +179,13 @@
         {{ data_dictionary_download_links }}
         {{ node.field_columns|view }}
       {% endif %}
+
+      <section id="author_permalink">
+        <div class="field field--name-field-uid field--type-entity-reference field--label-inline clearfix">
+          <div class="field__label">{{ 'Data set editor'|t }}</div>
+          <div class="field__item">{{ author_link }}</div>
+        </div>
+      </section>
 
   </div>
 
