@@ -19,6 +19,7 @@ dependencies:
     - field.field.node.data_set.field_is_complete_review
     - field.field.node.data_set.field_last_review_date
     - field.field.node.data_set.field_modified_date
+    - field.field.node.data_set.field_personal_information
     - field.field.node.data_set.field_primary_responsibility_org
     - field.field.node.data_set.field_published_date
     - field.field.node.data_set.field_review_interval
@@ -72,6 +73,16 @@ content:
       link: true
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_personal_information:
+    type: boolean
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 3
     region: content
   field_source_system:
     type: entity_reference_label

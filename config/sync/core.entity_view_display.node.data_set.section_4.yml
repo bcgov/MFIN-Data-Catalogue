@@ -19,6 +19,7 @@ dependencies:
     - field.field.node.data_set.field_is_complete_review
     - field.field.node.data_set.field_last_review_date
     - field.field.node.data_set.field_modified_date
+    - field.field.node.data_set.field_personal_information
     - field.field.node.data_set.field_primary_responsibility_org
     - field.field.node.data_set.field_published_date
     - field.field.node.data_set.field_review_interval
@@ -98,6 +99,7 @@ hidden:
   field_is_complete_review: true
   field_last_review_date: true
   field_modified_date: true
+  field_personal_information: true
   field_primary_responsibility_org: true
   field_published_date: true
   field_review_interval: true

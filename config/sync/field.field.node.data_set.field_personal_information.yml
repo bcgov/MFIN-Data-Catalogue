@@ -1,0 +1,21 @@
+uuid: 062308f1-0b7c-4c69-a617-62ba810b6351
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_personal_information
+    - node.type.data_set
+id: node.data_set.field_personal_information
+field_name: field_personal_information
+entity_type: node
+bundle: data_set
+label: 'Personal information'
+description: 'This dataset includes personal information that can be used to identify an individual through association or inference. <a href="/node/72#personal_information">Read more…</a>'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean
