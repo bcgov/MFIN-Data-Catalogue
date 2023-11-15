@@ -51,6 +51,7 @@ content:
     region: content
 hidden:
   body: true
+  content_moderation_control: true
   field_active_period: true
   field_authoritative_info: true
   field_critical_information: true

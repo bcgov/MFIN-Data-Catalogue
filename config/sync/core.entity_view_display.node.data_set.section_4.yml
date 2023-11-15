@@ -89,6 +89,7 @@ content:
     region: content
 hidden:
   body: true
+  content_moderation_control: true
   field_active_period: true
   field_columns: true
   field_data_quality_issues: true

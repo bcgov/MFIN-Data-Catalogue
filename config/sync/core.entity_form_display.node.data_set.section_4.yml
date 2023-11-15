@@ -93,6 +93,7 @@ hidden:
   field_source_system: true
   field_special_flags: true
   langcode: true
+  moderation_state: true
   path: true
   promote: true
   status: true
