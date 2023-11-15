@@ -1,0 +1,16 @@
+.dc-save-search {
+  @include responsive($lg-min) {
+    background-color: var(--bs-gray-100);
+    border: 1px solid var(--bs-gray-300);
+    border-radius: var(--bs-border-radius);
+    .toggle {
+      border: 0;
+      padding: 1em 1em 1em 1em;
+      font-weight: 600;
+      text-align: left;
+      &::before {
+        content: " \F525" !important;
+      }
+    }
+  }
+}
