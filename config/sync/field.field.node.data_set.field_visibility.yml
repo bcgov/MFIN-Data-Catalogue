@@ -1,0 +1,29 @@
+uuid: ea8b0d82-f614-40f4-bebb-60b9f514854b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_visibility
+    - node.type.data_set
+    - taxonomy.vocabulary.organization
+id: node.data_set.field_visibility
+field_name: field_visibility
+entity_type: node
+bundle: data_set
+label: Visibility
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      organization: organization
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

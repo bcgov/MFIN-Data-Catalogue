@@ -27,6 +27,7 @@ dependencies:
     - field.field.node.data_set.field_series
     - field.field.node.data_set.field_source_system
     - field.field.node.data_set.field_special_flags
+    - field.field.node.data_set.field_visibility
     - node.type.data_set
     - workflows.workflow.editorial
   module:
@@ -43,7 +44,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 4
+    weight: 5
     region: content
     settings:
       rows: 9
@@ -53,20 +54,20 @@ content:
     third_party_settings: {  }
   field_active_period:
     type: field_token_value_default
-    weight: 29
+    weight: 24
     region: content
     settings: {  }
     third_party_settings: {  }
   field_authoritative_info:
     type: boolean_checkbox
-    weight: 12
+    weight: 13
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_columns:
     type: paragraphs
-    weight: 21
+    weight: 19
     region: content
     settings:
       title: Paragraph
@@ -84,14 +85,14 @@ content:
     third_party_settings: {  }
   field_critical_information:
     type: boolean_checkbox
-    weight: 11
+    weight: 12
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_data_quality_issues:
     type: text_textarea
-    weight: 8
+    weight: 9
     region: content
     settings:
       rows: 5
@@ -99,7 +100,7 @@ content:
     third_party_settings: {  }
   field_data_set_historical_change:
     type: text_textarea
-    weight: 9
+    weight: 10
     region: content
     settings:
       rows: 5
@@ -117,7 +118,7 @@ content:
     third_party_settings: {  }
   field_data_sets_used:
     type: entity_reference_autocomplete_tags
-    weight: 20
+    weight: 18
     region: content
     settings:
       match_operator: CONTAINS
@@ -127,20 +128,20 @@ content:
     third_party_settings: {  }
   field_final_disposition:
     type: field_token_value_default
-    weight: 27
+    weight: 22
     region: content
     settings: {  }
     third_party_settings: {  }
   field_high_value_info:
     type: boolean_checkbox
-    weight: 13
+    weight: 14
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_information_schedule:
     type: options_shs
-    weight: 19
+    weight: 17
     region: content
     settings:
       display_node_count: false
@@ -150,20 +151,20 @@ content:
     third_party_settings: {  }
   field_is_complete_review:
     type: boolean_checkbox
-    weight: 32
+    weight: 27
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_last_review_date:
     type: datetime_default
-    weight: 30
+    weight: 25
     region: content
     settings: {  }
     third_party_settings: {  }
   field_modified_date:
     type: datetime_default
-    weight: 7
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -186,44 +187,50 @@ content:
     third_party_settings: {  }
   field_published_date:
     type: datetime_default
-    weight: 6
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
   field_review_interval:
     type: number
-    weight: 31
+    weight: 26
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_security_classification:
     type: options_buttons
-    weight: 10
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
   field_semi_active_period:
     type: field_token_value_default
-    weight: 26
+    weight: 21
     region: content
     settings: {  }
     third_party_settings: {  }
   field_series:
     type: options_select
-    weight: 5
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
   field_source_system:
     type: options_select
-    weight: 14
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
   field_special_flags:
     type: field_token_value_default
-    weight: 28
+    weight: 23
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_visibility:
+    type: options_buttons
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -242,7 +249,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 22
+    weight: 20
     region: content
     settings:
       display_label: true
