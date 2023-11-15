@@ -2,6 +2,8 @@ uuid: 9773e29a-9d17-4cfa-b6c6-2997eb1a23f9
 langcode: en
 status: true
 dependencies:
+  config:
+    - node.type.data_set
   module:
     - content_moderation
 _core:
@@ -59,5 +61,7 @@ type_settings:
         - published
       to: published
       weight: 1
-  entity_types: {  }
+  entity_types:
+    node:
+      - data_set
   default_moderation_state: draft
