@@ -131,7 +131,7 @@ variant_settings:
         - ''
       html_id: ''
       css_styles: ''
-  page_title: 'Data sets'
+  page_title: Search
   layout: bcbb_main_sidebar_right
   layout_settings: {  }
   builder: standard
