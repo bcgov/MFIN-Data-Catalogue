@@ -4,10 +4,11 @@ status: true
 dependencies:
   config:
     - node.type.data_set
+    - workflows.workflow.editorial
   module:
     - book
+    - content_moderation
     - flag
-    - form_mode_control
     - node
     - paragraphs
     - system
@@ -27,7 +28,14 @@ permissions:
   - 'flag bookmark'
   - 'revert data_set revisions'
   - 'unflag bookmark'
+  - 'use editorial transition archive'
+  - 'use editorial transition archived_draft'
+  - 'use editorial transition archived_published'
+  - 'use editorial transition create_new_draft'
+  - 'use editorial transition publish'
+  - 'view any unpublished content'
   - 'view data_set revisions'
+  - 'view latest version'
   - 'view own unpublished content'
   - 'view the administration theme'
   - 'view unpublished paragraphs'

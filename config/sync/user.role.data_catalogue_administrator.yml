@@ -22,12 +22,13 @@ dependencies:
     - taxonomy.vocabulary.security_classification
     - taxonomy.vocabulary.source_system
     - taxonomy.vocabulary.tags
+    - workflows.workflow.editorial
   module:
     - bc_dc
     - book
+    - content_moderation
     - filter
     - flag
-    - form_mode_control
     - media
     - node
     - paragraphs
@@ -116,9 +117,16 @@ permissions:
   - 'flag bookmark'
   - 'revert data_set revisions'
   - 'unflag bookmark'
+  - 'use editorial transition archive'
+  - 'use editorial transition archived_draft'
+  - 'use editorial transition archived_published'
+  - 'use editorial transition create_new_draft'
+  - 'use editorial transition publish'
   - 'use text format full_html'
   - 'view all media revisions'
+  - 'view any unpublished content'
   - 'view data_set revisions'
+  - 'view latest version'
   - 'view own unpublished content'
   - 'view own unpublished media'
   - 'view the administration theme'
