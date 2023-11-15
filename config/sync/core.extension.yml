@@ -21,6 +21,7 @@ module:
   config_filter: 0
   config_ignore: 0
   config_split: 0
+  content_moderation: 0
   contextual: 0
   ctools: 0
   datetime: 0
@@ -104,6 +105,7 @@ module:
   views_bulk_edit: 0
   views_bulk_operations: 0
   views_ui: 0
+  workflows: 0
   pathauto: 1
   externalauth: 10
   views: 10

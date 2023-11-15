@@ -10,6 +10,7 @@ dependencies:
   - bcbb:bcbb_search
   - clipboardjs:clipboardjs
   - diff:diff
+  - drupal:content_moderation
   - drupal:datetime
   - drupal:field
   - drupal:filter
