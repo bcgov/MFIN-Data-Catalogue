@@ -2,7 +2,12 @@
 
 namespace Drupal\bc_dc\Plugin\Condition;
 
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Condition\ConditionPluginBase;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Routing\Access\AccessInterface;
+use Drupal\Core\Routing\RouteMatch;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 
@@ -21,7 +26,19 @@ use Drupal\Core\Url;
  *   }
  * )
  */
-class BuildEditAccess extends ConditionPluginBase {
+class BuildEditAccess extends ConditionPluginBase implements AccessInterface {
+
+  /**
+   * {@inheritdoc}
+   *
+   * This override is needed to provide default values. This is needed when this
+   * class is used as an AccessInterface. The phpcs:ignore is to prevent a
+   * warning about useless method overriding.
+   */
+  // phpcs:ignore
+  public function __construct(array $configuration = [], $plugin_id = 'bc_dc_build_edit_access', $plugin_definition = NULL) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+  }
 
   /**
    * {@inheritdoc}
@@ -73,6 +90,17 @@ class BuildEditAccess extends ConditionPluginBase {
     $access = Url::fromRoute('entity.node.edit_form', $route_parameters, $options)->access();
 
     return $access;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function access(AccountInterface $account, RouteMatch $route_match): AccessResult {
+    $entity = $route_match->getParameter('node');
+
+    $access = static::testAccess($entity);
+
+    return AccessResult::allowedIf($access);
   }
 
 }
