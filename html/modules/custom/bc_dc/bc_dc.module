@@ -253,6 +253,26 @@ function bc_dc_form_node_data_set_edit_form_alter(array &$form, FormStateInterfa
     $form['add_columns_link'] = $link->toRenderable();
     $form['add_columns_link']['#weight'] = -100;
   }
+
+  // Add custom validate handler that runs first.
+  if (!isset($form['#validate'])) {
+    $form['#validate'] = [];
+  }
+  array_unshift($form['#validate'], '_bc_dc_form_node_data_set_edit_form_submit');
+}
+
+/**
+ * Form validate handler.
+ *
+ * @param array $form
+ *   Nested array of form elements that comprise the form.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The current state of the form.
+ */
+function _bc_dc_form_node_data_set_edit_form_submit(array &$form, FormStateInterface $form_state): void {
+  // Saving should always be to a draft state. This must run first to ensure it
+  // will work regardless of what transtions are configured.
+  $form_state->setValue(['moderation_state', '0', 'value'], 'draft');
 }
 
 /**
