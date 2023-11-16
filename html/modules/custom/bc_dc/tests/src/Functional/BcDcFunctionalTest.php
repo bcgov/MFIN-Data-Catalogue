@@ -149,6 +149,12 @@ class BcDcFunctionalTest extends BrowserTestBase {
       'edit-entity-types-taxonomy-term' => TRUE,
     ];
     $this->submitForm($edit, 'Save configuration');
+    // Configure workflows module.
+    $this->drupalGet('admin/config/workflow/workflows/manage/editorial/type/node');
+    $edit = [
+      'edit-bundles-data-set' => TRUE,
+    ];
+    $this->submitForm($edit, 'Save');
 
     // Create test users.
     $this->createTestUser('Test Data catalogue administrator', ['data_catalogue_administrator']);
@@ -195,7 +201,6 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $data_set_path = '/data-set/test-data-set-one-' . strtolower($randomMachineName);
     $edit = [
       'edit-title-0-value' => $data_set_title,
-      'edit-status-value' => FALSE,
     ];
     $this->submitForm($edit, 'Save');
     $this->assertSession()->pageTextContains('Metadata record ' . $edit['edit-title-0-value'] . ' has been created');
@@ -329,24 +334,9 @@ class BcDcFunctionalTest extends BrowserTestBase {
       'edit-field-primary-responsibility-org-0-target-id' => 'Term (' . $test_org->id() . ')',
     ];
     $this->submitForm($edit, 'Save');
-    // Section 1 edit page.
-    $this->click('a[aria-label = "Edit Section 1"]');
-    // Submit with some updates.
-    $edit = [
-      'edit-field-is-complete-review-value' => TRUE,
-    ];
-    $this->submitForm($edit, 'Save');
     // Test that long text gets trimmed.
     $this->assertSession()->pageTextContains('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna');
     $this->assertSession()->pageTextNotContains('Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.');
-    // field_last_review should display today.
-    $args = [
-      ':class' => 'field--name-field-last-review-date',
-      ':label' => 'Last review date',
-      ':text' => date('Y-m-d'),
-    ];
-    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div/time[text() = :text]', $args);
-    $this->assertSession()->elementExists('xpath', $xpath);
 
     // Data set dashboard.
     $this->drupalGet('dashboard');
@@ -397,9 +387,22 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSession()->elementExists('xpath', '//nav[contains(@class, "tabs")]/ul/li/a[@href = "/node/2/revisions"]');
     $this->assertTrue(\Drupal::service('module_handler')->moduleExists('diff'), 'Module diff should be enabled.');
 
-    // Publish the data_set and there are no data rows, just the empty message.
-    $data_set = Node::load(2);
-    $data_set->setPublished()->save();
+    // Publish the data_set.
+    $this->drupalGet('node/2/build');
+    $edit = [
+      'edit-full-review' => TRUE,
+    ];
+    $this->submitForm($edit, 'Publish');
+    $this->clickLink('Build');
+    // field_last_review should display today.
+    $args = [
+      ':class' => 'field--name-field-last-review-date',
+      ':label' => 'Last review date',
+      ':text' => date('Y-m-d'),
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div/time[text() = :text]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+    // There are no data rows, just the empty message.
     $this->drupalGet('dashboard');
     $this->assertSession()->statusCodeEquals(200);
     $this->assertSession()->elementExists('xpath', '//table[contains(@class, "dc-dashboard-table-mydatasets")]//tr/td[text() = "No data sets to show."]');
@@ -410,6 +413,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Recently-bookmarked data set has no data set updated message.
     $this->assertSession()->pageTextNotContains('Updated:');
     // Set the updated date later than the bookmark date.
+    $data_set = Node::load(2);
     $data_set->set('field_modified_date', (new \DateTime('tomorrow'))->format('Y-m-d'))->save();
     // The data set updated message should appear.
     $this->drupalGet('dashboard');
@@ -856,7 +860,6 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $data_set_title_2 = 'Test data set Two ' . $this->randomString();
     $edit = [
       'edit-title-0-value' => $data_set_title_2,
-      'edit-status-value' => TRUE,
     ];
     $this->submitForm($edit, 'Save');
     // "Personal information" badge does not appear.
@@ -870,6 +873,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       'edit-field-personal-information-1' => TRUE,
     ];
     $this->submitForm($edit, 'Save');
+    $this->submitForm([], 'Publish');
     // Page has "Data sets used" with link to node/2.
     $args = [
       ':data_set_title' => $data_set_title,
