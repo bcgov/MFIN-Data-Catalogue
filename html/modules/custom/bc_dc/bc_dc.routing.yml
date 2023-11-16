@@ -1,3 +1,11 @@
+bc_dc.data_set_build_page_tab:
+  path: '/node/{node}/build'
+  options:
+    parameters:
+      node:
+        type: 'entity:node'
+        load_latest_revision: true
+
 bc_dc.settings:
   path: /admin/config/data-catalogue
   defaults:

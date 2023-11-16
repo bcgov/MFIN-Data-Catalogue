@@ -1,4 +1,4 @@
 bc_dc.data_set_build_page_tab:
-  route_name: page_manager.page_view_data_set_build_data_set_build-panels_variant-0
+  route_name: bc_dc.data_set_build_page_tab
   base_route: entity.node.canonical
   title: 'Build'
