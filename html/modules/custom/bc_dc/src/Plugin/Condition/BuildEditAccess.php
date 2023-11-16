@@ -29,6 +29,29 @@ class BuildEditAccess extends ConditionPluginBase {
   public function evaluate(): bool {
     $entity = $this->getContextValue('node');
 
+    $access = static::testAccess($entity);
+
+    // Support negation.
+    return $access xor $this->isNegated();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function summary(): TranslatableMarkup {
+    return $this->t('User has access to edit the metadata record description.');
+  }
+
+  /**
+   * Test for access on a given entity.
+   *
+   * @param Drupal\Core\Entity\EntityInterface|null $entity
+   *   The entity for which to test access.
+   *
+   * @return bool
+   *   Whether access shold be granted.
+   */
+  protected static function testAccess(?EntityInterface $entity): bool {
     if (!$entity) {
       return FALSE;
     }
@@ -49,15 +72,7 @@ class BuildEditAccess extends ConditionPluginBase {
     ];
     $access = Url::fromRoute('entity.node.edit_form', $route_parameters, $options)->access();
 
-    // Support negation.
-    return $access xor $this->isNegated();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function summary(): TranslatableMarkup {
-    return $this->t('User has access to edit the metadata record description.');
+    return $access;
   }
 
 }
