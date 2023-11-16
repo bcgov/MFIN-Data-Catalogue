@@ -33,6 +33,10 @@ class BuildEditAccess extends ConditionPluginBase {
       return FALSE;
     }
 
+    if ($entity->bundle() !== 'data_set') {
+      return FALSE;
+    }
+
     // Give access based on whether the user has access to the edit path for
     // section_1.
     $route_parameters = [
