@@ -28,6 +28,7 @@ dependencies:
     - content_moderation
     - filter
     - flag
+    - form_mode_control
     - media
     - node
     - paragraphs
@@ -105,6 +106,11 @@ permissions:
   - 'flag bookmark'
   - 'revert data_set revisions'
   - 'unflag bookmark'
+  - 'use  The form mode section_1 linked to  node entity( data_set )'
+  - 'use  The form mode section_2 linked to  node entity( data_set )'
+  - 'use  The form mode section_3 linked to  node entity( data_set )'
+  - 'use  The form mode section_4 linked to  node entity( data_set )'
+  - 'use  The form mode section_5 linked to  node entity( data_set )'
   - 'use editorial transition archive'
   - 'use editorial transition archived_draft'
   - 'use editorial transition archived_published'
