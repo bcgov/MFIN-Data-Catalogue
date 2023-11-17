@@ -291,7 +291,7 @@ class BcDcDataSetTables extends BlockBase implements ContainerFactoryPluginInter
           case 'actions':
             $actions = [];
             // Build link.
-            $url = Url::fromRoute('page_manager.page_view_data_set_build_data_set_build-panels_variant-0', ['node' => $data_set->id()]);
+            $url = Url::fromRoute('bc_dc.data_set_build_page_tab', ['node' => $data_set->id()]);
             if ($url->access()) {
               $actions['build'] = [
                 '#title' => $this->t('Build'),
