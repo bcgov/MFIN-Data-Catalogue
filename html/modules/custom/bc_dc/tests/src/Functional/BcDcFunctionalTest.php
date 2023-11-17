@@ -862,10 +862,14 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       'edit-title-0-value' => $data_set_title_2,
     ];
     $this->submitForm($edit, 'Save');
+    $this->clickLink('Build');
+    $this->submitForm([], 'Publish');
     // "Personal information" badge does not appear.
     $this->assertSession()->elementNotExists('xpath', '//span[contains(@class, "badge text-bg-warning")][text() = "Personal information"]');
-    // Set node/2 as a data_set used by this data_set.
+    // On Build page, field_data_sets_used is empty.
     $this->clickLink('Build');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--name-field-data-sets-used")]/div[@class = "field__item"]/em[text() = "Optional"]');
+    // Set node/2 as a data_set used by this data_set.
     $this->click('a[aria-label = "Edit Section 3"]');
     $edit = [
       'edit-field-data-sets-used-0-target-id' => 'Title (2)',
@@ -873,6 +877,19 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       'edit-field-personal-information-1' => TRUE,
     ];
     $this->submitForm($edit, 'Save');
+    // field_data_sets_used is not empty. This demonstrates that the Build page
+    // is showing the latest version not the default version.
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "field--name-field-data-sets-used")]/div[@class = "field__item"]/em[text() = "Optional"]');
+    $args = [
+      ':data_set_title' => $data_set_title,
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-data-sets-used")]/div[@class = "field__items"]/div[@class = "field__item"]/a[text() = :data_set_title]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+    // View page still does not have field_data_sets_used.
+    $this->clickLink('View');
+    $this->assertSession()->elementNotExists('xpath', '//div[text() = "Data sets used"]');
+    // Publish the changes.
+    $this->clickLink('Build');
     $this->submitForm([], 'Publish');
     // Page has "Data sets used" with link to node/2.
     $args = [
