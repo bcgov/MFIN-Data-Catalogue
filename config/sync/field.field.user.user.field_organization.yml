@@ -1,0 +1,26 @@
+uuid: 62e9bade-87bc-4619-befe-68a4ef92c52c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_organization
+  module:
+    - user
+id: user.user.field_organization
+field_name: field_organization
+entity_type: user
+bundle: user
+label: Organization
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: organizations
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference

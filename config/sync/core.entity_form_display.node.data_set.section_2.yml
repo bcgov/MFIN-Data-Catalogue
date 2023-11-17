@@ -28,6 +28,7 @@ dependencies:
     - field.field.node.data_set.field_series
     - field.field.node.data_set.field_source_system
     - field.field.node.data_set.field_special_flags
+    - field.field.node.data_set.field_visibility
     - node.type.data_set
   module:
     - datetime
@@ -83,6 +84,12 @@ content:
     region: content
     settings:
       placeholder: ''
+    third_party_settings: {  }
+  field_visibility:
+    type: options_buttons
+    weight: 6
+    region: content
+    settings: {  }
     third_party_settings: {  }
 hidden:
   created: true

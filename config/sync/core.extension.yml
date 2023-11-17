@@ -111,6 +111,7 @@ module:
   views: 10
   paragraphs: 11
   bcbb_book: 100
+  tac_lite: 100
   standard: 1000
 theme:
   claro: 0

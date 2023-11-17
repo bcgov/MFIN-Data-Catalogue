@@ -3,3 +3,4 @@ _core:
 ignored_config_entities:
   - openid_connect.client.keycloak
   - 'page_manager.page_variant.dashboard-panels_variant-0:variant_settings.blocks.2ea835da-546b-4c16-8a3e-bb775482cf43.*'
+  - tac_lite.settings

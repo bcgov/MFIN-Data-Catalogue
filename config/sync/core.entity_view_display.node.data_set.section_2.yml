@@ -28,6 +28,7 @@ dependencies:
     - field.field.node.data_set.field_series
     - field.field.node.data_set.field_source_system
     - field.field.node.data_set.field_special_flags
+    - field.field.node.data_set.field_visibility
     - node.type.data_set
   module:
     - datetime
@@ -116,6 +117,14 @@ content:
       format_type: html_date
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_visibility:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 5
     region: content
 hidden:
   content_moderation_control: true

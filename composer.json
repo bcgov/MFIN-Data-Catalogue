@@ -29,6 +29,7 @@
         "drupal/clipboardjs": "dev-2.0.x#adb3f68",
         "drupal/core-composer-scaffold": "^10.1",
         "drupal/core-recommended": "^10.1",
+        "drupal/devel_php": "^1.5",
         "drupal/field_token_value": "^3.0",
         "drupal/flag": "^4.0",
         "drupal/message_gcnotify": "dev-1.0.x",
@@ -133,7 +134,8 @@
                 "3284824 - Schema definition for entity_reference_shs field formatter missing": "https://www.drupal.org/files/issues/2022-06-09/shs-schema_formatter_missing-3284824-2.patch"
             },
             "drupal/tac_lite": {
-                "3359802 - Add schema for tac_lite.settings": "https://www.drupal.org/files/issues/2023-05-11/tac_lite-schema-3359802-2.patch"
+                "3359802 - Add schema for tac_lite.settings": "https://www.drupal.org/files/issues/2023-05-11/tac_lite-schema-3359802-2.patch",
+                "3203718 - add the ability to select all terms from a vocabulary": "https://www.drupal.org/files/issues/2021-03-15/tac_lite-add_all_option-3203718-2.patch"
             }
         }
     },

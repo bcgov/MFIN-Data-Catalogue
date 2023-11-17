@@ -13,7 +13,9 @@ use Drupal\Core\Link;
 use Drupal\Core\Render\Element;
 use Drupal\message_gcnotify\Service\GcNotifyApiService;
 use Drupal\node\NodeInterface;
+use Drupal\tac_lite\Form\SchemeForm;
 use Drupal\taxonomy\TermInterface;
+use Drupal\user\UserInterface;
 use Drupal\views\ViewExecutable;
 
 /**
@@ -212,6 +214,42 @@ function bc_dc_node_update(NodeInterface $entity): void {
       '@nid' => $entity->id(),
     ];
     \Drupal::logger('bc_dc')->error('Failed sending message when updating data_set @nid.', $context);
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert() for user entities.
+ */
+function bc_dc_user_insert(UserInterface $account): void {
+  bc_dc_update_tac($account);
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_update() for user entities.
+ */
+function bc_dc_user_update(UserInterface $account): void {
+  bc_dc_update_tac($account);
+}
+
+/**
+ * Helper function to update TAC config per user based on user org.
+ *
+ * @param \Drupal\user\UserInterface $account
+ *   The accoun to act on.
+ */
+function bc_dc_update_tac(UserInterface $account): void {
+  // Automatically set tac tid.
+  if ($account->hasField('field_organization') && !$account->get('field_organization')->isEmpty()) {
+    $orgs = $account->get('field_organization')->getValue();
+    foreach ($orgs as $org) {
+      $values[$org['target_id']] = $org['target_id'];
+    }
+    $schemes = [1, 2, 3];
+    foreach ($schemes as $scheme) {
+      $config = SchemeForm::tacLiteConfig($scheme);
+      // tac_lite set.
+      \Drupal::service('user.data')->set('tac_lite', $account->id(), $config['realm'], ['organization' => $values]);
+    }
   }
 }
 
