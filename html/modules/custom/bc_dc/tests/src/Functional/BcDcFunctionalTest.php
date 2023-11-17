@@ -862,10 +862,20 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       'edit-title-0-value' => $data_set_title_2,
     ];
     $this->submitForm($edit, 'Save');
+    // Add revision log message and publish.
     $this->clickLink('Build');
-    $this->submitForm([], 'Publish');
+    $edit = [
+      'edit-revision-log-message' => 'Revision log message ' . $this->randomString(),
+    ];
+    $this->submitForm($edit, 'Publish');
     // "Personal information" badge does not appear.
     $this->assertSession()->elementNotExists('xpath', '//span[contains(@class, "badge text-bg-warning")][text() = "Personal information"]');
+    // Revision log message appears on revisions tab.
+    $this->clickLink('Revisions');
+    $args = [
+      ':revision_log' => $edit['edit-revision-log-message'],
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//*[@class = "revision-log"][text() = :revision_log]', $args);
     // On Build page, field_data_sets_used is empty.
     $this->clickLink('Build');
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--name-field-data-sets-used")]/div[@class = "field__item"]/em[text() = "Optional"]');
