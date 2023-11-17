@@ -869,6 +869,8 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // On Build page, field_data_sets_used is empty.
     $this->clickLink('Build');
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--name-field-data-sets-used")]/div[@class = "field__item"]/em[text() = "Optional"]');
+    // On Build page, no workflow block when latest revision is published.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-workflow-block")]//*[contains(text(), "Latest revision is published")]');
     // Set node/2 as a data_set used by this data_set.
     $this->click('a[aria-label = "Edit Section 3"]');
     $edit = [
