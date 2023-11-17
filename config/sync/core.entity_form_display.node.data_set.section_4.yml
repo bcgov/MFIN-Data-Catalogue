@@ -65,7 +65,7 @@ content:
       display_node_count: false
       create_new_items: false
       create_new_levels: false
-      force_deepest: true
+      force_deepest: false
     third_party_settings: {  }
   field_security_classification:
     type: options_buttons
