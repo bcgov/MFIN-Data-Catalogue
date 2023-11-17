@@ -28,7 +28,9 @@ dependencies:
     - field.field.node.data_set.field_source_system
     - field.field.node.data_set.field_special_flags
     - node.type.data_set
+    - workflows.workflow.editorial
   module:
+    - content_moderation
     - datetime
     - field_token_value
     - paragraphs
