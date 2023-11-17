@@ -739,7 +739,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     ];
     $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-information-schedule")]
       [div[@class = "field__label"][normalize-space(text()) = "IM classification details"]]
-      [div[@class = "field__item"][text() = :classification_details]]', $args);
+      [div[@class = "field__item"]/a[text() = :classification_details]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     // Schedule code.
     $args = [
