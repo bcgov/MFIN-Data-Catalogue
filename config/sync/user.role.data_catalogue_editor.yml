@@ -8,6 +8,7 @@ dependencies:
   module:
     - book
     - content_moderation
+    - field_permissions
     - flag
     - form_mode_control
     - node
@@ -41,7 +42,9 @@ permissions:
   - 'use editorial transition publish'
   - 'view any unpublished content'
   - 'view data_set revisions'
+  - 'view field_primary_responsibility_org'
   - 'view latest version'
+  - 'view own field_primary_responsibility_org'
   - 'view own unpublished content'
   - 'view the administration theme'
   - 'view unpublished paragraphs'

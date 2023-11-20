@@ -6,6 +6,7 @@ dependencies:
     - node.type.data_set
   module:
     - book
+    - field_permissions
     - flag
     - node
 id: data_catalogue_user
@@ -17,3 +18,5 @@ permissions:
   - 'flag bookmark'
   - 'unflag bookmark'
   - 'view data_set revisions'
+  - 'view field_primary_responsibility_org'
+  - 'view own field_primary_responsibility_org'

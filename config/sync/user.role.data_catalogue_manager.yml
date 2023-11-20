@@ -26,6 +26,7 @@ dependencies:
   module:
     - book
     - content_moderation
+    - field_permissions
     - filter
     - flag
     - form_mode_control
@@ -120,7 +121,9 @@ permissions:
   - 'view all media revisions'
   - 'view any unpublished content'
   - 'view data_set revisions'
+  - 'view field_primary_responsibility_org'
   - 'view latest version'
+  - 'view own field_primary_responsibility_org'
   - 'view own unpublished content'
   - 'view own unpublished media'
   - 'view the administration theme'
