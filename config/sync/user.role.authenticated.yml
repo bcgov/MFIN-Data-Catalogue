@@ -7,6 +7,7 @@ dependencies:
   module:
     - comment
     - environment_indicator
+    - field_permissions
     - file
     - filter
     - form_mode_control
@@ -31,4 +32,6 @@ permissions:
   - 'use  The form mode default linked to  search_api_saved_search entity( default )'
   - 'use default search_api_saved_searches'
   - 'use text format basic_html'
+  - 'view field_primary_responsibility_org'
   - 'view media'
+  - 'view own field_primary_responsibility_org'

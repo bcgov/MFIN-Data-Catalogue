@@ -331,7 +331,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Submit with some updates.
     $edit = [
       'edit-body-0-value' => 'Data set description ' . $this->randomString() . ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-      'edit-field-primary-responsibility-org-0-target-id' => 'Term (' . $test_org->id() . ')',
+      'edit-field-primary-responsibility-org-1' => 1,
     ];
     $this->submitForm($edit, 'Save');
     // Test that long text gets trimmed.

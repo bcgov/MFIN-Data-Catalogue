@@ -6,6 +6,7 @@ dependencies:
     - filter.format.restricted_html
   module:
     - comment
+    - field_permissions
     - filter
     - media
     - system
@@ -19,4 +20,6 @@ permissions:
   - 'access comments'
   - 'access content'
   - 'use text format restricted_html'
+  - 'view field_primary_responsibility_org'
   - 'view media'
+  - 'view own field_primary_responsibility_org'
