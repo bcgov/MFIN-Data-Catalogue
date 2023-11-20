@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9c3ade232c4bc06b1b42ea99adf00868",
+    "content-hash": "d15ad39548a8b1b74b66b3bfe555b573",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -12421,6 +12421,21 @@
                 }
             ],
             "time": "2023-11-06T10:58:05+00:00"
+        },
+        {
+            "name": "tabby/tabby",
+            "version": "12.0.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/cferdinandi/tabby/archive/refs/tags/v12.0.3.zip"
+            },
+            "type": "drupal-library",
+            "extra": {
+                "installer-name": "tabby"
+            },
+            "license": [
+                "MIT"
+            ]
         },
         {
             "name": "twig/twig",

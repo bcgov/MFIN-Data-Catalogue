@@ -20,6 +20,22 @@
         {
             "type": "vcs",
             "url": "https://github.com/openplus/opbb"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "tabby/tabby",
+                "version": "12.0.3",
+                "type": "drupal-library",
+                "extra": {
+                    "installer-name": "tabby"
+                },
+                "dist": {
+                    "url": "https://github.com/cferdinandi/tabby/archive/refs/tags/v12.0.3.zip",
+                    "type": "zip"
+                },
+                "license": "MIT"
+            }
         }
     ],
     "require": {
@@ -45,6 +61,7 @@
         "drupal/webform_content_creator": "^4.0",
         "oomphinc/composer-installers-extender": "^2.0",
         "phpoffice/phpspreadsheet": "^1.29",
+        "tabby/tabby": "^12.0",
         "vlucas/phpdotenv": "^5.1",
         "webflo/drupal-finder": "^1.2",
         "weitzman/drupal-test-traits": "^2.1",
