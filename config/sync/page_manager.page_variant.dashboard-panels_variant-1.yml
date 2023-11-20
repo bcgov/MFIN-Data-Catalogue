@@ -4,11 +4,13 @@ status: true
 dependencies:
   config:
     - page_manager.page.dashboard
+    - webform.webform.create_data_set
   module:
     - bc_dc
     - bcbb_search
     - panels
     - user
+    - webform
 id: dashboard-panels_variant-1
 label: 'Authenticated dashboard'
 weight: 0
@@ -35,7 +37,7 @@ variant_settings:
         search_input_size_value: null
         show_advanced_link: true
       region: content
-      weight: 0
+      weight: -1
       uuid: c9dd60b1-c7cb-41ce-a830-f5d460e884cf
       css_classes:
         - ''
@@ -49,7 +51,7 @@ variant_settings:
       context_mapping: {  }
       table_type: user_unpublished
       region: content
-      weight: 1
+      weight: 0
       uuid: f1a1b0d8-f640-45cc-96c4-afd7ac7bccf2
       css_classes:
         - ''
@@ -63,7 +65,7 @@ variant_settings:
       context_mapping: {  }
       table_type: user_bookmarked
       region: content
-      weight: 2
+      weight: 1
       uuid: 66bebbb5-d0e6-4e22-b334-592fc8fcb8db
       css_classes:
         - ''
@@ -77,7 +79,7 @@ variant_settings:
       context_mapping: {  }
       table_type: user_bookmark_counts
       region: content
-      weight: 3
+      weight: 2
       uuid: 728cdb21-f13d-4735-b501-37f1699673c5
       css_classes:
         - ''
@@ -91,7 +93,7 @@ variant_settings:
       context_mapping: {  }
       table_type: most_bookmarked
       region: content
-      weight: 4
+      weight: 3
       uuid: dfaf47b4-387e-4cd6-84c6-a0d50418ade7
       css_classes:
         - ''
@@ -105,7 +107,7 @@ variant_settings:
       context_mapping: {  }
       table_type: user_need_review
       region: content
-      weight: 5
+      weight: 4
       uuid: f79b9472-0537-4208-b8d8-99c776d28ce0
       css_classes:
         - ''
@@ -118,8 +120,25 @@ variant_settings:
       provider: bc_dc
       context_mapping: {  }
       region: content
-      weight: -1
+      weight: -2
       uuid: 2dd274a5-1bf9-42aa-a373-7bfb9a39b43c
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    d4c0f915-6fb0-4546-be8a-86381e64676b:
+      id: webform_block
+      label: 'Create metadata record'
+      label_display: visible
+      provider: webform
+      context_mapping: {  }
+      webform_id: create_data_set
+      default_data: ''
+      redirect: false
+      lazy: false
+      region: content
+      weight: -3
+      uuid: d4c0f915-6fb0-4546-be8a-86381e64676b
       css_classes:
         - ''
       html_id: ''
