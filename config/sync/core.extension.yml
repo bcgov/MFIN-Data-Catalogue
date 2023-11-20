@@ -34,6 +34,7 @@ module:
   facets: 0
   facets_summary: 0
   field: 0
+  field_permissions: 0
   field_token_value: 0
   field_ui: 0
   file: 0
