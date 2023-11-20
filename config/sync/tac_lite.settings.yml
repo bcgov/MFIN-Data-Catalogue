@@ -1,5 +1,84 @@
 _core:
   default_config_hash: O3rsbjEveBvnof1Hdq3ih8UBqlRN2betEk9OZhaiTPM
-tac_lite_categories: null
-tac_lite_schemes: 1
-menu_rebuild_needed: false
+tac_lite_categories:
+  organization: organization
+tac_lite_schemes: 3
+menu_rebuild_needed: true
+tac_lite_config_scheme_1:
+  name: Edit
+  perms:
+    grant_update: grant_update
+  unpublished: 0
+  term_visibility: 0
+  allowed_fields:
+    field_primary_responsibility_org: field_primary_responsibility_org
+tac_lite_grants_scheme_1:
+  anonymous:
+    organization: {  }
+  authenticated:
+    organization: {  }
+  administrator:
+    organization: {  }
+  data_catalogue_administrator:
+    organization: {  }
+  data_catalogue_manager:
+    organization: {  }
+  data_catalogue_editor:
+    organization: {  }
+  data_catalogue_user:
+    organization: {  }
+tac_lite_config_scheme_2:
+  name: 'View - unpublished'
+  perms:
+    grant_view: grant_view
+  unpublished: 1
+  term_visibility: 0
+  allowed_fields:
+    field_visibility: field_visibility
+tac_lite_grants_scheme_2:
+  anonymous:
+    organization: {  }
+  authenticated:
+    organization: {  }
+  administrator:
+    organization: {  }
+  data_catalogue_administrator:
+    organization: {  }
+  data_catalogue_manager:
+    organization: {  }
+  data_catalogue_editor:
+    organization: {  }
+  data_catalogue_user:
+    organization: {  }
+tac_lite_config_scheme_3:
+  name: 'View - published'
+  perms:
+    grant_view: grant_view
+  unpublished: 0
+  term_visibility: 0
+  allowed_fields:
+    field_visibility: field_visibility
+tac_lite_grants_scheme_3:
+  anonymous:
+    organization:
+      182: '182'
+  authenticated:
+    organization:
+      183: '183'
+      182: '182'
+  administrator:
+    organization: {  }
+  data_catalogue_administrator:
+    organization: {  }
+  data_catalogue_manager:
+    organization:
+      183: '183'
+      182: '182'
+  data_catalogue_editor:
+    organization:
+      183: '183'
+      182: '182'
+  data_catalogue_user:
+    organization:
+      183: '183'
+      182: '182'
