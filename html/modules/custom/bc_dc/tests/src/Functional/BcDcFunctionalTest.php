@@ -343,8 +343,6 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Data set dashboard.
     $this->drupalGet('dashboard');
     $this->assertSession()->statusCodeEquals(200);
-    // The create-new link exists.
-    $this->assertSession()->elementExists('xpath', '//a[@href = "/node/add/data_set?display=section_1"][text() = "Add new data set"]');
     // View link.
     $args = [
       ':data_set_title' => $data_set_title,

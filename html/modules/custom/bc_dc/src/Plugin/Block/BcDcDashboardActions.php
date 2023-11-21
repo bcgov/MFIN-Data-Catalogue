@@ -57,23 +57,6 @@ class BcDcDashboardActions extends BlockBase implements ContainerFactoryPluginIn
   public function build(): array {
     $links = [];
 
-    // Button to create a data_set.
-    $url = Url::fromRoute('node.add', ['node_type' => 'data_set'], ['query' => ['display' => 'section_1']]);
-    if ($url->access()) {
-      $links[] = [
-        '#title' => $this->t('Add new data set'),
-        '#type' => 'link',
-        '#url' => $url,
-        '#attributes' => [
-          'class' => [
-            'button',
-            'button--action',
-            'button--primary',
-          ],
-        ],
-      ];
-    }
-
     // Link to saved searches.
     $url = Url::fromRoute('view.saved_searches.page', ['user' => $this->currentUser->id()]);
     if ($url->access()) {
