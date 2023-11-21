@@ -136,7 +136,8 @@
             },
             "drupal/tac_lite": {
                 "3203718 - add the ability to select all terms from a vocabulary": "https://www.drupal.org/files/issues/2021-03-15/tac_lite-add_all_option-3203718-2.patch",
-                "3359802 - Add schema for tac_lite.settings": "https://www.drupal.org/files/issues/2023-05-11/tac_lite-schema-3359802-2.patch"
+                "3359802 - Add schema for tac_lite.settings": "https://www.drupal.org/files/issues/2023-05-11/tac_lite-schema-3359802-2.patch",
+                "3403235 - Allow specifying which field to use for access control": "https://www.drupal.org/files/issues/2023-11-21/tac_lite-choose_fields-3403235-2.patch"
             }
         }
     },
