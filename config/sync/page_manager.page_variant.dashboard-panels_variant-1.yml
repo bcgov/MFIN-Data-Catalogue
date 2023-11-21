@@ -113,19 +113,6 @@ variant_settings:
         - ''
       html_id: ''
       css_styles: ''
-    2dd274a5-1bf9-42aa-a373-7bfb9a39b43c:
-      id: bc_dc_dashboard_actions
-      label: 'Dashboard actions'
-      label_display: '0'
-      provider: bc_dc
-      context_mapping: {  }
-      region: content
-      weight: -2
-      uuid: 2dd274a5-1bf9-42aa-a373-7bfb9a39b43c
-      css_classes:
-        - ''
-      html_id: ''
-      css_styles: ''
     d4c0f915-6fb0-4546-be8a-86381e64676b:
       id: webform_block
       label: 'Create metadata record'

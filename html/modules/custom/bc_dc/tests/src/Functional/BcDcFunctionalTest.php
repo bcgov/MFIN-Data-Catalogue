@@ -596,13 +596,6 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Bookmarked by 2.
     $this->assertSession()->elementExists('xpath', '//a[*[contains(@class, "title")][contains(text(), "Remove bookmark")]][*[contains(@class, "count")][contains(text(), "Bookmarked by 2 people")]]');
 
-    // Saved searches.
-    //
-    // The saved-searches link exists on the dashboard and the page exists.
-    $this->drupalGet('dashboard');
-    $this->clickLink('My saved searches');
-    $this->assertSession()->statusCodeEquals(200);
-
     // Test book module.
     //
     // Login as admin.
