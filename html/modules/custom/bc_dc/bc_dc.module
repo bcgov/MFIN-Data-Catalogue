@@ -6,6 +6,7 @@
  */
 
 use Drupal\bc_dc\Controller\BcDcCreateFileController;
+use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -446,4 +447,24 @@ function bc_dc_views_pre_build(ViewExecutable $view): void {
   if ($view->id() === 'site_search' && \Drupal::currentUser()->isAnonymous()) {
     unset($view->field['views_bulk_operations_bulk_form']);
   }
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function bc_dc_menu_local_tasks_alter(array &$data, string $route_name, RefinableCacheableDependencyInterface &$cacheability): void {
+  // Remove the "Edit" tab for everybody except administrators.
+  //
+  // Only act on data_set nodes.
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if (!($node instanceof NodeInterface) || $node->bundle() !== 'data_set') {
+    return;
+  }
+  // Do nothing for administrators.
+  $user = \Drupal::currentUser();
+  if ($user->id() == 1 || in_array('administrator', $user->getRoles())) {
+    return;
+  }
+  // Remove the "Edit" tab.
+  unset($data['tabs'][0]['entity.node.edit_form']);
 }
