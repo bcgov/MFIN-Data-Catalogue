@@ -208,6 +208,8 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Admin has access to data_set build page.
     $this->drupalGet('node/2/build');
     $this->assertSession()->statusCodeEquals(200);
+    // "Edit" tab does appear for data_set content type.
+    $this->assertSession()->elementExists('xpath', '//a[@href = "/node/2/edit"]');
     // Page has ISO dates.
     $this->isoDateTest();
     // Page links to pathauto path for this page.
@@ -587,6 +589,8 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Test adding bookmarks.
     $this->drupalLogin($this->users['Test Data catalogue user']);
     $this->drupalGet('node/2');
+    // "Edit" tab does not appear for data_set content type.
+    $this->assertSession()->elementNotExists('xpath', '//a[@href = "/node/2/edit"]');
     // Bookmarked by 1.
     $this->assertSession()->elementExists('xpath', '//a[*[contains(@class, "title")][contains(text(), "Bookmark")]][*[contains(@class, "count")][contains(text(), "Bookmarked by 1 person")]]');
     // Add a bookmark.
@@ -621,6 +625,8 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Create child page as Test Data catalogue administrator. node/4.
     $this->drupalLogin($this->users['Test Data catalogue administrator']);
     $this->drupalGet($book_url);
+    // "Edit" tab does appear for book content type.
+    $this->assertSession()->elementExists('xpath', '//a[@href = "/node/3/edit"]');
     $this->clickLink('Add child page');
     $this->assertSession()->statusCodeEquals(200);
     $test_header = 'Test Header 3 ' . $this->randomString();
