@@ -51,6 +51,11 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     // No links in login block. By default, a password reset link appears.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "region-header")]/div[contains(@class, "block-user-login-block")]//a');
 
+    // Header search block does not appear.
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-bcbb-search-api-block")]');
+    // Search block in main content area appears.
+    $this->assertSession()->elementExists('xpath', '//main//input[@aria-label = "Search terms"]');
+
     // Components of search results.
     $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-id-site_search")]//div[contains(@class, "row")]/div[contains(@class, "search-result")]');
     $this->assertSession()->elementExists('xpath', 'h2', $container);
@@ -91,10 +96,10 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-id-site_search")]//input[@value = "Generate csv from selected view results"]');
 
     // Facets exist on search page.
-    $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "sidebar-region")]/div/section[contains(@class, "block-facet-blockprimary-responsibility-org")]/header/h2');
-    $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "sidebar-region")]/div/section[contains(@class, "block-facet-blockseries")]/header/h2');
-    $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "sidebar-region")]/div/section[contains(@class, "block-facet-blocksource-system")]/header/h2');
-    $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "sidebar-region")]/div/section[contains(@class, "block-facet-blockmetadata-type")]/header/h2');
+    $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "bcbb-search-sidebar")]//section[contains(@class, "block-facet-blockprimary-responsibility-org")]/h2');
+    $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "bcbb-search-sidebar")]//section[contains(@class, "block-facet-blockseries")]/h2');
+    $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "bcbb-search-sidebar")]//section[contains(@class, "block-facet-blocksource-system")]/h2');
+    $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "bcbb-search-sidebar")]//section[contains(@class, "block-facet-blockmetadata-type")]/h2');
     // Facet summary does not exist when no facets are selected.
     $container = $this->assertSession()->pageTextNotContains('Current search filters');
     $container = $this->assertSession()->elementNotExists('xpath', '//*[contains(@class, "block-facets-summary-blockfacets-summary")]/ul');
@@ -102,7 +107,7 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     $this->click('section.block-facet-blockprimary-responsibility-org a');
     // Facet summary exists.
     $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-facets-summary-blockfacets-summary")]/h2[text() = "Current search filters"]');
-    $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-facets-summary-blockfacets-summary")]/ul');
+    $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-facets-summary-blockfacets-summary")]//ul');
     // Clear facets.
     $this->clickLink('Clear all');
     $container = $this->assertSession()->pageTextNotContains('Current search filters');

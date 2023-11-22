@@ -1687,7 +1687,7 @@ display:
           element_label_class: ''
           element_label_colon: false
           element_wrapper_type: div
-          element_wrapper_class: col-1
+          element_wrapper_class: 'col-1'
           element_default_classes: true
           empty: ''
           hide_empty: false
@@ -1904,7 +1904,7 @@ display:
           element_label_class: ''
           element_label_colon: false
           element_wrapper_type: div
-          element_wrapper_class: 'col-11 search-result'
+          element_wrapper_class: 'col-11 search-result pe-0'
           element_default_classes: false
           empty: ''
           hide_empty: false
@@ -1953,7 +1953,7 @@ display:
               allow_secondary: false
               secondary_label: 'Advanced options'
               secondary_open: false
-              reset_button_always_show: false
+              reset_button_always_show: true
             filter:
               search_api_fulltext:
                 plugin_id: default
@@ -2093,7 +2093,7 @@ display:
         type: default
         options:
           grouping: {  }
-          row_class: 'row border-bottom pb-2 mb-2 pb-md-4 mb-md-4'
+          row_class: 'row pb-2 mb-2 pb-md-4 mb-md-4'
           default_row_class: false
       row:
         type: fields

@@ -38,6 +38,23 @@
   margin-bottom: auto;
 }
 
+@media only screen and (min-width: 992px) {
+  .dc-save-search {
+    background-color: var(--bs-gray-100);
+    border: 1px solid var(--bs-gray-300);
+    border-radius: var(--bs-border-radius);
+  }
+  .dc-save-search .toggle {
+    border: 0;
+    padding: 1em 1em 1em 1em;
+    font-weight: 600;
+    text-align: left;
+  }
+  .dc-save-search .toggle::before {
+    content: " \f525" !important;
+  }
+}
+
 .bcbb-theme .clipboardjs-button {
   background-image: none;
 }

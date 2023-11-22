@@ -39,7 +39,7 @@ variant_settings:
       views_label: ''
       items_per_page: none
       region: main
-      weight: -10
+      weight: -4
       uuid: 8c022726-d5ca-4c3a-a35d-c5dfa0457ebd
       css_classes:
         - ''
@@ -51,8 +51,8 @@ variant_settings:
       label_display: visible
       provider: facets
       context_mapping: {  }
-      region: sidebar
-      weight: -3
+      region: sidebar_bottom
+      weight: -9
       uuid: 45bd33b3-e11b-449a-b245-fa168912e091
       css_classes:
         - ''
@@ -64,8 +64,8 @@ variant_settings:
       label_display: visible
       provider: facets
       context_mapping: {  }
-      region: sidebar
-      weight: -2
+      region: sidebar_bottom
+      weight: -8
       uuid: b073add7-06f8-4bf9-9531-e1d52439f4c5
     b3a5361e-8717-4a04-b844-e142215690b9:
       id: 'facet_block:source_system'
@@ -73,8 +73,8 @@ variant_settings:
       label_display: visible
       provider: facets
       context_mapping: {  }
-      region: sidebar
-      weight: 0
+      region: sidebar_bottom
+      weight: -6
       uuid: b3a5361e-8717-4a04-b844-e142215690b9
     a78f5c87-f560-4137-996d-c1fcb2b09db1:
       id: 'facets_summary_block:facets_summary'
@@ -91,8 +91,8 @@ variant_settings:
       label_display: visible
       provider: facets
       context_mapping: {  }
-      region: sidebar
-      weight: 2
+      region: sidebar_bottom
+      weight: -5
       uuid: f75cbe03-d3a1-4a2a-9779-efc2e8df7857
     43f01f02-1576-4149-b2d5-c68026f50666:
       id: 'facet_block:modified_date'
@@ -100,8 +100,8 @@ variant_settings:
       label_display: visible
       provider: facets
       context_mapping: {  }
-      region: sidebar
-      weight: -1
+      region: sidebar_bottom
+      weight: -7
       uuid: 43f01f02-1576-4149-b2d5-c68026f50666
     3bdd5181-a961-471f-973d-86fb762a0737:
       id: 'views_exposed_filter_block:site_search-block_1'
@@ -119,20 +119,20 @@ variant_settings:
       css_styles: ''
     21415e5c-5257-4d25-9538-e985174cd278:
       id: search_api_saved_searches
-      label: 'Save search'
+      label: 'Save this search'
       label_display: visible
       provider: search_api_saved_searches
       context_mapping: {  }
       type: default
-      region: sidebar
-      weight: -5
+      region: sidebar_top
+      weight: -4
       uuid: 21415e5c-5257-4d25-9538-e985174cd278
       css_classes:
         - ''
       html_id: ''
       css_styles: ''
-  page_title: 'Data sets'
-  layout: bcbb_main_sidebar_right
+  page_title: Search
+  layout: bcbb_search_results
   layout_settings: {  }
   builder: standard
   storage_type: page_manager
