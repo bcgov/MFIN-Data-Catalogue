@@ -51,6 +51,11 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     // No links in login block. By default, a password reset link appears.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "region-header")]/div[contains(@class, "block-user-login-block")]//a');
 
+    // Header search block does not appear.
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-bcbb-search-api-block")]');
+    // Search block in main content area appears.
+    $this->assertSession()->elementExists('xpath', '//main//input[@aria-label = "Search terms"]');
+
     // Components of search results.
     $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-id-site_search")]//div[contains(@class, "row")]/div[contains(@class, "search-result")]');
     $this->assertSession()->elementExists('xpath', 'h2', $container);
