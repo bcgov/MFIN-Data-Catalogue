@@ -34,6 +34,7 @@ tac_lite_config_scheme_2:
   unpublished: 1
   term_visibility: 0
   allowed_fields:
+    field_primary_responsibility_org: field_primary_responsibility_org
     field_visibility: field_visibility
 tac_lite_grants_scheme_2:
   anonymous:
@@ -57,6 +58,7 @@ tac_lite_config_scheme_3:
   unpublished: 0
   term_visibility: 0
   allowed_fields:
+    field_primary_responsibility_org: field_primary_responsibility_org
     field_visibility: field_visibility
 tac_lite_grants_scheme_3:
   anonymous:
