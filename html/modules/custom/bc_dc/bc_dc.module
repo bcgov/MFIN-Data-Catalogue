@@ -6,12 +6,16 @@
  */
 
 use Drupal\bc_dc\Controller\BcDcCreateFileController;
+use Drupal\Core\Breadcrumb\Breadcrumb;
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Render\Element;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
 use Drupal\message_gcnotify\Service\GcNotifyApiService;
 use Drupal\node\NodeInterface;
 use Drupal\tac_lite\Form\SchemeForm;
@@ -523,4 +527,24 @@ function bc_dc_menu_local_tasks_alter(array &$data, string $route_name, Refinabl
   }
   // Remove the "Edit" tab.
   unset($data['tabs'][0]['entity.node.edit_form']);
+}
+
+/**
+ * Implements hook_system_breadcrumb_alter().
+ */
+function bc_dc_system_breadcrumb_alter(Breadcrumb &$breadcrumb, RouteMatchInterface $route_match, array $context): void {
+  // Check if the current route is Node and bundle of data_set.
+  $node = $route_match->getParameter('node');
+  if (!($node instanceof NodeInterface) || $node->bundle() !== 'data_set') {
+    return;
+  }
+  // New Breadcrumb links set.
+  $links = [
+    Link::createFromRoute(t('Home'), '<front>'),
+    Link::fromTextAndUrl(t('Data sets'), Url::fromUserInput('/data-set')),
+  ];
+  $cacheability = CacheableMetadata::createFromObject($breadcrumb);
+  $breadcrumb = new Breadcrumb();
+  $breadcrumb->setLinks($links);
+  $breadcrumb->addCacheableDependency($cacheability);
 }
