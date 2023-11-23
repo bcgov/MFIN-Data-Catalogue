@@ -256,6 +256,11 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Admin has access to data_set build page.
     $this->drupalGet('node/2/build');
     $this->assertSession()->statusCodeEquals(200);
+    // Page has correct breadcrumbs.
+    $breadcrumbs = $this->xpath('//ol[@class = "breadcrumb"]/li/a');
+    $this->assertCount(2, $breadcrumbs, 'Page has 2 breadcrumbs.');
+    $this->assertEquals('/', $breadcrumbs[0]->getAttribute('href'));
+    $this->assertEquals('/data-set', $breadcrumbs[1]->getAttribute('href'));
     // "Edit" tab does appear for data_set content type.
     $this->assertSession()->elementExists('xpath', '//a[@href = "/node/2/edit"]');
     // Page has ISO dates.
