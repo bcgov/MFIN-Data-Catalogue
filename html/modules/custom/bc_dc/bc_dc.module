@@ -523,4 +523,6 @@ function bc_dc_menu_local_tasks_alter(array &$data, string $route_name, Refinabl
   }
   // Remove the "Edit" tab.
   unset($data['tabs'][0]['entity.node.edit_form']);
+  // Removed Outline tab.
+  unset($data['tabs'][0]['entity.node.book_outline_form']);
 }
