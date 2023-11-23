@@ -29,6 +29,7 @@ dependencies:
   - field_token_value:field_token_value
   - flag:flag
   - form_mode_control:form_mode_control
+  - m4032404:m4032404
   - message_gcnotify:message_gcnotify
   - metatag:metatag
   - page_manager:page_manager
