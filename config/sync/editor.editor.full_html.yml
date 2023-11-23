@@ -35,6 +35,7 @@ settings:
       - codeBlock
       - '|'
       - sourceEditing
+      - node
   plugins:
     ckeditor5_codeBlock:
       languages:

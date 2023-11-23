@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - editor
+    - entity_embed
     - media
     - toc_filter
 _core:
@@ -72,3 +73,10 @@ filters:
       allowed_media_types:
         document: document
         image: image
+        remote_video: remote_video
+  entity_embed:
+    id: entity_embed
+    provider: entity_embed
+    status: true
+    weight: 100
+    settings: {  }
