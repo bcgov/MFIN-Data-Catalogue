@@ -1,0 +1,30 @@
+uuid: 0f72ef3d-977f-44f7-aea0-610e2326848b
+langcode: en
+status: true
+dependencies: {  }
+id: create_data_set
+title: 'Create metadata record'
+webform: create_data_set
+content_type: null
+field_title: null
+use_encrypt: null
+encryption_profile: null
+sync_content: false
+sync_content_delete: false
+sync_content_field: ''
+sync_content_node_field: null
+target_bundle: data_set
+target_entity_type: node
+elements:
+  field_primary_responsibility_org:
+    type: false
+    mapping: entity_reference_mapping
+    webform_field: field_primary_responsibility_org
+    custom_check: 0
+    custom_value: ''
+  title:
+    type: false
+    mapping: text_mapping
+    webform_field: data_set_name
+    custom_check: 0
+    custom_value: ''

@@ -185,25 +185,73 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Page links to pathauto path for this page.
     $this->linkByHrefStartsWithExists('/test-basic-page-' . strtolower($randomMachineName));
 
-    // Create an organization term.
-    $test_org = Term::create([
-      'vid' => 'organization',
-      'name' => 'Test organization ' . $this->randomString(),
-    ]);
-    $save = $test_org->save();
-    $this->assertSame($save, SAVED_NEW);
+    // Create terms in organization vocabulary.
+    $test_org_names = [
+      'Public',
+      'Authenticated',
+      'Test organization one ' . $this->randomString(),
+      'Test organization two ' . $this->randomString(),
+    ];
+    $test_orgs = [];
+    foreach ($test_org_names as $key => $name) {
+      $test_orgs[$key] = Term::create([
+        'vid' => 'organization',
+        'name' => $name,
+      ]);
+      $save = $test_orgs[$key]->save();
+      $this->assertSame($save, SAVED_NEW);
+    }
+
+    // Test that the creation form shows only the empty message.
+    $this->drupalGet('dashboard');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "form-item-data-set-name")]');
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "form-item-field-primary-responsibility-org")]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "form-item-empty-user-field-organization-message")]');
+
+    // Put admin user in one of these organizations.
+    $user = User::load($this->rootUser->id());
+    $user->field_organization[] = ['target_id' => $test_orgs[2]->id()];
+    $user->save();
+
+    // Test that the creation form shows the name but not the organization.
+    $this->drupalGet('dashboard');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "form-item-data-set-name")]');
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "form-item-field-primary-responsibility-org")]');
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "form-item-empty-user-field-organization-message")]');
+
+    // Put admin user in the other of these organizations.
+    // Now edit-field-primary-responsibility-org will exist to be set.
+    $user->field_organization[] = ['target_id' => $test_orgs[3]->id()];
+    $user->save();
 
     // Create a data_set node. node/2.
-    $this->drupalGet('node/add/data_set', ['query' => ['display' => 'section_1']]);
+    $this->drupalGet('dashboard');
     $this->assertSession()->statusCodeEquals(200);
+    // Test that the creation form shows the name and the organization.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "form-item-data-set-name")]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "form-item-field-primary-responsibility-org")]');
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "form-item-empty-user-field-organization-message")]');
+    // Create a data_set.
     $randomMachineName = $this->randomMachineName();
     $data_set_title = 'Test data set One ' . $randomMachineName . $this->randomString();
     $data_set_path = '/data-set/test-data-set-one-' . strtolower($randomMachineName);
     $edit = [
-      'edit-title-0-value' => $data_set_title,
+      'edit-data-set-name' => $data_set_title,
+      'edit-field-primary-responsibility-org' => 3,
     ];
-    $this->submitForm($edit, 'Save');
-    $this->assertSession()->pageTextContains('Metadata record ' . $edit['edit-title-0-value'] . ' has been created');
+    $this->submitForm($edit, 'Create');
+    $this->assertSession()->pageTextContains('Metadata record created.');
+    // Link to new data_set appears.
+    $args = [
+      ':data_set_title' => $data_set_title,
+      ':data_set_path' => $data_set_path,
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "dc-dashboard-table-mydatasets")]
+      [//a[text() = :data_set_title]]
+      [//a[@href = "/node/2/build"][text() = "Build"]]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
 
     // Admin has access to data_set build page.
     $this->drupalGet('node/2/build');
@@ -333,7 +381,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Submit with some updates.
     $edit = [
       'edit-body-0-value' => 'Data set description ' . $this->randomString() . ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-      'edit-field-primary-responsibility-org-1' => 1,
+      'edit-field-visibility-1' => 1,
     ];
     $this->submitForm($edit, 'Save');
     // Test that long text gets trimmed.
@@ -343,8 +391,6 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Data set dashboard.
     $this->drupalGet('dashboard');
     $this->assertSession()->statusCodeEquals(200);
-    // The create-new link exists.
-    $this->assertSession()->elementExists('xpath', '//a[@href = "/node/add/data_set?display=section_1"][text() = "Add new data set"]');
     // View link.
     $args = [
       ':data_set_title' => $data_set_title,
@@ -597,13 +643,6 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->click('div.flag-bookmark.action-flag > a');
     // Bookmarked by 2.
     $this->assertSession()->elementExists('xpath', '//a[*[contains(@class, "title")][contains(text(), "Remove bookmark")]][*[contains(@class, "count")][contains(text(), "Bookmarked by 2 people")]]');
-
-    // Saved searches.
-    //
-    // The saved-searches link exists on the dashboard and the page exists.
-    $this->drupalGet('dashboard');
-    $this->clickLink('My saved searches');
-    $this->assertSession()->statusCodeEquals(200);
 
     // Test book module.
     //
@@ -873,15 +912,17 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
 
     // Test field_data_sets_used.
     // Create a data_set node. node/6.
-    $this->drupalGet('node/add/data_set', ['query' => ['display' => 'section_1']]);
+    $this->drupalGet('dashboard');
     $this->assertSession()->statusCodeEquals(200);
     $data_set_title_2 = 'Test data set Two ' . $this->randomString();
     $edit = [
-      'edit-title-0-value' => $data_set_title_2,
+      'edit-data-set-name' => $data_set_title_2,
+      'edit-field-primary-responsibility-org' => 3,
     ];
-    $this->submitForm($edit, 'Save');
+    $this->submitForm($edit, 'Create');
+    $this->assertSession()->pageTextContains('Metadata record created.');
     // Add revision log message and publish.
-    $this->clickLink('Build');
+    $this->click('a[href = "/node/6/build"]');
     $edit = [
       'edit-revision-log-message' => 'Revision log message ' . $this->randomString(),
     ];

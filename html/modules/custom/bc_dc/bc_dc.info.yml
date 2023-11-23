@@ -49,3 +49,6 @@ dependencies:
   - twig_tweak:twig_tweak
   - views_bulk_edit:views_bulk_edit
   - views_bulk_operations:views_bulk_operations
+  - webform_content_creator:webform_content_creator
+  - webform:webform
+  - webform:webform_ui

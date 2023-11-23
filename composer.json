@@ -20,6 +20,22 @@
         {
             "type": "vcs",
             "url": "https://github.com/openplus/opbb"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "tabby/tabby",
+                "version": "12.0.3",
+                "type": "drupal-library",
+                "extra": {
+                    "installer-name": "tabby"
+                },
+                "dist": {
+                    "url": "https://github.com/cferdinandi/tabby/archive/refs/tags/v12.0.3.zip",
+                    "type": "zip"
+                },
+                "license": "MIT"
+            }
         }
     ],
     "require": {
@@ -42,8 +58,10 @@
         "drupal/tac_lite": "^1.7",
         "drupal/taxonomy_import": "^2.0",
         "drupal/taxonomy_max_depth": "^2.0",
+        "drupal/webform_content_creator": "^4.0",
         "oomphinc/composer-installers-extender": "^2.0",
         "phpoffice/phpspreadsheet": "^1.29",
+        "tabby/tabby": "^12.0",
         "vlucas/phpdotenv": "^5.1",
         "webflo/drupal-finder": "^1.2",
         "weitzman/drupal-test-traits": "^2.1",
@@ -138,6 +156,9 @@
                 "3203718 - add the ability to select all terms from a vocabulary": "https://www.drupal.org/files/issues/2021-03-15/tac_lite-add_all_option-3203718-2.patch",
                 "3359802 - Add schema for tac_lite.settings": "https://www.drupal.org/files/issues/2023-05-11/tac_lite-schema-3359802-2.patch",
                 "3403235 - Allow specifying which field to use for access control": "https://www.drupal.org/files/issues/2023-11-21/tac_lite-choose_fields-3403235-2.patch"
+            },
+            "drupal/webform_content_creator": {
+                "3402957 - Missing schema error exception": "https://www.drupal.org/files/issues/2023-11-20/webform_content_creator-missing_schema-3402957-2.patch"
             }
         }
     },

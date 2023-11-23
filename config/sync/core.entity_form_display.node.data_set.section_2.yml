@@ -63,7 +63,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_primary_responsibility_org:
-    type: options_buttons
+    type: options_select
     weight: 5
     region: content
     settings: {  }

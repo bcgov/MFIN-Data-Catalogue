@@ -16,6 +16,7 @@ use Drupal\message_gcnotify\Service\GcNotifyApiService;
 use Drupal\node\NodeInterface;
 use Drupal\tac_lite\Form\SchemeForm;
 use Drupal\taxonomy\TermInterface;
+use Drupal\user\Entity\User;
 use Drupal\user\UserInterface;
 use Drupal\views\ViewExecutable;
 
@@ -251,6 +252,61 @@ function bc_dc_update_tac(UserInterface $account): void {
       // tac_lite set.
       \Drupal::service('user.data')->set('tac_lite', $account->id(), $config['realm'], ['organization' => $values]);
     }
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ *
+ * Form create_data_set.
+ */
+function bc_dc_form_webform_submission_create_data_set_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
+  /** @var \Drupal\user\Entity\User $user */
+  $user = User::load(\Drupal::currentUser()->id());
+
+  // Taxonomy terms that should always be removed.
+  $delete_values = [
+    'Public',
+    'Authenticated',
+  ];
+
+  // Get an array of taxonomy term IDs for organizations this user is part of.
+  // The array keys are the IDs and the values are all TRUE.
+  $user_orgs = [];
+  if ($user->hasField('field_organization')) {
+    foreach ($user->field_organization->getValue() ?? [] as $org) {
+      $user_orgs[$org['target_id']] = TRUE;
+    }
+  }
+
+  // Remove from the options for field_primary_responsibility_org the
+  // $delete_values and any organizations the user is not a member of.
+  foreach ($form['elements']['field_primary_responsibility_org']['#options'] as $key => $option) {
+    if (in_array($option, $delete_values, TRUE) || empty($user_orgs[$key])) {
+      unset($form['elements']['field_primary_responsibility_org']['#options'][$key]);
+    }
+  }
+
+  // If there is only one option, select it and hide the control.
+  $count = count($form['elements']['field_primary_responsibility_org']['#options']);
+  if ($count === 1) {
+    $org_id = array_key_first($form['elements']['field_primary_responsibility_org']['#options']);
+    $form['elements']['field_primary_responsibility_org']['#default_value'] = $org_id;
+    $form['elements']['field_primary_responsibility_org']['#access'] = FALSE;
+  }
+
+  // If there are no options, hide the form and display a message. Otherwise,
+  // hide the message.
+  if ($count === 0) {
+    foreach (array_keys($form['elements']) as $key) {
+      if ($key !== 'empty_user_field_organization_message') {
+        $form['elements'][$key]['#access'] = FALSE;
+      }
+    }
+    $form['actions']['#access'] = FALSE;
+  }
+  else {
+    $form['elements']['empty_user_field_organization_message']['#access'] = FALSE;
   }
 }
 
