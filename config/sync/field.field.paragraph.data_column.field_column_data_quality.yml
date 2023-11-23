@@ -13,7 +13,7 @@ field_name: field_column_data_quality
 entity_type: paragraph
 bundle: data_column
 label: 'Column data quality'
-description: ''
+description: 'Describes, in plain language, any known issues with the data quality in this column.'
 required: false
 translatable: false
 default_value: {  }

@@ -13,7 +13,7 @@ field_name: field_column_allowed_values
 entity_type: paragraph
 bundle: data_column
 label: 'Column allowed values'
-description: ''
+description: 'The values allowed in this column.'
 required: false
 translatable: false
 default_value: {  }

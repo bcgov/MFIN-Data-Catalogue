@@ -13,7 +13,7 @@ field_name: field_column_description
 entity_type: paragraph
 bundle: data_column
 label: 'Column description'
-description: 'Plain English description of the column.'
+description: 'Describes, in plain language, this column; if it is the primary key, indicate that here.'
 required: false
 translatable: false
 default_value: {  }

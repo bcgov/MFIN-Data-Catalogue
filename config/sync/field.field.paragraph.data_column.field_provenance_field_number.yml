@@ -10,7 +10,7 @@ field_name: field_provenance_field_number
 entity_type: paragraph
 bundle: data_column
 label: 'Provenance field number'
-description: ''
+description: 'he field number <em>e.g.: a21</em>'
 required: false
 translatable: false
 default_value: {  }

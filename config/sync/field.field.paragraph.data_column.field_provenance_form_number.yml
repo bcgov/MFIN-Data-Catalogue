@@ -10,7 +10,7 @@ field_name: field_provenance_form_number
 entity_type: paragraph
 bundle: data_column
 label: 'Provenance form number'
-description: ''
+description: 'The form number. <em>e.g.: T1135</em>'
 required: false
 translatable: false
 default_value: {  }

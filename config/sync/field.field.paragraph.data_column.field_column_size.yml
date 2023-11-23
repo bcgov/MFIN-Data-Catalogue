@@ -10,7 +10,7 @@ field_name: field_column_size
 entity_type: paragraph
 bundle: data_column
 label: 'Column size'
-description: ''
+description: ' This can be in bytes, in characters, etc., depending on the column type.'
 required: false
 translatable: false
 default_value: {  }

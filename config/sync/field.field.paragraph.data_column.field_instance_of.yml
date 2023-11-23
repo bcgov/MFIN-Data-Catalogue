@@ -11,7 +11,7 @@ field_name: field_instance_of
 entity_type: paragraph
 bundle: data_column
 label: 'Instance of'
-description: 'This indicates that this field is an instance of a field that appears in more than one data set.'
+description: '    These terms represent data that appear in more than one data set and can join data sets together. <a href="/node/82">more information…</a>'
 required: false
 translatable: false
 default_value: {  }

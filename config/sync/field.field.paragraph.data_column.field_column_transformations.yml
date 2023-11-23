@@ -13,7 +13,7 @@ field_name: field_column_transformations
 entity_type: paragraph
 bundle: data_column
 label: 'Column transformations'
-description: ''
+description: 'Describes, in plain language, any transformations that were performed on the source data to derive the column values.'
 required: false
 translatable: false
 default_value: {  }

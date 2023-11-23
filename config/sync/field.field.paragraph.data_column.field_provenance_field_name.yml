@@ -10,7 +10,7 @@ field_name: field_provenance_field_name
 entity_type: paragraph
 bundle: data_column
 label: 'Provenance field name'
-description: ''
+description: 'The form field name this data came from.'
 required: false
 translatable: false
 default_value: {  }
