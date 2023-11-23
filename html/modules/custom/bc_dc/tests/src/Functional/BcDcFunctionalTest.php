@@ -610,11 +610,11 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Anonymous has no access to data_set build page.
     $this->drupalLogout();
     $this->drupalGet('node/2/build');
-    $this->assertSession()->statusCodeEquals(403);
+    $this->assertSession()->statusCodeEquals(404);
 
     // Anonymous has no access to data_set add-columns page.
     $this->drupalGet('node/2/add-columns');
-    $this->assertSession()->statusCodeEquals(403);
+    $this->assertSession()->statusCodeEquals(404);
 
     // Anonymous has access to view page.
     $this->drupalGet('node/2');
