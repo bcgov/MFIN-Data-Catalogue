@@ -68,12 +68,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb.git",
-                "reference": "66636c0bc3dd5f93c559a5591acaeac18d006922"
+                "reference": "b4674ee0a4801f0e9cd4925dfae2fb660e6be9ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/66636c0bc3dd5f93c559a5591acaeac18d006922",
-                "reference": "66636c0bc3dd5f93c559a5591acaeac18d006922",
+                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/b4674ee0a4801f0e9cd4925dfae2fb660e6be9ef",
+                "reference": "b4674ee0a4801f0e9cd4925dfae2fb660e6be9ef",
                 "shasum": ""
             },
             "require": {
@@ -93,6 +93,7 @@
                 "drupal/form_mode_control": "^2.1",
                 "drupal/inline_entity_form": "^2.0",
                 "drupal/linkit": "^6.1",
+                "drupal/m4032404": "^1.0",
                 "drupal/metatag": "^2.0",
                 "drupal/openid_connect": "^3.0@alpha",
                 "drupal/page_manager": "^4.0",
@@ -147,7 +148,7 @@
                 "source": "https://github.com/bcgov/bcbb/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb/issues"
             },
-            "time": "2023-11-23T21:20:48+00:00"
+            "time": "2023-11-23T21:43:10+00:00"
         },
         {
             "name": "bcgov/bcbb_theme",
@@ -4067,6 +4068,54 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/linkit",
                 "issues": "http://drupal.org/project/linkit"
+            }
+        },
+        {
+            "name": "drupal/m4032404",
+            "version": "1.0.0-alpha6",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/m4032404.git",
+                "reference": "8.x-1.0-alpha6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/m4032404-8.x-1.0-alpha6.zip",
+                "reference": "8.x-1.0-alpha6",
+                "shasum": "4d856b9c9e121e1966fa487bf6c18bbd07dbb21f"
+            },
+            "require": {
+                "drupal/core": "^8.7.7 || ^9 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0-alpha6",
+                    "datestamp": "1679918065",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "skwashd",
+                    "homepage": "https://www.drupal.org/user/116305"
+                },
+                {
+                    "name": "suzymasri",
+                    "homepage": "https://www.drupal.org/user/2428842"
+                }
+            ],
+            "description": "Emit a 404 response for access denied pages",
+            "homepage": "https://www.drupal.org/project/m4032404",
+            "support": {
+                "source": "https://git.drupalcode.org/project/m4032404"
             }
         },
         {
