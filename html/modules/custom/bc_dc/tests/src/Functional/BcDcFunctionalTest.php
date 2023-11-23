@@ -263,6 +263,8 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertEquals('/data-set', $breadcrumbs[1]->getAttribute('href'));
     // "Edit" tab does appear for data_set content type.
     $this->assertSession()->elementExists('xpath', '//a[@href = "/node/2/edit"]');
+    // "Outline" tab does not appear for data_set content type.
+    $this->assertSession()->elementNotExists('xpath', '//a[@href = "/node/2/outline"]');
     // Page has ISO dates.
     $this->isoDateTest();
     // Page links to pathauto path for this page.
@@ -671,6 +673,8 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->drupalGet($book_url);
     // "Edit" tab does appear for book content type.
     $this->assertSession()->elementExists('xpath', '//a[@href = "/node/3/edit"]');
+    // "Outline" tab appears for data_set content type.
+    $this->assertSession()->elementExists('xpath', '//a[@href = "/node/3/outline"]');
     $this->clickLink('Add child page');
     $this->assertSession()->statusCodeEquals(200);
     $test_header = 'Test Header 3 ' . $this->randomString();
