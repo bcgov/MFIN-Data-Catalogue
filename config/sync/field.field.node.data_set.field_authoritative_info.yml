@@ -10,7 +10,7 @@ field_name: field_authoritative_info
 entity_type: node
 bundle: data_set
 label: 'Authoritative info'
-description: ''
+description: 'Authoritative Data is recognized through governance, law, or common acceptance as the source of origin for accurate data.'
 required: false
 translatable: false
 default_value: {  }

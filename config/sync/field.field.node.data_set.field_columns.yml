@@ -13,7 +13,7 @@ field_name: field_columns
 entity_type: node
 bundle: data_set
 label: Columns
-description: ''
+description: 'Columns that make up the data dictionary.'
 required: false
 translatable: false
 default_value: {  }

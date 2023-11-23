@@ -12,7 +12,7 @@ field_name: field_modified_date
 entity_type: node
 bundle: data_set
 label: 'Modified date'
-description: ''
+description: 'Only set for significant updates to this metadata record; do not modify for minor changes. <br><em>Subscribers will be notified of changes if this date changes.</em>'
 required: false
 translatable: false
 default_value:

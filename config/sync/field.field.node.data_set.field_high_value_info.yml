@@ -10,7 +10,7 @@ field_name: field_high_value_info
 entity_type: node
 bundle: data_set
 label: 'High value info'
-description: ''
+description: 'High Value Information indicates this item holds significant business value, enabling decision-making for programs, services, evaluation, and accountability, benefiting a large number of users.'
 required: false
 translatable: false
 default_value: {  }

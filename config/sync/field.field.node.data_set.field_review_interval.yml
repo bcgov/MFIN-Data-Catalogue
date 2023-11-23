@@ -10,7 +10,7 @@ field_name: field_review_interval
 entity_type: node
 bundle: data_set
 label: 'Review interval'
-description: 'The number of months between full reviews. Leave blank to disable review reminders.'
+description: 'The number of months between full reviews of this metadata record. <a href="/node/74">more information…</a>'
 required: false
 translatable: false
 default_value:

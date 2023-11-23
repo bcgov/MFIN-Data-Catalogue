@@ -11,7 +11,7 @@ field_name: field_series
 entity_type: node
 bundle: data_set
 label: Series
-description: ''
+description: 'Metadata records are grouped by series to help with searchability.'
 required: false
 translatable: false
 default_value: {  }

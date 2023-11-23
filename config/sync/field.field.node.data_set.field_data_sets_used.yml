@@ -10,7 +10,7 @@ field_name: field_data_sets_used
 entity_type: node
 bundle: data_set
 label: 'Data sets used'
-description: 'Metadata records for data sets that are used in the generation of the data set that this metadata record is about.'
+description: 'Select other data sets used in creating this item.'
 required: false
 translatable: false
 default_value: {  }

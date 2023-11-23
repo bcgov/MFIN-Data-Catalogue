@@ -13,7 +13,7 @@ field_name: field_data_quality_issues
 entity_type: node
 bundle: data_set
 label: 'Data quality issues'
-description: ''
+description: 'Describes, in plain language, any concerns with the quality of the item.'
 required: false
 translatable: false
 default_value: {  }
