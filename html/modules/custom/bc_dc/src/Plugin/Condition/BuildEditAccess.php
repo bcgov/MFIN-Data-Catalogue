@@ -3,6 +3,7 @@
 namespace Drupal\bc_dc\Plugin\Condition;
 
 use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Access\AccessResultInterface;
 use Drupal\Core\Condition\ConditionPluginBase;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Routing\Access\AccessInterface;
@@ -93,9 +94,17 @@ class BuildEditAccess extends ConditionPluginBase implements AccessInterface {
   }
 
   /**
-   * {@inheritdoc}
+   * A custom access check.
+   *
+   * @param \Drupal\Core\Session\AccountInterface $account
+   *   Run access checks for this account.
+   * @param \Drupal\Core\Routing\RouteMatch $route_match
+   *   The RouteMatch object.
+   *
+   * @return \Drupal\Core\Access\AccessResultInterface
+   *   The access result.
    */
-  public static function access(AccountInterface $account, RouteMatch $route_match): AccessResult {
+  public static function access(AccountInterface $account, RouteMatch $route_match): AccessResultInterface {
     $entity = $route_match->getParameter('node');
 
     $access = static::testAccess($entity);
