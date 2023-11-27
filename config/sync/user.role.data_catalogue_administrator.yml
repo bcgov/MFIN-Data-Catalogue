@@ -57,6 +57,7 @@ permissions:
   - 'administer rabbit_hole settings'
   - 'administer taxonomy import'
   - 'administer users'
+  - 'archive data_set nodes'
   - 'assign data_catalogue_administrator role'
   - 'assign data_catalogue_editor role'
   - 'assign data_catalogue_manager role'

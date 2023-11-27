@@ -24,6 +24,7 @@ dependencies:
     - taxonomy.vocabulary.tags
     - workflows.workflow.editorial
   module:
+    - bc_dc
     - book
     - content_moderation
     - field_permissions
@@ -52,6 +53,7 @@ permissions:
   - 'administer book outlines'
   - 'administer nodes'
   - 'administer taxonomy import'
+  - 'archive data_set nodes'
   - 'create book content'
   - 'create data_set content'
   - 'create image media'
