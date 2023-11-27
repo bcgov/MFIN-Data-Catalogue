@@ -68,12 +68,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb.git",
-                "reference": "b4674ee0a4801f0e9cd4925dfae2fb660e6be9ef"
+                "reference": "bb22012e7d4a3f1c208069515f734c595cca59a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/b4674ee0a4801f0e9cd4925dfae2fb660e6be9ef",
-                "reference": "b4674ee0a4801f0e9cd4925dfae2fb660e6be9ef",
+                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/bb22012e7d4a3f1c208069515f734c595cca59a8",
+                "reference": "bb22012e7d4a3f1c208069515f734c595cca59a8",
                 "shasum": ""
             },
             "require": {
@@ -81,6 +81,7 @@
                 "drupal/admin_toolbar": "^3.0",
                 "drupal/allowed_formats": "^2.0",
                 "drupal/better_exposed_filters": "^6.0",
+                "drupal/ckeditor5_fullscreen": "^1.0@beta",
                 "drupal/config_filter": "^2.4",
                 "drupal/config_ignore": "^2.4",
                 "drupal/config_split": "^2.0",
@@ -148,7 +149,7 @@
                 "source": "https://github.com/bcgov/bcbb/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb/issues"
             },
-            "time": "2023-11-23T21:43:10+00:00"
+            "time": "2023-11-27T15:19:57+00:00"
         },
         {
             "name": "bcgov/bcbb_theme",
@@ -2003,6 +2004,51 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/bootstrap5",
                 "issues": "https://www.drupal.org/project/issues/bootstrap5"
+            }
+        },
+        {
+            "name": "drupal/ckeditor5_fullscreen",
+            "version": "1.0.0-beta5",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/ckeditor5_fullscreen.git",
+                "reference": "1.0.0-beta5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/ckeditor5_fullscreen-1.0.0-beta5.zip",
+                "reference": "1.0.0-beta5",
+                "shasum": "88932f91c9c1c24eed7977e0db26620af88000b7"
+            },
+            "require": {
+                "drupal/core": "^9.3 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.0-beta5",
+                    "datestamp": "1691701494",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "O'Toole, James",
+                    "homepage": "https://www.drupal.org/user/174967",
+                    "email": "james.otoole@ubc.ca"
+                }
+            ],
+            "description": "A Fullscreen / Maximize button for CKeditor5",
+            "homepage": "https://www.drupal.org/project/ckeditor5_fullscreen",
+            "support": {
+                "source": "https://git.drupalcode.org/project/ckeditor5_fullscreen"
             }
         },
         {
