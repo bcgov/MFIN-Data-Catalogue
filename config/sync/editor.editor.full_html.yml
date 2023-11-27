@@ -119,6 +119,19 @@ settings:
         -
           label: 'Alert dark'
           element: '<p class="alert alert-dark">'
+    ckeditor_codemirror_source_editing:
+      enable: true
+      mode: htmlmixed
+      options:
+        autoCloseBrackets: true
+        autoCloseTags: true
+        folding: true
+        lineNumbers: true
+        lineWrapping: true
+        matchBrackets: true
+        matchTags: true
+        searchBottom: true
+        styleActiveLine: true
     linkit_extension:
       linkit_enabled: true
       linkit_profile: default
