@@ -25,6 +25,28 @@ use Drupal\user\UserInterface;
 use Drupal\views\ViewExecutable;
 
 /**
+ * Implements hook_entity_operation().
+ */
+function bc_dc_entity_operation(EntityInterface $entity): array {
+  $operations = [];
+
+  // Do nothing for entities that are not data_set nodes.
+  if ($entity->getEntityTypeId() !== 'node' || $entity->bundle() !== 'data_set') {
+    return $operations;
+  }
+
+  $url = Url::fromRoute('bc_dc.data_set_build_page_tab', ['node' => $entity->id()]);
+  if ($url->access()) {
+    $operations['bc_dc_build'] = [
+      'title' => t('Build'),
+      'url' => $url,
+    ];
+  }
+
+  return $operations;
+}
+
+/**
  * Implements hook_theme().
  */
 function bc_dc_theme(array $existing, string $type, string $theme, string $path): array {

@@ -1008,6 +1008,13 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Header search block appears.
     $this->assertSession()->elementExists('xpath', '//header//div[contains(@class, "block-bcbb-search-api-block")]//input[@aria-label = "Search"]');
 
+    // Test Content page.
+    $this->drupalGet('admin/content');
+    // Node of type page does not have a "Build" operation.
+    $this->assertSession()->elementNotExists('xpath', '//li[contains(@class, "bc-dc-build")][contains(@class, "dropbutton__item")]/a[@href = "/node/1/build?destination=/admin/content"][text() = "Build"]');
+    // Node of type data_set has a "Build" operation.
+    $this->assertSession()->elementExists('xpath', '//li[contains(@class, "bc-dc-build")][contains(@class, "dropbutton__item")]/a[@href = "/node/2/build?destination=/admin/content"][text() = "Build"]');
+
     // Check access to taxonomy term pages. They should be 404 except for
     // information_schedule.
     $this->drupalLogout();
