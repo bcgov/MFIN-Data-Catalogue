@@ -43,6 +43,14 @@ function bc_dc_entity_operation(EntityInterface $entity): array {
     ];
   }
 
+  $url = Url::fromRoute('bc_dc.data_set_archive_page', ['node' => $entity->id()]);
+  if ($url->access()) {
+    $operations['bc_dc_archive'] = [
+      'title' => t('Unpublish'),
+      'url' => $url,
+    ];
+  }
+
   return $operations;
 }
 
