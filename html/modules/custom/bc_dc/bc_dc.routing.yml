@@ -1,7 +1,7 @@
 bc_dc.data_set_build_page_tab:
   path: '/node/{node}/build'
   requirements:
-    _custom_access: 'Drupal\bc_dc\Plugin\Condition\BuildEditAccess::access'
+    _custom_access: 'Drupal\bc_dc\Access\BuildEditAccess::access'
   options:
     parameters:
       node:

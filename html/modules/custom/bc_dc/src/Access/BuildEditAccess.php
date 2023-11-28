@@ -1,64 +1,19 @@
 <?php
 
-namespace Drupal\bc_dc\Plugin\Condition;
+namespace Drupal\bc_dc\Access;
 
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Access\AccessResultInterface;
-use Drupal\Core\Condition\ConditionPluginBase;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Routing\Access\AccessInterface;
 use Drupal\Core\Routing\RouteMatch;
 use Drupal\Core\Session\AccountInterface;
-use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 
 /**
- * Provides a condition for whether the user may edit a node.
- *
- * @Condition(
- *   id = "bc_dc_build_edit_access",
- *   label = @Translation("Build page access"),
- *   context_definitions = {
- *     "node" = @ContextDefinition(
- *       "entity:node",
- *       required = TRUE,
- *       label = @Translation("Node")
- *     )
- *   }
- * )
+ * Access check for whether the user may edit a data_set node.
  */
-class BuildEditAccess extends ConditionPluginBase implements AccessInterface {
-
-  /**
-   * {@inheritdoc}
-   *
-   * This override is needed to provide default values. This is needed when this
-   * class is used as an AccessInterface. The phpcs:ignore is to prevent a
-   * warning about useless method overriding.
-   */
-  // phpcs:ignore
-  public function __construct(array $configuration = [], $plugin_id = 'bc_dc_build_edit_access', $plugin_definition = NULL) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function evaluate(): bool {
-    $entity = $this->getContextValue('node');
-
-    $access = static::testAccess($entity);
-
-    // Support negation.
-    return $access xor $this->isNegated();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function summary(): TranslatableMarkup {
-    return $this->t('User has access to edit the metadata record description.');
-  }
+class BuildEditAccess implements AccessInterface {
 
   /**
    * Test for access on a given entity.
