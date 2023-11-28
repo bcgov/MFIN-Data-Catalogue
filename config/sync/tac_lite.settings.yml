@@ -18,9 +18,13 @@ tac_lite_grants_scheme_1:
   authenticated:
     organization: {  }
   administrator:
-    organization: {  }
+    organization:
+      -1: '-1'
+      0: '0'
   data_catalogue_administrator:
-    organization: {  }
+    organization:
+      -1: '-1'
+      0: '0'
   data_catalogue_manager:
     organization: {  }
   data_catalogue_editor:
@@ -42,11 +46,17 @@ tac_lite_grants_scheme_2:
   authenticated:
     organization: {  }
   administrator:
-    organization: {  }
+    organization:
+      -1: '-1'
+      0: '0'
   data_catalogue_administrator:
-    organization: {  }
+    organization:
+      -1: '-1'
+      0: '0'
   data_catalogue_manager:
-    organization: {  }
+    organization:
+      -1: '-1'
+      0: '0'
   data_catalogue_editor:
     organization: {  }
   data_catalogue_user:

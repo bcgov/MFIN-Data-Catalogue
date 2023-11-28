@@ -86,7 +86,6 @@ permissions:
   - 'delete terms in source_system'
   - 'delete terms in tags'
   - 'edit any book content'
-  - 'edit any data_set content'
   - 'edit any image media'
   - 'edit any page content'
   - 'edit own data_set content'

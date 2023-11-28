@@ -25,7 +25,6 @@ permissions:
   - 'access toolbar'
   - 'create data_set content'
   - 'delete own data_set content'
-  - 'edit any data_set content'
   - 'edit own data_set content'
   - 'flag bookmark'
   - 'revert data_set revisions'
