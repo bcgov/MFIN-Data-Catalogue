@@ -9,7 +9,7 @@ id: taxonomy_term.information_schedule.field_schedule_code
 field_name: field_schedule_code
 entity_type: taxonomy_term
 bundle: information_schedule
-label: 'Schedule code'
+label: 'IM classification code'
 description: 'The complete information schedule number including the numbers of the parent terms. This is automatically-generated.'
 required: false
 translatable: false

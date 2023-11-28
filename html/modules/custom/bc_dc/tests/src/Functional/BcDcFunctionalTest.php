@@ -812,7 +812,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       ':field_schedule_code' => $info_schedule_values[1]['field_schedule_number'] . '-' . $info_schedule_values[2]['field_schedule_number'],
     ];
     $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-schedule-code")]
-      [div[@class = "field__label"][normalize-space(text()) = "Schedule code"]]
+      [div[@class = "field__label"][normalize-space(text()) = "IM classification code"]]
       [div[@class = "field__item"][text() = :field_schedule_code]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
 
