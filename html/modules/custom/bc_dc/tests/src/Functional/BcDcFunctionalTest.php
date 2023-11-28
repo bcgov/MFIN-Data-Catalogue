@@ -986,7 +986,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       ':data_set_title_2' => $data_set_title_2,
     ];
     $xpath = $this->assertSession()->buildXPathQuery('//div
-      [//div[text() = "Used-in data sets"]]
+      [//div[text() = "Used in datasets"]]
       [//a[text() = :data_set_title_2]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     $this->assertSession()->elementNotExists('xpath', '//div[text() = "Data sets used"]');
