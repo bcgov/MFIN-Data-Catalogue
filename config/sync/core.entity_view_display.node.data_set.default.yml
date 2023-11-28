@@ -27,6 +27,7 @@ dependencies:
     - field.field.node.data_set.field_series
     - field.field.node.data_set.field_source_system
     - field.field.node.data_set.field_special_flags
+    - field.field.node.data_set.field_visibility
     - node.type.data_set
   module:
     - bc_dc
@@ -47,6 +48,11 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 3
+    region: content
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
     region: content
   field_active_period:
     type: field_token_value_text
@@ -110,7 +116,7 @@ content:
     region: content
   field_data_sets_used:
     type: entity_reference_label
-    label: above
+    label: inline
     settings:
       link: true
     third_party_settings: {  }
@@ -164,7 +170,7 @@ content:
     region: content
   field_primary_responsibility_org:
     type: data_set_facet_search_link
-    label: inline
+    label: above
     settings: {  }
     third_party_settings: {  }
     weight: 2
@@ -232,5 +238,6 @@ hidden:
   field_is_complete_review: true
   field_last_review_date: true
   field_review_interval: true
+  field_visibility: true
   langcode: true
   search_api_excerpt: true

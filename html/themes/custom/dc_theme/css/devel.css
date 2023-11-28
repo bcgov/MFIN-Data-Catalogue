@@ -27,41 +27,6 @@ table.dc-dashboard-table > :not(caption) > * > td:first-child {
   padding-left: 0;
 }
 
-/* fields on data set node view */
-
-.dc-fields .field--label-inline {
-  display: flex;
-}
-
-.dc-fields .field--label-inline .field__label {
-  min-width: 12em;
-  max-width: 12em;
-  font-weight: normal;
-}
-
-.dc-dictionary .field--label-inline {
-  display: flex;
-}
-
-.dc-dictionary .field--label-inline .field__label {
-  min-width: 18em;
-  max-width: 18em;
-  font-weight: normal;
-}
-
-.dc-dictionary .field {
-  padding: .75em 0;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.dc-dictionary .field:first-child {
-  border-top: 1px solid #e0e0e0;
-}
-
-.dc-dictionary .field:last-child {
-  border-bottom: 0px solid transparent;
-}
-
 /* Build page */
 
 /* Edit buttons next to header. */
@@ -99,11 +64,6 @@ article.dc-data-set-build-page .field--label-inline > .field__label {
 .page-node-type-data-set .field--label-above,
 .page-node-type-data-set .field--label-inline {
   margin-top: 0.5em;
-}
-
-/* Formatting labels. */
-.page-node-type-data-set .field__label {
-  font-weight: normal;
 }
 
 /* Build page "Required" markers. */

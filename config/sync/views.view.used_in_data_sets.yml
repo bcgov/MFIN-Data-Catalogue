@@ -64,10 +64,10 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: true
+          element_default_classes: false
           empty: ''
           hide_empty: false
           empty_zero: false
@@ -189,6 +189,10 @@ display:
           1: AND
       style:
         type: default
+        options:
+          grouping: {  }
+          row_class: 'field__item mb-2'
+          default_row_class: false
       row:
         type: fields
       query:
@@ -200,18 +204,8 @@ display:
           replica: false
           query_tags: {  }
       relationships: {  }
-      header:
-        area_text_custom:
-          id: area_text_custom
-          table: views
-          field: area_text_custom
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: text_custom
-          empty: false
-          content: '<div class="field__label">Used-in data sets</div>'
-          tokenize: false
+      css_class: dc-fields
+      header: {  }
       footer: {  }
       display_extenders: {  }
     cache_metadata:

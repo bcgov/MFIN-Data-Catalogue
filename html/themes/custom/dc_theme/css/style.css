@@ -1,3 +1,8 @@
+@font-face {
+  font-display: block;
+  font-family: "bootstrap-icons";
+  src: url("../assets/bootstrap-icons/fonts/bootstrap-icons.woff2?2820a3852bdb9a5832199cc61cec4e65") format("woff2"), url("../assets/bootstrap-icons/fonts/bootstrap-icons.woff?2820a3852bdb9a5832199cc61cec4e65") format("woff");
+}
 .flag-bookmark {
   margin-bottom: 1em;
 }
@@ -55,9 +60,184 @@
   }
 }
 
+.dc-fields .field__label,
+.dc-fields .field--label-inline {
+  font-weight: normal;
+}
+.dc-fields .field--label-inline {
+  display: flex;
+}
+.dc-fields .field--label-inline > * {
+  flex-basis: 50%;
+}
+.dc-fields .field__items {
+  margin-bottom: 0.5rem !important;
+}
+
+ul.dc-list-inline,
+ol.dc-list-inline {
+  list-style: none;
+  display: inline-flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+}
+ul.dc-list-inline li::after,
+ol.dc-list-inline li::after {
+  content: ",";
+  padding-right: 0.5em;
+}
+ul.dc-list-inline li:last-child::after,
+ol.dc-list-inline li:last-child::after {
+  content: "";
+  padding-right: 0;
+}
+
+.field_visibility_success .field__label {
+  display: inline-flex;
+  align-items: center;
+}
+.field_visibility_success .field__label:before {
+  display: inline-block;
+  width: 0.87em;
+  height: 0.87em;
+  content: "";
+  margin-right: 0.5em;
+  border-radius: 50%;
+  background-color: var(--bs-success);
+}
+
+.field_visibility_warning .field__label {
+  display: inline-flex;
+  align-items: center;
+}
+.field_visibility_warning .field__label:before {
+  display: inline-block;
+  width: 0.87em;
+  height: 0.87em;
+  content: "";
+  margin-right: 0.5em;
+  border-radius: 50%;
+  background-color: var(--bs-warning);
+}
+
+.field_visibility_danger .field__label {
+  display: inline-flex;
+  align-items: center;
+}
+.field_visibility_danger .field__label:before {
+  display: inline-block;
+  width: 0.87em;
+  height: 0.87em;
+  content: "";
+  margin-right: 0.5em;
+  border-radius: 50%;
+  background-color: var(--bs-danger);
+}
+
 .bcbb-theme .clipboardjs-button {
   background-image: none;
 }
 .bcbb-theme .clipboardjs-button .tooltip {
   opacity: 1;
 }
+
+.page-node-type-data-set .dc-details details {
+  border: 0 solid transparent;
+}
+.page-node-type-data-set .dc-dictionary {
+  padding-right: 1.25em;
+}
+.page-node-type-data-set .dc-dictionary .field {
+  margin-bottom: 1.5em;
+}
+.page-node-type-data-set .dc-dictionary:last-child {
+  border-bottom: 1px solid var(--bs-dark-border-subtle);
+}
+.page-node-type-data-set .dc-dictionary .field__label {
+  font-weight: normal;
+  font-style: oblique;
+}
+.page-node-type-data-set .dc-dictionary .field--label-inline {
+  display: flex;
+  flex-direction: column;
+}
+.page-node-type-data-set .dc-dictionary .field--label-inline .field__label::after {
+  content: "";
+}
+@media only screen and (min-width: 992px) {
+  .page-node-type-data-set .dc-dictionary .field--label-inline {
+    flex-direction: row;
+  }
+  .page-node-type-data-set .dc-dictionary .field--label-inline .field__label {
+    min-width: 25%;
+    max-width: 25%;
+  }
+  .page-node-type-data-set .dc-dictionary .field--label-inline .field__label::after {
+    content: ":";
+  }
+}
+.page-node-type-data-set .dc-details .item-list ul {
+  list-style: none;
+  margin: 0;
+}
+.page-node-type-data-set .dc-details .item-list ul li {
+  margin: 0;
+}
+.page-node-type-data-set .dc-details .item-list ul li a {
+  display: inline-flex;
+  width: auto;
+  line-height: 1 !important;
+  gap: 0.25em;
+  align-items: center;
+  text-decoration: none;
+  margin-left: 1.25em;
+}
+.page-node-type-data-set .dc-details .item-list ul li a::before,
+.page-node-type-data-set .dc-details .item-list ul li a::after {
+  font-family: "bootstrap-icons" !important;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.page-node-type-data-set .dc-details .item-list ul li a::before {
+  margin-left: -1.25em;
+  content: "\f29a";
+}
+.page-node-type-data-set .field--name-field-data-set-type * {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1em;
+}
+.page-node-type-data-set .field--name-field-data-set-type *.field__label {
+  padding-right: 0.5em !important;
+}
+.page-node-type-data-set .field--name-field-data-set-type * li::after {
+  margin: 0 0.25em;
+}
+
+/* fields on data set node view
+
+.dc-dictionary .field--label-inline {
+  display: flex;
+}
+
+.dc-dictionary .field--label-inline .field__label {
+  min-width: 18em;
+  max-width: 18em;
+  font-weight: normal;
+}
+
+.dc-dictionary .field {
+  padding: .75em 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.dc-dictionary .field:first-child {
+  border-top: 1px solid #e0e0e0;
+}
+
+.dc-dictionary .field:last-child {
+  border-bottom: 0px solid transparent;
+}
+
+*/

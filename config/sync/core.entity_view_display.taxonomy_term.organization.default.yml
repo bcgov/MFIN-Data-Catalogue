@@ -23,7 +23,7 @@ content:
     region: content
   field_information:
     type: text_default
-    label: inline
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 1

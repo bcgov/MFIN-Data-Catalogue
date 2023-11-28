@@ -10,8 +10,8 @@
   <div{{ attributes.addClass(classes) }}>
     {% block content %}
       <details>
-        <summary><span class="h5">{{ paragraph.field_column_name.value }}</span></summary>
-        <div class="p-3 dc-dictionary">
+        <summary><span class="field__label fs-5 fw-bold">{{ paragraph.field_column_name.value }}</span></summary>
+        <div class="ms-3 ps-3 dc-dictionary">
           {{ content|without('field_column_name') }}
         </div>
       </details>

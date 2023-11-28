@@ -1,0 +1,64 @@
+.dc-fields {
+
+  %label {
+    font-weight: normal;
+  }
+
+  .field--label-inline {
+    @extend %label;
+    display: flex;
+    > * {
+      flex-basis: 50%;
+    }
+  }
+
+  .field__label {
+    @extend %label;
+  }
+
+  .field__items {
+    margin-bottom: 0.5rem !important;
+  }
+
+}
+
+// inline lists
+
+ul, ol {
+  &.dc-list-inline {
+    list-style: none;
+    display: inline-flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+
+    li {
+        &::after{
+        content: ',';
+        padding-right: .5em;
+      }
+      &:last-child::after {
+        content: '';
+        padding-right: 0;
+      }
+    }
+  }
+}
+
+@mixin field_visibility($bgColor: $colorAlert-success) {
+  .field__label {
+    display: inline-flex;
+    align-items: center;
+    &:before {
+      display: inline-block;
+      width: .87em;
+      height: .87em;
+      content: "";
+      margin-right: .5em;
+      border-radius: 50%;
+      background-color: $bgColor;
+    }
+  }
+}
+.field_visibility_success {@include field_visibility(var(--bs-success));}
+.field_visibility_warning {@include field_visibility(var(--bs-warning));}
+.field_visibility_danger {@include field_visibility(var(--bs-danger));}

@@ -3,6 +3,7 @@
 @import
 //get variables, functions and mixins from bcbb theme
 '../../../contrib/bcbb_theme/scss/variables',
+'../../../contrib/bcbb_theme/assets/bootstrap-icons/bi.scss',
 '../../../contrib/bcbb_theme/scss/functions',
 '../../../contrib/bcbb_theme/scss/mixins';
 
@@ -11,5 +12,7 @@
 './components/bookmark',
 './components/table',
 './components/savesearch',
-'overrides'
+'./components/fields',
+'overrides',
+'page-node-type-data-set'
 ;
