@@ -37,6 +37,15 @@
 
           <div class="card text-bg-light mb-3 p-3 small">
 
+          {% if field_visibility %}
+          <div class="field field--label-inline clearfix d-flex flex-row align-items-start field_visibility {{ field_visibility_wrapper_class }}">
+            <div class="field__label text-nowrap">{{ 'Record visibility'|t }}</div>
+            <div class="field__item">
+              {{ field_visibility }}
+            </div>
+          </div>
+          {% endif %}
+
             {% if node.field_primary_responsibility_org and not node.field_primary_responsibility_org.isempty %}
               <div class="mb-3">
                 {{ node.field_primary_responsibility_org|view }}

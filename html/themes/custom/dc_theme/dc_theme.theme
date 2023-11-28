@@ -95,10 +95,11 @@ function dc_theme_preprocess_node__data_set__full(array &$variables): void {
     $variables['author_link'] = $author->getDisplayName();
   }
 
+  $taxonomy_term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+
   // Display version of field_information_schedule.
   $information_schedule_term = $variables['elements']['field_information_schedule'][0]['#entity'] ?? NULL;
   if ($information_schedule_term instanceof TermInterface) {
-    $taxonomy_term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
     $parents = $taxonomy_term_storage->loadAllParents($information_schedule_term->id());
 
     $information_schedule_root_term = array_pop($parents);
@@ -133,6 +134,46 @@ function dc_theme_preprocess_node__data_set__full(array &$variables): void {
     '#alert_style' => 'tooltip',
     '#alert_text' => t('Copied!'),
   ];
+
+  // Display field_visibility as list of all orgs with access.
+  //
+  // No access for anonymous.
+  if (\Drupal::currentUser()->isAnonymous()) {
+    $variables['field_visibility'] = NULL;
+  }
+  else {
+    // Make a list of all orgs in field_visibility.
+    $visibility_orgs = [];
+    foreach ($variables['node']->field_visibility->getValue() as $visibility) {
+      $term = $taxonomy_term_storage->load($visibility['target_id']);
+      $visibility_orgs[] = $term->label();
+    }
+    // If there is only one org and it is a special one, use that value.
+    if (count($visibility_orgs) === 1 && $visibility_orgs[0] === (string) t('Public')) {
+      $variables['field_visibility_wrapper_class'] = 'field_visibility_success';
+      $variables['field_visibility'] = $visibility_orgs[0];
+    }
+    elseif (count($visibility_orgs) === 1 && $visibility_orgs[0] === (string) t('Government of BC employees')) {
+      $variables['field_visibility_wrapper_class'] = 'field_visibility_warning';
+      $variables['field_visibility'] = $visibility_orgs[0];
+    }
+    // Otherwise, display a list of orgs with access, adding OPR.
+    else {
+      // Add field_primary_responsibility_org to the list.
+      $field_primary_responsibility_org = $variables['node']->field_primary_responsibility_org->get(0);
+      if ($field_primary_responsibility_org) {
+        $term = $taxonomy_term_storage->load($field_primary_responsibility_org->getValue()['target_id']);
+        $visibility_orgs[] = $term->label();
+      }
+      // Theme as list.
+      sort($visibility_orgs);
+      $variables['field_visibility_wrapper_class'] = 'field_visibility_danger';
+      $variables['field_visibility'] = [
+        '#theme' => 'item_list',
+        '#items' => $visibility_orgs,
+      ];
+    }
+  }
 }
 
 /**
