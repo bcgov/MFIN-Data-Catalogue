@@ -739,7 +739,15 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
 
     // Test information schedule taxonomy terms.
     //
-    // Create test terms.
+    // Create test record_life_cycle_duration term.
+    $record_life_cycle_duration_values = [
+      'vid' => 'record_life_cycle_duration',
+      'name' => 'record_life_cycle_duration One ' . $this->randomString(),
+      'field_abbr_full_name' => 'record_life_cycle_duration One full name',
+    ];
+    $record_life_cycle_duration_entity = Term::create($record_life_cycle_duration_values);
+    $record_life_cycle_duration_entity->save();
+    // Create test information_schedule terms.
     $info_schedule_values = [];
     $info_schedule_terms = [];
     // First.
@@ -765,7 +773,9 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       'name' => 'information schedule Three ' . $this->randomString(),
       'parent' => $info_schedule_terms[1]->id(),
       'field_schedule_number' => $this->randomMachineName(),
+      'field_active_period' => $record_life_cycle_duration_entity->id(),
       'field_active_period_extension' => $this->randomMachineName(),
+      'field_semi_active_period' => $record_life_cycle_duration_entity->id(),
       'field_semi_active_extension' => $this->randomMachineName(),
     ];
     $info_schedule_terms[2] = Term::create($info_schedule_values[2]);
@@ -1010,6 +1020,15 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       $expected_status = $term->bundle() === 'information_schedule' ? 200 : 404;
       $this->assertSession()->statusCodeEquals($expected_status);
     }
+    // Test content of information_schedule taxonomy term pages.
+    $args = [
+      ':title' => $record_life_cycle_duration_values['field_abbr_full_name'],
+      ':text' => $record_life_cycle_duration_values['name'],
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-active-period")]/div/abbr[@title = :title][text() = :text]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-semi-active-period")]/div/abbr[@title = :title][text() = :text]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
   }
 
   /**
