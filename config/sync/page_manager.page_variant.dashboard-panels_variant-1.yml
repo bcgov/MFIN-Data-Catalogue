@@ -4,12 +4,14 @@ status: true
 dependencies:
   config:
     - page_manager.page.dashboard
+    - views.view.saved_searches
     - webform.webform.create_data_set
   module:
     - bc_dc
     - bcbb_search
     - panels
     - user
+    - views
     - webform
 id: dashboard-panels_variant-1
 label: 'Authenticated dashboard'
@@ -126,6 +128,21 @@ variant_settings:
       region: first_above
       weight: -3
       uuid: d4c0f915-6fb0-4546-be8a-86381e64676b
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    cded08d4-4a15-4114-acae-eb8639fb2215:
+      id: 'views_block:saved_searches-block_1'
+      label: 'My Saved searches'
+      label_display: visible
+      provider: views
+      context_mapping: {  }
+      views_label: 'My Saved searches'
+      items_per_page: none
+      region: second_below
+      weight: 0
+      uuid: cded08d4-4a15-4114-acae-eb8639fb2215
       css_classes:
         - ''
       html_id: ''

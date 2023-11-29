@@ -177,10 +177,11 @@ $colorGray100: #f8f9fa;
             }
         }
    }
-   .layout__region--first-below {
-    border-radius: 6px;
-    border: 1px solid $colorGray200;
-    margin-top: 2.25rem;
+   .layout__region--first-below,
+   .layout__region--second-below {
+        border-radius: 6px;
+        border: 1px solid $colorGray200;
+        margin-top: 2.25rem;
    }
 
    @media only screen and (max-width: $md-max) {

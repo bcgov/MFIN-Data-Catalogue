@@ -269,7 +269,8 @@ ol.dc-list-inline li:last-child::after {
   display: inline-block;
   margin-right: 5px;
 }
-.page-my-dashboard .layout__region--first-below {
+.page-my-dashboard .layout__region--first-below,
+.page-my-dashboard .layout__region--second-below {
   border-radius: 6px;
   border: 1px solid #e9ecef;
   margin-top: 2.25rem;
