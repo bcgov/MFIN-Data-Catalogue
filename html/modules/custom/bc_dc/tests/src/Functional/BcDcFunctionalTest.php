@@ -745,7 +745,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // First.
     $info_schedule_values[0] = [
       'vid' => 'information_schedule',
-      'name' => 'First ' . $this->randomString(),
+      'name' => 'information schedule One ' . $this->randomString(),
       'field_abbr_full_name' => 'First full name',
     ];
     $info_schedule_terms[0] = Term::create($info_schedule_values[0]);
@@ -753,7 +753,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Second.
     $info_schedule_values[1] = [
       'vid' => 'information_schedule',
-      'name' => 'Second ' . $this->randomString(),
+      'name' => 'information schedule Two ' . $this->randomString(),
       'field_schedule_number' => $this->randomMachineName(),
       'parent' => $info_schedule_terms[0]->id(),
     ];
@@ -762,7 +762,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Third.
     $info_schedule_values[2] = [
       'vid' => 'information_schedule',
-      'name' => 'Third ' . $this->randomString(),
+      'name' => 'information schedule Three ' . $this->randomString(),
       'parent' => $info_schedule_terms[1]->id(),
       'field_schedule_number' => $this->randomMachineName(),
       'field_active_period_extension' => $this->randomMachineName(),
