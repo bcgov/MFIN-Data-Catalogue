@@ -36,8 +36,8 @@ variant_settings:
         search_input_size: false
         search_input_size_value: null
         show_advanced_link: true
-      region: content
-      weight: -1
+      region: second_above
+      weight: -3
       uuid: c9dd60b1-c7cb-41ce-a830-f5d460e884cf
       css_classes:
         - ''
@@ -50,8 +50,8 @@ variant_settings:
       provider: bc_dc
       context_mapping: {  }
       table_type: user_unpublished
-      region: content
-      weight: 0
+      region: middle
+      weight: -10
       uuid: f1a1b0d8-f640-45cc-96c4-afd7ac7bccf2
       css_classes:
         - ''
@@ -64,8 +64,8 @@ variant_settings:
       provider: bc_dc
       context_mapping: {  }
       table_type: user_bookmarked
-      region: content
-      weight: 1
+      region: first_below
+      weight: -3
       uuid: 66bebbb5-d0e6-4e22-b334-592fc8fcb8db
       css_classes:
         - ''
@@ -78,8 +78,8 @@ variant_settings:
       provider: bc_dc
       context_mapping: {  }
       table_type: user_bookmark_counts
-      region: content
-      weight: 2
+      region: middle
+      weight: -9
       uuid: 728cdb21-f13d-4735-b501-37f1699673c5
       css_classes:
         - ''
@@ -92,8 +92,8 @@ variant_settings:
       provider: bc_dc
       context_mapping: {  }
       table_type: most_bookmarked
-      region: content
-      weight: 3
+      region: middle
+      weight: -8
       uuid: dfaf47b4-387e-4cd6-84c6-a0d50418ade7
       css_classes:
         - ''
@@ -106,8 +106,8 @@ variant_settings:
       provider: bc_dc
       context_mapping: {  }
       table_type: user_need_review
-      region: content
-      weight: 4
+      region: middle
+      weight: -7
       uuid: f79b9472-0537-4208-b8d8-99c776d28ce0
       css_classes:
         - ''
@@ -123,22 +123,21 @@ variant_settings:
       default_data: ''
       redirect: false
       lazy: false
-      region: content
+      region: first_above
       weight: -3
       uuid: d4c0f915-6fb0-4546-be8a-86381e64676b
       css_classes:
         - ''
       html_id: ''
       css_styles: ''
-  page_title: Dashboard
-  layout: layout_onecol
-  layout_settings:
-    label: ''
+  page_title: 'My Dashboard'
+  layout: layout_twocol_bricks
+  layout_settings: {  }
   builder: standard
   storage_type: page_manager
   storage_id: dashboard-panels_variant-1
   css_classes:
-    - ''
+    - page-my-dashboard
   html_id: ''
   css_styles: ''
 page: dashboard

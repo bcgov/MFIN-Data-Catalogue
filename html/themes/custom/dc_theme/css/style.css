@@ -134,11 +134,154 @@ ol.dc-list-inline li:last-child::after {
   background-color: var(--bs-danger);
 }
 
-.bcbb-theme .clipboardjs-button {
-  background-image: none;
+.page-my-dashboard .block-webform {
+  background-color: #d9d9d9;
+  padding: 20px 15px;
+  border-radius: 6px;
 }
-.bcbb-theme .clipboardjs-button .tooltip {
-  opacity: 1;
+.page-my-dashboard .block-webform h2 {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 26px;
+  color: #000;
+}
+.page-my-dashboard .block-webform .form-item label {
+  margin-bottom: 5px;
+}
+.page-my-dashboard .block-webform .form-submit {
+  background: #003366;
+}
+.page-my-dashboard .bcbb-search-api-form {
+  padding-left: 122px;
+}
+@media only screen and (max-width: 991.98px) {
+  .page-my-dashboard .bcbb-search-api-form {
+    padding-left: 0;
+    margin-top: 30px;
+  }
+}
+.page-my-dashboard .bcbb-search-api-form form label {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  margin-bottom: 8px;
+  color: #000;
+}
+.page-my-dashboard .bcbb-search-api-form form input[type=text] {
+  min-height: 60px;
+}
+.page-my-dashboard .bcbb-search-api-form form input[type=submit] {
+  height: 60px;
+  width: 60px;
+  top: 34px;
+}
+.page-my-dashboard .bcbb-search-api-form form .description a {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #1a5a96 !important;
+  margin-top: 8px;
+}
+.page-my-dashboard .block-bc-dc-data-set-table table caption {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 26px;
+  color: #000;
+  padding-bottom: 16px;
+}
+.page-my-dashboard .block-bc-dc-data-set-table table tr th,
+.page-my-dashboard .block-bc-dc-data-set-table table tr td {
+  padding: 15px 18px;
+}
+.page-my-dashboard .block-bc-dc-data-set-table table tr.odd td {
+  background-color: #e9ecef;
+  --bs-table-bg-type: none;
+}
+.page-my-dashboard .block-bc-dc-data-set-table table tr .button {
+  background: #003366;
+  color: #fff;
+  border: none;
+}
+.page-my-dashboard .block-bc-dc-data-set-table table tr a + .badge {
+  margin-left: 16px;
+}
+.page-my-dashboard .block-bc-dc-data-set-table table tr .badge {
+  border-radius: 10px;
+}
+.page-my-dashboard .block-bc-dc-data-set-table table tr .flag-bookmark .title,
+.page-my-dashboard .block-bc-dc-data-set-table table tr .flag-bookmark .count {
+  font-size: 14px;
+  line-height: 16px;
+}
+.page-my-dashboard .block-bc-dc-data-set-table table tr .flag-bookmark .title {
+  border-bottom: 1px solid #1a5a96;
+  display: inline-flex;
+}
+.page-my-dashboard .block-bc-dc-data-set-table table tr .flag-bookmark .count {
+  margin-left: 17px;
+}
+.page-my-dashboard .block-bc-dc-data-set-table table.dc-dashboard-table-mydatasetsm .flag-bookmark,
+.page-my-dashboard .block-bc-dc-data-set-table table.dc-dashboard-table-my-review-data-sets .flag-bookmark {
+  display: none;
+}
+.page-my-dashboard .block-bc-dc-data-set-table table.dc-dashboard-table-bookmarks {
+  margin-top: 0;
+}
+.page-my-dashboard .block-bc-dc-data-set-table table.dc-dashboard-table-bookmarks tbody {
+  padding: 34px 38px;
+  display: block;
+}
+.page-my-dashboard .block-bc-dc-data-set-table table.dc-dashboard-table-bookmarks tbody tr td {
+  width: 50%;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.page-my-dashboard .block-bc-dc-data-set-table table.dc-dashboard-table-bookmarks tbody tr.odd td {
+  background-color: transparent;
+}
+.page-my-dashboard .block-bc-dc-data-set-table table.dc-dashboard-table-bookmarks .button {
+  display: none;
+}
+.page-my-dashboard .block-bc-dc-data-set-table table.dc-dashboard-table-bookmarks a:not(.flag-bookmark a):not(.button) {
+  display: inline-block;
+  width: 100%;
+  font-weight: 700;
+}
+.page-my-dashboard .block-bc-dc-data-set-table table.dc-dashboard-table-bookmarks a:not(.flag-bookmark a):not(.button) + .badge {
+  margin-left: 0;
+}
+.page-my-dashboard .block-bc-dc-data-set-table table.dc-dashboard-table-bookmarks thead {
+  display: none;
+}
+.page-my-dashboard .block-bc-dc-data-set-table table.dc-dashboard-table-bookmarks caption {
+  padding-left: 23px;
+  padding-right: 23px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-top: 16px;
+  background: #f8f9fa;
+}
+.page-my-dashboard .block-bc-dc-data-set-table table.dc-dashboard-table-bookmarks caption:before {
+  content: "\f199";
+  font-family: "bootstrap-icons" !important;
+  display: inline-block;
+  margin-right: 5px;
+}
+.page-my-dashboard .layout__region--first-below {
+  border-radius: 6px;
+  border: 1px solid #e9ecef;
+  margin-top: 2.25rem;
+}
+@media only screen and (max-width: 991.98px) {
+  .page-my-dashboard .layout__region--first-above,
+  .page-my-dashboard .layout__region--second-above,
+  .page-my-dashboard .layout__region--first-below,
+  .page-my-dashboard .layout__region--second-below {
+    width: 100%;
+    flex: 1 0 100%;
+  }
 }
 
 .page-node-type-data-set .dc-details details {
@@ -241,3 +384,10 @@ ol.dc-list-inline li:last-child::after {
 }
 
 */
+.bcbb-theme .clipboardjs-button {
+  background-image: none;
+}
+.bcbb-theme .clipboardjs-button .tooltip {
+  opacity: 1;
+}
+/*# sourceMappingURL=style.css.map */
