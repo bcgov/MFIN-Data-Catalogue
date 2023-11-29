@@ -365,12 +365,14 @@ function bc_dc_form_node_data_set_edit_form_alter(array &$form, FormStateInterfa
     $form['add_columns_link']['#weight'] = -100;
   }
 
+  // Style the "Cancel" button.
+  if (isset($form['actions']['cancel'])) {
+    $form['actions']['cancel']['#attributes']['class'][] = 'btn btn-danger';
+  }
+
   // Add custom validate handler that runs first.
   if (!isset($form['#validate'])) {
     $form['#validate'] = [];
-  }
-  if (isset($form['actions']['cancel'])) {
-    $form['actions']['cancel']['#attributes']['class'][] = 'btn btn-danger';
   }
   array_unshift($form['#validate'], '_bc_dc_form_node_data_set_edit_form_submit');
 }
