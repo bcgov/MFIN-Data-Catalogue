@@ -5,6 +5,8 @@
  * Theme file.
  */
 
+use Drupal\Component\Render\FormattableMarkup;
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Link;
 use Drupal\taxonomy\TermInterface;
 
@@ -189,6 +191,49 @@ function dc_theme_preprocess_node__data_set_build_page(array &$variables): void 
  */
 function dc_theme_preprocess_page__node__add_columns(array &$variables): void {
   $variables['b5_top_container'] = 'container-fluid';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for taxonomy-term--information-schedule.html.twig.
+ */
+function dc_theme_preprocess_taxonomy_term__information_schedule(array &$variables): void {
+  // For entity reference fields, use abbr to provide the full name.
+  foreach ($variables['content'] as &$field) {
+    // Act only on entity reference fields.
+    if (($field['#field_type'] ?? NULL) !== 'entity_reference') {
+      continue;
+    }
+    // If there is a field_abbr_full_name, use it as the abbr element @title.
+    // Otherwise, only display the label.
+    // Always use #markup so that extensions can be added below.
+    $title = $field[0]['#entity']->field_abbr_full_name->value;
+    $label = $field[0]['#entity']->label();
+    if (isset($title)) {
+      $context = [
+        '@title' => $title,
+        '@text' => $label,
+      ];
+      $field[0]['#markup'] = new FormattableMarkup('<abbr title="@title">@text</abbr>', $context);
+    }
+    else {
+      $field[0]['#markup'] = Html::escape($label);
+    }
+    unset($field[0]['#plain_text']);
+  }
+  // Allow variable name to be re-used after being a reference.
+  unset($field);
+
+  // Combine active period fields with their extensions.
+  $fields = [
+    'field_active_period' => 'field_active_period_extension',
+    'field_semi_active_period' => 'field_semi_active_extension',
+  ];
+  foreach ($fields as $field => $extension) {
+    if (isset($variables['content'][$field][0]['#markup']) && isset($variables['content'][$extension]['#items'])) {
+      $variables['content'][$field][0]['#markup'] .= ' ' . Html::escape($variables['content'][$extension]['#items']->getString());
+    }
+    unset($variables['content'][$extension]);
+  }
 }
 
 /**
