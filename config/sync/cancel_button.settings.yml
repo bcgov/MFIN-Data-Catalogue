@@ -1,0 +1,96 @@
+_core:
+  default_config_hash: K_LddvA0aVOWbF6aw7aoX1n_BmWah6y3HWE1Ya7QmUc
+entity_type_cancel_destination:
+  default:
+    path: /
+    enabled: true
+  comment:
+    path: /
+    enabled: false
+  block:
+    path: /admin/structure/block
+    enabled: true
+  block_content_type:
+    path: /admin/structure/block/block-content/types
+    enabled: true
+  comment_type:
+    path: /admin/structure/comment
+    enabled: true
+  contact_form:
+    path: /admin/structure/contact
+    enabled: true
+  editor:
+    path: /
+    enabled: false
+  field_storage_config:
+    path: /
+    enabled: false
+  field_config:
+    path: /
+    enabled: true
+  file:
+    path: /
+    enabled: false
+  filter_format:
+    path: /admin/config/content/formats
+    enabled: true
+  image_style:
+    path: /admin/config/media/image-styles
+    enabled: true
+  node_type:
+    path: /admin/structure/types
+    enabled: true
+  node:
+    path: /
+    enabled: true
+  shortcut_set:
+    path: /
+    enabled: false
+  shortcut:
+    path: /
+    enabled: false
+  action:
+    path: /
+    enabled: false
+  menu:
+    path: /
+    enabled: false
+  taxonomy_term:
+    path: /
+    enabled: false
+  taxonomy_vocabulary:
+    path: /admin/structure/taxonomy
+    enabled: true
+  tour:
+    path: /
+    enabled: false
+  user_role:
+    path: /admin/people/roles
+    enabled: true
+  user:
+    path: /
+    enabled: true
+  menu_link_content:
+    path: /
+    enabled: false
+  view:
+    path: /
+    enabled: false
+  base_field_override:
+    path: /
+    enabled: false
+  date_format:
+    path: /
+    enabled: false
+  entity_view_mode:
+    path: /admin/structure/display-modes/view
+    enabled: true
+  entity_form_display:
+    path: /
+    enabled: false
+  entity_view_display:
+    path: /
+    enabled: false
+  entity_form_mode:
+    path: /admin/structure/display-modes/form
+    enabled: true

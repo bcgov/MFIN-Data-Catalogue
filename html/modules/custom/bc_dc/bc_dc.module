@@ -369,6 +369,9 @@ function bc_dc_form_node_data_set_edit_form_alter(array &$form, FormStateInterfa
   if (!isset($form['#validate'])) {
     $form['#validate'] = [];
   }
+  if (isset($form['actions']['cancel'])) {
+    $form['actions']['cancel']['#attributes']['class'][] = 'btn btn-danger';
+  }
   array_unshift($form['#validate'], '_bc_dc_form_node_data_set_edit_form_submit');
 }
 

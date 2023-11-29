@@ -14,6 +14,7 @@ module:
   block_content: 0
   book: 0
   breakpoint: 0
+  cancel_button: 0
   ckeditor5: 0
   ckeditor5_fullscreen: 0
   ckeditor_codemirror: 0
