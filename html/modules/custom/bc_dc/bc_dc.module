@@ -628,3 +628,15 @@ function bc_dc_system_breadcrumb_alter(Breadcrumb &$breadcrumb, RouteMatchInterf
   $breadcrumb->setLinks($links);
   $breadcrumb->addCacheableDependency($cacheability);
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function bc_dc_form_user_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
+  $user = \Drupal::currentUser();
+  if (!in_array('administrator', $user->getRoles())) {
+    $form['language']['#access'] = FALSE;
+    $form['timezone']['#access'] = FALSE;
+    $form['account']['#access'] = FALSE;
+  }
+}
