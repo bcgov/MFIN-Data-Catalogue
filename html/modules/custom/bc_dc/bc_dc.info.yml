@@ -8,6 +8,7 @@ dependencies:
   - bcbb:bcbb_book
   - bcbb:bcbb_other
   - bcbb:bcbb_search
+  - cancel_button:cancel_button
   - ckeditor5_fullscreen:ckeditor5_fullscreen
   - ckeditor_codemirror:ckeditor_codemirror
   - clipboardjs:clipboardjs

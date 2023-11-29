@@ -327,6 +327,15 @@ function bc_dc_form_node_data_set_edit_form_alter(array &$form, FormStateInterfa
   // Remove the "Collapse all" action.
   $form['field_columns']['widget']['header_actions']['dropdown_actions']['collapse_all']['#access'] = FALSE;
 
+  // Remove revision & content translation info section.
+  $form['content_translation']['#access'] = FALSE;
+  $form['revision_information']['#access'] = FALSE;
+  $form['meta']['#access'] = FALSE;
+  // Remove Advanced which display status of node.
+  $form['advanced']['#access'] = FALSE;
+  // Remove delete btn from node edit page.
+  $form['actions']['delete']['#access'] = FALSE;
+
   // Disable if no review interval is set.
   if (isset($form['field_is_complete_review'])) {
     $form['field_is_complete_review']['#states']['disabled'][':input[id="edit-field-review-interval-0-value"]'] = ['empty' => TRUE];
@@ -355,6 +364,11 @@ function bc_dc_form_node_data_set_edit_form_alter(array &$form, FormStateInterfa
     // Add link to top of form.
     $form['add_columns_link'] = $link->toRenderable();
     $form['add_columns_link']['#weight'] = -100;
+  }
+
+  // Style the "Cancel" button.
+  if (isset($form['actions']['cancel'])) {
+    $form['actions']['cancel']['#attributes']['class'][] = 'btn btn-danger';
   }
 
   // Add custom validate handler that runs first.

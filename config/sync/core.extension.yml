@@ -3,7 +3,6 @@ _core:
 module:
   admin_toolbar: 0
   admin_toolbar_tools: 0
-  bc_dc: 0
   bcbb: 0
   bcbb_auth: 0
   bcbb_layouts: 0
@@ -14,6 +13,7 @@ module:
   block_content: 0
   book: 0
   breakpoint: 0
+  cancel_button: 0
   ckeditor5: 0
   ckeditor5_fullscreen: 0
   ckeditor_codemirror: 0
@@ -119,6 +119,7 @@ module:
   externalauth: 10
   views: 10
   paragraphs: 11
+  bc_dc: 100
   bcbb_book: 100
   tac_lite: 100
   standard: 1000
