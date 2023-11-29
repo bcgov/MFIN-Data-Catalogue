@@ -330,6 +330,7 @@ function bc_dc_form_node_data_set_edit_form_alter(array &$form, FormStateInterfa
   // Remove revision & content translation info section.
   $form['content_translation']['#access'] = FALSE;
   $form['revision_information']['#access'] = FALSE;
+  $form['meta']['#access'] = FALSE;
   // Remove Advanced which display status of node.
   $form['advanced']['#access'] = FALSE;
   // Remove delete btn from node edit page.
