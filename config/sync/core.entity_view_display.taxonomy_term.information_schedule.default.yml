@@ -25,27 +25,27 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 0
+    weight: 9
     region: content
   field_abbr_full_name:
     type: string
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 1
+    weight: 0
     region: content
   field_active_period:
     type: entity_reference_label
-    label: above
+    label: inline
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
-    weight: 9
+    weight: 3
     region: content
   field_active_period_extension:
     type: string
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -53,7 +53,7 @@ content:
     region: content
   field_final_disposition:
     type: entity_reference_label
-    label: above
+    label: inline
     settings:
       link: false
     third_party_settings: {  }
@@ -65,19 +65,19 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 3
+    weight: 2
     region: content
   field_schedule_number:
     type: string
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 2
+    weight: 1
     region: content
   field_semi_active_extension:
     type: string
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -85,16 +85,17 @@ content:
     region: content
   field_semi_active_period:
     type: entity_reference_label
-    label: above
+    label: inline
     settings:
       link: false
     third_party_settings: {  }
     weight: 5
     region: content
   field_special_flags:
-    type: entity_reference_entity_id
-    label: above
-    settings: {  }
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: false
     third_party_settings: {  }
     weight: 8
     region: content
