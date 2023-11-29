@@ -3,7 +3,6 @@ _core:
 module:
   admin_toolbar: 0
   admin_toolbar_tools: 0
-  bc_dc: 0
   bcbb: 0
   bcbb_auth: 0
   bcbb_layouts: 0
@@ -120,6 +119,7 @@ module:
   externalauth: 10
   views: 10
   paragraphs: 11
+  bc_dc: 100
   bcbb_book: 100
   tac_lite: 100
   standard: 1000

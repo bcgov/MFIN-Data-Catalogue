@@ -21,10 +21,3 @@ function bc_dc_requirements(string $phase): array {
 
   return $requirements;
 }
-
-/**
- * Set bc_dc module weight .
- */
-function bc_dc_update_8001() {
-  module_set_weight('bc_dc', 100);
-}
