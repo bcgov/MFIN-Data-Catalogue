@@ -1,0 +1,22 @@
+uuid: 234cd31d-8240-4a5a-9398-85e980966fa4
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: information_schedule_taxonomy
+label: 'Information schedule taxonomy'
+type: 'canonical_entities:taxonomy_term'
+pattern: '/[term:vocabulary]/[term:parents:join-path]/[term:name]'
+selection_criteria:
+  f779d841-3303-46e8-82a1-38e9bbe8c46a:
+    id: 'entity_bundle:taxonomy_term'
+    negate: false
+    uuid: f779d841-3303-46e8-82a1-38e9bbe8c46a
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    bundles:
+      information_schedule: information_schedule
+selection_logic: and
+weight: -5
+relationships: {  }
