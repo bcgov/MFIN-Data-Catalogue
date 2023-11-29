@@ -582,16 +582,31 @@ function bc_dc_menu_local_tasks_alter(array &$data, string $route_name, Refinabl
   //
   // Only act on data_set nodes.
   $node = \Drupal::routeMatch()->getParameter('node');
-  if (!($node instanceof NodeInterface) || $node->bundle() !== 'data_set') {
-    return;
+  if (($node instanceof NodeInterface) && $node->bundle() == 'data_set') {
+    // Do nothing for administrators.
+    $user = \Drupal::currentUser();
+    if (!in_array('administrator', $user->getRoles())) {
+      // Remove the "Edit" tab.
+      unset($data['tabs'][0]['entity.node.edit_form']);
+    }
   }
-  // Do nothing for administrators.
-  $user = \Drupal::currentUser();
-  if ($user->id() == 1 || in_array('administrator', $user->getRoles())) {
-    return;
+  else {
+    $user_routes = [
+      'entity.user.canonical',
+      'entity.user.edit_form',
+      'bc_dc.user_reports_tab',
+      'bc_dc.user_manage_tab',
+    ];
+
+    if (in_array($route_name, $user_routes)) {
+      $user = \Drupal::routeMatch()->getParameter('user');
+      if ($user instanceof UserInterface) {
+        $data['tabs'][0]['entity.user.edit_form']['#link']['title'] = t('Edit profile');
+        $data['tabs'][0]['entity.user.canonical']['#link']['title'] = t('Dashboard');
+      }
+    }
   }
-  // Remove the "Edit" tab.
-  unset($data['tabs'][0]['entity.node.edit_form']);
+
 }
 
 /**

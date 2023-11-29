@@ -13,3 +13,9 @@
 'assign data_catalogue_user role':
   title: 'Assign role data_catalogue_user'
   description: 'Used by role_delegation. Declared here so that tests will run.'
+'access user reports':
+  title: 'Access user reports tab'
+  description: 'Access the reports tab at /user/<uid>/reports'
+'access user manage':
+  title: 'Access user manage tab'
+  description: 'Access the manage tab at /user/<uid>/manage'
