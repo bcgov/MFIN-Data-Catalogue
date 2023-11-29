@@ -68,12 +68,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb.git",
-                "reference": "bb22012e7d4a3f1c208069515f734c595cca59a8"
+                "reference": "a8007799ad4c4afecb99a30b40ad68e26ba76668"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/bb22012e7d4a3f1c208069515f734c595cca59a8",
-                "reference": "bb22012e7d4a3f1c208069515f734c595cca59a8",
+                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/a8007799ad4c4afecb99a30b40ad68e26ba76668",
+                "reference": "a8007799ad4c4afecb99a30b40ad68e26ba76668",
                 "shasum": ""
             },
             "require": {
@@ -129,7 +129,7 @@
                         "3359220 - Add schema for form_mode_control.settings": "https://www.drupal.org/files/issues/2023-05-09/form_mode_control-missing_schema-3359220-2.patch"
                     },
                     "drupal/page_manager": {
-                        "2837833 - 'Required contexts without a value: node' when editing menu": "https://www.drupal.org/files/issues/2023-08-10/page_manager-required_context-2837833-17.patch"
+                        "3362561 - Path has unnecessary query appended.": "https://www.drupal.org/files/issues/2023-11-29/page_manager-unnecessary_query-3362561-48.patch"
                     },
                     "drupal/panels": {
                         "2849867 - Custom attributes in panels blocks and variants": "https://www.drupal.org/files/issues/2022-11-17/panels_custom_attributes_in_panels_blocks-2849867-89.patch",
@@ -149,7 +149,7 @@
                 "source": "https://github.com/bcgov/bcbb/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb/issues"
             },
-            "time": "2023-11-27T15:19:57+00:00"
+            "time": "2023-11-29T22:09:23+00:00"
         },
         {
             "name": "bcgov/bcbb_theme",

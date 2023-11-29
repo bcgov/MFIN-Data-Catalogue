@@ -446,14 +446,6 @@ class BcDcAddColumnsForm extends FormBase {
     $destination = $this->getRequest()->get('destination');
     if ($destination) {
       $cancel_url = Url::fromUserInput($this->getRedirectDestination()->get());
-      // Remove unnecesary route parameters.
-      $routeParameters = $cancel_url->getRouteParameters();
-      unset($routeParameters['overridden_route_name']);
-      unset($routeParameters['base_route_name']);
-      unset($routeParameters['page_manager_page']);
-      unset($routeParameters['page_manager_page_variant']);
-      unset($routeParameters['page_manager_page_variant_weight']);
-      $cancel_url->setRouteParameters($routeParameters);
     }
     else {
       $cancel_url = Url::fromRoute('bc_dc.data_set_build_page_tab', ['node' => $node->id()]);
