@@ -371,6 +371,11 @@ function bc_dc_form_node_data_set_edit_form_alter(array &$form, FormStateInterfa
     $form['field_is_complete_review']['#states']['disabled'][':input[id="edit-field-review-interval-0-value"]'] = ['empty' => TRUE];
   }
 
+  // Remove revisioning informaion.
+  $form['revision_information']['#access'] = FALSE;
+  // Remove status information.
+  $form['advanced']['#access'] = FALSE;
+
   // On the section 5 build form, add a link to the import/export page.
   $node = $form_state->getFormObject()?->getEntity();
   $form_display = \Drupal::request()->get('display');
