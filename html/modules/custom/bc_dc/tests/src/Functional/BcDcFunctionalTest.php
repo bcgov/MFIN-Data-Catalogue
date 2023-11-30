@@ -28,6 +28,12 @@ class BcDcFunctionalTest extends BrowserTestBase {
    */
   protected $defaultTheme = 'dc_theme';
 
+  // phpcs:disable DrupalPractice.Objects.StrictSchemaDisabled.StrictConfigSchema
+  /**
+   * {@inheritdoc}
+   */
+  protected $strictConfigSchema = FALSE;
+
   /**
    * {@inheritdoc}
    */
@@ -172,6 +178,57 @@ class BcDcFunctionalTest extends BrowserTestBase {
       'edit-bundles-data-set' => TRUE,
     ];
     $this->submitForm($edit, 'Save');
+    // Configure tac_lite module.
+    //
+    // Main tac_lite config.
+    $this->drupalGet('admin/config/people/tac_lite');
+    $edit = [
+      'edit-tac-lite-categories' => ['organization'],
+      'edit-tac-lite-schemes' => 3,
+    ];
+    $this->submitForm($edit, 'Save configuration');
+    // Configure tac_lite scheme_1.
+    $this->drupalGet('admin/config/people/tac_lite/scheme_1');
+    $edit = [
+      'edit-tac-lite-config-scheme-1-name' => 'Edit',
+      'edit-tac-lite-config-scheme-1-perms' => ['grant_update'],
+      'edit-tac-lite-config-scheme-1-unpublished' => 1,
+      'edit-allowed-fields-field-primary-responsibility-org' => 1,
+      // Grant permission by role.
+      'edit-tac-lite-grants-scheme-1-administrator-organization' => [-1, 0],
+      'edit-tac-lite-grants-scheme-1-data-catalogue-administrator-organization' => [-1, 0],
+    ];
+    $this->submitForm($edit, 'Save configuration');
+    // Configure tac_lite scheme_2.
+    $this->drupalGet('admin/config/people/tac_lite/scheme_2');
+    $edit = [
+      'edit-tac-lite-config-scheme-2-name' => 'View - unpublished',
+      'edit-tac-lite-config-scheme-2-perms' => ['grant_view'],
+      'edit-tac-lite-config-scheme-2-unpublished' => 1,
+      'edit-allowed-fields-field-primary-responsibility-org' => 1,
+      // Grant permission by role.
+      'edit-tac-lite-grants-scheme-2-administrator-organization' => [-1, 0],
+      'edit-tac-lite-grants-scheme-2-data-catalogue-administrator-organization' => [-1, 0],
+    ];
+    $this->submitForm($edit, 'Save configuration');
+    // Configure tac_lite scheme_3.
+    $this->drupalGet('admin/config/people/tac_lite/scheme_3');
+    $edit = [
+      'edit-tac-lite-config-scheme-3-name' => 'View - published',
+      'edit-tac-lite-config-scheme-3-perms' => ['grant_view'],
+      'edit-allowed-fields-field-primary-responsibility-org' => 1,
+      'edit-allowed-fields-field-visibility' => 1,
+      // Grant permission by role.
+      'edit-tac-lite-grants-scheme-3-administrator-organization' => [-1, 0],
+      'edit-tac-lite-grants-scheme-3-anonymous-organization' => [$test_orgs[0]->id()],
+      'edit-tac-lite-grants-scheme-3-authenticated-organization' => [$test_orgs[0]->id(), $test_orgs[1]->id()],
+      'edit-tac-lite-grants-scheme-3-data-catalogue-manager-organization' => [$test_orgs[0]->id(), $test_orgs[1]->id()],
+      'edit-tac-lite-grants-scheme-3-data-catalogue-editor-organization' => [$test_orgs[0]->id(), $test_orgs[1]->id()],
+      'edit-tac-lite-grants-scheme-3-data-catalogue-user-organization' => [$test_orgs[0]->id(), $test_orgs[1]->id()],
+      // Rebuild permissions.
+      'edit-tac-lite-rebuild' => 1,
+    ];
+    $this->submitForm($edit, 'Save configuration');
 
     // Create test users.
     $this->createTestUser('Test Data catalogue administrator', ['data_catalogue_administrator']);
