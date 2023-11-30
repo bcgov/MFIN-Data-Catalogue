@@ -601,14 +601,13 @@ function bc_dc_menu_local_tasks_alter(array &$data, string $route_name, Refinabl
       'entity.user.edit_form',
       'bc_dc.user_reports_tab',
       'bc_dc.user_manage_tab',
+      'view.bookmarks.page_1',
+      'view.saved_searches.page',
     ];
 
     if (in_array($route_name, $user_routes)) {
-      $user = \Drupal::routeMatch()->getParameter('user');
-      if ($user instanceof UserInterface) {
-        $data['tabs'][0]['entity.user.edit_form']['#link']['title'] = t('Edit profile');
-        $data['tabs'][0]['entity.user.canonical']['#link']['title'] = t('Dashboard');
-      }
+      $data['tabs'][0]['entity.user.edit_form']['#link']['title'] = t('Edit profile');
+      $data['tabs'][0]['entity.user.canonical']['#link']['title'] = t('Dashboard');
     }
   }
 
