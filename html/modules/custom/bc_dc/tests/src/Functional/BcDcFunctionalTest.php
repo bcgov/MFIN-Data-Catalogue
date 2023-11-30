@@ -175,6 +175,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
 
     // Create test users.
     $this->createTestUser('Test Data catalogue administrator', ['data_catalogue_administrator']);
+    $this->createTestUser('Test Data catalogue manager', ['data_catalogue_manager']);
     $this->createTestUser('Test Data catalogue editor', ['data_catalogue_editor']);
     $this->createTestUser('Test Data catalogue user', ['data_catalogue_user']);
 
