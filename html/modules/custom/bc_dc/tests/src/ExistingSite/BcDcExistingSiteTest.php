@@ -64,9 +64,7 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     // Check that no excerpts are longer than 255, adding 1 for the ellipsis.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "view-id-site_search")]//div[contains(@class, "row")]/div[contains(@class, "search-result")]/div[contains(@class, "views-field-search-api-excerpt")][string-length(normalize-space(text())) > 256]');
     // Check that no excerpts contain HTML tags.
-    // @todo Tags are not being removed. Fix and then re-enable this test.
-    // phpcs:ignore Drupal.Files.LineLength.TooLong
-    // $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "view-id-site_search")]//div[contains(@class, "row")]/div[contains(@class, "search-result")]/div[contains(@class, "views-field-search-api-excerpt")]/*');
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "view-id-site_search")]//div[contains(@class, "row")]/div[contains(@class, "search-result")]/div[contains(@class, "views-field-search-api-excerpt")]/*');
     // Check for an excerpt ends in ellipsis.
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-id-site_search")]//div[contains(@class, "row")]/div[contains(@class, "search-result")]/div[contains(@class, "views-field-search-api-excerpt")][substring(normalize-space(text()), string-length(normalize-space(text()))) = "…"]');
     // List of metadata.
