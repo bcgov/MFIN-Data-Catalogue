@@ -10,7 +10,7 @@ dependencies:
 id: organizations
 label: Organizations
 module: views
-description: 'Used as entity reference select for all orgs except Public and Authenticated.'
+description: 'Used as entity reference select for all orgs except Public and IDIR users.'
 tag: ''
 base_table: taxonomy_term_field_data
 base_field: tid
@@ -182,7 +182,7 @@ display:
           entity_field: name
           plugin_id: string
           operator: '!='
-          value: Authenticated
+          value: 'IDIR users'
           group: 1
           exposed: false
           expose:

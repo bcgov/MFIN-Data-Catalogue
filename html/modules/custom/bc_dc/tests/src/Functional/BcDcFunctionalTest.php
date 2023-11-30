@@ -135,7 +135,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Create terms in organization vocabulary.
     $test_org_names = [
       'Public',
-      'Authenticated',
+      'IDIR users',
       'Test organization one ' . $this->randomString(),
       'Test organization two ' . $this->randomString(),
     ];

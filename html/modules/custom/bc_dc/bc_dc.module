@@ -305,7 +305,7 @@ function bc_dc_form_webform_submission_create_data_set_form_alter(array &$form, 
   // Taxonomy terms that should always be removed.
   $delete_values = [
     'Public',
-    'Authenticated',
+    'IDIR users',
   ];
 
   // Get an array of taxonomy term IDs for organizations this user is part of.
