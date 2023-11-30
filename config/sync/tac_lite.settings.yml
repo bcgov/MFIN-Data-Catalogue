@@ -8,7 +8,7 @@ tac_lite_config_scheme_1:
   name: Edit
   perms:
     grant_update: grant_update
-  unpublished: 0
+  unpublished: 1
   term_visibility: 0
   allowed_fields:
     field_primary_responsibility_org: field_primary_responsibility_org
@@ -39,7 +39,6 @@ tac_lite_config_scheme_2:
   term_visibility: 0
   allowed_fields:
     field_primary_responsibility_org: field_primary_responsibility_org
-    field_visibility: field_visibility
 tac_lite_grants_scheme_2:
   anonymous:
     organization: {  }
@@ -54,9 +53,7 @@ tac_lite_grants_scheme_2:
       -1: '-1'
       0: '0'
   data_catalogue_manager:
-    organization:
-      -1: '-1'
-      0: '0'
+    organization: {  }
   data_catalogue_editor:
     organization: {  }
   data_catalogue_user:
