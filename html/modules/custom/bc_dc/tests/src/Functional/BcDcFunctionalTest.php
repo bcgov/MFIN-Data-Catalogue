@@ -126,6 +126,23 @@ class BcDcFunctionalTest extends BrowserTestBase {
       $this->assertSession()->assert($role instanceof Role, 'Role ' . $role_id . ' should exist.');
     }
 
+    // Create terms in organization vocabulary.
+    $test_org_names = [
+      'Public',
+      'Authenticated',
+      'Test organization one ' . $this->randomString(),
+      'Test organization two ' . $this->randomString(),
+    ];
+    $test_orgs = [];
+    foreach ($test_org_names as $key => $name) {
+      $test_orgs[$key] = Term::create([
+        'vid' => 'organization',
+        'name' => $name,
+      ]);
+      $save = $test_orgs[$key]->save();
+      $this->assertSame($save, SAVED_NEW);
+    }
+
     // Module configuration.
     // @todo Remove this section and have the config come in from config import.
     //
@@ -184,23 +201,6 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSession()->pageTextContains('Basic page ' . $edit['edit-title-0-value'] . ' has been created');
     // Page links to pathauto path for this page.
     $this->linkByHrefStartsWithExists('/test-basic-page-' . strtolower($randomMachineName));
-
-    // Create terms in organization vocabulary.
-    $test_org_names = [
-      'Public',
-      'Authenticated',
-      'Test organization one ' . $this->randomString(),
-      'Test organization two ' . $this->randomString(),
-    ];
-    $test_orgs = [];
-    foreach ($test_org_names as $key => $name) {
-      $test_orgs[$key] = Term::create([
-        'vid' => 'organization',
-        'name' => $name,
-      ]);
-      $save = $test_orgs[$key]->save();
-      $this->assertSame($save, SAVED_NEW);
-    }
 
     // Test that the creation form shows only the empty message.
     $this->drupalGet('dashboard');
