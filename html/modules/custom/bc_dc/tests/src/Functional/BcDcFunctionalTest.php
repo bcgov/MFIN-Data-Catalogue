@@ -1094,6 +1094,53 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->elementExists('xpath', $xpath);
     $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-semi-active-period")]/div/abbr[@title = :title][text() = :text]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
+
+    // Test Unpublishing.
+    //
+    // For anon, "Unpublish" link does not exist.
+    $this->drupalGet('node/2');
+    $this->assertSession()->linkNotExists('Unpublish');
+
+    // For DC user, "Unpublish" link does not exist.
+    $this->drupalLogin($this->users['Test Data catalogue user']);
+    $this->drupalGet('node/2');
+    $this->assertSession()->linkNotExists('Unpublish');
+
+    // For DC admin, "Unpublish" link always exists.
+    $this->drupalLogin($this->users['Test Data catalogue administrator']);
+    $this->drupalGet('node/2');
+    $this->assertSession()->linkExists('Unpublish');
+    // "Unpublish" page works.
+    $this->clickLink('Unpublish');
+    $this->assertSession()->buttonExists('Confirm');
+    $this->submitForm([], 'Confirm');
+    // Redirects to "Build" page.
+    $this->assertEquals('/node/2/build', parse_url($this->getUrl(), PHP_URL_PATH));
+    // Confirmation message appears.
+    $args = [
+      ':title' => $data_set_title,
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "alert-success")]/em[text() = :title]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+    // Check that it is unpublished.
+    $this->assertSession()->elementExists('xpath', '//article[contains(@class, "node--unpublished")]');
+    // Now "Unpublish" page has a message.
+    $this->clickLink('Unpublish');
+    $text = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "alert-error")]')->getText();
+    $this->assertStringContainsString('This metadata record is already unpublished.', $text);
+    $this->assertSession()->buttonNotExists('Confirm');
+
+    // For DC manager, no "Unpublish" link.
+    $this->drupalLogin($this->users['Test Data catalogue manager']);
+    $this->drupalGet('node/2');
+    $this->assertSession()->linkNotExists('Unpublish');
+    // Add user to the node's org.
+    $account = User::load($this->users['Test Data catalogue manager']->id());
+    $account->field_organization[] = ['target_id' => $test_orgs[2]->id()];
+    $account->save();
+    // Now "Unpublish" link exists.
+    $this->drupalGet('node/2');
+    $this->assertSession()->linkExists('Unpublish');
   }
 
   /**
