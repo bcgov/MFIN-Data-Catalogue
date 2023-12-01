@@ -35,3 +35,4 @@ compass_app_log.txt
 # Custom
 docker
 config/sync/openid_connect.client.keycloak.yml
+files-private
