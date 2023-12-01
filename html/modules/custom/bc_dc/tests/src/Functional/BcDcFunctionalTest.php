@@ -884,6 +884,13 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       [div[@class = "field__item"][text() = :field_schedule_code]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
 
+    // Update a parent term and see the field_schedule_code updated in children.
+    $new_field_schedule_number = $this->randomMachineName();
+    $info_schedule_terms[0]->set('field_schedule_number', $new_field_schedule_number)->save();
+    $reloaded_term = Term::load($info_schedule_terms[2]->id());
+    $expected = $new_field_schedule_number . '-' . $info_schedule_values[1]['field_schedule_number'] . '-' . $info_schedule_values[2]['field_schedule_number'];
+    $this->assertEquals($expected, $reloaded_term->field_schedule_code->value);
+
     // Test "Review needed" messages.
     //
     // Generate "Review needed" messages.

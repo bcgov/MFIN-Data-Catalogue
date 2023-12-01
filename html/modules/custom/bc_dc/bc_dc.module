@@ -452,8 +452,25 @@ function bc_dc_taxonomy_term_presave(TermInterface $term): void {
     $new_code = implode('-', array_reverse($new_code));
   }
   // Update code if it has changed.
+  // In bc_dc_taxonomy_term_presave(), descendents will be re-saved so that they
+  // get the new value as well.
   if ($new_code !== $term->field_schedule_code->value) {
     $term->set('field_schedule_code', $new_code);
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_update().
+ */
+function bc_dc_taxonomy_term_update(TermInterface $term): void {
+  // If the term is in information_schedule, is not new, and their local code
+  // has changed, re-save descendents so that they get the new value as well.
+  if ($term->bundle() === 'information_schedule' && !$term->isNew() && $term->original->field_schedule_number->value !== $term->field_schedule_number->value) {
+    $termStorage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+    $descendents = $termStorage->loadTree($term->bundle(), $term->id(), NULL, TRUE);
+    foreach ($descendents as $descendent) {
+      $descendent->save();
+    }
   }
 }
 
