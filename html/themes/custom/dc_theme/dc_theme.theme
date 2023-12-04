@@ -148,7 +148,9 @@ function dc_theme_preprocess_node__data_set__full(array &$variables): void {
     $visibility_orgs = [];
     foreach ($variables['node']->field_visibility->getValue() as $visibility) {
       $term = $taxonomy_term_storage->load($visibility['target_id']);
-      $visibility_orgs[] = $term->label();
+      if ($term instanceof TermInterface) {
+        $visibility_orgs[] = $term->label();
+      }
     }
     // If there is only one org and it is a special one, use that value.
     if (count($visibility_orgs) === 1 && $visibility_orgs[0] === (string) t('Public')) {
@@ -165,7 +167,9 @@ function dc_theme_preprocess_node__data_set__full(array &$variables): void {
       $field_primary_responsibility_org = $variables['node']->field_primary_responsibility_org->get(0);
       if ($field_primary_responsibility_org) {
         $term = $taxonomy_term_storage->load($field_primary_responsibility_org->getValue()['target_id']);
-        $visibility_orgs[] = $term->label();
+        if ($term instanceof TermInterface) {
+          $visibility_orgs[] = $term->label();
+        }
       }
       // Theme as list.
       sort($visibility_orgs);
