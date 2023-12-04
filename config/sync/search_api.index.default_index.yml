@@ -1,11 +1,11 @@
 uuid: 64f42985-50e2-47e1-b406-3079ead93b46
 langcode: en
-status: false
+status: true
 dependencies:
   config:
-    - field.storage.node.body
     - field.storage.node.field_columns
     - field.storage.paragraph.field_metadata_type
+    - field.storage.node.body
     - field.storage.node.field_modified_date
     - field.storage.node.field_primary_responsibility_org
     - field.storage.node.field_series
@@ -160,11 +160,10 @@ field_settings:
     type: text
     configuration:
       roles:
-        - anonymous
+        - data_catalogue_user
       view_mode:
         'entity:node':
           data_set: search_index
-          page: ''
   status:
     label: 'Publishing status'
     datasource_id: 'entity:node'
