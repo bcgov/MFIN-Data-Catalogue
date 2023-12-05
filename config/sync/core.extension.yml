@@ -73,6 +73,7 @@ module:
   page_manager: 0
   page_manager_ui: 0
   panels: 0
+  paragraphs_features: 0
   path: 0
   path_alias: 0
   rabbit_hole: 0
@@ -93,6 +94,7 @@ module:
   shortcut: 0
   shs: 0
   smart_trim: 0
+  statistics: 0
   svg_image: 0
   svg_image_responsive: 0
   system: 0

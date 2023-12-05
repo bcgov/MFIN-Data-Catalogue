@@ -33,6 +33,7 @@ dependencies:
     - node.type.data_set
   module:
     - paragraphs
+    - paragraphs_features
 id: node.data_set.section_5
 targetEntityType: node
 bundle: data_set
@@ -55,8 +56,13 @@ content:
       features:
         add_above: '0'
         collapse_edit_all: collapse_edit_all
-        duplicate: duplicate
-    third_party_settings: {  }
+        duplicate: '0'
+    third_party_settings:
+      paragraphs_features:
+        add_in_between: false
+        add_in_between_link_count: 3
+        delete_confirmation: false
+        show_drag_and_drop: true
 hidden:
   body: true
   created: true
