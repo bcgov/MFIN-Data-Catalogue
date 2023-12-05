@@ -28,6 +28,7 @@ dependencies:
     - field.field.node.data_set.field_series
     - field.field.node.data_set.field_source_system
     - field.field.node.data_set.field_special_flags
+    - field.field.node.data_set.field_visibility
     - node.type.data_set
   module:
     - text
@@ -56,6 +57,7 @@ content:
     weight: 100
     region: content
 hidden:
+  content_moderation_control: true
   field_active_period: true
   field_authoritative_info: true
   field_columns: true
@@ -79,5 +81,6 @@ hidden:
   field_series: true
   field_source_system: true
   field_special_flags: true
+  field_visibility: true
   langcode: true
   search_api_excerpt: true

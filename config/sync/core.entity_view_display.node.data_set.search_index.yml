@@ -28,6 +28,7 @@ dependencies:
     - field.field.node.data_set.field_series
     - field.field.node.data_set.field_source_system
     - field.field.node.data_set.field_special_flags
+    - field.field.node.data_set.field_visibility
     - node.type.data_set
   module:
     - datetime
@@ -186,6 +187,7 @@ content:
     weight: 24
     region: content
 hidden:
+  content_moderation_control: true
   field_active_period: true
   field_data_sets_used: true
   field_final_disposition: true
@@ -195,4 +197,5 @@ hidden:
   field_review_interval: true
   field_semi_active_period: true
   field_special_flags: true
+  field_visibility: true
   langcode: true

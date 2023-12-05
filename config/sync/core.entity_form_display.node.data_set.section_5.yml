@@ -80,6 +80,7 @@ hidden:
   field_series: true
   field_source_system: true
   field_special_flags: true
+  field_visibility: true
   langcode: true
   moderation_state: true
   path: true

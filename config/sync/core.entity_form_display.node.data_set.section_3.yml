@@ -93,6 +93,7 @@ hidden:
   field_semi_active_period: true
   field_series: true
   field_special_flags: true
+  field_visibility: true
   langcode: true
   moderation_state: true
   path: true
