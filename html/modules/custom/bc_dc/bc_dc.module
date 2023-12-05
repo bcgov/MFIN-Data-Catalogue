@@ -492,9 +492,11 @@ function bc_dc_cron(): void {
   // Record that this function has run.
   \Drupal::state()->set('bc_dc.cron_last_run', $request_time);
 
-  // Send review reminders.
-  $reviewReminder = \Drupal::service('bc_dc.review_reminder');
-  $reviewReminder->sendRemindersToAllUsers();
+  // Send review reminders on Sundays.
+  if (idate('w', $request_time) === 0) {
+    $reviewReminder = \Drupal::service('bc_dc.review_reminder');
+    $reviewReminder->sendRemindersToAllUsers();
+  }
 }
 
 /**
