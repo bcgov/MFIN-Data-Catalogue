@@ -28,6 +28,7 @@ dependencies:
     - book
     - content_moderation
     - field_permissions
+    - field_ui
     - filter
     - flag
     - form_mode_control
@@ -54,6 +55,8 @@ permissions:
   - 'access user profiles'
   - 'add content to books'
   - 'administer book outlines'
+  - 'administer content types'
+  - 'administer node fields'
   - 'administer nodes'
   - 'administer rabbit_hole settings'
   - 'administer taxonomy import'
