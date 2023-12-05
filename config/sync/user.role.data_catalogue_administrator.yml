@@ -39,6 +39,7 @@ dependencies:
     - taxonomy
     - taxonomy_import
     - toolbar
+    - views_ui
 id: data_catalogue_administrator
 label: 'Data catalogue administrator'
 weight: 3
@@ -57,6 +58,7 @@ permissions:
   - 'administer rabbit_hole settings'
   - 'administer taxonomy import'
   - 'administer users'
+  - 'administer views'
   - 'archive data_set nodes'
   - 'assign data_catalogue_administrator role'
   - 'assign data_catalogue_editor role'
