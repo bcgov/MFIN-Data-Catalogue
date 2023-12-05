@@ -68,12 +68,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb.git",
-                "reference": "65bba8855d654e2a08e36c0d3fd8c30ade5d7295"
+                "reference": "8a2150f3f50e81198382f0294694a77335eef34b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/65bba8855d654e2a08e36c0d3fd8c30ade5d7295",
-                "reference": "65bba8855d654e2a08e36c0d3fd8c30ade5d7295",
+                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/8a2150f3f50e81198382f0294694a77335eef34b",
+                "reference": "8a2150f3f50e81198382f0294694a77335eef34b",
                 "shasum": ""
             },
             "require": {
@@ -83,7 +83,7 @@
                 "drupal/better_exposed_filters": "^6.0",
                 "drupal/ckeditor5_fullscreen": "^1.0@beta",
                 "drupal/config_filter": "^2.4",
-                "drupal/config_ignore": "^2.4",
+                "drupal/config_ignore": "^3.1",
                 "drupal/config_split": "^2.0",
                 "drupal/devel": "^5.0",
                 "drupal/diff": "^1.1",
@@ -150,7 +150,7 @@
                 "source": "https://github.com/bcgov/bcbb/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb/issues"
             },
-            "time": "2023-12-05T15:49:35+00:00"
+            "time": "2023-12-05T15:59:27+00:00"
         },
         {
             "name": "bcgov/bcbb_theme",
@@ -2295,27 +2295,30 @@
         },
         {
             "name": "drupal/config_ignore",
-            "version": "2.4.0",
+            "version": "3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/config_ignore.git",
-                "reference": "8.x-2.4"
+                "reference": "8.x-3.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/config_ignore-8.x-2.4.zip",
-                "reference": "8.x-2.4",
-                "shasum": "e0e45dde2d6927c5d26de59f352792fb6cf26554"
+                "url": "https://ftp.drupal.org/files/projects/config_ignore-8.x-3.1.zip",
+                "reference": "8.x-3.1",
+                "shasum": "5e60f312e02735060d5e5b1724330bb243face4c"
             },
             "require": {
-                "drupal/config_filter": "^1 || ^2",
-                "drupal/core": "^8 || ^9 || ^10"
+                "drupal/core": "^8.8 || ^9 || ^10"
+            },
+            "require-dev": {
+                "drupal/config_filter": "^1.8||^2.2",
+                "drush/drush": "^10 || ^11 || ^12"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.4",
-                    "datestamp": "1676045435",
+                    "version": "8.x-3.1",
+                    "datestamp": "1699302168",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2324,7 +2327,7 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0-or-later"
+                "GPL-2.0+"
             ],
             "authors": [
                 {
@@ -2343,12 +2346,11 @@
                     "homepage": "https://www.drupal.org/user/413139"
                 }
             ],
-            "description": "Ignore certain configuration during import.",
+            "description": "Ignore certain configuration during import and export.",
             "homepage": "http://drupal.org/project/config_ignore",
             "support": {
                 "source": "https://git.drupalcode.org/project/config_ignore",
-                "issues": "https://drupal.org/project/config_ignore",
-                "irc": "irc://irc.freenode.org/drupal-contribute"
+                "issues": "http://drupal.org/project/config_ignore"
             }
         },
         {
