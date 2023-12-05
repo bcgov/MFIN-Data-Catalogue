@@ -2,3 +2,6 @@ services:
   bc_dc.review_reminder:
     class: Drupal\bc_dc\Service\ReviewReminder
     arguments: ['@config.factory', '@entity_type.manager', '@logger.factory', '@string_translation']
+  bc_dc.update_review_status:
+    class: Drupal\bc_dc\Service\UpdateReviewStatus
+    arguments: ['@entity_type.manager']

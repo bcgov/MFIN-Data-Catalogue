@@ -177,6 +177,9 @@ function bc_dc_node_presave(NodeInterface $entity): void {
     $entity->set('field_last_review_date', date('Y-m-d'));
     $entity->set('field_is_complete_review', FALSE);
   }
+
+  // Update field_review_status.
+  \Drupal::service('bc_dc.update_review_status')->updateEntity($entity, FALSE);
 }
 
 /**
@@ -497,6 +500,9 @@ function bc_dc_cron(): void {
     $reviewReminder = \Drupal::service('bc_dc.review_reminder');
     $reviewReminder->sendRemindersToAllUsers();
   }
+
+  // Update every instance of field_review_status.
+  \Drupal::service('bc_dc.update_review_status')->updateAll();
 }
 
 /**
