@@ -25,6 +25,7 @@ module:
   config_split: 0
   content_moderation: 0
   contextual: 0
+  csv_serialization: 0
   ctools: 0
   datetime: 0
   dblog: 0
@@ -78,6 +79,7 @@ module:
   realname: 0
   registration_role: 0
   responsive_image: 0
+  rest: 0
   robotstxt: 0
   role_delegation: 0
   search_api: 0
@@ -86,6 +88,7 @@ module:
   search_api_saved_searches: 0
   search_api_solr: 0
   search_api_solr_admin: 0
+  serialization: 0
   shield: 0
   shortcut: 0
   shs: 0
@@ -110,6 +113,7 @@ module:
   vbo_export: 0
   views_bulk_edit: 0
   views_bulk_operations: 0
+  views_data_export: 0
   views_ui: 0
   webform: 0
   webform_content_creator: 0
