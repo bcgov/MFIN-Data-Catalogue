@@ -6,9 +6,6 @@
  */
 
 use Drupal\Core\Render\BubbleableMetadata;
-use Drupal\Core\Entity\RevisionableStorageInterface;
-use Drupal\Core\Entity\RevisionLogInterface;
-use Drupal\tac_lite\Form\SchemeForm;
 use Drupal\node\Entity\Node;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\Core\Url;
@@ -61,14 +58,14 @@ function bc_dc_tokens($type, $tokens, array $data, array $options, BubbleableMet
           $results = [];
           foreach ($tree as $term) {
             // Check if has children or not to validate if is at last level.
-            if (empty($manager->loadChildren($term->id()))) { 
+            if (empty($manager->loadChildren($term->id()))) {
               $results[] = $term->id();
             }
           }
           if (!empty($results)) {
             $replacements[$original] = implode('+', $results);
           }
-        break;
+          break;
       }
     }
   }
