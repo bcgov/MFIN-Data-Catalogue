@@ -6,11 +6,6 @@
  */
 
 use Drupal\Core\Render\BubbleableMetadata;
-use Drupal\node\Entity\Node;
-use Drupal\taxonomy\Entity\Term;
-use Drupal\Core\Url;
-use Drupal\Core\Link;
-use Drupal\Core\Render\Markup;
 
 /**
  * Implements hook_token_info().
