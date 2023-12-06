@@ -156,6 +156,7 @@
                 "2918537 - Cannot save unpublished versions of published content for users without manage book privileges": "https://www.drupal.org/files/issues/2022-12-14/2918537-92.patch"
             },
             "drupal/shs": {
+                "3357151 - Backbone js error, wrong library": "https://www.drupal.org/project/shs/issues/3357151", 
                 "3284824 - Schema definition for entity_reference_shs field formatter missing": "https://www.drupal.org/files/issues/2022-06-09/shs-schema_formatter_missing-3284824-2.patch"
             },
             "drupal/tac_lite": {
