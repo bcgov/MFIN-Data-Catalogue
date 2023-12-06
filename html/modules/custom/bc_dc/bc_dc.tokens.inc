@@ -22,12 +22,12 @@ function bc_dc_token_info() {
   $types['global'] = [
     'name' => t('Global tokens'),
     'description' => t('Tokens with no context.'),
-  ]; 
+  ];
 
   // Current-user tokens.
   $tokens['global']['bc_dc_infosched_leafterms'] = [
     'name' => t('Information schedule child terms'),
-    'description' =>  t('Returns the child terms of the information schedule vocabulary concatentated with +.'),
+    'description' => t('Returns the child terms of the information schedule vocabulary concatentated with +.'),
   ];
 
   return ['types' => $types, 'tokens' => $tokens];
@@ -54,7 +54,7 @@ function bc_dc_tokens($type, $tokens, array $data, array $options, BubbleableMet
             NULL,
             TRUE
           );
- 
+
           $results = [];
           foreach ($tree as $term) {
             // Check if has children or not to validate if is at last level.
