@@ -261,7 +261,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->linkByHrefStartsWithExists('/test-basic-page-' . strtolower($randomMachineName));
 
     // Test that the creation form shows only the empty message.
-    $this->drupalGet('dashboard');
+    $this->drupalGet('user');
     $this->assertSession()->statusCodeEquals(200);
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "form-item-data-set-name")]');
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "form-item-field-primary-responsibility-org")]');
@@ -273,7 +273,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $user->save();
 
     // Test that the creation form shows the name but not the organization.
-    $this->drupalGet('dashboard');
+    $this->drupalGet('user');
     $this->assertSession()->statusCodeEquals(200);
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "form-item-data-set-name")]');
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "form-item-field-primary-responsibility-org")]');
@@ -285,7 +285,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $user->save();
 
     // Create a data_set node. node/2.
-    $this->drupalGet('dashboard');
+    $this->drupalGet('user');
     $this->assertSession()->statusCodeEquals(200);
     // Test that the creation form shows the name and the organization.
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "form-item-data-set-name")]');
@@ -306,8 +306,8 @@ class BcDcFunctionalTest extends BrowserTestBase {
       ':data_set_title' => $data_set_title,
       ':data_set_path' => $data_set_path,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "dc-dashboard-table-mydatasets")]
-      [//a[text() = :data_set_title]]
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "block-views-blockdashboard-moderation-blocks-dashboard-unpublished")]
+      [//td[normalize-space(text()) = :data_set_title]]
       [//a[@href = "/node/2/build"][text() = "Build"]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
 
@@ -454,49 +454,42 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSession()->pageTextNotContains('Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.');
 
     // Data set dashboard.
-    $this->drupalGet('dashboard');
+    $this->drupalGet('user');
     $this->assertSession()->statusCodeEquals(200);
     // View link.
     $args = [
-      ':data_set_title' => $data_set_title,
       ':data_set_path' => $data_set_path,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "dc-dashboard-table-mydatasets")]//tr/td/a[text() = :data_set_title][starts-with(@href, :data_set_path)]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "block-views-blockdashboard-moderation-blocks-dashboard-unpublished")]//tr/td/a[text() = "View"][starts-with(@href, :data_set_path)]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     // Build link.
-    $args = [
-      ':data_set_title' => 'Build "' . $data_set_title . '".',
-      ':data_set_path' => $data_set_path,
-    ];
-    $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "dc-dashboard-table-mydatasets")]//tr/td/a[text() = "Build"][@class = "button"][@aria-label = :data_set_title][@href = "/node/2/build"]', $args);
-    $this->assertSession()->elementExists('xpath', $xpath);
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-views-blockdashboard-moderation-blocks-dashboard-unpublished")]//tr/td/a[text() = "Build"][@class = "btn btn-primary"][@href = "/node/2/build"]');
     // No empty message.
-    $this->assertSession()->elementNotExists('xpath', '//table[contains(@class, "dc-dashboard-table-mydatasets")]//tr/td[text() = "No data sets to show."]');
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-views-blockdashboard-moderation-blocks-dashboard-unpublished")]//div[normalize-space(text()) = "You currently do not have any draft metadata records."]');
 
     // Test bookmarks.
     //
     // No items bookmarked.
     $this->assertSession()->linkNotExists('Remove bookmark');
-    $this->assertSession()->elementExists('xpath', '//table[contains(@class, "dc-dashboard-table-bookmarks")]//tr/td[text() = "No data sets to show."]');
-    $this->assertSession()->elementExists('xpath', '//table[contains(@class, "dc-dashboard-table-datasets-bookmarks")]//tr/td[text() = "No data sets to show."]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//div[normalize-space(text()) = "You currently do not have any metadata records bookmarked."]');
     // Bookmark an item.
+    $this->clickLink('View');
     $this->clickLink('Bookmark');
     $this->assertSession()->pageTextContains('Item added to your bookmarks');
+    // View page has link to remove bookmark.
     $this->assertSession()->elementExists('xpath', '//a[*[contains(@class, "title")][contains(text(), "Remove bookmark")]][*[contains(@class, "count")][contains(text(), "Bookmarked by 1 person")]]');
-    $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "dc-dashboard-table-bookmarks")]//tr/td/a[text() = "Build"][@class = "button"][@aria-label = :data_set_title][@href = "/node/2/build"]', $args);
-    $this->assertSession()->elementExists('xpath', $xpath);
-    $this->assertSession()->elementNotExists('xpath', '//table[contains(@class, "dc-dashboard-table-bookmarks")]//tr/td[text() = "No data sets to show."]');
-    // Table of my data sets that are bookmarked.
-    $this->assertSession()->elementNotExists('xpath', '//table[contains(@class, "dc-dashboard-table-datasets-bookmarks")]//tr/td[text() = "No data sets to show."]');
+    // Bookmark now appears on the dashboard.
+    $this->drupalGet('user');
     $args = [
       ':data_set_title' => $data_set_title,
+      ':data_set_path' => $data_set_path,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "dc-dashboard-table-datasets-bookmarks")]//tr/td/a[text() = :data_set_title]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//tr/td/a[normalize-space(text()) = :data_set_title][starts-with(@href, :data_set_path)]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
-    // View page has link to remove bookmark.
-    $this->drupalGet('node/2');
-    $this->assertSession()->elementExists('xpath', '//a[*[contains(@class, "title")][contains(text(), "Remove bookmark")]][*[contains(@class, "count")][contains(text(), "Bookmarked by 1 person")]]');
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//div[normalize-space(text()) = "You currently do not have any metadata records bookmarked."]');
+
     // Revisions and diff are enabled and available.
+    $this->drupalGet('node/2');
     $this->assertSession()->elementExists('xpath', '//nav[contains(@class, "tabs")]/ul/li/a[@href = "/node/2/revisions"]');
     $this->assertTrue(\Drupal::service('module_handler')->moduleExists('diff'), 'Module diff should be enabled.');
 
@@ -516,10 +509,10 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div/time[text() = :text]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     // There are no data rows, just the empty message.
-    $this->drupalGet('dashboard');
+    $this->drupalGet('user');
     $this->assertSession()->statusCodeEquals(200);
-    $this->assertSession()->elementExists('xpath', '//table[contains(@class, "dc-dashboard-table-mydatasets")]//tr/td[text() = "No data sets to show."]');
-    $this->assertSession()->elementExists('xpath', '//table[contains(@class, "dc-dashboard-table-my-review-data-sets")]//tr/td[text() = "No data sets to show."]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-views-blockdashboard-moderation-blocks-dashboard-unpublished")]//div[normalize-space(text()) = "You currently do not have any draft metadata records."]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-views-blockdashboard-blocks-dashboard-needs-review")]//div[normalize-space(text()) = "You currently have no metadata records needing review."]');
 
     // Test data set update message.
     //
@@ -529,10 +522,14 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $data_set = Node::load(2);
     $data_set->set('field_modified_date', (new \DateTime('tomorrow'))->format('Y-m-d'))->save();
     // The data set updated message should appear.
-    $this->drupalGet('dashboard');
-    $this->assertSession()->elementExists('xpath', '//table[contains(@class, "dc-dashboard-table-bookmarks")]//tr
-      [td/span[@class = "badge text-bg-success"][text() = "Updated"]]
-      [td/a[@href = "/node/2/build"]]');
+    $this->drupalGet('user');
+    $args = [
+      ':data_set_path' => $data_set_path,
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//tr/td
+      [span[@class = "badge text-bg-success"][text() = "Updated"]]
+      [a[starts-with(@href, :data_set_path)]]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
 
     // Examine logs to check that update notification emails would have been
     // sent to users who bookmarked the updated data_set.
@@ -936,16 +933,19 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
 
     // Test "My data sets that need review" table.
     $this->drupalLogin($this->rootUser);
-    $this->drupalGet('dashboard');
+    $this->drupalGet('user');
     $this->assertSession()->statusCodeEquals(200);
-    $this->assertSession()->elementNotExists('xpath', '//table[contains(@class, "dc-dashboard-table-my-review-data-sets")]//tr/td[text() = "No data sets to show."]');
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-views-blockdashboard-blocks-dashboard-needs-review")]//div[normalize-space(text()) = "You currently have no metadata records needing review."]');
     $args = [
-      ':review_overdue_message' => $review_needed_messages['review_overdue_message'],
+      // This "Review overdue" is from View dashboard_blocks,
+      // dashboard_needs_review, "Content: Review status", Rewrite results.
+      ':review_overdue_message' => 'Review overdue',
       ':data_set_title' => $data_set_title,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//table[contains(@class, "dc-dashboard-table-my-review-data-sets")]//tr/td
-      [span[@class = "badge text-bg-danger"][text() = :review_overdue_message]]
-      [a[text() = :data_set_title]]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "block-views-blockdashboard-blocks-dashboard-needs-review")]//tr
+      [td[normalize-space(text()) = :data_set_title]]
+      [td/span[@class = "badge text-bg-danger"][text() = :review_overdue_message]]
+      [td/a[@href = "/node/2/build"]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
 
     // Test bc_dc.review_reminder service, ReviewReminder class.
@@ -996,7 +996,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
 
     // Test field_data_sets_used.
     // Create a data_set node. node/6.
-    $this->drupalGet('dashboard');
+    $this->drupalGet('user');
     $this->assertSession()->statusCodeEquals(200);
     $data_set_title_2 = 'Test data set Two ' . $this->randomString();
     $edit = [
