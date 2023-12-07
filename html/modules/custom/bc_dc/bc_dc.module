@@ -55,20 +55,6 @@ function bc_dc_entity_operation(EntityInterface $entity): array {
 }
 
 /**
- * Implements hook_theme().
- */
-function bc_dc_theme(array $existing, string $type, string $theme, string $path): array {
-  return [
-    'bc_dc_row_mb3' => [
-      'variables' => [
-        'classes' => NULL,
-        'content' => NULL,
-      ],
-    ],
-  ];
-}
-
-/**
  * Implements hook_preprocess_HOOK().
  */
 function bc_dc_preprocess_flag(array &$variables): void {
