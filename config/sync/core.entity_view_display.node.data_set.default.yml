@@ -22,6 +22,7 @@ dependencies:
     - field.field.node.data_set.field_primary_responsibility_org
     - field.field.node.data_set.field_published_date
     - field.field.node.data_set.field_review_interval
+    - field.field.node.data_set.field_review_status
     - field.field.node.data_set.field_security_classification
     - field.field.node.data_set.field_semi_active_period
     - field.field.node.data_set.field_series
@@ -34,6 +35,7 @@ dependencies:
     - datetime
     - entity_reference_revisions
     - field_token_value
+    - options
     - shs
     - text
     - user
@@ -183,6 +185,13 @@ content:
       format_type: html_date
     third_party_settings: {  }
     weight: 5
+    region: content
+  field_review_status:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 28
     region: content
   field_security_classification:
     type: entity_reference_label

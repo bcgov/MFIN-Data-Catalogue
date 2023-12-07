@@ -23,6 +23,7 @@ dependencies:
   - drupal:media_library
   - drupal:menu_ui
   - drupal:node
+  - drupal:statistics
   - drupal:taxonomy
   - drupal:text
   - drupal:user
@@ -39,6 +40,7 @@ dependencies:
   - page_manager:page_manager_ui
   - panels:panels
   - paragraphs:paragraphs
+  - paragraphs_features:paragraphs_features
   - pathauto:pathauto
   - rabbit_hole:rabbit_hole
   - registration_role:registration_role
@@ -51,6 +53,7 @@ dependencies:
   - taxonomy_import:taxonomy_import
   - taxonomy_max_depth:taxonomy_max_depth
   - twig_tweak:twig_tweak
+  - views_argument_token:views_argument_token
   - views_bulk_edit:views_bulk_edit
   - views_bulk_operations:views_bulk_operations
   - views_data_export:views_data_export

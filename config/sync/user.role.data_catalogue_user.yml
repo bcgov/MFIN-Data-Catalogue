@@ -15,8 +15,10 @@ weight: 6
 is_admin: null
 permissions:
   - 'access printer-friendly version'
+  - 'create field_organization'
   - 'flag bookmark'
   - 'unflag bookmark'
   - 'view data_set revisions'
+  - 'view field_organization'
   - 'view field_primary_responsibility_org'
   - 'view own field_primary_responsibility_org'

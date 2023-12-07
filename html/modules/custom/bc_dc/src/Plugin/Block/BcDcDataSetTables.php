@@ -119,7 +119,7 @@ class BcDcDataSetTables extends BlockBase implements ContainerFactoryPluginInter
         $data_set_nids = $this->getDataSetUserQuery()
           ->condition('status', NodeInterface::NOT_PUBLISHED)
           ->execute();
-        $classes = ['dc-dashboard-table', 'dc-dashboard-table-mydatasets'];
+        $classes = ['dc-dashboard-table', 'dc-dashboard-table-mydatasetsm', 'wb-tables', 'table', 'table-striped'];
         $table = $this->dataSetTableTheme($data_set_nids, $classes, $this->t('My unpublished data sets'));
         break;
 
@@ -281,7 +281,7 @@ class BcDcDataSetTables extends BlockBase implements ContainerFactoryPluginInter
 
             // Combine badges, adding a trailing space.
             $badges[] = '';
-            $cell['data']['#prefix'] = implode(' ', $badges);
+            $cell['data']['#suffix'] = implode(' ', $badges);
             break;
 
           case 'count':

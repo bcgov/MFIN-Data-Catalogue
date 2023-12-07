@@ -3,9 +3,9 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.body
     - field.storage.node.field_columns
     - field.storage.paragraph.field_metadata_type
+    - field.storage.node.body
     - field.storage.node.field_modified_date
     - field.storage.node.field_primary_responsibility_org
     - field.storage.node.field_series
@@ -160,11 +160,10 @@ field_settings:
     type: text
     configuration:
       roles:
-        - anonymous
+        - data_catalogue_user
       view_mode:
         'entity:node':
           data_set: search_index
-          page: ''
   status:
     label: 'Publishing status'
     datasource_id: 'entity:node'
@@ -231,6 +230,7 @@ processor_settings:
     weights:
       preprocess_index: -6
       preprocess_query: -4
+  custom_value: {  }
   entity_status:
     weights:
       preprocess_index: -10

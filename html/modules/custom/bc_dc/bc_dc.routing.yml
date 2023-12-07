@@ -52,3 +52,21 @@ bc_dc.create_columns_file:
     parameters:
       node:
         type: entity:node
+
+bc_dc.user_reports_tab:
+  path: '/user/{user}/reports'
+  requirements:
+    _permission: 'access user reports'
+  options:
+    parameters:
+      user:
+        type: 'entity:user'
+
+bc_dc.user_manage_tab:
+  path: '/user/{user}/manage'
+  requirements:
+    _permission: 'access user manage'
+  options:
+    parameters:
+      user:
+        type: 'entity:user'

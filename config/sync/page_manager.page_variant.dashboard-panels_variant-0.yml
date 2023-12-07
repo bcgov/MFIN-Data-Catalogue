@@ -8,7 +8,6 @@ dependencies:
     - bcbb_other
     - bcbb_search
     - panels
-    - user
 id: dashboard-panels_variant-0
 label: 'Anonymous dashboard'
 weight: -10
@@ -70,13 +69,6 @@ variant_settings:
   html_id: ''
   css_styles: ''
 page: dashboard
-selection_criteria:
-  -
-    id: user_role
-    negate: false
-    context_mapping:
-      user: '@user.current_user_context:current_user'
-    roles:
-      anonymous: anonymous
+selection_criteria: {  }
 selection_logic: and
 static_context: {  }

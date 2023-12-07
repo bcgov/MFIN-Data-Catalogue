@@ -28,6 +28,7 @@ dependencies:
     - book
     - content_moderation
     - field_permissions
+    - field_ui
     - filter
     - flag
     - form_mode_control
@@ -39,6 +40,7 @@ dependencies:
     - taxonomy
     - taxonomy_import
     - toolbar
+    - views_ui
 id: data_catalogue_administrator
 label: 'Data catalogue administrator'
 weight: 3
@@ -53,10 +55,13 @@ permissions:
   - 'access user profiles'
   - 'add content to books'
   - 'administer book outlines'
+  - 'administer content types'
+  - 'administer node fields'
   - 'administer nodes'
   - 'administer rabbit_hole settings'
   - 'administer taxonomy import'
   - 'administer users'
+  - 'administer views'
   - 'archive data_set nodes'
   - 'assign data_catalogue_administrator role'
   - 'assign data_catalogue_editor role'
@@ -64,6 +69,7 @@ permissions:
   - 'assign data_catalogue_user role'
   - 'create book content'
   - 'create data_set content'
+  - 'create field_organization'
   - 'create field_primary_responsibility_org'
   - 'create image media'
   - 'create page content'
@@ -103,6 +109,7 @@ permissions:
   - 'edit any data_set content'
   - 'edit any image media'
   - 'edit any page content'
+  - 'edit field_organization'
   - 'edit field_primary_responsibility_org'
   - 'edit own data_set content'
   - 'edit own field_primary_responsibility_org'
@@ -156,6 +163,7 @@ permissions:
   - 'view all media revisions'
   - 'view any unpublished content'
   - 'view data_set revisions'
+  - 'view field_organization'
   - 'view field_primary_responsibility_org'
   - 'view latest version'
   - 'view own field_primary_responsibility_org'

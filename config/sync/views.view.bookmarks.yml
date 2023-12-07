@@ -1,45 +1,46 @@
-uuid: 36406b2b-5575-4a3a-a740-a0dac5179175
+uuid: 301fa609-824c-4946-a5b6-4596f6146ff8
 langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.flagging.field_last_viewed_date
+    - field.storage.node.field_modified_date
+    - flag.flag.bookmark
+    - node.type.data_set
     - user.role.administrator
     - user.role.data_catalogue_administrator
     - user.role.data_catalogue_editor
     - user.role.data_catalogue_manager
   module:
-    - options
-    - search_api_saved_searches
+    - datetime
+    - flag
+    - node
     - user
-_core:
-  default_config_hash: 3MxEAgjvMlLaoPhEPjSlrgFkBmM3hMytdN2nNdvJlIg
-id: saved_searches
-label: 'Saved searches'
+id: bookmarks
+label: Bookmarks
 module: views
-description: "Display a user's saved searches."
+description: ''
 tag: ''
-base_table: search_api_saved_search
-base_field: id
+base_table: node_field_data
+base_field: nid
 display:
   default:
     id: default
-    display_title: Master
+    display_title: Default
     display_plugin: default
     position: 0
     display_options:
-      title: 'Saved searches'
+      title: 'My bookmarks'
       fields:
-        label:
-          id: label
-          table: search_api_saved_search
-          field: label
+        title:
+          id: title
+          table: node_field_data
+          field: title
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: null
-          entity_field: label
           plugin_id: field
-          label: Label
+          label: Name
           exclude: false
           alter:
             alter_text: false
@@ -94,21 +95,19 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        created:
-          id: created
-          table: search_api_saved_search
-          field: created
+        field_modified_date:
+          id: field_modified_date
+          table: node__field_modified_date
+          field: field_modified_date
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: search_api_saved_search
-          entity_field: created
           plugin_id: field
-          label: 'Created on'
-          exclude: true
+          label: ''
+          exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: "{% if  field_last_viewed_date <  field_modified_date %}\r\n  <span class=\"badge text-bg-success\">Updated</span>\r\n{% endif %}"
             make_link: false
             path: ''
             absolute: false
@@ -137,7 +136,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -146,21 +145,10 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: timestamp
+          type: datetime_custom
           settings:
-            date_format: medium
-            custom_date_format: ''
-            timezone: ''
-            tooltip:
-              date_format: ''
-              custom_date_format: ''
-            time_diff:
-              enabled: false
-              future_format: '@interval hence'
-              past_format: '@interval ago'
-              granularity: 2
-              refresh: 60
-              description: ''
+            timezone_override: ''
+            date_format: U
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -171,17 +159,15 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        last_executed:
-          id: last_executed
-          table: search_api_saved_search
-          field: last_executed
-          relationship: none
+        count:
+          id: count
+          table: flag_counts
+          field: count
+          relationship: flag_relationship
           group_type: group
           admin_label: ''
-          entity_type: search_api_saved_search
-          entity_field: last_executed
-          plugin_id: field
-          label: 'Last checked'
+          plugin_id: numeric
+          label: ''
           exclude: true
           alter:
             alter_text: false
@@ -214,7 +200,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -222,34 +208,25 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: value
-          type: timestamp_ago
-          settings:
-            future_format: '@interval hence'
-            past_format: '@interval ago'
-            granularity: 1
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        notify_interval:
-          id: notify_interval
-          table: search_api_saved_search
-          field: notify_interval
-          relationship: none
+          set_precision: false
+          precision: 0
+          decimal: .
+          separator: ''
+          format_plural: false
+          format_plural_string: !!binary MQNAY291bnQ=
+          prefix: ''
+          suffix: ''
+        link_flag:
+          id: link_flag
+          table: flagging
+          field: link_flag
+          relationship: flag_relationship
           group_type: group
           admin_label: ''
-          entity_type: search_api_saved_search
-          entity_field: notify_interval
-          plugin_id: field
-          label: 'Notification interval'
-          exclude: true
+          entity_type: flagging
+          plugin_id: flag_link
+          label: ''
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -281,7 +258,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -289,9 +266,124 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: value
-          type: list_key
+        uid:
+          id: uid
+          table: flagging
+          field: uid
+          relationship: flag_relationship
+          group_type: group
+          admin_label: ''
+          entity_type: flagging
+          entity_field: uid
+          plugin_id: field
+          label: ''
+          exclude: true
+          alter:
+            alter_text: true
+            text: 'All bookmarks'
+            make_link: true
+            path: '/user/{{ uid }}/bookmarks'
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: '0'
+          element_class: ''
+          element_label_type: '0'
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: '0'
+          element_wrapper_class: ''
+          element_default_classes: false
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_entity_id
           settings: {  }
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_last_viewed_date:
+          id: field_last_viewed_date
+          table: flagging__field_last_viewed_date
+          field: field_last_viewed_date
+          relationship: flag_relationship
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'Last viewed date'
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: datetime_custom
+          settings:
+            timezone_override: ''
+            date_format: U
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -302,141 +394,19 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        edit_search_api_saved_search:
-          id: edit_search_api_saved_search
-          table: search_api_saved_search
-          field: edit_search_api_saved_search
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: search_api_saved_search
-          plugin_id: entity_link_edit
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: true
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: 'btn btn-primary'
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          text: Edit
-          output_url_as_text: false
-          absolute: false
-        delete_search_api_saved_search:
-          id: delete_search_api_saved_search
-          table: search_api_saved_search
-          field: delete_search_api_saved_search
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: search_api_saved_search
-          plugin_id: entity_link_delete
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: true
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: 'btn btn-danger'
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          text: Delete
-          output_url_as_text: false
-          absolute: false
       pager:
-        type: full
+        type: some
         options:
           offset: 0
-          items_per_page: 20
-          total_pages: null
-          id: 0
-          tags:
-            next: ››
-            previous: ‹‹
-            first: '« First'
-            last: 'Last »'
-          expose:
-            items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
-            offset: false
-            offset_label: Offset
-          quantity: 9
+          items_per_page: 8
       exposed_form:
         type: basic
         options:
           submit_button: Apply
-          reset_button: true
+          reset_button: false
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
-          expose_sort_order: false
+          expose_sort_order: true
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
@@ -451,95 +421,70 @@ display:
         type: none
         options: {  }
       empty:
-        area_text_custom:
-          id: area_text_custom
+        area:
+          id: area
           table: views
-          field: area_text_custom
+          field: area
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: text_custom
+          plugin_id: text
           empty: true
-          content: 'No saved searches were found.'
+          content:
+            value: 'You currently do not have any metadata records bookmarked.'
+            format: basic_html
           tokenize: false
       sorts:
         created:
           id: created
-          table: search_api_saved_search
+          table: node_field_data
           field: created
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: search_api_saved_search
+          entity_type: node
           entity_field: created
           plugin_id: date
           order: DESC
           expose:
             label: ''
+            field_identifier: ''
           exposed: false
           granularity: second
-      arguments:
-        uid:
-          id: uid
-          table: search_api_saved_search
-          field: uid
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: search_api_saved_search
-          entity_field: uid
-          plugin_id: numeric
-          default_action: default
-          exception:
-            value: all
-            title_enable: false
-            title: All
-          title_enable: false
-          title: ''
-          default_argument_type: user
-          default_argument_options:
-            user: false
-          default_argument_skip_url: false
-          summary_options:
-            base_path: ''
-            count: true
-            override: false
-            items_per_page: 25
-          summary:
-            sort_order: asc
-            number_of_records: 0
-            format: default_summary
-          specify_validation: false
-          validate:
-            type: none
-            fail: 'not found'
-          validate_options: {  }
-          break_phrase: false
-          not: false
+      arguments: {  }
       filters:
-        label:
-          id: label
-          table: search_api_saved_search
-          field: label
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            data_set: data_set
+        title:
+          id: title
+          table: node_field_data
+          field: title
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: search_api_saved_search
-          entity_field: label
+          entity_type: node
+          entity_field: title
           plugin_id: string
           operator: contains
           value: ''
           group: 1
           exposed: true
           expose:
-            operator_id: label_op
-            label: Label
+            operator_id: title_op
+            label: Title
             description: ''
             use_operator: false
-            operator: label_op
+            operator: title_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: label
+            identifier: title
             required: false
             remember: false
             multiple: false
@@ -566,6 +511,67 @@ display:
             group_items: {  }
       style:
         type: table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          columns:
+            title: title
+            field_modified_date: title
+            count: count
+            link_flag: link_flag
+            uid: uid
+            field_last_viewed_date: field_last_viewed_date
+          default: '-1'
+          info:
+            title:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_modified_date:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            count:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            link_flag:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            uid:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_last_viewed_date:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          override: true
+          sticky: false
+          summary: ''
+          empty_table: false
+          caption: ''
+          description: ''
       row:
         type: fields
       query:
@@ -576,9 +582,23 @@ display:
           distinct: false
           replica: false
           query_tags: {  }
-      relationships: {  }
+      relationships:
+        flag_relationship:
+          id: flag_relationship
+          table: node_field_data
+          field: flag_relationship
+          relationship: none
+          group_type: group
+          admin_label: Flags
+          entity_type: node
+          plugin_id: flag_relationship
+          required: true
+          flag: bookmark
+          user_scope: current
       css_class: ''
-      use_ajax: true
+      use_ajax: false
+      link_display: page_1
+      link_url: '/user/{'
       header: {  }
       footer: {  }
       display_extenders: {  }
@@ -588,39 +608,45 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - url.query_args
+        - 'user.node_grants:view'
         - user.roles
-      tags: {  }
-  dashboard_saved_search:
-    id: dashboard_saved_search
+      tags:
+        - 'config:field.storage.flagging.field_last_viewed_date'
+        - 'config:field.storage.node.field_modified_date'
+  dashboard_bookmarks:
+    id: dashboard_bookmarks
     display_title: Block
     display_plugin: block
     position: 1
     display_options:
-      pager:
-        type: some
-        options:
-          offset: 0
-          items_per_page: 8
-      access:
-        type: role
-        options:
-          role:
-            administrator: administrator
-            data_catalogue_administrator: data_catalogue_administrator
-            data_catalogue_manager: data_catalogue_manager
-            data_catalogue_editor: data_catalogue_editor
-      filters: {  }
+      filters:
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            data_set: data_set
       filter_groups:
         operator: AND
         groups:
           1: AND
       defaults:
-        access: false
-        pager: false
+        use_more: false
+        use_more_always: false
+        use_more_text: false
+        link_display: false
+        link_url: false
         filters: false
         filter_groups: false
         footer: false
+      use_more: false
+      use_more_always: false
+      use_more_text: 'All bookmarks'
+      link_display: '0'
+      link_url: '/user/{'
       footer:
         area_text_custom:
           id: area_text_custom
@@ -631,7 +657,7 @@ display:
           admin_label: ''
           plugin_id: text_custom
           empty: false
-          content: '<a href="/user/{{ arguments.uid }}/saved-searches">All saved searches</a>'
+          content: '{{ uid }}'
           tokenize: true
       display_extenders: {  }
     cache_metadata:
@@ -639,24 +665,47 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url
+        - 'user.node_grants:view'
         - user.roles
-      tags: {  }
-  page:
-    id: page
+      tags:
+        - 'config:field.storage.flagging.field_last_viewed_date'
+        - 'config:field.storage.node.field_modified_date'
+  page_1:
+    id: page_1
     display_title: Page
     display_plugin: page
-    position: 1
+    position: 2
     display_options:
+      pager:
+        type: full
+        options:
+          offset: 0
+          items_per_page: 20
+          total_pages: null
+          id: 0
+          tags:
+            next: 'Next ›'
+            previous: '‹ Previous'
+            first: '« First'
+            last: 'Last »'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          quantity: 9
       defaults:
-        title: true
+        pager: false
       display_extenders: {  }
-      path: user/%user/saved-searches
+      path: user/%user/bookmarks
       menu:
         type: tab
-        title: Searches
+        title: Bookmarks
         description: ''
-        weight: -4
+        weight: -5
         expanded: false
         menu_name: main
         parent: ''
@@ -668,5 +717,8 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - 'user.node_grants:view'
         - user.roles
-      tags: {  }
+      tags:
+        - 'config:field.storage.flagging.field_last_viewed_date'
+        - 'config:field.storage.node.field_modified_date'

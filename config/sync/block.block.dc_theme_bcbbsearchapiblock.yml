@@ -31,4 +31,4 @@ visibility:
   request_path:
     id: request_path
     negate: true
-    pages: "/dashboard\r\n/data-set"
+    pages: "/dashboard\r\n/data-set\r\n/user/*"
