@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "17cf27da31d8f12509a882a72af9699a",
+    "content-hash": "6cf0fab88f14a5f1de9022581ac2a398",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6521,6 +6521,76 @@
             "homepage": "https://www.drupal.org/project/vbo_export",
             "support": {
                 "source": "https://git.drupalcode.org/project/vbo_export"
+            }
+        },
+        {
+            "name": "drupal/views_argument_token",
+            "version": "2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/views_argument_token.git",
+                "reference": "2.0.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/views_argument_token-2.0.2.zip",
+                "reference": "2.0.2",
+                "shasum": "37ec2b8865bb84878f3cb53c5472de27dbc4646b"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9 || ^10",
+                "drupal/token": "^1.9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.2",
+                    "datestamp": "1697637709",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "eme",
+                    "homepage": "https://www.drupal.org/u/eme"
+                },
+                {
+                    "name": "Mohamed Anis Taktak",
+                    "homepage": "https://www.drupal.org/u/matio89"
+                },
+                {
+                    "name": "Dakwamine",
+                    "homepage": "https://www.drupal.org/u/dakwamine"
+                },
+                {
+                    "name": "Stephen Mulvihill",
+                    "homepage": "https://www.drupal.org/u/smulvih2"
+                },
+                {
+                    "name": "MichaelB",
+                    "homepage": "https://www.drupal.org/user/2309046"
+                },
+                {
+                    "name": "smulvih2",
+                    "homepage": "https://www.drupal.org/user/795442"
+                },
+                {
+                    "name": "snake_plissken",
+                    "homepage": "https://www.drupal.org/user/3624793"
+                }
+            ],
+            "description": "Views Token Argument allows you to use token as contextual filter for Views.",
+            "homepage": "http://drupal.org/project/views_argument_token",
+            "support": {
+                "source": "https://git.drupalcode.org/project/views_argument_token",
+                "issues": "https://www.drupal.org/project/issues/views_argument_token"
             }
         },
         {
