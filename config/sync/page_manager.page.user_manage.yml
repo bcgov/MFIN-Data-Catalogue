@@ -1,0 +1,17 @@
+uuid: d42410fa-5279-433a-a97d-11b413de473b
+langcode: en
+status: true
+dependencies: {  }
+id: user_manage
+label: 'User manage'
+description: ''
+use_admin_theme: false
+path: '/user/{user}/manage'
+access_logic: and
+access_conditions: {  }
+parameters:
+  user:
+    machine_name: user
+    label: User
+    type: 'entity:user'
+    optional: false

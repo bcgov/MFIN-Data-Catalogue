@@ -1,0 +1,33 @@
+uuid: eebb90ae-561d-48cb-990f-d4155f7a582e
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.user_manage
+  module:
+    - panels
+id: user_manage-panels_variant-0
+label: Panels
+weight: 0
+variant: panels_variant
+variant_settings:
+  id: panels_variant
+  label: null
+  weight: 0
+  uuid: 5728a3bf-1cc5-470a-8980-6fcae86605a2
+  blocks: {  }
+  page_title: Manage
+  layout: bcbb_main_sidebar_right
+  layout_settings:
+    label: ''
+  builder: standard
+  storage_type: page_manager
+  storage_id: user_manage-panels_variant-0
+  css_classes:
+    - ''
+  html_id: ''
+  css_styles: ''
+page: user_manage
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

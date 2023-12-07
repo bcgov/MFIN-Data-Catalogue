@@ -6,6 +6,7 @@ dependencies:
     - filter.format.basic_html
     - filter.format.webform_default
   module:
+    - bc_dc
     - comment
     - environment_indicator
     - field_permissions
@@ -27,6 +28,8 @@ permissions:
   - 'access content'
   - 'access environment indicator'
   - 'access shortcuts'
+  - 'access user manage'
+  - 'access user reports'
   - 'delete own files'
   - 'post comments'
   - 'skip comment approval'

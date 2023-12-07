@@ -23,11 +23,13 @@ dependencies:
     - field.field.node.data_set.field_primary_responsibility_org
     - field.field.node.data_set.field_published_date
     - field.field.node.data_set.field_review_interval
+    - field.field.node.data_set.field_review_status
     - field.field.node.data_set.field_security_classification
     - field.field.node.data_set.field_semi_active_period
     - field.field.node.data_set.field_series
     - field.field.node.data_set.field_source_system
     - field.field.node.data_set.field_special_flags
+    - field.field.node.data_set.field_visibility
     - node.type.data_set
   module:
     - shs
@@ -90,6 +92,7 @@ hidden:
   field_primary_responsibility_org: true
   field_published_date: true
   field_review_interval: true
+  field_review_status: true
   field_semi_active_period: true
   field_series: true
   field_source_system: true

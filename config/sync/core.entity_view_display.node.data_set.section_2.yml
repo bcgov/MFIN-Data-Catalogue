@@ -23,6 +23,7 @@ dependencies:
     - field.field.node.data_set.field_primary_responsibility_org
     - field.field.node.data_set.field_published_date
     - field.field.node.data_set.field_review_interval
+    - field.field.node.data_set.field_review_status
     - field.field.node.data_set.field_security_classification
     - field.field.node.data_set.field_semi_active_period
     - field.field.node.data_set.field_series
@@ -142,6 +143,7 @@ hidden:
   field_last_review_date: true
   field_personal_information: true
   field_review_interval: true
+  field_review_status: true
   field_security_classification: true
   field_semi_active_period: true
   field_series: true

@@ -1,0 +1,17 @@
+uuid: 3338cbfb-4295-47fa-8a56-93562a76d0bb
+langcode: en
+status: true
+dependencies: {  }
+id: user_reports
+label: 'User reports'
+description: ''
+use_admin_theme: false
+path: '/user/{user}/reports'
+access_logic: and
+access_conditions: {  }
+parameters:
+  user:
+    machine_name: user
+    label: User
+    type: 'entity:user'
+    optional: false

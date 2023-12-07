@@ -7,3 +7,9 @@ definitions:
     weight: 0
     expanded: false
     enabled: true
+  user__page:
+    menu_name: account
+    parent: ''
+    weight: -10
+    expanded: false
+    enabled: false

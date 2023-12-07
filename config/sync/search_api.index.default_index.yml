@@ -1,6 +1,6 @@
 uuid: 64f42985-50e2-47e1-b406-3079ead93b46
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - field.storage.node.body
@@ -231,6 +231,7 @@ processor_settings:
     weights:
       preprocess_index: -6
       preprocess_query: -4
+  custom_value: {  }
   entity_status:
     weights:
       preprocess_index: -10

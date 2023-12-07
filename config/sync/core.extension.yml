@@ -111,6 +111,7 @@ module:
   update: 0
   user: 0
   vbo_export: 0
+  views_argument_token: 0
   views_bulk_edit: 0
   views_bulk_operations: 0
   views_data_export: 0

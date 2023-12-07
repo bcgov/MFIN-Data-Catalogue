@@ -4,14 +4,12 @@ status: true
 dependencies:
   config:
     - page_manager.page.dashboard
-    - views.view.saved_searches
     - webform.webform.create_data_set
   module:
     - bc_dc
     - bcbb_search
     - panels
     - user
-    - views
     - webform
 id: dashboard-panels_variant-1
 label: 'Authenticated dashboard'
@@ -38,11 +36,12 @@ variant_settings:
         search_input_size: false
         search_input_size_value: null
         show_advanced_link: true
-      region: second_above
-      weight: -3
+      region: content
+      weight: -1
       uuid: c9dd60b1-c7cb-41ce-a830-f5d460e884cf
       css_classes:
-        - ''
+        - well
+        - well-sm
       html_id: ''
       css_styles: ''
     f1a1b0d8-f640-45cc-96c4-afd7ac7bccf2:
@@ -52,8 +51,8 @@ variant_settings:
       provider: bc_dc
       context_mapping: {  }
       table_type: user_unpublished
-      region: middle
-      weight: -10
+      region: content
+      weight: 0
       uuid: f1a1b0d8-f640-45cc-96c4-afd7ac7bccf2
       css_classes:
         - ''
@@ -66,8 +65,8 @@ variant_settings:
       provider: bc_dc
       context_mapping: {  }
       table_type: user_bookmarked
-      region: first_below
-      weight: -3
+      region: content
+      weight: 1
       uuid: 66bebbb5-d0e6-4e22-b334-592fc8fcb8db
       css_classes:
         - ''
@@ -80,8 +79,8 @@ variant_settings:
       provider: bc_dc
       context_mapping: {  }
       table_type: user_bookmark_counts
-      region: middle
-      weight: -9
+      region: content
+      weight: 2
       uuid: 728cdb21-f13d-4735-b501-37f1699673c5
       css_classes:
         - ''
@@ -94,8 +93,8 @@ variant_settings:
       provider: bc_dc
       context_mapping: {  }
       table_type: most_bookmarked
-      region: middle
-      weight: -8
+      region: content
+      weight: 3
       uuid: dfaf47b4-387e-4cd6-84c6-a0d50418ade7
       css_classes:
         - ''
@@ -108,8 +107,8 @@ variant_settings:
       provider: bc_dc
       context_mapping: {  }
       table_type: user_need_review
-      region: middle
-      weight: -7
+      region: content
+      weight: 4
       uuid: f79b9472-0537-4208-b8d8-99c776d28ce0
       css_classes:
         - ''
@@ -125,36 +124,22 @@ variant_settings:
       default_data: ''
       redirect: false
       lazy: false
-      region: first_above
+      region: content
       weight: -3
       uuid: d4c0f915-6fb0-4546-be8a-86381e64676b
       css_classes:
         - ''
       html_id: ''
       css_styles: ''
-    cded08d4-4a15-4114-acae-eb8639fb2215:
-      id: 'views_block:saved_searches-block_1'
-      label: 'My Saved searches'
-      label_display: visible
-      provider: views
-      context_mapping: {  }
-      views_label: 'My Saved searches'
-      items_per_page: none
-      region: second_below
-      weight: 0
-      uuid: cded08d4-4a15-4114-acae-eb8639fb2215
-      css_classes:
-        - ''
-      html_id: ''
-      css_styles: ''
-  page_title: 'My Dashboard'
-  layout: layout_twocol_bricks
-  layout_settings: {  }
+  page_title: Dashboard
+  layout: layout_onecol
+  layout_settings:
+    label: ''
   builder: standard
   storage_type: page_manager
   storage_id: dashboard-panels_variant-1
   css_classes:
-    - page-my-dashboard
+    - ''
   html_id: ''
   css_styles: ''
 page: dashboard
