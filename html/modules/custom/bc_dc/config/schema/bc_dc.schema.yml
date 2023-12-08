@@ -40,11 +40,3 @@ block.settings.bc_dc_edit_button:
     query_param:
       type: string
       label: 'Query param'
-
-block.settings.bc_dc_data_set_table:
-  type: block_settings
-  label: 'Metadata record table settings'
-  mapping:
-    table_type:
-      type: string
-      label: 'Type of table to display'
