@@ -236,6 +236,11 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->createTestUser('Test Data catalogue editor', ['data_catalogue_editor']);
     $this->createTestUser('Test Data catalogue user', ['data_catalogue_user']);
 
+    // Put 'Test Data catalogue editor' into an organization.
+    $user = User::load($this->users['Test Data catalogue editor']->id());
+    $user->field_organization[] = ['target_id' => $test_orgs[2]->id()];
+    $user->save();
+
     // Test that new users are assigned role data_catalogue_user.
     // This only works because of the registration_role module config done
     // above. There is also an ExistingSite test for this.
@@ -569,6 +574,9 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Check that field_last_viewed_date is now greater than what it was set to.
     $this->assertGreaterThan(1, 2);
     $this->assertGreaterThan($date_yesterday, $field_last_viewed_date);
+
+    // Run tests as editor. Some of the above could be tested as editor as well.
+    $this->drupalLogin($this->users['Test Data catalogue editor']);
 
     // Import data columns page.
     $this->drupalGet('node/2/build');
