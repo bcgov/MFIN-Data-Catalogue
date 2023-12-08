@@ -589,22 +589,14 @@ function bc_dc_menu_local_tasks_alter(array &$data, string $route_name, Refinabl
       unset($data['tabs'][0]['entity.node.edit_form']);
     }
   }
-  else {
-    $user_routes = [
-      'entity.user.canonical',
-      'entity.user.edit_form',
-      'bc_dc.user_reports_tab',
-      'bc_dc.user_manage_tab',
-      'view.bookmarks.page_1',
-      'view.saved_searches.page',
-    ];
 
-    if (in_array($route_name, $user_routes)) {
-      $data['tabs'][0]['entity.user.edit_form']['#link']['title'] = t('Edit profile');
-      $data['tabs'][0]['entity.user.canonical']['#link']['title'] = t('Dashboard');
-    }
+  // Rename certain tabs.
+  if (isset($data['tabs'][0]['entity.user.edit_form']['#link']['title'])) {
+    $data['tabs'][0]['entity.user.edit_form']['#link']['title'] = t('Edit profile');
   }
-
+  if (isset($data['tabs'][0]['entity.user.canonical']['#link']['title'])) {
+    $data['tabs'][0]['entity.user.canonical']['#link']['title'] = t('Dashboard');
+  }
 }
 
 /**
