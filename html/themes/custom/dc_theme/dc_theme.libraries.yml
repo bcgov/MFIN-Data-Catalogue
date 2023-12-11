@@ -7,3 +7,5 @@ style:
   css:
     theme:
       css/style.css: {}
+      css/print.css:
+        media: print

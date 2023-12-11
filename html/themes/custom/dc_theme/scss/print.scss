@@ -1,0 +1,13 @@
+@import
+//get variables and mixins from bcbb theme
+'../../../contrib/bcbb_theme/scss/variables',
+'../../../contrib/bcbb_theme/scss/mixins';
+
+@media print {
+  #dc_data_dictionary > div.item-list,
+  [class*="clipboardjs"],
+  [id*="clipboardjs"]
+  {
+    display: none !important;
+  }
+}
