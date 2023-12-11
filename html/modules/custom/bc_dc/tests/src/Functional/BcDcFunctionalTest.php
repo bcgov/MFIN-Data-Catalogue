@@ -112,7 +112,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Test config for message_gcnotify. Ensures tests cannot send messages.
     $this->drupalGet('admin/config/message/message-gcnotify');
     $edit = [
-      'enabled' => 0,
+      'enabled' => '0',
       'prod_apikey' => 'test-prod_apikey',
       'prod_template' => 'test-prod_template',
       'test_apikey' => 'test-test_apikey',
@@ -1037,7 +1037,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $edit = [
       'edit-field-data-sets-used-0-target-id' => 'Title (2)',
       // Add "Personal information" badge.
-      'edit-field-personal-information-1' => TRUE,
+      'edit-field-personal-information-1' => '1',
     ];
     $this->submitForm($edit, 'Save');
     // field_data_sets_used is not empty. This demonstrates that the Build page
