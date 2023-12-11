@@ -6,6 +6,7 @@ dependencies:
     - field.field.taxonomy_term.organization.field_data_custodian
     - field.field.taxonomy_term.organization.field_footer_links
     - field.field.taxonomy_term.organization.field_information
+    - field.field.taxonomy_term.organization.field_org_image
     - taxonomy.vocabulary.organization
   module:
     - link
@@ -41,6 +42,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_org_image:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 3
     region: content
 hidden:
   description: true

@@ -1,0 +1,29 @@
+uuid: d55aa185-dcc6-4acc-8946-4aa92a7f4efd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_org_image
+    - media.type.image
+    - taxonomy.vocabulary.organization
+id: taxonomy_term.organization.field_org_image
+field_name: field_org_image
+entity_type: taxonomy_term
+bundle: organization
+label: 'Organization image'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
