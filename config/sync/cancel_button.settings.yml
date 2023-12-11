@@ -94,3 +94,182 @@ entity_type_cancel_destination:
   entity_form_mode:
     path: /admin/structure/display-modes/form
     enabled: true
+  block_content_basic:
+    path: /
+  block_content:
+    enabled: true
+  comment_comment:
+    path: /
+  config_split:
+    path: /
+    enabled: true
+  content_moderation_state:
+    path: /
+    enabled: true
+  embed_button:
+    path: /
+    enabled: true
+  entity_embed_fake_entity:
+    path: /
+    enabled: true
+  environment_indicator:
+    path: /
+    enabled: true
+  facets_facet:
+    path: /
+    enabled: true
+  facets_facet_source:
+    path: /
+    enabled: true
+  facets_summary:
+    path: /
+    enabled: true
+  flag:
+    path: /
+    enabled: true
+  flagging_bookmark:
+    path: /
+  flagging:
+    enabled: true
+  configurable_language:
+    path: /
+    enabled: true
+  language_content_settings:
+    path: /
+    enabled: true
+  linkit_profile:
+    path: /
+    enabled: true
+  media_audio:
+    path: /
+  media_document:
+    path: /
+  media_image:
+    path: /
+  media_remote_video:
+    path: /
+  media_video:
+    path: /
+  media:
+    enabled: true
+  media_type:
+    path: /
+    enabled: true
+  metatag_defaults:
+    path: /
+    enabled: true
+  node_article:
+    path: /
+  node_book:
+    path: /
+  node_data_set:
+    path: /
+  node_page:
+    path: /
+  openid_connect_client:
+    path: /
+    enabled: true
+  path_alias:
+    path: /
+    enabled: true
+  behavior_settings:
+    path: /
+    enabled: true
+  responsive_image_style:
+    path: /
+    enabled: true
+  rest_resource_config:
+    path: /
+    enabled: true
+  search_api_index:
+    path: /
+    enabled: true
+  search_api_server:
+    path: /
+    enabled: true
+  search_api_task:
+    path: /
+    enabled: true
+  search_api_saved_search_default:
+    path: /
+  search_api_saved_search:
+    enabled: true
+  search_api_saved_search_type:
+    path: /
+    enabled: true
+  solr_cache:
+    path: /
+    enabled: true
+  solr_field_type:
+    path: /
+    enabled: true
+  solr_request_dispatcher:
+    path: /
+    enabled: true
+  solr_request_handler:
+    path: /
+    enabled: true
+  shortcut_default:
+    path: /
+  taxonomy_term_common_data:
+    path: /
+  taxonomy_term_data_set_series:
+    path: /
+  taxonomy_term_data_set_type:
+    path: /
+  taxonomy_term_data_system:
+    path: /
+  taxonomy_term_data_type:
+    path: /
+  taxonomy_term_information_schedule:
+    path: /
+  taxonomy_term_metadata_type:
+    path: /
+  taxonomy_term_organization:
+    path: /
+  taxonomy_term_record_disposition:
+    path: /
+  taxonomy_term_record_life_cycle_duration:
+    path: /
+  taxonomy_term_record_special_flags:
+    path: /
+  taxonomy_term_security_classification:
+    path: /
+  taxonomy_term_source_system:
+    path: /
+  taxonomy_term_tags:
+    path: /
+  toc_type:
+    path: /
+    enabled: true
+  ultimate_cron_job:
+    path: /
+    enabled: true
+  webform:
+    path: /
+    enabled: false
+  webform_options:
+    path: /
+    enabled: false
+  webform_submission_contact:
+    path: /
+  webform_submission_create_data_set:
+    path: /
+  webform_submission:
+    enabled: false
+  webform_content_creator:
+    path: /
+    enabled: false
+  workflow:
+    path: /
+    enabled: true
+  pathauto_pattern:
+    path: /
+    enabled: true
+  paragraph_data_column:
+    path: /
+  paragraph:
+    enabled: true
+  paragraphs_type:
+    path: /
+    enabled: true
