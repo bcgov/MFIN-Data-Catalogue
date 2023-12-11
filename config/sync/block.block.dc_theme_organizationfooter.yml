@@ -1,0 +1,20 @@
+uuid: 2184845b-6214-460c-9066-a98175d317bb
+langcode: en
+status: true
+dependencies:
+  module:
+    - bc_dc
+  theme:
+    - dc_theme
+id: dc_theme_organizationfooter
+theme: dc_theme
+region: footer
+weight: -8
+provider: null
+plugin: bc_dc_org_footer
+settings:
+  id: bc_dc_org_footer
+  label: 'Organization footer'
+  label_display: visible
+  provider: bc_dc
+visibility: {  }
