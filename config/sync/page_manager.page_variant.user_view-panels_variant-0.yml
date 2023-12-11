@@ -10,6 +10,7 @@ dependencies:
     - views.view.saved_searches
     - webform.webform.create_data_set
   module:
+    - bc_dc
     - bcbb_search
     - panels
     - views
@@ -120,6 +121,20 @@ variant_settings:
       region: bottom_right
       weight: 0
       uuid: 7b3ccf83-f8ea-4e83-81b8-8dedc4dd4f02
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    e2eab0ed-cacc-47f9-b658-65a06787c711:
+      id: bc_dc_content_summary
+      label: 'Dashboard content summary'
+      label_display: '0'
+      provider: bc_dc
+      context_mapping:
+        user: '@user.current_user_context:current_user'
+      region: top_right
+      weight: 0
+      uuid: e2eab0ed-cacc-47f9-b658-65a06787c711
       css_classes:
         - ''
       html_id: ''
