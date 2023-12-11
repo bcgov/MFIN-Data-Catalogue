@@ -4,9 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.taxonomy_term.organization.field_data_custodian
+    - field.field.taxonomy_term.organization.field_footer_links
     - field.field.taxonomy_term.organization.field_information
     - taxonomy.vocabulary.organization
   module:
+    - link
     - path
     - text
 id: taxonomy_term.organization.default
@@ -21,6 +23,14 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_footer_links:
+    type: link_default
+    weight: 6
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
     third_party_settings: {  }
   field_information:
     type: text_textarea

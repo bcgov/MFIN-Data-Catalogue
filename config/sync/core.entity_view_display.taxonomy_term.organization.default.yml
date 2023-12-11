@@ -4,9 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.taxonomy_term.organization.field_data_custodian
+    - field.field.taxonomy_term.organization.field_footer_links
     - field.field.taxonomy_term.organization.field_information
     - taxonomy.vocabulary.organization
   module:
+    - link
     - text
 id: taxonomy_term.organization.default
 targetEntityType: taxonomy_term
@@ -20,6 +22,18 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_footer_links:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 2
     region: content
   field_information:
     type: text_default
