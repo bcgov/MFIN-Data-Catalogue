@@ -1,0 +1,10 @@
+uuid: ad631061-86e7-4803-9830-2eb0d618a002
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: taxonomy_term.bc_dc_org_footer
+label: 'Organization footer'
+targetEntityType: taxonomy_term
+cache: true

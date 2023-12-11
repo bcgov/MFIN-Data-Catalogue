@@ -1,0 +1,50 @@
+uuid: 46fd790b-e22d-4848-ae6d-e675c10fa61d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.bc_dc_org_footer
+    - field.field.taxonomy_term.organization.field_data_custodian
+    - field.field.taxonomy_term.organization.field_footer_links
+    - field.field.taxonomy_term.organization.field_information
+    - field.field.taxonomy_term.organization.field_org_image
+    - taxonomy.vocabulary.organization
+  module:
+    - layout_builder
+    - link
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: taxonomy_term.organization.bc_dc_org_footer
+targetEntityType: taxonomy_term
+bundle: organization
+mode: bc_dc_org_footer
+content:
+  field_footer_links:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_org_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  description: true
+  field_data_custodian: true
+  field_information: true
+  langcode: true
+  search_api_excerpt: true
