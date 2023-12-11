@@ -1,0 +1,11 @@
+nav {
+  &.navigation {
+    &.menu--footer {
+      .navbar-nav {
+        @include responsive($lg-min) {
+          flex-direction: row;
+        }
+      }
+    }
+  }
+}
