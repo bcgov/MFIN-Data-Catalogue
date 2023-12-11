@@ -85,7 +85,7 @@ jobs:
       with:
         cmd: |
           yq -i '.drupal.tag = strenv(GITHUB_REFERENCE) |
-                 .nginx.tag = strenv(GITHUB_REFERENCE) ' tenant-gitops/helm-drupal/values-mfin-data-catalogue.yaml
+                 .nginx.tag = strenv(GITHUB_REFERENCE) ' tenant-gitops/helm-drupal/charts/drupal/values-mfin-data-catalogue.yaml
 
     - name: Commit files
       run: |
