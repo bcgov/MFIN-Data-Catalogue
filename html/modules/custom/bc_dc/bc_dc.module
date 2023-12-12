@@ -539,6 +539,8 @@ function bc_dc_form_search_api_saved_search_default_create_form_alter(array &$fo
   // Update title and description for saved search block form control.
   $form['label']['widget'][0]['value']['#title'] = t('Name');
   $form['label']['widget'][0]['value']['#description'] = t('The name of the search as it will appear in your dashboard.');
+  // Hide cancel button.
+  $form['actions']['cancel']['#access'] = FALSE;
 }
 
 /**
