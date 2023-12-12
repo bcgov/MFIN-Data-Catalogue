@@ -56,6 +56,23 @@ class BcDcWorkflowBlockForm extends FormBase {
       return $form;
     }
 
+    // Prevent publishing when required fields are empty.
+    $empty_required = [];
+    foreach ($args['node']->getFields() as $field) {
+      $fieldDefinition = $field->getFieldDefinition();
+      if ($field->isEmpty() && $fieldDefinition->isRequired()) {
+        $empty_required[] = $fieldDefinition->getLabel();
+      }
+    }
+    if ($empty_required) {
+      $form['empty_required'] = [
+        '#theme' => 'item_list',
+        '#items' => $empty_required,
+        '#prefix' => '<p>' . $this->t('The following fields must be completed before publishing:') . '</p>',
+      ];
+      return $form;
+    }
+
     // Publishing block.
     $form['revision_log_message'] = [
       '#type' => 'textarea',

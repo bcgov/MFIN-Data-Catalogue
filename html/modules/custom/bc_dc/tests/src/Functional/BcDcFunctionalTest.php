@@ -1013,8 +1013,25 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     ];
     $this->submitForm($edit, 'Create');
     $this->assertSession()->pageTextContains('Metadata record created.');
-    // Add revision log message and publish.
+    // Go to build page for this node.
     $this->click('a[href = "/node/6/build"]');
+    // Message that required field is empty.
+    $this->assertSession()->elementExists('xpath', '//form[@id = "bc-dc-workflow-block-form"]
+      [p[text() = "The following fields must be completed before publishing:"]]
+      [//ul/li[text() = "Visibility"]]');
+    // No publish button.
+    $this->assertSession()->buttonNotExists('Publish');
+    // Complete the missing field.
+    $this->click('a[aria-label = "Edit Section 2"]');
+    $public_label = $this->xpath('//fieldset[@id = "edit-field-visibility--wrapper"]//label[text() = "Public"]');
+    $public_label = reset($public_label);
+    $edit = [
+      $public_label->getAttribute('for') => TRUE,
+    ];
+    $this->submitForm($edit, 'Save');
+    // Publish button now exists.
+    $this->assertSession()->buttonExists('Publish');
+    // Add revision log message and publish.
     $edit = [
       'edit-revision-log-message' => 'Revision log message ' . $this->randomString(),
     ];
