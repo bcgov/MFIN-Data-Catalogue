@@ -29,6 +29,7 @@ dependencies:
   - drupal:user
   - entity_embed:entity_embed
   - entity_reference_revisions:entity_reference_revisions
+  - field_group:field_group
   - field_permissions:field_permissions
   - field_token_value:field_token_value
   - flag:flag
