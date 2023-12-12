@@ -9,7 +9,7 @@ dependencies:
     - field.field.taxonomy_term.organization.field_org_image
     - taxonomy.vocabulary.organization
   module:
-    - link
+    - formatter_suite
     - text
 id: taxonomy_term.organization.default
 targetEntityType: taxonomy_term
@@ -25,14 +25,20 @@ content:
     weight: 0
     region: content
   field_footer_links:
-    type: link
+    type: formatter_suite_general_link
     label: above
     settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
+      titleStyle: text_from_link
+      titleCustomText: ''
+      classes: ''
+      showLink: '1'
+      openLinkIn: _self
+      linkTopic: any
+      listStyle: ul
+      listSeparator: ', '
+      noreferrer: 0
+      noopener: 0
+      nofollow: 0
     third_party_settings: {  }
     weight: 2
     region: content
