@@ -289,7 +289,7 @@ display:
           admin_label: ''
           entity_type: flagging
           plugin_id: flag_link
-          label: ''
+          label: Operations
           exclude: false
           alter:
             alter_text: false

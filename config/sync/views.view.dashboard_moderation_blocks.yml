@@ -245,7 +245,7 @@ display:
           admin_label: ''
           entity_type: node
           plugin_id: entity_link
-          label: ''
+          label: Operations
           exclude: false
           alter:
             alter_text: false
@@ -665,18 +665,13 @@ display:
           row_class: ''
           default_row_class: true
           columns:
-            changed: changed
             title: title
             uid: uid
+            changed: changed
+            view_node: view_node
+            nid: view_node
           default: '-1'
           info:
-            changed:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
             title:
               sortable: false
               default_sort_order: asc
@@ -685,6 +680,27 @@ display:
               empty_column: false
               responsive: ''
             uid:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            changed:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            view_node:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            nid:
               sortable: false
               default_sort_order: asc
               align: ''

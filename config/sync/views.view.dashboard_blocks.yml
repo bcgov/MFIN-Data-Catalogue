@@ -450,9 +450,10 @@ display:
           default_row_class: true
           columns:
             title: title
-            created: created
-            link_flag: link_flag
-            nid: nid
+            field_last_review_date: field_last_review_date
+            field_review_status: field_review_status
+            view_node: view_node
+            nid: view_node
           default: '-1'
           info:
             title:
@@ -462,14 +463,21 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            created:
+            field_last_review_date:
               sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            link_flag:
+            field_review_status:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            view_node:
               sortable: false
               default_sort_order: asc
               align: ''
@@ -733,7 +741,7 @@ display:
           admin_label: ''
           entity_type: node
           plugin_id: entity_link
-          label: ''
+          label: Operations
           exclude: false
           alter:
             alter_text: false
