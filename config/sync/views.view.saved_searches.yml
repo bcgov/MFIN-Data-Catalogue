@@ -311,7 +311,7 @@ display:
           admin_label: ''
           entity_type: search_api_saved_search
           plugin_id: entity_link_edit
-          label: ''
+          label: Operations
           exclude: false
           alter:
             alter_text: false
@@ -566,6 +566,67 @@ display:
             group_items: {  }
       style:
         type: table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          columns:
+            label: label
+            created: created
+            last_executed: last_executed
+            notify_interval: notify_interval
+            edit_search_api_saved_search: edit_search_api_saved_search
+            delete_search_api_saved_search: edit_search_api_saved_search
+          default: '-1'
+          info:
+            label:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            created:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            last_executed:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            notify_interval:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            edit_search_api_saved_search:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            delete_search_api_saved_search:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          override: true
+          sticky: false
+          summary: ''
+          empty_table: false
+          caption: ''
+          description: ''
       row:
         type: fields
       query:
