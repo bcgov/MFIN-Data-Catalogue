@@ -7,6 +7,7 @@ dependencies:
     - field.storage.node.field_primary_responsibility_org
     - node.type.data_set
     - taxonomy.vocabulary.organization
+    - user.role.administrator
     - user.role.data_catalogue_administrator
   module:
     - csv_serialization
@@ -377,6 +378,7 @@ display:
         type: role
         options:
           role:
+            administrator: administrator
             data_catalogue_administrator: data_catalogue_administrator
       cache:
         type: none
