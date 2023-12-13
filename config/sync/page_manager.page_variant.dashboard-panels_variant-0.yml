@@ -47,7 +47,7 @@ variant_settings:
       provider: bcbb_other
       context_mapping: {  }
       content:
-        value: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>'
+        value: '<p>The Finance Data Catalogue enables users to discover data and data-related assets at the BC Ministry of Finance offering information and functionality that benefits consumers of data for business purposes. It is one of the foundational pieces in the Ministry’s multi-year Strategic Data Plan.</p><p>The Finance Data Catalogue is built on Drupal and adheres to the Government of BC''s Core Metadata Standard.</p><p>Data-specific inquiries are best directed to the point of contact listed within the subject metadata record within the Catalogue.</p><p>Please <a href="mailto:Nicole.deGreef@gov.bc.ca?subject=Finance%20Data%20Catalogue%20Inquiry">contact the Finance Data Catalogue team</a> with any questions or concerns about the Catalogue product.</p>'
         format: basic_html
       region: first
       weight: 0
