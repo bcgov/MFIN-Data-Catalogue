@@ -11,7 +11,7 @@ entity_type: taxonomy_term
 bundle: organization
 label: 'Data custodian'
 description: 'This is the position responsible for data sets in this office, for example Assistant Deputy Minister, Executive Director, or Director'
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''

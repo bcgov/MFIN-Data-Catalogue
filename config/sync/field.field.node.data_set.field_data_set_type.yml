@@ -12,7 +12,7 @@ entity_type: node
 bundle: data_set
 label: 'Data set type'
 description: 'Classify the item according to type, sub-type and format as applicable. <a href="/node/67">more information…</a>'
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
