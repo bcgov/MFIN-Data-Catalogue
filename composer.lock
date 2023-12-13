@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5c117752f2c08e6323da01313505a66f",
+    "content-hash": "626bd26cabde8d3dfe6d9a0a2efdb595",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3793,6 +3793,59 @@
             "homepage": "https://www.drupal.org/project/form_mode_control",
             "support": {
                 "source": "https://git.drupalcode.org/project/form_mode_control"
+            }
+        },
+        {
+            "name": "drupal/formatter_suite",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/formatter_suite.git",
+                "reference": "2.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/formatter_suite-2.0.0.zip",
+                "reference": "2.0.0",
+                "shasum": "1c6c0fc11d381c10a7b13c51ec2848ae91b40cec"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.0",
+                    "datestamp": "1694036572",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "thecooltechguy",
+                    "homepage": "https://www.drupal.org/user/3674323"
+                },
+                {
+                    "name": "toamit",
+                    "homepage": "https://www.drupal.org/user/2820523"
+                }
+            ],
+            "description": "Field formaters to present numbers, text, links, etc.",
+            "homepage": "https://www.drupal.org/project/formatter_suite",
+            "keywords": [
+                "Drupal",
+                "Format"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/formatter_suite",
+                "issues": "http://drupal.org/project/issues/formatter_suite"
             }
         },
         {

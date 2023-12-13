@@ -1,8 +1,9 @@
-uuid: 8fa301a8-467c-418d-806c-785b57e5f427
+uuid: 46fd790b-e22d-4848-ae6d-e675c10fa61d
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.taxonomy_term.bc_dc_org_footer
     - field.field.taxonomy_term.organization.field_data_custodian
     - field.field.taxonomy_term.organization.field_footer_links
     - field.field.taxonomy_term.organization.field_information
@@ -10,23 +11,19 @@ dependencies:
     - taxonomy.vocabulary.organization
   module:
     - formatter_suite
-    - text
-id: taxonomy_term.organization.default
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: taxonomy_term.organization.bc_dc_org_footer
 targetEntityType: taxonomy_term
 bundle: organization
-mode: default
+mode: bc_dc_org_footer
 content:
-  field_data_custodian:
-    type: string
-    label: inline
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 0
-    region: content
   field_footer_links:
     type: formatter_suite_general_link
-    label: above
+    label: hidden
     settings:
       titleStyle: text_from_link
       titleCustomText: ''
@@ -40,25 +37,20 @@ content:
       noopener: 0
       nofollow: 0
     third_party_settings: {  }
-    weight: 2
-    region: content
-  field_information:
-    type: text_default
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
     weight: 1
     region: content
   field_org_image:
     type: entity_reference_entity_view
-    label: above
+    label: hidden
     settings:
       view_mode: default
       link: false
     third_party_settings: {  }
-    weight: 3
+    weight: 0
     region: content
 hidden:
   description: true
+  field_data_custodian: true
+  field_information: true
   langcode: true
   search_api_excerpt: true

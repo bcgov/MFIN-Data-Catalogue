@@ -4,11 +4,32 @@ status: true
 dependencies:
   config:
     - field.field.taxonomy_term.organization.field_data_custodian
+    - field.field.taxonomy_term.organization.field_footer_links
     - field.field.taxonomy_term.organization.field_information
+    - field.field.taxonomy_term.organization.field_org_image
     - taxonomy.vocabulary.organization
   module:
-    - path
+    - field_group
+    - link
+    - media_library
     - text
+third_party_settings:
+  field_group:
+    group_custom_footer:
+      children:
+        - field_org_image
+        - field_footer_links
+      label: 'Custom footer'
+      region: content
+      parent_name: ''
+      weight: 3
+      format_type: fieldset
+      format_settings:
+        classes: 'card text-bg-light mb-3 p-3'
+        show_empty_fields: false
+        id: ''
+        description: 'Customize the footer for this org'
+        required_fields: true
 id: taxonomy_term.organization.default
 targetEntityType: taxonomy_term
 bundle: organization
@@ -22,6 +43,14 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_footer_links:
+    type: link_default
+    weight: 9
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
   field_information:
     type: text_textarea
     weight: 2
@@ -30,12 +59,12 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-  langcode:
-    type: language_select
-    weight: 3
+  field_org_image:
+    type: media_library_widget
+    weight: 8
     region: content
     settings:
-      include_locked: true
+      media_types: {  }
     third_party_settings: {  }
   name:
     type: string_textfield
@@ -45,18 +74,14 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  path:
-    type: path
-    weight: 4
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 5
+    weight: 4
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
 hidden:
   description: true
+  langcode: true
+  path: true

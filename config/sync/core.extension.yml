@@ -39,6 +39,7 @@ module:
   facets: 0
   facets_summary: 0
   field: 0
+  field_group: 0
   field_permissions: 0
   field_token_value: 0
   field_ui: 0
@@ -46,6 +47,7 @@ module:
   filter: 0
   flag: 0
   form_mode_control: 0
+  formatter_suite: 0
   help: 0
   history: 0
   image: 0

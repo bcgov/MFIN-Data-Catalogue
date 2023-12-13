@@ -5,7 +5,8 @@
 '../../../contrib/bcbb_theme/scss/variables',
 '../../../contrib/bcbb_theme/assets/bootstrap-icons/bi.scss',
 '../../../contrib/bcbb_theme/scss/functions',
-'../../../contrib/bcbb_theme/scss/mixins';
+'../../../contrib/bcbb_theme/scss/mixins'
+;
 
 @import
 // local styles
@@ -16,5 +17,6 @@
 './components/dashboard',
 'page-node-type-data-set',
 './blocks/block--system-menu-block--footer',
+'./blocks/block-dc-theme-organizationfooter',
 'overrides'
 ;

@@ -82,6 +82,17 @@ function bc_dc_preprocess_flag(array &$variables): void {
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for taxonomy-term--organization.html.twig.
+ */
+function bc_dc_preprocess_taxonomy_term__organization(array &$variables): void {
+  if ($variables['view_mode'] === 'bc_dc_org_footer') {
+    // Hide second display of term title. The block title will display and is
+    // set to the term name in BcDcOrgFooter.
+    $variables['page'] = TRUE;
+  }
+}
+
+/**
  * Return the number of bookmarks on a given entity.
  *
  * @param \Drupal\Core\Entity\EntityInterface $entity
