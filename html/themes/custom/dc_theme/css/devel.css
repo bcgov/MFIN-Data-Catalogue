@@ -3,6 +3,10 @@
  * CSS needed during development
  */
 
+/* Form labels always bold */
+label {
+  font-weight: bold;
+}
 
 /* Margin between dashboard items. */
 div.dc-dashboard-actions,
