@@ -32,7 +32,7 @@ variant_settings:
         label_sr_only: false
         search_input_size: false
         search_input_size_value: null
-        show_advanced_link: true
+        show_advanced_link: false
       region: second
       weight: 0
       uuid: 911500f9-9c75-43ca-a73c-1551a9b198fa
