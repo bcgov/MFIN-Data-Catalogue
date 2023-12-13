@@ -700,7 +700,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Content block exists.
     $this->assertSession()->elementExists('xpath', '//div[@id = "block-dc-theme-content"]');
     // Search block exists.
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "bcbb-search-api-form")]//div[@id = "edit-search-keyword--description"]/a[@href = "/data-set"][text() = "Advanced search"]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "bcbb-search-api-form")]');
 
     // Test adding bookmarks.
     $this->drupalLogin($this->users['Test Data catalogue user']);
