@@ -254,3 +254,12 @@ function dc_theme_preprocess_views_view_fields(array &$variables): void {
     $variables['fields']['nothing']->element_type = NULL;
   }
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for field-multiple-value-form.html.twig.
+ */
+function dc_theme_preprocess_field_multiple_value_form(array &$variables): void {
+  if (isset($variables['table']['#header'][0]['data']['#tag']) && $variables['table']['#header'][0]['data']['#tag'] === 'h4') {
+    $variables['table']['#header'][0]['data']['#tag'] = 'label';
+  }
+}
