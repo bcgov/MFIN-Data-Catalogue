@@ -632,3 +632,36 @@ function bc_dc_form_user_form_alter(array &$form, FormStateInterface $form_state
     $form['account']['#access'] = FALSE;
   }
 }
+
+/**
+ * Implements hook_field_widget_complete_form_alter.
+ *
+ * Adds after_build to remove help with text formats link.
+ */
+function bc_dc_field_widget_complete_form_alter(&$field_widget_complete_form, FormStateInterface $form_state, $context) {
+  $elements = &$field_widget_complete_form['widget'];
+  $type = $context['widget']->getPluginId();
+  $text_types = [
+    'text_textarea_with_summary',
+    'text_textarea',
+  ];
+  if (in_array($type, $text_types)) {
+    $elements[0]['#after_build'][] = '_bc_dc_remove_textarea_help';
+  }
+}
+
+/**
+ * Custom #after_build callback.
+ */
+function _bc_dc_remove_textarea_help($form_element, FormStateInterface $form_state) {
+  if (isset($form_element['format'])) {
+    // All this stuff is needed to hide the help text.
+    unset($form_element['format']['guidelines']);
+    unset($form_element['format']['help']);
+    unset($form_element['format']['#type']);
+    unset($form_element['format']['#theme_wrappers']);
+  }
+
+  return $form_element;
+}
+
