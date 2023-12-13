@@ -4,8 +4,10 @@ status: true
 dependencies:
   config:
     - page_manager.page.user_manage
+    - views.view.metadata_record_management
   module:
     - panels
+    - views
 id: user_manage-panels_variant-0
 label: Panels
 weight: 0
@@ -15,9 +17,24 @@ variant_settings:
   label: null
   weight: 0
   uuid: 5728a3bf-1cc5-470a-8980-6fcae86605a2
-  blocks: {  }
+  blocks:
+    8a026128-8219-4e52-9ab9-79ebed4d1035:
+      id: 'views_block:metadata_record_management-block_1'
+      label: ''
+      label_display: visible
+      provider: views
+      context_mapping: {  }
+      views_label: ''
+      items_per_page: none
+      region: main
+      weight: 0
+      uuid: 8a026128-8219-4e52-9ab9-79ebed4d1035
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
   page_title: Manage
-  layout: bcbb_main_sidebar_right
+  layout: bcbb_bricks
   layout_settings:
     label: ''
   builder: standard
