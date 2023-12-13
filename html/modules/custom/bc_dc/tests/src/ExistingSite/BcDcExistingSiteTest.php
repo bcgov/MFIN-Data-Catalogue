@@ -90,6 +90,9 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     $this->drupalGet('data-set');
     $this->assertSession()->statusCodeEquals(200);
 
+    // Saved search block does not have a cancel button.
+    $this->assertSession()->elementNotExists('xpath', '//form[@id = "search-api-saved-search-default-create-form"]//a[@id = "edit-cancel"]');
+
     // Search results download.
     $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-id-site_search")]//div[contains(@class, "row")]/div[contains(@class, "views-field-views-bulk-operations-bulk-form")]');
     $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-id-site_search")]//input[@id = "edit-select-all"][contains(@class, "vbo-select-all")]');
