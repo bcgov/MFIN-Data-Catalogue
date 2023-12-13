@@ -91,7 +91,7 @@ content:
         trim_zero: false
         replace_tokens: false
     third_party_settings: {  }
-    weight: 3
+    weight: 4
     region: content
   field_modified_date:
     type: datetime_default
@@ -108,7 +108,7 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 4
+    weight: 5
     region: content
   field_published_date:
     type: datetime_default
@@ -119,13 +119,22 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
+  field_review_interval:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
   field_visibility:
     type: entity_reference_label
     label: above
     settings:
       link: false
     third_party_settings: {  }
-    weight: 5
+    weight: 6
     region: content
 hidden:
   content_moderation_control: true
@@ -142,7 +151,6 @@ hidden:
   field_is_complete_review: true
   field_last_review_date: true
   field_personal_information: true
-  field_review_interval: true
   field_review_status: true
   field_security_classification: true
   field_semi_active_period: true
