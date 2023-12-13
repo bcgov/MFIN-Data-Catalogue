@@ -634,7 +634,7 @@ function bc_dc_form_user_form_alter(array &$form, FormStateInterface $form_state
 }
 
 /**
- * Implements hook_field_widget_complete_form_alter.
+ * Implements hook_field_widget_complete_form_alter().
  *
  * Adds after_build to remove help with text formats link.
  */
@@ -664,4 +664,3 @@ function _bc_dc_remove_textarea_help($form_element, FormStateInterface $form_sta
 
   return $form_element;
 }
-
