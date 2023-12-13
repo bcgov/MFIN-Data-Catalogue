@@ -454,6 +454,14 @@ class BcDcAddColumnsForm extends FormBase {
       '#type' => 'link',
       '#title' => $this->t('Cancel'),
       '#url' => $cancel_url,
+      '#attributes' => [
+        'class' => [
+          'button',
+          'cancel',
+          'btn',
+          'btn-danger',
+        ],
+      ],
     ];
 
     return $form;
