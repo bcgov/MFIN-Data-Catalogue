@@ -1103,7 +1103,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-data-sets-used")]/div[@class = "field__items"]/div[@class = "field__item"]/a[text() = :data_set_title]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     // View page still does not have field_data_sets_used.
-    $this->clickLink('View');
+    $this->clickLink('Current published');
     $this->assertSession()->elementNotExists('xpath', '//div[text() = "Data sets used"]');
     // Publish the changes.
     $this->clickLink('Build');
