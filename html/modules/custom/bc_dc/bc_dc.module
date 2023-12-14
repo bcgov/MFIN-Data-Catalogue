@@ -6,6 +6,7 @@
  */
 
 use Drupal\bc_dc\Controller\BcDcCreateFileController;
+use Drupal\Core\Access\AccessResultAllowed;
 use Drupal\Core\Breadcrumb\Breadcrumb;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
@@ -594,7 +595,21 @@ function bc_dc_menu_local_tasks_alter(array &$data, string $route_name, Refinabl
   //
   // Only act on data_set nodes.
   $node = \Drupal::routeMatch()->getParameter('node');
+  if (is_numeric($node)) {
+    $node = \Drupal::entityTypeManager()->getStorage('node')->load($node);
+  }
   if (($node instanceof NodeInterface) && $node->bundle() == 'data_set') {
+    // Rename tabs for clarity.
+    if (isset($data['tabs'][0]['content_moderation.workflows:node.latest_version_tab'])) {
+      if ($data['tabs'][0]['content_moderation.workflows:node.latest_version_tab']['#access'] instanceof AccessResultAllowed) {
+        $data['tabs'][0]['entity.node.canonical']['#link']['title'] = t('Current published');
+        $data['tabs'][0]['content_moderation.workflows:node.latest_version_tab']['#link']['title'] = t('View draft');
+      }
+      elseif (!$node->isPublished() && $node->isLatestRevision()) {
+        $data['tabs'][0]['entity.node.canonical']['#link']['title'] = t('View draft');
+      }
+    }
+
     // Do nothing for administrators.
     $user = \Drupal::currentUser();
     if (!in_array('administrator', $user->getRoles())) {
