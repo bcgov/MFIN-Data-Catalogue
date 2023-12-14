@@ -349,32 +349,10 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   margin: 0 0.25em;
 }
 
-/* fields on data set node view
-
-.dc-dictionary .field--label-inline {
-  display: flex;
+.node--unpublished {
+  background-color: transparent;
 }
 
-.dc-dictionary .field--label-inline .field__label {
-  min-width: 18em;
-  max-width: 18em;
-  font-weight: normal;
-}
-
-.dc-dictionary .field {
-  padding: .75em 0;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.dc-dictionary .field:first-child {
-  border-top: 1px solid #e0e0e0;
-}
-
-.dc-dictionary .field:last-child {
-  border-bottom: 0px solid transparent;
-}
-
-*/
 @media only screen and (min-width: 992px) {
   nav.navigation.menu--footer .navbar-nav {
     flex-direction: row;
