@@ -1953,7 +1953,7 @@ display:
               allow_secondary: false
               secondary_label: 'Advanced options'
               secondary_open: false
-              reset_button_always_show: true
+              reset_button_always_show: false
             filter:
               search_api_fulltext:
                 plugin_id: default
