@@ -1,6 +1,6 @@
 uuid: 64768daf-bc8a-4b8c-880c-7a0120b17032
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - search_api_db
@@ -14,7 +14,7 @@ backend_config:
   database: 'default:default'
   min_chars: 3
   matching: words
+  phrase: disabled
   autocomplete:
     suggest_suffix: true
     suggest_words: true
-  phrase: disabled
