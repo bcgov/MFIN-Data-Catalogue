@@ -140,29 +140,38 @@ function dc_theme_preprocess_node__data_set__full(array &$variables): void {
   // Display field_visibility as list of all orgs with access.
   //
   // No access for anonymous.
-  if (\Drupal::currentUser()->isAnonymous()) {
-    $variables['field_visibility'] = NULL;
-  }
-  else {
-    // Make a list of all orgs in field_visibility.
+  $variables['field_visibility'] = NULL;
+  if (\Drupal::currentUser()->isAuthenticated()) {
+    // Make a list of all orgs in field_visibility and check for special vaules.
+    $special_access_flags = [
+      'pub' => 'field_visibility_success',
+      'auth' => 'field_visibility_warning',
+    ];
     $visibility_orgs = [];
     foreach ($variables['node']->field_visibility->getValue() as $visibility) {
       $term = $taxonomy_term_storage->load($visibility['target_id']);
       if ($term instanceof TermInterface) {
         $visibility_orgs[] = $term->label();
+        // If this term has an access flag included in $special_access_flags,
+        // then this term will be the only one displayed. Use the class from
+        // $special_access_flags. There should not be both pub/auth and other
+        // terms selected, but it could happen.
+        $field_access_flag = $term->field_access_flag->value;
+        if (isset($special_access_flags[$field_access_flag])) {
+          $variables['field_visibility_wrapper_class'] = $special_access_flags[$field_access_flag];
+          $variables['field_visibility'] = $term->label();
+          // The term 'pub' takes precedence over 'auth', so exist when it has
+          // been found. If an 'auth' term has been found, check the rest in
+          // case 'pub' is given as well.
+          if ($field_access_flag === 'pub') {
+            break;
+          }
+        }
       }
     }
-    // If there is only one org and it is a special one, use that value.
-    if (count($visibility_orgs) === 1 && $visibility_orgs[0] === (string) t('Public')) {
-      $variables['field_visibility_wrapper_class'] = 'field_visibility_success';
-      $variables['field_visibility'] = $visibility_orgs[0];
-    }
-    elseif (count($visibility_orgs) === 1 && $visibility_orgs[0] === (string) t('Government of BC employees')) {
-      $variables['field_visibility_wrapper_class'] = 'field_visibility_warning';
-      $variables['field_visibility'] = $visibility_orgs[0];
-    }
-    // Otherwise, display a list of orgs with access, adding OPR.
-    else {
+
+    // Special not selected, display a list of orgs with access, adding OPR.
+    if (!$variables['field_visibility']) {
       // Add field_primary_responsibility_org to the list.
       $field_primary_responsibility_org = $variables['node']->field_primary_responsibility_org->get(0);
       if ($field_primary_responsibility_org) {
