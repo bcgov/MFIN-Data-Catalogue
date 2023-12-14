@@ -344,20 +344,20 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Build page does not link to referenced entities.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "field--type-entity-reference")]//a');
 
-    // Check for fields that are optional and have inline labels.
+    // Check for fields that have inline labels.
     $fields_inline_optional = [
-      'field--name-field-series' => 'Series',
-      'field--name-field-last-review-date' => 'Last review date',
-      'field--name-field-security-classification' => 'Security classification',
-      'field--name-field-source-system' => 'Source system',
-      'field--name-field-data-set-type' => 'Data set type',
-      'field--name-field-information-schedule' => 'Information schedule',
+      'field--name-field-series' => ['label' => 'Series', 'text' => 'Optional'],
+      'field--name-field-last-review-date' => ['label' => 'Last review date', 'text' => 'Never'],
+      'field--name-field-security-classification' => ['label' => 'Security classification', 'text' => 'Required'],
+      'field--name-field-source-system' => ['label' => 'Source system', 'text' => 'Optional'],
+      'field--name-field-data-set-type' => ['label' => 'Data set type', 'text' => 'Required'],
+      'field--name-field-information-schedule' => ['label' => 'Information schedule', 'text' => 'Optional'],
     ];
-    foreach ($fields_inline_optional as $class => $label) {
+    foreach ($fields_inline_optional as $class => $field) {
       $args = [
         ':class' => $class,
-        ':label' => $label,
-        ':text' => $class === 'field--name-field-last-review-date' ? 'Never' : 'Optional',
+        ':label' => $field['label'],
+        ':text' => $field['text'],
       ];
       $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div/em[text() = :text]', $args);
       $this->assertSession()->elementExists('xpath', $xpath);
@@ -377,9 +377,31 @@ class BcDcFunctionalTest extends BrowserTestBase {
       $this->assertSession()->elementExists('xpath', $xpath);
     }
 
+    // Create data_set_type term.
+    $data_set_type_term = Term::create([
+      'vid' => 'data_set_type',
+      'name' => 'SQL',
+    ]);
+    $data_set_type_term->save();
+    // Complete required fields in section 1.
+    $this->click('a[aria-label = "Edit Section 1"]');
+    $edit = [
+      'edit-field-data-set-type' => $data_set_type_term->id(),
+    ];
+    $this->submitForm($edit, 'Save');
+
+    // Create security_classification term.
+    $security_classification_term = Term::create([
+      'vid' => 'security_classification',
+      'name' => 'Confidential - Protected eh?',
+    ]);
+    $security_classification_term->save();
     // Save Section 4 so that the boolean values are FALSE instead of empty.
     $this->click('a[aria-label = "Edit Section 4"]');
-    $this->submitForm([], 'Save');
+    $edit = [
+      'field_security_classification' => $security_classification_term->id(),
+    ];
+    $this->submitForm($edit, 'Save');
     // Check for fields that are boolean and have inline labels.
     $fields_inline_optional = [
       'field--name-field-critical-information' => 'Critical information',
@@ -397,16 +419,17 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Check for fields that are optional and normally have labels above.
     // Labels are inline when the field is empty.
     $fields_inline_optional = [
-      'field--name-body' => 'Data set description',
-      'field--name-field-data-quality-issues' => 'Data quality issues',
-      'field--name-field-data-set-historical-change' => 'Data set historical change',
+      'field--name-body' => ['label' => 'Data set description', 'text' => 'Required'],
+      'field--name-field-data-quality-issues' => ['label' => 'Data quality issues', 'text' => 'Optional'],
+      'field--name-field-data-set-historical-change' => ['label' => 'Data set historical change', 'text' => 'Optional'],
     ];
-    foreach ($fields_inline_optional as $class => $label) {
+    foreach ($fields_inline_optional as $class => $field) {
       $args = [
         ':class' => $class,
-        ':label' => $label,
+        ':label' => $field['label'],
+        ':text' => $field['text'],
       ];
-      $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div/em[text() = "Optional"]', $args);
+      $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div/em[text() = :text]', $args);
       $this->assertSession()->elementExists('xpath', $xpath);
     }
 
@@ -1021,12 +1044,26 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       [//ul/li[text() = "Visibility"]]');
     // No publish button.
     $this->assertSession()->buttonNotExists('Publish');
-    // Complete the missing field.
+    // Complete the missing fields.
+    // Section 1.
+    $this->click('a[aria-label = "Edit Section 1"]');
+    $edit = [
+      'edit-field-data-set-type' => $data_set_type_term->id(),
+    ];
+    $this->submitForm($edit, 'Save');
+    // Section 2.
     $this->click('a[aria-label = "Edit Section 2"]');
     $public_label = $this->xpath('//fieldset[@id = "edit-field-visibility--wrapper"]//label[text() = "Public"]');
     $public_label = reset($public_label);
     $edit = [
+      'edit-body-0-value' => 'Data set description ' . $this->randomString(),
       $public_label->getAttribute('for') => TRUE,
+    ];
+    $this->submitForm($edit, 'Save');
+    // Section 4.
+    $this->click('a[aria-label = "Edit Section 4"]');
+    $edit = [
+      'field_security_classification' => $security_classification_term->id(),
     ];
     $this->submitForm($edit, 'Save');
     // Publish button now exists.
