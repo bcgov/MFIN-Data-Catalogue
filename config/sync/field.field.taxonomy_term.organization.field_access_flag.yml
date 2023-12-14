@@ -1,0 +1,21 @@
+uuid: 56c86836-addd-4533-b553-d2afd07503cc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_access_flag
+    - taxonomy.vocabulary.organization
+  module:
+    - options
+id: taxonomy_term.organization.field_access_flag
+field_name: field_access_flag
+entity_type: taxonomy_term
+bundle: organization
+label: 'Access flag'
+description: "<ul>\r\n  <li>Set to <em>- None -</em> if this is an organizational unit staff belong to. This is the default.</li>\r\n  <li>Set to <em>Public</em> if this term (organization) is for anonymous users.</li> \r\n  <li>Set to <em>Authenticated</em> if this term (organization) is for people logged in with an IDIR account and belong to no other organization.</li>\r\n</ul>"
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

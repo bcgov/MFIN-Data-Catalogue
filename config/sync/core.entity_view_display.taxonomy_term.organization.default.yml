@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.taxonomy_term.organization.field_access_flag
     - field.field.taxonomy_term.organization.field_data_custodian
     - field.field.taxonomy_term.organization.field_footer_links
     - field.field.taxonomy_term.organization.field_information
@@ -60,5 +61,6 @@ content:
     region: content
 hidden:
   description: true
+  field_access_flag: true
   langcode: true
   search_api_excerpt: true

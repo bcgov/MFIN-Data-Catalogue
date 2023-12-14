@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.taxonomy_term.bc_dc_org_footer
+    - field.field.taxonomy_term.organization.field_access_flag
     - field.field.taxonomy_term.organization.field_data_custodian
     - field.field.taxonomy_term.organization.field_footer_links
     - field.field.taxonomy_term.organization.field_information
@@ -50,6 +51,7 @@ content:
     region: content
 hidden:
   description: true
+  field_access_flag: true
   field_data_custodian: true
   field_information: true
   langcode: true
