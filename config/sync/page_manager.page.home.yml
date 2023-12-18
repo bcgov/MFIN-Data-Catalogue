@@ -1,12 +1,12 @@
-uuid: 2f0aa5e0-46a0-4b52-ac19-a582498fae89
+uuid: bc1c64f3-a09d-481c-aad7-92a21e069523
 langcode: en
 status: true
 dependencies: {  }
-id: dashboard
-label: Dashboard
+id: home
+label: Home
 description: ''
 use_admin_theme: false
-path: /dashboard
+path: /home
 access_logic: and
 access_conditions: {  }
 parameters: {  }

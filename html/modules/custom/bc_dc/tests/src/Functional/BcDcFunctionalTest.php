@@ -719,7 +719,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->statusCodeEquals(200);
 
     // Anonymous dashboard.
-    $this->drupalGet('dashboard');
+    $this->drupalGet('home');
     // Content block exists.
     $this->assertSession()->elementExists('xpath', '//div[@id = "block-dc-theme-content"]');
     // Search block exists.

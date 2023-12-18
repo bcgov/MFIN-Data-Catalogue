@@ -1,15 +1,15 @@
-uuid: e0c5d8d1-122a-477a-95d0-b46788d8d27c
+uuid: 1bd39374-050b-47d9-8882-de444d349327
 langcode: en
 status: true
 dependencies:
   config:
-    - page_manager.page.dashboard
+    - page_manager.page.home
   module:
     - bcbb_other
     - bcbb_search
     - panels
-id: dashboard-panels_variant-0
-label: 'Anonymous dashboard'
+id: home-panels_variant-0
+label: Home
 weight: -10
 variant: panels_variant
 variant_settings:
@@ -56,19 +56,19 @@ variant_settings:
         - ''
       html_id: ''
       css_styles: ''
-  page_title: 'Ministry of Finance Data catalogue'
+  page_title: ''
   layout: layout_twocol_section
   layout_settings:
     label: ''
     column_widths: 50-50
   builder: standard
   storage_type: page_manager
-  storage_id: dashboard-panels_variant-0
+  storage_id: home-panels_variant-0
   css_classes:
     - ''
   html_id: ''
   css_styles: ''
-page: dashboard
+page: home
 selection_criteria: {  }
 selection_logic: and
 static_context: {  }
