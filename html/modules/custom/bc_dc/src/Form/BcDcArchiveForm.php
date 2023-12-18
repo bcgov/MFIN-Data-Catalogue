@@ -142,8 +142,12 @@ class BcDcArchiveForm extends ConfirmFormBase implements AccessInterface {
    *   The access result.
    */
   public static function access(AccountInterface $account, RouteMatch $route_match): AccessResultInterface {
-    // The user must have the permission plus be able to edit the node.
-    if ($account->hasPermission('archive data_set nodes')) {
+    $entity = $route_match->getParameter('node');
+    $entity_owner = $entity->getOwnerId();
+
+    // The user has access if they are able to edit the entity and either has
+    // the permission or are the owner of the entity.
+    if ($account->hasPermission('archive data_set nodes') || ($entity_owner && $entity_owner === $account->id())) {
       return BuildEditAccess::access($account, $route_match);
     }
 
