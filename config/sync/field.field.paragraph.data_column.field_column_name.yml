@@ -10,7 +10,7 @@ field_name: field_column_name
 entity_type: paragraph
 bundle: data_column
 label: 'Column name'
-description: 'he name of the column in the dataset.'
+description: 'The name of the column in the dataset.'
 required: true
 translatable: false
 default_value: {  }

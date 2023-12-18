@@ -10,7 +10,7 @@ field_name: field_provenance_form_name
 entity_type: paragraph
 bundle: data_column
 label: 'Provenance form name'
-description: 'The plain language name of the form. <em>e.g.: Foreign Income Verification Statement</em>'
+description: 'The plain language name of the form, <em>e.g.: Foreign Income Verification Statement</em>.'
 required: false
 translatable: false
 default_value: {  }
