@@ -10,7 +10,7 @@ field_name: field_critical_information
 entity_type: node
 bundle: data_set
 label: 'Critical information'
-description: "This dataset contains information critical to the public interest or government business continuity. < a href=\"/node/72#critical-information\">more information…</a>\r\n"
+description: 'This data set contains information critical to the public interest or government business continuity. <a href="/node/72#critical-information">more information…</a>'
 required: false
 translatable: false
 default_value: {  }

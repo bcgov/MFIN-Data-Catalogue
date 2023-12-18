@@ -162,7 +162,7 @@ content:
     region: content
   field_personal_information:
     type: boolean
-    label: above
+    label: inline
     settings:
       format: default
       format_custom_false: ''

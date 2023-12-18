@@ -6,7 +6,7 @@
     flex-basis: auto;
   }
   img {
-    $size: 200px;
+    $size: 150px;
     max-width: $size !important;
     max-height: $size !important;
     height: auto;
@@ -38,10 +38,12 @@
       flex-basis: calc(100% / $cols - $gap-col);
       a,
       a:hover,
-      a:focus {
+      a:focus,
+      a:visited {
         color: #fff;
       }
-      a {
+      a,
+      a:visited {
         text-decoration: none;
       }
       a:hover,

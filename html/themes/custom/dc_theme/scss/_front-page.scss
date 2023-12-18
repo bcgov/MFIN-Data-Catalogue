@@ -1,0 +1,26 @@
+.path-frontpage {
+
+  .region-content {
+
+    margin-top: 3em;
+    margin-bottom: 2em;
+
+    .layout__region--first {
+      @include responsive {
+        padding-right: 3rem;
+      }
+    }
+
+    .layout__region--second {
+      background-color:  RGBA(var(--bs-light-rgb));
+      border: var(--bs-border-width) solid var(--bs-border-color-translucent);
+      border-radius: var(--bs-border-radius);
+      padding: 2rem 1.5rem 1rem;
+
+    }
+
+
+
+  }
+
+}

@@ -31,7 +31,7 @@ variant_settings:
       weight: -5
       uuid: 0552e311-d766-4d1c-b1f3-5f87e5000e94
       css_classes:
-        - ''
+        - meta-data-record-build
       html_id: ''
       css_styles: ''
     3e40db8e-7871-483c-9ed0-6580c5a54c15:
@@ -218,7 +218,7 @@ variant_settings:
   storage_type: page_manager
   storage_id: data_set_build-panels_variant-0
   css_classes:
-    - ar-build
+    - meta-data-record-build
   html_id: ''
   css_styles: ''
 page: data_set_build

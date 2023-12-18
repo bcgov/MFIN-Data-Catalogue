@@ -21,15 +21,15 @@
 
   <div{{ content_attributes.addClass('node__content') }}>
 
-    <div class="container">
+    <div class="container meta-data-record-view">
 
       {{ drupal_block('bc_dc_review_needed_message') }}
 
       {% if node.field_personal_information.value == 1 %}
-        <div id="dataset_alerts" class="mb-2">
+        <div id="dataset_alerts" class="dataset-alerts">
          <span class="badge text-bg-warning">{{ node.field_personal_information.fieldDefinition.label }}</span>
          {% if node.field_high_value_info.value %}
-         <span class="badge text-bg-success">{{ node.field_high_value_info.fieldDefinition.label }}</span>
+           <span class="badge text-bg-success">{{ node.field_high_value_info.fieldDefinition.label }}</span>
          {% endif %}
         </div>
       {% endif %}
@@ -38,38 +38,40 @@
 
         <section id="dc_data_details_description" class="col-lg-6">
 
-          {% if node.field_data_set_type and not node.field_data_set_type.isempty %}
-            <div class="mb-3">
-              {{ node.field_data_set_type|view }}
-            </div>
-          {% endif %}
+          <div id="dc_data_details" class="mb-4">
+            {% if node.field_data_set_type and not node.field_data_set_type.isempty %}
+              <div class="mb-3">
+                {{ node.field_data_set_type|view }}
+              </div>
+            {% endif %}
 
-          {% if node.field_published_date and not node.field_published_date.isempty %}
-            <div class="mb-3">
-              {{ node.field_published_date|view }}
-            </div>
-          {% endif %}
+            {% if node.field_published_date and not node.field_published_date.isempty %}
+              <div class="mb-3">
+                {{ node.field_published_date|view }}
+              </div>
+            {% endif %}
 
-          {% if node.field_modified_date and not node.field_modified_date.isempty %}
-            <div class="mb-3">
-              {{ node.field_modified_date|view }}
-            </div>
-          {% endif %}
+            {% if node.field_modified_date and not node.field_modified_date.isempty %}
+              <div class="mb-3">
+                {{ node.field_modified_date|view }}
+              </div>
+            {% endif %}
 
-          {% if node.field_series and not node.field_series.isempty %}
-            <div class="mb-3">
-              {{ node.field_series|view }}
-            </div>
-          {% endif %}
+            {% if node.field_series and not node.field_series.isempty %}
+              <div class="mb-3">
+                {{ node.field_series|view }}
+              </div>
+            {% endif %}
 
-          {% if field_visibility %}
-          <div class="field field--label-inline clearfix d-flex flex-row align-items-start field_visibility {{ field_visibility_wrapper_class }}">
-            <div class="field__label text-nowrap">{{ 'Record visibility'|t }}</div>
-            <div class="field__item">
-              {{ field_visibility }}
-            </div>
+            {% if field_visibility %}
+              <div class="field field--label-inline clearfix d-flex flex-row align-items-start field_visibility {{ field_visibility_wrapper_class }}">
+                <div class="field__label text-nowrap">{{ 'Record visibility'|t }}</div>
+                <div class="field__item">
+                  {{ field_visibility }}
+                </div>
+              </div>
+            {% endif %}
           </div>
-          {% endif %}
 
           {% if node.body and not node.body.isempty %}
             <div class="mb-3">
@@ -84,14 +86,14 @@
           {% endif %}
 
           {% if node.field_primary_responsibility_org and not node.field_primary_responsibility_org.isempty %}
-              <div class="mb-3">
-                {{ node.field_primary_responsibility_org|view }}
-                {{ node.field_primary_responsibility_org.entity.field_data_custodian|view }}
-                <div class="mt-2">
-                  {{ node.field_primary_responsibility_org.entity.field_information|view}}
-                </div>
+            <div class="mb-3">
+              {{ node.field_primary_responsibility_org|view }}
+              {{ node.field_primary_responsibility_org.entity.field_data_custodian|view }}
+              <div class="mt-2">
+                {{ node.field_primary_responsibility_org.entity.field_information|view}}
               </div>
-            {% endif %}
+            </div>
+          {% endif %}
 
         </section>
 
@@ -123,9 +125,9 @@
                   </div>
                 {% endif %}
                 {% if node.field_data_quality_issues and not node.field_data_quality_issues.isempty %}
-                <div class="mb-3">
-                  {{ node.field_data_quality_issues|view }}
-                </div>
+                  <div class="mb-3">
+                    {{ node.field_data_quality_issues|view }}
+                  </div>
                 {% endif %}
               </div>
               <hr>
@@ -135,11 +137,19 @@
               <h2 class="field__label mb-1 fs-5 fw-bold">
                 {{ 'Data value'|t }}
               </h2>
+
+              {% if node.field_personal_information and not node.field_personal_information.isempty %}
+                <div class="mb-3">
+                  {{ node.field_personal_information|view }}
+                </div>
+              {% endif %}
+
               {% if node.field_security_classification and not node.field_security_classification.isempty %}
                 <div class="mb-3">
                   {{ node.field_security_classification|view }}
                 </div>
               {% endif %}
+
               {% if node.field_critical_information and not node.field_critical_information.isempty %}
                 <div class="mb-3">
                   {{ node.field_critical_information|view }}
@@ -191,21 +201,23 @@
 
       </div>
 
-      {% if node.field_modified_date and not node.field_modified_date.isempty %}
-      <section id="dc_data_dictionary" class="dc-details">
-        <hr>
-        <h2>{{ 'Data dictionary'|t }}</h2>
+      {% if node.field_columns and not node.field_columns.isempty %}
+        <section id="dc_data_dictionary" class="dc-details">
+          <hr>
+          <h2>{{ 'Data dictionary'|t }}</h2>
           {{ data_dictionary_download_links }}
           {{ node.field_columns|view }}
-        {% endif %}
-      </section>
+        </section>
+      {% endif %}
 
-      <section id="author_permalink">
-        <div class="field field--name-field-uid field--type-entity-reference field--label-inline clearfix mb-2">
-          <div class="field__label">{{ 'Data set editor'|t }}</div>
-          <div class="field__item">{{ author_link }}</div>
+      <section id="author_permalink" class="bcbb-fw mt-4 dc-subfooter">
+        <div class="container">
+          <div class="field field--name-field-uid field--type-entity-reference field--label-inline clearfix">
+            <div class="field__label mb-2">{{ 'Data set editor'|t }}</div>
+            <div class="field__item">{{ author_link }}</div>
+          </div>
+          {{ permalink }}
         </div>
-        {{ permalink }}
       </section>
     </div>
 

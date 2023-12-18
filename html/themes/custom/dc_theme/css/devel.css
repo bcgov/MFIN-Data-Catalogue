@@ -89,20 +89,6 @@ article.node--type-data-set .field__item > em.field-required {
   margin-right: 4em;
 }
 
-/* Workflow block. */
-.page-node-type-data-set .block-bc-dc-workflow-block {
-  padding: 0.000001em 1em;
-  background-color: #eee;
-  border: 1px solid var(--bs-light-border-subtle);
-  border-radius: 0.5em;
-}
-.page-node-type-data-set .block-bc-dc-workflow-block label[for="edit-revision-note"] {
-  font-weight: bold;
-}
-.page-node-type-data-set .block-bc-dc-workflow-block input[type="submit"] {
-  width: 100%;
-}
-
 /* Space above block labels. */
 article.dc-data-set-build-page div.field--label-above {
   margin-top: 1em;

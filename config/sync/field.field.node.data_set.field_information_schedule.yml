@@ -11,7 +11,7 @@ field_name: field_information_schedule
 entity_type: node
 bundle: data_set
 label: 'Information schedule'
-description: 'Refer to the <a href="/node/53" documentation for the information schedule</a>'
+description: 'Refer to the <a href="/node/53">documentation for the information schedule</a>'
 required: false
 translatable: false
 default_value: {  }

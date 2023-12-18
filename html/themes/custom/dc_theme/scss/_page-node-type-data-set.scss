@@ -1,5 +1,7 @@
 .page-node-type-data-set {
+  $max-cpl: 45em;
 
+  // node view
   .dc-details {
     details {
       border: 0 solid transparent;
@@ -7,17 +9,22 @@
   }
 
   .dc-dictionary {
+
     padding-right: 1.25em;
+
     .field {
       margin-bottom: 1.5em;
     }
+
     &:last-child {
       border-bottom: 1px solid var(--bs-dark-border-subtle);
     }
+
     .field__label {
       font-weight: normal;
       font-style: oblique;
     }
+
     .field--label-inline {
       display: flex;
       flex-direction: column;
@@ -37,11 +44,12 @@
           }
         }
       }
-
     }
+
   }
 
   .dc-details {
+
     .item-list {
       ul {
         list-style: none;
@@ -54,22 +62,138 @@
         }
       }
     }
+
   }
 
-  .field--name-field-data-set-type {
-    * {
-      margin: 0 !important;
-      padding: 0 !important;
-      line-height: 1em;
-      &.field__label {
-        padding-right: .5em !important;
+  .meta-data-record-view,
+  .meta-data-record-build {
+
+   .field--name-field-data-set-type {
+     * {
+       margin: 0 !important;
+       padding: 0 !important;
+       line-height: 1em;
+       &.field__label {
+         padding-right: .5em !important;
+       }
+       li::after {
+         margin: 0 .25em;
+       }
+     }
+   }
+
+  }
+
+  .field--name-field-data-custodian {
+
+    .field__label {
+      font-weight: normal;
+    }
+
+  }
+
+  .dc-subfooter {
+    background: var(--bs-gray-100);
+    border-top: 1px solid var(--bs-gray-200);
+
+    .container {
+      padding: 1em 1em 1.5em 1em;
+    }
+
+  }
+
+  .node--view-mode-full {
+
+    .block-bc-dc,
+    .dataset-alerts {
+     display: inline-block;
+      @include responsive {
+        margin-bottom: .5rem;
       }
-      li::after {
-        margin: 0 .25em;
-      }
+    }
+
+  }
+
+  // build page
+
+  .block-bc-dc-workflow-block {
+    background-color:  RGBA(var(--bs-light-rgb));
+    border: var(--bs-border-width) solid var(--bs-border-color-translucent);
+    border-radius: var(--bs-border-radius);
+    padding: 1rem;
+    input.button {
+      width: 100%;
     }
   }
 
+  // form view
+
+  .node-data-set-edit-form {
+
+    > div  {
+      margin-bottom: 2em;
+    }
+
+    input,select {
+      max-width: $max-cpl;
+    }
+
+    .form-actions {
+      text-align: left;
+    }
+
+    .description {
+      margin-top: .25em;
+      color: var(--bs-gray-600);
+      max-width: $max-cpl;
+      @include icon-bi($bi-info-circle);
+      display: block !important;
+      position: relative;
+      line-height: unset !important;
+      &::before {
+        padding-right: .5em;
+        position: absolute;
+        top: .075em;
+      }
+    }
+
+    .field--name-field-review-interval {
+      label {
+        width: 100%;
+      }
+      .form-number,
+      .field-suffix {
+        display: inline;
+        max-width: 6em;
+      }
+    }
+
+    #edit-field-personal-information {
+      display: flex;
+      gap: 1em;
+    }
+
+    .edit-data-dictionary-column,
+    .field--name-field-data-sets-used {
+      background: var(--bs-gray-100);
+      border: 1px solid var(--bs-gray-200);
+      padding: 1em;
+      border-radius: var(--bs-border-radius-sm);
+
+      th,td {
+        background-color: transparent;
+        border: 0 transparent;
+      }
+      .field-add-more-submit {
+        background-color: var(--bs-gray-700);
+        color: var(--bs-white);
+        &:hover,
+        &:focus {
+          background-color: var(--bs-gray-800);
+        }
+      }
+    }
+  }
 }
 
 .node--unpublished {
