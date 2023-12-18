@@ -6,6 +6,7 @@ dependencies:
     - node.type.data_set
     - workflows.workflow.editorial
   module:
+    - bc_dc
     - book
     - content_moderation
     - field_permissions
@@ -21,6 +22,7 @@ permissions:
   - 'access printer-friendly version'
   - 'create data_set content'
   - 'create field_organization'
+  - 'delete own never_published data_set in_org'
   - 'flag bookmark'
   - 'revert data_set revisions'
   - 'unflag bookmark'

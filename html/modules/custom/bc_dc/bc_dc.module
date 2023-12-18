@@ -6,7 +6,9 @@
  */
 
 use Drupal\bc_dc\Controller\BcDcCreateFileController;
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Access\AccessResultAllowed;
+use Drupal\Core\Access\AccessResultInterface;
 use Drupal\Core\Breadcrumb\Breadcrumb;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
@@ -16,6 +18,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 use Drupal\message_gcnotify\Service\GcNotifyApiService;
 use Drupal\node\NodeInterface;
@@ -159,6 +162,64 @@ function bc_dc_entity_display_build_alter(array &$build, array $context): void {
       ] + $build[$field_name];
     }
   }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_access().
+ */
+function bc_dc_node_access(NodeInterface $entity, string $operation, AccountInterface $account): AccessResultInterface {
+  // Allow delete for data_set nodes that have never been published, if the
+  // organization matches and they have the correct permissions. This cannot be
+  // done in tac_lite because of the never-published check. If a node was
+  // formerly published, its moderation_state will be "archived".
+  $entity_owner = $entity->getOwnerId();
+  if (
+    $operation === 'delete' &&
+    $entity->bundle() === 'data_set' &&
+    $entity->get('moderation_state')->value === 'draft' &&
+    bc_dc_data_set_user_org_match($entity, $account) &&
+    (
+      $account->hasPermission('delete any never_published data_set in_org') ||
+      (
+        $entity_owner && $entity_owner === $account->id() && $account->hasPermission('delete own never_published data_set in_org')
+      )
+    )
+  ) {
+    return AccessResult::allowed();
+  }
+
+  return AccessResult::neutral();
+}
+
+/**
+ * Returns whether the user is in the OPR of a data_set.
+ *
+ * @param \Drupal\node\NodeInterface $entity
+ *   The entity to compare.
+ * @param \Drupal\Core\Session\AccountInterface $account
+ *   The account to compare.
+ *
+ * @return bool
+ *   TRUE if the entity's value in field_primary_responsibility_org is also in
+ *   the account's field_organization, FALSE otherwise.
+ */
+function bc_dc_data_set_user_org_match(NodeInterface $entity, AccountInterface $account): bool {
+  if (!$entity->hasField('field_primary_responsibility_org')) {
+    return FALSE;
+  }
+
+  // Get the field_primary_responsibility_org target.
+  $primary_responsibility_org = $entity->get('field_primary_responsibility_org')->first()?->getValue();
+  $primary_responsibility_org = (int) ($primary_responsibility_org['target_id'] ?? NULL);
+
+  $user = User::load($account->id());
+  // Get array of the targets of field_organization.
+  $user_organizations = [];
+  foreach ($user->get('field_organization')->getValue() as $reference) {
+    $user_organizations[$reference['target_id']] = TRUE;
+  }
+
+  return !empty($user_organizations[$primary_responsibility_org]);
 }
 
 /**
