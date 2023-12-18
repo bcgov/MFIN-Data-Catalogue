@@ -31,16 +31,22 @@ dependencies:
     - field.field.node.data_set.field_special_flags
     - field.field.node.data_set.field_visibility
     - node.type.data_set
+  module:
+    - shs
 id: node.data_set.section_1
 targetEntityType: node
 bundle: data_set
 mode: section_1
 content:
   field_data_set_type:
-    type: options_select
+    type: options_shs
     weight: 1
     region: content
-    settings: {  }
+    settings:
+      display_node_count: false
+      create_new_items: false
+      create_new_levels: false
+      force_deepest: false
     third_party_settings: {  }
   field_series:
     type: options_select
