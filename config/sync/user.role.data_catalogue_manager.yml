@@ -69,7 +69,6 @@ permissions:
   - 'create terms in source_system'
   - 'create terms in tags'
   - 'delete any image media'
-  - 'delete own data_set content'
   - 'delete terms in common_data'
   - 'delete terms in data_set_series'
   - 'delete terms in data_set_type'

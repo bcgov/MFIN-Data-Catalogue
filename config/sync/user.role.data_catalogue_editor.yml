@@ -21,7 +21,6 @@ permissions:
   - 'access printer-friendly version'
   - 'create data_set content'
   - 'create field_organization'
-  - 'delete own data_set content'
   - 'flag bookmark'
   - 'revert data_set revisions'
   - 'unflag bookmark'
