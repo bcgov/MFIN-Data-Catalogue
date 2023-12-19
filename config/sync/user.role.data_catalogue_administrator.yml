@@ -111,7 +111,6 @@ permissions:
   - 'edit any page content'
   - 'edit field_organization'
   - 'edit field_primary_responsibility_org'
-  - 'edit own data_set content'
   - 'edit own field_primary_responsibility_org'
   - 'edit terms in common_data'
   - 'edit terms in data_set_series'

@@ -87,7 +87,6 @@ permissions:
   - 'edit any book content'
   - 'edit any image media'
   - 'edit any page content'
-  - 'edit own data_set content'
   - 'edit terms in common_data'
   - 'edit terms in data_set_series'
   - 'edit terms in data_set_type'
