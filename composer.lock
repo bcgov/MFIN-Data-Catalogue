@@ -68,12 +68,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb.git",
-                "reference": "a5961de5d0009eb2c65a7977345f2133ab15057b"
+                "reference": "c5beb358df50c2bfba1bf0cea7b6a9d544040023"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/a5961de5d0009eb2c65a7977345f2133ab15057b",
-                "reference": "a5961de5d0009eb2c65a7977345f2133ab15057b",
+                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/c5beb358df50c2bfba1bf0cea7b6a9d544040023",
+                "reference": "c5beb358df50c2bfba1bf0cea7b6a9d544040023",
                 "shasum": ""
             },
             "require": {
@@ -136,6 +136,9 @@
                         "2849867 - Custom attributes in panels blocks and variants": "https://www.drupal.org/files/issues/2022-11-17/panels_custom_attributes_in_panels_blocks-2849867-89.patch",
                         "2910704 - IPE toggle preview not working in IE": "https://www.drupal.org/files/issues/panels-ipe-card-flip-ie-error-2910704.diff"
                     },
+                    "drupal/role_delegation": {
+                        "3284859 - Roles being stripped from users when saved if user has no access to roles field": "https://www.drupal.org/files/issues/2023-11-08/role_delegation-roles-being-stripped-3284859-4.patch"
+                    },
                     "drupal/vbo_export": {
                         "3257067 - Ensure PrivateTempStore key is not too long": "https://www.drupal.org/files/issues/2023-06-29/vbo_export-cid_too_long-3257067-9.patch"
                     }
@@ -150,7 +153,7 @@
                 "source": "https://github.com/bcgov/bcbb/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb/issues"
             },
-            "time": "2023-12-07T21:11:42+00:00"
+            "time": "2023-12-19T15:50:14+00:00"
         },
         {
             "name": "bcgov/bcbb_theme",
