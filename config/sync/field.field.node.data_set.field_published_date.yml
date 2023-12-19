@@ -13,7 +13,7 @@ entity_type: node
 bundle: data_set
 label: 'Published date'
 description: 'The date the metadata record was first published.'
-required: false
+required: true
 translatable: false
 default_value:
   -

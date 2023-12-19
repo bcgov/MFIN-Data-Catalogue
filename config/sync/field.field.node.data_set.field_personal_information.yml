@@ -11,7 +11,7 @@ entity_type: node
 bundle: data_set
 label: 'Personal information'
 description: 'This dataset includes personal information that can be used to identify an individual through association or inference. <a href="/node/72#personal_information">Read more…</a>'
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
