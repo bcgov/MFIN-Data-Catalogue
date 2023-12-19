@@ -3,9 +3,9 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.node.body
     - field.storage.node.field_columns
     - field.storage.paragraph.field_metadata_type
-    - field.storage.node.body
     - field.storage.node.field_modified_date
     - field.storage.node.field_primary_responsibility_org
     - field.storage.node.field_series
@@ -235,6 +235,14 @@ processor_settings:
     weights:
       preprocess_index: -10
   entity_type: {  }
+  hierarchy:
+    weights:
+      preprocess_index: -45
+    fields:
+      field_metadata_type: taxonomy_term-parent
+      field_primary_responsibility_org: taxonomy_term-parent
+      field_series: taxonomy_term-parent
+      field_source_system: taxonomy_term-parent
   highlight:
     weights:
       postprocess_query: 0
@@ -244,7 +252,7 @@ processor_settings:
     excerpt_always: false
     excerpt_length: 256
     exclude_fields: {  }
-    highlight: always
+    highlight: server
     highlight_partial: false
   html_filter:
     weights:
@@ -265,6 +273,26 @@ processor_settings:
       h2: 3
       h3: 2
       string: 2
+  ignore_character:
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
+    all_fields: false
+    fields:
+      - author
+      - body
+      - rendered_item
+      - title
+      - type
+    ignorable: "['¿¡!?,.:;]"
+    ignorable_classes:
+      - Pc
+      - Pd
+      - Pe
+      - Pf
+      - Pi
+      - Po
+      - Ps
   language_with_fallback: {  }
   rendered_item:
     weights:
