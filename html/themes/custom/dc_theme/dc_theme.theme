@@ -63,6 +63,17 @@ function dc_theme_preprocess_input__submit(array &$variables): void {
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for input--submit--paragraph-action.html.twig.
+ */
+function dc_theme_preprocess_input__submit__paragraph_action(array &$variables): void {
+  // Remove class "button--small" on column edit pages.
+  if (isset($variables['attributes']['class'])) {
+    $key = array_search('button--small', $variables['attributes']['class'], TRUE);
+    unset($variables['attributes']['class'][$key]);
+  }
+}
+
+/**
  * Implements hook_preprocess_HOOK() for node--data-set.html.twig.
  */
 function dc_theme_preprocess_node__data_set(array &$variables): void {
