@@ -46,13 +46,13 @@ processor_configs:
   active_widget_order:
     processor_id: active_widget_order
     weights:
-      sort: 20
+      sort: -10
     settings:
       sort: DESC
   count_widget_order:
     processor_id: count_widget_order
     weights:
-      sort: 30
+      sort: -8
     settings:
       sort: DESC
   date_item:
@@ -67,7 +67,7 @@ processor_configs:
   display_value_widget_order:
     processor_id: display_value_widget_order
     weights:
-      sort: 40
+      sort: -7
     settings:
       sort: ASC
   hierarchy_processor:
@@ -75,6 +75,12 @@ processor_configs:
     weights:
       build: 100
     settings: {  }
+  raw_value_widget_order:
+    processor_id: raw_value_widget_order
+    weights:
+      sort: -9
+    settings:
+      sort: DESC
   url_processor_handler:
     processor_id: url_processor_handler
     weights:
