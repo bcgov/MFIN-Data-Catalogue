@@ -7,12 +7,12 @@ dependencies:
 id: information_schedule_taxonomy
 label: 'Information schedule taxonomy'
 type: 'canonical_entities:taxonomy_term'
-pattern: '/[term:vocabulary]/[term:parents:join-path]/[term:name]'
+pattern: '[term:vocabulary]/[term:parents:join-path]/[term:name]'
 selection_criteria:
-  f779d841-3303-46e8-82a1-38e9bbe8c46a:
+  4b100d95-b034-4fd6-a382-d3f82812b942:
     id: 'entity_bundle:taxonomy_term'
     negate: false
-    uuid: f779d841-3303-46e8-82a1-38e9bbe8c46a
+    uuid: 4b100d95-b034-4fd6-a382-d3f82812b942
     context_mapping:
       taxonomy_term: taxonomy_term
     bundles:
