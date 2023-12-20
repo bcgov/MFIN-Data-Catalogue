@@ -299,7 +299,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Create a data_set.
     $randomMachineName = $this->randomMachineName();
     $data_set_title = 'Test data set One ' . $randomMachineName . $this->randomString();
-    $data_set_path = '/data-set/test-data-set-one-' . strtolower($randomMachineName);
+    $data_set_path = '/test-data-set-one-' . strtolower($randomMachineName);
     $edit = [
       'edit-data-set-name' => $data_set_title,
       'edit-field-primary-responsibility-org' => 3,
@@ -321,9 +321,8 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSession()->statusCodeEquals(200);
     // Page has correct breadcrumbs.
     $breadcrumbs = $this->xpath('//ol[@class = "breadcrumb"]/li/a');
-    $this->assertCount(2, $breadcrumbs, 'Page has 2 breadcrumbs.');
+    $this->assertCount(1, $breadcrumbs, 'Page has 1 breadcrumb.');
     $this->assertEquals('/', $breadcrumbs[0]->getAttribute('href'));
-    $this->assertEquals('/data-set', $breadcrumbs[1]->getAttribute('href'));
     // "Edit" tab does appear for data_set content type.
     $this->assertSession()->elementExists('xpath', '//a[@href = "/node/2/edit"]');
     // "Outline" tab does not appear for data_set content type.

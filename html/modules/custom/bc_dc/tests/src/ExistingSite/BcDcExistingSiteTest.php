@@ -43,7 +43,7 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     $this->assertSession()->assert($account->hasRole('data_catalogue_user'), 'Test user should have role data_catalogue_user.');
 
     // Test search page.
-    $this->drupalGet('data-set');
+    $this->drupalGet('search');
     $this->assertSession()->statusCodeEquals(200);
 
     // Login button in the header.
@@ -59,7 +59,6 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     // Components of search results.
     $container = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-id-site_search")]//div[contains(@class, "row")]/div[contains(@class, "search-result")]');
     $this->assertSession()->elementExists('xpath', 'h2', $container);
-    $this->assertSession()->elementExists('xpath', 'h2/a[starts-with(@href, "/data-set/")]', $container);
     $this->assertSession()->elementExists('xpath', 'div[contains(@class, "views-field-search-api-excerpt")]', $container);
     // Check that no excerpts are longer than 255, adding 1 for the ellipsis.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "view-id-site_search")]//div[contains(@class, "row")]/div[contains(@class, "search-result")]/div[contains(@class, "views-field-search-api-excerpt")][string-length(normalize-space(text())) > 256]');
@@ -87,7 +86,7 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
       'pass' => $test_user->passRaw,
     ], 'Log in');
     // Return to search page.
-    $this->drupalGet('data-set');
+    $this->drupalGet('search');
     $this->assertSession()->statusCodeEquals(200);
 
     // Saved search block does not have a cancel button.
@@ -123,22 +122,20 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
 
     // Test that certain fields on data_set view pages link to a facet search
     // for that value.
-    $this->drupalGet('data-set/test-set');
+    $this->drupalGet('test-set');
     $this->assertSession()->statusCodeEquals(200);
     $container = $this->assertSession()->elementExists('xpath', '//div
       [*[text() = "Data set editor"]]
-      [div/a[starts-with(@href, "/data-set?f%5B0%5D=author_id%3A")]]');
+      [div/a[starts-with(@href, "/search?f%5B0%5D=author_id%3A")]]');
     $container = $this->assertSession()->elementExists('xpath', '//div
       [*[text() = "Office of primary responsibility"]]
-      [div/a[starts-with(@href, "/data-set?f%5B0%5D=primary_responsibility_org%3A")]]');
+      [div/a[starts-with(@href, "/search?f%5B0%5D=primary_responsibility_org%3A")]]');
     $container = $this->assertSession()->elementExists('xpath', '//div
       [*[text() = "Source system"]]
-      [div/a[starts-with(@href, "/data-set?f%5B0%5D=source_system%3A")]]');
+      [div/a[starts-with(@href, "/search?f%5B0%5D=source_system%3A")]]');
     $container = $this->assertSession()->elementExists('xpath', '//div
       [*[text() = "Series"]]
-      [div/a[starts-with(@href, "/data-set?f%5B0%5D=series%3A")]]');
-    // Test breadcrumb on data_set view page.
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "region-breadcrumb")]//li[@class = "breadcrumb-item"]//a[@href = "/data-set"]');
+      [div/a[starts-with(@href, "/search?f%5B0%5D=series%3A")]]');
   }
 
 }
