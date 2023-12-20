@@ -156,6 +156,7 @@
         },
         "patches": {
             "drupal/core": {
+                "2840283 - Problem with action path for embedded forms": "https://www.drupal.org/files/issues/2020-03-19/linked-display-2840283-40_1.patch",
                 "2918537 - Cannot save unpublished versions of published content for users without manage book privileges": "https://www.drupal.org/files/issues/2022-12-14/2918537-92.patch"
             },
             "drupal/shs": {
