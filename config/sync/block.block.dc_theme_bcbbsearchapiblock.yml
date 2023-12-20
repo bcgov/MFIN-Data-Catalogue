@@ -22,7 +22,7 @@ settings:
     search_label: Search
     search_placeholder: ''
     search_btn_label: ''
-    search_url: /data-set
+    search_url: /search
     label_sr_only: true
     search_input_size: false
     search_input_size_value: null
@@ -31,4 +31,4 @@ visibility:
   request_path:
     id: request_path
     negate: true
-    pages: "/dashboard\r\n/data-set\r\n/user/*"
+    pages: "/dashboard\r\n/search\r\n/user/*"
