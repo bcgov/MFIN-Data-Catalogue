@@ -700,7 +700,6 @@ function bc_dc_system_breadcrumb_alter(Breadcrumb &$breadcrumb, RouteMatchInterf
   // New Breadcrumb links set.
   $links = [
     Link::createFromRoute(t('Home'), '<front>'),
-    Link::fromTextAndUrl(t('Data sets'), Url::fromUserInput('/data-set')),
   ];
   $cacheability = CacheableMetadata::createFromObject($breadcrumb);
   $breadcrumb = new Breadcrumb();
