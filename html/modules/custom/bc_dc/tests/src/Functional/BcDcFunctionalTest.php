@@ -477,6 +477,13 @@ class BcDcFunctionalTest extends BrowserTestBase {
       'edit-field-visibility-1' => 1,
     ];
     $this->submitForm($edit, 'Save');
+    // Section 3 edit page.
+    $this->click('a[aria-label = "Edit Section 3"]');
+    // Complete required fields.
+    $edit = [
+      'edit-field-personal-information-0' => '0',
+    ];
+    $this->submitForm($edit, 'Save');
     // Test that long text gets trimmed.
     $this->assertSession()->pageTextContains('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna');
     $this->assertSession()->pageTextNotContains('Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.');
@@ -1058,6 +1065,13 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $edit = [
       'edit-body-0-value' => 'Data set description ' . $this->randomString(),
       $public_label->getAttribute('for') => TRUE,
+    ];
+    $this->submitForm($edit, 'Save');
+    // Section 3.
+    $this->click('a[aria-label = "Edit Section 3"]');
+    // Complete required fields.
+    $edit = [
+      'edit-field-personal-information-0' => '0',
     ];
     $this->submitForm($edit, 'Save');
     // Section 4.
