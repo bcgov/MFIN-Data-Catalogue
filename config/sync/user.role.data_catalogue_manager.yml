@@ -31,6 +31,7 @@ dependencies:
     - filter
     - flag
     - form_mode_control
+    - help
     - media
     - node
     - paragraphs
@@ -43,6 +44,7 @@ weight: 4
 is_admin: null
 permissions:
   - 'access administration pages'
+  - 'access help pages'
   - 'access media overview'
   - 'access printer-friendly version'
   - 'access taxonomy overview'

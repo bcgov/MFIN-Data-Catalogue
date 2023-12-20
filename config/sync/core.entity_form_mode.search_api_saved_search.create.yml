@@ -8,5 +8,6 @@ _core:
   default_config_hash: q3YSBzu6aeTqkiTdpkuIVCrgERUtrTUzSIdlNsz_Tnc
 id: search_api_saved_search.create
 label: Create
+description: ''
 targetEntityType: search_api_saved_search
 cache: true

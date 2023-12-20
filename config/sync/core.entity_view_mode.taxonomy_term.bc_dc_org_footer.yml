@@ -6,5 +6,6 @@ dependencies:
     - taxonomy
 id: taxonomy_term.bc_dc_org_footer
 label: 'Organization footer'
+description: ''
 targetEntityType: taxonomy_term
 cache: true

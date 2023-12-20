@@ -6,5 +6,6 @@ dependencies:
     - node
 id: node.revision_mode
 label: 'Revision mode'
+description: ''
 targetEntityType: node
 cache: true

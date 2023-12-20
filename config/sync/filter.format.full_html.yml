@@ -13,6 +13,18 @@ name: 'Full HTML'
 format: full_html
 weight: 2
 filters:
+  editor_file_reference:
+    id: editor_file_reference
+    provider: editor
+    status: true
+    weight: 11
+    settings: {  }
+  entity_embed:
+    id: entity_embed
+    provider: entity_embed
+    status: true
+    weight: 100
+    settings: {  }
   filter_align:
     id: filter_align
     provider: filter
@@ -25,6 +37,15 @@ filters:
     status: true
     weight: 9
     settings: {  }
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: false
+    weight: -10
+    settings:
+      allowed_html: '<p class="alert alert-primary alert-secondary alert-success alert-danger alert-warning alert-info alert-light alert-dark">'
+      filter_html_help: true
+      filter_html_nofollow: false
   filter_htmlcorrector:
     id: filter_htmlcorrector
     provider: filter
@@ -37,31 +58,6 @@ filters:
     status: true
     weight: 15
     settings: {  }
-  editor_file_reference:
-    id: editor_file_reference
-    provider: editor
-    status: true
-    weight: 11
-    settings: {  }
-  filter_html:
-    id: filter_html
-    provider: filter
-    status: false
-    weight: -10
-    settings:
-      allowed_html: '<p class="alert alert-primary alert-secondary alert-success alert-danger alert-warning alert-info alert-light alert-dark">'
-      filter_html_help: true
-      filter_html_nofollow: false
-  toc_filter:
-    id: toc_filter
-    provider: toc_filter
-    status: true
-    weight: 0
-    settings:
-      type: full
-      auto: ''
-      block: '0'
-      exclude_above: '0'
   media_embed:
     id: media_embed
     provider: media
@@ -74,9 +70,13 @@ filters:
         document: document
         image: image
         remote_video: remote_video
-  entity_embed:
-    id: entity_embed
-    provider: entity_embed
+  toc_filter:
+    id: toc_filter
+    provider: toc_filter
     status: true
-    weight: 100
-    settings: {  }
+    weight: 0
+    settings:
+      type: full
+      auto: ''
+      block: '0'
+      exclude_above: '0'

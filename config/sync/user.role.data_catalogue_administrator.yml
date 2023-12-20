@@ -32,6 +32,7 @@ dependencies:
     - filter
     - flag
     - form_mode_control
+    - help
     - media
     - node
     - paragraphs
@@ -48,6 +49,7 @@ is_admin: null
 permissions:
   - 'access administration pages'
   - 'access content overview'
+  - 'access help pages'
   - 'access media overview'
   - 'access printer-friendly version'
   - 'access taxonomy overview'

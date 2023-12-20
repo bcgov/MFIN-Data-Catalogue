@@ -451,7 +451,6 @@ display:
             and_or: +
             all_option: 0
             debug: 0
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true

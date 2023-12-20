@@ -432,7 +432,6 @@ display:
           default_argument_type: fixed
           default_argument_options:
             argument: ''
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -470,7 +469,6 @@ display:
             and_or: ','
             all_option: 0
             debug: 0
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -676,7 +674,6 @@ display:
         - url.query_args
         - 'url.query_args:sort_by'
         - 'url.query_args:sort_order'
-        - user
         - 'user.node_grants:view'
         - user.roles
       tags:
@@ -708,7 +705,6 @@ display:
         - url.query_args
         - 'url.query_args:sort_by'
         - 'url.query_args:sort_order'
-        - user
         - 'user.node_grants:view'
         - user.roles
       tags:
@@ -1067,7 +1063,6 @@ display:
         - url
         - 'url.query_args:sort_by'
         - 'url.query_args:sort_order'
-        - user
         - 'user.node_grants:view'
         - user.roles
       tags:
