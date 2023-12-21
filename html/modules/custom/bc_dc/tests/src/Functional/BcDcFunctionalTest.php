@@ -521,6 +521,9 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//tr/td/a[normalize-space(text()) = :data_set_title][starts-with(@href, :data_set_path)]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//div[normalize-space(text()) = "You currently do not have any metadata records bookmarked."]');
+    // Metadata record count message.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//*[text() = "You currently have no published metadata records."]');
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//a[text() = "Manage my published metadata records"]');
 
     // Revisions and diff are enabled and available.
     $this->drupalGet('node/2');
@@ -547,6 +550,10 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSession()->statusCodeEquals(200);
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-views-blockdashboard-moderation-blocks-dashboard-unpublished")]//div[normalize-space(text()) = "You currently do not have any draft metadata records."]');
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-views-blockdashboard-blocks-dashboard-needs-review")]//div[normalize-space(text()) = "You currently have no metadata records needing review."]');
+    // Metadata record count message.
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//*[text() = "You currently have no published metadata records."]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//*[text() = "You have 1 published metadata record that has been bookmarked 1 times."]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//a[text() = "Manage my published metadata records"]');
 
     // Test data set update message.
     //
@@ -1154,6 +1161,14 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->elementNotExists('xpath', '//li[contains(@class, "bc-dc-build")][contains(@class, "dropbutton__item")]/a[@href = "/node/1/build?destination=/admin/content"][text() = "Build"]');
     // Node of type data_set has a "Build" operation.
     $this->assertSession()->elementExists('xpath', '//li[contains(@class, "bc-dc-build")][contains(@class, "dropbutton__item")]/a[@href = "/node/2/build?destination=/admin/content"][text() = "Build"]');
+
+    // Data set dashboard.
+    $this->drupalGet('user');
+    $this->assertSession()->statusCodeEquals(200);
+    // Metadata record count message.
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//*[text() = "You currently have no published metadata records."]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//*[text() = "You have 2 published metadata records that have been bookmarked 2 times."]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//a[text() = "Manage my published metadata records"]');
 
     // Check access to taxonomy term pages. They should be 404 except for
     // information_schedule.
