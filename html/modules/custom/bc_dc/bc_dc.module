@@ -469,10 +469,13 @@ function bc_dc_form_node_data_set_edit_form_alter(array &$form, FormStateInterfa
   }
 
   // Add custom validate handler that runs first.
-  if (!isset($form['#validate'])) {
-    $form['#validate'] = [];
+  // Do not run for the default display mode, which admins may use.
+  if ($form_state->get('form_display')?->getMode() !== 'default') {
+    if (!isset($form['#validate'])) {
+      $form['#validate'] = [];
+    }
+    array_unshift($form['#validate'], '_bc_dc_form_node_data_set_edit_form_submit');
   }
-  array_unshift($form['#validate'], '_bc_dc_form_node_data_set_edit_form_submit');
 }
 
 /**
