@@ -94,20 +94,22 @@ class BcDcContentSummary extends BlockBase implements ContainerFactoryPluginInte
       '#suffix' => '</p>',
     ];
 
-    $options = [
-      'attributes' => [
-        'class' => [
-          'btn',
-          'btn-primary',
+    if ($nids) {
+      $options = [
+        'attributes' => [
+          'class' => [
+            'btn',
+            'btn-primary',
+          ],
         ],
-      ],
-    ];
-    $url = Url::fromRoute('bc_dc.user_manage_tab', ['user' => $user->id()], $options);
-    $build['link'] = [
-      '#type' => 'link',
-      '#url' => $url,
-      '#title' => $this->t('Manage my published metadata records'),
-    ];
+      ];
+      $url = Url::fromRoute('bc_dc.user_manage_tab', ['user' => $user->id()], $options);
+      $build['link'] = [
+        '#type' => 'link',
+        '#url' => $url,
+        '#title' => $this->t('Manage my published metadata records'),
+      ];
+    }
 
     return $build;
   }
