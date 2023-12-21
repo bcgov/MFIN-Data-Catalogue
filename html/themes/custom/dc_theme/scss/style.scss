@@ -10,14 +10,15 @@
 
 @import
 // local styles
+'./layout',
 './components/bookmark',
 './components/table',
 './components/savesearch',
 './components/fields',
 './components/dashboard',
-'page-node-type-data-set',
-'front-page',
+'./page-node-type-data-set',
+'./front-page',
 './blocks/block--system-menu-block--footer',
 './blocks/block-dc-theme-organizationfooter',
-'overrides'
+'./overrides'
 ;

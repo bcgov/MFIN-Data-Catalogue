@@ -3,6 +3,27 @@
   font-family: "bootstrap-icons";
   src: url("../assets/bootstrap-icons/fonts/bootstrap-icons.woff2?2820a3852bdb9a5832199cc61cec4e65") format("woff2"), url("../assets/bootstrap-icons/fonts/bootstrap-icons.woff?2820a3852bdb9a5832199cc61cec4e65") format("woff");
 }
+@media only screen and (min-width: 992px) {
+  .grid-dc-container {
+    display: grid;
+    grid-template-columns: 6fr 1fr 5fr;
+    grid-template-rows: max-content 1fr;
+    grid-template-areas: "content . bookmark" "content . sidebar-right" "content . sidebar-right";
+  }
+}
+
+.grid-mr-bookmark {
+  grid-area: bookmark;
+}
+
+.grid-dc-content {
+  grid-area: content;
+}
+
+.grid-dc-sidebar-right {
+  grid-area: sidebar-right;
+}
+
 .flag-bookmark {
   margin-bottom: 1em;
 }

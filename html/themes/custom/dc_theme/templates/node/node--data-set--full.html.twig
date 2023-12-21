@@ -23,20 +23,27 @@
 
     <div class="container meta-data-record-view">
 
-      {{ drupal_block('bc_dc_review_needed_message') }}
+      <div class="grid-dc-container">
 
-      {% if node.field_personal_information.value == 1 %}
-        <div id="dataset_alerts" class="dataset-alerts">
-         <span class="badge text-bg-warning">{{ node.field_personal_information.fieldDefinition.label }}</span>
-         {% if node.field_high_value_info.value %}
-           <span class="badge text-bg-success">{{ node.field_high_value_info.fieldDefinition.label }}</span>
-         {% endif %}
+        <div class="grid-mr-bookmark">
+          {{ content.flag_bookmark }}
         </div>
-      {% endif %}
 
-      <div class="row">
+        <section id="dc_data_details_description" class="grid-dc-content">
 
-        <section id="dc_data_details_description" class="col-lg-6">
+          <div id="metadata_record_labels">
+
+            {{ drupal_block('bc_dc_review_needed_message') }}
+            {% if node.field_personal_information.value == 1 %}
+              <div id="dataset_alerts" class="dataset-alerts">
+               <span class="badge text-bg-warning">{{ node.field_personal_information.fieldDefinition.label }}</span>
+               {% if node.field_high_value_info.value %}
+                 <span class="badge text-bg-success">{{ node.field_high_value_info.fieldDefinition.label }}</span>
+               {% endif %}
+              </div>
+            {% endif %}
+
+          </div>
 
           <div id="dc_data_details" class="mb-4">
             {% if node.field_data_set_type and not node.field_data_set_type.isempty %}
@@ -97,9 +104,7 @@
 
         </section>
 
-        <div class="col-lg-5 offset-lg-1">
-
-          {{ content.flag_bookmark }}
+        <div class="grid-dc-sidebar-right">
 
           <section id="dc_data_usage_value_information_management" class="card text-bg-light mb-3 p-3 small">
 

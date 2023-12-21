@@ -1,0 +1,26 @@
+// grid layout for metadata record
+.grid-dc-container {
+
+  @include responsive($lg-min) {
+    display: grid;
+    grid-template-columns: 6fr 1fr 5fr;
+    grid-template-rows: max-content 1fr;
+    grid-template-areas:
+      "content . bookmark"
+      "content . sidebar-right"
+      "content . sidebar-right"
+  }
+
+}
+
+.grid-mr-bookmark {
+  grid-area: bookmark;
+}
+
+.grid-dc-content {
+  grid-area: content;
+}
+
+.grid-dc-sidebar-right {
+  grid-area: sidebar-right;
+}
