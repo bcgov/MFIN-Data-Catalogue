@@ -16,6 +16,13 @@
       border: var(--bs-border-width) solid var(--bs-border-color-translucent);
       border-radius: var(--bs-border-radius);
       padding: 2rem 1.5rem 1rem;
+      // this media query comes from the default stable theme 2 col layout
+      @media screen and (min-width: 40em) {
+        background-image: url(../assets/trees-5767910.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center bottom;
+      }
 
     }
 
