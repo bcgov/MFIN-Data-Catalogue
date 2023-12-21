@@ -83,21 +83,16 @@ class BcDcContentSummary extends BlockBase implements ContainerFactoryPluginInte
         '@count' => $total_nodes,
         '@bookmarks' => $total_bookmarks,
       ];
-      $build['message'] = [
-        '#type' => 'markup',
-        '#markup' => $this->t('You have @count published metadata records that have been bookmarked @bookmarks times.', $args),
-        '#prefix' => '<p class="p-2">',
-        '#suffix' => '</p>',
-      ];
+      $message = $this->t('You have @count published metadata records that have been bookmarked @bookmarks times.', $args);
     }
     else {
-      $build['message'] = [
-        '#type' => 'markup',
-        '#markup' => $this->t('You currently have no published metadata records.'),
-        '#prefix' => '<p class="p-2">',
-        '#suffix' => '</p>',
-      ];
+      $message = $this->t('You currently have no published metadata records.');
     }
+    $build['message'] = [
+      '#markup' => $message,
+      '#prefix' => '<p class="p-2">',
+      '#suffix' => '</p>',
+    ];
 
     $options = [
       'attributes' => [
