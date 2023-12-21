@@ -94,7 +94,7 @@ class BcDcContentSummary extends BlockBase implements ContainerFactoryPluginInte
       $build['message'] = [
         '#type' => 'markup',
         '#markup' => $this->t('You currently have no published metadata records.'),
-        '#prefix' => '<p>',
+        '#prefix' => '<p class="p-2">',
         '#suffix' => '</p>',
       ];
     }
