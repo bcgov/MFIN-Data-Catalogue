@@ -111,7 +111,7 @@ class BcDcContentSummary extends BlockBase implements ContainerFactoryPluginInte
     $build['link'] = [
       '#type' => 'link',
       '#url' => $url,
-      '#title' => $this->t('Manage my published meta data records'),
+      '#title' => $this->t('Manage my published metadata records'),
     ];
 
     return $build;
