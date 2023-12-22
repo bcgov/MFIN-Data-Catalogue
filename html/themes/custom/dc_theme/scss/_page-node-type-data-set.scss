@@ -114,6 +114,15 @@
 
   }
 
+  // search icon only on MR
+  a[href^="/search?"] {
+    background-image: url(../assets/icon_search_link.svg);
+    background-repeat: no-repeat;
+    padding-right: 1.4em;
+    background-position: right .15em;
+    background-size: 1em 1em;
+  }
+
   // build page
 
   .block-bc-dc-workflow-block {
