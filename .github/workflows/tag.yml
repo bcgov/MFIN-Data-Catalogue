@@ -19,10 +19,6 @@ jobs:
     steps:
     - uses: actions/checkout@master
 
-    - uses: statcan/actions/composer@master
-      with:
-        args: install --prefer-dist --no-interaction
-
     - name: Build out the Drupal infrastructure
       run: |
         export DB_TYPE=mysql
