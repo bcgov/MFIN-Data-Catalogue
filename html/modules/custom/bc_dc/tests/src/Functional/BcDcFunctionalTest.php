@@ -245,7 +245,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // This only works because of the registration_role module config done
     // above. There is also an ExistingSite test for this.
     foreach (array_keys($this->users) as $username) {
-      $account = user_load_by_name($username);
+      $account = User::load($this->users[$username]->id());
       $this->assertSession()->assert($account->hasRole('data_catalogue_user'), 'Test user ' . $username . ' should have role data_catalogue_user.');
     }
 

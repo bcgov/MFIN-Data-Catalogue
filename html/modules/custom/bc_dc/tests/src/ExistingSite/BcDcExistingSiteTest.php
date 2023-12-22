@@ -8,6 +8,7 @@ require_once DRUPAL_ROOT . '/modules/contrib/bcbb/tests/src/ExistingSite/BcbbExi
 
 use Drupal\search_api\Entity\Server as SearchApiServer;
 use Drupal\Tests\bcbb\ExistingSite\BcbbExistingSiteBase;
+use Drupal\user\Entity\User;
 
 /**
  * Tests run on the current site instead of installing a fresh site.
@@ -39,7 +40,7 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     // There is also a functional test for this. That test sets its own config
     // instead of the config coming in by import.
     $test_user = $this->createUser([], 'test_user');
-    $account = user_load_by_name('test_user');
+    $account = User::load($test_user->id());
     $this->assertSession()->assert($account->hasRole('data_catalogue_user'), 'Test user should have role data_catalogue_user.');
 
     // Test search page.
