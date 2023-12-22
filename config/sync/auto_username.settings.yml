@@ -1,0 +1,13 @@
+_core:
+  default_config_hash: cRB3DSMYqngvGAX0vG3k7WjwHMwWJZDWCOcUtt8xM4E
+aun_pattern: '[user:mail]'
+aun_php: false
+aun_update_on_edit: true
+aun_separator: '-'
+aun_case: AUN_CASE_LEAVE_ASIS
+aun_max_length: 60
+aun_max_component_length: 60
+aun_transliterate: false
+aun_reduce_ascii: false
+aun_replace_whitespace: false
+aun_ignore_words: ''

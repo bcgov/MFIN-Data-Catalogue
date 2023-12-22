@@ -5,6 +5,7 @@ core_version_requirement: ^10.1
 configure: bc_dc.settings
 package: BC Base Build
 dependencies:
+  - auto_username:auto_username
   - bcbb:bcbb_book
   - bcbb:bcbb_other
   - bcbb:bcbb_search
