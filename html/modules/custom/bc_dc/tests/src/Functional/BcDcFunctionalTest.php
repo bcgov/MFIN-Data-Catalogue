@@ -272,9 +272,12 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "form-item-field-primary-responsibility-org")]');
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "form-item-empty-user-field-organization-message")]');
 
-    // Put admin user in one of these organizations.
+    // Edit admin user.
     $user = User::load($this->rootUser->id());
+    // Put admin user in one of these organizations.
     $user->field_organization[] = ['target_id' => $test_orgs[2]->id()];
+    // Make email match name so that ::drupalLogin() works with auto_username.
+    $user->setEmail('admin');
     $user->save();
 
     // Test that the creation form shows the name but not the organization.
