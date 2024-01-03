@@ -1,0 +1,14 @@
+uuid: aed8b414-e187-42b0-a6af-330e4e8b6caf
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.data_catalogue_information_management_specialist
+  module:
+    - user
+id: user_remove_role_action.data_catalogue_information_management_specialist
+label: 'Remove the Data catalogue information management specialist role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: data_catalogue_information_management_specialist

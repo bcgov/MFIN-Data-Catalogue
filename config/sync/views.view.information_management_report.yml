@@ -9,6 +9,7 @@ dependencies:
     - taxonomy.vocabulary.organization
     - user.role.administrator
     - user.role.data_catalogue_administrator
+    - user.role.data_catalogue_information_management_specialist
   module:
     - csv_serialization
     - node
@@ -380,6 +381,7 @@ display:
           role:
             administrator: administrator
             data_catalogue_administrator: data_catalogue_administrator
+            data_catalogue_information_management_specialist: data_catalogue_information_management_specialist
       cache:
         type: none
         options: {  }

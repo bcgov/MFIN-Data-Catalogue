@@ -58,6 +58,10 @@ tac_lite_grants_scheme_2:
     organization: {  }
   data_catalogue_user:
     organization: {  }
+  data_catalogue_information_management_specialist:
+    organization:
+      -1: '-1'
+      0: '0'
 tac_lite_config_scheme_3:
   name: 'View - published'
   perms:

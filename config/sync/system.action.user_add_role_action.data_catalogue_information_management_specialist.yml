@@ -1,0 +1,14 @@
+uuid: e6225723-c4a5-4e12-b259-5d838cc94103
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.data_catalogue_information_management_specialist
+  module:
+    - user
+id: user_add_role_action.data_catalogue_information_management_specialist
+label: 'Add the Data catalogue information management specialist role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: data_catalogue_information_management_specialist
