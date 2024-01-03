@@ -1,7 +1,7 @@
 _core:
   default_config_hash: qHXaY_JvW2M7yY7hkUTFXCQlkbGIFdsoR_SQET9HuKs
-cm_revision_delete_time: 0
+cm_revision_delete_time: 86400
 cm_revision_delete_revisions: 250
-limit_revisions: 1
-maximum_revisions_to_keep: '0'
-published_states: published
+limit_revisions: false
+maximum_revisions_to_keep: 0
+published_states: 'published,archived'
