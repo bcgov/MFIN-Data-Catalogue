@@ -1,0 +1,17 @@
+uuid: 6b3e3a77-7d0a-4102-aa65-fe3a00096fb4
+langcode: en
+status: true
+dependencies:
+  module:
+    - cm_revision_delete
+title: 'Default cron handler'
+id: cm_revision_delete_cron
+weight: 0
+module: cm_revision_delete
+callback: cm_revision_delete_cron
+scheduler:
+  id: simple
+launcher:
+  id: serial
+logger:
+  id: database

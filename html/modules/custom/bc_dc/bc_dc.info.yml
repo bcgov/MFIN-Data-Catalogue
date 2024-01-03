@@ -13,6 +13,7 @@ dependencies:
   - ckeditor5_fullscreen:ckeditor5_fullscreen
   - ckeditor_codemirror:ckeditor_codemirror
   - clipboardjs:clipboardjs
+  - cm_revision_delete:cm_revision_delete
   - diff:diff
   - drupal:content_moderation
   - drupal:datetime
