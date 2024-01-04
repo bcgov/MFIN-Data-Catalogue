@@ -19,6 +19,7 @@ dependencies:
   - drupal:datetime
   - drupal:field
   - drupal:filter
+  - drupal:jsonapi
   - drupal:layout_builder
   - drupal:layout_discovery
   - drupal:media
