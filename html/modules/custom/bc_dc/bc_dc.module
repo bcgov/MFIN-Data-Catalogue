@@ -753,3 +753,16 @@ function _bc_dc_remove_textarea_help($form_element, FormStateInterface $form_sta
 
   return $form_element;
 }
+
+/**
+ * Implements hook_auto_username_name().
+ */
+function bc_dc_auto_username_name(UserInterface $account): ?string {
+  // Do not update the username for people in the admin group. Returning their
+  // current name means auto_username will make no update.
+  if ($account->hasRole('administrator')) {
+    return $account->getAccountName();
+  }
+  // By default, let auto_username generate a username.
+  return NULL;
+}
