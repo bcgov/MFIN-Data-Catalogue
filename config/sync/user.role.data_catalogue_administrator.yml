@@ -58,6 +58,7 @@ permissions:
   - 'add content to books'
   - 'administer book outlines'
   - 'administer content types'
+  - 'administer menu'
   - 'administer node fields'
   - 'administer nodes'
   - 'administer rabbit_hole settings'
