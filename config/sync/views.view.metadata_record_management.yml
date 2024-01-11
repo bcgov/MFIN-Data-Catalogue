@@ -752,13 +752,15 @@ display:
             label: Name
             field_identifier: title
           exposed: true
-        field_primary_responsibility_org_target_id:
-          id: field_primary_responsibility_org_target_id
-          table: node__field_primary_responsibility_org
-          field: field_primary_responsibility_org_target_id
-          relationship: nid
+        name:
+          id: name
+          table: taxonomy_term_field_data
+          field: name
+          relationship: field_primary_responsibility_org
           group_type: group
           admin_label: ''
+          entity_type: taxonomy_term
+          entity_field: name
           plugin_id: standard
           order: ASC
           expose:
@@ -1077,6 +1079,15 @@ display:
           entity_field: nid
           plugin_id: standard
           required: true
+        field_primary_responsibility_org:
+          id: field_primary_responsibility_org
+          table: node_revision__field_primary_responsibility_org
+          field: field_primary_responsibility_org
+          relationship: none
+          group_type: group
+          admin_label: 'field_primary_responsibility_org: Taxonomy term'
+          plugin_id: standard
+          required: false
       header:
         result:
           id: result
