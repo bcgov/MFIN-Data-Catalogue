@@ -415,7 +415,7 @@ display:
           order: ASC
           expose:
             label: OPR
-            field_identifier: field_primary_responsibility_org_target_id
+            field_identifier: opr
           exposed: true
       arguments:
         'null':
