@@ -35,7 +35,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'Meta data record management'
+      title: 'Metadata record management'
       fields:
         nid:
           id: nid
