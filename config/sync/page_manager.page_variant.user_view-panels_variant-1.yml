@@ -151,8 +151,74 @@ variant_settings:
       context_mapping:
         user: '@user.current_user_context:current_user'
       region: footer
-      weight: 0
+      weight: -5
       uuid: c90a5c2e-6f7c-416a-a329-a847ccec3105
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    7864eb70-10dc-445d-9244-88912633eb04:
+      id: bc_dc_authoritative_records
+      label: 'Authoritative records'
+      label_display: '0'
+      provider: null
+      context_mapping: {  }
+      region: footer
+      weight: -2
+      uuid: 7864eb70-10dc-445d-9244-88912633eb04
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    91bf8673-08b2-42f5-ba54-c853a9b1d486:
+      id: bc_dc_critical_records
+      label: 'Critical records'
+      label_display: '0'
+      provider: null
+      context_mapping: {  }
+      region: footer
+      weight: -3
+      uuid: 91bf8673-08b2-42f5-ba54-c853a9b1d486
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    bdd62cf0-7dbe-4bb1-8b1a-7155b5ec5fb2:
+      id: bc_dc_overdue_records
+      label: 'Dashboard number of overdue records'
+      label_display: '0'
+      provider: bc_dc
+      context_mapping:
+        user: '@user.current_user_context:current_user'
+      region: footer
+      weight: -4
+      uuid: bdd62cf0-7dbe-4bb1-8b1a-7155b5ec5fb2
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    ec490520-7423-4aaf-b483-0ad8d70e2078:
+      id: bc_dc_classification_chart
+      label: 'Records by classification'
+      label_display: '0'
+      provider: null
+      context_mapping: {  }
+      region: footer
+      weight: 0
+      uuid: ec490520-7423-4aaf-b483-0ad8d70e2078
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    1965066d-cc39-4d99-a2fd-8a51cce16fe6:
+      id: bc_dc_restriction_chart
+      label: 'Records by restriction'
+      label_display: '0'
+      provider: null
+      context_mapping: {  }
+      region: footer
+      weight: 0
+      uuid: 1965066d-cc39-4d99-a2fd-8a51cce16fe6
       css_classes:
         - ''
       html_id: ''
