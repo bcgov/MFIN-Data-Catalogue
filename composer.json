@@ -44,6 +44,7 @@
         "composer/installers": "^2.0",
         "drupal/auto_username": "^1.5",
         "drupal/cancel_button": "^1.4",
+        "drupal/charts": "^5.0",
         "drupal/ckeditor_codemirror": "^3.0@beta",
         "drupal/clipboardjs": "dev-2.0.x#adb3f68",
         "drupal/cm_revision_delete": "^1.1",
