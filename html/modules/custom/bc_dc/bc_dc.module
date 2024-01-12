@@ -784,3 +784,22 @@ function bc_dc_auto_username_name(UserInterface $account): ?string {
   // By default, let auto_username generate a username.
   return NULL;
 }
+
+/**
+ * Implements hook_field_widget_single_element_WIDGET_TYPE_form_alter() for paragraphs.
+ */
+function bc_dc_field_widget_single_element_paragraphs_form_alter(array &$element, FormStateInterface $form_state, array $context): void {
+  // Act on data_column paragraphs.
+  if ($element['#paragraph_type'] ?? NULL === 'data_column') {
+    // Hide the type label, which is always the same.
+    $element['top']['type']['#access'] = FALSE;
+    // This is empty; remove to keep the markup clean.
+    $element['top']['icons']['#access'] = FALSE;
+    // Remove all but the first item in the summary.
+    foreach (array_keys($element['top']['summary']['fields_info']['#summary']['content']) as $key) {
+      if ($key) {
+        unset($element['top']['summary']['fields_info']['#summary']['content'][$key]);
+      }
+    }
+  }
+}

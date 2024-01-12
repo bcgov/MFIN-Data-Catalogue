@@ -458,9 +458,19 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSession()->elementExists('xpath', $xpath);
     // The other fields do not appear.
     $this->assertSession()->pageTextNotContains('Data set column 1 description');
-    // Check that "Edit all" and "Collapse all" controls do not exist.
+    // Revisit columns page.
     $this->click('a[aria-label = "Edit Section 5"]');
+    // The row for each column contains the title and nothing else.
+    $args = [
+      ':summary-content' => $edit['edit-field-columns-0-subform-field-column-name-0-value'],
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "paragraph-summary")]/div[contains(@class, "paragraphs-description")]//span[@class = "summary-content"][text() = :summary-content]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+    $this->assertSession()->pageTextNotContains('Data set column 1 description');
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "paragraph-type")]');
+    // Start to add a column.
     $this->click('input#field-columns-data-column-add-more');
+    // Check that "Edit all" and "Collapse all" controls do not exist.
     $this->assertSession()->elementNotExists('xpath', '//input[@value = "Edit all"]');
     $this->assertSession()->elementNotExists('xpath', '//input[@value = "Collapse all"]');
 

@@ -122,3 +122,12 @@ div.block-search-api-saved-searches > div {
 .form-control.hidden {
   display: none;
 }
+
+/* On Metadata record column edit pages, make the summary take the full width. */
+table#field-columns-values .paragraph-summary {
+  grid-column-start: 1;
+}
+/* On Metadata record column edit pages, make the summary not greyed-out. */
+table#field-columns-values .paragraph-summary .paragraphs-description .summary-content {
+  color: inherit;
+}
