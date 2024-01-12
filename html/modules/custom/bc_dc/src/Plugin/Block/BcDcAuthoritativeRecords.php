@@ -58,7 +58,6 @@ class BcDcAuthoritativeRecords extends BlockBase implements ContainerFactoryPlug
    * {@inheritdoc}
    */
   public function build() {
-    $user = $this->getContextValue('user');
     $nodeStorage = $this->entityTypeManager->getStorage('node');
 
     $build = [];

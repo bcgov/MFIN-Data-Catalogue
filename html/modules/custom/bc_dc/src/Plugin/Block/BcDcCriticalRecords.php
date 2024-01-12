@@ -58,7 +58,6 @@ class BcDcCriticalRecords extends BlockBase implements ContainerFactoryPluginInt
    * {@inheritdoc}
    */
   public function build() {
-    $user = $this->getContextValue('user');
     $nodeStorage = $this->entityTypeManager->getStorage('node');
 
     $build = [];
