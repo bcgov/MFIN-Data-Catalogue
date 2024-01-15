@@ -18,6 +18,7 @@ content: {  }
 hidden:
   field_first_name: true
   field_last_name: true
+  field_organization: true
   langcode: true
   member_for: true
   realname: true
