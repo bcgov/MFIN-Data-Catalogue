@@ -24,7 +24,6 @@ hidden:
   last_executed: true
   mail: true
   next_execution: true
-  notify_interval: true
   path: true
   search_keywords: true
   status: true
