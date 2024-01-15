@@ -778,7 +778,7 @@ function _bc_dc_remove_textarea_help($form_element, FormStateInterface $form_sta
 function bc_dc_auto_username_name(UserInterface $account): ?string {
   // Do not update the username for people in the admin group. Returning their
   // current name means auto_username will make no update.
-  if ($account->hasRole('administrator')) {
+  if ($account->hasPermission('change own username')) {
     return $account->getAccountName();
   }
   // By default, let auto_username generate a username.
