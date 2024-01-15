@@ -54,6 +54,7 @@ dependencies:
   - search_api_saved_searches:search_api_saved_searches
   - shs:shs
   - smart_trim:smart_trim
+  - smtp:smtp
   - tac_lite:tac_lite
   - taxonomy_import:taxonomy_import
   - taxonomy_max_depth:taxonomy_max_depth

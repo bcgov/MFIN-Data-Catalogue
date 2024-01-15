@@ -98,6 +98,7 @@ module:
   shortcut: 0
   shs: 0
   smart_trim: 0
+  smtp: 0
   statistics: 0
   svg_image: 0
   svg_image_responsive: 0
