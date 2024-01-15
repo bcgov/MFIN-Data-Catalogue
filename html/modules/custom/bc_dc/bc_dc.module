@@ -674,10 +674,9 @@ function bc_dc_menu_local_tasks_alter(array &$data, string $route_name, Refinabl
       }
     }
 
-    // Do nothing for administrators.
+    // Remove Edit tab unless the user has access to the default form mode.
     $user = \Drupal::currentUser();
-    if (!in_array('administrator', $user->getRoles())) {
-      // Remove the "Edit" tab.
+    if (!$user->hasPermission('use  The form mode default linked to  node entity( data_set )')) {
       unset($data['tabs'][0]['entity.node.edit_form']);
     }
   }
