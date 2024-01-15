@@ -163,6 +163,9 @@
                 "2840283 - Problem with action path for embedded forms": "https://www.drupal.org/files/issues/2020-03-19/linked-display-2840283-40_1.patch",
                 "2918537 - Cannot save unpublished versions of published content for users without manage book privileges": "https://www.drupal.org/files/issues/2022-12-14/2918537-92.patch"
             },
+            "drupal/ctools": {
+                "2759445 - Manually pass an argument to a views block through interface": "https://www.drupal.org/files/issues/2023-01-18/2759445-100.patch"
+            },
             "drupal/shs": {
                 "3357151 - Backbone js error, wrong library": "https://www.drupal.org/files/issues/2023-04-28/3357151_change_backbone_lib_001.patch",
                 "3284824 - Schema definition for entity_reference_shs field formatter missing": "https://www.drupal.org/files/issues/2022-06-09/shs-schema_formatter_missing-3284824-2.patch"
