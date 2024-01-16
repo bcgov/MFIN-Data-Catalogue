@@ -108,7 +108,7 @@ variant_settings:
       views_label: ''
       items_per_page: none
       exposed: {  }
-      region: main
+      region: card_group
       weight: -3
       uuid: d31b32f8-27f2-4ef7-a52a-e3493e7c2dcc
       css_classes:
@@ -125,7 +125,7 @@ variant_settings:
       views_label: ''
       items_per_page: none
       exposed: {  }
-      region: main
+      region: card_group
       weight: -2
       uuid: 7b3ccf83-f8ea-4e83-81b8-8dedc4dd4f02
       css_classes:
