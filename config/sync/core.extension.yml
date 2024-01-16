@@ -33,7 +33,7 @@ module:
   ctools_views: 0
   datetime: 0
   dblog: 0
-  devel_php: 0
+  default_content_deploy: 0
   diff: 0
   dynamic_page_cache: 0
   editor: 0
@@ -53,6 +53,7 @@ module:
   flag: 0
   form_mode_control: 0
   formatter_suite: 0
+  hal: 0
   help: 0
   history: 0
   image: 0
