@@ -49,7 +49,7 @@ class BcDcRestrictionChart extends BlockBase implements ContainerFactoryPluginIn
     return new static(
       $configuration,
       $plugin_id,
-      $plugin_defCriticalinition,
+      $plugin_definition,
       $container->get('entity_type.manager'),
     );
   }

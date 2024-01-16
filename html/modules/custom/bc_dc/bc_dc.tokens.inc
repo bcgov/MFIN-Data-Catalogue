@@ -53,11 +53,11 @@ function bc_dc_tokens($type, $tokens, array $data, array $options, BubbleableMet
           NULL,
           TRUE
         );
-        $uuids = [];
+        $ids = [];
         foreach ($tree as $child) {
-          $uuids[] = $child->uuid();
+          $ids[] = $child->id();
         }
-        $replacements[$original] = implode('+', $uuids);
+        $replacements[$original] = implode('+', $ids);
       }
     }
 
