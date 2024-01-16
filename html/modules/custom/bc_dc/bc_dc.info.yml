@@ -16,6 +16,7 @@ dependencies:
   - cm_revision_delete:cm_revision_delete
   - diff:diff
   - drupal:charts
+  - drupal:ctools_views
   - drupal:content_moderation
   - drupal:datetime
   - drupal:field
