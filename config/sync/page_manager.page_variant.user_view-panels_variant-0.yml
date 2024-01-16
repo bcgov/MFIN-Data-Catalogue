@@ -103,11 +103,11 @@ variant_settings:
       context_mapping: {  }
       views_label: ''
       items_per_page: none
-      region: bottom_left
-      weight: 0
+      region: card_group
+      weight: -3
       uuid: d31b32f8-27f2-4ef7-a52a-e3493e7c2dcc
       css_classes:
-        - ''
+        - card
       html_id: ''
       css_styles: ''
     7b3ccf83-f8ea-4e83-81b8-8dedc4dd4f02:
@@ -118,11 +118,11 @@ variant_settings:
       context_mapping: {  }
       views_label: ''
       items_per_page: none
-      region: bottom_right
-      weight: 0
+      region: card_group
+      weight: -2
       uuid: 7b3ccf83-f8ea-4e83-81b8-8dedc4dd4f02
       css_classes:
-        - ''
+        - card
       html_id: ''
       css_styles: ''
     e2eab0ed-cacc-47f9-b658-65a06787c711:

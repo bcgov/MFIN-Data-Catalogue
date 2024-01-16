@@ -24,3 +24,16 @@
 .grid-dc-sidebar-right {
   grid-area: sidebar-right;
 }
+
+// layout for dashboard
+
+.path-user {
+  .block-region-top-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    @include responsive {
+      height: 100%;
+    }
+  }
+}

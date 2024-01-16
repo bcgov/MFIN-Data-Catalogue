@@ -1,7 +1,7 @@
 @font-face {
   font-display: block;
   font-family: "bootstrap-icons";
-  src: url("../assets/bootstrap-icons/fonts/bootstrap-icons.woff2?2820a3852bdb9a5832199cc61cec4e65") format("woff2"), url("../assets/bootstrap-icons/fonts/bootstrap-icons.woff?2820a3852bdb9a5832199cc61cec4e65") format("woff");
+  src: url("../assets/bootstrap-icons/fonts/bootstrap-icons.woff2") format("woff2"), url("../assets/bootstrap-icons/fonts/bootstrap-icons.woff") format("woff");
 }
 @media only screen and (min-width: 992px) {
   .grid-dc-container {
@@ -22,6 +22,17 @@
 
 .grid-dc-sidebar-right {
   grid-area: sidebar-right;
+}
+
+.path-user .block-region-top-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+@media only screen and (min-width: 576px) {
+  .path-user .block-region-top-right {
+    height: 100%;
+  }
 }
 
 .flag-bookmark {
@@ -149,152 +160,128 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   background-color: var(--bs-danger);
 }
 
-.page-my-dashboard .block-webform {
-  background-color: #D9D9D9;
-  padding: 20px 15px;
-  border-radius: 6px;
-}
-.page-my-dashboard .block-webform h2 {
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 26px;
-  color: #000;
-}
-.page-my-dashboard .block-webform .form-item label {
-  margin-bottom: 5px;
-}
-.page-my-dashboard .block-webform .form-submit {
-  background: #003366;
-}
-.page-my-dashboard .bcbb-search-api-form {
-  padding-left: 122px;
-}
-@media only screen and (max-width: 991.98px) {
-  .page-my-dashboard .bcbb-search-api-form {
-    padding-left: 0;
-    margin-top: 30px;
+@media only screen and (min-width: 992px) {
+  .dc-grid-2col-operations-lg {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-gap: 1.5em;
   }
 }
-.page-my-dashboard .bcbb-search-api-form form label {
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 24px;
-  margin-bottom: 8px;
-  color: #000;
+
+.path-user .dashboard-page .view-row, .path-user .card-group-region .card > div > .view .view-content .view-row {
+  padding: 0.75em 1.5em;
+  border-bottom: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
 }
-.page-my-dashboard .bcbb-search-api-form form input[type=text] {
-  min-height: 60px;
+.path-user .dashboard-page .view-row .flag-bookmark, .path-user .card-group-region .card > div > .view .view-content .view-row .flag-bookmark {
+  margin-top: 1.67em;
 }
-.page-my-dashboard .bcbb-search-api-form form input[type=submit] {
-  height: 60px;
-  width: 60px;
-  top: 34px;
+@media only screen and (min-width: 992px) {
+  .path-user .dashboard-page .view-row, .path-user .card-group-region .card > div > .view .view-content .view-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-gap: 1.5em;
+  }
 }
-.page-my-dashboard .bcbb-search-api-form form .description a {
-  display: inline-block;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 24px;
-  color: #1a5a96 !important;
-  margin-top: 8px;
+@media only screen and (min-width: 992px) {
+  .path-user .dashboard-page .view-row .flag-bookmark, .path-user .card-group-region .card > div > .view .view-content .view-row .flag-bookmark {
+    margin-top: auto;
+  }
 }
-.page-my-dashboard .block-bc-dc-data-set-table table caption {
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 26px;
-  color: #000;
-  padding-bottom: 16px;
+.path-user .dashboard-page .view-row:last-child, .path-user .card-group-region .card > div > .view .view-content .view-row:last-child {
+  padding-bottom: 0;
 }
-.page-my-dashboard .block-bc-dc-data-set-table table tr th, .page-my-dashboard .block-bc-dc-data-set-table table tr td {
-  padding: 15px 18px;
+.path-user .dashboard-page .view-row:last-child, .path-user .card-group-region .card > div > .view .view-content .view-row:last-child {
+  border-bottom: 0 !important;
+  margin-bottom: 4em;
 }
-.page-my-dashboard .block-bc-dc-data-set-table table tr.odd td {
-  background-color: #e9ecef;
-  --bs-table-bg-type: none;
-}
-.page-my-dashboard .block-bc-dc-data-set-table table tr .button {
-  background: #003366;
-  color: #fff;
-  border: none;
-}
-.page-my-dashboard .block-bc-dc-data-set-table table tr a + .badge {
-  margin-left: 16px;
-}
-.page-my-dashboard .block-bc-dc-data-set-table table tr .badge {
-  border-radius: 10px;
-}
-.page-my-dashboard .block-bc-dc-data-set-table table tr .flag-bookmark .title, .page-my-dashboard .block-bc-dc-data-set-table table tr .flag-bookmark .count {
-  font-size: 14px;
-  line-height: 16px;
-}
-.page-my-dashboard .block-bc-dc-data-set-table table tr .flag-bookmark .title {
-  border-bottom: 1px solid #1a5a96;
+.path-user .card-group-region .block-views-blockbookmarks-dashboard-bookmarks > h2 {
   display: inline-flex;
-}
-.page-my-dashboard .block-bc-dc-data-set-table table tr .flag-bookmark .count {
-  margin-left: 17px;
-}
-.page-my-dashboard .block-bc-dc-data-set-table table.dc-dashboard-table-mydatasetsm .flag-bookmark, .page-my-dashboard .block-bc-dc-data-set-table table.dc-dashboard-table-my-review-data-sets .flag-bookmark {
-  display: none;
-}
-.page-my-dashboard .block-bc-dc-data-set-table table.dc-dashboard-table-bookmarks {
-  margin-top: 0;
-}
-.page-my-dashboard .block-bc-dc-data-set-table table.dc-dashboard-table-bookmarks tbody {
-  padding: 34px 38px;
-  display: block;
-}
-.page-my-dashboard .block-bc-dc-data-set-table table.dc-dashboard-table-bookmarks tbody tr td {
-  width: 50%;
-  padding-left: 16px;
-  padding-right: 16px;
-}
-.page-my-dashboard .block-bc-dc-data-set-table table.dc-dashboard-table-bookmarks tbody tr.odd td {
-  background-color: transparent;
-}
-.page-my-dashboard .block-bc-dc-data-set-table table.dc-dashboard-table-bookmarks .button {
-  display: none;
-}
-.page-my-dashboard .block-bc-dc-data-set-table table.dc-dashboard-table-bookmarks a:not(.flag-bookmark a):not(.button) {
-  display: inline-block;
-  width: 100%;
-  font-weight: 700;
-}
-.page-my-dashboard .block-bc-dc-data-set-table table.dc-dashboard-table-bookmarks a:not(.flag-bookmark a):not(.button) + .badge {
-  margin-left: 0;
-}
-.page-my-dashboard .block-bc-dc-data-set-table table.dc-dashboard-table-bookmarks thead {
-  display: none;
-}
-.page-my-dashboard .block-bc-dc-data-set-table table.dc-dashboard-table-bookmarks caption {
-  padding-left: 23px;
-  padding-right: 23px;
-  position: relative;
-  display: flex;
+  width: auto;
+  line-height: 1 !important;
+  gap: 0.25em;
   align-items: center;
-  padding-top: 16px;
-  background: #f8f9fa;
+  text-decoration: none;
+  margin-left: 1.25em;
 }
-.page-my-dashboard .block-bc-dc-data-set-table table.dc-dashboard-table-bookmarks caption:before {
-  content: "\f199";
+.path-user .card-group-region .block-views-blockbookmarks-dashboard-bookmarks > h2::before, .path-user .card-group-region .block-views-blockbookmarks-dashboard-bookmarks > h2::after {
   font-family: "bootstrap-icons" !important;
-  display: inline-block;
-  margin-right: 5px;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-.page-my-dashboard .layout__region--first-below,
-.page-my-dashboard .layout__region--second-below {
-  border-radius: 6px;
-  border: 1px solid #e9ecef;
-  margin-top: 2.25rem;
+.path-user .card-group-region .block-views-blockbookmarks-dashboard-bookmarks > h2::before {
+  margin-left: -1.25em;
+  content: "\f1a3";
 }
-@media only screen and (max-width: 991.98px) {
-  .page-my-dashboard .layout__region--first-above,
-  .page-my-dashboard .layout__region--second-above,
-  .page-my-dashboard .layout__region--first-below,
-  .page-my-dashboard .layout__region--second-below {
-    width: 100%;
-    flex: 1 0 100%;
+.path-user .card-group-region .block-views-blocksaved-searches-dashboard-saved-search > h2 {
+  display: inline-flex;
+  width: auto;
+  line-height: 1 !important;
+  gap: 0.25em;
+  align-items: center;
+  text-decoration: none;
+  margin-left: 1.25em;
+}
+.path-user .card-group-region .block-views-blocksaved-searches-dashboard-saved-search > h2::before, .path-user .card-group-region .block-views-blocksaved-searches-dashboard-saved-search > h2::after {
+  font-family: "bootstrap-icons" !important;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.path-user .card-group-region .block-views-blocksaved-searches-dashboard-saved-search > h2::before {
+  margin-left: -1.25em;
+  content: "\f52a";
+}
+.path-user .card-group-region .block-views-blocksaved-searches-dashboard-saved-search .btn {
+  font-size: 0.875em;
+}
+@media only screen and (max-width: 992px) {
+  .path-user .card-group-region .block-views-blocksaved-searches-dashboard-saved-search .btn {
+    margin-top: 1em;
+    padding: 0.15em 0.5em;
   }
+}
+.path-user .card-group-region .card {
+  display: flex;
+  flex-direction: column;
+}
+.path-user .card-group-region .card > h2 {
+  font-size: 1.2em;
+  padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
+  margin-bottom: 0;
+  color: var(--bs-card-cap-color);
+  background-color: var(--bs-card-cap-bg);
+  border-bottom: var(--bs-card-border-width) solid var(--bs-card-border-color);
+  margin-left: 0;
+  padding: 0.75em 1.5em 0.75em 2.5em;
+}
+.path-user .card-group-region .card > div {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.path-user .card-group-region .card > div > .view {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.path-user .card-group-region .card > div > .view .view-content {
+  font-size: 0.875em;
+  flex-grow: 1;
+}
+.path-user .card-group-region .card .view-footer .card-footer {
+  font-size: 0.875em;
+  padding: 0.75em 1.5em;
+}
+@media only screen and (min-width: 992px) {
+  .path-user .dashboard-page .views-exposed-form .form--inline {
+    display: flex;
+    align-items: flex-end;
+  }
+}
+.path-user .dashboard-page .view-row {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .page-node-type-data-set .dc-details details {

@@ -1,196 +1,117 @@
-$colorGray200: #e9ecef;
-$colorGray100: #f8f9fa;
-
-.page-my-dashboard {
-   .block-webform {
-        background-color: #D9D9D9;
-        padding: 20px 15px;
-        border-radius: 6px;
-        h2 {
-            font-size: 22px;
-            font-weight: 700;
-            line-height: 26px;
-            color: $colorBlack;
-        }
-
-        .form-item {
-            label {
-                margin-bottom: 5px;
-            }
-        }
-
-        .form-submit {
-            background: $colorBrand-primary;
-        }
-   }
-
-   .bcbb-search-api-form {
-    padding-left: 122px;
-    @media only screen and (max-width: $md-max) {
-        padding-left: 0;
-        margin-top: 30px;
-    }
-
-    form {
-        label {
-            font-size: 20px;
-            font-weight: 700;
-            line-height: 24px;
-            margin-bottom: 8px;
-            color: $colorBlack;
-        }
-
-        input[type='text'] {
-            min-height: 60px;
-        }
-        input[type='submit'] {
-            height: 60px;
-            width: 60px;
-            top: 34px;
-        }
-        .description a {
-            display: inline-block;
-            font-size: 20px;
-            font-weight: 400;
-            line-height: 24px;
-            color: $colorTextLink !important;
-            margin-top: 8px;
-        }
-    }
-   }
-
-   .block-bc-dc-data-set-table {
-        table {
-            caption {
-                font-size: 22px;
-                font-weight: 700;
-
-                line-height: 26px;
-                color: $colorBlack;
-                padding-bottom: 16px;
-            }
-
-            tr {
-                th, td {
-                    padding: 15px 18px;
-                }
-
-                &.odd {
-
-                    td {
-                        background-color: $colorGray200;
-                        --bs-table-bg-type: none;
-                    }
-                }
-
-                .button {
-                    background: $colorBrand-primary;
-                    color: $colorWhite;
-                    border: none;
-                }
-
-               a + .badge {
-                    margin-left: 16px;
-                }
-
-                .badge {
-                    border-radius: 10px;
-                }
-
-                .flag-bookmark {
-                    .title, .count {
-                        font-size: 14px;
-                        line-height: 16px;
-                    }
-
-                    .title {
-                        border-bottom:1px solid $colorTextLink;
-                        display: inline-flex;
-                    }
-                    .count {
-                        margin-left: 17px;
-                    }
-                }
-            }
-
-            &.dc-dashboard-table-mydatasetsm,
-            &.dc-dashboard-table-my-review-data-sets {
-                .flag-bookmark {
-                    display: none;
-                }
-            }
-
-            &.dc-dashboard-table-bookmarks {
-                margin-top: 0;
-                tbody {
-                    padding : 34px 38px;
-                    display: block;
-
-                    tr {
-                        td {
-                            width:50%;
-                            padding-left: 16px;
-                            padding-right: 16px;
-                        }
-
-                        &.odd {
-                            td {
-                                background-color: transparent;
-                            }
-                        }
-                    }
-                }
-
-                .button {
-                    display: none;
-                }
-
-                a:not(.flag-bookmark a):not(.button) {
-                    display: inline-block;
-                    width: 100%;
-                    font-weight: 700;
-
-                    + .badge {
-                        margin-left: 0;
-
-                    }
-                }
-                thead {
-                    display: none;
-                }
-                caption {
-                    padding-left: 23px;
-                    padding-right: 23px;
-                    position: relative;
-                    display: flex;
-                    align-items: center;
-                    padding-top: 16px;
-                    background: $colorGray100;
-
-                    &:before {
-                        content: '\f199';
-                        font-family: "bootstrap-icons" !important;
-                        display: inline-block;
-                        margin-right: 5px;
-                    }
-                }
-            }
-        }
-   }
-   .layout__region--first-below,
-   .layout__region--second-below {
-        border-radius: 6px;
-        border: 1px solid $colorGray200;
-        margin-top: 2.25rem;
-   }
-
-   @media only screen and (max-width: $md-max) {
-    .layout__region--first-above,
-    .layout__region--second-above,
-    .layout__region--first-below,
-    .layout__region--second-below {
-        width: 100%;
-        flex: 1 0 100%;
-    }
+@mixin dc-grid-2col-operations($size: $sm-min) {
+  @media only screen and (min-width: $size) {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-gap: 1.5em;
+  }
 }
+
+.dc-grid-2col-operations-lg {
+  @include dc-grid-2col-operations($lg-min);
+}
+
+.path-user{
+
+  %dc-view-row {
+    .flag-bookmark {
+      margin-top: 1.67em;
+    }
+    @include dc-grid-2col-operations($lg-min);
+    @include responsive($lg-min) {
+      .flag-bookmark {
+        margin-top: auto;
+      }
+    }
+    padding: .75em 1.5em;
+    &:last-child {
+      padding-bottom: 0;
+    }
+    border-bottom: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+    &:last-child {
+      border-bottom: 0 !important;
+      margin-bottom: 4em;
+    }
+  }
+
+  .card-group-region {
+
+    .block-views-blockbookmarks-dashboard-bookmarks {
+        > h2 {
+          @include icon-bi($bi-bookmarks-fill);
+        }
+    }
+
+    .block-views-blocksaved-searches-dashboard-saved-search {
+        > h2 {
+          @include icon-bi($bi-search);
+        }
+
+        .btn {
+          font-size: $small;
+          @include responsive-down($lg-min) {
+            margin-top: 1em;
+            padding: .15em .5em;
+          }
+        }
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+
+      > h2 {
+        font-size: 1.2em;
+        padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
+        margin-bottom: 0;
+        color: var(--bs-card-cap-color);
+        background-color: var(--bs-card-cap-bg);
+        border-bottom: var(--bs-card-border-width) solid var(--bs-card-border-color);
+        margin-left: 0;
+        padding: .75em 1.5em .75em 2.5em;
+      }
+
+      > div {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        > .view {
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          .view-content {
+            font-size: $small;
+            flex-grow: 1;
+            .view-row {
+              @extend %dc-view-row;
+            }
+          }
+        }
+      }
+
+      .view-footer {
+        .card-footer {
+          font-size: $small;
+          padding: .75em 1.5em;
+        }
+      }
+    }
+  }
+
+  .dashboard-page {
+
+    .views-exposed-form {
+      .form--inline {
+        @include responsive($lg-min) {
+          display: flex;
+          align-items: flex-end;
+        }
+      }
+    }
+
+    .view-row {
+      @extend %dc-view-row;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
 }
