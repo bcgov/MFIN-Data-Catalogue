@@ -521,7 +521,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
       ':data_set_title' => $data_set_title,
       ':data_set_path' => $data_set_path,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//tr/td/a[normalize-space(text()) = :data_set_title][starts-with(@href, :data_set_path)]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//a[normalize-space(text()) = :data_set_title][starts-with(@href, :data_set_path)]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//div[normalize-space(text()) = "You currently do not have any metadata records bookmarked."]');
     // Metadata record count message.
@@ -570,7 +570,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $args = [
       ':data_set_path' => $data_set_path,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//tr/td
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//*
       [span[@class = "badge text-bg-success"][text() = "Updated"]]
       [a[starts-with(@href, :data_set_path)]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
