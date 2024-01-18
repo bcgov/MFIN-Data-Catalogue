@@ -170,11 +170,10 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_personal_information:
-    type: boolean_checkbox
+    type: options_buttons
     weight: 33
     region: content
-    settings:
-      display_label: true
+    settings: {  }
     third_party_settings: {  }
   field_primary_responsibility_org:
     type: options_select
