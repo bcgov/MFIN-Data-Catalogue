@@ -171,7 +171,7 @@ content:
     third_party_settings: {  }
   field_personal_information:
     type: options_buttons
-    weight: 28
+    weight: 33
     region: content
     settings: {  }
     third_party_settings: {  }
