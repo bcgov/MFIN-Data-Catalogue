@@ -37,6 +37,7 @@ dependencies:
     - node
     - paragraphs
     - rabbit_hole
+    - statistics
     - system
     - taxonomy
     - taxonomy_import
@@ -174,5 +175,6 @@ permissions:
   - 'view own field_primary_responsibility_org'
   - 'view own unpublished content'
   - 'view own unpublished media'
+  - 'view post access counter'
   - 'view the administration theme'
   - 'view unpublished paragraphs'

@@ -536,7 +536,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//div[normalize-space(text()) = "You currently do not have any metadata records bookmarked."]');
     // Metadata record count message.
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//*[text() = "You currently have no published metadata records."]');
-    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//a[text() = "Manage my published metadata records"]');
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//a[text() = "Manage metadata records"]');
 
     // Revisions and diff are enabled and available.
     $this->drupalGet('node/2');
@@ -566,7 +566,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Metadata record count message.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//*[text() = "You currently have no published metadata records."]');
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//*[text() = "You have 1 published metadata record that has been bookmarked 1 times."]');
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//a[text() = "Manage my published metadata records"]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//a[text() = "Manage metadata records"]');
 
     // Test data set update message.
     //
@@ -1181,7 +1181,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Metadata record count message.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//*[text() = "You currently have no published metadata records."]');
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//*[text() = "You have 2 published metadata records that have been bookmarked 2 times."]');
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//a[text() = "Manage my published metadata records"]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//a[text() = "Manage metadata records"]');
 
     // Check access to taxonomy term pages. They should be 404 except for
     // information_schedule.

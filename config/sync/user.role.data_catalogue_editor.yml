@@ -14,6 +14,7 @@ dependencies:
     - form_mode_control
     - node
     - paragraphs
+    - statistics
 id: data_catalogue_editor
 label: 'Data catalogue editor'
 weight: 5
@@ -43,4 +44,5 @@ permissions:
   - 'view latest version'
   - 'view own field_primary_responsibility_org'
   - 'view own unpublished content'
+  - 'view post access counter'
   - 'view unpublished paragraphs'
