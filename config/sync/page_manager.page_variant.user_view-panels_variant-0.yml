@@ -39,8 +39,9 @@ variant_settings:
       weight: 0
       uuid: 30d021dd-0378-4d78-af52-7b7285b87e9f
       css_classes:
-        - well
-        - well-sm
+        - card
+        - text-bg-light
+        - p-4
       html_id: ''
       css_styles: ''
     5b70cafc-c771-4ae8-abf9-8b16c0b269d9:

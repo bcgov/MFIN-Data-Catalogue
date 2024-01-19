@@ -1,7 +1,7 @@
 @font-face {
   font-display: block;
   font-family: "bootstrap-icons";
-  src: url("../assets/bootstrap-icons/fonts/bootstrap-icons.woff2") format("woff2"), url("../assets/bootstrap-icons/fonts/bootstrap-icons.woff") format("woff");
+  src: url("/themes/contrib/bcbb_theme/assets/bootstrap-icons/fonts/bootstrap-icons.woff2") format("woff2"), url("/themes/contrib/bcbb_theme/assets/bootstrap-icons/fonts/bootstrap-icons.woff") format("woff");
 }
 @media only screen and (min-width: 992px) {
   .grid-dc-container {
@@ -71,6 +71,14 @@
 }
 .dc-2col-table table:last-child {
   margin-bottom: auto;
+}
+
+.views-table tbody tr td {
+  padding: 1em 0.5em 1.5em;
+}
+
+.dc-table-row-has-actions tr td:last-child {
+  white-space: nowrap;
 }
 
 @media only screen and (min-width: 992px) {
@@ -193,6 +201,36 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 .path-user .dashboard-page .view-row:last-child, .path-user .card-group-region .card > div > .view .view-content .view-row:last-child {
   border-bottom: 0 !important;
   margin-bottom: 4em;
+}
+.path-user .block-views-blockdashboard-moderation-blocks-dashboard-unpublished .form--inline,
+.path-user .block-views-blockdashboard-blocks-dashboard-needs-review .form--inline {
+  display: flex;
+  align-items: flex-end;
+}
+.path-user .top-left-region .block-webform-block {
+  height: 100%;
+}
+.path-user .block-views-blockdashboard-moderation-blocks-dashboard-unpublished,
+.path-user .block-views-blockdashboard-blocks-dashboard-needs-review {
+  border-top: 1px solid #fcba19;
+  padding: 2em 0;
+}
+.path-user .block-views-blockdashboard-moderation-blocks-dashboard-unpublished table tbody tr:last-child,
+.path-user .block-views-blockdashboard-blocks-dashboard-needs-review table tbody tr:last-child {
+  border-bottom: 0 solid transparent;
+}
+.path-user .block-views-blockdashboard-blocks-dashboard-needs-review {
+  padding-bottom: 0;
+}
+.path-user .top-right-region {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+.path-user .top-right-region .bcbb-search-api-form {
+  align-self: start;
+}
+.path-user .top-right-region .block-bc-dc-content-summary {
+  align-self: end;
 }
 .path-user .card-group-region .block-views-blockbookmarks-dashboard-bookmarks > h2 {
   display: inline-flex;
@@ -569,4 +607,8 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 }
 .bcbb-theme .block-system-breadcrumb-block {
   margin-top: 1em;
+}
+
+time {
+  white-space: nowrap;
 }

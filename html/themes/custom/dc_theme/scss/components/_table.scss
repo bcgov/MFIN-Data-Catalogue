@@ -16,3 +16,23 @@
     }
   }
 }
+
+.views-table {
+  tbody {
+    tr {
+      td {
+        padding: 1em .5em 1.5em;
+      }
+    }
+  }
+}
+// size the last row to fit contents
+.dc-table-row-has-actions {
+  tr {
+    td {
+      &:last-child {
+        white-space: nowrap;
+      }
+    }
+  }
+}

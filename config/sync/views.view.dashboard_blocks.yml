@@ -519,7 +519,7 @@ display:
           required: false
           flag: bookmark
           user_scope: current
-      css_class: ''
+      css_class: dc-table-row-has-actions
       use_ajax: true
       header: {  }
       footer: {  }
@@ -864,6 +864,21 @@ display:
             value: 'You currently have no metadata records needing review.'
             format: basic_html
           tokenize: false
+      sorts:
+        field_last_review_date_value:
+          id: field_last_review_date_value
+          table: node__field_last_review_date
+          field: field_last_review_date_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: datetime
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
+          granularity: second
       filters:
         type:
           id: type
@@ -1021,6 +1036,7 @@ display:
         title: false
         relationships: false
         fields: false
+        sorts: false
         filters: false
         filter_groups: false
       relationships: {  }
