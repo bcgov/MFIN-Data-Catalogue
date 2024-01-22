@@ -118,17 +118,39 @@
                     {{ node.field_source_system|view }}
                   </div>
                 {% endif %}
-                {% if node.field_data_sets_used and not node.field_data_sets_used.isempty %}
-                  <div class="mb-3">
-                    {{ node.field_data_sets_used|view }}
-                  </div>
+
+                {# data lineage #}
+                {% if (node.field_data_sets_used and not node.field_data_sets_used.isEmpty) or (drupal_view_result('used_in_data_sets', 'block_1', node.nid.value) is not empty) %}
+                  <details class="dc-lineage">
+                    <summary>{{ 'Data lineage'|t }}</summary>
+                    <section>
+                      {% if node.field_data_sets_used and not node.field_data_sets_used.isempty %}
+                        <section class="dc-lineage-datasets-used" aria-label="{{ 'This dataset uses the following datasets'|t }}">
+                          {{ node.field_data_sets_used|view }}
+                          <div class="dc-arrow-down">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="40px" viewBox="0 0 25 50">
+                              <path d="M23.87,27.56h-6.57V0H7.69v27.56H1.13c-.87,0-1.41.96-.97,1.73l11.37,20.14c.43.77,1.52.77,1.95,0l11.37-20.14c.43-.77-.11-1.73-.97-1.73Z" fill="currentColor"/>
+                            </svg>
+                          </div>
+                        </section>
+                      {% endif %}
+                      <section class="dc-lineage-this-dataset" aria-label="{{ 'This dataset'|t }}">
+                        {{ node.label() }} (<em>{{ 'This dataset'|t }}</em>)
+                      </section>
+                      {% if drupal_view_result('used_in_data_sets', 'block_1', node.nid.value) is not empty %}
+                        <section class="dc-lineage-used-in-datasets" aria-label="{{ 'The following datasets use this dataset'|t }}">
+                          <div class="dc-arrow-down">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="40px" viewBox="0 0 25 50">
+                              <path d="M23.87,27.56h-6.57V0H7.69v27.56H1.13c-.87,0-1.41.96-.97,1.73l11.37,20.14c.43.77,1.52.77,1.95,0l11.37-20.14c.43-.77-.11-1.73-.97-1.73Z" fill="currentColor"/>
+                            </svg>
+                          </div>
+                          {{ drupal_view('used_in_data_sets', 'block_1', node.nid.value) }}
+                        </section>
+                      {% endif %}
+                    </section>
+                  </details>
                 {% endif %}
-                {% if drupal_view_result('used_in_data_sets', 'block_1', node.nid.value) is not empty %}
-                  <div class="mb-3 field--label-inline">
-                    <div class="field__label">{{'Used in datasets'|t}}</div>
-                    {{ drupal_view('used_in_data_sets', 'block_1', node.nid.value) }}
-                  </div>
-                {% endif %}
+
                 {% if node.field_data_quality_issues and not node.field_data_quality_issues.isempty %}
                   <div class="mb-3">
                     {{ node.field_data_quality_issues|view }}

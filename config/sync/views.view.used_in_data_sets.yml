@@ -187,11 +187,14 @@ display:
         groups:
           1: AND
       style:
-        type: default
+        type: html_list
         options:
           grouping: {  }
-          row_class: 'field__item mb-2'
+          row_class: ''
           default_row_class: false
+          type: ul
+          wrapper_class: ''
+          class: ''
       row:
         type: fields
       query:
