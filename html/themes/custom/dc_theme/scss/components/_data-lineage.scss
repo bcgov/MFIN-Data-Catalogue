@@ -1,0 +1,39 @@
+// data lineage on metadata node view
+
+.dc-lineage {
+  $radius: .5em;
+  $border: .15em;
+  border: 0px;
+  summary {
+    padding: 0;
+    margin-bottom: 1em;
+  }
+  .dc-lineage-datasets-used,
+  .dc-lineage-used-in-datasets {
+    ul {
+     border: $border solid $colorBrand-primary;
+      padding: 1em 1em 1em 2em;
+      margin-bottom: 0 !important;
+      border-radius: $radius;
+      li {
+        padding-bottom: .5em;
+        &:last-child {
+          padding-bottom: 0;;
+        }
+      }
+    }
+  }
+  .dc-lineage-this-dataset {
+    border: $border solid $colorBrand-primary;
+    background: $colorBrand-primary;
+    color: $colorWhite;
+    padding: 1.25em 1em;
+    border-radius: $radius;
+  }
+  .dc-arrow-down {
+    color: $colorBrand-primary;
+    padding-bottom: $border;
+    display: flex;
+    justify-content: center;
+  }
+}

@@ -322,6 +322,42 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   padding-right: 0;
 }
 
+.dc-lineage {
+  border: 0px;
+}
+.dc-lineage summary {
+  padding: 0;
+  margin-bottom: 1em;
+}
+.dc-lineage .dc-lineage-datasets-used ul,
+.dc-lineage .dc-lineage-used-in-datasets ul {
+  border: 0.15em solid #003366;
+  padding: 1em 1em 1em 2em;
+  margin-bottom: 0 !important;
+  border-radius: 0.5em;
+}
+.dc-lineage .dc-lineage-datasets-used ul li,
+.dc-lineage .dc-lineage-used-in-datasets ul li {
+  padding-bottom: 0.5em;
+}
+.dc-lineage .dc-lineage-datasets-used ul li:last-child,
+.dc-lineage .dc-lineage-used-in-datasets ul li:last-child {
+  padding-bottom: 0;
+}
+.dc-lineage .dc-lineage-this-dataset {
+  border: 0.15em solid #003366;
+  background: #003366;
+  color: #fff;
+  padding: 1.25em 1em;
+  border-radius: 0.5em;
+}
+.dc-lineage .dc-arrow-down {
+  color: #003366;
+  padding-bottom: 0.15em;
+  display: flex;
+  justify-content: center;
+}
+
 .page-node-type-data-set .dc-details details {
   border: 0 solid transparent;
 }
