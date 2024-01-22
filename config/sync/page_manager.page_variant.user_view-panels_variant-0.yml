@@ -165,9 +165,6 @@ selection_criteria:
     context_mapping:
       user: '@user.current_user_context:current_user'
     roles:
-      data_catalogue_manager: data_catalogue_manager
-      data_catalogue_editor: data_catalogue_editor
-      data_catalogue_user: data_catalogue_user
-      data_catalogue_information_management_specialist: data_catalogue_information_management_specialist
+      authenticated: authenticated
 selection_logic: and
 static_context: {  }
