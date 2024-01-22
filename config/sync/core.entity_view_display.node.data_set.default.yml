@@ -35,6 +35,7 @@ dependencies:
     - datetime
     - entity_reference_revisions
     - field_token_value
+    - formatter_suite
     - options
     - shs
     - text
@@ -117,10 +118,17 @@ content:
     weight: 15
     region: content
   field_data_sets_used:
-    type: entity_reference_label
-    label: inline
+    type: formatter_suite_general_entity_reference
+    label: hidden
     settings:
-      link: true
+      entityReferenceStyle: title
+      titleCustomText: ''
+      classes: ''
+      showLink: '1'
+      openLinkIn: _self
+      linkTopic: any
+      listStyle: ul
+      listSeparator: ', '
     third_party_settings: {  }
     weight: 26
     region: content
