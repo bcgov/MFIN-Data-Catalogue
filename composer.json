@@ -55,6 +55,7 @@
         "drupal/field_token_value": "^3.0",
         "drupal/flag": "^4.0",
         "drupal/formatter_suite": "^2.0",
+        "drupal/insert_view_adv": "^2.0@alpha",
         "drupal/message_gcnotify": "dev-1.0.x",
         "drupal/paragraphs_features": "^2.0@beta",
         "drupal/registration_role": "^2.0",
