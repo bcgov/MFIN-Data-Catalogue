@@ -24,6 +24,7 @@ module:
   clipboardjs: 0
   cm_revision_delete: 0
   comment: 0
+  conditional_fields: 0
   config: 0
   config_ignore: 0
   config_split: 0
