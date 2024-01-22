@@ -46,18 +46,23 @@ function bc_dc_tokens($type, $tokens, array $data, array $options, BubbleableMet
       foreach ($chained_tokens as $key => $original) {
         $manager = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
         $term = $manager->loadByProperties(['uuid' => $key]);
-        $term = reset($term);
-        $tree = $manager->loadTree(
-          'data_set_type',
-          $term->id(),
-          NULL,
-          TRUE
-        );
-        $ids = [];
-        foreach ($tree as $child) {
-          $ids[] = $child->id();
+        if ($term) {
+          $term = reset($term);
+          $tree = $manager->loadTree(
+            'data_set_type',
+            $term->id(),
+            NULL,
+            TRUE
+          );
+          $ids = [];
+          foreach ($tree as $child) {
+            $ids[] = $child->id();
+          }
+          $replacements[$original] = implode('+', $ids);
         }
-        $replacements[$original] = implode('+', $ids);
+        else {
+          $replacements[$original] = 'term_not_found';
+        }
       }
     }
 

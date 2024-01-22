@@ -155,7 +155,7 @@ variant_settings:
       context_mapping:
         user: '@user.current_user_context:current_user'
       region: footer
-      weight: -6
+      weight: -7
       uuid: c90a5c2e-6f7c-416a-a329-a847ccec3105
       css_classes:
         - ''
@@ -168,7 +168,7 @@ variant_settings:
       provider: null
       context_mapping: {  }
       region: footer
-      weight: -3
+      weight: -4
       uuid: 7864eb70-10dc-445d-9244-88912633eb04
       css_classes:
         - ''
@@ -181,7 +181,7 @@ variant_settings:
       provider: null
       context_mapping: {  }
       region: footer
-      weight: -4
+      weight: -5
       uuid: 91bf8673-08b2-42f5-ba54-c853a9b1d486
       css_classes:
         - ''
@@ -195,7 +195,7 @@ variant_settings:
       context_mapping:
         user: '@user.current_user_context:current_user'
       region: footer
-      weight: -5
+      weight: -6
       uuid: bdd62cf0-7dbe-4bb1-8b1a-7155b5ec5fb2
       css_classes:
         - ''
@@ -208,7 +208,7 @@ variant_settings:
       provider: null
       context_mapping: {  }
       region: footer
-      weight: -2
+      weight: -3
       uuid: ec490520-7423-4aaf-b483-0ad8d70e2078
       css_classes:
         - ''
@@ -221,7 +221,7 @@ variant_settings:
       provider: null
       context_mapping: {  }
       region: footer
-      weight: -1
+      weight: -2
       uuid: 1965066d-cc39-4d99-a2fd-8a51cce16fe6
       css_classes:
         - ''
@@ -239,10 +239,52 @@ variant_settings:
       arguments:
         field_data_set_type_target_id:
           type: numeric
-          value: '[global:bc_dc_term_lineage:863c21b4-3d71-4c85-811b-97af7914f0f1]'
+          value: '[global:bc_dc_term_lineage:a072cbed-f97f-4486-9a01-aed0f1fb8978]'
+      region: footer
+      weight: -1
+      uuid: dc082711-7cf6-46f8-8d03-093d21fd2fef
+      css_classes:
+        - card
+        - bcdc-dashboard-card
+      html_id: ''
+      css_styles: ''
+    e28a85b4-c239-4a2b-bff0-d3cbb7a24377:
+      id: 'views_block:bookmarks-block_1'
+      label: 'Top bookmarked forms'
+      label_display: visible
+      provider: views
+      context_mapping: {  }
+      views_label: 'Top bookmarked forms'
+      items_per_page: '3'
+      exposed: {  }
+      arguments:
+        field_data_set_type_target_id:
+          type: numeric
+          value: '[global:bc_dc_term_lineage:af1f102b-c9db-4116-96fc-77d4c7893af4]'
+      region: footer
+      weight: 1
+      uuid: e28a85b4-c239-4a2b-bff0-d3cbb7a24377
+      css_classes:
+        - card
+        - bcdc-dashboard-card
+      html_id: ''
+      css_styles: ''
+    796b4323-1b19-410b-bacc-193ebba85604:
+      id: 'views_block:bookmarks-block_1'
+      label: 'Top bookmarked reports'
+      label_display: visible
+      provider: views
+      context_mapping: {  }
+      views_label: 'Top bookmarked reports'
+      items_per_page: '3'
+      exposed: {  }
+      arguments:
+        field_data_set_type_target_id:
+          type: numeric
+          value: 571efb4c-351e-4084-9503-6be841b00b82
       region: footer
       weight: 0
-      uuid: dc082711-7cf6-46f8-8d03-093d21fd2fef
+      uuid: 796b4323-1b19-410b-bacc-193ebba85604
       css_classes:
         - card
         - bcdc-dashboard-card
