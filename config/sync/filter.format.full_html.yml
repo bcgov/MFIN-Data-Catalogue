@@ -5,6 +5,7 @@ dependencies:
   module:
     - editor
     - entity_embed
+    - insert_view_adv
     - media
     - toc_filter
 _core:
@@ -58,6 +59,17 @@ filters:
     status: true
     weight: 15
     settings: {  }
+  insert_view_adv:
+    id: insert_view_adv
+    provider: insert_view_adv
+    status: true
+    weight: 0
+    settings:
+      allowed_views:
+        information_schedule_term_ids=block_info_schedule_entities: information_schedule_term_ids=block_info_schedule_entities
+        information_schedule_term_ids=block_info_schedule_values: information_schedule_term_ids=block_info_schedule_values
+      render_as_empty: 0
+      hide_argument_input: true
   media_embed:
     id: media_embed
     provider: media

@@ -32,10 +32,11 @@ settings:
       - '|'
       - heading
       - style
+      - '-'
       - codeBlock
-      - '|'
       - Fullscreen
       - sourceEditing
+      - insertViewAdv
       - node
   plugins:
     ckeditor5_codeBlock:

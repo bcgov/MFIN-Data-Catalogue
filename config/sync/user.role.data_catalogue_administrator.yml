@@ -37,7 +37,6 @@ dependencies:
     - node
     - paragraphs
     - rabbit_hole
-    - role_delegation
     - statistics
     - system
     - taxonomy
