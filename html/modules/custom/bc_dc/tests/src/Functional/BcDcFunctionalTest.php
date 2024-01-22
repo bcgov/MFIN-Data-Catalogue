@@ -1145,9 +1145,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $args = [
       ':data_set_title' => $data_set_title,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//div
-      [//div[text() = "Data sets used"]]
-      [//a[text() = :data_set_title]]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//section[@aria-label = "This dataset uses the following datasets"]//a[text() = :data_set_title]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     $this->assertSession()->elementNotExists('xpath', '//div[text() = "Used-in data sets"]');
     // Check node/2 for link back.
@@ -1155,9 +1153,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $args = [
       ':data_set_title_2' => $data_set_title_2,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//div
-      [//div[text() = "Used in datasets"]]
-      [//a[text() = :data_set_title_2]]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//section[@aria-label = "The following datasets use this dataset"]//a[text() = :data_set_title_2]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     $this->assertSession()->elementNotExists('xpath', '//div[text() = "Data sets used"]');
     // "Personal information" badge appears.
