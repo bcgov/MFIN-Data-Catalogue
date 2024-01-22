@@ -26,6 +26,7 @@ vendor
 *.swp
 *.vi
 compass_app_log.txt
+*.css.map
 
 # SASS
 .sass-cache
