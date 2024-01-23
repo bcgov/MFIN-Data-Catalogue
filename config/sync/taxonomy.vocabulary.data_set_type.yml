@@ -7,7 +7,7 @@ dependencies:
 third_party_settings:
   taxonomy_max_depth:
     max_depth: 3
-name: 'Data set type'
+name: 'Record type'
 vid: data_set_type
 description: 'Referenced by <i>field_data_set_type</i>  in data set.<br><i>type</i> in CA.'
 weight: 0

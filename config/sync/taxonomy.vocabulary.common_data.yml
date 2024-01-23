@@ -2,7 +2,7 @@ uuid: f9cb24bb-65f6-4c93-bb29-a1fe7fa81ca3
 langcode: en
 status: true
 dependencies: {  }
-name: 'Common data'
+name: 'Column instance of'
 vid: common_data
 description: 'Referenced by <i>field_instance_of</i>  in data dictionary.<br><i>Instance of</i> in CA.'
 weight: 0
