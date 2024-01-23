@@ -2,13 +2,41 @@
 
 namespace Drupal\bc_dc\Form;
 
+use Drupal\bc_dc\Service\ReviewReminder;
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides the module configuration form.
  */
 class BcDcSettingsForm extends ConfigFormBase {
+
+  /**
+   * Constructor.
+   *
+   * @param \Drupal\bc_dc\Service\ReviewReminder $bcDcReviewReminder
+   *   The bc_dc.review_reminder service.
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The config.factory service.
+   */
+  public function __construct(
+    protected ReviewReminder $bcDcReviewReminder,
+    ConfigFactoryInterface $config_factory,
+  ) {
+    parent::__construct($config_factory);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container): static {
+    return new static(
+      $container->get('bc_dc.review_reminder'),
+      $container->get('config.factory'),
+    );
+  }
 
   /**
    * {@inheritdoc}
@@ -31,6 +59,17 @@ class BcDcSettingsForm extends ConfigFormBase {
     $form = parent::buildForm($form, $form_state);
 
     $bc_dc_settings = $this->config('bc_dc.settings');
+
+    $form['notifications'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Metadata record review reminders'),
+      '#description' => $this->t('These are usually sent every week on Sunday. Use this button to send them now.'),
+    ];
+    $form['notifications']['send'] = [
+      '#type' => 'submit',
+      '#submit' => ['::sendDataSetReviewReminders'],
+      '#value' => $this->t('Send metadata record review reminders'),
+    ];
 
     $form['data_set_review_period_alert'] = [
       '#type' => 'number',
@@ -79,6 +118,20 @@ class BcDcSettingsForm extends ConfigFormBase {
     $bc_dc_settings->save();
 
     $this->getLogger('bc_dc')->notice('BC Data Catalogue Module settings have been updated.');
+  }
+
+  /**
+   * Submit handler to send data_set review reminders.
+   *
+   * @param array $form
+   *   An associative array containing the structure of the form.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current state of the form.
+   */
+  public function sendDataSetReviewReminders(array &$form, FormStateInterface $form_state): void {
+    $this->bcDcReviewReminder->sendRemindersToAllUsers();
+
+    $this->messenger()->addMessage($this->t('Metadata record review reminders have been sent.'));
   }
 
 }
