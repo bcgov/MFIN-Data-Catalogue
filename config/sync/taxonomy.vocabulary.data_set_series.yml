@@ -2,7 +2,7 @@ uuid: 2369724c-ecf4-4725-8bb3-ae6eadfa1ef9
 langcode: en
 status: true
 dependencies: {  }
-name: 'Data set series'
+name: Series
 vid: data_set_series
 description: 'Referenced by <i>field_series</i>  in data set.<br><i>Series</i> in CA.'
 weight: 0

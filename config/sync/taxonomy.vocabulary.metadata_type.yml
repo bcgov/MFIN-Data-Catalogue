@@ -2,7 +2,7 @@ uuid: 5037b587-ea43-44c7-8659-f8ce132fdf63
 langcode: en
 status: true
 dependencies: {  }
-name: 'Metadata type'
+name: 'Column meta type'
 vid: metadata_type
 description: 'Referenced by <i> field_metadata_type</i>  in data dictionary.<br><i>Metadata type</i> in CA.'
 weight: 0
