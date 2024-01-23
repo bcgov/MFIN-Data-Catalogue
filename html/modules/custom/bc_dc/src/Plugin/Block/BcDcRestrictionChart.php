@@ -5,7 +5,6 @@ namespace Drupal\bc_dc\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -79,7 +78,7 @@ class BcDcRestrictionChart extends BlockBase implements ContainerFactoryPluginIn
       $values[] = count($nids);
     }
 
-   // Define a series to be used.
+    // Define a series to be used.
     $series = [
       '#type' => 'chart_data',
       '#title' => $this->t('Restrictions'),
@@ -91,7 +90,7 @@ class BcDcRestrictionChart extends BlockBase implements ContainerFactoryPluginIn
     $xaxis = [
       '#type' => 'chart_xaxis',
       '#title' => $this->t('Records'),
-      '#labels' => $labels, 
+      '#labels' => $labels,
     ];
 
     $build = [
@@ -106,7 +105,6 @@ class BcDcRestrictionChart extends BlockBase implements ContainerFactoryPluginIn
       '#suffix' => '</div></div>',
       // e.g. ['chart' => ['backgroundColor' => '#000000']].
     ];
-
 
     return $build;
   }

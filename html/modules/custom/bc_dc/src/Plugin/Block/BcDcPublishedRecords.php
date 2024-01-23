@@ -5,7 +5,6 @@ namespace Drupal\bc_dc\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -58,7 +57,6 @@ class BcDcPublishedRecords extends BlockBase implements ContainerFactoryPluginIn
    * {@inheritdoc}
    */
   public function build() {
-    $user = $this->getContextValue('user');
     $nodeStorage = $this->entityTypeManager->getStorage('node');
 
     $build = [];
