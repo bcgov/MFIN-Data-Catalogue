@@ -53,6 +53,7 @@ third_party_settings:
     term_modifiers:
       slop: 3
       fuzzy: 1
+      fuzzy_analyzer: true
     advanced:
       index_prefix: ''
       collection: ''
@@ -306,6 +307,6 @@ tracker_settings:
     indexing_order: fifo
 options:
   cron_limit: 200
-  index_directly: true
+  index_directly: false
   track_changes_in_references: true
 server: solr
