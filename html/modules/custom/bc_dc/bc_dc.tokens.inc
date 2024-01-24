@@ -52,11 +52,11 @@ function bc_dc_tokens($type, $tokens, array $data, array $options, BubbleableMet
             'data_set_type',
             $term->id(),
             NULL,
-            TRUE
+            FALSE 
           );
           $ids = [];
           foreach ($tree as $child) {
-            $ids[] = $child->id();
+            $ids[] = $child->tid;
           }
           $replacements[$original] = implode('+', $ids);
         }
