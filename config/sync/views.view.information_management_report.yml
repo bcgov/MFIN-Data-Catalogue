@@ -675,7 +675,7 @@ display:
           admin_label: ''
           plugin_id: result
           empty: false
-          content: "<h2>Information schedule missing</h2>\r\n\r\nDisplaying @start - @end of @total"
+          content: "<h2>Information schedule incomplete</h2>\r\n\r\nDisplaying @start - @end of @total"
       footer: {  }
       display_extenders: {  }
     cache_metadata:
