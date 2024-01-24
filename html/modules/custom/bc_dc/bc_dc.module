@@ -420,7 +420,6 @@ function bc_dc_form_alter(array &$form, FormStateInterface $form_state, string $
       // Remove revisioning informaion.
       $form['revision_information']['#access'] = FALSE;
       // Remove status information.
-      // $form['advanced']['#access'] = FALSE;.
       $form['meta']['#access'] = FALSE;
       $form['options']['#access'] = FALSE;
       $form['menu']['#access'] = FALSE;
