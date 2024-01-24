@@ -48,12 +48,7 @@ function bc_dc_tokens($type, $tokens, array $data, array $options, BubbleableMet
         $term = $manager->loadByProperties(['uuid' => $key]);
         if ($term) {
           $term = reset($term);
-          $tree = $manager->loadTree(
-            'data_set_type',
-            $term->id(),
-            NULL,
-            FALSE 
-          );
+          $tree = $manager->loadTree('data_set_type', $term->id());
           $ids = [];
           foreach ($tree as $child) {
             $ids[] = $child->tid;
