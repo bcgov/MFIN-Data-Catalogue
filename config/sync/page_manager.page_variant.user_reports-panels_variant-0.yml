@@ -128,7 +128,7 @@ variant_settings:
       arguments:
         field_data_set_type_target_id:
           type: numeric
-          value: '[global:bc_dc_term_lineage:a072cbed-f97f-4486-9a01-aed0f1fb8978]'
+          value: '[global:bc_dc_term_lineage:e8736124-b46c-4309-8ae9-db39454399d6]'
       region: footer
       weight: -1
       uuid: dc082711-7cf6-46f8-8d03-093d21fd2fef
@@ -149,7 +149,7 @@ variant_settings:
       arguments:
         field_data_set_type_target_id:
           type: numeric
-          value: '[global:bc_dc_term_lineage:af1f102b-c9db-4116-96fc-77d4c7893af4]'
+          value: '[global:bc_dc_term_lineage:5af4d0df-74a9-4781-84e9-bbb22413e4bb]'
       region: footer
       weight: 1
       uuid: e28a85b4-c239-4a2b-bff0-d3cbb7a24377
@@ -170,7 +170,7 @@ variant_settings:
       arguments:
         field_data_set_type_target_id:
           type: numeric
-          value: '[global:bc_dc_term_lineage:571efb4c-351e-4084-9503-6be841b00b82]'
+          value: '[global:bc_dc_term_lineage:0399445d-9f64-414b-92d8-612882796198]'
       region: footer
       weight: 0
       uuid: 796b4323-1b19-410b-bacc-193ebba85604
