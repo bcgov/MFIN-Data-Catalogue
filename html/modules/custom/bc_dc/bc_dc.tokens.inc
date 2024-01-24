@@ -56,7 +56,7 @@ function bc_dc_tokens($type, $tokens, array $data, array $options, BubbleableMet
           $replacements[$original] = implode('+', $ids);
         }
         else {
-          $replacements[$original] = 'term_not_found';
+          $replacements[$original] = NULL;
         }
       }
     }
