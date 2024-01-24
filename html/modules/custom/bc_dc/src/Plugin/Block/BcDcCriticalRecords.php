@@ -48,7 +48,7 @@ class BcDcCriticalRecords extends BlockBase implements ContainerFactoryPluginInt
     return new static(
       $configuration,
       $plugin_id,
-      $plugin_defCriticalinition,
+      $plugin_definition,
       $container->get('entity_type.manager'),
     );
   }
