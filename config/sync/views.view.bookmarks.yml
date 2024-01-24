@@ -1595,8 +1595,8 @@ display:
         css_class: false
         pager: false
         fields: false
-      display_description: ''
       css_class: 'dashboard-page dashboard-page-bookmarks'
+      display_description: ''
       display_extenders: {  }
       path: user/%user/bookmarks
       menu:
