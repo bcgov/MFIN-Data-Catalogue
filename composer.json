@@ -44,6 +44,7 @@
         "composer/installers": "^2.0",
         "drupal/auto_username": "^1.5",
         "drupal/cancel_button": "^1.4",
+        "drupal/charts": "^5.0",
         "drupal/ckeditor_codemirror": "^3.0@beta",
         "drupal/clipboardjs": "dev-2.0.x#adb3f68",
         "drupal/cm_revision_delete": "^1.1",
@@ -164,6 +165,9 @@
                 "3079534 - Views JOIN condition fails in PostgreSQL when comparing entity identifiers of different datatypes": "https://www.drupal.org/files/issues/2024-01-17/drupal-views_postgres_join_no_tests-3079534-36.patch",
                 "2840283 - Problem with action path for embedded forms": "https://www.drupal.org/files/issues/2020-03-19/linked-display-2840283-40_1.patch",
                 "2918537 - Cannot save unpublished versions of published content for users without manage book privileges": "https://www.drupal.org/files/issues/2022-12-14/2918537-92.patch"
+            },
+            "drupal/ctools": {
+                "2759445 - Manually pass an argument to a views block through interface": "https://www.drupal.org/files/issues/2023-01-18/2759445-100.patch"
             },
             "drupal/shs": {
                 "3357151 - Backbone js error, wrong library": "https://www.drupal.org/files/issues/2023-04-28/3357151_change_backbone_lib_001.patch",

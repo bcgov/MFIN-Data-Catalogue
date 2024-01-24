@@ -14,15 +14,20 @@ function bc_dc_token_info() {
   $types = [];
   $tokens = [];
 
+  // Global tokens.
   $types['global'] = [
     'name' => t('Global tokens'),
     'description' => t('Tokens with no context.'),
   ];
 
-  // Current-user tokens.
   $tokens['global']['bc_dc_infosched_leafterms'] = [
     'name' => t('Information schedule child terms'),
     'description' => t('Returns the child terms of the information schedule vocabulary concatentated with +.'),
+  ];
+
+  $tokens['global']['bc_dc_term_lineage'] = [
+    'name' => t('Term lineage from uuid'),
+    'description' => t('Returns the current plus the child terms for a uuid concatentated with +.'),
   ];
 
   return ['types' => $types, 'tokens' => $tokens];
@@ -36,6 +41,26 @@ function bc_dc_tokens($type, $tokens, array $data, array $options, BubbleableMet
 
   // Global tokens.
   if ($type == 'global') {
+    // Chained token relationships.
+    if ($chained_tokens = \Drupal::token()->findWithPrefix($tokens, 'bc_dc_term_lineage')) {
+      foreach ($chained_tokens as $key => $original) {
+        $manager = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+        $term = $manager->loadByProperties(['uuid' => $key]);
+        if ($term) {
+          $term = reset($term);
+          $tree = $manager->loadTree('data_set_type', $term->id());
+          $ids = [$term->id()];
+          foreach ($tree as $child) {
+            $ids[] = $child->tid;
+          }
+          $replacements[$original] = implode('+', $ids);
+        }
+        else {
+          $replacements[$original] = NULL;
+        }
+      }
+    }
+
     foreach ($tokens as $name => $original) {
       // Find the desired token by name.
       switch ($name) {

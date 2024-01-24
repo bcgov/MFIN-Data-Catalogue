@@ -411,6 +411,24 @@ function bc_dc_form_webform_submission_create_data_set_form_alter(array &$form, 
 }
 
 /**
+ * Implements hook_form_alter().
+ */
+function bc_dc_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
+  switch ($form_id) {
+    case 'node_book_edit_form':
+    case 'node_book_form':
+      // Remove revisioning informaion.
+      $form['revision_information']['#access'] = FALSE;
+      // Remove status information.
+      $form['meta']['#access'] = FALSE;
+      $form['options']['#access'] = FALSE;
+      $form['menu']['#access'] = FALSE;
+      $form['author']['#access'] = FALSE;
+      break;
+  }
+}
+
+/**
  * Implements hook_form_FORM_ID_alter().
  */
 function bc_dc_form_node_data_set_edit_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {

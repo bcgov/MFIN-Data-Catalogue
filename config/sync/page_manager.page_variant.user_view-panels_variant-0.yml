@@ -13,10 +13,11 @@ dependencies:
     - bc_dc
     - bcbb_search
     - panels
+    - user
     - views
     - webform
 id: user_view-panels_variant-0
-label: Panels
+label: 'DC Users'
 weight: 0
 variant: panels_variant
 variant_settings:
@@ -74,6 +75,7 @@ variant_settings:
       context_mapping: {  }
       views_label: ''
       items_per_page: none
+      exposed: {  }
       region: main
       weight: 0
       uuid: 22170ac7-9bce-48a9-b518-890230c04c74
@@ -89,6 +91,7 @@ variant_settings:
       context_mapping: {  }
       views_label: ''
       items_per_page: none
+      exposed: {  }
       region: main
       weight: -1
       uuid: cdb4c33e-c307-419d-a680-0dc713f25a6b
@@ -104,11 +107,13 @@ variant_settings:
       context_mapping: {  }
       views_label: ''
       items_per_page: none
+      exposed: {  }
       region: card_group
       weight: -3
       uuid: d31b32f8-27f2-4ef7-a52a-e3493e7c2dcc
       css_classes:
         - card
+        - border-secondary
       html_id: ''
       css_styles: ''
     7b3ccf83-f8ea-4e83-81b8-8dedc4dd4f02:
@@ -119,11 +124,13 @@ variant_settings:
       context_mapping: {  }
       views_label: ''
       items_per_page: none
+      exposed: {  }
       region: card_group
       weight: -2
       uuid: 7b3ccf83-f8ea-4e83-81b8-8dedc4dd4f02
       css_classes:
         - card
+        - border-secondary
       html_id: ''
       css_styles: ''
     e2eab0ed-cacc-47f9-b658-65a06787c711:
@@ -140,7 +147,7 @@ variant_settings:
         - ''
       html_id: ''
       css_styles: ''
-  page_title: Dashboard
+  page_title: null
   layout: bcbb_bricks
   layout_settings: {  }
   builder: standard
@@ -148,9 +155,16 @@ variant_settings:
   storage_id: user_view-panels_variant-0
   css_classes:
     - ''
-  html_id: ''
-  css_styles: ''
+  html_id: null
+  css_styles: null
 page: user_view
-selection_criteria: {  }
+selection_criteria:
+  -
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      authenticated: authenticated
 selection_logic: and
 static_context: {  }
