@@ -68,18 +68,12 @@ function bc_dc_tokens($type, $tokens, array $data, array $options, BubbleableMet
           // Getting first the entity type manager service.
           $manager = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
           // Load the taxonomy tree using values.
-          $tree = $manager->loadTree(
-            'information_schedule',
-            0,
-            NULL,
-            TRUE
-          );
-
+          $tree = $manager->loadTree('information_schedule');
           $results = [];
           foreach ($tree as $term) {
             // Check if has children or not to validate if is at last level.
-            if (empty($manager->loadChildren($term->id()))) {
-              $results[] = $term->id();
+            if (empty($manager->loadChildren($term->tid))) {
+              $results[] = $term->tid;
             }
           }
           if (!empty($results)) {
