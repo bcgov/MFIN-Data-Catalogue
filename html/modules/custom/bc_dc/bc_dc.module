@@ -795,7 +795,7 @@ function bc_dc_field_widget_single_element_paragraphs_form_alter(array &$element
     // This is empty; remove to keep the markup clean.
     $element['top']['icons']['#access'] = FALSE;
     // Remove all but the first item in the summary.
-    foreach (array_keys($element['top']['summary']['fields_info']['#summary']['content']) as $key) {
+    foreach (array_keys($element['top']['summary']['fields_info']['#summary']['content'] ?? []) as $key) {
       if ($key) {
         unset($element['top']['summary']['fields_info']['#summary']['content'][$key]);
       }
