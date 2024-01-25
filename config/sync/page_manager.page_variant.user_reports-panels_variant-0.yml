@@ -43,37 +43,39 @@ variant_settings:
       provider: bc_dc
       context_mapping:
         user: '@user.current_user_context:current_user'
-      region: footer
-      weight: -7
+      region: card_group
+      weight: -4
       uuid: c90a5c2e-6f7c-416a-a329-a847ccec3105
       css_classes:
-        - ''
+        - card
       html_id: ''
       css_styles: ''
     7864eb70-10dc-445d-9244-88912633eb04:
       id: bc_dc_authoritative_records
       label: 'Authoritative records'
       label_display: '0'
-      provider: null
-      context_mapping: {  }
-      region: footer
-      weight: -4
+      provider: bc_dc
+      context_mapping:
+        user: '@user.current_user_context:current_user'
+      region: card_group
+      weight: -1
       uuid: 7864eb70-10dc-445d-9244-88912633eb04
       css_classes:
-        - ''
+        - card
       html_id: ''
       css_styles: ''
     91bf8673-08b2-42f5-ba54-c853a9b1d486:
       id: bc_dc_critical_records
       label: 'Critical records'
       label_display: '0'
-      provider: null
-      context_mapping: {  }
-      region: footer
-      weight: -5
+      provider: bc_dc
+      context_mapping:
+        user: '@user.current_user_context:current_user'
+      region: card_group
+      weight: -2
       uuid: 91bf8673-08b2-42f5-ba54-c853a9b1d486
       css_classes:
-        - ''
+        - card
       html_id: ''
       css_styles: ''
     bdd62cf0-7dbe-4bb1-8b1a-7155b5ec5fb2:
@@ -83,11 +85,11 @@ variant_settings:
       provider: bc_dc
       context_mapping:
         user: '@user.current_user_context:current_user'
-      region: footer
-      weight: -6
+      region: card_group
+      weight: -3
       uuid: bdd62cf0-7dbe-4bb1-8b1a-7155b5ec5fb2
       css_classes:
-        - ''
+        - card
       html_id: ''
       css_styles: ''
     ec490520-7423-4aaf-b483-0ad8d70e2078:
@@ -96,8 +98,8 @@ variant_settings:
       label_display: '0'
       provider: null
       context_mapping: {  }
-      region: footer
-      weight: -3
+      region: footer_left
+      weight: -4
       uuid: ec490520-7423-4aaf-b483-0ad8d70e2078
       css_classes:
         - ''
@@ -109,8 +111,8 @@ variant_settings:
       label_display: '0'
       provider: null
       context_mapping: {  }
-      region: footer
-      weight: -2
+      region: footer_right
+      weight: -4
       uuid: 1965066d-cc39-4d99-a2fd-8a51cce16fe6
       css_classes:
         - ''
@@ -130,7 +132,7 @@ variant_settings:
           type: numeric
           value: '[global:bc_dc_term_lineage:e8736124-b46c-4309-8ae9-db39454399d6]'
       region: footer
-      weight: -1
+      weight: -9
       uuid: dc082711-7cf6-46f8-8d03-093d21fd2fef
       css_classes:
         - card
@@ -151,7 +153,7 @@ variant_settings:
           type: numeric
           value: '[global:bc_dc_term_lineage:5af4d0df-74a9-4781-84e9-bbb22413e4bb]'
       region: footer
-      weight: 1
+      weight: -7
       uuid: e28a85b4-c239-4a2b-bff0-d3cbb7a24377
       css_classes:
         - card
@@ -172,7 +174,7 @@ variant_settings:
           type: numeric
           value: '[global:bc_dc_term_lineage:0399445d-9f64-414b-92d8-612882796198]'
       region: footer
-      weight: 0
+      weight: -8
       uuid: 796b4323-1b19-410b-bacc-193ebba85604
       css_classes:
         - card
