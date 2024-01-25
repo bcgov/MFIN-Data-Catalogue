@@ -32,8 +32,32 @@ dependencies:
     - field.field.node.data_set.field_visibility
     - node.type.data_set
   module:
+    - field_group
     - paragraphs
     - paragraphs_features
+    - shs
+third_party_settings:
+  field_group:
+    group_hidden:
+      children:
+        - field_data_set_type
+      label: Hidden
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: html_element
+      format_settings:
+        classes: d-none
+        show_empty_fields: false
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+        required_fields: false
 id: node.data_set.section_5
 targetEntityType: node
 bundle: data_set
@@ -41,7 +65,7 @@ mode: section_5
 content:
   field_columns:
     type: paragraphs
-    weight: 0
+    weight: 1
     region: content
     settings:
       title: Paragraph
@@ -63,6 +87,16 @@ content:
         add_in_between_link_count: 3
         delete_confirmation: false
         show_drag_and_drop: true
+  field_data_set_type:
+    type: options_shs
+    weight: 18
+    region: content
+    settings:
+      display_node_count: false
+      create_new_items: false
+      create_new_levels: false
+      force_deepest: false
+    third_party_settings: {  }
 hidden:
   body: true
   created: true
@@ -71,7 +105,6 @@ hidden:
   field_critical_information: true
   field_data_quality_issues: true
   field_data_set_historical_change: true
-  field_data_set_type: true
   field_data_sets_used: true
   field_final_disposition: true
   field_high_value_info: true

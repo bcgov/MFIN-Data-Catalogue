@@ -31,6 +31,31 @@ dependencies:
     - field.field.node.data_set.field_special_flags
     - field.field.node.data_set.field_visibility
     - node.type.data_set
+  module:
+    - field_group
+    - shs
+third_party_settings:
+  field_group:
+    group_hidden:
+      children:
+        - field_data_set_type
+      label: Hidden
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: html_element
+      format_settings:
+        classes: d-none
+        show_empty_fields: false
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+        required_fields: false
 id: node.data_set.section_4
 targetEntityType: node
 bundle: data_set
@@ -38,21 +63,31 @@ mode: section_4
 content:
   field_authoritative_info:
     type: boolean_checkbox
-    weight: 0
+    weight: 1
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_critical_information:
     type: boolean_checkbox
-    weight: 1
+    weight: 2
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
+  field_data_set_type:
+    type: options_shs
+    weight: 1
+    region: content
+    settings:
+      display_node_count: false
+      create_new_items: false
+      create_new_levels: false
+      force_deepest: false
+    third_party_settings: {  }
   field_high_value_info:
     type: boolean_checkbox
-    weight: 2
+    weight: 3
     region: content
     settings:
       display_label: true
@@ -64,7 +99,6 @@ hidden:
   field_columns: true
   field_data_quality_issues: true
   field_data_set_historical_change: true
-  field_data_set_type: true
   field_data_sets_used: true
   field_final_disposition: true
   field_information_schedule: true
