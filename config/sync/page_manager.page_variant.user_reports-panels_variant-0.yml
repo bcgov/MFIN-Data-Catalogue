@@ -96,8 +96,9 @@ variant_settings:
       id: bc_dc_classification_chart
       label: 'Records by classification'
       label_display: '0'
-      provider: null
-      context_mapping: {  }
+      provider: bc_dc
+      context_mapping:
+        user: current_user
       region: footer_left
       weight: -4
       uuid: ec490520-7423-4aaf-b483-0ad8d70e2078
