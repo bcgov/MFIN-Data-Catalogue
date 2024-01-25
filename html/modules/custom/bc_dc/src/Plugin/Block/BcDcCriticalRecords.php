@@ -79,7 +79,7 @@ class BcDcCriticalRecords extends BlockBase implements ContainerFactoryPluginInt
 
     $build['message'] = [
       '#markup' => $message,
-      '#prefix' => '<div class="card bcdc-dashboard-card"><div class="card-body">',
+      '#prefix' => '<div class="bcdc-dashboard-card"><div class="card-body">',
       '#suffix' => '</div></div>',
     ];
 

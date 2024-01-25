@@ -101,7 +101,7 @@ class BcDcRestrictionChart extends BlockBase implements ContainerFactoryPluginIn
       'series' => $series,
       'x_axis' => $xaxis,
       '#raw_options' => [],
-      '#prefix' => '<div class="card bcdc-dashboard-card"><div class="card-body">',
+      '#prefix' => '<div class="bcdc-dashboard-card"><div class="card-body">',
       '#suffix' => '</div></div>',
       // e.g. ['chart' => ['backgroundColor' => '#000000']].
     ];
