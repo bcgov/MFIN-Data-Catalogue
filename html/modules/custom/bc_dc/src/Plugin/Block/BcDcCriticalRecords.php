@@ -75,7 +75,7 @@ class BcDcCriticalRecords extends BlockBase implements ContainerFactoryPluginInt
       '@count' => $total_nodes,
     ];
 
-    $message = $this->formatPlural($total_nodes, '<p class="h2">@count</p><p class="word-wrap">Critical Dataset</p>', '<p class="h2">@count</p><p class="word-wrap">Critical Datasets</p>', $args);
+    $message = $this->formatPlural($total_nodes, '<p class="dc-count">@count</p><p>Critical Dataset</p>', '<p class="dc-count">@count</p><p>Critical Datasets</p>', $args);
 
     $build['message'] = [
       '#markup' => $message,

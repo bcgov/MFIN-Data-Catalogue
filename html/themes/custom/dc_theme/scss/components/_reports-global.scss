@@ -1,0 +1,30 @@
+// global report
+// When available, add dc wrapper class for this reports page
+
+.block-bc-dc-published-records,
+.block-bc-dc-overdue-records,
+.block-bc-dc-critical-records,
+.block-bc-dc-authoritative-records {
+  font-weight: bold;
+  text-align: center;
+  .dc-count {
+    font-size: 1.5em;
+    margin-bottom: 0;
+    @include responsive {
+      font-size: 3em;
+    }
+  }
+}
+
+// this is going to break stuff until we get a wrapper for this page
+.footer-region {
+  @include responsive {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1em;
+    .block-views-blockmost-viewed-block-1 {
+      grid-column: 1 / -1;
+    }
+  }
+}

@@ -75,7 +75,7 @@ class BcDcOverdueRecords extends BlockBase implements ContainerFactoryPluginInte
       '@count' => $total_nodes,
     ];
 
-    $message = $this->formatPlural($total_nodes, '<p class="h2">@count</p><p class="word-wrap">Overdue Metadata Record</p>', '<p class="h2">@count</p><p class="word-wrap">Overdue Metadata Records</p>', $args);
+    $message = $this->formatPlural($total_nodes, '<p class="dc-count">@count</p><p>Overdue Metadata Record</p>', '<p class="dc-count">@count</p><p>Overdue Metadata Records</p>', $args);
 
     $build['message'] = [
       '#markup' => $message,

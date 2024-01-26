@@ -608,7 +608,7 @@ display:
           element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: true
+          element_default_classes: false
           empty: ''
           hide_empty: false
           empty_zero: false
@@ -627,12 +627,82 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+        count:
+          id: count
+          table: flag_counts
+          field: count
+          relationship: flag_relationship
+          group_type: group
+          admin_label: ''
+          plugin_id: numeric
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: '| <span class="icon-bi-bookmarks-fill-after">{{ count }}</span>'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: false
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          set_precision: false
+          precision: 0
+          decimal: .
+          separator: ','
+          format_plural: false
+          format_plural_string: !!binary MQNAY291bnQ=
+          prefix: ''
+          suffix: ''
       pager:
         type: some
         options:
           offset: 0
           items_per_page: 3
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: 'There are currently no bookmarks for this record type.'
+            format: basic_html
+          tokenize: true
       sorts:
         count:
           id: count
@@ -719,7 +789,13 @@ display:
           default_row_class: true
       row:
         type: fields
-        options: {  }
+        options:
+          default_field_elements: true
+          inline:
+            title: title
+            count: count
+          separator: ' '
+          hide_empty: false
       query:
         type: views_query
         options:

@@ -29,8 +29,8 @@ variant_settings:
       views_label: ''
       items_per_page: none
       exposed: {  }
-      region: main
-      weight: 0
+      region: footer
+      weight: -1
       uuid: c3391005-8449-458c-9b09-f2d252320e0b
       css_classes:
         - ''
@@ -100,7 +100,7 @@ variant_settings:
       context_mapping:
         user: current_user
       region: footer_left
-      weight: -4
+      weight: -10
       uuid: ec490520-7423-4aaf-b483-0ad8d70e2078
       css_classes:
         - ''
@@ -133,7 +133,7 @@ variant_settings:
           type: numeric
           value: '[global:bc_dc_term_lineage:e8736124-b46c-4309-8ae9-db39454399d6]'
       region: footer
-      weight: -9
+      weight: -4
       uuid: dc082711-7cf6-46f8-8d03-093d21fd2fef
       css_classes:
         - card
@@ -154,7 +154,7 @@ variant_settings:
           type: numeric
           value: '[global:bc_dc_term_lineage:5af4d0df-74a9-4781-84e9-bbb22413e4bb]'
       region: footer
-      weight: -7
+      weight: -2
       uuid: e28a85b4-c239-4a2b-bff0-d3cbb7a24377
       css_classes:
         - card
@@ -175,7 +175,7 @@ variant_settings:
           type: numeric
           value: '[global:bc_dc_term_lineage:0399445d-9f64-414b-92d8-612882796198]'
       region: footer
-      weight: -8
+      weight: -3
       uuid: 796b4323-1b19-410b-bacc-193ebba85604
       css_classes:
         - card
@@ -190,8 +190,8 @@ variant_settings:
   storage_type: page_manager
   storage_id: user_reports-panels_variant-0
   css_classes:
-    - ''
-  html_id: ''
+    - dc-global-report
+  html_id: dc-global-report
   css_styles: ''
 page: user_reports
 selection_criteria: {  }

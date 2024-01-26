@@ -73,7 +73,7 @@ class BcDcPublishedRecords extends BlockBase implements ContainerFactoryPluginIn
       '@count' => $total_nodes,
     ];
 
-    $message = $this->formatPlural($total_nodes, '<p class="h2">@count</p><p class="word-wrap">Published Metadata Record</p>', '<p class="h2">@count</p><p class="word-wrap">Published Metadata Records</p>', $args);
+    $message = $this->formatPlural($total_nodes, '<p class="dc-count">@count</p><p>Published Metadata Record</p>', '<p class="dc-count">@count</p><p>Published Metadata Records</p>', $args);
 
     $build['message'] = [
       '#markup' => $message,

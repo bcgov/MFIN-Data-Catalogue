@@ -322,6 +322,41 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   padding-right: 0;
 }
 
+.block-bc-dc-published-records,
+.block-bc-dc-overdue-records,
+.block-bc-dc-critical-records,
+.block-bc-dc-authoritative-records {
+  font-weight: bold;
+  text-align: center;
+}
+.block-bc-dc-published-records .dc-count,
+.block-bc-dc-overdue-records .dc-count,
+.block-bc-dc-critical-records .dc-count,
+.block-bc-dc-authoritative-records .dc-count {
+  font-size: 1.5em;
+  margin-bottom: 0;
+}
+@media only screen and (min-width: 576px) {
+  .block-bc-dc-published-records .dc-count,
+  .block-bc-dc-overdue-records .dc-count,
+  .block-bc-dc-critical-records .dc-count,
+  .block-bc-dc-authoritative-records .dc-count {
+    font-size: 3em;
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  .footer-region {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1em;
+  }
+  .footer-region .block-views-blockmost-viewed-block-1 {
+    grid-column: 1/-1;
+  }
+}
+
 .dc-lineage {
   border: 0px;
 }
