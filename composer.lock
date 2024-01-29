@@ -3067,6 +3067,7 @@
             "require": {
                 "drupal/core": "^9.4 || ^10.0",
                 "drupal/hal": "^1.0 || ^2.0",
+                "ext-dom": "*",
                 "rogervila/array-diff-multidimensional": "^2.0"
             },
             "type": "drupal-module",
@@ -3075,8 +3076,8 @@
                     "dev-2.0.x": "2.0.x-dev"
                 },
                 "drupal": {
-                    "version": "2.0.0+9-dev",
-                    "datestamp": "1705926796",
+                    "version": "2.0.0+10-dev",
+                    "datestamp": "1706526523",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -4191,6 +4192,10 @@
                 {
                     "name": "dawehner",
                     "homepage": "https://www.drupal.org/user/99340"
+                },
+                {
+                    "name": "dww",
+                    "homepage": "https://www.drupal.org/user/46549"
                 },
                 {
                     "name": "geek-merlin",
