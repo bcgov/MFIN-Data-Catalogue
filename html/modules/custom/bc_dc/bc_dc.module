@@ -497,6 +497,20 @@ function bc_dc_form_node_data_set_edit_form_alter(array &$form, FormStateInterfa
 }
 
 /**
+ * Return the taxonomy term that is the root ancestor for a term identifier.
+ *
+ * @param int $tid
+ *   The term identifier to return the ancestor for.
+ *
+ * @return \Drupal\taxonomy\TermInterface|null
+ *   The root ancestor term or NULL if there is no such term.
+ */
+function _bc_dc_get_term_root_ancestor(int $tid): ?TermInterface {
+  $ancestors = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadAllParents($tid);
+  return $ancestors ? end($ancestors) : NULL;
+}
+
+/**
  * Form validate handler.
  *
  * @param array $form
