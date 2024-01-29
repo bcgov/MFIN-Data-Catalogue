@@ -298,6 +298,20 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $user->field_organization[] = ['target_id' => $test_orgs[3]->id()];
     $user->save();
 
+    // Create parent data_set_type term.
+    $data_set_type_root_term = Term::create([
+      'vid' => 'data_set_type',
+      'name' => 'Data',
+    ]);
+    $data_set_type_root_term->save();
+    // Create data_set_type term.
+    $data_set_type_term = Term::create([
+      'vid' => 'data_set_type',
+      'name' => 'SQL',
+      'parent' => $data_set_type_root_term->id(),
+    ]);
+    $data_set_type_term->save();
+
     // Create a data_set node. node/2.
     $this->drupalGet('user');
     $this->assertSession()->statusCodeEquals(200);
@@ -311,6 +325,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $data_set_path = '/test-data-set-one-' . strtolower($randomMachineName);
     $edit = [
       'edit-data-set-name' => $data_set_title,
+      'field_data_set_type' => $data_set_type_root_term->id(),
       'edit-field-primary-responsibility-org' => 3,
     ];
     $this->submitForm($edit, 'Create');
@@ -383,25 +398,6 @@ class BcDcFunctionalTest extends BrowserTestBase {
       $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div/time', $args);
       $this->assertSession()->elementExists('xpath', $xpath);
     }
-    // Create root data_set_type term.
-    $data_set_type_root_data_term = Term::create([
-      'vid' => 'data_set_type',
-      'name' => 'Data',
-    ]);
-    $data_set_type_root_data_term->save();
-    // Create data_set_type data term.
-    $data_set_type_data_term = Term::create([
-      'vid' => 'data_set_type',
-      'name' => 'SQL',
-      'parent' => $data_set_type_root_data_term->id(),
-    ]);
-    $data_set_type_data_term->save();
-    // Complete required fields in section 1.
-    $this->click('a[aria-label = "Edit Section 1"]');
-    $edit = [
-      'edit-field-data-set-type' => $data_set_type_data_term->id(),
-    ];
-    $this->submitForm($edit, 'Save');
 
     // Create security_classification term.
     $security_classification_term = Term::create([
@@ -1067,6 +1063,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $data_set_title_2 = 'Test data set Two ' . $this->randomString();
     $edit = [
       'edit-data-set-name' => $data_set_title_2,
+      'field_data_set_type' => $data_set_type_root_term->id(),
       'edit-field-primary-responsibility-org' => 3,
     ];
     $this->submitForm($edit, 'Create');
@@ -1182,6 +1179,17 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->elementExists('xpath', '//section[@id = "author_permalink"]//input[substring(@value, string-length(@value) - 6) = "/node/6"]');
     // Header search block appears.
     $this->assertSession()->elementExists('xpath', '//header//div[contains(@class, "block-bcbb-search-api-block")]//input[@aria-label = "Search"]');
+    // There should be an error if there is a change in the root data_set type.
+    $options = [
+      'query' => ['display' => 'section_1'],
+    ];
+    $this->drupalGet('node/6/edit', $options);
+    $edit = [
+      'edit-field-data-set-type' => $data_set_type_data_term->id(),
+    ];
+    $this->submitForm($edit, 'Save');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "messages--error")]//div[contains(text(), "The metadata root record type cannot be changed.")]');
+    $this->assertSession()->elementExists('xpath', '//input[@id = "edit-field-data-set-type"][contains(@class, "error")]');
 
     // Test Content page.
     $this->drupalGet('admin/content');
