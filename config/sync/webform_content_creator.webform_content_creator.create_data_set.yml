@@ -16,6 +16,12 @@ sync_content_node_field: null
 target_bundle: data_set
 target_entity_type: node
 elements:
+  field_data_set_type:
+    type: false
+    mapping: entity_reference_mapping
+    webform_field: field_data_set_type
+    custom_check: 0
+    custom_value: ''
   field_primary_responsibility_org:
     type: false
     mapping: entity_reference_mapping

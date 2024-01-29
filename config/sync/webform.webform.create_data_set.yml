@@ -17,6 +17,17 @@ elements: |-
     '#type': textfield
     '#title': 'Metadata record name'
     '#required': true
+  field_data_set_type:
+    '#type': webform_entity_radios
+    '#title': 'Data set type'
+    '#required': true
+    '#target_type': taxonomy_term
+    '#selection_handler': views
+    '#selection_settings':
+      view:
+        view_name: top_level_record_types
+        display_name: entity_reference_1
+        arguments: {  }
   field_primary_responsibility_org:
     '#type': webform_entity_select
     '#title': 'Office of primary responsibility'

@@ -358,7 +358,6 @@ class BcDcFunctionalTest extends BrowserTestBase {
       'field--name-field-last-review-date' => ['label' => 'Last review date', 'text' => 'Never'],
       'field--name-field-security-classification' => ['label' => 'Security classification', 'text' => 'Required'],
       'field--name-field-source-system' => ['label' => 'Source system', 'text' => 'Optional'],
-      'field--name-field-data-set-type' => ['label' => 'Record type', 'text' => 'Required'],
       'field--name-field-information-schedule' => ['label' => 'Information schedule', 'text' => 'Optional'],
     ];
     foreach ($fields_inline_optional as $class => $field) {
@@ -1081,12 +1080,6 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // No publish button.
     $this->assertSession()->buttonNotExists('Publish');
     // Complete the missing fields.
-    // Section 1.
-    $this->click('a[aria-label = "Edit Section 1"]');
-    $edit = [
-      'edit-field-data-set-type' => $data_set_type_data_term->id(),
-    ];
-    $this->submitForm($edit, 'Save');
     // Section 2.
     $this->click('a[aria-label = "Edit Section 2"]');
     $public_label = $this->xpath('//fieldset[@id = "edit-field-visibility--wrapper"]//label[text() = "Public"]');
