@@ -58,14 +58,12 @@ variant_settings:
       css_styles: ''
   page_title: ''
   layout: layout_twocol_section
-  layout_settings:
-    label: ''
-    column_widths: 50-50
+  layout_settings: {  }
   builder: standard
   storage_type: page_manager
   storage_id: home-panels_variant-0
   css_classes:
-    - ''
+    - dc-home
   html_id: ''
   css_styles: ''
 page: home

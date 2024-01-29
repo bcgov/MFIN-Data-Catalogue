@@ -322,39 +322,69 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   padding-right: 0;
 }
 
-.block-bc-dc-published-records,
-.block-bc-dc-overdue-records,
-.block-bc-dc-critical-records,
-.block-bc-dc-authoritative-records {
+.dc-global-report {
+  margin-top: 3em;
+}
+.dc-global-report .block-bc-dc-published-records,
+.dc-global-report .block-bc-dc-overdue-records,
+.dc-global-report .block-bc-dc-critical-records,
+.dc-global-report .block-bc-dc-authoritative-records {
   font-weight: bold;
   text-align: center;
 }
-.block-bc-dc-published-records .dc-count,
-.block-bc-dc-overdue-records .dc-count,
-.block-bc-dc-critical-records .dc-count,
-.block-bc-dc-authoritative-records .dc-count {
+.dc-global-report .block-bc-dc-published-records .dc-count,
+.dc-global-report .block-bc-dc-overdue-records .dc-count,
+.dc-global-report .block-bc-dc-critical-records .dc-count,
+.dc-global-report .block-bc-dc-authoritative-records .dc-count {
   font-size: 1.5em;
   margin-bottom: 0;
 }
 @media only screen and (min-width: 576px) {
-  .block-bc-dc-published-records .dc-count,
-  .block-bc-dc-overdue-records .dc-count,
-  .block-bc-dc-critical-records .dc-count,
-  .block-bc-dc-authoritative-records .dc-count {
+  .dc-global-report .block-bc-dc-published-records .dc-count,
+  .dc-global-report .block-bc-dc-overdue-records .dc-count,
+  .dc-global-report .block-bc-dc-critical-records .dc-count,
+  .dc-global-report .block-bc-dc-authoritative-records .dc-count {
     font-size: 3em;
   }
 }
-
 @media only screen and (min-width: 576px) {
-  .footer-region {
+  .dc-global-report .footer-region {
     display: grid;
     grid-template-rows: auto auto;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1em;
   }
-  .footer-region .block-views-blockmost-viewed-block-1 {
+  .dc-global-report .footer-region .block-views-blockmost-viewed-block-1 {
     grid-column: 1/-1;
   }
+}
+.dc-global-report .footer-region .bcdc-dashboard-card h2 {
+  font-size: 1.2em;
+  padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
+  margin-bottom: 0;
+  color: var(--bs-card-cap-color);
+  background-color: var(--bs-card-cap-bg);
+  border-bottom: var(--bs-card-border-width) solid var(--bs-card-border-color);
+  margin-left: 0;
+  padding: 0.75em 1.5em 0.75em 2.5em;
+}
+.dc-global-report .footer-region .block-views-blockmost-viewed-block-1 {
+  border-top: 1px solid #fcba19;
+  margin-top: 2em;
+  padding: 2em 0;
+}
+@media only screen and (min-width: 992px) {
+  .dc-global-report .footer-region .block-views-blockmost-viewed-block-1 .views-exposed-form .form--inline {
+    display: flex;
+    align-items: flex-end;
+  }
+}
+.dc-global-report .footer-region .block-views-blockmost-viewed-block-1 .views-table tr:last-child {
+  border-bottom: 0 solid transparent;
+}
+.dc-global-report div[class*=footer] .card-body {
+  max-width: 100%;
+  overflow-y: auto;
 }
 
 .dc-lineage {

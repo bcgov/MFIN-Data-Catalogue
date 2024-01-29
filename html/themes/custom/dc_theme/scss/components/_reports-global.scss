@@ -1,30 +1,71 @@
 // global report
-// When available, add dc wrapper class for this reports page
+.dc-global-report {
+  margin-top: 3em;
+  .block-bc-dc-published-records,
+  .block-bc-dc-overdue-records,
+  .block-bc-dc-critical-records,
+  .block-bc-dc-authoritative-records {
+    font-weight: bold;
+    text-align: center;
+    .dc-count {
+      font-size: 1.5em;
+      margin-bottom: 0;
+      @include responsive {
+        font-size: 3em;
+      }
+    }
+  }
 
-.block-bc-dc-published-records,
-.block-bc-dc-overdue-records,
-.block-bc-dc-critical-records,
-.block-bc-dc-authoritative-records {
-  font-weight: bold;
-  text-align: center;
-  .dc-count {
-    font-size: 1.5em;
-    margin-bottom: 0;
+  .footer-region {
+
     @include responsive {
-      font-size: 3em;
+      display: grid;
+      grid-template-rows: auto auto;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1em;
+      .block-views-blockmost-viewed-block-1 {
+        grid-column: 1 / -1;
+      }
     }
-  }
-}
 
-// this is going to break stuff until we get a wrapper for this page
-.footer-region {
-  @include responsive {
-    display: grid;
-    grid-template-rows: auto auto;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1em;
+    .bcdc-dashboard-card {
+
+      h2 {
+        font-size: 1.2em;
+        padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
+        margin-bottom: 0;
+        color: var(--bs-card-cap-color);
+        background-color: var(--bs-card-cap-bg);
+        border-bottom: var(--bs-card-border-width) solid var(--bs-card-border-color);
+        margin-left: 0;
+        padding: .75em 1.5em .75em 2.5em;
+      }
+    }
     .block-views-blockmost-viewed-block-1 {
-      grid-column: 1 / -1;
+      border-top: 1px solid $colorBrand-secondary;
+      margin-top: 2em;
+      padding: 2em 0;
+      .views-exposed-form {
+        .form--inline {
+          @include responsive($lg-min) {
+            display: flex;
+            align-items: flex-end;
+          }
+        }
+      }
+      .views-table {
+        tr:last-child {
+          border-bottom: 0 solid transparent;
+        }
+      }
     }
   }
+
+  div[class*="footer"] {
+    .card-body {
+      max-width: 100%;
+      overflow-y: auto;
+    }
+  }
+
 }
