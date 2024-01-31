@@ -477,8 +477,10 @@ function bc_dc_form_node_data_set_edit_form_alter(array &$form, FormStateInterfa
     ];
     $link = Link::createFromRoute(t('Import/export data columns'), 'bc_dc.data_set_edit_add_columns', $route_parameters, $link_options);
     // Add link to top of form.
-    $form['add_columns_link'] = $link->toRenderable();
-    $form['add_columns_link']['#weight'] = -100;
+    if ($link->getUrl()->access()) {
+      $form['add_columns_link'] = $link->toRenderable();
+      $form['add_columns_link']['#weight'] = -100;
+    }
   }
 
   // Style the "Cancel" button.
