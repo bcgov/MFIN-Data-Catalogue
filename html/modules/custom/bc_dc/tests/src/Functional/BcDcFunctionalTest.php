@@ -313,6 +313,21 @@ class BcDcFunctionalTest extends BrowserTestBase {
     ]);
     $data_set_type_data_term->save();
 
+    // Create root data_set_type report term.
+    $data_set_type_root_report_term = Term::create([
+      'vid' => 'data_set_type',
+      'name' => 'Report',
+      'field_root_type' => 'report',
+    ]);
+    $data_set_type_root_report_term->save();
+    // Create data_set_type report term.
+    $data_set_type_report_term = Term::create([
+      'vid' => 'data_set_type',
+      'name' => 'PowerBI',
+      'parent' => $data_set_type_root_report_term->id(),
+    ]);
+    $data_set_type_report_term->save();
+
     // Create a data_set node. node/2.
     $this->drupalGet('user');
     $this->assertSession()->statusCodeEquals(200);
@@ -1082,7 +1097,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $data_set_title_2 = 'Test data set Two ' . $this->randomString();
     $edit = [
       'edit-data-set-name' => $data_set_title_2,
-      'field_data_set_type' => $data_set_type_root_data_term->id(),
+      'field_data_set_type' => $data_set_type_root_report_term->id(),
       'edit-field-primary-responsibility-org' => 3,
     ];
     $this->submitForm($edit, 'Create');
@@ -1180,7 +1195,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $args = [
       ':data_set_title' => $data_set_title_2,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//section[not(@aria-label)][contains(text()[2], :data_set_title)]/em[text() = "This data:"]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//section[not(@aria-label)][contains(text()[2], :data_set_title)]/em[text() = "This report:"]', $args);
     $this->assertSession()->elementExists('xpath', $xpath, $dc_lineage);
     // Used-in.
     $this->assertSession()->elementNotExists('xpath', '//div[text() = "Used-in data sets"]');
@@ -1210,6 +1225,9 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->elementExists('xpath', '//section[@id = "author_permalink"]//input[substring(@value, string-length(@value) - 6) = "/node/6"]');
     // Header search block appears.
     $this->assertSession()->elementExists('xpath', '//header//div[contains(@class, "block-bcbb-search-api-block")]//input[@aria-label = "Search"]');
+    // There is no add-columns page for this data_set because it is a Report.
+    $this->drupalGet('node/6/add-columns');
+    $this->assertSession()->statusCodeEquals(403);
     // There should be an error if there is a change in the root data_set type.
     $options = [
       'query' => ['display' => 'section_1'],

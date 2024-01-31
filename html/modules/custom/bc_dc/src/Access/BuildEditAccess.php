@@ -67,4 +67,28 @@ class BuildEditAccess implements AccessInterface {
     return AccessResult::allowedIf($access);
   }
 
+  /**
+   * A custom access check for route bc_dc.data_set_edit_add_columns.
+   *
+   * @param \Drupal\Core\Session\AccountInterface $account
+   *   Run access checks for this account.
+   * @param \Drupal\Core\Routing\RouteMatch $route_match
+   *   The RouteMatch object.
+   *
+   * @return \Drupal\Core\Access\AccessResultInterface
+   *   The access result.
+   */
+  public static function accessAddColumns(AccountInterface $account, RouteMatch $route_match): AccessResultInterface {
+    $node = $route_match->getParameter('node');
+
+    // If this node has field_columns, access is the same as ::access().
+    if ($node && bc_dc_data_set_has_field($node, 'field_columns')) {
+      return static::access($account, $route_match);
+    }
+    // Otherwise, no access for anyone.
+    else {
+      return AccessResult::forbidden();
+    }
+  }
+
 }

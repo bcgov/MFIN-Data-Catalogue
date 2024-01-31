@@ -35,7 +35,7 @@ bc_dc.data_set_edit_add_columns:
     _title: 'Add columns'
     _form: '\Drupal\bc_dc\Form\BcDcAddColumnsForm'
   requirements:
-    _custom_access: 'Drupal\bc_dc\Access\BuildEditAccess::access'
+    _custom_access: 'Drupal\bc_dc\Access\BuildEditAccess::accessAddColumns'
   options:
     parameters:
       node:
