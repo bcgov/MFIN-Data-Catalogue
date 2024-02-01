@@ -1,0 +1,5 @@
+bc_dc.form:
+  js:
+    js/views/WidgetView.js: {}
+  dependencies:
+    - shs/shs.form
