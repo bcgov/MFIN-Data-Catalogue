@@ -86,6 +86,18 @@ function bc_dc_preprocess_flag(array &$variables): void {
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for node--data-set.html.twig.
+ */
+function bc_dc_preprocess_node__data_set(array &$variables): void {
+  // Hide fields on view and build pages based on field_data_set_type.
+  foreach (array_keys($variables['content']) as $field_key) {
+    if (!bc_dc_data_set_has_field($variables['node'], $field_key)) {
+      $variables['content'][$field_key]['#access'] = FALSE;
+    }
+  }
+}
+
+/**
  * Implements hook_preprocess_HOOK() for taxonomy-term--organization.html.twig.
  */
 function bc_dc_preprocess_taxonomy_term__organization(array &$variables): void {

@@ -298,19 +298,20 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $user->field_organization[] = ['target_id' => $test_orgs[3]->id()];
     $user->save();
 
-    // Create parent data_set_type term.
-    $data_set_type_root_term = Term::create([
+    // Create root data_set_type data term.
+    $data_set_type_root_data_term = Term::create([
       'vid' => 'data_set_type',
       'name' => 'Data',
+      'field_root_type' => 'data',
     ]);
-    $data_set_type_root_term->save();
-    // Create data_set_type term.
-    $data_set_type_term = Term::create([
+    $data_set_type_root_data_term->save();
+    // Create data_set_type data term.
+    $data_set_type_data_term = Term::create([
       'vid' => 'data_set_type',
       'name' => 'SQL',
-      'parent' => $data_set_type_root_term->id(),
+      'parent' => $data_set_type_root_data_term->id(),
     ]);
-    $data_set_type_term->save();
+    $data_set_type_data_term->save();
 
     // Create a data_set node. node/2.
     $this->drupalGet('user');
@@ -325,7 +326,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $data_set_path = '/test-data-set-one-' . strtolower($randomMachineName);
     $edit = [
       'edit-data-set-name' => $data_set_title,
-      'field_data_set_type' => $data_set_type_root_term->id(),
+      'field_data_set_type' => $data_set_type_root_data_term->id(),
       'edit-field-primary-responsibility-org' => 3,
     ];
     $this->submitForm($edit, 'Create');
@@ -351,6 +352,24 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSession()->elementExists('xpath', '//a[@href = "/node/2/edit"]');
     // "Outline" tab does not appear for data_set content type.
     $this->assertSession()->elementNotExists('xpath', '//a[@href = "/node/2/outline"]');
+    // Test for fields that should only appear on "Data" data_set nodes.
+    $fields_to_hide = [
+      'field_authoritative_info',
+      'field_columns',
+      'field_critical_information',
+      'field_data_quality_issues',
+      'field_data_set_historical_change',
+      'field_data_sets_used',
+      'field_high_value_info',
+      'field_source_system',
+    ];
+    foreach ($fields_to_hide as $field_key) {
+      $args = [
+        ':class' => 'field--name-' . str_replace('_', '-', $field_key),
+      ];
+      $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, :class)]', $args);
+      $this->assertSession()->elementExists('xpath', $xpath);
+    }
     // Page has ISO dates.
     $this->isoDateTest();
     // Page links to pathauto path for this page.
@@ -1063,13 +1082,25 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $data_set_title_2 = 'Test data set Two ' . $this->randomString();
     $edit = [
       'edit-data-set-name' => $data_set_title_2,
-      'field_data_set_type' => $data_set_type_root_term->id(),
+      'field_data_set_type' => $data_set_type_root_data_term->id(),
       'edit-field-primary-responsibility-org' => 3,
     ];
     $this->submitForm($edit, 'Create');
     $this->assertSession()->pageTextContains('Metadata record created.');
     // Go to build page for this node.
     $this->click('a[href = "/node/6/build"]');
+    // Test absence of fields that should only appear on "Data" data_set nodes.
+    foreach ($fields_to_hide as $field_key) {
+      // This field does appear on "Report" data_set nodes.
+      if ($field_key === 'field_data_sets_used') {
+        continue;
+      }
+      $args = [
+        ':class' => 'field--name-' . str_replace('_', '-', $field_key),
+      ];
+      $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, :class)]', $args);
+      $this->assertSession()->elementNotExists('xpath', $xpath);
+    }
     // Message that required field is empty.
     $this->assertSession()->elementExists('xpath', '//form[@id = "bc-dc-workflow-block-form"]
       [p[text() = "The following fields must be completed before publishing:"]]
