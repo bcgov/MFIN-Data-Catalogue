@@ -833,3 +833,59 @@ function bc_dc_field_widget_single_element_paragraphs_form_alter(array &$element
     }
   }
 }
+
+/**
+ * Return whether a data_set has a field based on its root field_data_set_type.
+ *
+ * In data_set nodes, some fields are hidden based on the type of the root
+ * taxonomy term ancestor of the node's field_data_set_type. The fields hidden
+ * here must match the configuration in conditional_fields.
+ *
+ * @param \Drupal\node\NodeInterface $node
+ *   The node to check.
+ * @param string $field_key
+ *   The field key.
+ *
+ * @return bool
+ *   TRUE when the node has the field, FALSE otherwise.
+ */
+function bc_dc_data_set_has_field(NodeInterface $node, string $field_key): bool {
+  $fields_to_hide = [
+    'field_authoritative_info',
+    'field_columns',
+    'field_critical_information',
+    'field_data_quality_issues',
+    'field_data_set_historical_change',
+    'field_data_sets_used',
+    'field_high_value_info',
+    'field_source_system',
+  ];
+
+  // If it is not one of the fields that may be hidden, do not hide.
+  if (!in_array($field_key, $fields_to_hide, TRUE)) {
+    return TRUE;
+  }
+
+  // Determine this node's root field_data_set_type.
+  static $data_set_type;
+  if (!isset($data_set_type)) {
+    $type_tid = $node->field_data_set_type?->first()?->target_id;
+    if ($type_tid) {
+      $root_term = _bc_dc_get_term_root_ancestor($type_tid);
+      $data_set_type = $root_term->field_root_type?->first()?->getValue()['value'] ?? FALSE;
+    }
+  }
+
+  // "Data" type has all fields.
+  if ($data_set_type === 'data') {
+    return TRUE;
+  }
+
+  // "Report" type has field_data_sets_used.
+  if ($data_set_type === 'report' && $field_key === 'field_data_sets_used') {
+    return TRUE;
+  }
+
+  // Otherwise, hide the field.
+  return FALSE;
+}
