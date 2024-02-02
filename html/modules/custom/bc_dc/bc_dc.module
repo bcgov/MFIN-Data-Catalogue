@@ -119,6 +119,27 @@ function bc_dc_theme(array $existing, string $type, string $theme, string $path)
 }
 
 /**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function bc_dc_theme_suggestions_block_alter(array &$suggestions, array $variables): void {
+  // Hide Section 4 & 5 entirely when the data_set does not have field_columns.
+  // These sections do not have any fields.
+  $sections = [
+    'section_4',
+    'section_5',
+  ];
+  if (isset($variables['elements']['#plugin_id']) && (
+    ($variables['elements']['#plugin_id'] === 'bc_dc_edit_button' && in_array($variables['elements']['#configuration']['query_param'], $sections, TRUE)) ||
+    ($variables['elements']['#plugin_id'] === 'entity_view:node' && in_array($variables['elements']['content']['#view_mode'], $sections, TRUE))
+  )) {
+    $node = \Drupal::request()->attributes->get('node');
+    if ($node && !bc_dc_data_set_has_field($node, 'field_columns')) {
+      $suggestions = ['bc_dc_blank'];
+    }
+  }
+}
+
+/**
  * Return the number of bookmarks on a given entity.
  *
  * @param \Drupal\Core\Entity\EntityInterface $entity

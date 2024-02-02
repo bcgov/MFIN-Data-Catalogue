@@ -398,6 +398,8 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 3: Utility"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 3"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_3")]');
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 4: Significance"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 4"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_4")]');
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 5: Data dictionary"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 5"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_5")]');
+    $this->assertSession()->elementExists('xpath', '//*[contains(@class, "node--view-mode-section-4")]');
+    $this->assertSession()->elementExists('xpath', '//*[contains(@class, "node--view-mode-section-5")]');
     // Build page does not link to referenced entities.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "field--type-entity-reference")]//a');
 
@@ -1116,6 +1118,11 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, :class)]', $args);
       $this->assertSession()->elementNotExists('xpath', $xpath);
     }
+    // There is no Section 4 or 5 because this is a Report.
+    $this->assertSession()->pageTextNotContains('Section 4');
+    $this->assertSession()->elementNotExists('xpath', '//*[contains(@class, "node--view-mode-section-4")]');
+    $this->assertSession()->pageTextNotContains('Section 5');
+    $this->assertSession()->elementNotExists('xpath', '//*[contains(@class, "node--view-mode-section-5")]');
     // Message that required field is empty.
     $this->assertSession()->elementExists('xpath', '//form[@id = "bc-dc-workflow-block-form"]
       [p[text() = "The following fields must be completed before publishing:"]]
