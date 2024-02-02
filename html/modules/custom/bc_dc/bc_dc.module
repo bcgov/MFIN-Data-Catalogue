@@ -109,6 +109,16 @@ function bc_dc_preprocess_taxonomy_term__organization(array &$variables): void {
 }
 
 /**
+ * Implements hook_theme().
+ */
+function bc_dc_theme(array $existing, string $type, string $theme, string $path): array {
+  return [
+    // Blank template.
+    'bc_dc_blank' => [],
+  ];
+}
+
+/**
  * Return the number of bookmarks on a given entity.
  *
  * @param \Drupal\Core\Entity\EntityInterface $entity
