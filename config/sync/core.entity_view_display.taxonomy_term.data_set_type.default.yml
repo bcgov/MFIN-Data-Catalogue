@@ -1,0 +1,32 @@
+uuid: 3b69726a-8c3a-4e4e-bc5e-2315380b8747
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.data_set_type.field_root_type
+    - taxonomy.vocabulary.data_set_type
+  module:
+    - options
+    - text
+id: taxonomy_term.data_set_type.default
+targetEntityType: taxonomy_term
+bundle: data_set_type
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_root_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

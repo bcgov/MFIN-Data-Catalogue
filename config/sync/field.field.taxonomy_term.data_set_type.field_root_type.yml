@@ -1,0 +1,21 @@
+uuid: f4d0c06a-f5a8-4bb7-aaae-b239f914856a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_root_type
+    - taxonomy.vocabulary.data_set_type
+  module:
+    - options
+id: taxonomy_term.data_set_type.field_root_type
+field_name: field_root_type
+entity_type: taxonomy_term
+bundle: data_set_type
+label: 'Root type'
+description: 'Leave this blank except for root-level terms. Use "Data" for terms that have a data dictionary and associated terms. Use "Report" for terms that user other metadata records.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

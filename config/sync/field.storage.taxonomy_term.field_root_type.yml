@@ -1,0 +1,31 @@
+uuid: cfb6a876-fa9f-46d1-965d-1f5f94d13cbc
+langcode: en
+status: true
+dependencies:
+  module:
+    - field_permissions
+    - options
+    - taxonomy
+third_party_settings:
+  field_permissions:
+    permission_type: public
+id: taxonomy_term.field_root_type
+field_name: field_root_type
+entity_type: taxonomy_term
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: data
+      label: Data
+    -
+      value: report
+      label: Report
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
