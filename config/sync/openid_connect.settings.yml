@@ -15,3 +15,4 @@ role_mappings:
   data_catalogue_manager: {  }
   data_catalogue_editor: {  }
   data_catalogue_user: {  }
+  data_catalogue_information_management_specialist: {  }
