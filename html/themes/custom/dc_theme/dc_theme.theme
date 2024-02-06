@@ -286,3 +286,27 @@ function dc_theme_preprocess_field_multiple_value_form(array &$variables): void 
     $variables['table']['#header'][0]['data']['#tag'] = 'label';
   }
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for node--data-set-build-page.html.twig.
+ */
+function dc_theme_preprocess_node(&$variables) {
+  // Check for field_data_set_type.
+  if ($variables['node']->hasField('field_data_set_type')) {
+    $term = $variables['node']->field_data_set_type->entity;
+
+    if ($term) {
+      // Get the root term.
+      while ($term->parent->entity) {
+        $term = $term->parent->entity;
+      }
+
+      // Change first letter case.
+      $rootTerm = $term->label();
+      $rootTermLowercase = lcfirst($rootTerm);
+
+      // Pass the root term name to the Twig template.
+      $variables['record_type'] = $rootTermLowercase;
+    }
+  }
+}

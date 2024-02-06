@@ -135,7 +135,10 @@
                         </section>
                       {% endif %}
                       <section class="dc-lineage-this-dataset" aria-label="{{ 'This dataset'|t }}">
-                        {{ node.label() }} (<em>{{ 'This dataset'|t }}</em>)
+                        {{ node.label() }}
+                        {% if record_type %}
+                          (<em>{{ 'This'|t }} {{ record_type }}</em>)
+                        {% endif %}
                       </section>
                       {% if drupal_view_result('used_in_data_sets', 'block_1', node.nid.value) is not empty %}
                         <section class="dc-lineage-used-in-datasets" aria-label="{{ 'The following datasets use this dataset'|t }}">
