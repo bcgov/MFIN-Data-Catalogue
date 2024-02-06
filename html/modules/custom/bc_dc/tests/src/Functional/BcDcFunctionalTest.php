@@ -398,12 +398,16 @@ class BcDcFunctionalTest extends BrowserTestBase {
       'name' => 'Confidential - Protected eh?',
     ]);
     $security_classification_term->save();
-    // Save Section 4 so that the boolean values are FALSE instead of empty.
-    $this->click('a[aria-label = "Edit Section 4"]');
+    // Save Section 3.
+    $this->click('a[aria-label = "Edit Section 3"]');
     $edit = [
-      'field_security_classification' => $security_classification_term->id(),
+      'field_personal_information' => '0',
+      'edit-field-security-classification-0-target-id' => 'Title (' . $security_classification_term->id() . ')',
     ];
     $this->submitForm($edit, 'Save');
+    // Save Section 4 so that the boolean values are FALSE instead of empty.
+    $this->click('a[aria-label = "Edit Section 4"]');
+    $this->submitForm([], 'Save');
     // Check for fields that are boolean and have inline labels.
     $fields_inline_optional = [
       'field--name-field-critical-information' => 'Critical information',
@@ -474,12 +478,6 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSession()->elementNotExists('xpath', '//input[@value = "Edit all"]');
     $this->assertSession()->elementNotExists('xpath', '//input[@value = "Collapse all"]');
 
-    // Section 4 edit page.
-    $this->clickLink('Build');
-    $this->click('a[aria-label = "Edit Section 4"]');
-    $this->assertSession()->statusCodeEquals(200);
-    // Test that field_security_classification widget is radio buttons.
-    $this->assertSession()->elementExists('xpath', '//div[@id = "edit-field-security-classification"]//input[@type = "radio"]');
     // Section 2 edit page.
     $this->clickLink('Build');
     $this->click('a[aria-label = "Edit Section 2"]');
@@ -1091,12 +1089,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Complete required fields.
     $edit = [
       'edit-field-personal-information-0' => '0',
-    ];
-    $this->submitForm($edit, 'Save');
-    // Section 4.
-    $this->click('a[aria-label = "Edit Section 4"]');
-    $edit = [
-      'field_security_classification' => $security_classification_term->id(),
+      'edit-field-security-classification-0-target-id' => 'Title (' . $security_classification_term->id() . ')',
     ];
     $this->submitForm($edit, 'Save');
     // Publish button now exists.
