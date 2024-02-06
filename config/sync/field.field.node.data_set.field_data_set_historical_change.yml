@@ -12,7 +12,7 @@ id: node.data_set.field_data_set_historical_change
 field_name: field_data_set_historical_change
 entity_type: node
 bundle: data_set
-label: 'Data set historical change'
+label: 'Historical change'
 description: 'Clearly document any known changes to the dataset, including name changes, definitions, or transformations.'
 required: false
 translatable: false

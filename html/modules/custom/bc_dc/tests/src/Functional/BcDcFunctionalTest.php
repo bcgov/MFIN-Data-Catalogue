@@ -339,9 +339,9 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // correct contents and an 'a' descendent with button classes, @aria-label,
     // @href, and text.
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 1: Details"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 1"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_1")]');
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 2: Data description"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 2"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_2")]');
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 3: Data usage"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 3"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_3")]');
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 4: Data value"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 4"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_4")]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 2: Description"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 2"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_2")]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 3: Utility"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 3"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_3")]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 4: Significance"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 4"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_4")]');
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 5: Data dictionary"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 5"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_5")]');
     // Build page does not link to referenced entities.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "field--type-entity-reference")]//a');
@@ -352,7 +352,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
       'field--name-field-last-review-date' => ['label' => 'Last review date', 'text' => 'Never'],
       'field--name-field-security-classification' => ['label' => 'Security classification', 'text' => 'Required'],
       'field--name-field-source-system' => ['label' => 'Source system', 'text' => 'Optional'],
-      'field--name-field-data-set-type' => ['label' => 'Data set type', 'text' => 'Required'],
+      'field--name-field-data-set-type' => ['label' => 'Record type', 'text' => 'Required'],
       'field--name-field-information-schedule' => ['label' => 'Information schedule', 'text' => 'Optional'],
     ];
     foreach ($fields_inline_optional as $class => $field) {
@@ -421,9 +421,9 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Check for fields that are optional and normally have labels above.
     // Labels are inline when the field is empty.
     $fields_inline_optional = [
-      'field--name-body' => ['label' => 'Data set description', 'text' => 'Required'],
+      'field--name-body' => ['label' => 'Summary', 'text' => 'Required'],
       'field--name-field-data-quality-issues' => ['label' => 'Data quality issues', 'text' => 'Optional'],
-      'field--name-field-data-set-historical-change' => ['label' => 'Data set historical change', 'text' => 'Optional'],
+      'field--name-field-data-set-historical-change' => ['label' => 'Historical change', 'text' => 'Optional'],
     ];
     foreach ($fields_inline_optional as $class => $field) {
       $args = [
@@ -485,7 +485,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->click('a[aria-label = "Edit Section 2"]');
     // Submit with some updates.
     $edit = [
-      'edit-body-0-value' => 'Data set description ' . $this->randomString() . ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+      'edit-body-0-value' => 'Summary ' . $this->randomString() . ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
       'edit-field-visibility-1' => 1,
     ];
     $this->submitForm($edit, 'Save');
@@ -1082,7 +1082,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $public_label = $this->xpath('//fieldset[@id = "edit-field-visibility--wrapper"]//label[text() = "Public"]');
     $public_label = reset($public_label);
     $edit = [
-      'edit-body-0-value' => 'Data set description ' . $this->randomString(),
+      'edit-body-0-value' => 'Summary ' . $this->randomString(),
       $public_label->getAttribute('for') => TRUE,
     ];
     $this->submitForm($edit, 'Save');

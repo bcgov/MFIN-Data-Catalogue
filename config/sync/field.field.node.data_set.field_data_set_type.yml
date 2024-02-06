@@ -10,7 +10,7 @@ id: node.data_set.field_data_set_type
 field_name: field_data_set_type
 entity_type: node
 bundle: data_set
-label: 'Data set type'
+label: 'Record type'
 description: 'Classify the item according to type, sub-type and format as applicable. <a href="/node/67">more information…</a>'
 required: true
 translatable: false

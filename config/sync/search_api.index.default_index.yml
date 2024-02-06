@@ -82,7 +82,7 @@ field_settings:
         - node
         - user
   body:
-    label: 'Data set description'
+    label: Summary
     datasource_id: 'entity:node'
     property_path: body
     type: text

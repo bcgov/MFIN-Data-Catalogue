@@ -12,7 +12,7 @@ id: node.data_set.body
 field_name: body
 entity_type: node
 bundle: data_set
-label: 'Data set description'
+label: Summary
 description: ''
 required: true
 translatable: true

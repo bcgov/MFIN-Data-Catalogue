@@ -31,8 +31,6 @@ dependencies:
     - field.field.node.data_set.field_special_flags
     - field.field.node.data_set.field_visibility
     - node.type.data_set
-  module:
-    - shs
 id: node.data_set.section_4
 targetEntityType: node
 bundle: data_set
@@ -54,26 +52,10 @@ content:
     third_party_settings: {  }
   field_high_value_info:
     type: boolean_checkbox
-    weight: 4
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
-  field_information_schedule:
-    type: options_shs
     weight: 2
     region: content
     settings:
-      display_node_count: false
-      create_new_items: false
-      create_new_levels: false
-      force_deepest: false
-    third_party_settings: {  }
-  field_security_classification:
-    type: options_buttons
-    weight: 3
-    region: content
-    settings: {  }
+      display_label: true
     third_party_settings: {  }
 hidden:
   body: true
@@ -85,6 +67,7 @@ hidden:
   field_data_set_type: true
   field_data_sets_used: true
   field_final_disposition: true
+  field_information_schedule: true
   field_is_complete_review: true
   field_last_review_date: true
   field_modified_date: true
@@ -93,6 +76,7 @@ hidden:
   field_published_date: true
   field_review_interval: true
   field_review_status: true
+  field_security_classification: true
   field_semi_active_period: true
   field_series: true
   field_source_system: true

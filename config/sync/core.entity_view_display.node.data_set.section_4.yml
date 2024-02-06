@@ -71,23 +71,7 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 4
-    region: content
-  field_information_schedule:
-    type: entity_reference_label
-    label: inline
-    settings:
-      link: false
-    third_party_settings: {  }
     weight: 2
-    region: content
-  field_security_classification:
-    type: entity_reference_label
-    label: inline
-    settings:
-      link: false
-    third_party_settings: {  }
-    weight: 3
     region: content
 hidden:
   body: true
@@ -99,6 +83,7 @@ hidden:
   field_data_set_type: true
   field_data_sets_used: true
   field_final_disposition: true
+  field_information_schedule: true
   field_is_complete_review: true
   field_last_review_date: true
   field_modified_date: true
@@ -107,6 +92,7 @@ hidden:
   field_published_date: true
   field_review_interval: true
   field_review_status: true
+  field_security_classification: true
   field_semi_active_period: true
   field_series: true
   field_source_system: true

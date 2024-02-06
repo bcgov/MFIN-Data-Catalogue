@@ -64,7 +64,7 @@ variant_settings:
       css_styles: ''
     388dd9c1-d0f4-49b7-865e-31fa611b4b8d:
       id: 'entity_view:node'
-      label: 'Section 2: Data description'
+      label: 'Section 2: Description'
       label_display: '0'
       provider: ctools
       view_mode: section_2
@@ -79,7 +79,7 @@ variant_settings:
       css_styles: ''
     700e9be9-41b5-4654-b046-584ba675c1d8:
       id: bc_dc_edit_button
-      label: 'Section 2: Data description'
+      label: 'Section 2: Description'
       label_display: visible
       provider: bc_dc
       context_mapping:
@@ -94,7 +94,7 @@ variant_settings:
       css_styles: ''
     c3f9fa35-60ef-4caf-84f1-a57981624283:
       id: 'entity_view:node'
-      label: 'Section 3: Data usage'
+      label: 'Section 3: Utility'
       label_display: '0'
       provider: ctools
       view_mode: section_3
@@ -109,7 +109,7 @@ variant_settings:
       css_styles: ''
     15af6cc8-647a-4705-9a60-009230f61c10:
       id: bc_dc_edit_button
-      label: 'Section 3: Data usage'
+      label: 'Section 3: Utility'
       label_display: visible
       provider: bc_dc
       context_mapping:
@@ -124,7 +124,7 @@ variant_settings:
       css_styles: ''
     fdee6d41-ceb6-43cf-8f6f-ede4a05dd278:
       id: 'entity_view:node'
-      label: 'Section 4: Data value'
+      label: 'Section 4: Significance'
       label_display: '0'
       provider: ctools
       view_mode: section_4
@@ -169,7 +169,7 @@ variant_settings:
       css_styles: ''
     6d7b192c-7273-4995-b54a-fb3f4578ef89:
       id: bc_dc_edit_button
-      label: 'Section 4: Data value'
+      label: 'Section 4: Significance'
       label_display: visible
       provider: bc_dc
       context_mapping:
