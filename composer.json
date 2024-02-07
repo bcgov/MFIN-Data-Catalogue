@@ -61,6 +61,7 @@
         "bcgov/bcbb_theme": "1.0.x@dev",
         "composer/installers": "^2.0",
         "drupal/auto_username": "^1.5",
+        "drupal/better_normalizers": "^2.0@beta",
         "drupal/cancel_button": "^1.4",
         "drupal/charts": "^5.0",
         "drupal/ckeditor_codemirror": "^3.0@beta",
