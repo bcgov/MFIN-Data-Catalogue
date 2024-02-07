@@ -378,17 +378,23 @@ class BcDcFunctionalTest extends BrowserTestBase {
       $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div/time', $args);
       $this->assertSession()->elementExists('xpath', $xpath);
     }
-
-    // Create data_set_type term.
-    $data_set_type_term = Term::create([
+    // Create root data_set_type term.
+    $data_set_type_root_data_term = Term::create([
+      'vid' => 'data_set_type',
+      'name' => 'Data',
+    ]);
+    $data_set_type_root_data_term->save();
+    // Create data_set_type data term.
+    $data_set_type_data_term = Term::create([
       'vid' => 'data_set_type',
       'name' => 'SQL',
+      'parent' => $data_set_type_root_data_term->id(),
     ]);
-    $data_set_type_term->save();
+    $data_set_type_data_term->save();
     // Complete required fields in section 1.
     $this->click('a[aria-label = "Edit Section 1"]');
     $edit = [
-      'edit-field-data-set-type' => $data_set_type_term->id(),
+      'edit-field-data-set-type' => $data_set_type_data_term->id(),
     ];
     $this->submitForm($edit, 'Save');
 
@@ -1072,7 +1078,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Section 1.
     $this->click('a[aria-label = "Edit Section 1"]');
     $edit = [
-      'edit-field-data-set-type' => $data_set_type_term->id(),
+      'edit-field-data-set-type' => $data_set_type_data_term->id(),
     ];
     $this->submitForm($edit, 'Save');
     // Section 2.
