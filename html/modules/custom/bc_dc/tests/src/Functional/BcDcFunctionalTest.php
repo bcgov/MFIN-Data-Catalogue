@@ -1159,7 +1159,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $args = [
       ':data_set_title' => $data_set_title_2,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//section[@aria-label = "This dataset"][contains(text(), :data_set_title)]/em[text() = "This data"]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//section[not(@aria-label)][contains(text()[2], :data_set_title)]/em[text() = "This data:"]', $args);
     $this->assertSession()->elementExists('xpath', $xpath, $dc_lineage);
     // Used-in.
     $this->assertSession()->elementNotExists('xpath', '//div[text() = "Used-in data sets"]');
@@ -1173,7 +1173,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $args = [
       ':data_set_title' => $data_set_title,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//section[@aria-label = "This dataset"][contains(text(), :data_set_title)]/em[text() = "This data"]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//section[not(@aria-label)][contains(text()[2], :data_set_title)]/em[text() = "This data:"]', $args);
     $this->assertSession()->elementExists('xpath', $xpath, $dc_lineage);
     // Used in.
     $args = [
