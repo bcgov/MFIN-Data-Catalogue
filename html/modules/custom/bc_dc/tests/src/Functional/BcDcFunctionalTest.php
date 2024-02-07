@@ -1140,21 +1140,42 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Publish the changes.
     $this->clickLink('Build');
     $this->submitForm([], 'Publish');
+
     // Page has "Data sets used" with link to node/2.
+    $dc_lineage = $this->assertSession()->elementExists('xpath', '//details[@class = "dc-lineage"]');
+    // Uses.
     $args = [
       ':data_set_title' => $data_set_title,
     ];
     $xpath = $this->assertSession()->buildXPathQuery('//section[@aria-label = "This dataset uses the following datasets"]//a[text() = :data_set_title]', $args);
-    $this->assertSession()->elementExists('xpath', $xpath);
+    $this->assertSession()->elementExists('xpath', $xpath, $dc_lineage);
+    // This data_set.
+    $args = [
+      ':data_set_title' => $data_set_title_2,
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//section[@aria-label = "This dataset"][contains(text(), :data_set_title)]/em[text() = "This data"]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath, $dc_lineage);
+    // Used-in.
     $this->assertSession()->elementNotExists('xpath', '//div[text() = "Used-in data sets"]');
+
     // Check node/2 for link back.
     $this->drupalGet('node/2');
+    $dc_lineage = $this->assertSession()->elementExists('xpath', '//details[@class = "dc-lineage"]');
+    // Uses.
+    $this->assertSession()->elementNotExists('xpath', '//div[text() = "Data sets used"]');
+    // This data_set.
+    $args = [
+      ':data_set_title' => $data_set_title,
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//section[@aria-label = "This dataset"][contains(text(), :data_set_title)]/em[text() = "This data"]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath, $dc_lineage);
+    // Used in.
     $args = [
       ':data_set_title_2' => $data_set_title_2,
     ];
     $xpath = $this->assertSession()->buildXPathQuery('//section[@aria-label = "The following datasets use this dataset"]//a[text() = :data_set_title_2]', $args);
-    $this->assertSession()->elementExists('xpath', $xpath);
-    $this->assertSession()->elementNotExists('xpath', '//div[text() = "Data sets used"]');
+    $this->assertSession()->elementExists('xpath', $xpath, $dc_lineage);
+
     // "Personal information" badge appears.
     $this->drupalGet('node/6');
     $this->assertSession()->elementExists('xpath', '//span[contains(@class, "badge text-bg-warning")][text() = "Personal information"]');
