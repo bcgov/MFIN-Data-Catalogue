@@ -308,5 +308,8 @@ function dc_theme_preprocess_node(&$variables) {
       // Pass the root term name to the Twig template.
       $variables['record_type'] = $rootTermLowercase;
     }
+    else {
+      $variables['record_type'] = t('record');
+    }
   }
 }
