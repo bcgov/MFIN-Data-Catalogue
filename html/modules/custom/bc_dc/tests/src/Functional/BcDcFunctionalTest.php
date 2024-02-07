@@ -69,12 +69,18 @@ class BcDcFunctionalTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    *
-   * Same as parent except that it will not return a less-than character, which
-   * can be interpreted as the start of an HTML tag.
+   * Same as parent with minor changes to allowed return value.
    */
   public function randomString($length = 8) {
     $string = parent::randomString($length);
+
+    // Remove less-than character, which can be interpreted as the start of an
+    // HTML tag.
     $string = str_replace('<', 'a', $string);
+
+    // Ensure the string ends in a letter. Ending in a period causes problems.
+    $string .= 'a';
+
     return $string;
   }
 
