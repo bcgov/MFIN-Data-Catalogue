@@ -1153,7 +1153,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $args = [
       ':data_set_title' => $data_set_title,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//section[@aria-label = "This dataset uses the following datasets"]//a[text() = :data_set_title]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//section[@aria-label = "This record uses the following records"]//a[text() = :data_set_title]', $args);
     $this->assertSession()->elementExists('xpath', $xpath, $dc_lineage);
     // This data_set.
     $args = [
@@ -1179,7 +1179,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $args = [
       ':data_set_title_2' => $data_set_title_2,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//section[@aria-label = "The following datasets use this dataset"]//a[text() = :data_set_title_2]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//section[@aria-label = "The following records use this record"]//a[text() = :data_set_title_2]', $args);
     $this->assertSession()->elementExists('xpath', $xpath, $dc_lineage);
 
     // "Personal information" badge appears.
