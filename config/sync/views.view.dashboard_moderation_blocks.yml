@@ -446,7 +446,7 @@ display:
           title: ''
           default_argument_type: token
           default_argument_options:
-            argument: '[current-user:field_organization:target_id]'
+            argument: '[current-user:tac-term-ids:1]'
             process: 0
             and_or: +
             all_option: 0
@@ -465,7 +465,7 @@ display:
             type: none
             fail: 'not found'
           validate_options: {  }
-          break_phrase: false
+          break_phrase: true
           not: false
       filters:
         type:
