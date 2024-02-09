@@ -801,6 +801,20 @@ function bc_dc_menu_local_tasks_alter(array &$data, string $route_name, Refinabl
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for links__toolbar_user.
+ */
+function bc_dc_preprocess_links__toolbar_user(array &$variables): void {
+  // Rename the profile link on the user toolbar.
+  if (isset($variables['links']['account'])) {
+    $title = t('Dashboard');
+    $variables['links']['account']['text'] = $title;
+    $variables['links']['account']['link']['#title'] = $title;
+    $variables['links']['account']['text_attributes']->removeAttribute('title');
+    unset($variables['links']['account']['link']['#options']['attributes']['title']);
+  }
+}
+
+/**
  * Implements hook_system_breadcrumb_alter().
  */
 function bc_dc_system_breadcrumb_alter(Breadcrumb &$breadcrumb, RouteMatchInterface $route_match, array $context): void {

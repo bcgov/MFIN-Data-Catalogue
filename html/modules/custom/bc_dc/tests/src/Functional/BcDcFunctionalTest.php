@@ -359,6 +359,9 @@ class BcDcFunctionalTest extends BrowserTestBase {
     // Admin has access to data_set build page.
     $this->drupalGet('node/2/build');
     $this->assertSession()->statusCodeEquals(200);
+    // User toolbar link to Dashboard has correct title.
+    $this->assertSession()->elementExists('xpath', '//div[@id = "toolbar-item-user-tray"]/nav/ul/li/a[text() = "Dashboard"]');
+    $this->assertSession()->elementNotExists('xpath', '//div[@id = "toolbar-item-user-tray"]/nav/ul/li/a[text() = "View profile"]');
     // Page has correct breadcrumbs.
     $breadcrumbs = $this->xpath('//ol[@class = "breadcrumb"]/li/a');
     $this->assertCount(1, $breadcrumbs, 'Page has 1 breadcrumb.');
