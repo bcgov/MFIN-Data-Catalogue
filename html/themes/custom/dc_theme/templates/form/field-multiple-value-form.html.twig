@@ -1,7 +1,10 @@
 {#
 /**
  * @file
- * Theme override for an individual form element.
+ * Theme override for an individual form element using fieldset/legend.
+ *
+ * This is the same as the bootstrap5 version of this file except that it uses
+ * fieldset/legend when `multiple` is set.
  *
  * Available variables for all fields:
  * - multiple: Whether there are multiple instances of the field.
@@ -22,11 +25,11 @@
 {% if multiple %}
   {%
     set classes = [
-      'js-form-item',
-      'form-item'
+      'form-composite',
     ]
   %}
-  <div{{ attributes.addClass(classes) }}>
+  <fieldset{{ attributes.addClass(classes) }}>
+    <legend>{{ legend }}</legend>
     {{ table }}
     {% if description.content %}
       <div{{ description.attributes.addClass('description') }} >{{ description.content }}</div>
@@ -34,7 +37,7 @@
     {% if button %}
       <div class="clearfix">{{ button }}</div>
     {% endif %}
-  </div>
+  </fieldset>
 {% else %}
   {% for element in elements %}
     {{ element }}
