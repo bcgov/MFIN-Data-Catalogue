@@ -49,6 +49,7 @@ permissions:
   - 'access media overview'
   - 'access printer-friendly version'
   - 'access taxonomy overview'
+  - 'access user manage'
   - 'add content to books'
   - 'administer book outlines'
   - 'administer taxonomy import'

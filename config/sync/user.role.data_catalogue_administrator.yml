@@ -55,6 +55,7 @@ permissions:
   - 'access printer-friendly version'
   - 'access taxonomy overview'
   - 'access toolbar'
+  - 'access user manage'
   - 'access user profiles'
   - 'add content to books'
   - 'administer book outlines'

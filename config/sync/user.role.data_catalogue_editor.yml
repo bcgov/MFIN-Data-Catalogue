@@ -21,6 +21,7 @@ weight: 5
 is_admin: null
 permissions:
   - 'access printer-friendly version'
+  - 'access user manage'
   - 'create data_set content'
   - 'create field_organization'
   - 'delete own never_published data_set in_org'

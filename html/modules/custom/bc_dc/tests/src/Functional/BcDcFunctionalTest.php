@@ -619,6 +619,11 @@ class BcDcFunctionalTest extends BrowserTestBase {
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//*[text() = "You currently have no published metadata records."]');
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//a[text() = "Manage metadata records"]');
 
+    // Dashboard "Manage" tab exists and can be visited.
+    $manage_link = $this->assertSession()->elementExists('xpath', '//div[@id = "block-dc-theme-local-tasks"]/nav/nav/ul/li/a[text() = "Manage"]');
+    $this->drupalGet($manage_link->getAttribute('href'));
+    $this->assertSession()->statusCodeEquals(200);
+
     // Revisions and diff are enabled and available.
     $this->drupalGet('node/2');
     $this->assertSession()->elementExists('xpath', '//nav[contains(@class, "tabs")]/ul/li/a[@href = "/node/2/revisions"]');
@@ -1370,6 +1375,14 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Now "Unpublish" link exists.
     $this->drupalGet('node/2');
     $this->assertSession()->linkExists('Unpublish');
+
+    // Test Dashboard for DC user.
+    $this->drupalLogin($this->users['Test Data catalogue user']);
+    $this->drupalGet('user');
+    // "Manage" tab does not exist and cannot be visited.
+    $this->assertSession()->elementNotExists('xpath', '//div[@id = "block-dc-theme-local-tasks"]/nav/nav/ul/li/a[text() = "Manage"]');
+    $this->drupalGet('user/' . $this->users['Test Data catalogue manager']->id() . '/manage');
+    $this->assertSession()->statusCodeEquals(404);
   }
 
   /**

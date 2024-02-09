@@ -28,7 +28,6 @@ permissions:
   - 'access content'
   - 'access environment indicator'
   - 'access shortcuts'
-  - 'access user manage'
   - 'access user reports'
   - 'delete own files'
   - 'post comments'
