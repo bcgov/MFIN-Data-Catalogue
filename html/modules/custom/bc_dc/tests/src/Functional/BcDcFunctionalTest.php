@@ -1379,6 +1379,8 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Test Dashboard for DC user.
     $this->drupalLogin($this->users['Test Data catalogue user']);
     $this->drupalGet('user');
+    // Block bc_dc_content_summary does not exist.
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]');
     // "Manage" tab does not exist and cannot be visited.
     $this->assertSession()->elementNotExists('xpath', '//div[@id = "block-dc-theme-local-tasks"]/nav/nav/ul/li/a[text() = "Manage"]');
     $this->drupalGet('user/' . $this->users['Test Data catalogue manager']->id() . '/manage');
