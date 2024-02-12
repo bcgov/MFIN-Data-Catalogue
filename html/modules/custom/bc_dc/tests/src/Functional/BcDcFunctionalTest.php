@@ -68,6 +68,43 @@ class BcDcFunctionalTest extends BrowserTestBase {
 
   /**
    * {@inheritdoc}
+   */
+  protected function tearDown(): void {
+    parent::tearDown();
+
+    // Running tests leaves behind tmp files which are the files uploaded during
+    // the upload tests. These files do not get created in normal use of the
+    // site. Delete these.
+    //
+    // Userid of this process.
+    $posix_getuid = posix_getuid();
+    // These need to include any file extensions uploaded, that is,
+    // $file_types_to_test plus 'txt'.
+    $file_types_to_delete = [
+      'csv',
+      'tsv',
+      'ods',
+      'xlsx',
+      'txt',
+    ];
+    // Regular expression of file names to delete.
+    $file_regex = '/^[a-zA-Z0-9_+]{7}\.(' . implode('|', $file_types_to_delete) . ')$/';
+    // Scan the tmp directory and delete any file, owned by the current process
+    // owner, that matches the pattern of left-over filenames.
+    $dir = '/tmp/';
+    if (is_dir($dir) && $dir_handle = opendir($dir)) {
+      while (($filename = readdir($dir_handle)) !== FALSE) {
+        $filepath = $dir . $filename;
+        if (fileowner($filepath) === $posix_getuid && filetype($filepath) === 'file' && preg_match($file_regex, $filename)) {
+          unlink($filepath);
+        }
+      }
+      closedir($dir_handle);
+    }
+  }
+
+  /**
+   * {@inheritdoc}
    *
    * Same as parent with minor changes to allowed return value.
    */
