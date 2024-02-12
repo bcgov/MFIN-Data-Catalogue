@@ -57,7 +57,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() : void {
+  protected function setUp(): void {
     parent::setUp();
 
     // Import config, like `drush config:import`.
@@ -71,7 +71,7 @@ class BcDcFunctionalTest extends BrowserTestBase {
    *
    * Same as parent with minor changes to allowed return value.
    */
-  public function randomString($length = 8) {
+  public function randomString($length = 8): string {
     $string = parent::randomString($length);
 
     // Remove less-than character, which can be interpreted as the start of an
