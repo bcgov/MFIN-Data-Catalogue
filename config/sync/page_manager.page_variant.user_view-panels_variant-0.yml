@@ -155,8 +155,8 @@ variant_settings:
   storage_id: user_view-panels_variant-0
   css_classes:
     - ''
-  html_id: null
-  css_styles: null
+  html_id: ''
+  css_styles: ''
 page: user_view
 selection_criteria:
   -

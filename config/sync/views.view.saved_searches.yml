@@ -1025,21 +1025,26 @@ display:
         options:
           offset: 0
           items_per_page: 8
-      access:
-        type: role
-        options:
-          role:
-            administrator: administrator
-            data_catalogue_administrator: data_catalogue_administrator
-            data_catalogue_manager: data_catalogue_manager
-            data_catalogue_editor: data_catalogue_editor
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text_custom
+          empty: true
+          content: '<div class="m-4">No saved searches were found.</div>'
+          tokenize: false
       filters: {  }
       filter_groups:
         operator: AND
         groups:
           1: AND
       defaults:
-        access: false
+        empty: false
+        access: true
         pager: false
         use_more: false
         use_more_always: false

@@ -424,7 +424,7 @@ display:
           empty: true
           content:
             value: 'You currently do not have any metadata records bookmarked.'
-            format: basic_html
+            format: full_html
           tokenize: false
       sorts:
         created:
@@ -1216,6 +1216,20 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: '<div class="m-4">You currently do not have any metadata records bookmarked.</div>'
+            format: full_html
+          tokenize: false
       filters:
         type:
           id: type
@@ -1231,6 +1245,7 @@ display:
         groups:
           1: AND
       defaults:
+        empty: false
         use_more: false
         use_more_always: false
         use_more_text: false
