@@ -41,6 +41,7 @@ dependencies:
     - system
     - taxonomy
     - taxonomy_import
+    - taxonomy_manager
     - toolbar
     - views_ui
 id: data_catalogue_administrator
@@ -53,6 +54,7 @@ permissions:
   - 'access help pages'
   - 'access media overview'
   - 'access printer-friendly version'
+  - 'access taxonomy manager list'
   - 'access taxonomy overview'
   - 'access toolbar'
   - 'access user manage'
