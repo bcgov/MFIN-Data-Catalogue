@@ -94,6 +94,13 @@ class BcDcSettingsForm extends ConfigFormBase {
       '#required' => TRUE,
       '#default_value' => $bc_dc_settings->get('review_overdue_message'),
     ];
+    $form['info_schedule_pre_title'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Information schedule pre-title'),
+      '#description' => $this->t('This is a label that appears above the title on information schedule terms'),
+      '#required' => TRUE,
+      '#default_value' => $bc_dc_settings->get('info_schedule_pre_title'),
+    ];
 
     return $form;
   }
@@ -110,6 +117,7 @@ class BcDcSettingsForm extends ConfigFormBase {
       'data_set_review_period_alert',
       'review_needed_message',
       'review_overdue_message',
+      'info_schedule_pre_title',
     ];
     foreach ($fields_to_save as $field) {
       $bc_dc_settings->set($field, $form_state->getValue($field));

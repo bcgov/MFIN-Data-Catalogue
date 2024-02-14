@@ -8,6 +8,7 @@
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Link;
+use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\TermInterface;
 
 /**
@@ -310,6 +311,29 @@ function dc_theme_preprocess_node(&$variables) {
     }
     else {
       $variables['record_type'] = t('record');
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page-title.html.twig.
+ */
+function dc_theme_preprocess_page_title(array &$variables): void {
+  // Get the route.
+  $route_match = \Drupal::routeMatch();
+  // Check that it's a term page.
+  if ($route_match->getRouteName() === 'entity.taxonomy_term.canonical') {
+    // Get the term and see if it belongs to vocab information_schedule.
+    $term = $route_match->getParameter('taxonomy_term');
+    if ($term instanceof Term && $term->bundle() === 'information_schedule') {
+      // Get the pre-title from the module configuration.
+      $pre_title_text = (string) \Drupal::config('bc_dc.settings')->get('info_schedule_pre_title');
+      if ($pre_title_text !== '') {
+        // Add a pre-title markup and value.
+        $variables['title_prefix']['pre_title'] = [
+          '#markup' => '<span class="pre-title">' . $pre_title_text . '</span>',
+        ];
+      }
     }
   }
 }
