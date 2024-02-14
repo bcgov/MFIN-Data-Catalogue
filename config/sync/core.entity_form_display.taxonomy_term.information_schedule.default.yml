@@ -6,6 +6,7 @@ dependencies:
     - field.field.taxonomy_term.information_schedule.field_abbr_full_name
     - field.field.taxonomy_term.information_schedule.field_active_period
     - field.field.taxonomy_term.information_schedule.field_active_period_extension
+    - field.field.taxonomy_term.information_schedule.field_classification_code
     - field.field.taxonomy_term.information_schedule.field_final_disposition
     - field.field.taxonomy_term.information_schedule.field_schedule_code
     - field.field.taxonomy_term.information_schedule.field_schedule_number
@@ -23,7 +24,7 @@ mode: default
 content:
   description:
     type: text_textarea
-    weight: 9
+    weight: 10
     region: content
     settings:
       rows: 5
@@ -39,13 +40,21 @@ content:
     third_party_settings: {  }
   field_active_period:
     type: options_select
-    weight: 3
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
   field_active_period_extension:
     type: string_textfield
-    weight: 4
+    weight: 5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_classification_code:
+    type: string_textfield
+    weight: 3
     region: content
     settings:
       size: 60
@@ -53,7 +62,7 @@ content:
     third_party_settings: {  }
   field_final_disposition:
     type: options_select
-    weight: 7
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -67,7 +76,7 @@ content:
     third_party_settings: {  }
   field_semi_active_extension:
     type: string_textfield
-    weight: 6
+    weight: 7
     region: content
     settings:
       size: 60
@@ -75,19 +84,19 @@ content:
     third_party_settings: {  }
   field_semi_active_period:
     type: options_select
-    weight: 5
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
   field_special_flags:
     type: options_select
-    weight: 8
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
   langcode:
     type: language_select
-    weight: 10
+    weight: 11
     region: content
     settings:
       include_locked: true
@@ -102,13 +111,13 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 11
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 12
+    weight: 13
     region: content
     settings:
       display_label: true

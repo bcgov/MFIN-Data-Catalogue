@@ -6,6 +6,7 @@ dependencies:
     - field.field.taxonomy_term.information_schedule.field_abbr_full_name
     - field.field.taxonomy_term.information_schedule.field_active_period
     - field.field.taxonomy_term.information_schedule.field_active_period_extension
+    - field.field.taxonomy_term.information_schedule.field_classification_code
     - field.field.taxonomy_term.information_schedule.field_final_disposition
     - field.field.taxonomy_term.information_schedule.field_schedule_code
     - field.field.taxonomy_term.information_schedule.field_schedule_number
@@ -100,5 +101,6 @@ content:
     weight: 8
     region: content
 hidden:
+  field_classification_code: true
   langcode: true
   search_api_excerpt: true
