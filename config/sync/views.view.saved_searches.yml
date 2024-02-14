@@ -2,11 +2,6 @@ uuid: 36406b2b-5575-4a3a-a740-a0dac5179175
 langcode: en
 status: true
 dependencies:
-  config:
-    - user.role.administrator
-    - user.role.data_catalogue_administrator
-    - user.role.data_catalogue_editor
-    - user.role.data_catalogue_manager
   module:
     - options
     - search_api_saved_searches
@@ -440,13 +435,9 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: role
+        type: perm
         options:
-          role:
-            administrator: administrator
-            data_catalogue_administrator: data_catalogue_administrator
-            data_catalogue_manager: data_catalogue_manager
-            data_catalogue_editor: data_catalogue_editor
+          perm: 'access content'
       cache:
         type: none
         options: {  }
@@ -592,7 +583,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user.roles
+        - user.permissions
       tags: {  }
   dashboard_saved_search:
     id: dashboard_saved_search
@@ -1079,7 +1070,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - user.roles
+        - user.permissions
       tags: {  }
   page:
     id: page
@@ -1539,5 +1530,5 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user.roles
+        - user.permissions
       tags: {  }

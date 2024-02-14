@@ -7,10 +7,6 @@ dependencies:
     - field.storage.node.field_modified_date
     - flag.flag.bookmark
     - node.type.data_set
-    - user.role.administrator
-    - user.role.data_catalogue_administrator
-    - user.role.data_catalogue_editor
-    - user.role.data_catalogue_manager
   module:
     - datetime
     - flag
@@ -410,13 +406,9 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: role
+        type: perm
         options:
-          role:
-            administrator: administrator
-            data_catalogue_administrator: data_catalogue_administrator
-            data_catalogue_manager: data_catalogue_manager
-            data_catalogue_editor: data_catalogue_editor
+          perm: 'access content'
       cache:
         type: none
         options: {  }
@@ -552,7 +544,7 @@ display:
         - 'languages:language_interface'
         - url
         - 'user.node_grants:view'
-        - user.roles
+        - user.permissions
       tags:
         - 'config:field.storage.flagging.field_last_viewed_date'
         - 'config:field.storage.node.field_modified_date'
@@ -853,7 +845,7 @@ display:
         - 'languages:language_interface'
         - url
         - 'user.node_grants:view'
-        - user.roles
+        - user.permissions
       tags: {  }
   dashboard_bookmarks:
     id: dashboard_bookmarks
@@ -1273,7 +1265,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - 'user.node_grants:view'
-        - user.roles
+        - user.permissions
       tags:
         - 'config:field.storage.flagging.field_last_viewed_date'
         - 'config:field.storage.node.field_modified_date'
@@ -1692,7 +1684,7 @@ display:
         - url
         - url.query_args
         - 'user.node_grants:view'
-        - user.roles
+        - user.permissions
       tags:
         - 'config:field.storage.flagging.field_last_viewed_date'
         - 'config:field.storage.node.field_modified_date'

@@ -319,7 +319,7 @@ display:
       access:
         type: perm
         options:
-          perm: 'access content'
+          perm: 'create data_set content'
       cache:
         type: none
         options: {  }
