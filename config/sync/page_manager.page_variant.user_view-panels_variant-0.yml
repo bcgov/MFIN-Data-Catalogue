@@ -147,7 +147,7 @@ variant_settings:
         - ''
       html_id: ''
       css_styles: ''
-  page_title: null
+  page_title: Dashboard
   layout: bcbb_bricks
   layout_settings: {  }
   builder: standard
