@@ -3,14 +3,13 @@
 namespace Drupal\Tests\bc_dc\Functional;
 
 // This should not be needed because of autoloading, but without this, it cannot
-// find BcbbTestingTrait.
-require_once DRUPAL_ROOT . '/modules/contrib/bcbb/tests/src/BcbbTestingTrait.php';
+// find BcbbBrowserTestBase.
+require_once DRUPAL_ROOT . '/modules/contrib/bcbb/tests/src/Functional/BcbbBrowserTestBase.php';
 
 use Drupal\Core\Config\FileStorage;
 use Drupal\node\Entity\Node;
 use Drupal\taxonomy\Entity\Term;
-use Drupal\Tests\bcbb\BcbbTestingTrait;
-use Drupal\Tests\BrowserTestBase;
+use Drupal\Tests\bcbb\Functional\BcbbBrowserTestBase;
 use Drupal\user\Entity\Role;
 use Drupal\user\Entity\User;
 
@@ -19,9 +18,7 @@ use Drupal\user\Entity\User;
  *
  * @group BcDc
  */
-class BcDcFunctionalTest extends BrowserTestBase {
-
-  use BcbbTestingTrait;
+class BcDcFunctionalTest extends BcbbBrowserTestBase {
 
   /**
    * {@inheritdoc}
@@ -33,11 +30,6 @@ class BcDcFunctionalTest extends BrowserTestBase {
    * {@inheritdoc}
    */
   protected $strictConfigSchema = FALSE;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected $profile = 'standard';
 
   /**
    * {@inheritdoc}
@@ -101,24 +93,6 @@ class BcDcFunctionalTest extends BrowserTestBase {
       }
       closedir($dir_handle);
     }
-  }
-
-  /**
-   * {@inheritdoc}
-   *
-   * Same as parent with minor changes to allowed return value.
-   */
-  public function randomString($length = 8): string {
-    $string = parent::randomString($length);
-
-    // Remove less-than character, which can be interpreted as the start of an
-    // HTML tag.
-    $string = str_replace('<', 'a', $string);
-
-    // Ensure the string ends in a letter. Ending in a period causes problems.
-    $string .= 'a';
-
-    return $string;
   }
 
   /**
