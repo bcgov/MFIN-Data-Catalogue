@@ -36,6 +36,7 @@ permissions:
   - 'use default search_api_saved_searches'
   - 'use text format basic_html'
   - 'use text format webform_default'
+  - 'view field_asset_location'
   - 'view field_primary_responsibility_org'
   - 'view media'
   - 'view own field_primary_responsibility_org'

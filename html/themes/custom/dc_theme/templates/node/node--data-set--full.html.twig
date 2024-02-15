@@ -92,6 +92,12 @@
             </div>
           {% endif %}
 
+          {% if node.field_asset_location and not node.field_asset_location.isempty %}
+            <div class="mb-3">
+              {{ node.field_asset_location|view }}
+            </div>
+          {% endif %}
+
           {% if node.field_primary_responsibility_org and not node.field_primary_responsibility_org.isempty %}
             <div class="mb-3">
               {{ node.field_primary_responsibility_org|view }}

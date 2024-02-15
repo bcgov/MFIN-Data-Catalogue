@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.section_2
     - field.field.node.data_set.body
     - field.field.node.data_set.field_active_period
+    - field.field.node.data_set.field_asset_location
     - field.field.node.data_set.field_authoritative_info
     - field.field.node.data_set.field_columns
     - field.field.node.data_set.field_critical_information
@@ -69,6 +70,30 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
+  field_asset_location:
+    type: smart_trim
+    label: above
+    settings:
+      trim_length: 150
+      trim_type: chars
+      trim_suffix: ''
+      wrap_output: false
+      wrap_class: trimmed
+      more:
+        display_link: false
+        target_blank: false
+        link_trim_only: false
+        class: more-link
+        text: More
+        aria_label: 'Read more about [node:title]'
+      summary_handler: full
+      trim_options:
+        text: true
+        trim_zero: false
+        replace_tokens: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
   field_data_set_historical_change:
     type: smart_trim
     label: above
@@ -91,7 +116,7 @@ content:
         trim_zero: false
         replace_tokens: false
     third_party_settings: {  }
-    weight: 4
+    weight: 5
     region: content
   field_modified_date:
     type: datetime_default
@@ -100,7 +125,7 @@ content:
       timezone_override: ''
       format_type: html_date
     third_party_settings: {  }
-    weight: 2
+    weight: 3
     region: content
   field_primary_responsibility_org:
     type: entity_reference_label
@@ -108,7 +133,7 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 5
+    weight: 6
     region: content
   field_published_date:
     type: datetime_default
@@ -117,7 +142,7 @@ content:
       timezone_override: ''
       format_type: html_date
     third_party_settings: {  }
-    weight: 1
+    weight: 2
     region: content
   field_review_interval:
     type: number_integer
@@ -126,7 +151,7 @@ content:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 3
+    weight: 4
     region: content
   field_visibility:
     type: entity_reference_label
@@ -134,7 +159,7 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 6
+    weight: 7
     region: content
 hidden:
   content_moderation_control: true

@@ -6,6 +6,7 @@ dependencies:
     - core.entity_form_mode.node.section_1
     - field.field.node.data_set.body
     - field.field.node.data_set.field_active_period
+    - field.field.node.data_set.field_asset_location
     - field.field.node.data_set.field_authoritative_info
     - field.field.node.data_set.field_columns
     - field.field.node.data_set.field_critical_information
@@ -66,6 +67,7 @@ hidden:
   body: true
   created: true
   field_active_period: true
+  field_asset_location: true
   field_authoritative_info: true
   field_columns: true
   field_critical_information: true

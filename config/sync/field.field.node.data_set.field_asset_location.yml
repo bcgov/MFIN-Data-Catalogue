@@ -1,0 +1,24 @@
+uuid: 191945ed-142e-48fb-94d8-69c70a005100
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_asset_location
+    - filter.format.basic_html
+    - node.type.data_set
+  module:
+    - text
+id: node.data_set.field_asset_location
+field_name: field_asset_location
+entity_type: node
+bundle: data_set
+label: Location
+description: 'Write the location where this asset can be found. For example, network location and file name or the schema and object name.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+field_type: text_long

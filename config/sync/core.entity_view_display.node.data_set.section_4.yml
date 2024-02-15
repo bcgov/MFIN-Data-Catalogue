@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.section_4
     - field.field.node.data_set.body
     - field.field.node.data_set.field_active_period
+    - field.field.node.data_set.field_asset_location
     - field.field.node.data_set.field_authoritative_info
     - field.field.node.data_set.field_columns
     - field.field.node.data_set.field_critical_information
@@ -77,6 +78,7 @@ hidden:
   body: true
   content_moderation_control: true
   field_active_period: true
+  field_asset_location: true
   field_columns: true
   field_data_quality_issues: true
   field_data_set_historical_change: true
