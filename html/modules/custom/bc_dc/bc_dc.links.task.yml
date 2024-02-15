@@ -23,6 +23,11 @@ bc_dc.user_reports_is_tab:
   parent_id: bc_dc.user_reports_tab
   title: 'Information schedule'
 
+bc_dc.user_dependency_report_tab:
+  route_name: view.dependency_report.dependency_report_page
+  parent_id: bc_dc.user_reports_tab
+  title: 'Dependency report'
+
 bc_dc.user_manage_tab:
   route_name: bc_dc.user_manage_tab
   base_route: entity.user.canonical
