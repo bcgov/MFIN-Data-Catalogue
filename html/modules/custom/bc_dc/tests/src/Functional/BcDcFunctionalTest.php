@@ -141,6 +141,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     // Test that roles exist.
     $roles = [
       'data_catalogue_administrator',
+      'data_catalogue_manager',
       'data_catalogue_editor',
       'data_catalogue_user',
     ];
