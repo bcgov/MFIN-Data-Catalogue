@@ -63,6 +63,7 @@ dependencies:
   - smtp:smtp
   - tac_lite:tac_lite
   - taxonomy_import:taxonomy_import
+  - taxonomy_manager:taxonomy_manager
   - taxonomy_max_depth:taxonomy_max_depth
   - twig_tweak:twig_tweak
   - views_argument_token:views_argument_token
