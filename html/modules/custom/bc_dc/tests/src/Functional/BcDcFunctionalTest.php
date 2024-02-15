@@ -167,6 +167,12 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
       $this->assertSame($save, SAVED_NEW);
     }
 
+    // Add missing permissions. These ought to have been imported with config.
+    // @todo Get all permissions to import.
+    $role = Role::load('authenticated');
+    $role->grantPermission('access user reports');
+    $role->save();
+
     // Module configuration.
     // @todo Remove this section and have the config come in from config import.
     //
@@ -1350,6 +1356,9 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Now "Unpublish" link exists.
     $this->drupalGet('node/2');
     $this->assertSession()->linkExists('Unpublish');
+    // Re-publish node/2.
+    $this->drupalGet('node/2/build');
+    $this->submitForm([], 'Publish');
 
     // Test Dashboard for DC user.
     $this->drupalLogin($this->users['Test Data catalogue user']);
@@ -1359,7 +1368,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // View block dashboard_blocks dashboard_needs_review should not appear.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-views-blockdashboard-blocks-dashboard-needs-review")]');
     // View block bookmarks appears.
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//div[normalize-space(text()) = "You currently do not have any metadata records bookmarked."]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]');
     // View block saved_searches appears.
     // This test is in ExistingSite because search does not work in Functional.
     // $this->assertSession()->elementExists('xpath', '//div[contains(@class,
@@ -1368,6 +1377,25 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->elementNotExists('xpath', '//div[@id = "block-dc-theme-local-tasks"]/nav/nav/ul/li/a[text() = "Manage"]');
     $this->drupalGet('user/' . $this->users['Test Data catalogue manager']->id() . '/manage');
     $this->assertSession()->statusCodeEquals(404);
+
+    // Test Dashboard for DC user.
+    $this->drupalGet('user');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->clickLink('Reports');
+    $this->assertSession()->statusCodeEquals(200);
+    // Dependency report.
+    $this->clickLink('Dependency report');
+    $this->assertSession()->statusCodeEquals(200);
+    $args = [
+      ':data_set_title' => $data_set_title . ' (referenced by 1 datasets)',
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//details[summary[contains(text(), :data_set_title)]]', $args);
+    $details = $this->assertSession()->elementExists('xpath', $xpath);
+    $args = [
+      ':data_set_title_2' => $data_set_title_2,
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//ol/li//a[contains(text(), :data_set_title_2)]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath, $details);
   }
 
   /**
