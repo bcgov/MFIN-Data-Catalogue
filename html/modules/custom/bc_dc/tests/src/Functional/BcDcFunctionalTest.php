@@ -427,6 +427,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     // Check for fields that have inline labels.
     $fields_inline_optional = [
       'field--name-field-series' => ['label' => 'Series', 'text' => 'Optional'],
+      'field--name-field-asset-location' => ['label' => 'Location', 'text' => 'Optional'],
       'field--name-field-last-review-date' => ['label' => 'Last review date', 'text' => 'Never'],
       'field--name-field-security-classification' => ['label' => 'Security classification', 'text' => 'Required'],
       'field--name-field-source-system' => ['label' => 'Source system', 'text' => 'Optional'],
