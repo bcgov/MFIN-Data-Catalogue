@@ -10,7 +10,7 @@ third_party_settings:
     parent: ''
 name: 'Metadata record'
 type: data_set
-description: ''
+description: 'Stores metadata about data, forms, and reports. This is the primary content type for the data catalogue.'
 help: ''
 new_revision: true
 preview_mode: 0
