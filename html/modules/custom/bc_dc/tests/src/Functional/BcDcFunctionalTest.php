@@ -1355,6 +1355,14 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->drupalGet('user');
     // Block bc_dc_content_summary does not exist.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]');
+    // View block dashboard_blocks dashboard_needs_review should not appear.
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-views-blockdashboard-blocks-dashboard-needs-review")]');
+    // View block bookmarks appears.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//div[normalize-space(text()) = "You currently do not have any metadata records bookmarked."]');
+    // View block saved_searches appears.
+    // This test is in ExistingSite because search does not work in Functional.
+    // $this->assertSession()->elementExists('xpath', '//div[contains(@class,
+    // "block-views-blocksaved-searches-dashboard-saved-search")]');
     // "Manage" tab does not exist and cannot be visited.
     $this->assertSession()->elementNotExists('xpath', '//div[@id = "block-dc-theme-local-tasks"]/nav/nav/ul/li/a[text() = "Manage"]');
     $this->drupalGet('user/' . $this->users['Test Data catalogue manager']->id() . '/manage');

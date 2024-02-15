@@ -137,6 +137,11 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     $container = $this->assertSession()->elementExists('xpath', '//div
       [*[text() = "Series"]]
       [div/a[starts-with(@href, "/search?f%5B0%5D=series%3A")]]');
+
+    // Test Dashboard for DC user.
+    $this->drupalGet('user');
+    // View block saved_searches appears.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-views-blocksaved-searches-dashboard-saved-search")]');
   }
 
 }
