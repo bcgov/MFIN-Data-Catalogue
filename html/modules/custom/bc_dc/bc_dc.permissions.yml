@@ -22,7 +22,7 @@
   description: 'Used by role_delegation. Declared here so that tests will run.'
 'access user reports':
   title: 'Access user reports tab'
-  description: 'Access the reports tab at /user/<uid>/reports'
+  description: 'Access the reports tab at /user/UID/reports'
 'access user manage':
   title: 'Access user manage tab'
-  description: 'Access the manage tab at /user/<uid>/manage'
+  description: 'Access the manage tab at /user/UID/manage'
