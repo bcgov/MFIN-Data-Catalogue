@@ -225,6 +225,47 @@ function dc_theme_preprocess_page__node__add_columns(array &$variables): void {
  * Implements hook_preprocess_HOOK() for taxonomy-term--information-schedule.html.twig.
  */
 function dc_theme_preprocess_taxonomy_term__information_schedule(array &$variables): void {
+  // Instead of displaying the full name, field_abbr_full_name, display that and
+  // all ancestors using the correct labels for each level.
+  //
+  // Labels for the different levels in the taxonomy.
+  $level_labels = [
+    t('Information schedule type'),
+    t('Information schedule name'),
+    t('Business function'),
+    t('Business category'),
+  ];
+  // Get this term and its ancestors.
+  $taxonomy_term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  $term_and_ancestors = $taxonomy_term_storage->loadAllParents($variables['elements']['#taxonomy_term']->id());
+  $number_of_terms = count($term_and_ancestors);
+  // Remove labels if there are too many.
+  while (count($level_labels) > $number_of_terms) {
+    array_pop($level_labels);
+  }
+  // Add default label if there are too few.
+  while (count($level_labels) < $number_of_terms) {
+    $level_labels[] = t('Sub-type');
+  }
+  // Starting from the current term and going up the tree, add the label of each
+  // level to the output using the correct level label.
+  foreach ($term_and_ancestors as $term) {
+    $level = $variables['content']['field_abbr_full_name'];
+    $level['#title'] = array_pop($level_labels);
+    // The value comes from field_abbr_full_name except for the top level which
+    // uses the term label.
+    if (count($level_labels)) {
+      $value = $term->field_abbr_full_name->value ?? $term->label();
+    }
+    else {
+      $value = $term->label();
+    }
+    $level[0]['#context']['value'] = $value;
+    array_unshift($variables['content'], $level);
+  }
+  // Remove the display of the full name.
+  unset($variables['content']['field_abbr_full_name']);
+
   // For entity reference fields, use abbr to provide the full name.
   foreach ($variables['content'] as &$field) {
     // Act only on entity reference fields.

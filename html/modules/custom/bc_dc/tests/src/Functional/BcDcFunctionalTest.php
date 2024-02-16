@@ -934,7 +934,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $info_schedule_values[0] = [
       'vid' => 'information_schedule',
       'name' => 'information schedule One ' . $this->randomString(),
-      'field_abbr_full_name' => 'First full name',
+      'field_abbr_full_name' => 'First full name ' . $this->randomString(),
     ];
     $info_schedule_terms[0] = Term::create($info_schedule_values[0]);
     $info_schedule_terms[0]->save();
@@ -942,6 +942,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $info_schedule_values[1] = [
       'vid' => 'information_schedule',
       'name' => 'information schedule Two ' . $this->randomString(),
+      'field_abbr_full_name' => 'Second full name ' . $this->randomString(),
       'field_schedule_number' => $this->randomMachineName(),
       'field_classification_code' => $this->randomMachineName(),
       'parent' => $info_schedule_terms[0]->id(),
@@ -952,6 +953,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $info_schedule_values[2] = [
       'vid' => 'information_schedule',
       'name' => 'information schedule Three ' . $this->randomString(),
+      'field_abbr_full_name' => 'Third full name ' . $this->randomString(),
       'parent' => $info_schedule_terms[1]->id(),
       'field_schedule_number' => $this->randomMachineName(),
       'field_classification_code' => $this->randomMachineName(),
@@ -1313,6 +1315,30 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-active-period")]/div/abbr[@title = :title][text() = :text]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-semi-active-period")]/div/abbr[@title = :title][text() = :text]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+    // Information schedule type.
+    $args = [
+      ':item' => $info_schedule_values[0]['name'],
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-abbr-full-name")]
+      [div[@class = "field__label"][text() = "Information schedule type"]]
+      [div[@class = "field__item"][text() = :item]]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+    // Information schedule name.
+    $args = [
+      ':item' => $info_schedule_values[1]['field_abbr_full_name'],
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-abbr-full-name")]
+      [div[@class = "field__label"][text() = "Information schedule name"]]
+      [div[@class = "field__item"][text() = :item]]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+    // Business function.
+    $args = [
+      ':item' => $info_schedule_values[2]['field_abbr_full_name'],
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-abbr-full-name")]
+      [div[@class = "field__label"][text() = "Business function"]]
+      [div[@class = "field__item"][text() = :item]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
 
     // Test Unpublishing.
