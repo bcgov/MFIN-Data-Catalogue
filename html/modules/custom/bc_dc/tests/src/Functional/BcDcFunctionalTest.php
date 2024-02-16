@@ -943,6 +943,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       'vid' => 'information_schedule',
       'name' => 'information schedule Two ' . $this->randomString(),
       'field_schedule_number' => $this->randomMachineName(),
+      'field_classification_code' => $this->randomMachineName(),
       'parent' => $info_schedule_terms[0]->id(),
     ];
     $info_schedule_terms[1] = Term::create($info_schedule_values[1]);
@@ -953,6 +954,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       'name' => 'information schedule Three ' . $this->randomString(),
       'parent' => $info_schedule_terms[1]->id(),
       'field_schedule_number' => $this->randomMachineName(),
+      'field_classification_code' => $this->randomMachineName(),
       'field_active_period' => $record_life_cycle_duration_entity->id(),
       'field_active_period_extension' => $this->randomMachineName(),
       'field_semi_active_period' => $record_life_cycle_duration_entity->id(),
@@ -999,7 +1001,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->elementExists('xpath', $xpath);
     // Schedule code.
     $args = [
-      ':field_schedule_code' => $info_schedule_values[1]['field_schedule_number'] . '-' . $info_schedule_values[2]['field_schedule_number'],
+      ':field_schedule_code' => $info_schedule_values[1]['field_classification_code'] . '-' . $info_schedule_values[2]['field_classification_code'],
     ];
     $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-schedule-code")]
       [div[@class = "field__label"][normalize-space(text()) = "IM classification code"]]
@@ -1007,10 +1009,10 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->elementExists('xpath', $xpath);
 
     // Update a parent term and see the field_schedule_code updated in children.
-    $new_field_schedule_number = $this->randomMachineName();
-    $info_schedule_terms[0]->set('field_schedule_number', $new_field_schedule_number)->save();
+    $new_field_classification_code = $this->randomMachineName();
+    $info_schedule_terms[0]->set('field_classification_code', $new_field_classification_code)->save();
     $reloaded_term = Term::load($info_schedule_terms[2]->id());
-    $expected = $new_field_schedule_number . '-' . $info_schedule_values[1]['field_schedule_number'] . '-' . $info_schedule_values[2]['field_schedule_number'];
+    $expected = $new_field_classification_code . '-' . $info_schedule_values[1]['field_classification_code'] . '-' . $info_schedule_values[2]['field_classification_code'];
     $this->assertEquals($expected, $reloaded_term->field_schedule_code->value);
 
     // Test "Review needed" messages.

@@ -612,18 +612,18 @@ function bc_dc_taxonomy_term_presave(TermInterface $term): void {
   }
 
   // Set the value for field_schedule_code.
-  // If this item's own field_schedule_number is empty, use empty. Otherwise,
-  // combine with the non-empty values from the ancestor terms.
-  if ((string) $term->field_schedule_number->value === '') {
+  // If this item's own field_classification_code is empty, use empty.
+  // Otherwise, combine with the non-empty values from the ancestor terms.
+  if ((string) $term->field_classification_code->value === '') {
     $new_code = NULL;
   }
   else {
     // Start with code of current term.
-    $new_code = [$term->field_schedule_number->value];
+    $new_code = [$term->field_classification_code->value];
     // Add the codes of ancestor terms.
     $term_parents = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadAllParents($term->parent->target_id);
     foreach ($term_parents as $term_parent) {
-      $term_parent_number = (string) $term_parent->field_schedule_number->value;
+      $term_parent_number = (string) $term_parent->field_classification_code->value;
       if ($term_parent_number !== '') {
         $new_code[] = $term_parent_number;
       }
@@ -645,7 +645,7 @@ function bc_dc_taxonomy_term_presave(TermInterface $term): void {
 function bc_dc_taxonomy_term_update(TermInterface $term): void {
   // If the term is in information_schedule, is not new, and their local code
   // has changed, re-save descendents so that they get the new value as well.
-  if ($term->bundle() === 'information_schedule' && !$term->isNew() && $term->original->field_schedule_number->value !== $term->field_schedule_number->value) {
+  if ($term->bundle() === 'information_schedule' && !$term->isNew() && $term->original->field_classification_code->value !== $term->field_classification_code->value) {
     $termStorage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
     $descendents = $termStorage->loadTree($term->bundle(), $term->id(), NULL, TRUE);
     foreach ($descendents as $descendent) {
