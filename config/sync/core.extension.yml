@@ -4,6 +4,7 @@ module:
   admin_toolbar: 0
   admin_toolbar_tools: 0
   auto_username: 0
+  basic_auth: 0
   bcbb: 0
   bcbb_auth: 0
   bcbb_layouts: 0
