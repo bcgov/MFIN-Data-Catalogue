@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @Block(
  *   id = "bc_dc_classification_chart",
- *   admin_label = @Translation("Dashboard records by classification chart"),
+ *   admin_label = @Translation("Dashboard records by security classification chart"),
  *   context_definitions = {
  *     "user" = @ContextDefinition("entity:user")
  *   }
@@ -97,7 +97,7 @@ class BcDcClassificationChart extends BlockBase implements ContainerFactoryPlugi
       '#type' => 'chart',
       '#tooltips' => TRUE,
       '#tooltips_use_htm' => TRUE,
-      '#title' => $this->t('Records by classification'),
+      '#title' => $this->t('Records by security classification'),
       '#chart_type' => 'donut',
       'series' => $series,
       'x_axis' => $xaxis,
