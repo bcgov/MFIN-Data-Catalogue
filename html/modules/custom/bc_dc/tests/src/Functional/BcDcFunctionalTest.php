@@ -1397,6 +1397,22 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     ];
     $xpath = $this->assertSession()->buildXPathQuery('//ol/li//a[contains(text(), :data_set_title_2)]', $args);
     $this->assertSession()->elementExists('xpath', $xpath, $details);
+    // Access to bookmarks page.
+    $this->drupalGet('user/1/bookmarks');
+    $this->assertSession()->statusCodeEquals(200);
+    // Access to saved searches page.
+    // This test is in ExistingSite because search does not work in Functional.
+    // $this->drupalGet('user/1/saved-searches');
+    // $this->assertSession()->statusCodeEquals(200);
+    //
+    // Anonymous.
+    $this->drupalLogout();
+    // No access to bookmarks page.
+    $this->drupalGet('user/1/bookmarks');
+    $this->assertSession()->statusCodeEquals(404);
+    // No access to saved searches page.
+    $this->drupalGet('user/1/saved-searches');
+    $this->assertSession()->statusCodeEquals(404);
   }
 
   /**

@@ -7,6 +7,7 @@ dependencies:
     - field.storage.node.field_modified_date
     - flag.flag.bookmark
     - node.type.data_set
+    - user.role.authenticated
   module:
     - datetime
     - flag
@@ -406,9 +407,10 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: perm
+        type: role
         options:
-          perm: 'access content'
+          role:
+            authenticated: authenticated
       cache:
         type: none
         options: {  }
@@ -544,7 +546,7 @@ display:
         - 'languages:language_interface'
         - url
         - 'user.node_grants:view'
-        - user.permissions
+        - user.roles
       tags:
         - 'config:field.storage.flagging.field_last_viewed_date'
         - 'config:field.storage.node.field_modified_date'
@@ -845,7 +847,7 @@ display:
         - 'languages:language_interface'
         - url
         - 'user.node_grants:view'
-        - user.permissions
+        - user.roles
       tags: {  }
   dashboard_bookmarks:
     id: dashboard_bookmarks
@@ -1280,7 +1282,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - 'user.node_grants:view'
-        - user.permissions
+        - user.roles
       tags:
         - 'config:field.storage.flagging.field_last_viewed_date'
         - 'config:field.storage.node.field_modified_date'
@@ -1699,7 +1701,7 @@ display:
         - url
         - url.query_args
         - 'user.node_grants:view'
-        - user.permissions
+        - user.roles
       tags:
         - 'config:field.storage.flagging.field_last_viewed_date'
         - 'config:field.storage.node.field_modified_date'

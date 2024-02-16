@@ -139,9 +139,20 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
       [div/a[starts-with(@href, "/search?f%5B0%5D=series%3A")]]');
 
     // Test Dashboard for DC user.
+    // These tests are here instead of in Functional tests because search does
+    // not work properly in Functional.
     $this->drupalGet('user');
     // View block saved_searches appears.
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-views-blocksaved-searches-dashboard-saved-search")]');
+    // Access to saved searches page.
+    $this->drupalGet('user/1/saved-searches');
+    $this->assertSession()->statusCodeEquals(200);
+
+    // Anonymous.
+    $this->clickLink('Log out');
+    // No access to saved searches page.
+    $this->drupalGet('user/1/saved-searches');
+    $this->assertSession()->statusCodeEquals(404);
   }
 
 }

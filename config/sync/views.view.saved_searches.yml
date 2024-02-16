@@ -2,6 +2,8 @@ uuid: 36406b2b-5575-4a3a-a740-a0dac5179175
 langcode: en
 status: true
 dependencies:
+  config:
+    - user.role.authenticated
   module:
     - options
     - search_api_saved_searches
@@ -435,9 +437,10 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: perm
+        type: role
         options:
-          perm: 'access content'
+          role:
+            authenticated: authenticated
       cache:
         type: none
         options: {  }
@@ -583,7 +586,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user.permissions
+        - user.roles
       tags: {  }
   dashboard_saved_search:
     id: dashboard_saved_search
@@ -1075,7 +1078,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - user.permissions
+        - user.roles
       tags: {  }
   page:
     id: page
@@ -1535,5 +1538,5 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user.permissions
+        - user.roles
       tags: {  }
