@@ -1,4 +1,5 @@
-name: Tag
+name: Deploy to Development
+
 on:
   push:
     tags:
@@ -81,7 +82,7 @@ jobs:
       with:
         cmd: |
           yq -i '.drupal.tag = strenv(GITHUB_REFERENCE) |
-                 .nginx.tag = strenv(GITHUB_REFERENCE) ' tenant-gitops/helm-drupal/charts/drupal/values-mfin-data-catalogue.yaml
+                 .nginx.tag = strenv(GITHUB_REFERENCE) ' tenant-gitops/helm-drupal/charts/drupal/values-mfin-data-catalogue-dev.yaml
 
     - name: Commit files
       run: |
