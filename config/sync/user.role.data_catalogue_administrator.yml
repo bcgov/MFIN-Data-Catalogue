@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - block_content.type.basic
     - filter.format.full_html
     - media.type.image
     - node.type.book
@@ -25,6 +26,7 @@ dependencies:
     - workflows.workflow.editorial
   module:
     - bc_dc
+    - block_content
     - book
     - content_moderation
     - field_permissions
@@ -50,6 +52,7 @@ weight: 3
 is_admin: null
 permissions:
   - 'access administration pages'
+  - 'access block library'
   - 'access content overview'
   - 'access help pages'
   - 'access media overview'
@@ -117,6 +120,7 @@ permissions:
   - 'delete terms in security_classification'
   - 'delete terms in source_system'
   - 'delete terms in tags'
+  - 'edit any basic block content'
   - 'edit any book content'
   - 'edit any data_set content'
   - 'edit any image media'
@@ -140,6 +144,7 @@ permissions:
   - 'edit terms in source_system'
   - 'edit terms in tags'
   - 'flag bookmark'
+  - 'revert any basic block content revisions'
   - 'revert data_set revisions'
   - 'unflag bookmark'
   - 'use  The form mode default linked to  media entity( audio )'
@@ -173,6 +178,7 @@ permissions:
   - 'use editorial transition publish'
   - 'use text format full_html'
   - 'view all media revisions'
+  - 'view any basic block content history'
   - 'view any unpublished content'
   - 'view data_set revisions'
   - 'view field_organization'
