@@ -247,14 +247,22 @@ function dc_theme_preprocess_taxonomy_term__information_schedule(array &$variabl
   while (count($level_labels) < $number_of_terms) {
     $level_labels[] = t('Sub-type');
   }
+  // Determine whether the root term is ARCS.
+  $root_term = $term_and_ancestors[array_key_last($term_and_ancestors)];
+  $is_arcs = $root_term->label() === 'ARCS';
   // Starting from the current term and going up the tree, add the label of each
   // level to the output using the correct level label.
   foreach ($term_and_ancestors as $term) {
     $level = $variables['content']['field_abbr_full_name'];
     $level['#title'] = array_pop($level_labels);
-    // The value comes from field_abbr_full_name except for the top level which
-    // uses the term label.
-    if (count($level_labels)) {
+    // If the root term is ARCS and this is the second level, use the full name
+    // of the root term for the value.
+    if ($is_arcs && count($level_labels) === 1) {
+      $value = $root_term->field_abbr_full_name->value ?? $term->label();
+    }
+    // Otherwise, the value comes from field_abbr_full_name except for the top
+    // level which uses the term label.
+    elseif (count($level_labels)) {
       $value = $term->field_abbr_full_name->value ?? $term->label();
     }
     else {

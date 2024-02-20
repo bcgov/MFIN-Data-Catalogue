@@ -1364,6 +1364,37 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       [div[@class = "field__item"][text() = :item]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
 
+    // For ARCS, the Information schedule name is the root term full name.
+    // Since this term has not yet been visited, it will show the updated name
+    // for the root term.
+    //
+    // Set the name of the root term.
+    $info_schedule_terms[0]->setName('ARCS')->save();
+    // Create a Fifth term, sibling of Fourth.
+    $info_schedule_values[4] = [
+      'vid' => 'information_schedule',
+      'name' => 'information schedule Five ' . $this->randomString(),
+      'field_abbr_full_name' => 'Fifth full name ' . $this->randomString(),
+      'parent' => $info_schedule_terms[2]->id(),
+      'field_schedule_number' => $this->randomMachineName(),
+      'field_classification_code' => $this->randomMachineName(),
+      'field_active_period' => $record_life_cycle_duration_entity->id(),
+      'field_active_period_extension' => $this->randomMachineName(),
+      'field_semi_active_period' => $record_life_cycle_duration_entity->id(),
+      'field_semi_active_extension' => $this->randomMachineName(),
+    ];
+    $info_schedule_terms[4] = Term::create($info_schedule_values[4]);
+    $info_schedule_terms[4]->save();
+    // Visit the page for the fifth term.
+    $this->drupalGet('taxonomy/term/' . $info_schedule_terms[4]->id());
+    $args = [
+      ':item' => $info_schedule_values[0]['field_abbr_full_name'],
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-abbr-full-name")]
+      [div[@class = "field__label"][text() = "Information schedule name"]]
+      [div[@class = "field__item"][text() = :item]]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+
     // Test Unpublishing.
     //
     // For anon, "Unpublish" link does not exist.
