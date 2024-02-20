@@ -964,6 +964,21 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     ];
     $info_schedule_terms[2] = Term::create($info_schedule_values[2]);
     $info_schedule_terms[2]->save();
+    // Fourth.
+    $info_schedule_values[3] = [
+      'vid' => 'information_schedule',
+      'name' => 'information schedule Four ' . $this->randomString(),
+      'field_abbr_full_name' => 'Fourth full name ' . $this->randomString(),
+      'parent' => $info_schedule_terms[2]->id(),
+      'field_schedule_number' => $this->randomMachineName(),
+      'field_classification_code' => $this->randomMachineName(),
+      'field_active_period' => $record_life_cycle_duration_entity->id(),
+      'field_active_period_extension' => $this->randomMachineName(),
+      'field_semi_active_period' => $record_life_cycle_duration_entity->id(),
+      'field_semi_active_extension' => $this->randomMachineName(),
+    ];
+    $info_schedule_terms[3] = Term::create($info_schedule_values[3]);
+    $info_schedule_terms[3]->save();
     // Set field_information_schedule to value with child.
     $data_set = Node::load(2);
     $data_set->set('field_information_schedule', $info_schedule_terms[1]->id())->save();
@@ -978,7 +993,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->elementExists('xpath', $xpath);
 
     // Set field_information_schedule to value without child.
-    $data_set->set('field_information_schedule', $info_schedule_terms[2]->id())->save();
+    $data_set->set('field_information_schedule', $info_schedule_terms[3]->id())->save();
 
     // Test that the information schedule appears correctly.
     $this->drupalGet('node/2');
@@ -995,7 +1010,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->elementExists('xpath', $xpath);
     // Test that the IM classification details appear with a link.
     $args = [
-      ':classification_details' => $info_schedule_values[1]['name'] . ': ' . $info_schedule_values[2]['name'],
+      ':classification_details' => $info_schedule_values[1]['name'] . ': ' . $info_schedule_values[2]['name'] . ': ' . $info_schedule_values[3]['name'],
     ];
     $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-information-schedule")]
       [div[@class = "field__label"][normalize-space(text()) = "IM classification details"]]
@@ -1003,7 +1018,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->elementExists('xpath', $xpath);
     // Schedule code.
     $args = [
-      ':field_schedule_code' => $info_schedule_values[1]['field_classification_code'] . '-' . $info_schedule_values[2]['field_classification_code'],
+      ':field_schedule_code' => $info_schedule_values[1]['field_classification_code'] . '-' . $info_schedule_values[2]['field_classification_code'] . '-' . $info_schedule_values[3]['field_classification_code'],
     ];
     $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-schedule-code")]
       [div[@class = "field__label"][normalize-space(text()) = "IM classification code"]]
@@ -1338,6 +1353,14 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     ];
     $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-abbr-full-name")]
       [div[@class = "field__label"][text() = "Business function"]]
+      [div[@class = "field__item"][text() = :item]]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+    // Business category.
+    $args = [
+      ':item' => $info_schedule_values[3]['field_abbr_full_name'],
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-abbr-full-name")]
+      [div[@class = "field__label"][text() = "Business category"]]
       [div[@class = "field__item"][text() = :item]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
 
