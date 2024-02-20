@@ -1029,8 +1029,10 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       'edit-data-set-review-period-alert' => 40,
       'edit-review-needed-message' => $review_needed_messages['review_needed_message'],
       'edit-review-overdue-message' => $review_needed_messages['review_overdue_message'],
+      'edit-info-schedule-pre-title' => 'Information schedule pre-title ' . $this->randomString(),
     ];
     $this->submitForm($edit, 'Save configuration');
+    $this->assertSession()->elementExists('xpath', '//div[@class = "messages-list"]//div[contains(text(), "The configuration options have been saved.")]');
     $this->drupalLogin($this->users['Test Data catalogue administrator']);
 
     // No "Review needed" message appears.
