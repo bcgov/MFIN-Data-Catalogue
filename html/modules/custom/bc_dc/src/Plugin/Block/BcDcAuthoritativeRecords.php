@@ -75,7 +75,7 @@ class BcDcAuthoritativeRecords extends BlockBase implements ContainerFactoryPlug
       '@count' => $total_nodes,
     ];
 
-    $message = $this->formatPlural($total_nodes, '<p class="dc-count">@count</p><p>Authoritative Dataset</p>', '<p class="dc-count">@count</p><p>Authoritative Datasets</p>', $args);
+    $message = $this->formatPlural($total_nodes, '<p class="dc-count">@count</p><p>Authoritative Asset</p>', '<p class="dc-count">@count</p><p>Authoritative Assets</p>', $args);
 
     $build['message'] = [
       '#markup' => $message,

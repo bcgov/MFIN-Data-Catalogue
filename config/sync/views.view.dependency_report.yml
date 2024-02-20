@@ -291,7 +291,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<details class=\"border-top-0 border-start-0 border-end-0 pb-4 mb-4\">\r\n  <summary>{{ title_1 }} (referenced by {{ title }} datasets)</summary>\r\n  <div class=\"pt-4 ps-4 pe-4\">{{ view }}</div>\r\n</details>"
+            text: "<details class=\"border-top-0 border-start-0 border-end-0 pb-4 mb-4\">\r\n  <summary>{{ title_1 }} (referenced by {{ title }} assets)</summary>\r\n  <div class=\"pt-4 ps-4 pe-4\">{{ view }}</div>\r\n</details>"
             make_link: false
             path: ''
             absolute: false

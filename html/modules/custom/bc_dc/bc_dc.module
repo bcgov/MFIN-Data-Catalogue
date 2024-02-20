@@ -354,13 +354,13 @@ function bc_dc_node_update(NodeInterface $entity): void {
   // Send the notifications.
   //
   // Message subject.
-  $subject = t('A dataset you have bookmarked has been updated');
+  $subject = t('A asset you have bookmarked has been updated');
   // Message body.
   $context = [
     '@title' => $entity->getTitle(),
     '@link' => $entity->toUrl('canonical', ['absolute' => TRUE])->toString(),
   ];
-  $body = t('The following dataset has been updated:
+  $body = t('The following asset has been updated:
 @title
 @link', $context);
   // Send the message and log the result.

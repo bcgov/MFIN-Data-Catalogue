@@ -661,14 +661,14 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $this->drupalGet('admin/reports/dblog', $options);
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-watchdog")]/div/table/tbody/tr/td/a[text() = "Sent message to 1 users when updating data_set 2."]');
     // Get from @title the request that would have been sent to GC Notify.
-    $element = $this->xpath('//div[contains(@class, "view-watchdog")]/div/table/tbody/tr/td/a[contains(@title, "A dataset you have bookmarked has been updated")]');
+    $element = $this->xpath('//div[contains(@class, "view-watchdog")]/div/table/tbody/tr/td/a[contains(@title, "A asset you have bookmarked has been updated")]');
     $element = reset($element);
     $title = $element->getAttribute('title');
     preg_match('/^GC Notify disabled[^:]+: (.+)/', $title, $matches);
     $gcnotify_request = json_decode($matches[1]);
     // Run tests on the request.
-    $this->assertEquals('A dataset you have bookmarked has been updated', $gcnotify_request->rows[1][1]);
-    $this->assertMatchesRegularExpression('(The following dataset has been updated:
+    $this->assertEquals('A asset you have bookmarked has been updated', $gcnotify_request->rows[1][1]);
+    $this->assertMatchesRegularExpression('(The following asset has been updated:
 ' . preg_quote($data_set_title) . '
 https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]));
 
@@ -1472,7 +1472,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->clickLink('Dependency report');
     $this->assertSession()->statusCodeEquals(200);
     $args = [
-      ':data_set_title' => $data_set_title . ' (referenced by 1 datasets)',
+      ':data_set_title' => $data_set_title . ' (referenced by 1 assets)',
     ];
     $xpath = $this->assertSession()->buildXPathQuery('//details[summary[contains(text(), :data_set_title)]]', $args);
     $details = $this->assertSession()->elementExists('xpath', $xpath);

@@ -8,7 +8,7 @@ dependencies:
     - node
     - user
 id: referenced_datasets
-label: 'Referenced datasets'
+label: 'Referenced assets'
 module: views
 description: 'displays items referenced by the dependency report view'
 tag: ''
@@ -239,7 +239,7 @@ display:
           admin_label: ''
           plugin_id: result
           empty: false
-          content: '<p class="fw-bold fst-italic fs-6">Showing @start - @end of @total total references to this dataset.</p>'
+          content: '<p class="fw-bold fst-italic fs-6">Showing @start - @end of @total total references to this asset.</p>'
       footer:
         area_text_custom:
           id: area_text_custom

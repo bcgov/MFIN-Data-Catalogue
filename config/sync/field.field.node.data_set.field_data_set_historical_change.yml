@@ -13,7 +13,7 @@ field_name: field_data_set_historical_change
 entity_type: node
 bundle: data_set
 label: 'Historical change'
-description: 'Clearly document any known changes to the dataset, including name changes, definitions, or transformations.'
+description: 'Clearly document any known changes to the asset, including name changes, definitions, or transformations.'
 required: false
 translatable: false
 default_value: {  }
