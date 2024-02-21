@@ -1324,12 +1324,12 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     }
     // Test content of information_schedule taxonomy term pages.
     $args = [
-      ':title' => $record_life_cycle_duration_values['field_abbr_full_name'],
+      ':full' => ' (' . $record_life_cycle_duration_values['field_abbr_full_name'] . ')',
       ':text' => $record_life_cycle_duration_values['name'],
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-active-period")]/div/abbr[@title = :title][text() = :text]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-active-period")]/div[abbr[text() = :text]][contains(text(), :full)]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
-    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-semi-active-period")]/div/abbr[@title = :title][text() = :text]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-semi-active-period")]/div[abbr[text() = :text]][contains(text(), :full)]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     // Information schedule type.
     $args = [

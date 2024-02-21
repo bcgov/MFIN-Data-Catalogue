@@ -290,7 +290,7 @@ function dc_theme_preprocess_taxonomy_term__information_schedule(array &$variabl
         '@title' => $title,
         '@text' => $label,
       ];
-      $field[0]['#markup'] = new FormattableMarkup('<abbr title="@title">@text</abbr>', $context);
+      $field[0]['#markup'] = new FormattableMarkup('<abbr>@text</abbr> (@title)', $context);
     }
     else {
       $field[0]['#markup'] = Html::escape($label);
