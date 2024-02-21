@@ -35,6 +35,13 @@
   }
 }
 
+.path-taxonomy .content {
+  margin-bottom: 1.37em;
+}
+.path-taxonomy .content .field--name-field-schedule-code {
+  margin-top: 1.25em;
+}
+
 .flag-bookmark {
   margin-bottom: 1em;
 }
@@ -233,13 +240,12 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   align-self: end;
 }
 .path-user .card-group-region .block-views-blockbookmarks-dashboard-bookmarks > h2 {
-  display: inline-flex;
+  display: inline-flex !important;
   width: auto;
   line-height: 1 !important;
   gap: 0.25em;
   align-items: center;
   text-decoration: none;
-  margin-left: 1.25em;
 }
 .path-user .card-group-region .block-views-blockbookmarks-dashboard-bookmarks > h2::before, .path-user .card-group-region .block-views-blockbookmarks-dashboard-bookmarks > h2::after {
   font-family: "bootstrap-icons" !important;
@@ -248,17 +254,15 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   -moz-osx-font-smoothing: grayscale;
 }
 .path-user .card-group-region .block-views-blockbookmarks-dashboard-bookmarks > h2::before {
-  margin-left: -1.25em;
   content: "\f1a3";
 }
 .path-user .card-group-region .block-views-blocksaved-searches-dashboard-saved-search > h2 {
-  display: inline-flex;
+  display: inline-flex !important;
   width: auto;
   line-height: 1 !important;
   gap: 0.25em;
   align-items: center;
   text-decoration: none;
-  margin-left: 1.25em;
 }
 .path-user .card-group-region .block-views-blocksaved-searches-dashboard-saved-search > h2::before, .path-user .card-group-region .block-views-blocksaved-searches-dashboard-saved-search > h2::after {
   font-family: "bootstrap-icons" !important;
@@ -267,7 +271,6 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   -moz-osx-font-smoothing: grayscale;
 }
 .path-user .card-group-region .block-views-blocksaved-searches-dashboard-saved-search > h2::before {
-  margin-left: -1.25em;
   content: "\f52a";
 }
 .path-user .card-group-region .block-views-blocksaved-searches-dashboard-saved-search .btn {
@@ -466,13 +469,12 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   margin: 0;
 }
 .page-node-type-data-set .dc-details .item-list ul li a {
-  display: inline-flex;
+  display: inline-flex !important;
   width: auto;
   line-height: 1 !important;
   gap: 0.25em;
   align-items: center;
   text-decoration: none;
-  margin-left: 1.25em;
 }
 .page-node-type-data-set .dc-details .item-list ul li a::before, .page-node-type-data-set .dc-details .item-list ul li a::after {
   font-family: "bootstrap-icons" !important;
@@ -481,7 +483,6 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   -moz-osx-font-smoothing: grayscale;
 }
 .page-node-type-data-set .dc-details .item-list ul li a::before {
-  margin-left: -1.25em;
   content: "\f29a";
 }
 .page-node-type-data-set .meta-data-record-view .field--name-field-data-set-type *,
@@ -550,13 +551,12 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   margin-top: 0.25em;
   color: var(--bs-gray-600);
   max-width: 45em;
-  display: inline-flex;
+  display: inline-flex !important;
   width: auto;
   line-height: 1 !important;
   gap: 0.25em;
   align-items: center;
   text-decoration: none;
-  margin-left: 1.25em;
   display: block !important;
   position: relative;
   line-height: unset !important;
@@ -568,7 +568,6 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   -moz-osx-font-smoothing: grayscale;
 }
 .page-node-type-data-set .node-data-set-edit-form .description::before {
-  margin-left: -1.25em;
   content: "\f431";
 }
 .page-node-type-data-set .node-data-set-edit-form .description::before {
