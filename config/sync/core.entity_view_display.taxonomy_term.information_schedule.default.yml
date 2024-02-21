@@ -15,7 +15,33 @@ dependencies:
     - field.field.taxonomy_term.information_schedule.field_special_flags
     - taxonomy.vocabulary.information_schedule
   module:
+    - field_group
     - text
+third_party_settings:
+  field_group:
+    group_schedule_details:
+      children:
+        - field_schedule_code
+        - field_active_period
+        - field_semi_active_period
+        - field_final_disposition
+        - field_special_flags
+      label: 'Schedule details'
+      parent_name: ''
+      region: content
+      weight: 1
+      format_type: html_element
+      format_settings:
+        classes: info-schedule-details
+        show_empty_fields: false
+        id: ''
+        element: section
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
 id: taxonomy_term.information_schedule.default
 targetEntityType: taxonomy_term
 bundle: information_schedule
