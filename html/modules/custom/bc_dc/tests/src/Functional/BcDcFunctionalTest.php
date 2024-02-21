@@ -56,6 +56,9 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $config_path = DRUPAL_ROOT . '/../config/sync';
     $config_source = new FileStorage($config_path);
     \Drupal::service('config.installer')->installOptionalConfig($config_source);
+    // Trigger the config import events. This normally runs on
+    // `drush config:import` but is not triggered by the above.
+    \Drupal::service('bc_dc.config_import_event_subscriber')->onConfigImport();
   }
 
   /**
@@ -818,6 +821,20 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->elementExists('xpath', '//div[@id = "block-dc-theme-content"]');
     // Search block exists.
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "bcbb-search-api-form")]');
+
+    // Test that home page text block can be edited by the DC admin.
+    $this->drupalLogin($this->users['Test Data catalogue administrator']);
+    // Put test text onto the block.
+    $this->drupalGet('admin/content/block');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->clickLink('Home page text');
+    $edit = [
+      'edit-body-0-value' => 'Home page text edit ' . $this->randomString(),
+    ];
+    $this->submitForm($edit, 'Save');
+    // Check it is appears on the home page.
+    $this->drupalGet('home');
+    $this->assertSession()->pageTextContains($edit['edit-body-0-value']);
 
     // Test adding bookmarks.
     $this->drupalLogin($this->users['Test Data catalogue user']);
