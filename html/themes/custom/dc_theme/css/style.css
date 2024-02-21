@@ -632,10 +632,10 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 }
 @media screen and (min-width: 40em) {
   .path-frontpage .region-content .layout__region--second {
-    background-image: url(../assets/trees-5767910.svg);
+    background-image: url(../assets/trees.svg);
     background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center bottom;
+    background-repeat: repeat-x;
+    background-position: left bottom;
   }
 }
 
