@@ -636,7 +636,7 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
     background-image: url(../assets/trees.svg);
     background-size: contain;
     background-repeat: repeat-x;
-    background-position: left bottom;
+    background-position: center bottom;
   }
 }
 
