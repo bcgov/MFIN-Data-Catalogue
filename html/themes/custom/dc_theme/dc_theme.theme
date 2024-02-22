@@ -332,6 +332,32 @@ function dc_theme_preprocess_views_view_fields(array &$variables): void {
  * Implements hook_preprocess_HOOK() for field-multiple-value-form.html.twig.
  */
 function dc_theme_preprocess_field_multiple_value_form(array &$variables): void {
+  // In the template, output will be fieldset/legend when `multiple` is set.
+  if ($variables['multiple']) {
+    // Use element title for legend.
+    $variables['legend'] = $variables['element']['#title'];
+
+    // Adjust headers for tabledrag tables.
+    if (isset($variables['table']['#tabledrag']) && count($variables['table']['#header']) === 3) {
+      // Improve table header labels.
+      $variables['table']['#header'] = [
+        [
+          // For unknown reasons, 'data' must be an array to avoid a test error.
+          'data' => [
+            '#markup' => t('Items'),
+          ],
+          'colspan' => 2,
+        ],
+        ['data' => t('Actions')],
+        // Move this into an array to allow adding classes.
+        ['data' => $variables['table']['#header'][2]],
+      ];
+      // Visually hide the header row.
+      foreach (array_keys($variables['table']['#header']) as $key) {
+        $variables['table']['#header'][$key]['class'] = 'visually-hidden';
+      }
+    }
+  }
 }
 
 /**
