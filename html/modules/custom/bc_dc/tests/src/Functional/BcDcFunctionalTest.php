@@ -698,6 +698,11 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Run tests as editor. Some of the above could be tested as editor as well.
     $this->drupalLogin($this->users['Test Data catalogue editor']);
 
+    // "Data sets used" uses fieldset/legend.
+    $this->drupalGet('node/2/build');
+    $this->click('a[aria-label = "Edit Section 3"]');
+    $this->assertSession()->elementExists('xpath', '//div[@id = "edit-field-data-sets-used-wrapper"]/div/fieldset/legend[text() = "Data sets used"]');
+
     // Import data columns page.
     $this->drupalGet('node/2/build');
     $this->click('a[aria-label = "Edit Section 5"]');
