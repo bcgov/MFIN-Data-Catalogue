@@ -129,6 +129,10 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     // Login as admin.
     $this->drupalLogin($this->rootUser);
 
+    // Check for bc_dc entry on Status report.
+    $this->drupalGet('admin/reports/status');
+    $this->assertSession()->elementExists('xpath', '//div[@class = "system-status-report__status-title"][normalize-space(text()) = "BC Data Catalogue"]');
+
     // Test config for message_gcnotify. Ensures tests cannot send messages.
     $this->drupalGet('admin/config/message/message-gcnotify');
     $edit = [
