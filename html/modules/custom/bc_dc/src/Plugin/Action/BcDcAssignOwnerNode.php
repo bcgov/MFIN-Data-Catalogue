@@ -6,6 +6,7 @@ use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\Plugin\Action\AssignOwnerNode;
+use Drupal\user\Entity\Role;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -63,7 +64,13 @@ class BcDcAssignOwnerNode extends AssignOwnerNode {
     $user_storage = $this->entityTypeManager->getStorage('user');
 
     // Get all roles that have permission to edit.
-    $rids = array_keys(user_role_names(TRUE, 'edit any data_set content'));
+    $rids = [];
+    foreach (Role::loadMultiple() as $role) {
+      if ($role->hasPermission('edit any data_set content')) {
+        $rids[$role->id()] = TRUE;
+      }
+    }
+    $rids = array_keys($rids);
 
     // Query for all users in those roles.
     $query_edit_users = $user_storage
