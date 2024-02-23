@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "64ab3d73474c645c18261aaeb798fb6b",
+    "content-hash": "03d61b8b0fb4415f3d73613789c6a5e3",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6567,6 +6567,60 @@
             "homepage": "https://www.drupal.org/project/tac_lite",
             "support": {
                 "source": "https://git.drupalcode.org/project/tac_lite"
+            }
+        },
+        {
+            "name": "drupal/taxonomy_delete",
+            "version": "1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/taxonomy_delete.git",
+                "reference": "8.x-1.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/taxonomy_delete-8.x-1.5.zip",
+                "reference": "8.x-1.5",
+                "shasum": "4f89eb939515a4e1bbac159752a291c9501dffaa"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.5",
+                    "datestamp": "1708607532",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Malabya Tewari (malavya)",
+                    "homepage": "https://www.drupal.org/u/malavya",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Viktor Holovachek (AstonVictor)",
+                    "homepage": "https://www.drupal.org/u/astonvictor",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "A utility module which will delete all the taxonomy under a Vocabulary.",
+            "homepage": "https://www.drupal.org/project/taxonomy_delete",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/taxonomy_delete",
+                "issues": "https://www.drupal.org/project/issues/taxonomy_delete"
             }
         },
         {

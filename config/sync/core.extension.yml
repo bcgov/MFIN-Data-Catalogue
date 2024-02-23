@@ -114,6 +114,7 @@ module:
   svg_image_responsive: 0
   system: 0
   taxonomy: 0
+  taxonomy_delete: 0
   taxonomy_import: 0
   taxonomy_manager: 0
   taxonomy_max_depth: 0

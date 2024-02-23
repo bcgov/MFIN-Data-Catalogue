@@ -85,6 +85,7 @@
         "drupal/smart_trim": "dev-2.1.x#1a243dd",
         "drupal/svg_image": "^3.0",
         "drupal/tac_lite": "^1.7",
+        "drupal/taxonomy_delete": "^1.5",
         "drupal/taxonomy_import": "^2.0",
         "drupal/taxonomy_max_depth": "^2.0",
         "drupal/views_argument_token": "^2.0",
