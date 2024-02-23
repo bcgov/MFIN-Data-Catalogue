@@ -25,8 +25,8 @@ function dc_theme_preprocess_block__bc_dc_edit_button(array &$variables): void {
  */
 function dc_theme_preprocess_block__entity_view__node(array &$variables): void {
   // Adjust spacing.
-  $variables['attributes']['class'][] = 'mb-3';
-  $variables['attributes']['class'][] = 'pb-3';
+  $variables['attributes']['class'][] = 'mb-4';
+  $variables['attributes']['class'][] = 'pb-4';
 }
 
 /**

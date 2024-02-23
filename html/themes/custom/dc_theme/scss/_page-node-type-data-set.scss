@@ -1,6 +1,11 @@
 .page-node-type-data-set {
   $max-cpl: 45em;
 
+  .field--label-above,
+  .field--label-inline {
+    margin-top: 0.5em;
+  }
+
   // node view
   .dc-details {
     details {
@@ -124,19 +129,51 @@
   }
 
   // build page
+  .meta-data-record-build {
+    .main-region {
+     > div.block-entity-viewnode {
+      border-bottom: 1px solid var(--bs-gray-300);
+      padding-bottom: 1.5em;
+      margin-bottom: 1.5em;
+      &:last-child {
+        border-bottom: 0 transparent;
+      }
+      & > * {
+        margin-right: 4em;
+      }
+     }
+    }
+
+  }
+
 
   .block-bc-dc-workflow-block {
     background-color:  RGBA(var(--bs-light-rgb));
     border: var(--bs-border-width) solid var(--bs-border-color-translucent);
     border-radius: var(--bs-border-radius);
     padding: 1rem;
+    margin: 1.5em 0;
     input.button {
       width: 100%;
     }
   }
 
-  // form view
+  // Edit buttons
+  div.block-bc-dc-edit-button {
+    margin-bottom: 0.5em;
+    display: grid;
+    & > *:first-child {
+      grid-column-start: 1;
+      grid-row-start: 1;
+    }
+    & > *:last-child {
+      grid-column-start: 2;
+      grid-row-start: 1;
+      justify-self: end;
+    }
+  }
 
+  // form elements in build sections
   .node-data-set-edit-form {
 
     > div  {
@@ -202,6 +239,12 @@
         }
       }
     }
+
+  }
+
+  /* On Metadata record column edit pages, make the summary take the full width.*/
+  [id*="field-columns-"] .paragraph-summary {
+    grid-column-start: 1;
   }
 }
 

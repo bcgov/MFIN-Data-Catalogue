@@ -89,6 +89,10 @@
   white-space: nowrap;
 }
 
+td.error {
+  background-color: var(--bs-danger-bg-subtle);
+}
+
 @media only screen and (min-width: 992px) {
   .dc-save-search {
     background-color: var(--bs-gray-100);
@@ -174,6 +178,10 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   margin-right: 0.5em;
   border-radius: 50%;
   background-color: var(--bs-danger);
+}
+
+.field-required {
+  color: #a12622;
 }
 
 @media only screen and (min-width: 992px) {
@@ -427,6 +435,13 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   justify-content: center;
 }
 
+.page-node-type-data-set {
+  /* On Metadata record column edit pages, make the summary take the full width.*/
+}
+.page-node-type-data-set .field--label-above,
+.page-node-type-data-set .field--label-inline {
+  margin-top: 0.5em;
+}
 .page-node-type-data-set .dc-details details {
   border: 0 solid transparent;
 }
@@ -527,14 +542,39 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   background-position: right 0.15em;
   background-size: 1em 1em;
 }
+.page-node-type-data-set .meta-data-record-build .main-region > div.block-entity-viewnode {
+  border-bottom: 1px solid var(--bs-gray-300);
+  padding-bottom: 1.5em;
+  margin-bottom: 1.5em;
+}
+.page-node-type-data-set .meta-data-record-build .main-region > div.block-entity-viewnode:last-child {
+  border-bottom: 0 transparent;
+}
+.page-node-type-data-set .meta-data-record-build .main-region > div.block-entity-viewnode > * {
+  margin-right: 4em;
+}
 .page-node-type-data-set .block-bc-dc-workflow-block {
   background-color: RGBA(var(--bs-light-rgb));
   border: var(--bs-border-width) solid var(--bs-border-color-translucent);
   border-radius: var(--bs-border-radius);
   padding: 1rem;
+  margin: 1.5em 0;
 }
 .page-node-type-data-set .block-bc-dc-workflow-block input.button {
   width: 100%;
+}
+.page-node-type-data-set div.block-bc-dc-edit-button {
+  margin-bottom: 0.5em;
+  display: grid;
+}
+.page-node-type-data-set div.block-bc-dc-edit-button > *:first-child {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+.page-node-type-data-set div.block-bc-dc-edit-button > *:last-child {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  justify-self: end;
 }
 .page-node-type-data-set .node-data-set-edit-form > div {
   margin-bottom: 2em;
@@ -607,6 +647,9 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used .field-add-more-submit:hover,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used .field-add-more-submit:focus {
   background-color: var(--bs-gray-800);
+}
+.page-node-type-data-set [id*=field-columns-] .paragraph-summary {
+  grid-column-start: 1;
 }
 
 .node--unpublished {
@@ -709,4 +752,8 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 
 time {
   white-space: nowrap;
+}
+
+.form-control.hidden {
+  display: none;
 }
