@@ -1709,78 +1709,69 @@ display:
                 strip_tags: true
                 field_override: true
                 field_config:
+                  type:
+                    active: false
+                    label: ''
                   title:
                     active: true
                     label: title
+                  uid:
+                    active: true
+                    label: author
+                  field_primary_responsibility_org:
+                    active: true
+                    label: primary_responsibility_org
                   body:
                     active: true
                     label: description
                   search_api_excerpt:
                     active: false
                     label: ''
-                  field_primary_responsibility_org:
+                  field_series:
                     active: true
-                    label: primary_responsibility_org
-                  uid:
-                    active: true
-                    label: author
-                  field_modified_date:
-                    active: true
-                    label: modified_date
-                  nothing:
-                    active: false
-                    label: ''
+                    label: series
                   created:
                     active: true
                     label: created_date
-                  field_authoritative_info:
+                  field_modified_date:
                     active: true
-                    label: authoritative_info
-                  field_columns:
-                    active: true
-                    label: columns
-                  field_metadata_type:
-                    active: false
-                    label: ''
-                  type:
-                    active: false
-                    label: ''
-                  field_critical_information:
-                    active: true
-                    label: critical_information
+                    label: modified_date
                   field_data_quality_issues:
                     active: true
                     label: data_quality_issues
                   field_data_set_historical_change:
                     active: true
                     label: data_set_historical_change
-                  field_data_set_type:
-                    active: true
-                    label: data_set_type
-                  field_high_value_info:
-                    active: true
-                    label: high_value_info
-                  field_information_schedule:
-                    active: true
-                    label: information_schedule
-                  field_information_schedule_1:
-                    active: true
-                    label: information_schedule_1
-                  field_information_schedule_2:
-                    active: true
-                    label: information_schedule_2
                   field_security_classification:
                     active: true
                     label: security_classification
-                  field_series:
+                  field_critical_information:
                     active: true
-                    label: series
+                    label: critical_information
+                  field_authoritative_info:
+                    active: true
+                    label: authoritative_info
+                  field_high_value_info:
+                    active: true
+                    label: high_value_info
                   field_source_system:
                     active: true
                     label: source_system
-                  field_unique_identifier:
+                  field_data_set_type:
                     active: true
-                    label: unique_identifier
+                    label: data_set_type
+                  field_information_schedule:
+                    active: true
+                    label: information_schedule
+                  field_columns:
+                    active: true
+                    label: columns
+                  field_metadata_type:
+                    active: false
+                    label: ''
+                  nothing:
+                    active: false
+                    label: ''
                 separator: ;
             10:
               action_id: vbo_export_generate_xlsx_action
@@ -1789,78 +1780,69 @@ display:
                 strip_tags: true
                 field_override: true
                 field_config:
+                  type:
+                    active: false
+                    label: ''
                   title:
                     active: true
                     label: title
+                  uid:
+                    active: true
+                    label: author
+                  field_primary_responsibility_org:
+                    active: true
+                    label: primary_responsibility_org
                   body:
                     active: true
                     label: description
                   search_api_excerpt:
                     active: false
                     label: ''
-                  field_primary_responsibility_org:
+                  field_series:
                     active: true
-                    label: primary_responsibility_org
-                  uid:
-                    active: true
-                    label: author
-                  field_modified_date:
-                    active: true
-                    label: modified_date
-                  nothing:
-                    active: false
-                    label: ''
+                    label: series
                   created:
                     active: true
                     label: created_date
-                  field_authoritative_info:
+                  field_modified_date:
                     active: true
-                    label: authoritative_info
-                  field_columns:
-                    active: true
-                    label: columns
-                  field_metadata_type:
-                    active: false
-                    label: ''
-                  type:
-                    active: false
-                    label: ''
-                  field_critical_information:
-                    active: true
-                    label: critical_information
+                    label: modified_date
                   field_data_quality_issues:
                     active: true
                     label: data_quality_issues
                   field_data_set_historical_change:
                     active: true
                     label: data_set_historical_change
-                  field_data_set_type:
-                    active: true
-                    label: data_set_type
-                  field_high_value_info:
-                    active: true
-                    label: high_value_info
-                  field_information_schedule:
-                    active: true
-                    label: information_schedule
-                  field_information_schedule_1:
-                    active: true
-                    label: information_schedule_1
-                  field_information_schedule_2:
-                    active: true
-                    label: information_schedule_2
                   field_security_classification:
                     active: true
                     label: security_classification
-                  field_series:
+                  field_critical_information:
                     active: true
-                    label: series
+                    label: critical_information
+                  field_authoritative_info:
+                    active: true
+                    label: authoritative_info
+                  field_high_value_info:
+                    active: true
+                    label: high_value_info
                   field_source_system:
                     active: true
                     label: source_system
-                  field_unique_identifier:
+                  field_data_set_type:
                     active: true
-                    label: unique_identifier
+                    label: data_set_type
+                  field_information_schedule:
+                    active: true
+                    label: information_schedule
+                  field_columns:
+                    active: true
+                    label: columns
+                  field_metadata_type:
+                    active: false
+                    label: ''
+                  nothing:
+                    active: false
+                    label: ''
         nothing:
           id: nothing
           table: views
