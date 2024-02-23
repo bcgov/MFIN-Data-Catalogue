@@ -64,9 +64,12 @@ class BcDcAssignOwnerNode extends AssignOwnerNode {
     $user_storage = $this->entityTypeManager->getStorage('user');
 
     // Get all roles that have permission to edit.
+    // Users with 'edit any data_set content' can edit anything. Users with
+    // 'use  The form mode section_1 linked to  node entity( data_set )' can
+    // edit if their organization matches (done via tac_lite).
     $rids = [];
     foreach (Role::loadMultiple() as $role) {
-      if ($role->hasPermission('edit any data_set content')) {
+      if ($role->hasPermission('edit any data_set content') || $role->hasPermission('use  The form mode section_1 linked to  node entity( data_set )')) {
         $rids[$role->id()] = TRUE;
       }
     }
