@@ -1772,7 +1772,7 @@ display:
                   nothing:
                     active: false
                     label: ''
-                separator: ;
+                separator: ','
             10:
               action_id: vbo_export_generate_xlsx_action
               preconfiguration:
