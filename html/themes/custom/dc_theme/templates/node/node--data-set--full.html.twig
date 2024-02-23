@@ -114,25 +114,29 @@
 
           <section id="dc_data_usage_value_information_management" class="card text-bg-light mb-3 p-3 small">
 
-            {% if node.field_source_system  or node.field_data_sets_used or drupal_view_result('used_in_data_sets', 'block_1', node.nid.value) or node.field_data_quality_issues %}
+            {# Without "|render", these variables would be render arrays, so not empty but may still render to empty output. #}
+            {% set field_source_system = node.field_source_system|view|render %}
+            {% set field_data_sets_used = node.field_data_sets_used|view|render %}
+            {% set field_data_quality_issues = node.field_data_quality_issues|view|render %}
+            {% if field_source_system or field_data_sets_used or drupal_view_result('used_in_data_sets', 'block_1', node.nid.value) or field_data_quality_issues %}
               <div id="dc_data_usage" class="dc-fields">
                 <h2 class="field__label mb-1 fs-5 fw-bold">
                   {{ 'Data usage'|t }}
                 </h2>
-                {% if node.field_source_system and not node.field_source_system.isempty %}
+                {% if field_source_system %}
                   <div class="mb-3">
-                    {{ node.field_source_system|view }}
+                    {{ field_source_system }}
                   </div>
                 {% endif %}
 
                 {# data lineage #}
-                {% if (node.field_data_sets_used and not node.field_data_sets_used.isEmpty) or (drupal_view_result('used_in_data_sets', 'block_1', node.nid.value) is not empty) %}
+                {% if field_data_sets_used or (drupal_view_result('used_in_data_sets', 'block_1', node.nid.value) is not empty) %}
                   <details class="dc-lineage">
                     <summary>{{ 'Data lineage'|t }}</summary>
                     <section>
-                      {% if node.field_data_sets_used and not node.field_data_sets_used.isempty %}
+                      {% if field_data_sets_used %}
                         <section class="dc-lineage-datasets-used" aria-label="{{ 'This record uses the following records'|t }}">
-                          {{ node.field_data_sets_used|view }}
+                          {{ field_data_sets_used }}
                           <div class="dc-arrow-down">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="40px" viewBox="0 0 25 50">
                               <path d="M23.87,27.56h-6.57V0H7.69v27.56H1.13c-.87,0-1.41.96-.97,1.73l11.37,20.14c.43.77,1.52.77,1.95,0l11.37-20.14c.43-.77-.11-1.73-.97-1.73Z" fill="currentColor"/>
@@ -157,9 +161,9 @@
                   </details>
                 {% endif %}
 
-                {% if node.field_data_quality_issues and not node.field_data_quality_issues.isempty %}
+                {% if field_data_quality_issues %}
                   <div class="mb-3">
-                    {{ node.field_data_quality_issues|view }}
+                    {{ field_data_quality_issues }}
                   </div>
                 {% endif %}
               </div>
