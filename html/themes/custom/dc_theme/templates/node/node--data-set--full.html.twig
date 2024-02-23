@@ -117,8 +117,9 @@
             {# Without "|render", these variables would be render arrays, so not empty but may still render to empty output. #}
             {% set field_source_system = node.field_source_system|view|render %}
             {% set field_data_sets_used = node.field_data_sets_used|view|render %}
+            {% set has_used_in_data_sets = drupal_view_result('used_in_data_sets', 'block_1', node.nid.value) is not empty %}
             {% set field_data_quality_issues = node.field_data_quality_issues|view|render %}
-            {% if field_source_system or field_data_sets_used or drupal_view_result('used_in_data_sets', 'block_1', node.nid.value) or field_data_quality_issues %}
+            {% if field_source_system or field_data_sets_used or has_used_in_data_sets or field_data_quality_issues %}
               <div id="dc_data_usage" class="dc-fields">
                 <h2 class="field__label mb-1 fs-5 fw-bold">
                   {{ 'Data usage'|t }}
@@ -130,7 +131,7 @@
                 {% endif %}
 
                 {# data lineage #}
-                {% if field_data_sets_used or (drupal_view_result('used_in_data_sets', 'block_1', node.nid.value) is not empty) %}
+                {% if field_data_sets_used or has_used_in_data_sets %}
                   <details class="dc-lineage">
                     <summary>{{ 'Data lineage'|t }}</summary>
                     <section>
@@ -147,7 +148,7 @@
                       <section class="dc-lineage-this-dataset">
                         <em>{{ 'This @record_type:'|t({'@record_type': record_type}) }}</em> {{ node.label() }}
                       </section>
-                      {% if drupal_view_result('used_in_data_sets', 'block_1', node.nid.value) is not empty %}
+                      {% if has_used_in_data_sets %}
                         <section class="dc-lineage-used-in-datasets" aria-label="{{ 'The following records use this record'|t }}">
                           <div class="dc-arrow-down">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="40px" viewBox="0 0 25 50">
