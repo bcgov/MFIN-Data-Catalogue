@@ -9,7 +9,3 @@ style:
       css/style.css: {}
       css/print.css:
         media: print
-
-mr-scripts:
-  js:
-    js/mr.js: {}

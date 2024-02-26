@@ -80,9 +80,15 @@ function dc_theme_preprocess_input__submit__paragraph_action(array &$variables):
 function dc_theme_preprocess_node__data_set(array &$variables): void {
   // Prevent page title from appearing in an 'h2' element at the top.
   $variables['page'] = TRUE;
+}
 
-  // Load JS for expanding / collapsing data dictionary columns.
-  $variables['#attached']['library'][] = 'dc_theme/mr-scripts';
+/**
+ * Implements hook_preprocess_HOOK() for field--node--field-columns--data-set.html.twig.
+ */
+function dc_theme_preprocess_field__node__field_columns__data_set(array &$variables): void {
+  // Add expand/collaps toggle button to data dictionary columns.
+  $variables['#attached']['library'][] = 'bcbb_other/toggle-details';
+  $variables['attributes']['class'][] = 'bcbb-toggle-details-wrapper';
 }
 
 /**
