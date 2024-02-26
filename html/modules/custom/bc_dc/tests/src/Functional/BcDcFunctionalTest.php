@@ -280,6 +280,16 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
       $this->assertSession()->assert($account->hasRole('data_catalogue_user'), 'Test user ' . $username . ' should have role data_catalogue_user.');
     }
 
+    // Test plugin bc_dc_node_assign_owner_action.
+    $bc_dc_node_assign_owner_action = \Drupal::service('plugin.manager.action')->createInstance('bc_dc_node_assign_owner_action', []);
+    $expected = [
+      $this->rootUser->id() => (string) $this->rootUser->id(),
+      $this->users['Test Data catalogue administrator']->id() => (string) $this->users['Test Data catalogue administrator']->id(),
+      $this->users['Test Data catalogue manager']->id() => (string) $this->users['Test Data catalogue manager']->id(),
+      $this->users['Test Data catalogue editor']->id() => (string) $this->users['Test Data catalogue editor']->id(),
+    ];
+    $this->assertSame($expected, $bc_dc_node_assign_owner_action->getEditUsers());
+
     // Re-save page_manager build page. Without this, the route is not created.
     $this->drupalGet('admin/structure/page_manager/manage/data_set_build/general');
     $this->submitForm([], 'Update and save');

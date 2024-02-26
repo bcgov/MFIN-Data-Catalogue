@@ -63,6 +63,34 @@ class BcDcAssignOwnerNode extends AssignOwnerNode {
   public function buildConfigurationForm(array $form, FormStateInterface $form_state): array {
     $user_storage = $this->entityTypeManager->getStorage('user');
 
+    // Create array of uid => realname.
+    $options = [];
+    foreach ($this->getEditUsers() as $uid) {
+      $user = $user_storage->load($uid);
+      $options[$user->id()] = $user->getDisplayName();
+    }
+    asort($options, SORT_NATURAL | SORT_FLAG_CASE);
+
+    $form['owner_uid'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Username'),
+      '#default_value' => $this->configuration['owner_uid'],
+      '#options' => $options,
+      '#description' => $this->t('The username of the user to which you would like to assign ownership.'),
+    ];
+
+    return $form;
+  }
+
+  /**
+   * Return an array of UID of users who are allowed to edit data_set nodes.
+   *
+   * @return int[]
+   *   The UIDs.
+   */
+  public function getEditUsers(): array {
+    $user_storage = $this->entityTypeManager->getStorage('user');
+
     // Get all roles that have permission to edit.
     // Users with 'edit any data_set content' can edit anything. Users with
     // 'use  The form mode section_1 linked to  node entity( data_set )' can
@@ -84,23 +112,7 @@ class BcDcAssignOwnerNode extends AssignOwnerNode {
       // Exclude anonymous.
       ->condition('uid', 0, '>');
 
-    // Create array of uid => realname.
-    $options = [];
-    foreach ($query_edit_users->execute() as $uid) {
-      $user = $user_storage->load($uid);
-      $options[$user->id()] = $user->getDisplayName();
-    }
-    asort($options, SORT_NATURAL | SORT_FLAG_CASE);
-
-    $form['owner_uid'] = [
-      '#type' => 'select',
-      '#title' => $this->t('Username'),
-      '#default_value' => $this->configuration['owner_uid'],
-      '#options' => $options,
-      '#description' => $this->t('The username of the user to which you would like to assign ownership.'),
-    ];
-
-    return $form;
+    return $query_edit_users->execute();
   }
 
 }
