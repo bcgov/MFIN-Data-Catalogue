@@ -39,6 +39,7 @@ dependencies:
     - node
     - paragraphs
     - rabbit_hole
+    - role_delegation
     - statistics
     - system
     - taxonomy
@@ -76,6 +77,7 @@ permissions:
   - 'administer views'
   - 'archive data_set nodes'
   - 'assign data_catalogue_administrator role'
+  - 'assign data_catalogue_api_user role'
   - 'assign data_catalogue_editor role'
   - 'assign data_catalogue_information_management_specialist role'
   - 'assign data_catalogue_manager role'
