@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "03d61b8b0fb4415f3d73613789c6a5e3",
+    "content-hash": "6865dbeb6c8bc0d9332bcecfe258978d",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6249,11 +6249,17 @@
         },
         {
             "name": "drupal/smart_trim",
-            "version": "dev-2.1.x",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/smart_trim.git",
-                "reference": "1a243dd"
+                "reference": "2.1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/smart_trim-2.1.1.zip",
+                "reference": "2.1.1",
+                "shasum": "5d1ca3c0a9990d6344249f3224353372c0b760c5"
             },
             "require": {
                 "drupal/core": "^8 || ^9 || ^10 || ^11",
@@ -6265,15 +6271,12 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-2.1.x": "2.1.x-dev"
-                },
                 "drupal": {
-                    "version": "2.1.1+1-dev",
-                    "datestamp": "1708890500",
+                    "version": "2.1.1",
+                    "datestamp": "1708875348",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Dev releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -19250,7 +19253,6 @@
         "drupal/paragraphs_features": 10,
         "drupal/search_api_saved_searches": 20,
         "drupal/shs": 5,
-        "drupal/smart_trim": 20,
         "drupal/views_field_view": 10
     },
     "prefer-stable": true,

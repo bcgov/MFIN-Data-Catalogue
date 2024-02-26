@@ -82,7 +82,7 @@
         "drupal/registration_role": "^2.0",
         "drupal/search_api_saved_searches": "1.x@dev",
         "drupal/shs": "^2.0@RC",
-        "drupal/smart_trim": "dev-2.1.x#1a243dd",
+        "drupal/smart_trim": "^2.1.1",
         "drupal/svg_image": "^3.0",
         "drupal/tac_lite": "^1.7",
         "drupal/taxonomy_delete": "^1.5",
