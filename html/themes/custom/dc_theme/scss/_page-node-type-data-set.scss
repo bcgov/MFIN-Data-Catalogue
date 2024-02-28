@@ -193,14 +193,7 @@
       color: var(--bs-gray-600);
       max-width: $max-cpl;
       @include icon-bi($bi-info-circle);
-      display: block !important;
-      position: relative;
       line-height: unset !important;
-      &::before {
-        padding-right: .5em;
-        position: absolute;
-        top: .075em;
-      }
     }
 
     .field--name-field-review-interval {

@@ -595,8 +595,6 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   gap: 0.25em;
   align-items: center;
   text-decoration: none;
-  display: block !important;
-  position: relative;
   line-height: unset !important;
 }
 .page-node-type-data-set .node-data-set-edit-form .description::before, .page-node-type-data-set .node-data-set-edit-form .description::after {
@@ -607,11 +605,6 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 }
 .page-node-type-data-set .node-data-set-edit-form .description::before {
   content: "\f431";
-}
-.page-node-type-data-set .node-data-set-edit-form .description::before {
-  padding-right: 0.5em;
-  position: absolute;
-  top: 0.075em;
 }
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-review-interval label {
   width: 100%;
@@ -757,3 +750,5 @@ time {
 .form-control.hidden {
   display: none;
 }
+
+/*# sourceMappingURL=style.css.map */
