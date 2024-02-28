@@ -87,7 +87,6 @@ function dc_theme_preprocess_node__data_set(array &$variables): void {
  */
 function dc_theme_preprocess_field__node__field_columns__data_set(array &$variables): void {
   // Add expand/collaps toggle button to data dictionary columns.
-  $variables['#attached']['library'][] = 'bcbb_other/toggle-details';
   $variables['attributes']['class'][] = 'bcbb-toggle-details-wrapper';
 }
 

@@ -18,3 +18,4 @@ regions:
 libraries:
   - dc_theme/devel
   - dc_theme/style
+  - bcbb_other/toggle-details
