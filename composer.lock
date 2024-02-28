@@ -68,12 +68,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb.git",
-                "reference": "338c44f2007fceaf0d2ef918c65211504fa6e86e"
+                "reference": "5bdecdcd503a0c90d6a8f9ad3852278a24826f23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/338c44f2007fceaf0d2ef918c65211504fa6e86e",
-                "reference": "338c44f2007fceaf0d2ef918c65211504fa6e86e",
+                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/5bdecdcd503a0c90d6a8f9ad3852278a24826f23",
+                "reference": "5bdecdcd503a0c90d6a8f9ad3852278a24826f23",
                 "shasum": ""
             },
             "require": {
@@ -91,7 +91,7 @@
                 "drupal/environment_indicator": "^4.0",
                 "drupal/facets": "^2.0",
                 "drupal/field_group": "^3.4",
-                "drupal/form_mode_control": "^2.1",
+                "drupal/form_mode_control": "^2.2",
                 "drupal/inline_entity_form": "^2.0",
                 "drupal/linkit": "^6.1",
                 "drupal/m4032404": "^1.0",
@@ -127,10 +127,6 @@
             "type": "drupal-module",
             "extra": {
                 "patches": {
-                    "drupal/form_mode_control": {
-                        "3409223 - Pass only strings to UserSession::hasPermission()": "https://www.drupal.org/files/issues/2023-12-20/form_mode_control-string_permission-3409223-6.patch",
-                        "3359220 - Add schema for form_mode_control.settings": "https://www.drupal.org/files/issues/2023-05-09/form_mode_control-missing_schema-3359220-2.patch"
-                    },
                     "drupal/page_manager": {
                         "2756613 - Avoid harcoded prefex and suffix in block region": "https://www.drupal.org/files/issues/page_manager-avoid_prefix_suffix-2756613-8.patch",
                         "3362561 - Path has unnecessary query appended.": "https://www.drupal.org/files/issues/2023-11-29/page_manager-unnecessary_query-3362561-48.patch"
@@ -157,7 +153,7 @@
                 "source": "https://github.com/bcgov/bcbb/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb/issues"
             },
-            "time": "2024-02-26T21:18:50+00:00"
+            "time": "2024-02-28T19:21:43+00:00"
         },
         {
             "name": "bcgov/bcbb_theme",
@@ -4165,17 +4161,17 @@
         },
         {
             "name": "drupal/form_mode_control",
-            "version": "2.1.0",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/form_mode_control.git",
-                "reference": "8.x-2.1"
+                "reference": "8.x-2.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/form_mode_control-8.x-2.1.zip",
-                "reference": "8.x-2.1",
-                "shasum": "5b6ee8cbc795ae269f615de6f8d13f4c33eda2b8"
+                "url": "https://ftp.drupal.org/files/projects/form_mode_control-8.x-2.2.zip",
+                "reference": "8.x-2.2",
+                "shasum": "513801713dd3ccb50c59310145bf3b36c895f592"
             },
             "require": {
                 "drupal/core": "^8 || ^9 || ^10"
@@ -4183,8 +4179,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.1",
-                    "datestamp": "1659299482",
+                    "version": "8.x-2.2",
+                    "datestamp": "1709142668",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
