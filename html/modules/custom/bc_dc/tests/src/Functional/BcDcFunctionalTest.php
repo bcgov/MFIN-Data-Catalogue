@@ -660,7 +660,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $this->assertSession()->pageTextNotContains('Updated:');
     // Set the updated date later than the bookmark date.
     $data_set = Node::load(2);
-    $data_set->set('field_modified_date', (new \DateTime('tomorrow'))->format('Y-m-d'))->save();
+    $data_set->set('field_modified_date', (new \DateTime('tomorrow'))->format('Y-m-d\TH:i:s'))->save();
     // The data set updated message should appear.
     $this->drupalGet('user');
     $args = [
