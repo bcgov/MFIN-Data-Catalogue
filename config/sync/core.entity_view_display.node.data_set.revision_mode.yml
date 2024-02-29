@@ -55,6 +55,15 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
+  field_modified_date:
+    type: datetime_default
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: html_date
+    third_party_settings: {  }
+    weight: 2
+    region: content
   field_review_interval:
     type: bc_dc_review_interval_date
     label: inline
@@ -78,7 +87,6 @@ hidden:
   field_high_value_info: true
   field_information_schedule: true
   field_is_complete_review: true
-  field_modified_date: true
   field_personal_information: true
   field_primary_responsibility_org: true
   field_published_date: true
