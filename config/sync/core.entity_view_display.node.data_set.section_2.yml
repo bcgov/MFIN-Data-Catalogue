@@ -116,16 +116,7 @@ content:
         trim_zero: false
         replace_tokens: false
     third_party_settings: {  }
-    weight: 5
-    region: content
-  field_modified_date:
-    type: datetime_default
-    label: inline
-    settings:
-      timezone_override: ''
-      format_type: html_date
-    third_party_settings: {  }
-    weight: 3
+    weight: 4
     region: content
   field_primary_responsibility_org:
     type: entity_reference_label
@@ -133,7 +124,7 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 6
+    weight: 5
     region: content
   field_published_date:
     type: datetime_default
@@ -151,7 +142,7 @@ content:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 4
+    weight: 3
     region: content
   field_visibility:
     type: entity_reference_label
@@ -159,7 +150,7 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 7
+    weight: 6
     region: content
 hidden:
   content_moderation_control: true
@@ -175,6 +166,7 @@ hidden:
   field_information_schedule: true
   field_is_complete_review: true
   field_last_review_date: true
+  field_modified_date: true
   field_personal_information: true
   field_review_status: true
   field_security_classification: true
