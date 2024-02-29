@@ -484,7 +484,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $this->click('a[aria-label = "Edit Section 3"]');
     $edit = [
       'field_personal_information' => '0',
-      'edit-field-security-classification-0-target-id' => 'Title (' . $security_classification_term->id() . ')',
+      'field_security_classification' => $security_classification_term->id(),
     ];
     $this->submitForm($edit, 'Save');
     // Save Section 4 so that the boolean values are FALSE instead of empty.
@@ -1228,7 +1228,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Complete required fields.
     $edit = [
       'edit-field-personal-information-0' => '0',
-      'edit-field-security-classification-0-target-id' => 'Title (' . $security_classification_term->id() . ')',
+      'field_security_classification' => $security_classification_term->id(),
     ];
     $this->submitForm($edit, 'Save');
     // Publish button now exists.
