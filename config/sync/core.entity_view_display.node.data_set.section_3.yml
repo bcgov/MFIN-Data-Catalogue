@@ -97,9 +97,9 @@ content:
     region: content
   field_security_classification:
     type: entity_reference_label
-    label: above
+    label: inline
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     weight: 4
     region: content
