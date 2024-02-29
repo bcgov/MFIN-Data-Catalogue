@@ -712,10 +712,10 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Run tests as editor. Some of the above could be tested as editor as well.
     $this->drupalLogin($this->users['Test Data catalogue editor']);
 
-    // "Data sets used" uses fieldset/legend.
+    // "Assets used" uses fieldset/legend.
     $this->drupalGet('node/2/build');
     $this->click('a[aria-label = "Edit Section 3"]');
-    $this->assertSession()->elementExists('xpath', '//div[@id = "edit-field-data-sets-used-wrapper"]/div/fieldset/legend[text() = "Data sets used"]');
+    $this->assertSession()->elementExists('xpath', '//div[@id = "edit-field-data-sets-used-wrapper"]/div/fieldset/legend[text() = "Assets used"]');
 
     // Import data columns page.
     $this->drupalGet('node/2/build');
@@ -1269,12 +1269,12 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->elementExists('xpath', $xpath);
     // View page still does not have field_data_sets_used.
     $this->clickLink('Current published');
-    $this->assertSession()->elementNotExists('xpath', '//div[text() = "Data sets used"]');
+    $this->assertSession()->elementNotExists('xpath', '//div[text() = "Assets used"]');
     // Publish the changes.
     $this->clickLink('Build');
     $this->submitForm([], 'Publish');
 
-    // Page has "Data sets used" with link to node/2.
+    // Page has "Assets used" with link to node/2.
     $dc_lineage = $this->assertSession()->elementExists('xpath', '//details[@class = "dc-lineage"]');
     // Uses.
     $args = [
@@ -1295,7 +1295,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->drupalGet('node/2');
     $dc_lineage = $this->assertSession()->elementExists('xpath', '//details[@class = "dc-lineage"]');
     // Uses.
-    $this->assertSession()->elementNotExists('xpath', '//div[text() = "Data sets used"]');
+    $this->assertSession()->elementNotExists('xpath', '//div[text() = "Assets used"]');
     // This data_set.
     $args = [
       ':data_set_title' => $data_set_title,
