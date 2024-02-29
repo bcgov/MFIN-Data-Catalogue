@@ -84,7 +84,7 @@ content:
     third_party_settings: {  }
   field_data_set_historical_change:
     type: text_textarea
-    weight: 6
+    weight: 5
     region: content
     settings:
       rows: 5
@@ -100,15 +100,9 @@ content:
       create_new_levels: false
       force_deepest: false
     third_party_settings: {  }
-  field_modified_date:
-    type: datetime_default
-    weight: 4
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_primary_responsibility_org:
     type: options_select
-    weight: 7
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -120,14 +114,14 @@ content:
     third_party_settings: {  }
   field_review_interval:
     type: number
-    weight: 5
+    weight: 4
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_visibility:
     type: options_buttons
-    weight: 8
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -144,6 +138,7 @@ hidden:
   field_information_schedule: true
   field_is_complete_review: true
   field_last_review_date: true
+  field_modified_date: true
   field_personal_information: true
   field_review_status: true
   field_security_classification: true
