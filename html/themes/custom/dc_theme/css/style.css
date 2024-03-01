@@ -435,6 +435,60 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   justify-content: center;
 }
 
+.views-data-export-feed a, .bcbb-search-wrapper .view-site-search div[id*=edit-actions] .bcbb-input-wrapper, .dc-details .item-list ul li a {
+  display: inline-flex !important;
+  width: auto;
+  line-height: 1 !important;
+  gap: 0.25em;
+  align-items: center;
+  text-decoration: none;
+  font-size: 1rem !important;
+  color: #1a5a96;
+  text-decoration: none;
+}
+.views-data-export-feed a::before, .bcbb-search-wrapper .view-site-search div[id*=edit-actions] .bcbb-input-wrapper::before, .dc-details .item-list ul li a::before, .views-data-export-feed a::after, .bcbb-search-wrapper .view-site-search div[id*=edit-actions] .bcbb-input-wrapper::after, .dc-details .item-list ul li a::after {
+  font-family: "bootstrap-icons" !important;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.views-data-export-feed a::before, .bcbb-search-wrapper .view-site-search div[id*=edit-actions] .bcbb-input-wrapper::before, .dc-details .item-list ul li a::before {
+  content: "\f29a";
+}
+.views-data-export-feed a:hover, .bcbb-search-wrapper .view-site-search div[id*=edit-actions] .bcbb-input-wrapper:hover, .dc-details .item-list ul li a:hover {
+  color: #10365a;
+}
+
+.dc-details .item-list ul {
+  list-style: none;
+  margin: 0;
+}
+.dc-details .item-list ul li {
+  margin: 0;
+}
+.bcbb-search-wrapper .view-site-search div[id*=edit-actions] {
+  display: block !important;
+}
+.bcbb-search-wrapper .view-site-search div[id*=edit-actions] .bcbb-input-wrapper {
+  display: block;
+  width: 100%;
+}
+.bcbb-search-wrapper .view-site-search div[id*=edit-actions] .bcbb-input-wrapper input.btn.btn-primary {
+  border: 0 transparent;
+  background-color: transparent;
+  color: #1a5a96;
+  font-size: 1rem;
+}
+.bcbb-search-wrapper .view-site-search div[id*=edit-actions] .bcbb-input-wrapper input.btn.btn-primary:hover {
+  color: #10365a;
+}
+
+.views-data-export-feed a {
+  background-image: none !important;
+  text-indent: 0 !important;
+  width: auto !important;
+}
+
 .page-node-type-data-set {
   /* On Metadata record column edit pages, make the summary take the full width.*/
 }
@@ -476,30 +530,6 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   .page-node-type-data-set .dc-dictionary .field--label-inline .field__label::after {
     content: ":";
   }
-}
-.page-node-type-data-set .dc-details .item-list ul {
-  list-style: none;
-  margin: 0;
-}
-.page-node-type-data-set .dc-details .item-list ul li {
-  margin: 0;
-}
-.page-node-type-data-set .dc-details .item-list ul li a {
-  display: inline-flex !important;
-  width: auto;
-  line-height: 1 !important;
-  gap: 0.25em;
-  align-items: center;
-  text-decoration: none;
-}
-.page-node-type-data-set .dc-details .item-list ul li a::before, .page-node-type-data-set .dc-details .item-list ul li a::after {
-  font-family: "bootstrap-icons" !important;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-.page-node-type-data-set .dc-details .item-list ul li a::before {
-  content: "\f29a";
 }
 .page-node-type-data-set .meta-data-record-view .field--name-field-data-set-type *,
 .page-node-type-data-set .meta-data-record-build .field--name-field-data-set-type * {
@@ -750,5 +780,3 @@ time {
 .form-control.hidden {
   display: none;
 }
-
-/*# sourceMappingURL=style.css.map */
