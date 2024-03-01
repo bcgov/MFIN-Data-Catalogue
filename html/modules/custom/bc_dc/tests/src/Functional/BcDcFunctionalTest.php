@@ -631,12 +631,12 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     // Publish the data_set.
     $this->drupalGet('node/2/build');
     $edit = [
-      'major_edit' => '0',
+      'major_edit' => '1',
       'edit-full-review' => TRUE,
     ];
     $this->submitForm($edit, 'Publish');
     $this->assertSession()->pageTextContains('Metadata record published');
-    $this->isoDateTest(TRUE);
+    $this->isoDateTest(FALSE);
     $this->clickLink('Build');
     // field_last_review should display today.
     $args = [

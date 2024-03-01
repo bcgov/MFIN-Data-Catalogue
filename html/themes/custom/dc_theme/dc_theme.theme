@@ -209,6 +209,13 @@ function dc_theme_preprocess_node__data_set__full(array &$variables): void {
       ];
     }
   }
+
+  // Hide field_modified_date when the same as field_published_date.
+  $field_published_date = $variables['node']->field_published_date->date?->format('Y-m-d');
+  $field_modified_date = $variables['node']->field_modified_date->date?->format('Y-m-d');
+  if ($field_published_date === $field_modified_date) {
+    unset($variables['node']->field_modified_date);
+  }
 }
 
 /**
