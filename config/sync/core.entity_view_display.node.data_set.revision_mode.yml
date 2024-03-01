@@ -57,7 +57,7 @@ content:
     region: content
   field_review_interval:
     type: bc_dc_review_interval_date
-    label: hidden
+    label: inline
     settings: {  }
     third_party_settings: {  }
     weight: 1
