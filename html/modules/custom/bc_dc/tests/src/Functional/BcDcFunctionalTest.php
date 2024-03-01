@@ -634,6 +634,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
       'edit-full-review' => TRUE,
     ];
     $this->submitForm($edit, 'Publish');
+    $this->assertSession()->pageTextContains('Metadata record published');
     $this->clickLink('Build');
     // field_last_review should display today.
     $args = [
@@ -1238,6 +1239,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       'edit-revision-log-message' => 'Revision log message ' . $this->randomString(),
     ];
     $this->submitForm($edit, 'Publish');
+    $this->assertSession()->pageTextContains('Metadata record published');
     // "Personal information" badge does not appear.
     $this->assertSession()->elementNotExists('xpath', '//span[contains(@class, "badge text-bg-warning")][text() = "Personal information"]');
     // Revision log message appears on revisions tab.
@@ -1273,6 +1275,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Publish the changes.
     $this->clickLink('Build');
     $this->submitForm([], 'Publish');
+    $this->assertSession()->pageTextContains('Metadata record published');
 
     // Page has "Assets used" with link to node/2.
     $dc_lineage = $this->assertSession()->elementExists('xpath', '//details[@class = "dc-lineage"]');
@@ -1480,6 +1483,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Re-publish node/2.
     $this->drupalGet('node/2/build');
     $this->submitForm([], 'Publish');
+    $this->assertSession()->pageTextContains('Metadata record published');
 
     // Test Dashboard for DC user.
     $this->drupalLogin($this->users['Test Data catalogue user']);
