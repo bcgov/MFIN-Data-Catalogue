@@ -2,6 +2,7 @@
 
 namespace Drupal\bc_dc\Form;
 
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -79,6 +80,17 @@ class BcDcWorkflowBlockForm extends FormBase {
       '#title' => $this->t('Revision note'),
     ];
 
+    $form['major_edit'] = [
+      '#type' => 'radios',
+      '#required' => TRUE,
+      '#title' => $this->t('Choose whether this is a major or minor edit'),
+      '#title_display' => 'invisible',
+      '#options' => [
+        $this->t('This is a minor edit'),
+        $this->t('This is a major edit (notify subscribers)'),
+      ],
+    ];
+
     $form['full_review'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Check if this is a full review'),
@@ -110,6 +122,11 @@ class BcDcWorkflowBlockForm extends FormBase {
     // Set redirect to view page for node.
     $url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()]);
     $form_state->setRedirectUrl($url);
+
+    // Update the modified date when this is a full review or it is empty.
+    if ($form_state->getValue('major_edit') || !$node->field_modified_date->value) {
+      $node->field_modified_date->value = (new DrupalDateTime('now', 'UTC'))->format('Y-m-d\TH:i:s');
+    }
 
     // Set field_is_complete_review when needed.
     $node->field_is_complete_review->value = $full_review;

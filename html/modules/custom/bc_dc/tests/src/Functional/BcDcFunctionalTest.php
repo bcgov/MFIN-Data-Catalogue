@@ -631,6 +631,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     // Publish the data_set.
     $this->drupalGet('node/2/build');
     $edit = [
+      'major_edit' => '0',
       'edit-full-review' => TRUE,
     ];
     $this->submitForm($edit, 'Publish');
@@ -1237,6 +1238,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Add revision log message and publish.
     $edit = [
       'edit-revision-log-message' => 'Revision log message ' . $this->randomString(),
+      'major_edit' => '0',
     ];
     $this->submitForm($edit, 'Publish');
     $this->assertSession()->pageTextContains('Metadata record published');
@@ -1274,7 +1276,10 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->elementNotExists('xpath', '//div[text() = "Assets used"]');
     // Publish the changes.
     $this->clickLink('Build');
-    $this->submitForm([], 'Publish');
+    $edit = [
+      'major_edit' => '0',
+    ];
+    $this->submitForm($edit, 'Publish');
     $this->assertSession()->pageTextContains('Metadata record published');
 
     // Page has "Assets used" with link to node/2.
@@ -1482,7 +1487,10 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->linkExists('Unpublish');
     // Re-publish node/2.
     $this->drupalGet('node/2/build');
-    $this->submitForm([], 'Publish');
+    $edit = [
+      'major_edit' => '0',
+    ];
+    $this->submitForm($edit, 'Publish');
     $this->assertSession()->pageTextContains('Metadata record published');
 
     // Test Dashboard for DC user.
