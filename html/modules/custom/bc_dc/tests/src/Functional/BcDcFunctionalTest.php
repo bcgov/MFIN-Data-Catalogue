@@ -424,7 +424,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
       $this->assertSession()->elementExists('xpath', $xpath);
     }
     // Page has ISO dates.
-    $this->isoDateTest();
+    $this->isoDateTest(TRUE);
     // Page links to pathauto path for this page.
     $this->linkByHrefStartsWithExists($data_set_path);
     // Section headers and edit links.
@@ -636,6 +636,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     ];
     $this->submitForm($edit, 'Publish');
     $this->assertSession()->pageTextContains('Metadata record published');
+    $this->isoDateTest(TRUE);
     $this->clickLink('Build');
     // field_last_review should display today.
     $args = [
@@ -824,7 +825,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->drupalGet('node/2');
     $this->assertSession()->statusCodeEquals(200);
     // Page has ISO dates.
-    $this->isoDateTest();
+    $this->isoDateTest(TRUE);
 
     // Anonymous has access to download csv for Metadata record when file has
     // been uploaded.
@@ -1549,24 +1550,31 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
 
   /**
    * Test for ISO dates in page content.
+   *
+   * @param bool $modified_date_should_exist
+   *   Whether the "Modified date" field should exist.
    */
-  protected function isoDateTest(): void {
+  protected function isoDateTest(bool $modified_date_should_exist): void {
     $date_types = [
-      'Published date',
-      'Modified date',
+      'Published date' => TRUE,
+      'Modified date' => $modified_date_should_exist,
     ];
-    foreach ($date_types as $date_type) {
+    foreach ($date_types as $date_type => $should_appear) {
       $args = [
         ':date_type' => $date_type,
       ];
       $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--type-datetime")][div[text() = :date_type]]//time', $args);
-      $time_element = $this->xpath($xpath);
-      $time_element = reset($time_element);
-      $this->assertSession()->assert((bool) $time_element, $date_type . ' element should exist.');
-      $datetime = $time_element->getAttribute('datetime');
-      $this->assertSession()->assert(preg_match('/^(\d\d\d\d-[01]\d-[0-3]\d)T/', $datetime, $matches), $date_type . ' should have ISO-formatted datetime attribute.');
-      $formatted_date = \Drupal::service('date.formatter')->format(strtotime($datetime), 'html_date');
-      $this->assertSession()->assert($time_element->getText() === $formatted_date, $date_type . ' contents should match date in datetime attribute.');
+
+      if ($should_appear) {
+        $time_element = $this->assertSession()->elementExists('xpath', $xpath);
+        $datetime = $time_element->getAttribute('datetime');
+        $this->assertSession()->assert(preg_match('/^(\d\d\d\d-[01]\d-[0-3]\d)T/', $datetime, $matches), $date_type . ' should have ISO-formatted datetime attribute.');
+        $formatted_date = \Drupal::service('date.formatter')->format(strtotime($datetime), 'html_date');
+        $this->assertSession()->assert($time_element->getText() === $formatted_date, $date_type . ' contents should match date in datetime attribute.');
+      }
+      else {
+        $this->assertSession()->elementNotExists('xpath', $xpath);
+      }
     }
   }
 
