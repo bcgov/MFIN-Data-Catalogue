@@ -1555,8 +1555,10 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       $time_element = $this->xpath($xpath);
       $time_element = reset($time_element);
       $this->assertSession()->assert((bool) $time_element, $date_type . ' element should exist.');
-      $this->assertSession()->assert(preg_match('/^(\d\d\d\d-[01]\d-[0-3]\d)T/', $time_element->getAttribute('datetime'), $matches), $date_type . ' should have ISO-formatted datetime attribute.');
-      $this->assertSession()->assert($time_element->getText() === $matches[1], $date_type . ' contents should match date in datetime attribute.');
+      $datetime = $time_element->getAttribute('datetime');
+      $this->assertSession()->assert(preg_match('/^(\d\d\d\d-[01]\d-[0-3]\d)T/', $datetime, $matches), $date_type . ' should have ISO-formatted datetime attribute.');
+      $formatted_date = \Drupal::service('date.formatter')->format(strtotime($datetime), 'html_date');
+      $this->assertSession()->assert($time_element->getText() === $formatted_date, $date_type . ' contents should match date in datetime attribute.');
     }
   }
 
