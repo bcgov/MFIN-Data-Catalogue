@@ -1,0 +1,11 @@
+uuid: e6a4890d-5fff-4bad-9dc0-c7851edaa581
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.section_6
+label: 'Section 6'
+description: ''
+targetEntityType: node
+cache: true
