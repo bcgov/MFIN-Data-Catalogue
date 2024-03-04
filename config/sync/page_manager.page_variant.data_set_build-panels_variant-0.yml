@@ -139,7 +139,7 @@ variant_settings:
       css_styles: ''
     e1c27330-6c4f-444e-94d3-3c0af55f8205:
       id: 'entity_view:node'
-      label: 'Section 5: Data dictionary'
+      label: 'Section 5: Significance'
       label_display: '0'
       provider: ctools
       view_mode: section_5
@@ -154,7 +154,7 @@ variant_settings:
       css_styles: ''
     c06bbb1b-e4c7-403c-b728-6adb7d1ef658:
       id: bc_dc_edit_button
-      label: 'Section 5: Data dictionary'
+      label: 'Section 5: Significance'
       label_display: visible
       provider: bc_dc
       context_mapping:

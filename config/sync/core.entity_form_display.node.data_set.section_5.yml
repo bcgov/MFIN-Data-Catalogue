@@ -34,8 +34,6 @@ dependencies:
     - node.type.data_set
   module:
     - field_group
-    - paragraphs
-    - paragraphs_features
     - shs
 third_party_settings:
   field_group:
@@ -64,30 +62,20 @@ targetEntityType: node
 bundle: data_set
 mode: section_5
 content:
-  field_columns:
-    type: paragraphs
-    weight: 1
+  field_authoritative_info:
+    type: boolean_checkbox
+    weight: 14
     region: content
     settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: closed
-      closed_mode: summary
-      autocollapse: all
-      closed_mode_threshold: 0
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: data_column
-      features:
-        add_above: '0'
-        collapse_edit_all: collapse_edit_all
-        duplicate: '0'
-    third_party_settings:
-      paragraphs_features:
-        add_in_between: false
-        add_in_between_link_count: 3
-        delete_confirmation: false
-        show_drag_and_drop: true
+      display_label: true
+    third_party_settings: {  }
+  field_critical_information:
+    type: boolean_checkbox
+    weight: 15
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_data_set_type:
     type: options_shs
     weight: 18
@@ -98,18 +86,23 @@ content:
       create_new_levels: false
       force_deepest: false
     third_party_settings: {  }
+  field_high_value_info:
+    type: boolean_checkbox
+    weight: 20
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
 hidden:
   body: true
   created: true
   field_active_period: true
   field_asset_location: true
-  field_authoritative_info: true
-  field_critical_information: true
+  field_columns: true
   field_data_quality_issues: true
   field_data_set_historical_change: true
   field_data_sets_used: true
   field_final_disposition: true
-  field_high_value_info: true
   field_information_schedule: true
   field_is_complete_review: true
   field_last_review_date: true
