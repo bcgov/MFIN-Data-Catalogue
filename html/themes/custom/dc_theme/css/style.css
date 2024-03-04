@@ -661,6 +661,10 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used .field-add-more-submit:focus {
   background-color: var(--bs-gray-800);
 }
+.page-node-type-data-set .node-data-set-edit-form .paragraphs-actions {
+  display: inline-flex;
+  gap: 0.5em;
+}
 .page-node-type-data-set [id*=field-columns-] .paragraph-summary {
   grid-column-start: 1;
 }

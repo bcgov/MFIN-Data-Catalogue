@@ -221,6 +221,11 @@
       }
     }
 
+    .paragraphs-actions {
+      display: inline-flex;
+      gap: .5em;
+    }
+
   }
 
   /* On Metadata record column edit pages, make the summary take the full width.*/
