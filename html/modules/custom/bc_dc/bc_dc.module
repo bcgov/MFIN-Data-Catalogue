@@ -588,16 +588,18 @@ function _bc_dc_form_node_data_set_edit_form_submit(array &$form, FormStateInter
 
   // Check that the root ancestor of the field_data_set_type has not changed.
   // Old field_data_set_type.
-  $node = $form_state->getFormObject()->getEntity();
-  $old_type = (int) $node->field_data_set_type?->first()?->getValue()['target_id'] ?? NULL;
-  // New field_data_set_type.
-  $new_type = (int) $form_state->getValue('field_data_set_type')[0]['target_id'] ?? NULL;
-  // If the type has changed, check if their root ancestors have changed.
-  if ($new_type !== $old_type) {
-    $old_type_root = _bc_dc_get_term_root_ancestor($old_type);
-    $new_type_root = _bc_dc_get_term_root_ancestor($new_type);
-    if (!$new_type_root || $new_type_root->id() !== $old_type_root->id()) {
-      $form_state->setErrorByName('field_data_set_type', t('The metadata root record type cannot be changed.'));
+  if ($form_state->hasValue('field_data_set_type')) {
+    $node = $form_state->getFormObject()->getEntity();
+    $old_type = (int) $node->field_data_set_type?->first()?->getValue()['target_id'] ?? NULL;
+    // New field_data_set_type.
+    $new_type = (int) $form_state->getValue('field_data_set_type')[0]['target_id'] ?? NULL;
+    // If the type has changed, check if their root ancestors have changed.
+    if ($new_type !== $old_type) {
+      $old_type_root = _bc_dc_get_term_root_ancestor($old_type);
+      $new_type_root = _bc_dc_get_term_root_ancestor($new_type);
+      if (!$new_type_root || $new_type_root->id() !== $old_type_root->id()) {
+        $form_state->setErrorByName('field_data_set_type', t('The metadata root record type cannot be changed.'));
+      }
     }
   }
 }
