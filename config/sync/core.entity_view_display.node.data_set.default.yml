@@ -22,6 +22,7 @@ dependencies:
     - field.field.node.data_set.field_personal_information
     - field.field.node.data_set.field_primary_responsibility_org
     - field.field.node.data_set.field_published_date
+    - field.field.node.data_set.field_related_document
     - field.field.node.data_set.field_review_interval
     - field.field.node.data_set.field_review_status
     - field.field.node.data_set.field_security_classification
@@ -201,6 +202,15 @@ content:
       format_type: html_date
     third_party_settings: {  }
     weight: 7
+    region: content
+  field_related_document:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 26
     region: content
   field_review_status:
     type: list_default

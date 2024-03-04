@@ -1,0 +1,10 @@
+uuid: b9ae4d90-0eca-40b4-8709-699195551eda
+langcode: en
+status: true
+dependencies: {  }
+id: documents
+label: 'Related documents'
+icon_uuid: null
+icon_default: null
+description: 'Add links to external documents'
+behavior_plugins: {  }

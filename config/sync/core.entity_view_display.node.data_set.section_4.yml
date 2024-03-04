@@ -23,6 +23,7 @@ dependencies:
     - field.field.node.data_set.field_personal_information
     - field.field.node.data_set.field_primary_responsibility_org
     - field.field.node.data_set.field_published_date
+    - field.field.node.data_set.field_related_document
     - field.field.node.data_set.field_review_interval
     - field.field.node.data_set.field_review_status
     - field.field.node.data_set.field_security_classification
@@ -33,6 +34,7 @@ dependencies:
     - field.field.node.data_set.field_visibility
     - node.type.data_set
   module:
+    - entity_reference_revisions
     - layout_builder
     - user
 third_party_settings:
@@ -43,7 +45,16 @@ id: node.data_set.section_4
 targetEntityType: node
 bundle: data_set
 mode: section_4
-content: {  }
+content:
+  field_related_document:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   body: true
   content_moderation_control: true

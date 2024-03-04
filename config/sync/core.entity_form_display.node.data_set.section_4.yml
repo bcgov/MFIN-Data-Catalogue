@@ -23,6 +23,7 @@ dependencies:
     - field.field.node.data_set.field_personal_information
     - field.field.node.data_set.field_primary_responsibility_org
     - field.field.node.data_set.field_published_date
+    - field.field.node.data_set.field_related_document
     - field.field.node.data_set.field_review_interval
     - field.field.node.data_set.field_review_status
     - field.field.node.data_set.field_security_classification
@@ -32,11 +33,40 @@ dependencies:
     - field.field.node.data_set.field_special_flags
     - field.field.node.data_set.field_visibility
     - node.type.data_set
+  module:
+    - paragraphs
+    - paragraphs_features
 id: node.data_set.section_4
 targetEntityType: node
 bundle: data_set
 mode: section_4
-content: {  }
+content:
+  field_related_document:
+    type: paragraphs
+    weight: 0
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: all
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: documents
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        convert: '0'
+        duplicate: '0'
+    third_party_settings:
+      paragraphs_features:
+        add_in_between: false
+        add_in_between_link_count: 3
+        delete_confirmation: false
+        show_drag_and_drop: true
+        show_collapse_all: true
 hidden:
   body: true
   created: true

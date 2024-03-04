@@ -1,0 +1,32 @@
+uuid: 38cdf464-1398-4605-bc16-4347892958a9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.documents.field_paragraph_document_link
+    - field.field.paragraph.documents.field_paragraph_document_type
+    - paragraphs.paragraphs_type.documents
+  module:
+    - link
+id: paragraph.documents.default
+targetEntityType: paragraph
+bundle: documents
+mode: default
+content:
+  field_paragraph_document_link:
+    type: link_default
+    weight: 2
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_paragraph_document_type:
+    type: options_buttons
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

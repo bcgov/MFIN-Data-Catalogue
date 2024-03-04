@@ -124,7 +124,7 @@ variant_settings:
       css_styles: ''
     fdee6d41-ceb6-43cf-8f6f-ede4a05dd278:
       id: 'entity_view:node'
-      label: 'Section 4: Significance'
+      label: 'Section 4: Related documents'
       label_display: '0'
       provider: ctools
       view_mode: section_4
@@ -169,7 +169,7 @@ variant_settings:
       css_styles: ''
     6d7b192c-7273-4995-b54a-fb3f4578ef89:
       id: bc_dc_edit_button
-      label: 'Section 4: Significance'
+      label: 'Section 4: Related documents'
       label_display: visible
       provider: bc_dc
       context_mapping:
