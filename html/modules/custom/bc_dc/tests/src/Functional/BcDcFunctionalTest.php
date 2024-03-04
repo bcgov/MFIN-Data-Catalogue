@@ -436,6 +436,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 3: Utility"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 3"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_3")]');
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 4: Significance"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 4"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_4")]');
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 5: Data dictionary"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 5"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_5")]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 6: Data dictionary"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 6"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_6")]');
     $this->assertSession()->elementExists('xpath', '//*[contains(@class, "node--view-mode-section-4")]');
     $this->assertSession()->elementExists('xpath', '//*[contains(@class, "node--view-mode-section-5")]');
     // Build page does not link to referenced entities.

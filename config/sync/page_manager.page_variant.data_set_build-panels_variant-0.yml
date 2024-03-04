@@ -214,7 +214,7 @@ variant_settings:
     b0e2f62b-42e0-48c9-b43c-f94227979358:
       id: 'entity_view:node'
       label: 'Section 6: Data dictionary'
-      label_display: visible
+      label_display: '0'
       provider: ctools
       view_mode: section_6
       context_mapping:

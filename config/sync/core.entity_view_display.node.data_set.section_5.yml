@@ -47,7 +47,7 @@ mode: section_5
 content:
   field_columns:
     type: bc_dc_item_count
-    label: inline
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 0
