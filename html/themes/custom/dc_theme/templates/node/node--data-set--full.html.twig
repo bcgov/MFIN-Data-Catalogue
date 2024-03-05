@@ -229,10 +229,20 @@
                     {{ node.field_information_schedule.entity.field_schedule_code|view}}
                   {% endif %}
                 </div>
-
               </div>
             {% endif %}
 
+            {% if user.hasRole('authenticated') and node.field_related_document and not node.field_related_document.isEmpty %}
+              <div class="mt-3">
+                <hr>
+                <h2 class="field__label mb-1 pt-3 fs-5 fw-bold">{{ node.field_related_document.fieldDefinition.label }}</h2>
+                <ul>
+                {% for item in node.field_related_document %}
+                  <li class="pt-1 pb-1"><a href="{{ item.entity.field_paragraph_document_link.uri }}">{{ item.entity.field_paragraph_document_type.entity.label }}</a></li>
+                {% endfor %}
+                </ul>
+              </div>
+            {% endif %}
           </section>
 
         </div>
