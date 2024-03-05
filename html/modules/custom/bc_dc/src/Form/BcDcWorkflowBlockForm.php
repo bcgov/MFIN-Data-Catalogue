@@ -83,11 +83,10 @@ class BcDcWorkflowBlockForm extends FormBase {
     $form['major_edit'] = [
       '#type' => 'radios',
       '#required' => TRUE,
-      '#title' => $this->t('Choose whether this is a major or minor edit'),
-      '#title_display' => 'invisible',
+      '#title' => $this->t('Edit type'),
       '#options' => [
-        $this->t('This is a minor edit'),
-        $this->t('This is a major edit (notify subscribers)'),
+        $this->t('Minor edit'),
+        $this->t('Major edit (notify subscribers)'),
       ],
     ];
 
