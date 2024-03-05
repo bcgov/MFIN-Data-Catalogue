@@ -86,9 +86,9 @@ content:
             reset: false
             condition: value
             grouping: AND
-            values_set: 1
+            values_set: 3
             value: ''
-            values: {  }
+            values: '20'
             value_form:
               -
                 target_id: '20'
@@ -124,9 +124,9 @@ content:
             reset: false
             condition: value
             grouping: AND
-            values_set: 1
+            values_set: 3
             value: ''
-            values: {  }
+            values: '20'
             value_form:
               -
                 target_id: '20'
@@ -151,9 +151,9 @@ content:
             reset: false
             condition: value
             grouping: AND
-            values_set: 1
+            values_set: 3
             value: ''
-            values: {  }
+            values: '20'
             value_form:
               -
                 target_id: '20'
@@ -179,9 +179,9 @@ content:
             reset: false
             condition: value
             grouping: AND
-            values_set: 1
+            values_set: 3
             value: ''
-            values: {  }
+            values: '20'
             value_form:
               -
                 target_id: '20'
@@ -207,9 +207,9 @@ content:
             reset: false
             condition: value
             grouping: AND
-            values_set: 1
+            values_set: 3
             value: ''
-            values: {  }
+            values: '20'
             value_form:
               -
                 target_id: '20'
@@ -280,9 +280,9 @@ content:
             reset: false
             condition: value
             grouping: AND
-            values_set: 1
+            values_set: 3
             value: ''
-            values: {  }
+            values: '20'
             value_form:
               -
                 target_id: '20'
@@ -384,9 +384,9 @@ content:
             reset: false
             condition: value
             grouping: AND
-            values_set: 1
+            values_set: 3
             value: ''
-            values: {  }
+            values: '20'
             value_form:
               -
                 target_id: '20'
