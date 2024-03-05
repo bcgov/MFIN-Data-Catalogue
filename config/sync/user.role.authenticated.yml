@@ -38,5 +38,6 @@ permissions:
   - 'use text format webform_default'
   - 'view field_asset_location'
   - 'view field_primary_responsibility_org'
+  - 'view field_related_document'
   - 'view media'
   - 'view own field_primary_responsibility_org'

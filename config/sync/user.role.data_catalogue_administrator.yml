@@ -132,6 +132,7 @@ permissions:
   - 'edit field_asset_location'
   - 'edit field_organization'
   - 'edit field_primary_responsibility_org'
+  - 'edit field_related_document'
   - 'edit own field_primary_responsibility_org'
   - 'edit terms in common_data'
   - 'edit terms in data_set_series'

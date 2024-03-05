@@ -27,6 +27,7 @@ permissions:
   - 'create field_organization'
   - 'delete own never_published data_set in_org'
   - 'edit field_asset_location'
+  - 'edit field_related_document'
   - 'flag bookmark'
   - 'revert data_set revisions'
   - 'unflag bookmark'

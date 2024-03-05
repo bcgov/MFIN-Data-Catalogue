@@ -96,6 +96,7 @@ permissions:
   - 'edit any image media'
   - 'edit any page content'
   - 'edit field_asset_location'
+  - 'edit field_related_document'
   - 'edit terms in common_data'
   - 'edit terms in data_set_series'
   - 'edit terms in data_set_type'
