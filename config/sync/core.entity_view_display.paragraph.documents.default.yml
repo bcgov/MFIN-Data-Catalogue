@@ -23,7 +23,7 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    weight: 2
+    weight: 1
     region: content
   field_paragraph_document_type:
     type: entity_reference_label
@@ -31,7 +31,7 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 1
+    weight: 0
     region: content
 hidden:
   search_api_excerpt: true

@@ -639,7 +639,8 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   gap: 1em;
 }
 .page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column,
-.page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used {
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document {
   background: var(--bs-gray-100);
   border: 1px solid var(--bs-gray-200);
   padding: 1em;
@@ -647,19 +648,41 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 }
 .page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column th, .page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column td,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used th,
-.page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used td {
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used td,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document th,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document td {
   background-color: transparent;
   border: 0 transparent;
 }
 .page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column .field-add-more-submit,
-.page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used .field-add-more-submit {
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used .field-add-more-submit,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document .field-add-more-submit {
   background-color: var(--bs-gray-700);
   color: var(--bs-white);
 }
 .page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column .field-add-more-submit:hover, .page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column .field-add-more-submit:focus,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used .field-add-more-submit:hover,
-.page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used .field-add-more-submit:focus {
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used .field-add-more-submit:focus,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document .field-add-more-submit:hover,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document .field-add-more-submit:focus {
   background-color: var(--bs-gray-800);
+}
+@media only screen and (min-width: 992px) {
+  .page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document .paragraphs-subform {
+    display: flex;
+    gap: 0.5em;
+  }
+}
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document .paragraph-summary {
+  grid-column-start: 1;
+}
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document #edit-field-related-document--description {
+  margin-bottom: 0.5em;
+  margin-top: 1.5em;
+}
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document .delta-order {
+  padding-left: 0.5em;
+  width: 4em;
 }
 .page-node-type-data-set .node-data-set-edit-form .paragraphs-actions {
   display: inline-flex;
@@ -774,3 +797,5 @@ time {
 .form-control.hidden {
   display: none;
 }
+
+/*# sourceMappingURL=style.css.map */

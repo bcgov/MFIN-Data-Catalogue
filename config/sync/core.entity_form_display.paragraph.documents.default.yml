@@ -22,7 +22,7 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
   field_paragraph_document_type:
-    type: options_buttons
+    type: options_select
     weight: 1
     region: content
     settings: {  }

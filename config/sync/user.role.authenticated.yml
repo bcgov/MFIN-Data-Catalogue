@@ -37,6 +37,8 @@ permissions:
   - 'use text format basic_html'
   - 'use text format webform_default'
   - 'view field_asset_location'
+  - 'view field_paragraph_document_link'
+  - 'view field_paragraph_document_type'
   - 'view field_primary_responsibility_org'
   - 'view field_related_document'
   - 'view media'

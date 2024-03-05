@@ -34,7 +34,7 @@ dependencies:
     - field.field.node.data_set.field_visibility
     - node.type.data_set
   module:
-    - entity_reference_revisions
+    - bc_dc
     - layout_builder
     - user
 third_party_settings:
@@ -47,11 +47,9 @@ bundle: data_set
 mode: section_4
 content:
   field_related_document:
-    type: entity_reference_revisions_entity_view
-    label: above
-    settings:
-      view_mode: default
-      link: ''
+    type: bc_dc_item_count
+    label: inline
+    settings: {  }
     third_party_settings: {  }
     weight: 0
     region: content

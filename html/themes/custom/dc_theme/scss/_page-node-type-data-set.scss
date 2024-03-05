@@ -201,7 +201,8 @@
     }
 
     .edit-data-dictionary-column,
-    .field--name-field-data-sets-used {
+    .field--name-field-data-sets-used,
+    .field--name-field-related-document {
       background: var(--bs-gray-100);
       border: 1px solid var(--bs-gray-200);
       padding: 1em;
@@ -218,6 +219,27 @@
         &:focus {
           background-color: var(--bs-gray-800);
         }
+      }
+    }
+
+    .field--name-field-related-document {
+      .paragraphs-subform {
+        @include responsive($lg-min) {
+          display: flex;
+          gap: .5em;
+        }
+      }
+      .paragraph-summary {
+        grid-column-start: 1;
+      }
+      #edit-field-related-document--description {
+        margin-bottom: .5em;
+        margin-top: 1.5em;
+
+      }
+      .delta-order {
+        padding-left: .5em;
+        width: 4em;
       }
     }
 
