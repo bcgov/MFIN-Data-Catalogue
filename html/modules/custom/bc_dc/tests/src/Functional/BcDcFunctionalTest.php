@@ -437,8 +437,8 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 4: Related documents"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 4"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_4")]');
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 5: Significance"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 5"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_5")]');
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 6: Data dictionary"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 6"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_6")]');
-    $this->assertSession()->elementExists('xpath', '//*[contains(@class, "node--view-mode-section-4")]');
     $this->assertSession()->elementExists('xpath', '//*[contains(@class, "node--view-mode-section-5")]');
+    $this->assertSession()->elementExists('xpath', '//*[contains(@class, "node--view-mode-section-6")]');
     // Build page does not link to referenced entities.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "field--type-entity-reference")]//a');
 
@@ -488,8 +488,8 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
       'field_security_classification' => $security_classification_term->id(),
     ];
     $this->submitForm($edit, 'Save');
-    // Save Section 4 so that the boolean values are FALSE instead of empty.
-    $this->click('a[aria-label = "Edit Section 4"]');
+    // Save Section 5 so that the boolean values are FALSE instead of empty.
+    $this->click('a[aria-label = "Edit Section 5"]');
     $this->submitForm([], 'Save');
     // Check for fields that are boolean and have inline labels.
     $fields_inline_optional = [
@@ -525,7 +525,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     // Empty column names section.
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--name-field-columns")]/div/em[text() = "Optional"]');
     // No columns exist on column edit page.
-    $this->click('a[aria-label = "Edit Section 5"]');
+    $this->click('a[aria-label = "Edit Section 6"]');
     $this->assertSession()->statusCodeEquals(200);
     // There should not be any rows under 'tbody', however after hiding items
     // under header_actions in bc_dc_form_node_data_set_edit_form_alter(), one
@@ -546,7 +546,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     // The other fields do not appear.
     $this->assertSession()->pageTextNotContains('Data set column 1 description');
     // Revisit columns page.
-    $this->click('a[aria-label = "Edit Section 5"]');
+    $this->click('a[aria-label = "Edit Section 6"]');
     // The row for each column contains the title and nothing else.
     $args = [
       ':summary-content' => $edit['edit-field-columns-0-subform-field-column-name-0-value'],
@@ -723,7 +723,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
 
     // Import data columns page.
     $this->drupalGet('node/2/build');
-    $this->click('a[aria-label = "Edit Section 5"]');
+    $this->click('a[aria-label = "Edit Section 6"]');
     $this->assertSession()->elementExists('xpath', '//a[@href = "/node/2/add-columns?destination=/node/2/build"][text() = "Import/export data columns"]');
     $this->clickLink('Import/export data columns');
     $this->assertSession()->statusCodeEquals(200);
@@ -1206,11 +1206,11 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, :class)]', $args);
       $this->assertSession()->elementNotExists('xpath', $xpath);
     }
-    // There is no Section 4 or 5 because this is a Report.
-    $this->assertSession()->pageTextNotContains('Section 4');
-    $this->assertSession()->elementNotExists('xpath', '//*[contains(@class, "node--view-mode-section-4")]');
+    // There is no Section 5 or 6 because this is a Report.
     $this->assertSession()->pageTextNotContains('Section 5');
     $this->assertSession()->elementNotExists('xpath', '//*[contains(@class, "node--view-mode-section-5")]');
+    $this->assertSession()->pageTextNotContains('Section 6');
+    $this->assertSession()->elementNotExists('xpath', '//*[contains(@class, "node--view-mode-section-6")]');
     // Message that required field is empty.
     $this->assertSession()->elementExists('xpath', '//form[@id = "bc-dc-workflow-block-form"]
       [p[text() = "The following fields must be completed before publishing:"]]
