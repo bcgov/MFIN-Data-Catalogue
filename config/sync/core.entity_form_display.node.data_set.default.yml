@@ -95,7 +95,7 @@ content:
             effect: show
             effect_options: {  }
             selector: ''
-            values_parent: 1
+            include_descendants: 1
   field_columns:
     type: paragraphs
     weight: 19
@@ -133,7 +133,7 @@ content:
             effect: show
             effect_options: {  }
             selector: ''
-            values_parent: 1
+            include_descendants: 1
   field_critical_information:
     type: boolean_checkbox
     weight: 12
@@ -160,7 +160,7 @@ content:
             effect: show
             effect_options: {  }
             selector: ''
-            values_parent: 1
+            include_descendants: 1
   field_data_quality_issues:
     type: text_textarea
     weight: 9
@@ -188,7 +188,7 @@ content:
             effect: show
             effect_options: {  }
             selector: ''
-            values_parent: 1
+            include_descendants: 1
   field_data_set_historical_change:
     type: text_textarea
     weight: 10
@@ -216,7 +216,7 @@ content:
             effect: show
             effect_options: {  }
             selector: ''
-            values_parent: 1
+            include_descendants: 1
   field_data_set_type:
     type: options_shs
     weight: 16
@@ -256,7 +256,7 @@ content:
             effect: show
             effect_options: {  }
             selector: ''
-            values_parent: 1
+            include_descendants: 1
   field_final_disposition:
     type: field_token_value_default
     weight: 22
@@ -289,7 +289,7 @@ content:
             effect: show
             effect_options: {  }
             selector: ''
-            values_parent: 1
+            include_descendants: 1
   field_information_schedule:
     type: options_shs
     weight: 17
@@ -393,7 +393,7 @@ content:
             effect: show
             effect_options: {  }
             selector: ''
-            values_parent: 1
+            include_descendants: 1
   field_special_flags:
     type: field_token_value_default
     weight: 23
