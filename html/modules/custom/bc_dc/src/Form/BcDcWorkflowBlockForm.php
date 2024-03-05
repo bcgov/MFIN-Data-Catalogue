@@ -92,7 +92,7 @@ class BcDcWorkflowBlockForm extends FormBase {
 
     $form['full_review'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Check if this is a full review'),
+      '#title' => $this->t('This is a full review'),
     ];
 
     $form['actions']['#type'] = 'actions';
