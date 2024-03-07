@@ -14,6 +14,7 @@ dependencies:
     - taxonomy.vocabulary.data_set_type
     - taxonomy.vocabulary.data_system
     - taxonomy.vocabulary.data_type
+    - taxonomy.vocabulary.document_type
     - taxonomy.vocabulary.information_schedule
     - taxonomy.vocabulary.metadata_type
     - taxonomy.vocabulary.organization
@@ -96,6 +97,7 @@ permissions:
   - 'create terms in data_set_type'
   - 'create terms in data_system'
   - 'create terms in data_type'
+  - 'create terms in document_type'
   - 'create terms in information_schedule'
   - 'create terms in metadata_type'
   - 'create terms in organization'
@@ -118,6 +120,7 @@ permissions:
   - 'delete terms in data_set_type'
   - 'delete terms in data_system'
   - 'delete terms in data_type'
+  - 'delete terms in document_type'
   - 'delete terms in information_schedule'
   - 'delete terms in metadata_type'
   - 'delete terms in organization'
@@ -144,6 +147,7 @@ permissions:
   - 'edit terms in data_set_type'
   - 'edit terms in data_system'
   - 'edit terms in data_type'
+  - 'edit terms in document_type'
   - 'edit terms in information_schedule'
   - 'edit terms in metadata_type'
   - 'edit terms in organization'
