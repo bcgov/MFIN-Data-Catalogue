@@ -174,6 +174,14 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
       $this->assertSame($save, SAVED_NEW);
     }
 
+    // Create term in document_type vocabulary.
+    $document_type_1 = Term::create([
+      'vid' => 'document_type',
+      'name' => 'Test document_type 1 ' . $this->randomString(),
+    ]);
+    $save = $document_type_1->save();
+    $this->assertSame($save, SAVED_NEW);
+
     // Add missing permissions. These ought to have been imported with config.
     // @todo Get all permissions to import.
     $role = Role::load('authenticated');
@@ -1246,6 +1254,8 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->pageTextContains('Metadata record published');
     // "Personal information" badge does not appear.
     $this->assertSession()->elementNotExists('xpath', '//span[contains(@class, "badge text-bg-warning")][text() = "Personal information"]');
+    // There are no related documents.
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "field--name-field-related-document")]');
     // Revision log message appears on revisions tab.
     $this->clickLink('Revisions');
     $args = [
@@ -1255,6 +1265,8 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // On Build page, field_data_sets_used is empty.
     $this->clickLink('Build');
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--name-field-data-sets-used")]/div[@class = "field__item"]/em[text() = "Optional"]');
+    // There are no related documents.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--name-field-related-document")]//em[@class = "field-optional"][text() = "Optional"]');
     // On Build page, no workflow block when latest revision is published.
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-workflow-block")]//*[contains(text(), "Latest revision is published")]');
     // Set node/2 as a data_set used by this data_set.
@@ -1265,6 +1277,17 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       'edit-field-personal-information-1' => '1',
     ];
     $this->submitForm($edit, 'Save');
+    // Add a related document.
+    $this->click('a[aria-label = "Edit Section 4"]');
+    $this->submitForm([], 'Add Document');
+    $related_document_uri = 'http://' . $this->randomMachineName() . '.example.com/';
+    $edit = [
+      'edit-field-related-document-0-subform-field-paragraph-document-type' => $document_type_1->id(),
+      'edit-field-related-document-0-subform-field-paragraph-document-link-0-uri' => $related_document_uri,
+    ];
+    $this->submitForm($edit, 'Save');
+    // There is now a related document.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--name-field-related-document")]//div[@class = "field__item"][text() = "1"]');
     // field_data_sets_used is not empty. This demonstrates that the Build page
     // is showing the latest version not the default version.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "field--name-field-data-sets-used")]/div[@class = "field__item"]/em[text() = "Optional"]');
@@ -1283,6 +1306,13 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     ];
     $this->submitForm($edit, 'Publish');
     $this->assertSession()->pageTextContains('Metadata record published');
+    // Related documents appear.
+    $args = [
+      ':href' => $related_document_uri,
+      ':text' => $document_type_1->label(),
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-related-document")]//ul/li/a[@href = :href][text() = :text]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
 
     // Page has "Assets used" with link to node/2.
     $dc_lineage = $this->assertSession()->elementExists('xpath', '//details[@class = "dc-lineage"]');
