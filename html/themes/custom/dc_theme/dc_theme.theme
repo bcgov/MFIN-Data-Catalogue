@@ -126,6 +126,11 @@ function dc_theme_preprocess_node__data_set__full(array &$variables): void {
 
     $information_schedule_root_term = array_pop($parents);
     $variables['information_schedule_type'] = $information_schedule_root_term->label();
+
+    $has_children = (bool) $taxonomy_term_storage->loadChildren($information_schedule_term->id());
+    if (!$has_children) {
+      $variables['information_schedule_business_category'] = $information_schedule_term->toLink();
+    }
   }
 
   // Data dictionary download links.
