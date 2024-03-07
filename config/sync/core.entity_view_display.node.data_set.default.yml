@@ -204,11 +204,9 @@ content:
     weight: 7
     region: content
   field_related_document:
-    type: entity_reference_revisions_entity_view
-    label: above
-    settings:
-      view_mode: default
-      link: ''
+    type: bc_dc_related_documents
+    label: hidden
+    settings: {  }
     third_party_settings: {  }
     weight: 26
     region: content
