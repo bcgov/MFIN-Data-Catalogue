@@ -126,23 +126,6 @@ function dc_theme_preprocess_node__data_set__full(array &$variables): void {
 
     $information_schedule_root_term = array_pop($parents);
     $variables['information_schedule_type'] = $information_schedule_root_term->label();
-
-    $name_parts = [];
-    foreach ($parents as $term) {
-      if ($term->field_schedule_number->value) {
-        array_unshift($name_parts, $term->label());
-      }
-    }
-    if ($name_parts) {
-      $has_children = (bool) $taxonomy_term_storage->loadChildren($information_schedule_term->id());
-      $information_schedule_details_label = implode(': ', $name_parts);
-      if ($has_children) {
-        $variables['information_schedule_details'] = $information_schedule_details_label;
-      }
-      else {
-        $variables['information_schedule_details'] = $information_schedule_term->toLink($information_schedule_details_label);
-      }
-    }
   }
 
   // Data dictionary download links.
