@@ -27,46 +27,48 @@ class BcDcWorkflowBlockForm extends FormBase {
       return $form;
     }
 
+    $isPublished = $args['node']->isPublished();
+
     // Message if revision is published.
-    if ($args['node']->isPublished()) {
+    if ($isPublished) {
       $form['note'] = [
         '#markup' => $this->t('Latest revision is published.'),
       ];
-      return $form;
     }
-
-    // Prevent publishing when required fields are empty.
-    $empty_required = [];
-    foreach ($args['node']->getFields() as $field) {
-      $fieldDefinition = $field->getFieldDefinition();
-      if ($field->isEmpty() && $fieldDefinition->isRequired()) {
-        $empty_required[] = $fieldDefinition->getLabel();
+    else {
+      // Prevent publishing when required fields are empty.
+      $empty_required = [];
+      foreach ($args['node']->getFields() as $field) {
+        $fieldDefinition = $field->getFieldDefinition();
+        if ($field->isEmpty() && $fieldDefinition->isRequired()) {
+          $empty_required[] = $fieldDefinition->getLabel();
+        }
       }
-    }
-    if ($empty_required) {
-      $form['empty_required'] = [
-        '#theme' => 'item_list',
-        '#items' => $empty_required,
-        '#prefix' => '<p>' . $this->t('The following fields must be completed before publishing:') . '</p>',
+      if ($empty_required) {
+        $form['empty_required'] = [
+          '#theme' => 'item_list',
+          '#items' => $empty_required,
+          '#prefix' => '<p>' . $this->t('The following fields must be completed before publishing:') . '</p>',
+        ];
+        return $form;
+      }
+
+      // Publishing block.
+      $form['revision_log_message'] = [
+        '#type' => 'textarea',
+        '#title' => $this->t('Revision note'),
       ];
-      return $form;
+
+      $form['major_edit'] = [
+        '#type' => 'radios',
+        '#required' => TRUE,
+        '#title' => $this->t('Edit type'),
+        '#options' => [
+          $this->t('Minor edit'),
+          $this->t('Major edit (notify subscribers)'),
+        ],
+      ];
     }
-
-    // Publishing block.
-    $form['revision_log_message'] = [
-      '#type' => 'textarea',
-      '#title' => $this->t('Revision note'),
-    ];
-
-    $form['major_edit'] = [
-      '#type' => 'radios',
-      '#required' => TRUE,
-      '#title' => $this->t('Edit type'),
-      '#options' => [
-        $this->t('Minor edit'),
-        $this->t('Major edit (notify subscribers)'),
-      ],
-    ];
 
     $form['full_review'] = [
       '#type' => 'checkbox',
@@ -76,8 +78,20 @@ class BcDcWorkflowBlockForm extends FormBase {
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
       '#type' => 'submit',
-      '#value' => $this->t('Publish'),
+      '#value' => $isPublished ? $this->t('Update') : $this->t('Publish'),
       '#button_type' => 'primary',
+    ];
+    if ($isPublished) {
+      $form['actions']['submit']['#states'] = [
+        'invisible' => [
+          'input[id="edit-full-review"]' => ['checked' => FALSE],
+        ],
+      ];
+    }
+
+    $form['isPublished'] = [
+      '#type' => 'value',
+      '#value' => (int) $isPublished,
     ];
 
     return $form;
@@ -91,6 +105,7 @@ class BcDcWorkflowBlockForm extends FormBase {
     $revision_log_message = ($revision_log_message === '') ? NULL : $revision_log_message;
 
     $full_review = (bool) $form_state->getValue('full_review');
+    $isPublished = (bool) $form_state->getValue('isPublished');
 
     // Get the node.
     $buildInfo = $form_state->getBuildInfo();
@@ -111,13 +126,26 @@ class BcDcWorkflowBlockForm extends FormBase {
     if (is_string($revision_log_message)) {
       $node->setRevisionLogMessage($revision_log_message);
     }
-    // Set revision author to current.
-    $node->setRevisionUserId($this->currentUser()->id());
-    // Set published.
-    $node->set('moderation_state', 'published');
-    $node->save();
 
-    $this->messenger()->addMessage($this->t('Metadata record published.'));
+    if ($isPublished) {
+      // If it is published, all that can be done is update
+      // field_last_review_date which is done via field_is_complete_review.
+      if ($full_review) {
+        $node->save();
+        $this->messenger()->addMessage($this->t('Metadata record review date updated.'));
+      }
+      else {
+        $this->messenger()->addMessage($this->t('No changes made.'));
+      }
+    }
+    else {
+      // Set revision author to current.
+      $node->setRevisionUserId($this->currentUser()->id());
+      // Set published.
+      $node->set('moderation_state', 'published');
+      $node->save();
+      $this->messenger()->addMessage($this->t('Metadata record published.'));
+    }
   }
 
 }

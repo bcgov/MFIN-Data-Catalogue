@@ -1265,6 +1265,24 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--name-field-related-document")]//em[@class = "field-optional"][text() = "Optional"]');
     // On Build page, no workflow block when latest revision is published.
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-workflow-block")]//*[contains(text(), "Latest revision is published")]');
+
+    // The data_set has never had a full review.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--label-inline")][contains(@class, "field--name-field-last-review-date")][div[@class = "field__label"][text() = "Last review date"]]/div/em[text() = "Never"]');
+    // Submit a full review.
+    $edit = [
+      'edit-full-review' => '1',
+    ];
+    $this->submitForm($edit, 'Update');
+    // Return to the Build page and the review date is now today.
+    $this->clickLink('Build');
+    $args = [
+      ':class' => 'field--name-field-last-review-date',
+      ':label' => 'Last review date',
+      ':text' => date('Y-m-d'),
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div/time[text() = :text]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+
     // Set node/2 as a data_set used by this data_set.
     $this->click('a[aria-label = "Edit Section 3"]');
     $edit = [
