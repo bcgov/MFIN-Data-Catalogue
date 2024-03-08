@@ -21,7 +21,6 @@ third_party_settings:
   field_group:
     group_schedule_details:
       children:
-        - field_schedule_code
         - field_active_period
         - field_semi_active_period
         - field_final_disposition
@@ -29,7 +28,7 @@ third_party_settings:
       label: 'Schedule details'
       parent_name: ''
       region: content
-      weight: 1
+      weight: 2
       format_type: html_element
       format_settings:
         classes: info-schedule-details
@@ -52,7 +51,7 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 8
+    weight: 5
     region: content
   field_abbr_full_name:
     type: string
@@ -100,7 +99,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 5
+    weight: 4
     region: content
   field_semi_active_period:
     type: entity_reference_label
