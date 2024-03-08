@@ -3845,17 +3845,17 @@
         },
         {
             "name": "drupal/facets",
-            "version": "2.0.6",
+            "version": "2.0.7",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/facets.git",
-                "reference": "2.0.6"
+                "reference": "2.0.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/facets-2.0.6.zip",
-                "reference": "2.0.6",
-                "shasum": "e984e6ce69026c20d2049d4ec53748e67c5e70de"
+                "url": "https://ftp.drupal.org/files/projects/facets-2.0.7.zip",
+                "reference": "2.0.7",
+                "shasum": "a58ad0c4c3fc2750bf095232a54218ae906852e3"
             },
             "require": {
                 "drupal/core": "^9.3 || ^10.0"
@@ -3875,8 +3875,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.0.6",
-                    "datestamp": "1671207897",
+                    "version": "2.0.7",
+                    "datestamp": "1709900263",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4977,7 +4977,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/message_gcnotify.git",
-                "reference": "430eef1b409598a645eb9ce8208e365b3e7483da"
+                "reference": "34e549ae7034abb510a1e4bd8f4249f9521cc139"
             },
             "require": {
                 "drupal/core": "^9.5 || ^10"
@@ -4988,8 +4988,8 @@
                     "dev-1.0.x": "1.0.x-dev"
                 },
                 "drupal": {
-                    "version": "1.0.0+11-dev",
-                    "datestamp": "1709737193",
+                    "version": "1.0.0+14-dev",
+                    "datestamp": "1709846770",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
