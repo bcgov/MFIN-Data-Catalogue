@@ -3,36 +3,14 @@
 namespace Drupal\bc_dc\Form;
 
 use Drupal\Core\Datetime\DrupalDateTime;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides the form used by bc_dc_workflow_block.
  */
 class BcDcWorkflowBlockForm extends FormBase {
-
-  /**
-   * Constructor.
-   *
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
-   *   The entity_type.manager service.
-   */
-  public function __construct(
-    protected EntityTypeManagerInterface $entityTypeManager,
-  ) {
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container): static {
-    return new static(
-      $container->get('entity_type.manager'),
-    );
-  }
 
   /**
    * {@inheritdoc}
