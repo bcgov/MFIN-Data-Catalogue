@@ -1030,15 +1030,11 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Set field_information_schedule to value with child.
     $data_set = Node::load(2);
     $data_set->set('field_information_schedule', $info_schedule_terms[1]->id())->save();
-    // Test that the IM classification details appear without a link.
+    // Test that the "Business category" does not appear.
     $this->drupalGet('node/2');
-    $args = [
-      ':classification_details' => $info_schedule_values[1]['name'],
-    ];
     $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-information-schedule")]
-      [div[@class = "field__label"][normalize-space(text()) = "IM classification details"]]
-      [div[@class = "field__item"][text() = :classification_details]]', $args);
-    $this->assertSession()->elementExists('xpath', $xpath);
+      [div[@class = "field__label"][normalize-space(text()) = "Business category"]]', $args);
+    $this->assertSession()->elementNotExists('xpath', $xpath);
 
     // Set field_information_schedule to value without child.
     $data_set->set('field_information_schedule', $info_schedule_terms[3]->id())->save();
@@ -1056,13 +1052,13 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       [div[@class = "field__label"][normalize-space(text()) = "Information schedule type"]]
       [div[@class = "field__item"][text() = :information_schedule_type]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
-    // Test that the IM classification details appear with a link.
+    // Test that the "Business category" appears with a link.
     $args = [
-      ':classification_details' => $info_schedule_values[1]['name'] . ': ' . $info_schedule_values[2]['name'] . ': ' . $info_schedule_values[3]['name'],
+      ':name' => $info_schedule_values[3]['name'],
     ];
     $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-information-schedule")]
-      [div[@class = "field__label"][normalize-space(text()) = "IM classification details"]]
-      [div[@class = "field__item"]/a[text() = :classification_details]]', $args);
+      [div[@class = "field__label"][normalize-space(text()) = "Business category"]]
+      [div[@class = "field__item"]/a[text() = :name]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     // Schedule code.
     $args = [
