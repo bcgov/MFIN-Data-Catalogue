@@ -59,7 +59,7 @@ function bc_dc_entity_operation(EntityInterface $entity): array {
 }
 
 /**
- * Implements hook_preprocess_HOOK().
+ * Implements hook_preprocess_HOOK() for flag.html.twig.
  */
 function bc_dc_preprocess_flag(array &$variables): void {
   // Replace @title with improved @aria-label.
