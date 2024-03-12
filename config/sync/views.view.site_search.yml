@@ -1855,7 +1855,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<h2 class=\"h4\">{{ title }}</h2>\r\n<div class=\"views-field views-field-search-api-excerpt\">\r\n  {{ search_api_excerpt }}\r\n</div>\r\n<ul class=\"small text-black-50 bcbb-inline-list m-0 p-0\">\r\n  <li class=\"primary_responsibility_org\">{{ field_primary_responsibility_org }}</li>\r\n  <li class=\"data_set_editor\">{{ uid }}</li>\r\n  <li class=\"modified_date\">{{ field_modified_date }}</li>\r\n</ul>"
+            text: "<h2 class=\"h4\">{{ title }}</h2>\r\n<div class=\"views-field views-field-search-api-excerpt\">\r\n  {{ search_api_excerpt }}\r\n</div>\r\n<ul class=\"small text-black-60 bcbb-inline-list m-0 p-0\">\r\n  <li class=\"primary_responsibility_org\">{{ field_primary_responsibility_org }}</li>\r\n  <li class=\"data_set_editor\">{{ uid }}</li>\r\n  <li class=\"modified_date\">{{ field_modified_date }}</li>\r\n</ul>"
             make_link: false
             path: ''
             absolute: false
