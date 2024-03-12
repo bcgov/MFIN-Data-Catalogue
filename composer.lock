@@ -68,12 +68,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb.git",
-                "reference": "3ae477b4c72a11b6b46486bb6ddc7329ce95e534"
+                "reference": "2f8da243a99935091a03310623f69232f8970718"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/3ae477b4c72a11b6b46486bb6ddc7329ce95e534",
-                "reference": "3ae477b4c72a11b6b46486bb6ddc7329ce95e534",
+                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/2f8da243a99935091a03310623f69232f8970718",
+                "reference": "2f8da243a99935091a03310623f69232f8970718",
                 "shasum": ""
             },
             "require": {
@@ -154,7 +154,7 @@
                 "source": "https://github.com/bcgov/bcbb/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb/issues"
             },
-            "time": "2024-03-08T15:38:51+00:00"
+            "time": "2024-03-11T15:17:09+00:00"
         },
         {
             "name": "bcgov/bcbb_theme",
@@ -162,12 +162,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb-theme.git",
-                "reference": "d070af320e3f1b3dad730618cd8027f6ce405213"
+                "reference": "ba21189e53496a9ca1e62854045050cef4b2245f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb-theme/zipball/d070af320e3f1b3dad730618cd8027f6ce405213",
-                "reference": "d070af320e3f1b3dad730618cd8027f6ce405213",
+                "url": "https://api.github.com/repos/bcgov/bcbb-theme/zipball/ba21189e53496a9ca1e62854045050cef4b2245f",
+                "reference": "ba21189e53496a9ca1e62854045050cef4b2245f",
                 "shasum": ""
             },
             "require": {
@@ -184,7 +184,7 @@
                 "source": "https://github.com/bcgov/bcbb-theme/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb-theme/issues"
             },
-            "time": "2024-03-08T20:27:46+00:00"
+            "time": "2024-03-11T15:16:21+00:00"
         },
         {
             "name": "caxy/php-htmldiff",
@@ -14733,16 +14733,16 @@
         },
         {
             "name": "composer/composer",
-            "version": "2.7.1",
+            "version": "2.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "aaf6ed5ccd27c23f79a545e351b4d7842a99d0bc"
+                "reference": "b826edb791571ab1eaf281eb1bd6e181a1192adc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/aaf6ed5ccd27c23f79a545e351b4d7842a99d0bc",
-                "reference": "aaf6ed5ccd27c23f79a545e351b4d7842a99d0bc",
+                "url": "https://api.github.com/repos/composer/composer/zipball/b826edb791571ab1eaf281eb1bd6e181a1192adc",
+                "reference": "b826edb791571ab1eaf281eb1bd6e181a1192adc",
                 "shasum": ""
             },
             "require": {
@@ -14827,7 +14827,7 @@
                 "irc": "ircs://irc.libera.chat:6697/composer",
                 "issues": "https://github.com/composer/composer/issues",
                 "security": "https://github.com/composer/composer/security/policy",
-                "source": "https://github.com/composer/composer/tree/2.7.1"
+                "source": "https://github.com/composer/composer/tree/2.7.2"
             },
             "funding": [
                 {
@@ -14843,7 +14843,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-02-09T14:26:28+00:00"
+            "time": "2024-03-11T16:12:18+00:00"
         },
         {
             "name": "composer/metadata-minifier",
