@@ -11,10 +11,10 @@
   <div class="d-flex">
     <input id="{{ attributes.id }}" type="text" class="text-full form-text form-control" value="{{ value }}" readonly="readonly" aria-label="{{ 'Permalink'|t }}" />
     <button class="clipboardjs-button btn btn-secondary" data-clipboard-alert="{{ alert_style }}" data-clipboard-alert-text="{{ alert_text }}" data-clipboard-target="#{{ attributes.id }}">
-      <div class="tooltip">
+      <span class="tooltip">
         <span class="icon-bi-copy text-nowrap">{{ label }}</span>
         <span class="tooltiptext"></span>
-      </div>
+      </span>
     </button>
   </div>
 {% endapply %}
