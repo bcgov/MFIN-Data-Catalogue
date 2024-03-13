@@ -409,3 +409,14 @@ function dc_theme_preprocess_page_title(array &$variables): void {
     }
   }
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for taxonomy-term--organization.html.twig.
+ */
+function dc_theme_preprocess_taxonomy_term__organization(array &$variables): void {
+  if ($variables['view_mode'] === 'bc_dc_org_footer') {
+    // This variable will be displayed inside a `h2` so ensure it is text-only.
+    // If rendered as a field, it will be in a `div`, not allowed in `h2`.
+    $variables['name'] = $variables['name']['#object']->getName();
+  }
+}
