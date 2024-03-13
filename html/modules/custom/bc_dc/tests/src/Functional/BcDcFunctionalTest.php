@@ -1340,7 +1340,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $args = [
       ':data_set_title' => $data_set_title_2,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//section[not(@aria-label)][contains(text()[2], :data_set_title)]/em[text() = "This report:"]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//div[not(@aria-label)][contains(text()[2], :data_set_title)]/em[text() = "This report:"]', $args);
     $this->assertSession()->elementExists('xpath', $xpath, $dc_lineage);
     // Used-in.
     $this->assertSession()->elementNotExists('xpath', '//div[text() = "Used-in data sets"]');
@@ -1354,7 +1354,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $args = [
       ':data_set_title' => $data_set_title,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//section[not(@aria-label)][contains(text()[2], :data_set_title)]/em[text() = "This data:"]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//div[not(@aria-label)][contains(text()[2], :data_set_title)]/em[text() = "This data:"]', $args);
     $this->assertSession()->elementExists('xpath', $xpath, $dc_lineage);
     // Used in.
     $args = [
@@ -1367,7 +1367,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->drupalGet('node/6');
     $this->assertSession()->elementExists('xpath', '//span[contains(@class, "badge text-bg-warning")][text() = "Personal information"]');
     // Permalink appears.
-    $this->assertSession()->elementExists('xpath', '//section[@id = "author_permalink"]//input[substring(@value, string-length(@value) - 6) = "/node/6"]');
+    $this->assertSession()->elementExists('xpath', '//div[@id = "author_permalink"]//input[substring(@value, string-length(@value) - 6) = "/node/6"]');
     // Header search block appears.
     $this->assertSession()->elementExists('xpath', '//header//div[contains(@class, "block-bcbb-search-api-block")]//input[@aria-label = "Search"]');
     // There is no add-columns page for this data_set because it is a Report.
