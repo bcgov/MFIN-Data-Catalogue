@@ -75,7 +75,7 @@ function bc_dc_get_git(): ?string {
 }
 
 /**
- * Return the version of the bc_dc repository.
+ * Return the version of bc_dc.
  *
  * This will be the tag or a string representing the development version.
  *
@@ -83,6 +83,13 @@ function bc_dc_get_git(): ?string {
  *   The version or NULL if it cannot be determined.
  */
 function bc_dc_get_version(): ?string {
+  // Try to get the version from the bc_dc info file.
+  $version = \Drupal::service('extension.list.module')->get('bc_dc')->info['version'] ?? NULL;
+  if ($version) {
+    return $version;
+  }
+
+  // Get the version from the Git repo.
   $git = bc_dc_get_git();
   if (!$git) {
     return NULL;
