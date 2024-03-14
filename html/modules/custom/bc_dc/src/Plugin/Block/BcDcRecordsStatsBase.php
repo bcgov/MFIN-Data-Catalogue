@@ -63,12 +63,12 @@ abstract class BcDcRecordsStatsBase extends BlockBase implements ContainerFactor
 
     $text = $this->getText();
 
-    $message = $this->formatPlural($total_nodes, '<p class="dc-count">@count</p><p>' . $text['singular'] . '</p>', '<p class="dc-count">@count</p><p>' . $text['plural'] . '</p>', $args);
+    $message = $this->formatPlural($total_nodes, '<span class="dc-count">@count</span> <span>' . $text['singular'] . '</span>', '<span class="dc-count">@count</span> <span>' . $text['plural'] . '</span>', $args);
 
     $build['message'] = [
       '#markup' => $message,
-      '#prefix' => '<div class="bcdc-dashboard-card"><div class="card-body">',
-      '#suffix' => '</div></div>',
+      '#prefix' => '<div class="bcdc-dashboard-card"><p class="card-body">',
+      '#suffix' => '</p></div>',
     ];
 
     return $build;
