@@ -2,3 +2,44 @@
 .dc-global-report .dc-count {
   display: block;
 }
+
+/* Search page sidebar */
+/* Narrow display */
+@media only screen and not (min-width: 992px) {
+  /* Remove border and margin */
+  .bcbb-search-sidebar > details {
+    border: none;
+    margin-top: 0;
+  }
+  /* Style `summary` border */
+  .bcbb-search-sidebar > details > summary {
+    border-width: 0 0 1px 0;
+    background: var(--bs-gray-200);
+    border-color: var(--bs-gray-300);
+    border-radius: 0;
+    padding: 1em;
+  }
+}
+/* Wide display */
+@media only screen and (min-width: 992px) {
+  /* Remove the `details` disclosure triangle */
+  .bcbb-search-sidebar > details.block-search-api-saved-searches[open] > summary {
+    list-style: none;
+    padding-left: 0;
+  }
+  /* Add search icon */
+  .bcbb-search-sidebar > details.block-search-api-saved-searches[open] > summary::before {
+    font-family: "bootstrap-icons";
+    content: "\f525";
+    padding-right: 0.5em;
+  }
+
+  /* Remove border for search filters */
+  .bcbb-search-sidebar > details.dc-search-filters {
+    border: none;
+  }
+  /* Remove `summary` for search filters */
+  .bcbb-search-sidebar > details.dc-search-filters[open] > summary {
+    display: none
+  }
+}
