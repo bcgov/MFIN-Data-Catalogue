@@ -68,12 +68,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb.git",
-                "reference": "2f8da243a99935091a03310623f69232f8970718"
+                "reference": "7c27360df402355b2edcfede8fff53b55fef6b0f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/2f8da243a99935091a03310623f69232f8970718",
-                "reference": "2f8da243a99935091a03310623f69232f8970718",
+                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/7c27360df402355b2edcfede8fff53b55fef6b0f",
+                "reference": "7c27360df402355b2edcfede8fff53b55fef6b0f",
                 "shasum": ""
             },
             "require": {
@@ -154,7 +154,7 @@
                 "source": "https://github.com/bcgov/bcbb/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb/issues"
             },
-            "time": "2024-03-11T15:17:09+00:00"
+            "time": "2024-03-15T22:08:57+00:00"
         },
         {
             "name": "bcgov/bcbb_theme",

@@ -43,14 +43,13 @@ function dc_theme_preprocess_block__facets_summary_block(array &$variables): voi
  * Implements hook_preprocess_HOOK() for block--search-api-saved-searches.html.twig.
  */
 function dc_theme_preprocess_block__search_api_saved_searches(array &$variables): void {
-  $variables['attributes']['class'][] = 'bb-collapse';
-  $variables['attributes']['class'][] = 'bb-collapse-responsive';
   $variables['attributes']['class'][] = 'dc-save-search';
   $variables['attributes']['class'][] = 'mb-0';
   $variables['attributes']['class'][] = 'mb-lg-5';
   $variables['attributes']['class'][] = 'p-lg-4';
   $variables['attributes']['class'][] = 'pt-lg-2';
-  $variables['toggle_variable'] = 'save_this_search';
+  $variables['attributes']['class'][] = 'bcbb-desktop-open';
+  $variables['#attached']['library'][] = 'bcbb_other/bcbb-misc';
 }
 
 /**
