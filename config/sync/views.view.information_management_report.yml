@@ -11,6 +11,7 @@ dependencies:
     - user.role.data_catalogue_administrator
     - user.role.data_catalogue_information_management_specialist
   module:
+    - bc_dc
     - csv_serialization
     - node
     - rest
@@ -1041,7 +1042,7 @@ display:
           output_url_as_text: false
           absolute: false
       style:
-        type: data_export
+        type: bc_dc_data_export
         options:
           formats:
             csv: csv
