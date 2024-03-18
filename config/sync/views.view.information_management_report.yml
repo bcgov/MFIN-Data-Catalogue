@@ -1050,11 +1050,11 @@ display:
             delimiter: ','
             enclosure: '"'
             escape_char: \
-            strip_tags: true
-            trim: true
+            strip_tags: 1
+            trim: 1
             encoding: utf8
-            utf8_bom: '0'
-            use_serializer_encode_only: false
+            utf8_bom: 0
+            use_serializer_encode_only: 0
       defaults:
         fields: false
       display_extenders: {  }
