@@ -5,20 +5,12 @@
  * Theme file.
  */
 
+use Drupal\bc_dc\Plugin\Block\EditSectionBtn;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Link;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\TermInterface;
-
-/**
- * Implements hook_preprocess_HOOK() for block--bc-dc-edit-button.html.twig.
- */
-function dc_theme_preprocess_block__bc_dc_edit_button(array &$variables): void {
-  // Add custom classes to data_set build page section headers.
-  $variables['title_attributes']['class'][] = 'h4';
-  $variables['title_attributes']['class'][] = 'fw-bold';
-}
 
 /**
  * Implements hook_preprocess_HOOK() for block--entity-view--node.html.twig.
@@ -27,6 +19,17 @@ function dc_theme_preprocess_block__entity_view__node(array &$variables): void {
   // Adjust spacing.
   $variables['attributes']['class'][] = 'mb-4';
   $variables['attributes']['class'][] = 'pb-4';
+
+  if (str_starts_with($variables['content']['#view_mode'], 'section_')) {
+    // Add custom classes to data_set build page section headers.
+    $variables['title_attributes']['class'][] = 'h4';
+    $variables['title_attributes']['class'][] = 'fw-bold';
+
+    // Add section edit button.
+    $node = $variables['content']['#node'];
+    $form_mode = $variables['content']['#view_mode'];
+    $variables['block_suffix'] = EditSectionBtn::buildContent($node, $form_mode, \Drupal::entityTypeManager(), \Drupal::destination());
+  }
 }
 
 /**

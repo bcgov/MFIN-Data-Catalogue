@@ -436,15 +436,15 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     // Page links to pathauto path for this page.
     $this->linkByHrefStartsWithExists($data_set_path);
     // Section headers and edit links.
-    // Check for: A section.block-bc-dc-edit-button that has an 'h2' child with
+    // Check for: A section.block-entity-viewnode that has an 'h2' child with
     // the correct contents and an 'a' descendent with button classes, and the
     // correct @aria-label, @href, and text.
-    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 1: Details"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 1"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_1")]');
-    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 2: Description"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 2"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_2")]');
-    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 3: Utility"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 3"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_3")]');
-    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 4: Related documents"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 4"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_4")]');
-    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 5: Significance"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 5"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_5")]');
-    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 6: Data dictionary"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 6"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_6")]');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-entity-viewnode")][h2[text() = "Section 1: Details"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 1"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_1")]');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-entity-viewnode")][h2[text() = "Section 2: Description"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 2"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_2")]');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-entity-viewnode")][h2[text() = "Section 3: Utility"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 3"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_3")]');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-entity-viewnode")][h2[text() = "Section 4: Related documents"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 4"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_4")]');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-entity-viewnode")][h2[text() = "Section 5: Significance"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 5"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_5")]');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-entity-viewnode")][h2[text() = "Section 6: Data dictionary"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 6"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_6")]');
     $this->assertSession()->elementExists('xpath', '//*[contains(@class, "node--view-mode-section-5")]');
     $this->assertSession()->elementExists('xpath', '//*[contains(@class, "node--view-mode-section-6")]');
     // Build page does not link to referenced entities.
@@ -1513,7 +1513,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "alert-success")]/em[text() = :title]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     // Check that it is unpublished.
-    $this->assertSession()->elementExists('xpath', '//article[contains(@class, "node--unpublished")]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "node--unpublished")]');
     // Now "Unpublish" page has a message.
     $this->clickLink('Unpublish');
     $text = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "alert-error")]')->getText();
