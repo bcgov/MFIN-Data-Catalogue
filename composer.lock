@@ -68,12 +68,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb.git",
-                "reference": "4c0a96353621d8380e62bf30d515203c6e0ac196"
+                "reference": "5a6bce87dbae1f041ea7784467c0ba3188bfbd95"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/4c0a96353621d8380e62bf30d515203c6e0ac196",
-                "reference": "4c0a96353621d8380e62bf30d515203c6e0ac196",
+                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/5a6bce87dbae1f041ea7784467c0ba3188bfbd95",
+                "reference": "5a6bce87dbae1f041ea7784467c0ba3188bfbd95",
                 "shasum": ""
             },
             "require": {
@@ -154,7 +154,7 @@
                 "source": "https://github.com/bcgov/bcbb/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb/issues"
             },
-            "time": "2024-03-19T16:18:44+00:00"
+            "time": "2024-03-19T18:27:06+00:00"
         },
         {
             "name": "bcgov/bcbb_theme",
@@ -162,12 +162,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb-theme.git",
-                "reference": "398828e8959f735196b4542db1cb37a727308bc8"
+                "reference": "e9998c584b247fb76eb0e4a09aaf9874c09adaac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb-theme/zipball/398828e8959f735196b4542db1cb37a727308bc8",
-                "reference": "398828e8959f735196b4542db1cb37a727308bc8",
+                "url": "https://api.github.com/repos/bcgov/bcbb-theme/zipball/e9998c584b247fb76eb0e4a09aaf9874c09adaac",
+                "reference": "e9998c584b247fb76eb0e4a09aaf9874c09adaac",
                 "shasum": ""
             },
             "require": {
@@ -184,7 +184,7 @@
                 "source": "https://github.com/bcgov/bcbb-theme/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb-theme/issues"
             },
-            "time": "2024-03-13T20:22:15+00:00"
+            "time": "2024-03-19T18:15:53+00:00"
         },
         {
             "name": "caxy/php-htmldiff",

@@ -593,15 +593,15 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 .page-node-type-data-set .block-bc-dc-workflow-block input.button {
   width: 100%;
 }
-.page-node-type-data-set div.block-bc-dc-edit-button {
+.page-node-type-data-set .block-bc-dc-edit-button {
   margin-bottom: 0.5em;
   display: grid;
 }
-.page-node-type-data-set div.block-bc-dc-edit-button > *:first-child {
+.page-node-type-data-set .block-bc-dc-edit-button > *:first-child {
   grid-column-start: 1;
   grid-row-start: 1;
 }
-.page-node-type-data-set div.block-bc-dc-edit-button > *:last-child {
+.page-node-type-data-set .block-bc-dc-edit-button > *:last-child {
   grid-column-start: 2;
   grid-row-start: 1;
   justify-self: end;

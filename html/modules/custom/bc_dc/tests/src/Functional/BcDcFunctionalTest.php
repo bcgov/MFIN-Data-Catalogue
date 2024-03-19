@@ -394,7 +394,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
       ':data_set_title' => $data_set_title,
       ':data_set_path' => $data_set_path,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "block-views-blockdashboard-moderation-blocks-dashboard-unpublished")]
+    $xpath = $this->assertSession()->buildXPathQuery('//section[contains(@class, "block-views-blockdashboard-moderation-blocks-dashboard-unpublished")]
       [//td[normalize-space(text()) = :data_set_title]]
       [//a[@href = "/node/2/build"][text() = "Build"]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
@@ -436,15 +436,15 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     // Page links to pathauto path for this page.
     $this->linkByHrefStartsWithExists($data_set_path);
     // Section headers and edit links.
-    // Check for: A div.block-bc-dc-edit-button that has an 'h2' child with the
-    // correct contents and an 'a' descendent with button classes, @aria-label,
-    // @href, and text.
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 1: Details"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 1"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_1")]');
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 2: Description"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 2"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_2")]');
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 3: Utility"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 3"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_3")]');
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 4: Related documents"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 4"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_4")]');
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 5: Significance"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 5"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_5")]');
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 6: Data dictionary"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 6"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_6")]');
+    // Check for: A section.block-bc-dc-edit-button that has an 'h2' child with
+    // the correct contents and an 'a' descendent with button classes, and the
+    // correct @aria-label, @href, and text.
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 1: Details"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 1"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_1")]');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 2: Description"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 2"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_2")]');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 3: Utility"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 3"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_3")]');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 4: Related documents"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 4"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_4")]');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 5: Significance"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 5"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_5")]');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 6: Data dictionary"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 6"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_6")]');
     $this->assertSession()->elementExists('xpath', '//*[contains(@class, "node--view-mode-section-5")]');
     $this->assertSession()->elementExists('xpath', '//*[contains(@class, "node--view-mode-section-6")]');
     // Build page does not link to referenced entities.
@@ -596,18 +596,18 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $args = [
       ':data_set_path' => $data_set_path,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "block-views-blockdashboard-moderation-blocks-dashboard-unpublished")]//tr/td/a[text() = "View"][starts-with(@href, :data_set_path)]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//section[contains(@class, "block-views-blockdashboard-moderation-blocks-dashboard-unpublished")]//tr/td/a[text() = "View"][starts-with(@href, :data_set_path)]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     // Build link.
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-views-blockdashboard-moderation-blocks-dashboard-unpublished")]//tr/td/a[text() = "Build"][@class = "btn btn-primary"][@href = "/node/2/build"]');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-views-blockdashboard-moderation-blocks-dashboard-unpublished")]//tr/td/a[text() = "Build"][@class = "btn btn-primary"][@href = "/node/2/build"]');
     // No empty message.
-    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-views-blockdashboard-moderation-blocks-dashboard-unpublished")]//div[normalize-space(text()) = "You currently do not have any draft metadata records."]');
+    $this->assertSession()->elementNotExists('xpath', '//section[contains(@class, "block-views-blockdashboard-moderation-blocks-dashboard-unpublished")]//div[normalize-space(text()) = "You currently do not have any draft metadata records."]');
 
     // Test bookmarks.
     //
     // No items bookmarked.
     $this->assertSession()->linkNotExists('Remove bookmark');
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//div[normalize-space(text()) = "You currently do not have any metadata records bookmarked."]');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//div[normalize-space(text()) = "You currently do not have any metadata records bookmarked."]');
     // Bookmark an item.
     $this->clickLink('View');
     $this->clickLink('Bookmark');
@@ -620,9 +620,9 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
       ':data_set_title' => $data_set_title,
       ':data_set_path' => $data_set_path,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//a[normalize-space(text()) = :data_set_title][starts-with(@href, :data_set_path)]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//section[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//a[normalize-space(text()) = :data_set_title][starts-with(@href, :data_set_path)]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
-    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//div[normalize-space(text()) = "You currently do not have any metadata records bookmarked."]');
+    $this->assertSession()->elementNotExists('xpath', '//section[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//div[normalize-space(text()) = "You currently do not have any metadata records bookmarked."]');
     // Metadata record count message.
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//*[text() = "You currently have no published metadata records."]');
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//a[text() = "Manage metadata records"]');
@@ -658,8 +658,8 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     // There are no data rows, just the empty message.
     $this->drupalGet('user');
     $this->assertSession()->statusCodeEquals(200);
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-views-blockdashboard-moderation-blocks-dashboard-unpublished")]//div[normalize-space(text()) = "You currently do not have any draft metadata records."]');
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-views-blockdashboard-blocks-dashboard-needs-review")]//div[normalize-space(text()) = "You currently have no metadata records needing review."]');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-views-blockdashboard-moderation-blocks-dashboard-unpublished")]//div[normalize-space(text()) = "You currently do not have any draft metadata records."]');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-views-blockdashboard-blocks-dashboard-needs-review")]//div[normalize-space(text()) = "You currently have no metadata records needing review."]');
     // Metadata record count message.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//*[text() = "You currently have no published metadata records."]');
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//*[text() = "You have 1 published metadata record that has been bookmarked 1 times."]');
@@ -677,7 +677,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $args = [
       ':data_set_path' => $data_set_path,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//*
+    $xpath = $this->assertSession()->buildXPathQuery('//section[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//*
       [span[@class = "badge text-bg-success"][text() = "Updated"]]
       [a[starts-with(@href, :data_set_path)]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
@@ -1125,14 +1125,14 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->drupalLogin($this->rootUser);
     $this->drupalGet('user');
     $this->assertSession()->statusCodeEquals(200);
-    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-views-blockdashboard-blocks-dashboard-needs-review")]//div[normalize-space(text()) = "You currently have no metadata records needing review."]');
+    $this->assertSession()->elementNotExists('xpath', '//section[contains(@class, "block-views-blockdashboard-blocks-dashboard-needs-review")]//div[normalize-space(text()) = "You currently have no metadata records needing review."]');
     $args = [
       // This "Review overdue" is from View dashboard_blocks,
       // dashboard_needs_review, "Content: Review status", Rewrite results.
       ':review_overdue_message' => 'Review overdue',
       ':data_set_title' => $data_set_title,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "block-views-blockdashboard-blocks-dashboard-needs-review")]//tr
+    $xpath = $this->assertSession()->buildXPathQuery('//section[contains(@class, "block-views-blockdashboard-blocks-dashboard-needs-review")]//tr
       [td[normalize-space(text()) = :data_set_title]]
       [td/span[@class = "badge text-bg-danger"][text() = :review_overdue_message]]
       [td/a[@href = "/node/2/build"]]', $args);
@@ -1545,9 +1545,9 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Block bc_dc_content_summary does not exist.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]');
     // View block dashboard_blocks dashboard_needs_review should not appear.
-    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-views-blockdashboard-blocks-dashboard-needs-review")]');
+    $this->assertSession()->elementNotExists('xpath', '//section[contains(@class, "block-views-blockdashboard-blocks-dashboard-needs-review")]');
     // View block bookmarks appears.
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]');
     // View block saved_searches appears.
     // This test is in ExistingSite because search does not work in Functional.
     // $this->assertSession()->elementExists('xpath', '//div[contains(@class,
