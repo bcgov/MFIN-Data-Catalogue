@@ -114,19 +114,48 @@
   // build page
   .meta-data-record-build {
     .main-region {
-     > div.block-entity-viewnode {
+     > section {
       border-bottom: 1px solid var(--bs-gray-300);
       padding-bottom: 1.5em;
       margin-bottom: 1.5em;
       &:last-child {
         border-bottom: 0 transparent;
       }
-      & > * {
-        margin-right: 4em;
+      //layout for each section
+      display: grid;
+      grid-template-columns: auto;
+      grid-template-rows: auto auto auto;
+      grid-template-areas:
+      "header"
+      "content"
+      "action";
+      @include responsive() {
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+        column-gap: 2em;
+        grid-template-areas:
+        "header action"
+        "content action";
+      }
+      h2 {
+        grid-area: header;
+      }
+      div.node {
+        grid-area: content;
+      }
+      div.edit-section-btn {
+        grid-area: action;
+        .btn {
+          width: 100%;
+          margin: 1.25em auto;
+          @include responsive() {
+            width: auto;
+            margin: .5em 0 0;
+          }
+        }
       }
      }
     }
-
   }
 
 
