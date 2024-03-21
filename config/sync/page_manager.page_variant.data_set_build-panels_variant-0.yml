@@ -64,7 +64,7 @@ variant_settings:
       css_styles: ''
     c3f9fa35-60ef-4caf-84f1-a57981624283:
       id: 'entity_view:node'
-      label: 'Section 3: Utility'
+      label: 'Section 3: Origin and classification'
       label_display: visible
       provider: ctools
       view_mode: section_3
