@@ -28,7 +28,7 @@ variant_settings:
       context_mapping:
         entity: node
       region: main
-      weight: -6
+      weight: -10
       uuid: 0552e311-d766-4d1c-b1f3-5f87e5000e94
       css_classes:
         - meta-data-record-build
@@ -40,8 +40,8 @@ variant_settings:
       label_display: '0'
       provider: bc_dc
       context_mapping: {  }
-      region: sidebar
-      weight: -6
+      region: header
+      weight: -4
       uuid: 3e40db8e-7871-483c-9ed0-6580c5a54c15
       css_classes:
         - ''
@@ -56,7 +56,7 @@ variant_settings:
       context_mapping:
         entity: node
       region: main
-      weight: -4
+      weight: -9
       uuid: 388dd9c1-d0f4-49b7-865e-31fa611b4b8d
       css_classes:
         - ''
@@ -71,7 +71,7 @@ variant_settings:
       context_mapping:
         entity: node
       region: main
-      weight: -2
+      weight: -8
       uuid: c3f9fa35-60ef-4caf-84f1-a57981624283
       css_classes:
         - ''
@@ -86,7 +86,7 @@ variant_settings:
       context_mapping:
         entity: node
       region: main
-      weight: 0
+      weight: -7
       uuid: fdee6d41-ceb6-43cf-8f6f-ede4a05dd278
       css_classes:
         - ''
@@ -101,7 +101,7 @@ variant_settings:
       context_mapping:
         entity: node
       region: main
-      weight: 2
+      weight: -6
       uuid: e1c27330-6c4f-444e-94d3-3c0af55f8205
       css_classes:
         - ''
@@ -115,8 +115,8 @@ variant_settings:
       view_mode: revision_mode
       context_mapping:
         entity: node
-      region: sidebar
-      weight: -5
+      region: header
+      weight: -3
       uuid: 2148a34f-e8b4-4fb8-806c-ed4c8c19739f
       css_classes:
         - ''
@@ -129,8 +129,8 @@ variant_settings:
       provider: bc_dc
       context_mapping:
         node: node
-      region: sidebar
-      weight: 0
+      region: footer
+      weight: -4
       uuid: b74b78e3-c9c1-4cc9-898a-b4d5731444ab
       css_classes:
         - ''
@@ -145,14 +145,14 @@ variant_settings:
       context_mapping:
         entity: node
       region: main
-      weight: 4
+      weight: -5
       uuid: b0e2f62b-42e0-48c9-b43c-f94227979358
       css_classes:
         - ''
       html_id: ''
       css_styles: ''
   page_title: 'Build: [node:title]'
-  layout: bcbb_main_sidebar_right
+  layout: bcbb_bricks
   layout_settings: {  }
   builder: standard
   storage_type: page_manager

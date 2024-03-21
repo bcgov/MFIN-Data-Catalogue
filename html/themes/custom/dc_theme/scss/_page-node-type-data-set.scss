@@ -113,6 +113,30 @@
 
   // build page
   .meta-data-record-build {
+
+    // Layout.
+    @include responsive($lg-min) {
+      display: grid;
+      grid-template-columns: 7fr 4fr;
+      grid-template-rows: auto 1fr;
+      column-gap: 6em;
+      grid-template-areas:
+        "main top-right"
+        "main bottom-right";
+      .header-region {
+        grid-area: top-right;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+      }
+      .main-region {
+        grid-area: main;
+      }
+      .footer-region {
+        grid-area: bottom-right;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+      }
+    }
     .main-region {
      > section {
       border-bottom: 1px solid var(--bs-gray-300);

@@ -572,6 +572,28 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   background-position: right 0.15em;
   background-size: 1em 1em;
 }
+@media only screen and (min-width: 992px) {
+  .page-node-type-data-set .meta-data-record-build {
+    display: grid;
+    grid-template-columns: 7fr 4fr;
+    grid-template-rows: auto 1fr;
+    column-gap: 6em;
+    grid-template-areas: "main top-right" "main bottom-right";
+  }
+  .page-node-type-data-set .meta-data-record-build .header-region {
+    grid-area: top-right;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  .page-node-type-data-set .meta-data-record-build .main-region {
+    grid-area: main;
+  }
+  .page-node-type-data-set .meta-data-record-build .footer-region {
+    grid-area: bottom-right;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}
 .page-node-type-data-set .meta-data-record-build .main-region > section {
   border-bottom: 1px solid var(--bs-gray-300);
   padding-bottom: 1.5em;
