@@ -398,6 +398,11 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
       [//td[normalize-space(text()) = :data_set_title]]
       [//a[@href = "/node/2/build"][text() = "Build"]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
+    // View page.
+    $this->drupalGet('node/2');
+    $this->assertSession()->statusCodeEquals(200);
+    // The "High value info" badge does not appear.
+    $this->assertSession()->pageTextNotContains('High value info');
 
     // Admin has access to data_set build page.
     $this->drupalGet('node/2/build');
@@ -495,22 +500,15 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
       'field_security_classification' => $security_classification_term->id(),
     ];
     $this->submitForm($edit, 'Save');
-    // Save Section 5 so that the boolean values are FALSE instead of empty.
+    // Save Section 5 so that the boolean values are not empty.
     $this->click('a[aria-label = "Edit Section 5"]');
-    $this->submitForm([], 'Save');
-    // Check for fields that are boolean and have inline labels.
-    $fields_inline_optional = [
-      'field--name-field-critical-information' => 'Critical information',
-      'field--name-field-authoritative-info' => 'Authoritative info',
+    $edit = [
+      'edit-field-critical-information-value' => '1',
     ];
-    foreach ($fields_inline_optional as $class => $label) {
-      $args = [
-        ':class' => $class,
-        ':label' => $label,
-      ];
-      $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div[text() = "No"]', $args);
-      $this->assertSession()->elementExists('xpath', $xpath);
-    }
+    $this->submitForm($edit, 'Save');
+    // Check for fields that are boolean and have inline labels.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--label-inline")][contains(@class, "field--name-field-authoritative-info")][div[@class = "field__label"][text() = "Authoritative info"]]/div[text() = "No"]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--label-inline")][contains(@class, "field--name-field-critical-information")][div[@class = "field__label"][text() = "Critical information"]]/div[text() = "Yes"]');
     // Check for fields that are optional and normally have labels above.
     // Labels are inline when the field is empty.
     $fields_inline_optional = [
@@ -634,6 +632,8 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $this->drupalGet('node/2');
     $this->assertSession()->elementExists('xpath', '//nav[contains(@class, "tabs")]/ul/li/a[@href = "/node/2/revisions"]');
     $this->assertTrue(\Drupal::service('module_handler')->moduleExists('diff'), 'Module diff should be enabled.');
+    // The "High value info" badge appears.
+    $this->assertSession()->elementExists('xpath', '//*[contains(@class, "text-bg-success")][text() = "High value info"]');
 
     // Publish the data_set.
     $this->drupalGet('node/2/build');

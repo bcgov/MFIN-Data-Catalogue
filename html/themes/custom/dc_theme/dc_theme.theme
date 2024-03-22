@@ -206,6 +206,12 @@ function dc_theme_preprocess_node__data_set__full(array &$variables): void {
   if ($field_published_date === $field_modified_date) {
     unset($variables['node']->field_modified_date);
   }
+
+  // Success badges at top of page.
+  $variables['badge_success'] = [];
+  if ($variables['node']->field_critical_information->value) {
+    $variables['badge_success'][] = t('High value info');
+  }
 }
 
 /**
