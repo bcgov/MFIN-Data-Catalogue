@@ -35,14 +35,14 @@
           <div id="metadata_record_labels">
 
             {{ drupal_block('bc_dc_review_needed_message') }}
-            {% if node.field_personal_information.value == 1 %}
               <div id="dataset_alerts" class="dataset-alerts">
-                <span class="badge text-bg-warning">{{ node.field_personal_information.fieldDefinition.label }}</span>
+                {% if node.field_personal_information.value == 1 %}
+                  <span class="badge text-bg-warning">{{ node.field_personal_information.fieldDefinition.label }}</span>
+                {% endif %}
                 {% if node.field_high_value_info.value %}
                   <span class="badge text-bg-success">{{ node.field_high_value_info.fieldDefinition.label }}</span>
                 {% endif %}
               </div>
-            {% endif %}
 
           </div>
 
