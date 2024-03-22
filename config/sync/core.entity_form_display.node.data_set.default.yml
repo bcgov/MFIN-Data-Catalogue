@@ -24,7 +24,6 @@ dependencies:
     - field.field.node.data_set.field_review_interval
     - field.field.node.data_set.field_review_status
     - field.field.node.data_set.field_security_classification
-    - field.field.node.data_set.field_semi_active_period
     - field.field.node.data_set.field_series
     - field.field.node.data_set.field_source_system
     - field.field.node.data_set.field_special_flags
@@ -358,12 +357,6 @@ content:
   field_security_classification:
     type: options_buttons
     weight: 11
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_semi_active_period:
-    type: field_token_value_default
-    weight: 21
     region: content
     settings: {  }
     third_party_settings: {  }

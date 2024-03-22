@@ -25,7 +25,6 @@ dependencies:
     - field.field.node.data_set.field_review_interval
     - field.field.node.data_set.field_review_status
     - field.field.node.data_set.field_security_classification
-    - field.field.node.data_set.field_semi_active_period
     - field.field.node.data_set.field_series
     - field.field.node.data_set.field_source_system
     - field.field.node.data_set.field_special_flags
@@ -139,7 +138,6 @@ hidden:
   field_related_document: true
   field_review_interval: true
   field_review_status: true
-  field_semi_active_period: true
   field_series: true
   field_special_flags: true
   field_visibility: true
