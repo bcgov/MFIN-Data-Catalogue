@@ -73,7 +73,6 @@
         "drupal/default_content_deploy": "dev-2.0.x#4f1e9c3",
         "drupal/devel_php": "^1.5",
         "drupal/field_permissions": "^1.2",
-        "drupal/field_token_value": "^3.0",
         "drupal/flag": "^4.0",
         "drupal/formatter_suite": "^2.0",
         "drupal/insert_view_adv": "^2.0@alpha",
