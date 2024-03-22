@@ -1283,8 +1283,14 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div/time[text() = :text]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
 
-    // Set node/2 as a data_set used by this data_set.
     $this->click('a[aria-label = "Edit Section 3"]');
+    // Test that self-referencing is not allowed in field_data_sets_used.
+    $edit = [
+      'edit-field-data-sets-used-0-target-id' => 'Title (6)',
+    ];
+    $this->submitForm($edit, 'Save');
+    $this->assertSession()->pageTextContains('This entity (node: 6) cannot be referenced.');
+    // Set node/2 as a data_set used by this data_set.
     $edit = [
       'edit-field-data-sets-used-0-target-id' => 'Title (2)',
       // Add "Personal information" badge.

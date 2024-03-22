@@ -25,4 +25,5 @@ settings:
       direction: ASC
     auto_create: false
     auto_create_bundle: ''
+    allow_self_reference: false
 field_type: entity_reference
