@@ -26,14 +26,12 @@ dependencies:
     - field.field.node.data_set.field_security_classification
     - field.field.node.data_set.field_series
     - field.field.node.data_set.field_source_system
-    - field.field.node.data_set.field_special_flags
     - field.field.node.data_set.field_visibility
     - node.type.data_set
   module:
     - bc_dc
     - datetime
     - entity_reference_revisions
-    - field_token_value
     - formatter_suite
     - options
     - shs
@@ -217,15 +215,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 15
-    region: content
-  field_special_flags:
-    type: field_token_value_text
-    label: inline
-    settings:
-      wrapper: no_tag
-      link: false
-    third_party_settings: {  }
-    weight: 20
     region: content
   flag_bookmark:
     settings: {  }

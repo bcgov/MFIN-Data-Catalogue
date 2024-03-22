@@ -26,7 +26,6 @@ dependencies:
     - field.field.node.data_set.field_security_classification
     - field.field.node.data_set.field_series
     - field.field.node.data_set.field_source_system
-    - field.field.node.data_set.field_special_flags
     - field.field.node.data_set.field_visibility
     - node.type.data_set
     - workflows.workflow.editorial
@@ -34,7 +33,6 @@ dependencies:
     - conditional_fields
     - content_moderation
     - datetime
-    - field_token_value
     - paragraphs
     - shs
     - text
@@ -392,12 +390,6 @@ content:
             effect_options: {  }
             selector: ''
             include_descendants: 1
-  field_special_flags:
-    type: field_token_value_default
-    weight: 23
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_visibility:
     type: options_buttons
     weight: 4
