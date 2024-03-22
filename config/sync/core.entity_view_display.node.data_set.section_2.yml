@@ -13,7 +13,6 @@ dependencies:
     - field.field.node.data_set.field_data_set_historical_change
     - field.field.node.data_set.field_data_set_type
     - field.field.node.data_set.field_data_sets_used
-    - field.field.node.data_set.field_high_value_info
     - field.field.node.data_set.field_information_schedule
     - field.field.node.data_set.field_is_complete_review
     - field.field.node.data_set.field_last_review_date
@@ -157,7 +156,6 @@ hidden:
   field_data_quality_issues: true
   field_data_set_type: true
   field_data_sets_used: true
-  field_high_value_info: true
   field_information_schedule: true
   field_is_complete_review: true
   field_last_review_date: true

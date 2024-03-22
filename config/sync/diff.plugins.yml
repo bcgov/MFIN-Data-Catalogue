@@ -175,11 +175,6 @@ fields:
         show_header: 1
         markdown: drupal_html_to_text
         compare_entity_reference: 1
-    field_high_value_info:
-      type: core_field_diff_builder
-      settings:
-        show_header: 1
-        markdown: drupal_html_to_text
     field_image:
       type: image_field_diff_builder
       settings:

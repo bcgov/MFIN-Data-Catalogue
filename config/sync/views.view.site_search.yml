@@ -10,7 +10,6 @@ dependencies:
     - field.storage.node.field_data_quality_issues
     - field.storage.node.field_data_set_historical_change
     - field.storage.node.field_data_set_type
-    - field.storage.node.field_high_value_info
     - field.storage.node.field_information_schedule
     - field.storage.node.field_modified_date
     - field.storage.node.field_primary_responsibility_org
@@ -1121,83 +1120,6 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-        field_high_value_info:
-          id: field_high_value_info
-          table: search_api_datasource_default_index_entity_node
-          field: field_high_value_info
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          plugin_id: search_api_field
-          label: ''
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: true
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: boolean
-          settings:
-            format: default
-            format_custom_false: ''
-            format_custom_true: ''
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          field_rendering: true
-          fallback_handler: search_api_boolean
-          fallback_options:
-            type: yes-no
-            type_custom_true: ''
-            type_custom_false: ''
-            not: false
-            link_to_item: false
-            use_highlighting: false
-            multi_type: separator
-            multi_separator: ', '
         field_source_system:
           id: field_source_system
           table: search_api_datasource_default_index_entity_node
@@ -1751,9 +1673,6 @@ display:
                   field_authoritative_info:
                     active: true
                     label: authoritative_info
-                  field_high_value_info:
-                    active: true
-                    label: high_value_info
                   field_source_system:
                     active: true
                     label: source_system
@@ -1822,9 +1741,6 @@ display:
                   field_authoritative_info:
                     active: true
                     label: authoritative_info
-                  field_high_value_info:
-                    active: true
-                    label: high_value_info
                   field_source_system:
                     active: true
                     label: source_system
@@ -2125,7 +2041,6 @@ display:
         - 'config:field.storage.node.field_data_quality_issues'
         - 'config:field.storage.node.field_data_set_historical_change'
         - 'config:field.storage.node.field_data_set_type'
-        - 'config:field.storage.node.field_high_value_info'
         - 'config:field.storage.node.field_information_schedule'
         - 'config:field.storage.node.field_modified_date'
         - 'config:field.storage.node.field_primary_responsibility_org'
@@ -2167,7 +2082,6 @@ display:
         - 'config:field.storage.node.field_data_quality_issues'
         - 'config:field.storage.node.field_data_set_historical_change'
         - 'config:field.storage.node.field_data_set_type'
-        - 'config:field.storage.node.field_high_value_info'
         - 'config:field.storage.node.field_information_schedule'
         - 'config:field.storage.node.field_modified_date'
         - 'config:field.storage.node.field_primary_responsibility_org'
