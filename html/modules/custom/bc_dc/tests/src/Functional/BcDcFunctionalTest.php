@@ -421,7 +421,6 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
       'field_data_quality_issues',
       'field_data_set_historical_change',
       'field_data_sets_used',
-      'field_high_value_info',
       'field_source_system',
     ];
     foreach ($fields_to_hide as $field_key) {
@@ -503,7 +502,6 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $fields_inline_optional = [
       'field--name-field-critical-information' => 'Critical information',
       'field--name-field-authoritative-info' => 'Authoritative info',
-      'field--name-field-high-value-info' => 'High value info',
     ];
     foreach ($fields_inline_optional as $class => $label) {
       $args = [

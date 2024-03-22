@@ -39,9 +39,6 @@
                 {% if node.field_personal_information.value == 1 %}
                   <span class="badge text-bg-warning">{{ node.field_personal_information.fieldDefinition.label }}</span>
                 {% endif %}
-                {% if node.field_high_value_info.value %}
-                  <span class="badge text-bg-success">{{ node.field_high_value_info.fieldDefinition.label }}</span>
-                {% endif %}
               </div>
 
           </div>
@@ -170,7 +167,7 @@
               <hr>
             {% endif %}
 
-            {% if node.field_personal_information and not node.field_personal_information.isempty or node.field_security_classification and not node.field_security_classification.isempty or node.field_critical_information and not node.field_critical_information.isempty or node.field_authoritative_info and not node.field_authoritative_info.isempty or node.field_high_value_info and not node.field_high_value_info.isempty %}
+            {% if node.field_personal_information and not node.field_personal_information.isempty or node.field_security_classification and not node.field_security_classification.isempty or node.field_critical_information and not node.field_critical_information.isempty or node.field_authoritative_info and not node.field_authoritative_info.isempty %}
             <section id="dc_data_value" class="mt-3 dc-fields">
               <h2 class="field__label mb-1 fs-5 fw-bold">
                 {{ 'Data value'|t }}
@@ -193,11 +190,6 @@
               {% if node.field_authoritative_info and not node.field_authoritative_info.isempty %}
                 <div class="mb-3">
                   {{ node.field_authoritative_info|view }}
-                </div>
-              {% endif %}
-              {% if node.field_high_value_info and not node.field_high_value_info.isempty %}
-                <div class="mb-3">
-                  {{ node.field_high_value_info|view }}
                 </div>
               {% endif %}
             </section>

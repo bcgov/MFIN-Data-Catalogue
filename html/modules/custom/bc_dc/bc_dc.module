@@ -938,7 +938,6 @@ function bc_dc_data_set_has_field(NodeInterface $node, string $field_key): bool 
     'field_data_quality_issues',
     'field_data_set_historical_change',
     'field_data_sets_used',
-    'field_high_value_info',
     'field_source_system',
   ];
 
