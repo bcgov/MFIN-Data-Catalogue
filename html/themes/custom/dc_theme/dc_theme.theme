@@ -223,10 +223,14 @@ function dc_theme_preprocess_node__data_set_build_page(array &$variables): void 
 }
 
 /**
- * Implements hook_preprocess_HOOK() for page--node--add-columns.html.twig.
+ * Implements hook_preprocess_HOOK() for page.html.twig.
  */
-function dc_theme_preprocess_page__node__add_columns(array &$variables): void {
-  $variables['b5_top_container'] = 'container-fluid';
+function dc_theme_preprocess_page(array &$variables): void {
+  // Display this page using the full width of the window.
+  if (!empty($_SESSION['bc_dc_use_wide_page'])) {
+    $variables['b5_top_container'] = 'container-fluid';
+    unset($_SESSION['bc_dc_use_wide_page']);
+  }
 }
 
 /**

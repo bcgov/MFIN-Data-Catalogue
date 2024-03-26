@@ -438,6 +438,10 @@ class BcDcAddColumnsForm extends FormBase {
           '#value' => $this->t('Import'),
           '#button_type' => 'primary',
         ];
+
+        // Display this page using the full width of the window.
+        $_SESSION['bc_dc_use_wide_page'] = TRUE;
+
         break;
     }
 
