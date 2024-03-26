@@ -648,10 +648,7 @@ class BcDcAddColumnsForm extends FormBase {
     $import_file_contents = $form_state->get('import_file_contents');
 
     // Remove existing paragraph entities.
-    // Get all the current entities.
-    $old_paragraph_entities = $node->field_columns->referencedEntities();
     // Delete the first entity reference as many times as there are items.
-    // The entities themselves will be deleted later after the node is saved.
     $count_of_paragraph_entities = $node->field_columns->count();
     for ($counter = 0; $counter < $count_of_paragraph_entities; $counter++) {
       $node->field_columns->removeItem(0);
@@ -678,11 +675,6 @@ class BcDcAddColumnsForm extends FormBase {
       $paragraph->save();
     }
     $node->save();
-
-    // Delete the old entities.
-    foreach ($old_paragraph_entities as $entity) {
-      $entity->delete();
-    }
 
     // Set success message.
     $context = [
