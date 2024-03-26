@@ -56,21 +56,15 @@ class BcDcCreateFileController extends ControllerBase {
   }
 
   /**
-   * Generate the download file and serves it to the browser.
+   * Generate the contents of the download file.
    *
    * @param \Drupal\node\NodeInterface $node
    *   The node.
-   * @param string $format
-   *   The format of the file to serve.
    *
-   * @return Symfony\Component\HttpFoundation\BinaryFileResponse
-   *   The file to download.
+   * @return array[]
+   *   The file contents.
    */
-  public function createFile(NodeInterface $node, string $format): BinaryFileResponse {
-    // Not Found if $format is not a supported file extension.
-    if (!in_array($format, static::SUPPORTED_EXTENSIONS, TRUE)) {
-      throw new NotFoundHttpException();
-    }
+  public function createFileContents(NodeInterface $node): array {
     $fields = BcDcAddColumnsForm::getDataSetFields();
     $results = [$fields];
     $paragraph_field_items = $node->get('field_columns')->referencedEntities();
@@ -96,6 +90,27 @@ class BcDcCreateFileController extends ControllerBase {
       }
       $results[] = $rows;
     }
+    return $results;
+  }
+
+  /**
+   * Generate the download file and serves it to the browser.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The node.
+   * @param string $format
+   *   The format of the file to serve.
+   *
+   * @return Symfony\Component\HttpFoundation\BinaryFileResponse
+   *   The file to download.
+   */
+  public function createFile(NodeInterface $node, string $format): BinaryFileResponse {
+    // Not Found if $format is not a supported file extension.
+    if (!in_array($format, static::SUPPORTED_EXTENSIONS, TRUE)) {
+      throw new NotFoundHttpException();
+    }
+
+    $results = $this->createFileContents($node);
 
     // Make a filename like "node-file-path_ID_12.csv".
     $node_path = $this->pathAliasManager->getAliasByPath('/node/' . $node->id());
