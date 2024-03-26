@@ -1,0 +1,48 @@
+name: Deploy to Test on workflow dispatch
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'The Container tag to deploy, usually the latest tagged version.'
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Checkout Tenant GitOps Repo
+      uses: actions/checkout@v3
+      with:
+        repository: bcgov-c/tenant-gitops-ea352d
+        path: tenant-gitops
+        ssh-key: ${{ secrets.SSH_KEY }}
+        persist-credentials: true
+
+    - name: Update Argo CD
+      uses: mikefarah/yq@v4.34.1
+      env:
+        GITHUB_REFERENCE: ${{ github.event.inputs.tag }}
+      with:
+        cmd: |
+          yq -i '.drupal.tag = strenv(GITHUB_REFERENCE) |
+                 .nginx.tag = strenv(GITHUB_REFERENCE) ' tenant-gitops/helm-drupal/charts/drupal/values-mfin-data-catalogue-test.yaml
+
+    - name: Commit files
+      env:
+        GITHUB_REFERENCE: ${{ github.event.inputs.tag }}
+      run: |
+        cd tenant-gitops
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git commit -a -m "feat(helm): Update container images to ${{ env.GITHUB_REFERENCE }}"
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        ssh: true
+        branch: main
+        directory: tenant-gitops
+        repository: bcgov-c/tenant-gitops-ea352d
