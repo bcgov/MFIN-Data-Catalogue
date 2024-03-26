@@ -5,6 +5,7 @@ namespace Drupal\bc_dc\Controller;
 use Drupal\bc_dc\Form\BcDcAddColumnsForm;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Entity\EntityRepositoryInterface;
+use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\node\NodeInterface;
 use Drupal\path_alias\AliasManagerInterface;
@@ -78,7 +79,19 @@ class BcDcCreateFileController extends ControllerBase {
       $paragraph = $this->entityRepository->getTranslationFromContext($paragraph);
       $rows = [];
       foreach ($fields as $field) {
-        $row = $paragraph->get('field_' . $field)->value;
+        // For entity reference fields, use the labels ofthe referenced
+        // entities. Otherwise, use the value.
+        $row = $paragraph->get('field_' . $field);
+        if ($row instanceof EntityReferenceFieldItemListInterface) {
+          $labels = [];
+          foreach ($row->referencedEntities() as $referenced_entity) {
+            $labels[] = $referenced_entity->label();
+          }
+          $row = implode(', ', $labels);
+        }
+        else {
+          $row = $row->value;
+        }
         $rows[] = $row;
       }
       $results[] = $rows;

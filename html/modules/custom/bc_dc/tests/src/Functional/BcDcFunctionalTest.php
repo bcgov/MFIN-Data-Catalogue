@@ -788,9 +788,9 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Test value import files.
     $file_types_to_test = [
       'csv',
-      'tsv',
       'ods',
       'xlsx',
+      'tsv',
     ];
     foreach ($file_types_to_test as $file_extension) {
       $this->drupalGet('node/2/add-columns', ['query' => ['destination' => '/node/2/build']]);
@@ -838,6 +838,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // been uploaded.
     $this->drupalGet('node/2/download/columns/csv');
     $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->responseContains('Integer');
     $this->assertSession()->responseContains('Name');
     // Anonymous has access to download xlsx for Metadata record when file has
     // been uploaded.
