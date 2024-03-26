@@ -818,6 +818,11 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertStringContainsString('Added 1 data columns from imported file.', $text);
     // Count of columns.
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--name-field-columns")]/div/div[text() = "1"]');
+    // Publish the new columns.
+    $edit = [
+      'major_edit' => '0',
+    ];
+    $this->submitForm($edit, 'Publish');
 
     // Anonymous has no access to data_set build page.
     $this->drupalLogout();

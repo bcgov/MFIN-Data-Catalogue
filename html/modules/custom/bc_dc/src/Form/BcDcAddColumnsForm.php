@@ -641,8 +641,21 @@ class BcDcAddColumnsForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state): void {
-    $node = $this->entityTypeManager->getStorage('node')->load($form_state->get('nid'));
+    $node_storage = $this->entityTypeManager->getStorage('node');
     $paragraph_storage = $this->entityTypeManager->getStorage('paragraph');
+
+    // The columns need to be added to the latest revision.
+    // Load the most recent revision.
+    $latestRevisionId = $node_storage->getLatestRevisionId($form_state->get('nid'));
+    $node = $node_storage->loadRevision($latestRevisionId);
+    // If this revision is published, create a new draft.
+    if ($node->isPublished()) {
+      $node->setNewRevision();
+      $node->setUnpublished();
+      $node->set('moderation_state', 'draft');
+      $node->setRevisionCreationTime(REQUEST_TIME);
+      $node->setRevisionUserId($this->currentUser()->id());
+    }
 
     $import_file_header = $form_state->get('import_file_header');
     $import_file_contents = $form_state->get('import_file_contents');
