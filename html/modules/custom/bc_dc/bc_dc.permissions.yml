@@ -1,3 +1,7 @@
+'administer data catalogue':
+  title: 'Administer data catalogue'
+  description: 'Administer the BC Data Catalogue Module.'
+
 'archive data_set nodes':
   title: 'Unpublish metadata records'
 'delete any never_published data_set in_org':

@@ -27,7 +27,7 @@ bc_dc.settings:
     _title: 'Administer the BC Data Catalogue Module'
     _form: '\Drupal\bc_dc\Form\BcDcSettingsForm'
   requirements:
-    _permission: 'administer site configuration'
+    _permission: 'administer data catalogue'
 
 bc_dc.data_set_edit_add_columns:
   path: '/node/{node}/add-columns'

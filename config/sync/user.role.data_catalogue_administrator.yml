@@ -68,6 +68,7 @@ permissions:
   - 'add content to books'
   - 'administer book outlines'
   - 'administer content types'
+  - 'administer data catalogue'
   - 'administer menu'
   - 'administer node fields'
   - 'administer nodes'
