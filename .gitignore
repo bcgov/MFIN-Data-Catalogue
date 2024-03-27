@@ -1,4 +1,7 @@
 html/*
+!html/libraries/
+html/libraries/*
+!html/libraries/billboard/
 !html/modules/
 html/modules/*
 !html/modules/custom/
