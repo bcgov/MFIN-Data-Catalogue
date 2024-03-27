@@ -22,7 +22,7 @@ dependencies:
   - drupal:datetime
   - drupal:field
   - drupal:filter
-  - drupal:charts_google
+  - drupal:charts_billboard
   - drupal:jsonapi
   - drupal:layout_builder
   - drupal:layout_discovery
