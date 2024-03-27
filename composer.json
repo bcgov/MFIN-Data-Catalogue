@@ -24,6 +24,24 @@
         {
             "type": "package",
             "package": {
+                "name": "d3/d3",
+                "version": "7.8.5",
+                "type": "drupal-library",
+                "extra": {
+                    "installer-name": "d3"
+                },
+                "dist": {
+                    "url": "https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js",
+                    "type": "file"
+                },
+                "require": {
+                    "composer/installers": "^1.0 || ^2.0"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
                 "name": "google/charts",
                 "version": "45",
                 "type": "drupal-library",
@@ -60,6 +78,7 @@
         "bcgov/bcbb": "1.0.x@dev",
         "bcgov/bcbb_theme": "1.0.x@dev",
         "composer/installers": "^2.2",
+        "d3/d3": "^7.8",
         "drupal/auto_username": "^1.5",
         "drupal/better_normalizers": "^2.0@beta",
         "drupal/cancel_button": "^1.4",
@@ -151,7 +170,8 @@
                 "type:drupal-core"
             ],
             "html/libraries/{$name}": [
-                "type:drupal-library"
+                "type:drupal-library",
+                "type:npm-asset"
             ],
             "html/modules/contrib/{$name}": [
                 "type:drupal-module"
@@ -175,6 +195,9 @@
                 "type:drupal-custom-theme"
             ]
         },
+        "installer-types": [
+            "npm-asset"
+        ],
         "composer-exit-on-patch-failure": true,
         "merge-plugin": {
             "include": [
