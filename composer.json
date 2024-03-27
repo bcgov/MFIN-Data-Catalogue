@@ -59,7 +59,7 @@
     "require": {
         "bcgov/bcbb": "1.0.x@dev",
         "bcgov/bcbb_theme": "1.0.x@dev",
-        "composer/installers": "^2.0",
+        "composer/installers": "^2.2",
         "drupal/auto_username": "^1.5",
         "drupal/better_normalizers": "^2.0@beta",
         "drupal/cancel_button": "^1.4",
