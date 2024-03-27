@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5dd4671c4663bdbef0ad1a092859b8e2",
+    "content-hash": "ee15c1879e67e90f81c0d5b2149635ab",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6274,17 +6274,17 @@
         },
         {
             "name": "drupal/shs",
-            "version": "2.0.0-rc11",
+            "version": "2.0.0-rc10",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/shs.git",
-                "reference": "2.0.0-rc11"
+                "reference": "2.0.0-rc10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/shs-2.0.0-rc11.zip",
-                "reference": "2.0.0-rc11",
-                "shasum": "b9a685ad99ab08446e765a9b08b2bec9f0cc6353"
+                "url": "https://ftp.drupal.org/files/projects/shs-2.0.0-rc10.zip",
+                "reference": "2.0.0-rc10",
+                "shasum": "60af23d0091d845a2e8ed9b5d75d50a1b1063b06"
             },
             "require": {
                 "drupal/core": "^9 || ^10"
@@ -6295,8 +6295,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.0.0-rc11",
-                    "datestamp": "1711424677",
+                    "version": "2.0.0-rc10",
+                    "datestamp": "1711423961",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "RC releases are not covered by Drupal security advisories."
@@ -19330,7 +19330,6 @@
         "drupal/default_content_deploy": 20,
         "drupal/insert_view_adv": 15,
         "drupal/paragraphs_features": 10,
-        "drupal/shs": 5,
         "drupal/views_field_view": 10
     },
     "prefer-stable": true,
