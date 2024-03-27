@@ -60,6 +60,7 @@
         "bcgov/bcbb": "1.0.x@dev",
         "bcgov/bcbb_theme": "1.0.x@dev",
         "composer/installers": "^2.2",
+        "d3/d3": "^7.8",
         "drupal/auto_username": "^1.5",
         "drupal/better_normalizers": "^2.0@beta",
         "drupal/cancel_button": "^1.4",
@@ -151,7 +152,8 @@
                 "type:drupal-core"
             ],
             "html/libraries/{$name}": [
-                "type:drupal-library"
+                "type:drupal-library",
+                "type:npm-asset"
             ],
             "html/modules/contrib/{$name}": [
                 "type:drupal-module"
@@ -175,9 +177,13 @@
                 "type:drupal-custom-theme"
             ]
         },
+        "installer-types": [
+            "npm-asset"
+        ],
         "composer-exit-on-patch-failure": true,
         "merge-plugin": {
             "include": [
+                "html/modules/contrib/charts/modules/charts_billboard/composer.json",
                 "html/modules/contrib/ckeditor_codemirror/composer.libraries.json",
                 "html/modules/contrib/clipboardjs/composer.libraries.json"
             ]

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4e4e0f656897cf8715718e80cc440dc9",
+    "content-hash": "af21c076a3203eae30870205686c53dc",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -185,6 +185,18 @@
                 "issues": "https://github.com/bcgov/bcbb-theme/issues"
             },
             "time": "2024-03-21T21:16:02+00:00"
+        },
+        {
+            "name": "billboardjs/billboard",
+            "version": "3.10.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/naver/billboard.js/archive/3.10.3.zip"
+            },
+            "type": "drupal-library",
+            "extra": {
+                "installer-name": "billboard"
+            }
         },
         {
             "name": "caxy/php-htmldiff",
@@ -1126,6 +1138,21 @@
                 "source": "https://github.com/cweagans/composer-patches/tree/1.7.3"
             },
             "time": "2022-12-20T22:53:13+00:00"
+        },
+        {
+            "name": "d3/d3",
+            "version": "7.8.5",
+            "dist": {
+                "type": "file",
+                "url": "https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "drupal-library",
+            "extra": {
+                "installer-name": "d3"
+            }
         },
         {
             "name": "dekor/php-array-table",
