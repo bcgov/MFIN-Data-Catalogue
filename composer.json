@@ -57,24 +57,6 @@
         {
             "type": "package",
             "package": {
-                "name": "google/charts",
-                "version": "45",
-                "type": "drupal-library",
-                "extra": {
-                    "installer-name": "google_charts"
-                },
-                "dist": {
-                    "url": "https://www.gstatic.com/charts/loader.js",
-                    "type": "file"
-                },
-                "require": {
-                    "composer/installers": "^1.0 || ^2.0"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
                 "name": "tabby/tabby",
                 "version": "12.0.3",
                 "type": "drupal-library",
@@ -128,7 +110,6 @@
         "drupal/views_argument_token": "^2.0",
         "drupal/views_field_view": "^1.0@beta",
         "drupal/webform_content_creator": "^4.0",
-        "google/charts": "^45",
         "oomphinc/composer-installers-extender": "^2.0",
         "phpoffice/phpspreadsheet": "^1.29",
         "tabby/tabby": "^12.0",

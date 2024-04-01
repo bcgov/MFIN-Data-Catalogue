@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "667fdb96c121ac633163fc5239aab7b5",
+    "content-hash": "f2171f3a9566cc036182196191705832",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -8415,21 +8415,6 @@
                 "source": "https://github.com/ezyang/htmlpurifier/tree/v4.17.0"
             },
             "time": "2023-11-17T15:01:25+00:00"
-        },
-        {
-            "name": "google/charts",
-            "version": "45",
-            "dist": {
-                "type": "file",
-                "url": "https://www.gstatic.com/charts/loader.js"
-            },
-            "require": {
-                "composer/installers": "^1.0 || ^2.0"
-            },
-            "type": "drupal-library",
-            "extra": {
-                "installer-name": "google_charts"
-            }
         },
         {
             "name": "graham-campbell/result-type",
