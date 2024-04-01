@@ -46,6 +46,7 @@ weight: 4
 is_admin: null
 permissions:
   - 'access administration pages'
+  - 'access data catalogue docs'
   - 'access help pages'
   - 'access media overview'
   - 'access printer-friendly version'

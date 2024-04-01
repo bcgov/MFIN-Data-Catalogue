@@ -21,6 +21,7 @@ label: 'Data catalogue API user'
 weight: 5
 is_admin: null
 permissions:
+  - 'access data catalogue docs'
   - 'access printer-friendly version'
   - 'access site reports'
   - 'access user manage'

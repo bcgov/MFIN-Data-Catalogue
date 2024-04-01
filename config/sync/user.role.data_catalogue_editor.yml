@@ -20,6 +20,7 @@ label: 'Data catalogue editor'
 weight: 6
 is_admin: null
 permissions:
+  - 'access data catalogue docs'
   - 'access printer-friendly version'
   - 'access user manage'
   - 'create data_set content'

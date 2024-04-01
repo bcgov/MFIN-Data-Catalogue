@@ -5,6 +5,7 @@ dependencies:
   config:
     - node.type.data_set
   module:
+    - bc_dc
     - book
     - field_permissions
     - flag
@@ -15,6 +16,7 @@ label: 'Data catalogue user'
 weight: 7
 is_admin: null
 permissions:
+  - 'access data catalogue docs'
   - 'access printer-friendly version'
   - 'create field_organization'
   - 'flag bookmark'

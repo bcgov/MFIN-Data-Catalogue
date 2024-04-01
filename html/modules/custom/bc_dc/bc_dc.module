@@ -253,6 +253,11 @@ function bc_dc_node_access(NodeInterface $entity, string $operation, AccountInte
     return AccessResult::allowed();
   }
 
+  // Deny access to `book` by permission.
+  if ($entity->bundle() === 'book') {
+    return AccessResult::forbiddenIf(!$account->hasPermission('access data catalogue docs'), 'User does not have permission to access book content.');
+  }
+
   return AccessResult::neutral();
 }
 

@@ -1593,6 +1593,10 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // $this->drupalGet('user/1/saved-searches');
     // $this->assertSession()->statusCodeEquals(200);
     //
+    // Access by authenticated user to documentation.
+    $this->drupalGet('documentation');
+    $this->assertSession()->statusCodeEquals(200);
+
     // Anonymous.
     $this->drupalLogout();
     // No access to bookmarks page.
@@ -1600,6 +1604,9 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->statusCodeEquals(404);
     // No access to saved searches page.
     $this->drupalGet('user/1/saved-searches');
+    $this->assertSession()->statusCodeEquals(404);
+    // No access to documentation.
+    $this->drupalGet('documentation');
     $this->assertSession()->statusCodeEquals(404);
   }
 
