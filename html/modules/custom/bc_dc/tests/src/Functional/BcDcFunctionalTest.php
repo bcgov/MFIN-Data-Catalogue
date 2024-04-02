@@ -420,7 +420,6 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $this->assertSession()->elementNotExists('xpath', '//a[@href = "/node/2/outline"]');
     // Test for fields that should only appear on "Data" data_set nodes.
     $fields_to_hide = [
-      'field_authoritative_info',
       'field_columns',
       'field_critical_information',
       'field_data_quality_issues',
@@ -507,7 +506,6 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     ];
     $this->submitForm($edit, 'Save');
     // Check for fields that are boolean and have inline labels.
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--label-inline")][contains(@class, "field--name-field-authoritative-info")][div[@class = "field__label"][text() = "Authoritative info"]]/div[text() = "No"]');
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--label-inline")][contains(@class, "field--name-field-critical-information")][div[@class = "field__label"][text() = "Critical information"]]/div[text() = "Yes"]');
     // Check for fields that are optional and normally have labels above.
     // Labels are inline when the field is empty.
