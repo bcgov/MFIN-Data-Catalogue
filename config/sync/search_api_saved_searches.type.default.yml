@@ -15,30 +15,22 @@ notification_settings:
     activate:
       send: true
       title: 'Activate your saved search at [site:name]'
-      body: |
-        [user:display-name],
-
-        A saved search on [site:name] with this e-mail address was created.
-        To activate this saved search, click the following link:
-
-        [search-api-saved-search:activate-url]
-
-        If you didn't create this saved search, just ignore this mail and the saved search will be deleted.
-
-        Further links for managing your saved search:
-        - View: [search-api-saved-search:view-url]
-        - Edit: [search-api-saved-search:edit-url]
-        - Delete: [search-api-saved-search:delete-url]
-
-        --  [site:name] team
+      body: "[user:display-name],\r\n\r\nA saved search on [site:name] with this e-mail address was created.\r\nTo activate this saved search, click the following link:\r\n\r\n[search-api-saved-search:activate-url]\r\n\r\nIf you didn't create this saved search, just ignore this mail and the saved search will be deleted.\r\n\r\nFurther links for managing your saved search:\r\n- View: [search-api-saved-search:view-url]\r\n- Edit: [search-api-saved-search:edit-url]\r\n- Delete: [search-api-saved-search:delete-url]\r\n\r\n--  [site:name] team\r\n"
     notification:
       title: 'New results for your saved search at [site:name]'
-      body: |
-        [user:display-name],
-
-        There are new results for your saved search "[search-api-saved-search:label]":
-
-        [search-api-saved-search-results:links]
-
-        --  [site:name] team
-options: {  }
+      body: "[user:display-name],\r\n\r\nThere are new results for your saved search \"[search-api-saved-search:label]\":\r\n\r\n[search-api-saved-search-results:links]\r\n\r\n--  [site:name] team\r\n"
+options:
+  displays:
+    default: true
+    selected: {  }
+  date_field:
+    default_index: ''
+  description: ''
+  notify_interval:
+    customizable: true
+    default_value: 86400
+    options:
+      3600: Hourly
+      86400: Daily
+      604800: Weekly
+      -1: Never
