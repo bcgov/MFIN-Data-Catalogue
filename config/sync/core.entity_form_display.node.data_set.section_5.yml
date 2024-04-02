@@ -58,16 +58,9 @@ targetEntityType: node
 bundle: data_set
 mode: section_5
 content:
-  field_authoritative_info:
-    type: boolean_checkbox
-    weight: 14
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
   field_critical_information:
     type: boolean_checkbox
-    weight: 15
+    weight: 1
     region: content
     settings:
       display_label: true
@@ -86,6 +79,7 @@ hidden:
   body: true
   created: true
   field_asset_location: true
+  field_authoritative_info: true
   field_columns: true
   field_data_quality_issues: true
   field_data_set_historical_change: true

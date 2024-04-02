@@ -60,16 +60,6 @@ content:
     third_party_settings: {  }
     weight: 5
     region: content
-  field_authoritative_info:
-    type: boolean
-    label: inline
-    settings:
-      format: yes-no
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    weight: 13
-    region: content
   field_columns:
     type: entity_reference_revisions_entity_view
     label: hidden
@@ -216,6 +206,7 @@ content:
     weight: 1
     region: content
 hidden:
+  field_authoritative_info: true
   field_is_complete_review: true
   field_last_review_date: true
   field_review_interval: true

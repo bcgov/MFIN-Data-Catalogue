@@ -40,16 +40,6 @@ targetEntityType: node
 bundle: data_set
 mode: section_5
 content:
-  field_authoritative_info:
-    type: boolean
-    label: inline
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    weight: 0
-    region: content
   field_critical_information:
     type: boolean
     label: inline
@@ -64,6 +54,7 @@ hidden:
   body: true
   content_moderation_control: true
   field_asset_location: true
+  field_authoritative_info: true
   field_columns: true
   field_data_quality_issues: true
   field_data_set_historical_change: true
