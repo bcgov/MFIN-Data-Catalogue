@@ -28,7 +28,7 @@ options:
   description: ''
   notify_interval:
     customizable: false
-    default_value: 86400
+    default_value: -1
     options:
       3600: Hourly
       86400: Daily
