@@ -24,7 +24,6 @@ dependencies:
   - drupal:field
   - drupal:filter
   - drupal:charts_billboard
-  - drupal:charts_google
   - drupal:jsonapi
   - drupal:layout_builder
   - drupal:layout_discovery
