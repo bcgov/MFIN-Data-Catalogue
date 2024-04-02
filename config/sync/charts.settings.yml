@@ -1,7 +1,7 @@
 _core:
   default_config_hash: wZ5T1cqvSG3zUPxdtz_BgdBiNjgy1K1Al-L3iT7sPh8
 charts_default_settings:
-  library: google
+  library: billboard
   type: gauge
   display:
     title: ''
@@ -66,12 +66,11 @@ charts_default_settings:
     suffix: ''
     decimal_count: ''
     labels_rotation: '0'
-  library_config:
-    use_material_design: false
+  library_config: {  }
 advanced:
   debug: false
   requirements:
     cdn: false
 dependencies:
   module:
-    - charts_google
+    - charts_billboard
