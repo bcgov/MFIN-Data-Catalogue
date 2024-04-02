@@ -3,11 +3,27 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.node.field_data_set_type
+    - field.storage.node.field_modified_date
+    - field.storage.node.field_primary_responsibility_org
+    - field.storage.node.field_published_date
+    - field.storage.node.field_series
+    - field.storage.node.field_source_system
     - node.type.data_set
+    - taxonomy.vocabulary.data_set_series
+    - taxonomy.vocabulary.data_set_type
+    - taxonomy.vocabulary.data_system
+    - taxonomy.vocabulary.organization
     - user.role.authenticated
   module:
+    - csv_serialization
+    - datetime
     - node
+    - rest
+    - serialization
+    - taxonomy
     - user
+    - views_data_export
 id: bc_dc_report_builder
 label: 'Report builder'
 module: views
@@ -61,6 +77,386 @@ display:
           type: string
           settings:
             link_to_entity: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_primary_responsibility_org:
+          id: field_primary_responsibility_org
+          table: node__field_primary_responsibility_org
+          field: field_primary_responsibility_org
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'Office of primary responsibility'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_series:
+          id: field_series
+          table: node__field_series
+          field: field_series
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: Series
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_source_system:
+          id: field_source_system
+          table: node__field_source_system
+          field: field_source_system
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'Source system'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_data_set_type:
+          id: field_data_set_type
+          table: node__field_data_set_type
+          field: field_data_set_type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'Record type'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_published_date:
+          id: field_published_date
+          table: node__field_published_date
+          field: field_published_date
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'Published date'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: datetime_default
+          settings:
+            timezone_override: ''
+            format_type: html_date
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_modified_date:
+          id: field_modified_date
+          table: node__field_modified_date
+          field: field_modified_date
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'Modified date'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: datetime_default
+          settings:
+            timezone_override: ''
+            format_type: html_date
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -196,6 +592,332 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        field_primary_responsibility_org_target_id:
+          id: field_primary_responsibility_org_target_id
+          table: node__field_primary_responsibility_org
+          field: field_primary_responsibility_org_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_primary_responsibility_org_target_id_op
+            label: OPR
+            description: ''
+            use_operator: false
+            operator: field_primary_responsibility_org_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_primary_responsibility_org_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              data_catalogue_administrator: '0'
+              data_catalogue_manager: '0'
+              data_catalogue_api_user: '0'
+              data_catalogue_editor: '0'
+              data_catalogue_user: '0'
+              data_catalogue_information_management_specialist: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: organization
+          type: shs
+          hierarchy: false
+          limit: true
+          error_message: true
+        field_series_target_id:
+          id: field_series_target_id
+          table: node__field_series
+          field: field_series_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_series_target_id_op
+            label: Series
+            description: ''
+            use_operator: false
+            operator: field_series_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_series_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              data_catalogue_administrator: '0'
+              data_catalogue_manager: '0'
+              data_catalogue_api_user: '0'
+              data_catalogue_editor: '0'
+              data_catalogue_user: '0'
+              data_catalogue_information_management_specialist: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: data_set_series
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
+        field_source_system_target_id:
+          id: field_source_system_target_id
+          table: node__field_source_system
+          field: field_source_system_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_source_system_target_id_op
+            label: 'Source system'
+            description: ''
+            use_operator: false
+            operator: field_source_system_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_source_system_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              data_catalogue_administrator: '0'
+              data_catalogue_manager: '0'
+              data_catalogue_api_user: '0'
+              data_catalogue_editor: '0'
+              data_catalogue_user: '0'
+              data_catalogue_information_management_specialist: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: data_system
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
+        field_data_set_type_target_id:
+          id: field_data_set_type_target_id
+          table: node__field_data_set_type
+          field: field_data_set_type_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_data_set_type_target_id_op
+            label: 'Record type'
+            description: ''
+            use_operator: false
+            operator: field_data_set_type_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_data_set_type_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              data_catalogue_administrator: '0'
+              data_catalogue_manager: '0'
+              data_catalogue_api_user: '0'
+              data_catalogue_editor: '0'
+              data_catalogue_user: '0'
+              data_catalogue_information_management_specialist: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: data_set_type
+          type: shs
+          hierarchy: false
+          limit: true
+          error_message: true
+        field_published_date_value:
+          id: field_published_date_value
+          table: node__field_published_date
+          field: field_published_date_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: datetime
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+            type: date
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_published_date_value_op
+            label: 'Published date'
+            description: ''
+            use_operator: true
+            operator: field_published_date_value_op
+            operator_limit_selection: true
+            operator_list:
+              '<': '<'
+              '=': '='
+              '>': '>'
+              between: between
+            identifier: field_published_date_value
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              data_catalogue_administrator: '0'
+              data_catalogue_manager: '0'
+              data_catalogue_api_user: '0'
+              data_catalogue_editor: '0'
+              data_catalogue_user: '0'
+              data_catalogue_information_management_specialist: '0'
+            min_placeholder: ''
+            max_placeholder: ''
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_modified_date_value:
+          id: field_modified_date_value
+          table: node__field_modified_date
+          field: field_modified_date_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: datetime
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+            type: date
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_modified_date_value_op
+            label: 'Modified date (field_modified_date)'
+            description: ''
+            use_operator: true
+            operator: field_modified_date_value_op
+            operator_limit_selection: true
+            operator_list:
+              '<': '<'
+              '=': '='
+              '>': '>'
+              between: between
+            identifier: field_modified_date_value
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              data_catalogue_administrator: '0'
+              data_catalogue_manager: '0'
+              data_catalogue_api_user: '0'
+              data_catalogue_editor: '0'
+              data_catalogue_user: '0'
+              data_catalogue_information_management_specialist: '0'
+            min_placeholder: ''
+            max_placeholder: ''
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
       style:
         type: table
       row:
@@ -221,7 +943,60 @@ display:
         - url.query_args
         - 'user.node_grants:view'
         - user.roles
-      tags: {  }
+      tags:
+        - 'config:field.storage.node.field_data_set_type'
+        - 'config:field.storage.node.field_modified_date'
+        - 'config:field.storage.node.field_primary_responsibility_org'
+        - 'config:field.storage.node.field_published_date'
+        - 'config:field.storage.node.field_series'
+        - 'config:field.storage.node.field_source_system'
+  data_export_1:
+    id: data_export_1
+    display_title: 'Data export'
+    display_plugin: data_export
+    position: 2
+    display_options:
+      style:
+        type: data_export
+        options:
+          formats:
+            csv: csv
+          csv_settings:
+            delimiter: ','
+            enclosure: '"'
+            escape_char: \
+            strip_tags: true
+            trim: true
+            encoding: utf8
+            utf8_bom: '0'
+            use_serializer_encode_only: false
+      display_extenders: {  }
+      path: user/%user/reports/report-builder/export
+      displays:
+        page_1: page_1
+        default: '0'
+      filename: report-builder.csv
+      automatic_download: true
+      store_in_public_file_directory: false
+      custom_redirect_path: false
+      redirect_to_display: none
+      include_query_params: false
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - request_format
+        - url
+        - 'user.node_grants:view'
+        - user.roles
+      tags:
+        - 'config:field.storage.node.field_data_set_type'
+        - 'config:field.storage.node.field_modified_date'
+        - 'config:field.storage.node.field_primary_responsibility_org'
+        - 'config:field.storage.node.field_published_date'
+        - 'config:field.storage.node.field_series'
+        - 'config:field.storage.node.field_source_system'
   page_1:
     id: page_1
     display_title: Page
@@ -239,4 +1014,10 @@ display:
         - url.query_args
         - 'user.node_grants:view'
         - user.roles
-      tags: {  }
+      tags:
+        - 'config:field.storage.node.field_data_set_type'
+        - 'config:field.storage.node.field_modified_date'
+        - 'config:field.storage.node.field_primary_responsibility_org'
+        - 'config:field.storage.node.field_published_date'
+        - 'config:field.storage.node.field_series'
+        - 'config:field.storage.node.field_source_system'
