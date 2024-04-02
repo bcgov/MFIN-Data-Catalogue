@@ -41,6 +41,7 @@ dependencies:
   - environment_indicator:environment_indicator
   - field_group:field_group
   - field_permissions:field_permissions
+  - field_token_value:field_token_value
   - flag:flag
   - form_mode_control:form_mode_control
   - formatter_suite:formatter_suite
