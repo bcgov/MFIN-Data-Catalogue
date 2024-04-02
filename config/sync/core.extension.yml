@@ -18,6 +18,7 @@ module:
   breakpoint: 0
   cancel_button: 0
   charts: 0
+  charts_billboard: 0
   charts_google: 0
   ckeditor5: 0
   ckeditor5_fullscreen: 0
