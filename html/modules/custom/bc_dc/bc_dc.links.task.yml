@@ -29,6 +29,11 @@ bc_dc.user_dependency_report_tab:
   parent_id: bc_dc.user_reports_tab
   title: 'Dependency report'
 
+bc_dc.report_builder_tab:
+  route_name: view.bc_dc_report_builder.page_1
+  parent_id: bc_dc.user_reports_tab
+  title: 'Report builder'
+
 bc_dc.user_manage_tab:
   route_name: bc_dc.user_manage_tab
   base_route: entity.user.canonical
