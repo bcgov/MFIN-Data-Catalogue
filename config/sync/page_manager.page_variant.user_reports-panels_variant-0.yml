@@ -50,20 +50,6 @@ variant_settings:
         - card
       html_id: ''
       css_styles: ''
-    7864eb70-10dc-445d-9244-88912633eb04:
-      id: bc_dc_authoritative_records
-      label: 'Authoritative records'
-      label_display: '0'
-      provider: bc_dc
-      context_mapping:
-        user: '@user.current_user_context:current_user'
-      region: card_group
-      weight: -1
-      uuid: 7864eb70-10dc-445d-9244-88912633eb04
-      css_classes:
-        - card
-      html_id: ''
-      css_styles: ''
     91bf8673-08b2-42f5-ba54-c853a9b1d486:
       id: bc_dc_critical_records
       label: 'Critical records'
