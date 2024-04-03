@@ -10,7 +10,7 @@ field_name: field_data_sets_used
 entity_type: node
 bundle: data_set
 label: 'Assets used'
-description: 'Select other data, forms, or reports used in creating this item.'
+description: 'Start typing the name of the data, form, or report used in this item. Only assets that currently exist in the Data Catalogue are available.'
 required: false
 translatable: false
 default_value: {  }
