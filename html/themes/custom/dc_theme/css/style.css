@@ -508,6 +508,10 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   margin-top: 3em;
 }
 
+.dc-badge-high-value {
+  background-color: #003366;
+}
+
 .page-node-type-data-set {
   /* On Metadata record column edit pages, make the summary take the full width.*/
 }

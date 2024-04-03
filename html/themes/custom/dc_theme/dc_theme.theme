@@ -207,10 +207,10 @@ function dc_theme_preprocess_node__data_set__full(array &$variables): void {
     unset($variables['node']->field_modified_date);
   }
 
-  // Success badges at top of page.
-  $variables['badge_success'] = [];
+  // "High value" badges at top of page.
+  $variables['badge_high_value'] = [];
   if ($variables['node']->field_critical_information->value) {
-    $variables['badge_success'][] = t('High value info');
+    $variables['badge_high_value'][] = t('High value info');
   }
 }
 
