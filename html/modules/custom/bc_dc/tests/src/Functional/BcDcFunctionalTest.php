@@ -631,7 +631,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $this->assertSession()->elementExists('xpath', '//nav[contains(@class, "tabs")]/ul/li/a[@href = "/node/2/revisions"]');
     $this->assertTrue(\Drupal::service('module_handler')->moduleExists('diff'), 'Module diff should be enabled.');
     // The "High value info" badge appears.
-    $this->assertSession()->elementExists('xpath', '//*[contains(@class, "text-bg-success")][text() = "High value info"]');
+    $this->assertSession()->elementExists('xpath', '//*[contains(@class, "badge dc-badge-high-value icon-bi-award-fill")][text() = "High value info"]');
 
     // Publish the data_set.
     $this->drupalGet('node/2/build');
