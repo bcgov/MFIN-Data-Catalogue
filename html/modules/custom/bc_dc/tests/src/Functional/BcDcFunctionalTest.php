@@ -401,8 +401,8 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     // View page.
     $this->drupalGet('node/2');
     $this->assertSession()->statusCodeEquals(200);
-    // The "High value info" badge does not appear.
-    $this->assertSession()->pageTextNotContains('High value info');
+    // The "High value" badge does not appear.
+    $this->assertSession()->pageTextNotContains('High value');
 
     // Admin has access to data_set build page.
     $this->drupalGet('node/2/build');
@@ -630,8 +630,8 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $this->drupalGet('node/2');
     $this->assertSession()->elementExists('xpath', '//nav[contains(@class, "tabs")]/ul/li/a[@href = "/node/2/revisions"]');
     $this->assertTrue(\Drupal::service('module_handler')->moduleExists('diff'), 'Module diff should be enabled.');
-    // The "High value info" badge appears.
-    $this->assertSession()->elementExists('xpath', '//*[contains(@class, "badge dc-badge-high-value icon-bi-award-fill")][text() = "High value info"]');
+    // The "High value" badge appears.
+    $this->assertSession()->elementExists('xpath', '//*[contains(@class, "badge dc-badge-high-value icon-bi-award-fill")][text() = "High value"]');
 
     // Publish the data_set.
     $this->drupalGet('node/2/build');

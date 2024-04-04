@@ -210,7 +210,7 @@ function dc_theme_preprocess_node__data_set__full(array &$variables): void {
   // "High value" badges at top of page.
   $variables['badge_high_value'] = [];
   if ($variables['node']->field_critical_information->value) {
-    $variables['badge_high_value'][] = t('High value info');
+    $variables['badge_high_value'][] = t('High value');
   }
 }
 
