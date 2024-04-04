@@ -82,12 +82,20 @@ class BcDcAddColumnsForm extends FormBase {
    * Return an array of data_column field names that start with "field_".
    *
    * @return string[]
-   *   An array of field names with "field_" removed.
+   *   An array of field names with "field_" removed sorted by weight and name.
    */
   public static function getDataSetFields(): array {
+    // Get the fields in the default display of data_column.
+    $displayFields = \Drupal::entityTypeManager()->getStorage('entity_form_display')->load('paragraph.data_column.default')->getComponents();
+
+    // Get the keys of $displayFields sorted by weight and then by key name.
+    $weights = array_column($displayFields, 'weight');
+    $names = array_keys($displayFields);
+    array_multisort($weights, $names);
+
+    // Return only those starting with "field_" and remove that.
     $fields = [];
-    $field_definitions = static::getDataSetFieldDefinitions();
-    foreach (array_keys($field_definitions) as $name) {
+    foreach ($names as $name) {
       if (str_starts_with($name, 'field_')) {
         $fields[] = substr($name, 6);
       }
