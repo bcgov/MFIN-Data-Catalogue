@@ -6,6 +6,7 @@ dependencies:
     - page_manager.page.user_reports
     - views.view.bookmarks
     - views.view.most_viewed
+    - views.view.reports_by_restriction
   module:
     - bc_dc
     - panels
@@ -92,19 +93,6 @@ variant_settings:
         - ''
       html_id: ''
       css_styles: ''
-    1965066d-cc39-4d99-a2fd-8a51cce16fe6:
-      id: bc_dc_restriction_chart
-      label: 'Records by restriction'
-      label_display: '0'
-      provider: null
-      context_mapping: {  }
-      region: footer_right
-      weight: -4
-      uuid: 1965066d-cc39-4d99-a2fd-8a51cce16fe6
-      css_classes:
-        - ''
-      html_id: ''
-      css_styles: ''
     dc082711-7cf6-46f8-8d03-093d21fd2fef:
       id: 'views_block:bookmarks-block_1'
       label: 'Top bookmarked assets'
@@ -166,6 +154,22 @@ variant_settings:
       css_classes:
         - card
         - bcdc-dashboard-card
+      html_id: ''
+      css_styles: ''
+    66fc60d7-a9c2-42ed-aecf-11e5bb271a4e:
+      id: 'views_block:reports_by_restriction-block_records_by_restriction'
+      label: ''
+      label_display: visible
+      provider: views
+      context_mapping: {  }
+      views_label: ''
+      items_per_page: none
+      exposed: {  }
+      region: footer_right
+      weight: 0
+      uuid: 66fc60d7-a9c2-42ed-aecf-11e5bb271a4e
+      css_classes:
+        - ''
       html_id: ''
       css_styles: ''
   page_title: Reports
