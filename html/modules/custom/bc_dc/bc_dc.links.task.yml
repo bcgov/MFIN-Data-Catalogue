@@ -30,7 +30,7 @@ bc_dc.user_dependency_report_tab:
   title: 'Dependency report'
 
 bc_dc.report_builder_tab:
-  route_name: view.bc_dc_report_builder.page_1
+  route_name: view.report_builder.page_1
   parent_id: bc_dc.user_reports_tab
   title: 'Report builder'
 
