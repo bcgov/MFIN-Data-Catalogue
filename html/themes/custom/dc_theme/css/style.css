@@ -507,6 +507,9 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 .bcbb-theme .path-taxonomy .content .field--name-description {
   margin-top: 3em;
 }
+.bcbb-theme .path-taxonomy .content .info-schedule-details {
+  margin-top: 3em;
+}
 
 .dc-badge-high-value {
   background-color: #003366;
