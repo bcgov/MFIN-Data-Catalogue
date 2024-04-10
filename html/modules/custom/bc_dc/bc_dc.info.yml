@@ -14,6 +14,7 @@ dependencies:
   - ckeditor_codemirror:ckeditor_codemirror
   - clipboardjs:clipboardjs
   - cm_revision_delete:cm_revision_delete
+  - date_popup:date_popup
   - diff:diff
   - drupal:basic_auth
   - drupal:charts
