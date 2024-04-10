@@ -260,6 +260,14 @@
       border: 1px solid var(--bs-gray-200);
       padding: 1em;
       border-radius: var(--bs-border-radius-sm);
+      > div {
+        margin-bottom: 1.5em;
+        padding-bottom: 1.5em;
+        border-bottom: 1px solid var(--bs-gray-200);
+        &:last-child {
+          border-bottom: 0;
+        }
+      }
 
       th,td {
         background-color: transparent;

@@ -719,6 +719,18 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   padding: 1em;
   border-radius: var(--bs-border-radius-sm);
 }
+.page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column > div,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used > div,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document > div {
+  margin-bottom: 1.5em;
+  padding-bottom: 1.5em;
+  border-bottom: 1px solid var(--bs-gray-200);
+}
+.page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column > div:last-child,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used > div:last-child,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document > div:last-child {
+  border-bottom: 0;
+}
 .page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column th, .page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column td,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used th,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used td,
