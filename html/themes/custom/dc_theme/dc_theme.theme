@@ -192,6 +192,7 @@ function dc_theme_preprocess_node__data_set__full(array &$variables): void {
       }
       // Theme as list.
       sort($visibility_orgs);
+      $visibility_orgs = array_unique($visibility_orgs);
       $variables['field_visibility_wrapper_class'] = 'field_visibility_danger';
       $variables['field_visibility'] = [
         '#theme' => 'item_list',

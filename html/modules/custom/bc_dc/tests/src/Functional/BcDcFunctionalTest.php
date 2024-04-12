@@ -1377,7 +1377,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // The one organization is shown and not duplicated even though it is both
     // OPR and in field_visibility.
     $field_visibility = $this->xpath('//div[contains(@class, "field_visibility")]//ul/li');
-    $this->assertCount(2, $field_visibility, 'Page has 2 field_visibility values.');
+    $this->assertCount(1, $field_visibility, 'Page has 1 field_visibility value.');
     $this->assertEquals($test_org_names[2], $field_visibility[0]->getText());
     // Re-check "Public" access in field_visibility.
     $this->clickLink('Build');
