@@ -164,11 +164,16 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
       'Test organization one ' . $this->randomString(),
       'Test organization two ' . $this->randomString(),
     ];
+    $test_org_names_field_access_flag = [
+      'pub',
+      'auth',
+    ];
     $test_orgs = [];
     foreach ($test_org_names as $key => $name) {
       $test_orgs[$key] = Term::create([
         'vid' => 'organization',
         'name' => $name,
+        'field_access_flag' => $test_org_names_field_access_flag[$key] ?? NULL,
       ]);
       $save = $test_orgs[$key]->save();
       $this->assertSame($save, SAVED_NEW);
@@ -1231,6 +1236,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $edit = [
       'edit-body-0-value' => 'Summary ' . $this->randomString(),
       $public_label->getAttribute('for') => TRUE,
+      'edit-field-visibility-3' => '3',
     ];
     $this->submitForm($edit, 'Save');
     // Section 3.
@@ -1254,6 +1260,11 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->elementNotExists('xpath', '//span[contains(@class, "badge text-bg-warning")][text() = "Personal information"]');
     // There are no related documents.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "field--name-field-related-document")]');
+    // Test field_visibility display.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field_visibility")]/div[normalize-space(text()) = "Public"]');
+    // No list when "Public".
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "field_visibility")]//ul');
+
     // Revision log message appears on revisions tab.
     $this->clickLink('Revisions');
     $args = [
@@ -1284,6 +1295,13 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     ];
     $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div/time[text() = :text]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
+
+    $this->click('a[aria-label = "Edit Section 2"]');
+    // Uncheck "Public" access in field_visibility.
+    $edit = [
+      $public_label->getAttribute('for') => NULL,
+    ];
+    $this->submitForm($edit, 'Save');
 
     $this->click('a[aria-label = "Edit Section 3"]');
     // Test that self-referencing is not allowed in field_data_sets_used.
@@ -1352,6 +1370,26 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->elementExists('xpath', $xpath, $dc_lineage);
     // Used-in.
     $this->assertSession()->elementNotExists('xpath', '//div[text() = "Used-in data sets"]');
+
+    // Test field_visibility display.
+    // "Public" was removed above.
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "field_visibility")]/div[normalize-space(text()) = "Public"]');
+    // The one organization is shown and not duplicated even though it is both
+    // OPR and in field_visibility.
+    $field_visibility = $this->xpath('//div[contains(@class, "field_visibility")]//ul/li');
+    $this->assertCount(2, $field_visibility, 'Page has 2 field_visibility values.');
+    $this->assertEquals($test_org_names[2], $field_visibility[0]->getText());
+    // Re-check "Public" access in field_visibility.
+    $this->clickLink('Build');
+    $this->click('a[aria-label = "Edit Section 2"]');
+    $edit = [
+      $public_label->getAttribute('for') => '1',
+    ];
+    $this->submitForm($edit, 'Save');
+    $edit = [
+      'major_edit' => '0',
+    ];
+    $this->submitForm($edit, 'Publish');
 
     // Check node/2 for link back.
     $this->drupalGet('node/2');
