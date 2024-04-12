@@ -567,7 +567,7 @@ display:
             trim_whitespace: false
             alt: 'Unpublish {{ title }}'
             rel: ''
-            link_class: 'btn btn-primary'
+            link_class: 'btn btn-warning'
             prefix: ''
             suffix: ''
             target: ''
