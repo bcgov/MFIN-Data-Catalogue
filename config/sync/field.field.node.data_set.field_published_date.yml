@@ -12,7 +12,7 @@ field_name: field_published_date
 entity_type: node
 bundle: data_set
 label: 'Published date'
-description: 'The date the metadata record was first published.'
+description: 'The date the metadata record was first published. If blank, it will be set to the current date when it is published.'
 required: false
 translatable: false
 default_value: {  }

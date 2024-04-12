@@ -440,7 +440,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
       $this->assertSession()->elementExists('xpath', $xpath);
     }
     // Page has ISO dates.
-    $this->isoDateTest(TRUE);
+    $this->isoDateTest(FALSE, TRUE);
     // Page links to pathauto path for this page.
     $this->linkByHrefStartsWithExists($data_set_path);
     // Section headers and edit links.
@@ -462,6 +462,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $fields_inline_optional = [
       'field--name-field-series' => ['label' => 'Series', 'text' => 'Optional'],
       'field--name-field-asset-location' => ['label' => 'Location', 'text' => 'Optional'],
+      'field--name-field-published-date' => ['label' => 'Published date', 'text' => 'Optional'],
       'field--name-field-last-review-date' => ['label' => 'Last review date', 'text' => 'Never'],
       'field--name-field-security-classification' => ['label' => 'Security classification', 'text' => 'Required'],
       'field--name-field-source-system' => ['label' => 'Source system', 'text' => 'Optional'],
@@ -478,18 +479,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     }
     // Check for fields that are dates and have inline labels.
     // The time formats are tested elsewhere.
-    $fields_inline_optional = [
-      'field--name-field-published-date' => 'Published date',
-      'field--name-field-modified-date' => 'Modified date',
-    ];
-    foreach ($fields_inline_optional as $class => $label) {
-      $args = [
-        ':class' => $class,
-        ':label' => $label,
-      ];
-      $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div/time', $args);
-      $this->assertSession()->elementExists('xpath', $xpath);
-    }
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--label-inline")][contains(@class, "field--name-field-modified-date")][div[@class = "field__label"][text() = "Modified date"]]/div/time');
 
     // Create security_classification term.
     $security_classification_term = Term::create([
@@ -646,7 +636,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     ];
     $this->submitForm($edit, 'Publish');
     $this->assertSession()->pageTextContains('Metadata record published');
-    $this->isoDateTest(FALSE);
+    $this->isoDateTest(TRUE, FALSE);
     $this->clickLink('Build');
     // field_last_review should display today.
     $args = [
@@ -840,7 +830,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->drupalGet('node/2');
     $this->assertSession()->statusCodeEquals(200);
     // Page has ISO dates.
-    $this->isoDateTest(TRUE);
+    $this->isoDateTest(TRUE, TRUE);
 
     // Anonymous has access to download csv for Metadata record when file has
     // been uploaded.
@@ -1649,12 +1639,14 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
   /**
    * Test for ISO dates in page content.
    *
+   * @param bool $published_date_should_exist
+   *   Whether the "Published date" field should exist.
    * @param bool $modified_date_should_exist
    *   Whether the "Modified date" field should exist.
    */
-  protected function isoDateTest(bool $modified_date_should_exist): void {
+  protected function isoDateTest(bool $published_date_should_exist, bool $modified_date_should_exist): void {
     $date_types = [
-      'Published date' => TRUE,
+      'Published date' => $published_date_should_exist,
       'Modified date' => $modified_date_should_exist,
     ];
     foreach ($date_types as $date_type => $should_appear) {

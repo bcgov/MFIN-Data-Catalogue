@@ -115,6 +115,11 @@ class BcDcWorkflowBlockForm extends FormBase {
     $url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()]);
     $form_state->setRedirectUrl($url);
 
+    // Set the published date to now if it is empty.
+    if (!$node->field_published_date->value) {
+      $node->field_published_date->value = (new DrupalDateTime())->format('Y-m-d');
+    }
+
     // Update the modified date when this is a full review or it is empty.
     if ($form_state->getValue('major_edit') || !$node->field_modified_date->value) {
       $node->field_modified_date->value = (new DrupalDateTime('now', 'UTC'))->format('Y-m-d\TH:i:s');
