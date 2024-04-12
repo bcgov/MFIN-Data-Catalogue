@@ -19,6 +19,7 @@ class BcDcDelete extends BcDcButtonBase {
       'text' => $this->t('Delete'),
       'class' => 'btn-danger',
       'route' => 'entity.node.delete_form',
+      'destination' => TRUE,
     ];
   }
 
