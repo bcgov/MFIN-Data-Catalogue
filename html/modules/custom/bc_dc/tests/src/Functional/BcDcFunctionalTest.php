@@ -960,8 +960,8 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
 
     // Child page.
     $this->drupalGet($child_url);
-    // Child page has book navigation block in sidebar.
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "region-sidebar-second")]/div[@id = "block-dc-theme-booknavigation"]');
+    // Child page has book navigation block in sidebar with class on active.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "region-sidebar-second")]/div[@id = "block-dc-theme-booknavigation"]/ul/li[@class = "active"]/ul/li[not(@class)]');
     // Child page does not have list of child pages.
     $this->assertSession()->elementNotExists('xpath', '//nav[@class = "book-navigation"]/ul[not(@aria-label)]');
     // Child page has a table of contents from toc_filter.
