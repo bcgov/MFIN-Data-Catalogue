@@ -101,6 +101,20 @@ function bc_dc_preprocess_node__data_set(array &$variables): void {
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for node--data-set--section-1.html.twig.
+ */
+function bc_dc_preprocess_node__data_set__section_1(array &$variables): void {
+  // Display the data_set title in Section 1 of the Build page.
+  $node = $variables['elements']['#node'];
+  $title = $node->getTitle();
+  $title_label = $node->title->getFieldDefinition()->getLabel();
+  $variables['content']['title'] = [
+    '#markup' => '<div class="field field--label-inline clearfix"><div class="field__label">' . $title_label . '</div><div class="field__item">' . $title . '</div></div>',
+    '#weight' => -10,
+  ];
+}
+
+/**
  * Implements hook_preprocess_HOOK() for taxonomy-term--organization.html.twig.
  */
 function bc_dc_preprocess_taxonomy_term__organization(array &$variables): void {

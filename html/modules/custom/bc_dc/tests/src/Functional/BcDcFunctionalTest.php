@@ -458,6 +458,15 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     // Build page does not link to referenced entities.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "field--type-entity-reference")]//a');
 
+    // The data_set title should appear in Section 1 of the Build page.
+    $args = [
+      ':data_set_title' => $data_set_title,
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//*[contains(@class, "node--view-mode-section-1")]//div
+      [div[@class = "field__label"][text() = "Data set name"]]
+      [div[@class = "field__item"][text() = :data_set_title]]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+
     // Check for fields that have inline labels.
     $fields_inline_optional = [
       'field--name-field-series' => ['label' => 'Series', 'text' => 'Optional'],
