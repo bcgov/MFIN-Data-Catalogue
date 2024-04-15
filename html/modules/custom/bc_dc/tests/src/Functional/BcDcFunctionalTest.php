@@ -463,7 +463,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
       ':data_set_title' => $data_set_title,
     ];
     $xpath = $this->assertSession()->buildXPathQuery('//*[contains(@class, "node--view-mode-section-1")]//div
-      [div[@class = "field__label"][text() = "Data set name"]]
+      [div[@class = "field__label"][text() = "Asset name"]]
       [div[@class = "field__item"][text() = :data_set_title]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
 

@@ -8,7 +8,7 @@ id: node.data_set.title
 field_name: title
 entity_type: node
 bundle: data_set
-label: 'Data set name'
+label: 'Asset name'
 description: ''
 required: true
 translatable: true
