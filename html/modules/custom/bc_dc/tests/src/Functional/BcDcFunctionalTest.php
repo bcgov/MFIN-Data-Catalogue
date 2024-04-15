@@ -1232,10 +1232,14 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->click('a[aria-label = "Edit Section 2"]');
     $public_label = $this->xpath('//fieldset[@id = "edit-field-visibility--wrapper"]//label[text() = "Public"]');
     $public_label = reset($public_label);
+    $field_contact_name = 'Contact Name ' . $this->randomString();
+    $field_contact_email = 'contact-email-' . $this->randomMachineName() . '@example.com';
     $edit = [
       'edit-body-0-value' => 'Summary ' . $this->randomString(),
       $public_label->getAttribute('for') => TRUE,
       'edit-field-visibility-3' => '3',
+      'edit-field-contact-name-0-value' => $field_contact_name,
+      'edit-field-contact-email-0-value' => $field_contact_email,
     ];
     $this->submitForm($edit, 'Save');
     // Section 3.
@@ -1263,6 +1267,15 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field_visibility")]/div[normalize-space(text()) = "Public"]');
     // No list when "Public".
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "field_visibility")]//ul');
+    // Contact name.
+    $args = [
+      ':link' => 'mailto:' . $field_contact_email,
+      ':text' => $field_contact_name,
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field_contact")]
+      [div[contains(@class, "field__label")][text() = "Contact"]]
+      [div[contains(@class, "field__item")]/a[@href = :link][text() = :text]]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
 
     // Revision log message appears on revisions tab.
     $this->clickLink('Revisions');

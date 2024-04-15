@@ -109,6 +109,13 @@
             </div>
           {% endif %}
 
+          {% if field_contact %}
+            <div class="field field--label-inline clearfix d-flex flex-row align-items-start field_contact">
+              <div class="field__label text-nowrap">{{ 'Contact'|t }}</div>
+              <div class="field__item">{{ field_contact }}</div>
+            </div>
+          {% endif %}
+
         </div>
 
         <div class="grid-dc-sidebar-right">

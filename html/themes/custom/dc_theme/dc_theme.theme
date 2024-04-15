@@ -9,6 +9,7 @@ use Drupal\bc_dc\Plugin\Block\EditSectionBtn;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Link;
+use Drupal\Core\Url;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\TermInterface;
 
@@ -212,6 +213,22 @@ function dc_theme_preprocess_node__data_set__full(array &$variables): void {
   $variables['badge_high_value'] = [];
   if ($variables['node']->field_critical_information->value) {
     $variables['badge_high_value'][] = t('High value');
+  }
+
+  // Display contact name and email. If there is an email, make a link to that
+  // email. If there is a name show that otherwise the email.
+  $field_contact_name = $variables['node']->field_contact_name->value;
+  $field_contact_email = $variables['node']->field_contact_email->value;
+  $variables['field_contact'] = NULL;
+  if ($field_contact_name || $field_contact_email) {
+    if ($field_contact_email) {
+      $text = $field_contact_name ?: $field_contact_email;
+      $url = Url::fromUri('mailto:' . $field_contact_email);
+      $variables['field_contact'] = Link::fromTextAndUrl($text, $url)->toRenderable();
+    }
+    else {
+      $variables['field_contact'] = $field_contact_name;
+    }
   }
 }
 
