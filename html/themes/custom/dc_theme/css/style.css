@@ -489,17 +489,20 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   width: auto !important;
 }
 
-.bcbb-theme .path-taxonomy .content .field {
+.bcbb-theme .path-taxonomy .content .field--type-string,
+.bcbb-theme .path-taxonomy .content .field--type-entity-reference {
   display: flex;
   flex-direction: column;
   margin: 1em 0;
 }
 @media only screen and (min-width: 576px) {
-  .bcbb-theme .path-taxonomy .content .field {
+  .bcbb-theme .path-taxonomy .content .field--type-string,
+  .bcbb-theme .path-taxonomy .content .field--type-entity-reference {
     flex-direction: row;
     gap: 2em;
   }
-  .bcbb-theme .path-taxonomy .content .field .field__label {
+  .bcbb-theme .path-taxonomy .content .field--type-string .field__label,
+  .bcbb-theme .path-taxonomy .content .field--type-entity-reference .field__label {
     min-width: 15em;
     max-width: 15em;
   }

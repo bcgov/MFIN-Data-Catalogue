@@ -1,7 +1,8 @@
 .bcbb-theme {
   .path-taxonomy {
     .content {
-      .field {
+      .field--type-string,
+      .field--type-entity-reference {
         display: flex;
         flex-direction: column;
         margin: 1em 0;
