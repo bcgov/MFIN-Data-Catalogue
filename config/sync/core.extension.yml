@@ -49,6 +49,7 @@ module:
   facets: 0
   facets_summary: 0
   field: 0
+  field_count_formatter: 0
   field_group: 0
   field_permissions: 0
   field_ui: 0

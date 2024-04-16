@@ -4,15 +4,18 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_asset_location
+    - field.storage.node.field_columns
     - field.storage.node.field_critical_information
     - field.storage.node.field_data_quality_issues
     - field.storage.node.field_data_set_historical_change
     - field.storage.node.field_data_set_type
+    - field.storage.node.field_data_sets_used
     - field.storage.node.field_last_review_date
     - field.storage.node.field_modified_date
     - field.storage.node.field_personal_information
     - field.storage.node.field_primary_responsibility_org
     - field.storage.node.field_published_date
+    - field.storage.node.field_related_document
     - field.storage.node.field_review_status
     - field.storage.node.field_security_classification
     - field.storage.node.field_series
@@ -30,6 +33,7 @@ dependencies:
     - content_moderation
     - csv_serialization
     - datetime
+    - field_count_formatter
     - node
     - options
     - rest
@@ -678,14 +682,14 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        delta:
-          id: delta
+        field_columns:
+          id: field_columns
           table: node__field_columns
-          field: delta
+          field: field_columns
           relationship: nid
           group_type: group
           admin_label: ''
-          plugin_id: numeric
+          plugin_id: field
           label: 'Data dictionary columns'
           exclude: false
           alter:
@@ -727,22 +731,27 @@ display:
           hide_empty: true
           empty_zero: true
           hide_alter_empty: true
-          set_precision: false
-          precision: 0
-          decimal: .
-          separator: ','
-          format_plural: true
-          format_plural_string: !!binary MSBjb2x1bW4DQGNvdW50IGNvbHVtbnM=
-          prefix: ''
-          suffix: ''
-        delta_1:
-          id: delta_1
+          click_sort_column: target_id
+          type: count
+          settings: {  }
+          group_column: ''
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_data_sets_used:
+          id: field_data_sets_used
           table: node__field_data_sets_used
-          field: delta
+          field: field_data_sets_used
           relationship: nid
           group_type: group
           admin_label: ''
-          plugin_id: numeric
+          plugin_id: field
           label: 'Assets used'
           exclude: false
           alter:
@@ -784,14 +793,19 @@ display:
           hide_empty: true
           empty_zero: true
           hide_alter_empty: true
-          set_precision: false
-          precision: 0
-          decimal: .
-          separator: ','
-          format_plural: false
-          format_plural_string: !!binary MQNAY291bnQ=
-          prefix: '1 other asset'
-          suffix: '@count other assets'
+          click_sort_column: target_id
+          type: count
+          settings: {  }
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
         field_data_quality_issues:
           id: field_data_quality_issues
           table: node__field_data_quality_issues
@@ -1047,14 +1061,14 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        delta_2:
-          id: delta_2
+        field_related_document:
+          id: field_related_document
           table: node__field_related_document
-          field: delta
+          field: field_related_document
           relationship: nid
           group_type: group
           admin_label: ''
-          plugin_id: numeric
+          plugin_id: field
           label: 'Related documents'
           exclude: false
           alter:
@@ -1091,19 +1105,24 @@ display:
           element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: false
+          element_default_classes: true
           empty: ''
           hide_empty: true
           empty_zero: true
           hide_alter_empty: true
-          set_precision: false
-          precision: 0
-          decimal: .
-          separator: ','
-          format_plural: true
-          format_plural_string: !!binary MSBkb2N1bWVudANAY291bnQgZG9jdW1lbnRz
-          prefix: ''
-          suffix: ''
+          click_sort_column: target_id
+          type: count
+          settings: {  }
+          group_column: ''
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
         field_security_classification:
           id: field_security_classification
           table: node__field_security_classification
@@ -2799,15 +2818,18 @@ display:
         - user.roles
       tags:
         - 'config:field.storage.node.field_asset_location'
+        - 'config:field.storage.node.field_columns'
         - 'config:field.storage.node.field_critical_information'
         - 'config:field.storage.node.field_data_quality_issues'
         - 'config:field.storage.node.field_data_set_historical_change'
         - 'config:field.storage.node.field_data_set_type'
+        - 'config:field.storage.node.field_data_sets_used'
         - 'config:field.storage.node.field_last_review_date'
         - 'config:field.storage.node.field_modified_date'
         - 'config:field.storage.node.field_personal_information'
         - 'config:field.storage.node.field_primary_responsibility_org'
         - 'config:field.storage.node.field_published_date'
+        - 'config:field.storage.node.field_related_document'
         - 'config:field.storage.node.field_review_status'
         - 'config:field.storage.node.field_security_classification'
         - 'config:field.storage.node.field_series'
@@ -2858,15 +2880,18 @@ display:
         - user.roles
       tags:
         - 'config:field.storage.node.field_asset_location'
+        - 'config:field.storage.node.field_columns'
         - 'config:field.storage.node.field_critical_information'
         - 'config:field.storage.node.field_data_quality_issues'
         - 'config:field.storage.node.field_data_set_historical_change'
         - 'config:field.storage.node.field_data_set_type'
+        - 'config:field.storage.node.field_data_sets_used'
         - 'config:field.storage.node.field_last_review_date'
         - 'config:field.storage.node.field_modified_date'
         - 'config:field.storage.node.field_personal_information'
         - 'config:field.storage.node.field_primary_responsibility_org'
         - 'config:field.storage.node.field_published_date'
+        - 'config:field.storage.node.field_related_document'
         - 'config:field.storage.node.field_review_status'
         - 'config:field.storage.node.field_security_classification'
         - 'config:field.storage.node.field_series'
@@ -2894,15 +2919,18 @@ display:
         - user.roles
       tags:
         - 'config:field.storage.node.field_asset_location'
+        - 'config:field.storage.node.field_columns'
         - 'config:field.storage.node.field_critical_information'
         - 'config:field.storage.node.field_data_quality_issues'
         - 'config:field.storage.node.field_data_set_historical_change'
         - 'config:field.storage.node.field_data_set_type'
+        - 'config:field.storage.node.field_data_sets_used'
         - 'config:field.storage.node.field_last_review_date'
         - 'config:field.storage.node.field_modified_date'
         - 'config:field.storage.node.field_personal_information'
         - 'config:field.storage.node.field_primary_responsibility_org'
         - 'config:field.storage.node.field_published_date'
+        - 'config:field.storage.node.field_related_document'
         - 'config:field.storage.node.field_review_status'
         - 'config:field.storage.node.field_security_classification'
         - 'config:field.storage.node.field_series'
