@@ -714,6 +714,7 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   display: flex;
   gap: 1em;
 }
+.page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information,
 .page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document {
@@ -722,6 +723,7 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   padding: 1em;
   border-radius: var(--bs-border-radius-sm);
 }
+.page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information > div,
 .page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column > div,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used > div,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document > div {
@@ -729,12 +731,15 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   padding-bottom: 1.5em;
   border-bottom: 1px solid var(--bs-gray-200);
 }
+.page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information > div:last-child,
 .page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column > div:last-child,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used > div:last-child,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document > div:last-child {
   border-bottom: 0;
 }
-.page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column th, .page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column td,
+.page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information th, .page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information td,
+.page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column th,
+.page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column td,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used th,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used td,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document th,
@@ -742,13 +747,16 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   background-color: transparent;
   border: 0 transparent;
 }
+.page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information .field-add-more-submit,
 .page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column .field-add-more-submit,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used .field-add-more-submit,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document .field-add-more-submit {
   background-color: var(--bs-gray-700);
   color: var(--bs-white);
 }
-.page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column .field-add-more-submit:hover, .page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column .field-add-more-submit:focus,
+.page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information .field-add-more-submit:hover, .page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information .field-add-more-submit:focus,
+.page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column .field-add-more-submit:hover,
+.page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column .field-add-more-submit:focus,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used .field-add-more-submit:hover,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used .field-add-more-submit:focus,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document .field-add-more-submit:hover,
@@ -775,6 +783,10 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 .page-node-type-data-set .node-data-set-edit-form .paragraphs-actions {
   display: inline-flex;
   gap: 0.5em;
+}
+.page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information .fieldset-legend {
+  font-size: 20px;
+  font-weight: bold;
 }
 .page-node-type-data-set [id*=field-columns-] .paragraph-summary {
   grid-column-start: 1;

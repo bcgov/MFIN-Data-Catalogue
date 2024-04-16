@@ -253,6 +253,7 @@
       gap: 1em;
     }
 
+    .dc-mr-contact-information,
     .edit-data-dictionary-column,
     .field--name-field-data-sets-used,
     .field--name-field-related-document {
@@ -307,6 +308,13 @@
     .paragraphs-actions {
       display: inline-flex;
       gap: .5em;
+    }
+
+    .dc-mr-contact-information {
+      .fieldset-legend {
+        font-size: 20px;
+        font-weight: bold;
+      }
     }
 
   }
