@@ -787,6 +787,17 @@ function bc_dc_views_pre_build(ViewExecutable $view): void {
 }
 
 /**
+ * Implements hook_views_pre_render().
+ */
+function bc_dc_views_pre_render(ViewExecutable $view): void {
+  switch ($view->id()) {
+    case 'report_builder':
+      $view->element['#attached']['library'][] = 'bcbb_other/bcbb-scroll-tables';
+      break;
+  }
+}
+
+/**
  * Implements hook_menu_local_tasks_alter().
  */
 function bc_dc_menu_local_tasks_alter(array &$data, string $route_name, RefinableCacheableDependencyInterface &$cacheability): void {
