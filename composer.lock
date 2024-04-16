@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "995255a1d50ee0a7894b669b2339da58",
+    "content-hash": "625b1528fe9a9a5805755b1f29037801",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3990,6 +3990,50 @@
                 "source": "git://git.drupal.org/project/facets.git",
                 "issues": "https://www.drupal.org/project/issues/facets",
                 "irc": "irc://irc.freenode.org/drupal-search-api"
+            }
+        },
+        {
+            "name": "drupal/field_count_formatter",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/field_count_formatter.git",
+                "reference": "3.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/field_count_formatter-3.0.0.zip",
+                "reference": "3.0.0",
+                "shasum": "5f864cce2c8a97d4f0a33ae25f62fd8a837be97c"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "3.0.0",
+                    "datestamp": "1671362159",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "nicholasThompson",
+                    "homepage": "https://www.drupal.org/user/59351"
+                }
+            ],
+            "description": "Formatter for multiple value field to simply show how many values have been entered",
+            "homepage": "https://www.drupal.org/project/field_count_formatter",
+            "support": {
+                "source": "https://git.drupalcode.org/project/field_count_formatter"
             }
         },
         {
