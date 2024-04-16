@@ -26,6 +26,7 @@ use Drupal\tac_lite\Form\SchemeForm;
 use Drupal\taxonomy\TermInterface;
 use Drupal\user\Entity\User;
 use Drupal\user\UserInterface;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
 use Drupal\views\ViewExecutable;
 
 /**
@@ -793,6 +794,42 @@ function bc_dc_views_pre_render(ViewExecutable $view): void {
   switch ($view->id()) {
     case 'report_builder':
       $view->element['#attached']['library'][] = 'bcbb_other/bcbb-scroll-tables';
+      break;
+  }
+}
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function bc_dc_views_query_alter(ViewExecutable $view, QueryPluginBase $query): void {
+  switch ($view->id()) {
+    case 'report_builder':
+      foreach ($query->where ?? [] as $condition_group_key => $condition_group) {
+        foreach ($condition_group['conditions'] as $condition_key => $condition) {
+          // Change the data_set type to include all descendents of the term.
+          if ($condition['field'] === 'node_field_data_node_field_revision__node__field_data_set_type.field_data_set_type_target_id = :node__field_data_set_type_field_data_set_type_target_id') {
+            $taxonomy_term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+
+            // Load the term selected in the filter.
+            $term = $taxonomy_term_storage->load($condition['value'][':node__field_data_set_type_field_data_set_type_target_id']);
+
+            // Make an array of tid of current and descendent terms.
+            $descendent_tids = [$term->id()];
+            foreach ($taxonomy_term_storage->loadTree($term->bundle(), $term->id()) as $descendent_term) {
+              $descendent_tids[] = $descendent_term->tid;
+            }
+
+            // Replace the condition with an IN condition.
+            $condition['field'] = 'node_field_data_node_field_revision__node__field_data_set_type.field_data_set_type_target_id IN(:node__field_data_set_type_field_data_set_type_target_id[])';
+            $condition['value'] = [
+              ':node__field_data_set_type_field_data_set_type_target_id[]' => $descendent_tids,
+            ];
+            $query->where[$condition_group_key]['conditions'][$condition_key] = $condition;
+            // Once the condition is replaced, leave both loops.
+            break 2;
+          }
+        }
+      }
       break;
   }
 }
