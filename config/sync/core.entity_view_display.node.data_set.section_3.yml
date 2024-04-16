@@ -32,7 +32,6 @@ dependencies:
     - node.type.data_set
   module:
     - layout_builder
-    - smart_trim
     - user
 third_party_settings:
   layout_builder:
@@ -43,30 +42,6 @@ targetEntityType: node
 bundle: data_set
 mode: section_3
 content:
-  field_data_quality_issues:
-    type: smart_trim
-    label: above
-    settings:
-      trim_length: 150
-      trim_type: chars
-      trim_suffix: ' …'
-      wrap_output: false
-      wrap_class: trimmed
-      more:
-        display_link: false
-        target_blank: false
-        link_trim_only: false
-        class: more-link
-        text: More
-        aria_label: 'Read more about [node:title]'
-      summary_handler: full
-      trim_options:
-        text: true
-        trim_zero: false
-        replace_tokens: false
-    third_party_settings: {  }
-    weight: 2
-    region: content
   field_data_sets_used:
     type: entity_reference_label
     label: above
@@ -81,7 +56,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 5
+    weight: 4
     region: content
   field_personal_information:
     type: boolean
@@ -91,7 +66,7 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 3
+    weight: 2
     region: content
   field_security_classification:
     type: entity_reference_label
@@ -99,7 +74,7 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 4
+    weight: 3
     region: content
   field_source_system:
     type: entity_reference_label
@@ -118,6 +93,7 @@ hidden:
   field_contact_email: true
   field_contact_name: true
   field_critical_information: true
+  field_data_quality_issues: true
   field_data_set_historical_change: true
   field_data_set_type: true
   field_is_complete_review: true

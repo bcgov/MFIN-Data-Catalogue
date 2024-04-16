@@ -64,7 +64,7 @@ third_party_settings:
       label: Contact
       region: content
       parent_name: ''
-      weight: 7
+      weight: 6
       format_type: fieldset
       format_settings:
         classes: dc-mr-contact-information
@@ -97,7 +97,7 @@ content:
     third_party_settings: {  }
   field_contact_email:
     type: email_default
-    weight: 9
+    weight: 12
     region: content
     settings:
       placeholder: ''
@@ -105,15 +105,23 @@ content:
     third_party_settings: {  }
   field_contact_name:
     type: string_textfield
-    weight: 8
+    weight: 10
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_data_quality_issues:
+    type: text_textarea
+    weight: 4
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
   field_data_set_historical_change:
     type: text_textarea
-    weight: 5
+    weight: 3
     region: content
     settings:
       rows: 5
@@ -131,26 +139,26 @@ content:
     third_party_settings: {  }
   field_primary_responsibility_org:
     type: options_select
-    weight: 6
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
   field_published_date:
     type: datetime_default
-    weight: 3
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
   field_review_interval:
     type: number
-    weight: 4
+    weight: 9
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_visibility:
     type: options_buttons
-    weight: 10
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -159,7 +167,6 @@ hidden:
   field_authoritative_info: true
   field_columns: true
   field_critical_information: true
-  field_data_quality_issues: true
   field_data_sets_used: true
   field_information_schedule: true
   field_is_complete_review: true

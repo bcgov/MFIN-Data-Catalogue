@@ -97,7 +97,7 @@ content:
     label: inline
     settings: {  }
     third_party_settings: {  }
-    weight: 7
+    weight: 6
     region: content
   field_contact_name:
     type: string
@@ -105,7 +105,31 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 6
+    weight: 5
+    region: content
+  field_data_quality_issues:
+    type: smart_trim
+    label: above
+    settings:
+      trim_length: 150
+      trim_type: chars
+      trim_suffix: …
+      wrap_output: false
+      wrap_class: trimmed
+      more:
+        display_link: false
+        target_blank: false
+        link_trim_only: false
+        class: more-link
+        text: More
+        aria_label: 'Read more about [node:title]'
+      summary_handler: full
+      trim_options:
+        text: true
+        trim_zero: false
+        replace_tokens: false
+    third_party_settings: {  }
+    weight: 3
     region: content
   field_data_set_historical_change:
     type: smart_trim
@@ -129,7 +153,7 @@ content:
         trim_zero: false
         replace_tokens: false
     third_party_settings: {  }
-    weight: 4
+    weight: 2
     region: content
   field_primary_responsibility_org:
     type: entity_reference_label
@@ -137,7 +161,7 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 5
+    weight: 4
     region: content
   field_published_date:
     type: datetime_default
@@ -146,7 +170,7 @@ content:
       timezone_override: ''
       format_type: html_date
     third_party_settings: {  }
-    weight: 2
+    weight: 8
     region: content
   field_review_interval:
     type: number_integer
@@ -155,7 +179,7 @@ content:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 3
+    weight: 9
     region: content
   field_visibility:
     type: entity_reference_label
@@ -163,14 +187,13 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 8
+    weight: 7
     region: content
 hidden:
   content_moderation_control: true
   field_authoritative_info: true
   field_columns: true
   field_critical_information: true
-  field_data_quality_issues: true
   field_data_set_type: true
   field_data_sets_used: true
   field_information_schedule: true

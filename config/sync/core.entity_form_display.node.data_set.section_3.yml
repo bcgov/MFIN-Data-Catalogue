@@ -33,7 +33,6 @@ dependencies:
   module:
     - field_group
     - shs
-    - text
 third_party_settings:
   field_group:
     group_hidden:
@@ -61,14 +60,6 @@ targetEntityType: node
 bundle: data_set
 mode: section_3
 content:
-  field_data_quality_issues:
-    type: text_textarea
-    weight: 3
-    region: content
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
   field_data_set_type:
     type: options_shs
     weight: 20
@@ -101,7 +92,7 @@ content:
     third_party_settings: {  }
   field_personal_information:
     type: options_buttons
-    weight: 4
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -130,6 +121,7 @@ hidden:
   field_contact_email: true
   field_contact_name: true
   field_critical_information: true
+  field_data_quality_issues: true
   field_data_set_historical_change: true
   field_is_complete_review: true
   field_last_review_date: true
