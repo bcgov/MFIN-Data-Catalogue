@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0762bb02c82504bfa3b0d3455a8bca7e",
+    "content-hash": "bfec916ffeaff124b37894ba690c4c22",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -185,6 +185,18 @@
                 "issues": "https://github.com/bcgov/bcbb-theme/issues"
             },
             "time": "2024-04-19T17:29:53+00:00"
+        },
+        {
+            "name": "billboardjs/billboard",
+            "version": "3.10.3",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/billboard.js/-/billboard.js-3.10.3.tgz"
+            },
+            "type": "drupal-library",
+            "extra": {
+                "installer-name": "billboard"
+            }
         },
         {
             "name": "caxy/php-htmldiff",
