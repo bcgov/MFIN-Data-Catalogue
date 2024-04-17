@@ -350,6 +350,7 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 .dc-global-report .block-bc-dc-authoritative-records .dc-count {
   font-size: 1.5em;
   margin-bottom: 0;
+  display: block;
 }
 @media only screen and (min-width: 576px) {
   .dc-global-report .block-bc-dc-published-records .dc-count,

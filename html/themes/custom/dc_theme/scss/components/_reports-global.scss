@@ -10,6 +10,7 @@
     .dc-count {
       font-size: 1.5em;
       margin-bottom: 0;
+      display: block;
       @include responsive {
         font-size: 3em;
       }
