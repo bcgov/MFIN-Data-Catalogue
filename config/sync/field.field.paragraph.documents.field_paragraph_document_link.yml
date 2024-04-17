@@ -1,12 +1,10 @@
-uuid: b60e3e33-5425-4990-a86d-254659ee715f
+uuid: c59e7a13-0f1e-4e1a-9218-9d3cade1bb29
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_paragraph_document_link
     - paragraphs.paragraphs_type.documents
-  module:
-    - link
 id: paragraph.documents.field_paragraph_document_link
 field_name: field_paragraph_document_link
 entity_type: paragraph
@@ -17,7 +15,5 @@ required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
-settings:
-  title: 0
-  link_type: 16
-field_type: link
+settings: {  }
+field_type: string

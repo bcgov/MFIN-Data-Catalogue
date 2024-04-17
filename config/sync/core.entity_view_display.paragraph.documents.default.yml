@@ -6,22 +6,16 @@ dependencies:
     - field.field.paragraph.documents.field_paragraph_document_link
     - field.field.paragraph.documents.field_paragraph_document_type
     - paragraphs.paragraphs_type.documents
-  module:
-    - link
 id: paragraph.documents.default
 targetEntityType: paragraph
 bundle: documents
 mode: default
 content:
   field_paragraph_document_link:
-    type: link
+    type: string
     label: above
     settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
+      link_to_entity: false
     third_party_settings: {  }
     weight: 1
     region: content

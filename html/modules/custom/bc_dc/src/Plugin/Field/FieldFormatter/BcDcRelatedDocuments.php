@@ -84,10 +84,10 @@ class BcDcRelatedDocuments extends FormatterBase {
       $tid = $item->entity?->field_paragraph_document_type->target_id;
       $term = $termStorage->load($tid);
 
-      $uri = $item->entity?->field_paragraph_document_link;
+      $uri = $item->entity?->field_paragraph_document_link->value;
 
       if ($term && $uri) {
-        $links[] = Link::fromTextAndUrl($term->label(), Url::fromUri($uri->uri));
+        $links[] = Link::fromTextAndUrl($term->label(), Url::fromUri($uri));
       }
     }
 

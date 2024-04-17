@@ -1335,7 +1335,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $related_document_uri = 'http://' . $this->randomMachineName() . '.example.com/';
     $edit = [
       'edit-field-related-document-0-subform-field-paragraph-document-type' => $document_type_1->id(),
-      'edit-field-related-document-0-subform-field-paragraph-document-link-0-uri' => $related_document_uri,
+      'edit-field-related-document-0-subform-field-paragraph-document-link-0-value' => $related_document_uri,
     ];
     $this->submitForm($edit, 'Save');
     // There is now a related document.
