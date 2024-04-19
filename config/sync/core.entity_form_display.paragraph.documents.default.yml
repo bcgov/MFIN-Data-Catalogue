@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.documents.field_paragraph_document_link
+    - field.field.paragraph.documents.field_paragraph_document_title
     - field.field.paragraph.documents.field_paragraph_document_type
     - paragraphs.paragraphs_type.documents
 id: paragraph.documents.default
@@ -14,6 +15,14 @@ content:
   field_paragraph_document_link:
     type: string_textfield
     weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_paragraph_document_title:
+    type: string_textfield
+    weight: 3
     region: content
     settings:
       size: 60

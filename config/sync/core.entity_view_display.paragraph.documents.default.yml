@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.documents.field_paragraph_document_link
+    - field.field.paragraph.documents.field_paragraph_document_title
     - field.field.paragraph.documents.field_paragraph_document_type
     - paragraphs.paragraphs_type.documents
 id: paragraph.documents.default
@@ -18,6 +19,14 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_paragraph_document_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
     region: content
   field_paragraph_document_type:
     type: entity_reference_label
