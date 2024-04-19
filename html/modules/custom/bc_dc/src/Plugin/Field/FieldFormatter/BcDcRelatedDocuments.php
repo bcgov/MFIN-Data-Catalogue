@@ -2,6 +2,7 @@
 
 namespace Drupal\bc_dc\Plugin\Field\FieldFormatter;
 
+use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
@@ -87,7 +88,18 @@ class BcDcRelatedDocuments extends FormatterBase {
       $uri = $item->entity?->field_paragraph_document_link->value;
 
       if ($term && $uri) {
-        $links[] = Link::fromTextAndUrl($term->label(), Url::fromUri($uri));
+        $url = static::externalUrlFromUri($uri);
+
+        if ($url) {
+          $links[] = Link::fromTextAndUrl($term->label(), $url);
+        }
+        else {
+          $args = [
+            '@label' => $term->label(),
+            ':uri' => $uri,
+          ];
+          $links[] = $this->t('<div>@label:</div><div class="text-break">:uri</div>', $args);
+        }
       }
     }
 
@@ -103,6 +115,36 @@ class BcDcRelatedDocuments extends FormatterBase {
     ];
 
     return [$list];
+  }
+
+  /**
+   * Parse a URI and return the Url object if it is external, NULL otherwise.
+   *
+   * @param string $uri
+   *   The URI to parse.
+   *
+   * @return \Drupal\Core\Url|null
+   *   The Url object or NULL.
+   */
+  public static function externalUrlFromUri(string $uri): ?Url {
+    // Exclude URIs starting with "//".
+    if (str_starts_with($uri, '//')) {
+      return NULL;
+    }
+
+    // Exclude URIs that are not external.
+    if (!UrlHelper::isExternal($uri)) {
+      return NULL;
+    }
+
+    // Attempt to make a Url object and return it on succees, NULL otherwise.
+    $url = NULL;
+    try {
+      $url = Url::fromUri($uri);
+    }
+    catch (\Throwable $e) {
+    }
+    return $url;
   }
 
 }
