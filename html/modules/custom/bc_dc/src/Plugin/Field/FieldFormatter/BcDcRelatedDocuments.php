@@ -88,14 +88,16 @@ class BcDcRelatedDocuments extends FormatterBase {
       $uri = $item->entity?->field_paragraph_document_link->value;
 
       if ($term && $uri) {
+        $title = $term->label();
+
         $url = static::externalUrlFromUri($uri);
 
         if ($url) {
-          $links[] = Link::fromTextAndUrl($term->label(), $url);
+          $links[] = Link::fromTextAndUrl($title, $url);
         }
         else {
           $args = [
-            '@label' => $term->label(),
+            '@label' => $title,
             ':uri' => $uri,
           ];
           $links[] = $this->t('<div>@label:</div><div class="text-break">:uri</div>', $args);
