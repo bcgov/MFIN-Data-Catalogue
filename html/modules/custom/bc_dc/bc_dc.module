@@ -22,6 +22,7 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 use Drupal\message_gcnotify\Service\GcNotifyApiService;
 use Drupal\node\NodeInterface;
+use Drupal\paragraphs\ParagraphInterface;
 use Drupal\tac_lite\Form\SchemeForm;
 use Drupal\taxonomy\TermInterface;
 use Drupal\user\Entity\User;
@@ -401,6 +402,20 @@ function bc_dc_node_update(NodeInterface $entity): void {
       '@nid' => $entity->id(),
     ];
     \Drupal::logger('bc_dc')->error('Failed sending message when updating data_set @nid.', $context);
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function bc_dc_paragraph_presave(ParagraphInterface $entity): void {
+  // Trim field_paragraph_document_link before saving.
+  $url = $entity->field_paragraph_document_link?->value;
+  if ($url) {
+    $trimmed = trim($url);
+    if ($trimmed !== $url) {
+      $entity->set('field_paragraph_document_link', $trimmed);
+    }
   }
 }
 

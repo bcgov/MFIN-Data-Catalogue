@@ -17,6 +17,9 @@ class BcDcUrlConstraintValidator extends ConstraintValidator {
     // This will be a string in kernel tests.
     if (is_object($value)) {
       $url = $value->field_paragraph_document_link?->value;
+      // Validate based on version that has gone through trim(). It is saved
+      // trimmed in bc_dc_paragraph_presave().
+      $url = $url ? trim($url) : NULL;
     }
     else {
       $url = (string) $value;
