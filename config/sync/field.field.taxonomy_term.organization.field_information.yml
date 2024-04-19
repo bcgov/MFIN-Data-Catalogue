@@ -14,7 +14,7 @@ entity_type: taxonomy_term
 bundle: organization
 label: 'Additional information'
 description: 'Additional information about this OPR, for example the specific person to contact about a data sets the custodian is responsible for.'
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
