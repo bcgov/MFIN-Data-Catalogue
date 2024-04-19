@@ -88,7 +88,13 @@ class BcDcRelatedDocuments extends FormatterBase {
       $uri = $item->entity?->field_paragraph_document_link->value;
 
       if ($term && $uri) {
+        // The link title is the field_paragraph_document_type term label
+        // followed by the custom title, if any.
         $title = $term->label();
+        $title_extension = $item->entity->field_paragraph_document_title->value;
+        if ($title_extension) {
+          $title .= ': ' . $title_extension;
+        }
 
         $url = static::externalUrlFromUri($uri);
 

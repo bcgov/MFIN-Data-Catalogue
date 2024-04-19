@@ -1332,9 +1332,11 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Add a related document.
     $this->click('a[aria-label = "Edit Section 4"]');
     $this->submitForm([], 'Add Document');
+    $related_document_title = 'Related document title ' . $this->randomString();
     $related_document_uri = 'http://' . $this->randomMachineName() . '.example.com/';
     $edit = [
       'edit-field-related-document-0-subform-field-paragraph-document-type' => $document_type_1->id(),
+      'edit-field-related-document-0-subform-field-paragraph-document-title-0-value' => $related_document_title,
       'edit-field-related-document-0-subform-field-paragraph-document-link-0-value' => $related_document_uri,
     ];
     $this->submitForm($edit, 'Save');
@@ -1361,7 +1363,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Related documents appear.
     $args = [
       ':href' => $related_document_uri,
-      ':text' => $document_type_1->label(),
+      ':text' => $document_type_1->label() . ': ' . $related_document_title,
     ];
     $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-related-document")]//ul/li/a[@href = :href][text() = :text]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
