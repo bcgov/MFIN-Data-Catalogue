@@ -704,6 +704,13 @@ function bc_dc_cron(): void {
 }
 
 /**
+ * Implements hook_entity_type_alter().
+ */
+function bc_dc_entity_type_alter(array &$entity_types): void {
+  $entity_types['paragraph']->addConstraint('BcDcUrlConstraint');
+}
+
+/**
  * Implements hook_form_FORM_ID_alter().
  */
 function bc_dc_form_bc_dc_add_columns_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
