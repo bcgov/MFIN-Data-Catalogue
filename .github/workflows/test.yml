@@ -2,17 +2,15 @@ name: Deploy to Test
 
 on:
   workflow_dispatch:
-    inputs:
-      approve:
-        description: 'Approve Deploy to Test.'
-        required: true
 
 jobs:
   build:
-    if: ${{ github.event.inputs.approve == 'true' }}
     runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@master
+
+    - name: Export github reference var
+      run: echo "GITHUB_REFERENCE=$(echo ${GITHUB_REF#refs/tags/})" >> $GITHUB_ENV
 
     - name: Checkout Tenant GitOps Repo
       uses: actions/checkout@v3
@@ -24,16 +22,12 @@ jobs:
 
     - name: Update Argo CD
       uses: mikefarah/yq@v4.34.1
-      env:
-        GITHUB_REFERENCE: ${{ github.event.inputs.tag }}
       with:
         cmd: |
           yq -i '.drupal.tag = strenv(GITHUB_REFERENCE) |
                  .nginx.tag = strenv(GITHUB_REFERENCE) ' tenant-gitops/helm-drupal/charts/drupal/values-mfin-data-catalogue-test.yaml
 
     - name: Commit files
-      env:
-        GITHUB_REFERENCE: ${{ github.event.inputs.tag }}
       run: |
         cd tenant-gitops
         git config --local user.email "github-actions[bot]@users.noreply.github.com"

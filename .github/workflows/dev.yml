@@ -98,15 +98,3 @@ jobs:
         branch: main
         directory: tenant-gitops
         repository: bcgov-c/tenant-gitops-ea352d
-
-    - name: Deploy to Test Workflow
-      uses: peter-evans/workflow_dispatch@v2
-      with:
-        workflow: 'Deploy to Test'
-        token: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Deploy to Prod Workflow
-      uses: peter-evans/workflow_dispatch@v2
-      with:
-        workflow: 'Deploy to Prod'
-        token: ${{ secrets.GITHUB_TOKEN }}
