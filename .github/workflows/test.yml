@@ -6,6 +6,7 @@ on:
       approve:
         description: 'Approve Deploy to Test.'
         required: true
+        type: boolean
 
 jobs:
   build:
