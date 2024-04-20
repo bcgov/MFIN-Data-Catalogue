@@ -2,15 +2,9 @@ name: Deploy to Prod
 
 on:
   workflow_dispatch:
-    inputs:
-      approve:
-        description: 'Approve Deploy to Prod.'
-        required: true
-        type: boolean
 
 jobs:
   build:
-    if: ${{ github.event.inputs.approve == 'true' }}
     runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@master
@@ -25,16 +19,12 @@ jobs:
 
     - name: Update Argo CD
       uses: mikefarah/yq@v4.34.1
-      env:
-        GITHUB_REFERENCE: ${{ github.event.inputs.tag }}
       with:
         cmd: |
           yq -i '.drupal.tag = strenv(GITHUB_REFERENCE) |
                  .nginx.tag = strenv(GITHUB_REFERENCE) ' tenant-gitops/helm-drupal/charts/drupal/values-mfin-data-catalogue-prod.yaml
 
     - name: Commit files
-      env:
-        GITHUB_REFERENCE: ${{ github.event.inputs.tag }}
       run: |
         cd tenant-gitops
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
