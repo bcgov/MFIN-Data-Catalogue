@@ -1,4 +1,4 @@
-name: Deploy to Test
+name: Deploy to Test - ${{ github.ref }}
 
 on:
   workflow_dispatch:

@@ -1,4 +1,4 @@
-name: Deploy to Development
+name: Deploy to Development - ${{ github.ref }}
 
 on:
   push:
@@ -100,13 +100,13 @@ jobs:
         repository: bcgov-c/tenant-gitops-ea352d
 
     - name: Deploy to Test Workflow
-      uses: peter-evans/workflow_dispatch@v2
+      uses: peter-evans/repository-dispatch@v3
       with:
         workflow: 'Deploy to Test'
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Deploy to Prod Workflow
-      uses: peter-evans/workflow_dispatch@v2
+      uses: peter-evans/repository-dispatch@v3
       with:
         workflow: 'Deploy to Prod'
         token: ${{ secrets.GITHUB_TOKEN }}
