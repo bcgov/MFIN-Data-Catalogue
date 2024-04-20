@@ -1,14 +1,15 @@
-name: Deploy to Test on workflow dispatch
+name: Deploy to Test
 
 on:
   workflow_dispatch:
     inputs:
-      tag:
-        description: 'The Container tag to deploy, usually the latest tagged version.'
+      approve:
+        description: 'Approve Deploy to Test.'
         required: true
 
 jobs:
   build:
+    if: ${{ github.event.inputs.approve == 'true' }}
     runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@master
