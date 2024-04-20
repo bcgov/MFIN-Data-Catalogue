@@ -102,11 +102,13 @@ jobs:
     - name: Deploy to Test Workflow
       uses: peter-evans/repository-dispatch@v3
       with:
-        workflow: 'Deploy to Test'
         token: ${{ secrets.GITHUB_TOKEN }}
+        event-type: Deploy to Test'
+        client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
 
     - name: Deploy to Prod Workflow
       uses: peter-evans/repository-dispatch@v3
       with:
-        workflow: 'Deploy to Prod'
         token: ${{ secrets.GITHUB_TOKEN }}
+        event-type: Deploy to Prod'
+        client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
