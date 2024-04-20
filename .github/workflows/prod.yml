@@ -1,4 +1,4 @@
-name: Deploy to Prod - ${{ github.ref }}
+name: Deploy to Prod
 
 on:
   workflow_dispatch:

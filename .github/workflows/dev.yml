@@ -1,4 +1,4 @@
-name: Deploy to Development - ${{ github.ref }}
+name: Deploy to Development
 
 on:
   push:
