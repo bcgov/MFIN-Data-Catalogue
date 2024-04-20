@@ -4,9 +4,11 @@ status: true
 dependencies:
   config:
     - page_manager.page.home
+  content:
+    - 'block_content:basic:c5810526-ea89-4f3e-a9b5-d2a6a7ca32fe'
   module:
-    - bcbb_other
     - bcbb_search
+    - block_content
     - panels
 id: home-panels_variant-0
 label: Home
@@ -40,18 +42,18 @@ variant_settings:
         - ''
       html_id: ''
       css_styles: ''
-    2ea835da-546b-4c16-8a3e-bb775482cf43:
-      id: bcbb_text_block
-      label: 'Ministry of Finance Data catalogue'
+    e1c7523b-64ff-446b-8054-b336cc1e5bbf:
+      id: 'block_content:c5810526-ea89-4f3e-a9b5-d2a6a7ca32fe'
+      label: 'Home page text'
       label_display: '0'
-      provider: bcbb_other
+      provider: block_content
+      status: true
+      info: ''
+      view_mode: full
       context_mapping: {  }
-      content:
-        value: '<p>The Finance Data Catalogue enables users to discover data and data-related assets at the BC Ministry of Finance offering information and functionality that benefits consumers of data for business purposes. It is one of the foundational pieces in the Ministry’s multi-year Strategic Data Plan.</p><p>The Finance Data Catalogue is built on Drupal and adheres to the Government of BC''s Core Metadata Standard.</p><p>Data-specific inquiries are best directed to the point of contact listed within the subject metadata record within the Catalogue.</p><p>Please <a href="mailto:Nicole.deGreef@gov.bc.ca?subject=Finance%20Data%20Catalogue%20Inquiry">contact the Finance Data Catalogue team</a> with any questions or concerns about the Catalogue product.</p>'
-        format: basic_html
       region: first
       weight: 0
-      uuid: 2ea835da-546b-4c16-8a3e-bb775482cf43
+      uuid: e1c7523b-64ff-446b-8054-b336cc1e5bbf
       css_classes:
         - ''
       html_id: ''

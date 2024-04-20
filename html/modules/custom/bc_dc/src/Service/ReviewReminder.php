@@ -2,7 +2,7 @@
 
 namespace Drupal\bc_dc\Service;
 
-use Drupal\bc_dc\Trait\ReviewReminderTrait;
+use Drupal\bc_dc\Traits\ReviewReminderTrait;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;

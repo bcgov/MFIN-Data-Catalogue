@@ -22,13 +22,13 @@ variant_settings:
     0552e311-d766-4d1c-b1f3-5f87e5000e94:
       id: 'entity_view:node'
       label: 'Section 1: Details'
-      label_display: '0'
+      label_display: visible
       provider: ctools
       view_mode: section_1
       context_mapping:
         entity: node
       region: main
-      weight: -5
+      weight: -10
       uuid: 0552e311-d766-4d1c-b1f3-5f87e5000e94
       css_classes:
         - meta-data-record-build
@@ -40,24 +40,9 @@ variant_settings:
       label_display: '0'
       provider: bc_dc
       context_mapping: {  }
-      region: sidebar
-      weight: -6
+      region: header
+      weight: -4
       uuid: 3e40db8e-7871-483c-9ed0-6580c5a54c15
-      css_classes:
-        - ''
-      html_id: ''
-      css_styles: ''
-    63ffa688-4aca-4966-a552-34baa2764859:
-      id: bc_dc_edit_button
-      label: 'Section 1: Details'
-      label_display: visible
-      provider: bc_dc
-      context_mapping:
-        node: node
-      region: main
-      weight: -6
-      uuid: 63ffa688-4aca-4966-a552-34baa2764859
-      query_param: section_1
       css_classes:
         - ''
       html_id: ''
@@ -65,73 +50,43 @@ variant_settings:
     388dd9c1-d0f4-49b7-865e-31fa611b4b8d:
       id: 'entity_view:node'
       label: 'Section 2: Description'
-      label_display: '0'
+      label_display: visible
       provider: ctools
       view_mode: section_2
       context_mapping:
         entity: node
       region: main
-      weight: -3
+      weight: -9
       uuid: 388dd9c1-d0f4-49b7-865e-31fa611b4b8d
-      css_classes:
-        - ''
-      html_id: ''
-      css_styles: ''
-    700e9be9-41b5-4654-b046-584ba675c1d8:
-      id: bc_dc_edit_button
-      label: 'Section 2: Description'
-      label_display: visible
-      provider: bc_dc
-      context_mapping:
-        node: node
-      region: main
-      weight: -4
-      uuid: 700e9be9-41b5-4654-b046-584ba675c1d8
-      query_param: section_2
       css_classes:
         - ''
       html_id: ''
       css_styles: ''
     c3f9fa35-60ef-4caf-84f1-a57981624283:
       id: 'entity_view:node'
-      label: 'Section 3: Utility'
-      label_display: '0'
+      label: 'Section 3: Origin and classification'
+      label_display: visible
       provider: ctools
       view_mode: section_3
       context_mapping:
         entity: node
       region: main
-      weight: -1
+      weight: -8
       uuid: c3f9fa35-60ef-4caf-84f1-a57981624283
-      css_classes:
-        - ''
-      html_id: ''
-      css_styles: ''
-    15af6cc8-647a-4705-9a60-009230f61c10:
-      id: bc_dc_edit_button
-      label: 'Section 3: Utility'
-      label_display: visible
-      provider: bc_dc
-      context_mapping:
-        node: node
-      region: main
-      weight: -2
-      uuid: 15af6cc8-647a-4705-9a60-009230f61c10
-      query_param: section_3
       css_classes:
         - ''
       html_id: ''
       css_styles: ''
     fdee6d41-ceb6-43cf-8f6f-ede4a05dd278:
       id: 'entity_view:node'
-      label: 'Section 4: Significance'
-      label_display: '0'
+      label: 'Section 4: Related documents'
+      label_display: visible
       provider: ctools
       view_mode: section_4
       context_mapping:
         entity: node
       region: main
-      weight: 1
+      weight: -7
       uuid: fdee6d41-ceb6-43cf-8f6f-ede4a05dd278
       css_classes:
         - ''
@@ -139,45 +94,15 @@ variant_settings:
       css_styles: ''
     e1c27330-6c4f-444e-94d3-3c0af55f8205:
       id: 'entity_view:node'
-      label: 'Section 5: Data dictionary'
-      label_display: '0'
+      label: 'Section 5: Significance'
+      label_display: visible
       provider: ctools
       view_mode: section_5
       context_mapping:
         entity: node
       region: main
-      weight: 3
+      weight: -6
       uuid: e1c27330-6c4f-444e-94d3-3c0af55f8205
-      css_classes:
-        - ''
-      html_id: ''
-      css_styles: ''
-    c06bbb1b-e4c7-403c-b728-6adb7d1ef658:
-      id: bc_dc_edit_button
-      label: 'Section 5: Data dictionary'
-      label_display: visible
-      provider: bc_dc
-      context_mapping:
-        node: node
-      region: main
-      weight: 2
-      uuid: c06bbb1b-e4c7-403c-b728-6adb7d1ef658
-      query_param: section_5
-      css_classes:
-        - ''
-      html_id: ''
-      css_styles: ''
-    6d7b192c-7273-4995-b54a-fb3f4578ef89:
-      id: bc_dc_edit_button
-      label: 'Section 4: Significance'
-      label_display: visible
-      provider: bc_dc
-      context_mapping:
-        node: node
-      region: main
-      weight: 0
-      uuid: 6d7b192c-7273-4995-b54a-fb3f4578ef89
-      query_param: section_4
       css_classes:
         - ''
       html_id: ''
@@ -190,8 +115,8 @@ variant_settings:
       view_mode: revision_mode
       context_mapping:
         entity: node
-      region: sidebar
-      weight: -5
+      region: header
+      weight: -3
       uuid: 2148a34f-e8b4-4fb8-806c-ed4c8c19739f
       css_classes:
         - ''
@@ -204,15 +129,30 @@ variant_settings:
       provider: bc_dc
       context_mapping:
         node: node
-      region: sidebar
-      weight: 0
+      region: footer
+      weight: -4
       uuid: b74b78e3-c9c1-4cc9-898a-b4d5731444ab
       css_classes:
         - ''
       html_id: ''
       css_styles: ''
+    b0e2f62b-42e0-48c9-b43c-f94227979358:
+      id: 'entity_view:node'
+      label: 'Section 6: Data dictionary'
+      label_display: visible
+      provider: ctools
+      view_mode: section_6
+      context_mapping:
+        entity: node
+      region: main
+      weight: -5
+      uuid: b0e2f62b-42e0-48c9-b43c-f94227979358
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
   page_title: 'Build: [node:title]'
-  layout: bcbb_main_sidebar_right
+  layout: bcbb_bricks
   layout_settings: {  }
   builder: standard
   storage_type: page_manager

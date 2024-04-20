@@ -82,12 +82,20 @@ class BcDcAddColumnsForm extends FormBase {
    * Return an array of data_column field names that start with "field_".
    *
    * @return string[]
-   *   An array of field names with "field_" removed.
+   *   An array of field names with "field_" removed sorted by weight and name.
    */
   public static function getDataSetFields(): array {
+    // Get the fields in the default display of data_column.
+    $displayFields = \Drupal::entityTypeManager()->getStorage('entity_form_display')->load('paragraph.data_column.default')->getComponents();
+
+    // Get the keys of $displayFields sorted by weight and then by key name.
+    $weights = array_column($displayFields, 'weight');
+    $names = array_keys($displayFields);
+    array_multisort($weights, $names);
+
+    // Return only those starting with "field_" and remove that.
     $fields = [];
-    $field_definitions = static::getDataSetFieldDefinitions();
-    foreach (array_keys($field_definitions) as $name) {
+    foreach ($names as $name) {
       if (str_starts_with($name, 'field_')) {
         $fields[] = substr($name, 6);
       }
@@ -438,6 +446,10 @@ class BcDcAddColumnsForm extends FormBase {
           '#value' => $this->t('Import'),
           '#button_type' => 'primary',
         ];
+
+        // Display this page using the full width of the window.
+        $_SESSION['bc_dc_use_wide_page'] = TRUE;
+
         break;
     }
 
@@ -637,17 +649,27 @@ class BcDcAddColumnsForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state): void {
-    $node = $this->entityTypeManager->getStorage('node')->load($form_state->get('nid'));
+    $node_storage = $this->entityTypeManager->getStorage('node');
     $paragraph_storage = $this->entityTypeManager->getStorage('paragraph');
+
+    // The columns need to be added to the latest revision.
+    // Load the most recent revision.
+    $latestRevisionId = $node_storage->getLatestRevisionId($form_state->get('nid'));
+    $node = $node_storage->loadRevision($latestRevisionId);
+    // If this revision is published, create a new draft.
+    if ($node->isPublished()) {
+      $node->setNewRevision();
+      $node->setUnpublished();
+      $node->set('moderation_state', 'draft');
+      $node->setRevisionCreationTime(REQUEST_TIME);
+      $node->setRevisionUserId($this->currentUser()->id());
+    }
 
     $import_file_header = $form_state->get('import_file_header');
     $import_file_contents = $form_state->get('import_file_contents');
 
     // Remove existing paragraph entities.
-    // Get all the current entities.
-    $old_paragraph_entities = $node->field_columns->referencedEntities();
     // Delete the first entity reference as many times as there are items.
-    // The entities themselves will be deleted later after the node is saved.
     $count_of_paragraph_entities = $node->field_columns->count();
     for ($counter = 0; $counter < $count_of_paragraph_entities; $counter++) {
       $node->field_columns->removeItem(0);
@@ -674,11 +696,6 @@ class BcDcAddColumnsForm extends FormBase {
       $paragraph->save();
     }
     $node->save();
-
-    // Delete the old entities.
-    foreach ($old_paragraph_entities as $entity) {
-      $entity->delete();
-    }
 
     // Set success message.
     $context = [

@@ -1,0 +1,26 @@
+.bcbb-theme {
+  .path-taxonomy {
+    .content {
+      .field--type-string,
+      .field--type-entity-reference {
+        display: flex;
+        flex-direction: column;
+        margin: 1em 0;
+        @include responsive() {
+          flex-direction: row;
+          gap: 2em;
+          .field__label {
+            min-width: 15em;
+            max-width: 15em;
+          }
+        }
+      }
+      .field--name-description {
+        margin-top: 3em;
+      }
+      .info-schedule-details {
+        margin-top: 3em;
+      }
+    }
+  }
+}

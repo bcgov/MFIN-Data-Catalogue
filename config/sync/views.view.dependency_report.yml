@@ -291,7 +291,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<details class=\"border-top-0 border-start-0 border-end-0 pb-4 mb-4\">\r\n  <summary>{{ title_1 }} (referenced by {{ title }} datasets)</summary>\r\n  <div class=\"pt-4 ps-4 pe-4\">{{ view }}</div>\r\n</details>"
+            text: "<details class=\"border-top-0 border-start-0 border-end-0 pb-4 mb-4\">\r\n  <summary>{{ title_1 }} (referenced by {{ title }} assets)</summary>\r\n  <div class=\"pt-4 ps-4 pe-4\">{{ view }}</div>\r\n</details>"
             make_link: false
             path: ''
             absolute: false
@@ -316,7 +316,7 @@ display:
             trim: false
             preserve_tags: ''
             html: false
-          element_type: ''
+          element_type: div
           element_class: ''
           element_label_type: ''
           element_label_class: ''
@@ -554,7 +554,7 @@ display:
           admin_label: 'field_data_sets_used: Content'
           plugin_id: standard
           required: false
-      css_class: p-4
+      css_class: 'bcbb-toggle-details-wrapper p-4'
       use_ajax: true
       group_by: true
       header:
@@ -568,8 +568,8 @@ display:
           plugin_id: text
           empty: false
           content:
-            value: '<h2>Dependency report</h2>'
-            format: basic_html
+            value: "<h2>Dependency report</h2>\r\n\r\n<button id=\"bcbb-toggle-details-button\" class=\"btn btn-outline-secondary mt-3\" aria-expanded=\"false\">toggle-button</button>"
+            format: full_html
           tokenize: false
       footer: {  }
       display_extenders: {  }

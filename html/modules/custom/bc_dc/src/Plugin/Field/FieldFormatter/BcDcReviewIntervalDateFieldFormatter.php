@@ -41,6 +41,9 @@ class BcDcReviewIntervalDateFieldFormatter extends FormatterBase {
       return $element;
     }
 
+    // @todo The title should be configured in the settings for this formatter.
+    $element['#title'] = $this->t('Next review date');
+
     foreach ($items as $item) {
       $field_review_interval = (int) $item->value;
 
@@ -48,7 +51,10 @@ class BcDcReviewIntervalDateFieldFormatter extends FormatterBase {
       $next_review_date = strtotime($field_last_review_date . '+' . $field_review_interval . 'months');
 
       $element[] = [
-        '#markup' => $this->t('Next review date: @date', ['@date' => date('Y-m-d', $next_review_date)]),
+        '#theme' => 'time',
+        '#attributes' => [
+          'datetime' => date('Y-m-d', $next_review_date),
+        ],
       ];
     }
 

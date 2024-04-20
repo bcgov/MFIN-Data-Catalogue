@@ -9,8 +9,8 @@ id: node.data_set.field_data_sets_used
 field_name: field_data_sets_used
 entity_type: node
 bundle: data_set
-label: 'Data sets used'
-description: 'Select other data sets used in creating this item.'
+label: 'Assets used'
+description: 'Start typing the name of the data, form, or report used in this item. Only assets that currently exist in the Data Catalogue are available.'
 required: false
 translatable: false
 default_value: {  }
@@ -25,4 +25,5 @@ settings:
       direction: ASC
     auto_create: false
     auto_create_bundle: ''
+    allow_self_reference: false
 field_type: entity_reference

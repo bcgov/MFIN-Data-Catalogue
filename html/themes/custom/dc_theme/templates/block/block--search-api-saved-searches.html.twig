@@ -33,16 +33,9 @@
     'block-' ~ plugin_id|clean_class,
   ]
 %}
-<section{{ attributes.addClass(classes) }}>
-  {% if label %}
-    <h2 class="mb-0">
-      <button class="disable-pointer-lg-up btn toggle" type="button" data-bs-toggle="collapse" data-bs-target="#{{ toggle_variable }}" aria-expanded="false" aria-controls="{{ toggle_variable }}">{{ label }}</button>
-    </h2>
-  {% endif %}
-
-  <div id="{{ toggle_variable }}" class="collapse">
+<details{{ attributes.addClass(classes) }}>
+  <summary>{{ label }}</summary>
   {% block content %}
     {{ content }}
   {% endblock %}
-  </div>
-</section>
+</details>

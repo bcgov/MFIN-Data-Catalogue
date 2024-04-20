@@ -9,6 +9,15 @@
  * Implements hook_views_data_alter().
  */
 function bc_dc_views_data_alter(array &$data) {
+  $data['node']['bc_dc_build'] = [
+    'title' => t('Build link'),
+    'field' => [
+      'title' => t('Build'),
+      'help' => t('Links to Build page.'),
+      'id' => 'bc_dc_build',
+    ],
+  ];
+
   $data['node']['bc_dc_delete'] = [
     'title' => t('Delete link'),
     'field' => [

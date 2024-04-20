@@ -1,0 +1,19 @@
+uuid: 94f230f8-f14e-434e-b1a0-ec4785f05cd5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_contact_email
+    - node.type.data_set
+id: node.data_set.field_contact_email
+field_name: field_contact_email
+entity_type: node
+bundle: data_set
+label: 'Contact email'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

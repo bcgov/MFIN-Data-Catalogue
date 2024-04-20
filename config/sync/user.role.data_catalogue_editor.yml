@@ -17,16 +17,25 @@ dependencies:
     - statistics
 id: data_catalogue_editor
 label: 'Data catalogue editor'
-weight: 5
+weight: 6
 is_admin: null
 permissions:
+  - 'access data catalogue docs'
   - 'access printer-friendly version'
   - 'access user manage'
   - 'create data_set content'
   - 'create field_asset_location'
   - 'create field_organization'
+  - 'create field_paragraph_document_link'
+  - 'create field_paragraph_document_title'
+  - 'create field_paragraph_document_type'
+  - 'create field_related_document'
   - 'delete own never_published data_set in_org'
   - 'edit field_asset_location'
+  - 'edit field_paragraph_document_link'
+  - 'edit field_paragraph_document_title'
+  - 'edit field_paragraph_document_type'
+  - 'edit field_related_document'
   - 'flag bookmark'
   - 'revert data_set revisions'
   - 'unflag bookmark'
@@ -35,6 +44,7 @@ permissions:
   - 'use  The form mode section_3 linked to  node entity( data_set )'
   - 'use  The form mode section_4 linked to  node entity( data_set )'
   - 'use  The form mode section_5 linked to  node entity( data_set )'
+  - 'use  The form mode section_6 linked to  node entity( data_set )'
   - 'use editorial transition archive'
   - 'use editorial transition archived_draft'
   - 'use editorial transition archived_published'

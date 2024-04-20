@@ -8,8 +8,9 @@
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
   ]
 %}
+{% set wrapper_element = (label and not page) ? 'article' : 'div' %}
 {{ attach_library('bootstrap5/node') }}
-<article{{ attributes.addClass(classes) }}>
+<{{ wrapper_element }}{{ attributes.addClass(classes) }}>
 
   {{ title_prefix }}
   {% if label and not page %}
@@ -29,19 +30,19 @@
           {{ content.flag_bookmark }}
         </div>
 
-        <section id="dc_data_details_description" class="grid-dc-content">
+        <div id="dc_data_details_description" class="grid-dc-content">
 
           <div id="metadata_record_labels">
 
             {{ drupal_block('bc_dc_review_needed_message') }}
-            {% if node.field_personal_information.value == 1 %}
               <div id="dataset_alerts" class="dataset-alerts">
-               <span class="badge text-bg-warning">{{ node.field_personal_information.fieldDefinition.label }}</span>
-               {% if node.field_high_value_info.value %}
-                 <span class="badge text-bg-success">{{ node.field_high_value_info.fieldDefinition.label }}</span>
-               {% endif %}
+                {% if node.field_personal_information.value == 1 %}
+                  <span class="badge text-bg-warning">{{ node.field_personal_information.fieldDefinition.label }}</span>
+                {% endif %}
+                {% for label in badge_high_value %}
+                  <span class="badge dc-badge-high-value icon-bi-award-fill">{{ label }}</span>
+                {% endfor %}
               </div>
-            {% endif %}
 
           </div>
 
@@ -108,81 +109,89 @@
             </div>
           {% endif %}
 
-        </section>
+          {% if field_contact %}
+            <div class="field field--label-inline clearfix d-flex flex-row align-items-start field_contact">
+              <div class="field__label text-nowrap">{{ 'Contact'|t }}</div>
+              <div class="field__item">{{ field_contact }}</div>
+            </div>
+          {% endif %}
+
+        </div>
 
         <div class="grid-dc-sidebar-right">
 
-          <section id="dc_data_usage_value_information_management" class="card text-bg-light mb-3 p-3 small">
+          <div id="dc_data_usage_value_information_management" class="card text-bg-light mb-3 p-3 small">
 
-            {% if node.field_source_system  or node.field_data_sets_used or drupal_view_result('used_in_data_sets', 'block_1', node.nid.value) or node.field_data_quality_issues %}
-              <div id="dc_data_usage" class="dc-fields">
+            {# Without "|render", these variables would be render arrays, so not empty but may still render to empty output. #}
+            {% set field_source_system = node.field_source_system|view|render %}
+            {% set field_data_sets_used = node.field_data_sets_used|view|render %}
+            {% set has_used_in_data_sets = drupal_view_result('used_in_data_sets', 'block_1', node.nid.value) is not empty %}
+            {% set field_data_quality_issues = node.field_data_quality_issues|view|render %}
+            {% if field_source_system or field_data_sets_used or has_used_in_data_sets or field_data_quality_issues %}
+              <section id="dc_data_usage" class="dc-fields">
                 <h2 class="field__label mb-1 fs-5 fw-bold">
                   {{ 'Data usage'|t }}
                 </h2>
-                {% if node.field_source_system and not node.field_source_system.isempty %}
+                {% if field_source_system %}
                   <div class="mb-3">
-                    {{ node.field_source_system|view }}
+                    {{ field_source_system }}
                   </div>
                 {% endif %}
 
                 {# data lineage #}
-                {% if (node.field_data_sets_used and not node.field_data_sets_used.isEmpty) or (drupal_view_result('used_in_data_sets', 'block_1', node.nid.value) is not empty) %}
+                {% if field_data_sets_used or has_used_in_data_sets %}
                   <details class="dc-lineage">
                     <summary>{{ 'Data lineage'|t }}</summary>
-                    <section>
-                      {% if node.field_data_sets_used and not node.field_data_sets_used.isempty %}
-                        <section class="dc-lineage-datasets-used" aria-label="{{ 'This record uses the following records'|t }}">
-                          {{ node.field_data_sets_used|view }}
-                          <div class="dc-arrow-down">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="40px" viewBox="0 0 25 50">
-                              <path d="M23.87,27.56h-6.57V0H7.69v27.56H1.13c-.87,0-1.41.96-.97,1.73l11.37,20.14c.43.77,1.52.77,1.95,0l11.37-20.14c.43-.77-.11-1.73-.97-1.73Z" fill="currentColor"/>
-                            </svg>
-                          </div>
-                        </section>
-                      {% endif %}
-                      <section class="dc-lineage-this-dataset">
-                        <em>{{ 'This @record_type:'|t({'@record_type': record_type}) }}</em> {{ node.label() }}
+                    {% if field_data_sets_used %}
+                      <section class="dc-lineage-datasets-used" aria-label="{{ 'This record uses the following records'|t }}">
+                        {{ field_data_sets_used }}
+                        <div class="dc-arrow-down">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="40px" viewBox="0 0 25 50">
+                            <path d="M23.87,27.56h-6.57V0H7.69v27.56H1.13c-.87,0-1.41.96-.97,1.73l11.37,20.14c.43.77,1.52.77,1.95,0l11.37-20.14c.43-.77-.11-1.73-.97-1.73Z" fill="currentColor"/>
+                          </svg>
+                        </div>
                       </section>
-                      {% if drupal_view_result('used_in_data_sets', 'block_1', node.nid.value) is not empty %}
-                        <section class="dc-lineage-used-in-datasets" aria-label="{{ 'The following records use this record'|t }}">
-                          <div class="dc-arrow-down">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="40px" viewBox="0 0 25 50">
-                              <path d="M23.87,27.56h-6.57V0H7.69v27.56H1.13c-.87,0-1.41.96-.97,1.73l11.37,20.14c.43.77,1.52.77,1.95,0l11.37-20.14c.43-.77-.11-1.73-.97-1.73Z" fill="currentColor"/>
-                            </svg>
-                          </div>
-                          {{ drupal_view('used_in_data_sets', 'block_1', node.nid.value) }}
-                        </section>
-                      {% endif %}
-                    </section>
+                    {% endif %}
+                    <div class="dc-lineage-this-dataset">
+                      <em>{{ 'This @record_type:'|t({'@record_type': record_type}) }}</em> {{ node.label() }}
+                    </div>
+                    {% if has_used_in_data_sets %}
+                      <section class="dc-lineage-used-in-datasets" aria-label="{{ 'The following records use this record'|t }}">
+                        <div class="dc-arrow-down">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="40px" viewBox="0 0 25 50">
+                            <path d="M23.87,27.56h-6.57V0H7.69v27.56H1.13c-.87,0-1.41.96-.97,1.73l11.37,20.14c.43.77,1.52.77,1.95,0l11.37-20.14c.43-.77-.11-1.73-.97-1.73Z" fill="currentColor"/>
+                          </svg>
+                        </div>
+                        {{ drupal_view('used_in_data_sets', 'block_1', node.nid.value) }}
+                      </section>
+                    {% endif %}
                   </details>
                 {% endif %}
 
-                {% if node.field_data_quality_issues and not node.field_data_quality_issues.isempty %}
+                {% if field_data_quality_issues %}
                   <div class="mb-3">
-                    {{ node.field_data_quality_issues|view }}
+                    {{ field_data_quality_issues }}
                   </div>
                 {% endif %}
-              </div>
+              </section>
               <hr>
             {% endif %}
 
-            <div id="dc_data_value" class="mt-3 dc-fields">
+            {% if node.field_personal_information and not node.field_personal_information.isempty or node.field_security_classification and not node.field_security_classification.isempty or node.field_critical_information and not node.field_critical_information.isempty or node.field_authoritative_info and not node.field_authoritative_info.isempty %}
+            <section id="dc_data_value" class="mt-3 dc-fields">
               <h2 class="field__label mb-1 fs-5 fw-bold">
                 {{ 'Data value'|t }}
               </h2>
-
               {% if node.field_personal_information and not node.field_personal_information.isempty %}
                 <div class="mb-3">
                   {{ node.field_personal_information|view }}
                 </div>
               {% endif %}
-
               {% if node.field_security_classification and not node.field_security_classification.isempty %}
                 <div class="mb-3">
                   {{ node.field_security_classification|view }}
                 </div>
               {% endif %}
-
               {% if node.field_critical_information and not node.field_critical_information.isempty %}
                 <div class="mb-3">
                   {{ node.field_critical_information|view }}
@@ -193,20 +202,16 @@
                   {{ node.field_authoritative_info|view }}
                 </div>
               {% endif %}
-              {% if node.field_high_value_info and not node.field_high_value_info.isempty %}
-                <div class="mb-3">
-                  {{ node.field_high_value_info|view }}
-                </div>
-              {% endif %}
-            </div>
+            </section>
+            {% endif %}
 
-            {% if not node.field_information_schedule.isempty %}
-              <div id="dc_information_management" class="mt-3 dc-fields">
+            {% set field_information_schedule = node.field_information_schedule.entity.field_schedule_code|view|render %}
+            {% if information_schedule_type or field_information_schedule or information_schedule_business_category %}
+              <section id="dc_information_management" class="mt-3 dc-fields">
                 <hr>
                 <h2 class="field__label mb-1 pt-3 fs-5 fw-bold">
                   {{ 'Information management'|t }}
                 </h2>
-
                 <div class="mb-3">
                   {% if information_schedule_type %}
                     <div class="field field--name-field-information-schedule field--type-entity-reference field--label-inline clearfix">
@@ -214,21 +219,26 @@
                       <div class="field__item">{{ information_schedule_type }}</div>
                     </div>
                   {% endif %}
-                  {% if information_schedule_details %}
+                  {{ field_information_schedule }}
+                  {% if information_schedule_business_category %}
                     <div class="field field--name-field-information-schedule field--type-entity-reference field--label-inline clearfix">
-                      <div class="field__label">{{ 'IM classification details'|t }}</div>
-                      <div class="field__item">{{ information_schedule_details }}</div>
+                      <div class="field__label">{{ 'Business category'|t }}</div>
+                      <div class="field__item">{{ information_schedule_business_category }}</div>
                     </div>
                   {% endif %}
-                  {% if node.field_information_schedule.entity.field_schedule_code %}
-                    {{ node.field_information_schedule.entity.field_schedule_code|view}}
-                  {% endif %}
                 </div>
-
-              </div>
+              </section>
             {% endif %}
 
-          </section>
+            {% set field_related_document = node.field_related_document|view|render %}
+            {% if field_related_document %}
+              <section class="mt-3">
+                <hr>
+                <h2 class="field__label mb-1 pt-3 fs-5 fw-bold">{{ node.field_related_document.fieldDefinition.label }}</h2>
+                {{ field_related_document }}
+              </section>
+            {% endif %}
+          </div>
 
         </div>
 
@@ -239,12 +249,12 @@
           <hr>
           <h2>{{ 'Data dictionary'|t }}</h2>
           {{ data_dictionary_download_links }}
-          <button id="dc-data-dictionary-toggle-button" class="btn btn-outline-secondary mt-3" aria-expanded="false">toggle-button</button>
+          <button id="bcbb-toggle-details-button" class="btn btn-outline-secondary mt-3" aria-expanded="false">toggle-button</button>
           {{ node.field_columns|view }}
         </section>
       {% endif %}
 
-      <section id="author_permalink" class="bcbb-fw mt-4 dc-subfooter">
+      <div id="author_permalink" class="bcbb-fw mt-4 dc-subfooter">
         <div class="container">
           <div class="field field--name-field-uid field--type-entity-reference field--label-inline clearfix">
             <div class="field__label mb-2">{{ 'Data set editor'|t }}</div>
@@ -252,9 +262,9 @@
           </div>
           {{ permalink }}
         </div>
-      </section>
+      </div>
     </div>
 
   </div>
 
-</article>
+</{{ wrapper_element }}>

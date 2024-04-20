@@ -6,6 +6,7 @@ use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\Plugin\Action\AssignOwnerNode;
+use Drupal\user\Entity\Role;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -62,21 +63,9 @@ class BcDcAssignOwnerNode extends AssignOwnerNode {
   public function buildConfigurationForm(array $form, FormStateInterface $form_state): array {
     $user_storage = $this->entityTypeManager->getStorage('user');
 
-    // Get all roles that have permission to edit.
-    $rids = array_keys(user_role_names(TRUE, 'edit any data_set content'));
-
-    // Query for all users in those roles.
-    $query_edit_users = $user_storage
-      ->getQuery()
-      ->accessCheck(FALSE)
-      // Only users with permission to edit.
-      ->condition('roles', $rids, 'IN')
-      // Exclude anonymous.
-      ->condition('uid', 0, '>');
-
     // Create array of uid => realname.
     $options = [];
-    foreach ($query_edit_users->execute() as $uid) {
+    foreach ($this->getEditUsers() as $uid) {
       $user = $user_storage->load($uid);
       $options[$user->id()] = $user->getDisplayName();
     }
@@ -91,6 +80,39 @@ class BcDcAssignOwnerNode extends AssignOwnerNode {
     ];
 
     return $form;
+  }
+
+  /**
+   * Return an array of UID of users who are allowed to edit data_set nodes.
+   *
+   * @return int[]
+   *   The UIDs.
+   */
+  public function getEditUsers(): array {
+    $user_storage = $this->entityTypeManager->getStorage('user');
+
+    // Get all roles that have permission to edit.
+    // Users with 'edit any data_set content' can edit anything. Users with
+    // 'use  The form mode section_1 linked to  node entity( data_set )' can
+    // edit if their organization matches (done via tac_lite).
+    $rids = [];
+    foreach (Role::loadMultiple() as $role) {
+      if ($role->hasPermission('edit any data_set content') || $role->hasPermission('use  The form mode section_1 linked to  node entity( data_set )')) {
+        $rids[$role->id()] = TRUE;
+      }
+    }
+    $rids = array_keys($rids);
+
+    // Query for all users in those roles.
+    $query_edit_users = $user_storage
+      ->getQuery()
+      ->accessCheck(FALSE)
+      // Only users with permission to edit.
+      ->condition('roles', $rids, 'IN')
+      // Exclude anonymous.
+      ->condition('uid', 0, '>');
+
+    return $query_edit_users->execute();
   }
 
 }

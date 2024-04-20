@@ -2,7 +2,7 @@
 
 namespace Drupal\bc_dc\Plugin\Block;
 
-use Drupal\bc_dc\Trait\ReviewReminderTrait;
+use Drupal\bc_dc\Traits\ReviewReminderTrait;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;

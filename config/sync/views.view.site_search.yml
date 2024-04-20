@@ -10,7 +10,6 @@ dependencies:
     - field.storage.node.field_data_quality_issues
     - field.storage.node.field_data_set_historical_change
     - field.storage.node.field_data_set_type
-    - field.storage.node.field_high_value_info
     - field.storage.node.field_information_schedule
     - field.storage.node.field_modified_date
     - field.storage.node.field_primary_responsibility_org
@@ -1121,83 +1120,6 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-        field_high_value_info:
-          id: field_high_value_info
-          table: search_api_datasource_default_index_entity_node
-          field: field_high_value_info
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          plugin_id: search_api_field
-          label: ''
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: true
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: boolean
-          settings:
-            format: default
-            format_custom_false: ''
-            format_custom_true: ''
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          field_rendering: true
-          fallback_handler: search_api_boolean
-          fallback_options:
-            type: yes-no
-            type_custom_true: ''
-            type_custom_false: ''
-            not: false
-            link_to_item: false
-            use_highlighting: false
-            multi_type: separator
-            multi_separator: ', '
         field_source_system:
           id: field_source_system
           table: search_api_datasource_default_index_entity_node
@@ -1709,79 +1631,67 @@ display:
                 strip_tags: true
                 field_override: true
                 field_config:
+                  type:
+                    active: false
+                    label: ''
                   title:
                     active: true
                     label: title
+                  uid:
+                    active: true
+                    label: author
+                  field_primary_responsibility_org:
+                    active: true
+                    label: primary_responsibility_org
                   body:
                     active: true
                     label: description
                   search_api_excerpt:
                     active: false
                     label: ''
-                  field_primary_responsibility_org:
+                  field_series:
                     active: true
-                    label: primary_responsibility_org
-                  uid:
-                    active: true
-                    label: author
-                  field_modified_date:
-                    active: true
-                    label: modified_date
-                  nothing:
-                    active: false
-                    label: ''
+                    label: series
                   created:
                     active: true
                     label: created_date
-                  field_authoritative_info:
+                  field_modified_date:
                     active: true
-                    label: authoritative_info
-                  field_columns:
-                    active: true
-                    label: columns
-                  field_metadata_type:
-                    active: false
-                    label: ''
-                  type:
-                    active: false
-                    label: ''
-                  field_critical_information:
-                    active: true
-                    label: critical_information
+                    label: modified_date
                   field_data_quality_issues:
                     active: true
                     label: data_quality_issues
                   field_data_set_historical_change:
                     active: true
                     label: data_set_historical_change
-                  field_data_set_type:
-                    active: true
-                    label: data_set_type
-                  field_high_value_info:
-                    active: true
-                    label: high_value_info
-                  field_information_schedule:
-                    active: true
-                    label: information_schedule
-                  field_information_schedule_1:
-                    active: true
-                    label: information_schedule_1
-                  field_information_schedule_2:
-                    active: true
-                    label: information_schedule_2
                   field_security_classification:
                     active: true
                     label: security_classification
-                  field_series:
+                  field_critical_information:
                     active: true
-                    label: series
+                    label: critical_information
+                  field_authoritative_info:
+                    active: true
+                    label: authoritative_info
                   field_source_system:
                     active: true
                     label: source_system
-                  field_unique_identifier:
+                  field_data_set_type:
                     active: true
-                    label: unique_identifier
-                separator: ;
+                    label: data_set_type
+                  field_information_schedule:
+                    active: true
+                    label: information_schedule
+                  field_columns:
+                    active: true
+                    label: columns
+                  field_metadata_type:
+                    active: false
+                    label: ''
+                  nothing:
+                    active: false
+                    label: ''
+                separator: ','
             10:
               action_id: vbo_export_generate_xlsx_action
               preconfiguration:
@@ -1789,78 +1699,66 @@ display:
                 strip_tags: true
                 field_override: true
                 field_config:
+                  type:
+                    active: false
+                    label: ''
                   title:
                     active: true
                     label: title
+                  uid:
+                    active: true
+                    label: author
+                  field_primary_responsibility_org:
+                    active: true
+                    label: primary_responsibility_org
                   body:
                     active: true
                     label: description
                   search_api_excerpt:
                     active: false
                     label: ''
-                  field_primary_responsibility_org:
+                  field_series:
                     active: true
-                    label: primary_responsibility_org
-                  uid:
-                    active: true
-                    label: author
-                  field_modified_date:
-                    active: true
-                    label: modified_date
-                  nothing:
-                    active: false
-                    label: ''
+                    label: series
                   created:
                     active: true
                     label: created_date
-                  field_authoritative_info:
+                  field_modified_date:
                     active: true
-                    label: authoritative_info
-                  field_columns:
-                    active: true
-                    label: columns
-                  field_metadata_type:
-                    active: false
-                    label: ''
-                  type:
-                    active: false
-                    label: ''
-                  field_critical_information:
-                    active: true
-                    label: critical_information
+                    label: modified_date
                   field_data_quality_issues:
                     active: true
                     label: data_quality_issues
                   field_data_set_historical_change:
                     active: true
                     label: data_set_historical_change
-                  field_data_set_type:
-                    active: true
-                    label: data_set_type
-                  field_high_value_info:
-                    active: true
-                    label: high_value_info
-                  field_information_schedule:
-                    active: true
-                    label: information_schedule
-                  field_information_schedule_1:
-                    active: true
-                    label: information_schedule_1
-                  field_information_schedule_2:
-                    active: true
-                    label: information_schedule_2
                   field_security_classification:
                     active: true
                     label: security_classification
-                  field_series:
+                  field_critical_information:
                     active: true
-                    label: series
+                    label: critical_information
+                  field_authoritative_info:
+                    active: true
+                    label: authoritative_info
                   field_source_system:
                     active: true
                     label: source_system
-                  field_unique_identifier:
+                  field_data_set_type:
                     active: true
-                    label: unique_identifier
+                    label: data_set_type
+                  field_information_schedule:
+                    active: true
+                    label: information_schedule
+                  field_columns:
+                    active: true
+                    label: columns
+                  field_metadata_type:
+                    active: false
+                    label: ''
+                  nothing:
+                    active: false
+                    label: ''
         nothing:
           id: nothing
           table: views
@@ -1873,7 +1771,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<h2 class=\"h4\">{{ title }}</h2>\r\n<div class=\"views-field views-field-search-api-excerpt\">\r\n  {{ search_api_excerpt }}\r\n</div>\r\n<ul class=\"small text-black-50 bcbb-inline-list m-0 p-0\">\r\n  <li class=\"primary_responsibility_org\">{{ field_primary_responsibility_org }}</li>\r\n  <li class=\"data_set_editor\">{{ uid }}</li>\r\n  <li class=\"modified_date\">{{ field_modified_date }}</li>\r\n</ul>"
+            text: "<h2 class=\"h4\">{{ title }}</h2>\r\n<div class=\"views-field views-field-search-api-excerpt\">\r\n  {{ search_api_excerpt }}\r\n</div>\r\n<ul class=\"small text-black-60 bcbb-inline-list m-0 p-0\">\r\n  <li class=\"primary_responsibility_org\">{{ field_primary_responsibility_org }}</li>\r\n  <li class=\"data_set_editor\">{{ uid }}</li>\r\n  <li class=\"modified_date\">{{ field_modified_date }}</li>\r\n</ul>"
             make_link: false
             path: ''
             absolute: false
@@ -1967,7 +1865,7 @@ display:
         type: none
         options: {  }
       cache:
-        type: none
+        type: search_api_none
         options: {  }
       empty: {  }
       sorts:
@@ -2143,7 +2041,6 @@ display:
         - 'config:field.storage.node.field_data_quality_issues'
         - 'config:field.storage.node.field_data_set_historical_change'
         - 'config:field.storage.node.field_data_set_type'
-        - 'config:field.storage.node.field_high_value_info'
         - 'config:field.storage.node.field_information_schedule'
         - 'config:field.storage.node.field_modified_date'
         - 'config:field.storage.node.field_primary_responsibility_org'
@@ -2160,7 +2057,7 @@ display:
     position: 1
     display_options:
       cache:
-        type: none
+        type: search_api_none
       defaults:
         cache: false
       exposed_block: true
@@ -2185,7 +2082,6 @@ display:
         - 'config:field.storage.node.field_data_quality_issues'
         - 'config:field.storage.node.field_data_set_historical_change'
         - 'config:field.storage.node.field_data_set_type'
-        - 'config:field.storage.node.field_high_value_info'
         - 'config:field.storage.node.field_information_schedule'
         - 'config:field.storage.node.field_modified_date'
         - 'config:field.storage.node.field_primary_responsibility_org'

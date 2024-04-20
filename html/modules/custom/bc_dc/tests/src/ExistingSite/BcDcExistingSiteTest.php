@@ -143,7 +143,7 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     // not work properly in Functional.
     $this->drupalGet('user');
     // View block saved_searches appears.
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-views-blocksaved-searches-dashboard-saved-search")]');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-views-blocksaved-searches-dashboard-saved-search")]');
     // Access to saved searches page.
     $this->drupalGet('user/1/saved-searches');
     $this->assertSession()->statusCodeEquals(200);

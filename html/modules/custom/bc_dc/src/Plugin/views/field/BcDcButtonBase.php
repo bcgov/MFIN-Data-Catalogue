@@ -34,11 +34,12 @@ abstract class BcDcButtonBase extends FieldPluginBase {
         'class' => ['btn'],
         'title' => $buttonConfig['text'] . ' ' . $node->getTitle(),
       ],
-      'query' => [
-        'destination' => '/user/' . $user->id() . '/manage',
-      ],
     ];
     $options['attributes']['class'][] = $buttonConfig['class'];
+
+    if (!empty($buttonConfig['destination'])) {
+      $options['query']['destination'] = '/user/' . $user->id() . '/manage';
+    }
 
     $url = Url::fromRoute($buttonConfig['route'], ['node' => $node->id()], $options);
 

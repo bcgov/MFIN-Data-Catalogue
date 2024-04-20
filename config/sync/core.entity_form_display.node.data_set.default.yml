@@ -4,17 +4,16 @@ status: true
 dependencies:
   config:
     - field.field.node.data_set.body
-    - field.field.node.data_set.field_active_period
     - field.field.node.data_set.field_asset_location
     - field.field.node.data_set.field_authoritative_info
     - field.field.node.data_set.field_columns
+    - field.field.node.data_set.field_contact_email
+    - field.field.node.data_set.field_contact_name
     - field.field.node.data_set.field_critical_information
     - field.field.node.data_set.field_data_quality_issues
     - field.field.node.data_set.field_data_set_historical_change
     - field.field.node.data_set.field_data_set_type
     - field.field.node.data_set.field_data_sets_used
-    - field.field.node.data_set.field_final_disposition
-    - field.field.node.data_set.field_high_value_info
     - field.field.node.data_set.field_information_schedule
     - field.field.node.data_set.field_is_complete_review
     - field.field.node.data_set.field_last_review_date
@@ -22,13 +21,12 @@ dependencies:
     - field.field.node.data_set.field_personal_information
     - field.field.node.data_set.field_primary_responsibility_org
     - field.field.node.data_set.field_published_date
+    - field.field.node.data_set.field_related_document
     - field.field.node.data_set.field_review_interval
     - field.field.node.data_set.field_review_status
     - field.field.node.data_set.field_security_classification
-    - field.field.node.data_set.field_semi_active_period
     - field.field.node.data_set.field_series
     - field.field.node.data_set.field_source_system
-    - field.field.node.data_set.field_special_flags
     - field.field.node.data_set.field_visibility
     - node.type.data_set
     - workflows.workflow.editorial
@@ -36,7 +34,6 @@ dependencies:
     - conditional_fields
     - content_moderation
     - datetime
-    - field_token_value
     - paragraphs
     - shs
     - text
@@ -55,50 +52,17 @@ content:
       placeholder: ''
       show_summary: false
     third_party_settings: {  }
-  field_active_period:
-    type: field_token_value_default
-    weight: 24
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_asset_location:
     type: text_textarea
-    weight: 34
+    weight: 25
     region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-  field_authoritative_info:
-    type: boolean_checkbox
-    weight: 13
-    region: content
-    settings:
-      display_label: true
-    third_party_settings:
-      conditional_fields:
-        54f4a26d-5e4f-4a72-a262-d6ad511f409c:
-          entity_type: node
-          bundle: data_set
-          dependee: field_data_set_type
-          settings:
-            state: visible
-            reset: false
-            condition: value
-            grouping: AND
-            values_set: 1
-            value: ''
-            values: {  }
-            value_form:
-              -
-                target_id: '20'
-            effect: show
-            effect_options: {  }
-            selector: ''
-            values_parent: 1
   field_columns:
     type: paragraphs
-    weight: 19
+    weight: 17
     region: content
     settings:
       title: Paragraph
@@ -124,16 +88,32 @@ content:
             reset: false
             condition: value
             grouping: AND
-            values_set: 1
+            values_set: 3
             value: ''
-            values: {  }
+            values: '20'
             value_form:
               -
                 target_id: '20'
             effect: show
             effect_options: {  }
             selector: ''
-            values_parent: 1
+            include_descendants: 1
+  field_contact_email:
+    type: email_default
+    weight: 28
+    region: content
+    settings:
+      placeholder: ''
+      size: 60
+    third_party_settings: {  }
+  field_contact_name:
+    type: string_textfield
+    weight: 27
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_critical_information:
     type: boolean_checkbox
     weight: 12
@@ -151,16 +131,16 @@ content:
             reset: false
             condition: value
             grouping: AND
-            values_set: 1
+            values_set: 3
             value: ''
-            values: {  }
+            values: '20'
             value_form:
               -
                 target_id: '20'
             effect: show
             effect_options: {  }
             selector: ''
-            values_parent: 1
+            include_descendants: 1
   field_data_quality_issues:
     type: text_textarea
     weight: 9
@@ -179,16 +159,16 @@ content:
             reset: false
             condition: value
             grouping: AND
-            values_set: 1
+            values_set: 3
             value: ''
-            values: {  }
+            values: '20'
             value_form:
               -
                 target_id: '20'
             effect: show
             effect_options: {  }
             selector: ''
-            values_parent: 1
+            include_descendants: 1
   field_data_set_historical_change:
     type: text_textarea
     weight: 10
@@ -207,19 +187,19 @@ content:
             reset: false
             condition: value
             grouping: AND
-            values_set: 1
+            values_set: 3
             value: ''
-            values: {  }
+            values: '20'
             value_form:
               -
                 target_id: '20'
             effect: show
             effect_options: {  }
             selector: ''
-            values_parent: 1
+            include_descendants: 1
   field_data_set_type:
     type: options_shs
-    weight: 16
+    weight: 14
     region: content
     settings:
       display_node_count: false
@@ -229,7 +209,7 @@ content:
     third_party_settings: {  }
   field_data_sets_used:
     type: entity_reference_autocomplete_tags
-    weight: 18
+    weight: 16
     region: content
     settings:
       match_operator: CONTAINS
@@ -256,43 +236,10 @@ content:
             effect: show
             effect_options: {  }
             selector: ''
-            values_parent: 1
-  field_final_disposition:
-    type: field_token_value_default
-    weight: 22
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_high_value_info:
-    type: boolean_checkbox
-    weight: 14
-    region: content
-    settings:
-      display_label: true
-    third_party_settings:
-      conditional_fields:
-        f7277386-6f1c-4ddd-a76a-8c31e89a600e:
-          entity_type: node
-          bundle: data_set
-          dependee: field_data_set_type
-          settings:
-            state: visible
-            reset: false
-            condition: value
-            grouping: AND
-            values_set: 1
-            value: ''
-            values: {  }
-            value_form:
-              -
-                target_id: '20'
-            effect: show
-            effect_options: {  }
-            selector: ''
-            values_parent: 1
+            include_descendants: 1
   field_information_schedule:
     type: options_shs
-    weight: 17
+    weight: 15
     region: content
     settings:
       display_node_count: false
@@ -302,14 +249,14 @@ content:
     third_party_settings: {  }
   field_is_complete_review:
     type: boolean_checkbox
-    weight: 27
+    weight: 21
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_last_review_date:
     type: datetime_default
-    weight: 25
+    weight: 19
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -321,7 +268,7 @@ content:
     third_party_settings: {  }
   field_personal_information:
     type: options_buttons
-    weight: 33
+    weight: 24
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -337,28 +284,40 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_related_document:
+    type: paragraphs
+    weight: 26
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+      features:
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
   field_review_interval:
     type: number
-    weight: 26
+    weight: 20
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_review_status:
     type: options_select
-    weight: 29
+    weight: 22
     region: content
     settings: {  }
     third_party_settings: {  }
   field_security_classification:
     type: options_buttons
     weight: 11
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_semi_active_period:
-    type: field_token_value_default
-    weight: 21
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -370,7 +329,7 @@ content:
     third_party_settings: {  }
   field_source_system:
     type: options_select
-    weight: 15
+    weight: 13
     region: content
     settings: {  }
     third_party_settings:
@@ -384,22 +343,16 @@ content:
             reset: false
             condition: value
             grouping: AND
-            values_set: 1
+            values_set: 3
             value: ''
-            values: {  }
+            values: '20'
             value_form:
               -
                 target_id: '20'
             effect: show
             effect_options: {  }
             selector: ''
-            values_parent: 1
-  field_special_flags:
-    type: field_token_value_default
-    weight: 23
-    region: content
-    settings: {  }
-    third_party_settings: {  }
+            include_descendants: 1
   field_visibility:
     type: options_buttons
     weight: 4
@@ -415,13 +368,13 @@ content:
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 30
+    weight: 23
     region: content
     settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 20
+    weight: 18
     region: content
     settings:
       display_label: true
@@ -446,6 +399,7 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_authoritative_info: true
   path: true
   promote: true
   sticky: true

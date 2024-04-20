@@ -35,6 +35,14 @@
   }
 }
 
+.path-taxonomy .content {
+  margin-bottom: 1.37em;
+}
+.path-taxonomy .content .info-schedule-details,
+.path-taxonomy .content .field--name-description {
+  margin-top: 1.25em;
+}
+
 .flag-bookmark {
   margin-bottom: 1em;
 }
@@ -79,6 +87,10 @@
 
 .dc-table-row-has-actions tr td:last-child {
   white-space: nowrap;
+}
+
+td.error {
+  background-color: var(--bs-danger-bg-subtle);
 }
 
 @media only screen and (min-width: 992px) {
@@ -168,6 +180,10 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   background-color: var(--bs-danger);
 }
 
+.field-required {
+  color: #a12622;
+}
+
 @media only screen and (min-width: 992px) {
   .dc-grid-2col-operations-lg {
     display: grid;
@@ -233,13 +249,12 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   align-self: end;
 }
 .path-user .card-group-region .block-views-blockbookmarks-dashboard-bookmarks > h2 {
-  display: inline-flex;
+  display: inline-flex !important;
   width: auto;
   line-height: 1 !important;
   gap: 0.25em;
   align-items: center;
   text-decoration: none;
-  margin-left: 1.25em;
 }
 .path-user .card-group-region .block-views-blockbookmarks-dashboard-bookmarks > h2::before, .path-user .card-group-region .block-views-blockbookmarks-dashboard-bookmarks > h2::after {
   font-family: "bootstrap-icons" !important;
@@ -248,17 +263,15 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   -moz-osx-font-smoothing: grayscale;
 }
 .path-user .card-group-region .block-views-blockbookmarks-dashboard-bookmarks > h2::before {
-  margin-left: -1.25em;
   content: "\f1a3";
 }
 .path-user .card-group-region .block-views-blocksaved-searches-dashboard-saved-search > h2 {
-  display: inline-flex;
+  display: inline-flex !important;
   width: auto;
   line-height: 1 !important;
   gap: 0.25em;
   align-items: center;
   text-decoration: none;
-  margin-left: 1.25em;
 }
 .path-user .card-group-region .block-views-blocksaved-searches-dashboard-saved-search > h2::before, .path-user .card-group-region .block-views-blocksaved-searches-dashboard-saved-search > h2::after {
   font-family: "bootstrap-icons" !important;
@@ -267,7 +280,6 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   -moz-osx-font-smoothing: grayscale;
 }
 .path-user .card-group-region .block-views-blocksaved-searches-dashboard-saved-search > h2::before {
-  margin-left: -1.25em;
   content: "\f52a";
 }
 .path-user .card-group-region .block-views-blocksaved-searches-dashboard-saved-search .btn {
@@ -338,6 +350,7 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 .dc-global-report .block-bc-dc-authoritative-records .dc-count {
   font-size: 1.5em;
   margin-bottom: 0;
+  display: block;
 }
 @media only screen and (min-width: 576px) {
   .dc-global-report .block-bc-dc-published-records .dc-count,
@@ -423,6 +436,96 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   justify-content: center;
 }
 
+.views-data-export-feed a, .bcbb-search-wrapper .view-site-search div[id*=edit-actions] .bcbb-input-wrapper, .dc-details .item-list ul li a {
+  display: inline-flex !important;
+  width: auto;
+  line-height: 1 !important;
+  gap: 0.25em;
+  align-items: center;
+  text-decoration: none;
+  font-size: 1rem !important;
+  color: #1a5a96;
+  text-decoration: none;
+}
+.views-data-export-feed a::before, .bcbb-search-wrapper .view-site-search div[id*=edit-actions] .bcbb-input-wrapper::before, .dc-details .item-list ul li a::before, .views-data-export-feed a::after, .bcbb-search-wrapper .view-site-search div[id*=edit-actions] .bcbb-input-wrapper::after, .dc-details .item-list ul li a::after {
+  font-family: "bootstrap-icons" !important;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.views-data-export-feed a::before, .bcbb-search-wrapper .view-site-search div[id*=edit-actions] .bcbb-input-wrapper::before, .dc-details .item-list ul li a::before {
+  content: "\f29a";
+}
+.views-data-export-feed a:hover, .bcbb-search-wrapper .view-site-search div[id*=edit-actions] .bcbb-input-wrapper:hover, .dc-details .item-list ul li a:hover {
+  color: #10365a;
+}
+
+.dc-details .item-list ul {
+  list-style: none;
+  margin: 0;
+}
+.dc-details .item-list ul li {
+  margin: 0;
+}
+.bcbb-search-wrapper .view-site-search div[id*=edit-actions] {
+  display: block !important;
+}
+.bcbb-search-wrapper .view-site-search div[id*=edit-actions] .bcbb-input-wrapper {
+  display: block;
+  width: 100%;
+}
+.bcbb-search-wrapper .view-site-search div[id*=edit-actions] .bcbb-input-wrapper input.btn.btn-primary {
+  border: 0 transparent;
+  background-color: transparent;
+  color: #1a5a96;
+  font-size: 1rem;
+}
+.bcbb-search-wrapper .view-site-search div[id*=edit-actions] .bcbb-input-wrapper input.btn.btn-primary:hover {
+  color: #10365a;
+}
+
+.views-data-export-feed a {
+  background-image: none !important;
+  text-indent: 0 !important;
+  width: auto !important;
+}
+
+.bcbb-theme .path-taxonomy .content .field--type-string,
+.bcbb-theme .path-taxonomy .content .field--type-entity-reference {
+  display: flex;
+  flex-direction: column;
+  margin: 1em 0;
+}
+@media only screen and (min-width: 576px) {
+  .bcbb-theme .path-taxonomy .content .field--type-string,
+  .bcbb-theme .path-taxonomy .content .field--type-entity-reference {
+    flex-direction: row;
+    gap: 2em;
+  }
+  .bcbb-theme .path-taxonomy .content .field--type-string .field__label,
+  .bcbb-theme .path-taxonomy .content .field--type-entity-reference .field__label {
+    min-width: 15em;
+    max-width: 15em;
+  }
+}
+.bcbb-theme .path-taxonomy .content .field--name-description {
+  margin-top: 3em;
+}
+.bcbb-theme .path-taxonomy .content .info-schedule-details {
+  margin-top: 3em;
+}
+
+.dc-badge-high-value {
+  background-color: #003366;
+}
+
+.page-node-type-data-set {
+  /* On Metadata record column edit pages, make the summary take the full width.*/
+}
+.page-node-type-data-set .field--label-above,
+.page-node-type-data-set .field--label-inline {
+  margin-top: 0.5em;
+}
 .page-node-type-data-set .dc-details details {
   border: 0 solid transparent;
 }
@@ -458,32 +561,6 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
     content: ":";
   }
 }
-.page-node-type-data-set .dc-details .item-list ul {
-  list-style: none;
-  margin: 0;
-}
-.page-node-type-data-set .dc-details .item-list ul li {
-  margin: 0;
-}
-.page-node-type-data-set .dc-details .item-list ul li a {
-  display: inline-flex;
-  width: auto;
-  line-height: 1 !important;
-  gap: 0.25em;
-  align-items: center;
-  text-decoration: none;
-  margin-left: 1.25em;
-}
-.page-node-type-data-set .dc-details .item-list ul li a::before, .page-node-type-data-set .dc-details .item-list ul li a::after {
-  font-family: "bootstrap-icons" !important;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-.page-node-type-data-set .dc-details .item-list ul li a::before {
-  margin-left: -1.25em;
-  content: "\f29a";
-}
 .page-node-type-data-set .meta-data-record-view .field--name-field-data-set-type *,
 .page-node-type-data-set .meta-data-record-build .field--name-field-data-set-type * {
   margin: 0 !important;
@@ -500,9 +577,6 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 }
 .page-node-type-data-set .field--name-field-data-custodian .field__label {
   font-weight: normal;
-}
-.page-node-type-data-set #dc-data-dictionary-toggle-button {
-  display: none;
 }
 .page-node-type-data-set .dc-subfooter {
   background: var(--bs-gray-100);
@@ -528,14 +602,89 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   background-position: right 0.15em;
   background-size: 1em 1em;
 }
+@media only screen and (min-width: 992px) {
+  .page-node-type-data-set .meta-data-record-build {
+    display: grid;
+    grid-template-columns: 7fr 4fr;
+    grid-template-rows: auto 1fr;
+    column-gap: 6em;
+    grid-template-areas: "main top-right" "main bottom-right";
+  }
+  .page-node-type-data-set .meta-data-record-build .header-region {
+    grid-area: top-right;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  .page-node-type-data-set .meta-data-record-build .main-region {
+    grid-area: main;
+  }
+  .page-node-type-data-set .meta-data-record-build .footer-region {
+    grid-area: bottom-right;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}
+.page-node-type-data-set .meta-data-record-build .main-region > section {
+  border-bottom: 1px solid var(--bs-gray-300);
+  padding-bottom: 1.5em;
+  margin-bottom: 1.5em;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto auto;
+  grid-template-areas: "header" "content" "action";
+}
+.page-node-type-data-set .meta-data-record-build .main-region > section:last-child {
+  border-bottom: 0 transparent;
+}
+@media only screen and (min-width: 576px) {
+  .page-node-type-data-set .meta-data-record-build .main-region > section {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    column-gap: 2em;
+    grid-template-areas: "header action" "content action";
+  }
+}
+.page-node-type-data-set .meta-data-record-build .main-region > section h2 {
+  grid-area: header;
+}
+.page-node-type-data-set .meta-data-record-build .main-region > section div.node {
+  grid-area: content;
+}
+.page-node-type-data-set .meta-data-record-build .main-region > section div.edit-section-btn {
+  grid-area: action;
+}
+.page-node-type-data-set .meta-data-record-build .main-region > section div.edit-section-btn .btn {
+  width: 100%;
+  margin: 1.25em auto;
+}
+@media only screen and (min-width: 576px) {
+  .page-node-type-data-set .meta-data-record-build .main-region > section div.edit-section-btn .btn {
+    width: auto;
+    margin: 0.5em 0 0;
+  }
+}
 .page-node-type-data-set .block-bc-dc-workflow-block {
   background-color: RGBA(var(--bs-light-rgb));
   border: var(--bs-border-width) solid var(--bs-border-color-translucent);
   border-radius: var(--bs-border-radius);
   padding: 1rem;
+  margin: 1.5em 0;
 }
 .page-node-type-data-set .block-bc-dc-workflow-block input.button {
   width: 100%;
+}
+.page-node-type-data-set .block-bc-dc-edit-button {
+  margin-bottom: 0.5em;
+  display: grid;
+}
+.page-node-type-data-set .block-bc-dc-edit-button > *:first-child {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+.page-node-type-data-set .block-bc-dc-edit-button > *:last-child {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  justify-self: end;
 }
 .page-node-type-data-set .node-data-set-edit-form > div {
   margin-bottom: 2em;
@@ -547,34 +696,15 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   text-align: left;
 }
 .page-node-type-data-set .node-data-set-edit-form .description {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23ar(--bs-gray-600)' class='bi bi-info-circle' viewBox='0 0 16 16'%3E%3Cpath d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16'/%3E%3Cpath d='m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0'/%3E%3C/svg%3E%0A");
   margin-top: 0.25em;
+  background-repeat: no-repeat;
+  background-size: 1em 1em;
+  background-position: 0 0.27em;
+  padding-left: 1.5em;
   color: var(--bs-gray-600);
   max-width: 45em;
-  display: inline-flex;
-  width: auto;
-  line-height: 1 !important;
-  gap: 0.25em;
-  align-items: center;
-  text-decoration: none;
-  margin-left: 1.25em;
-  display: block !important;
-  position: relative;
   line-height: unset !important;
-}
-.page-node-type-data-set .node-data-set-edit-form .description::before, .page-node-type-data-set .node-data-set-edit-form .description::after {
-  font-family: "bootstrap-icons" !important;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-.page-node-type-data-set .node-data-set-edit-form .description::before {
-  margin-left: -1.25em;
-  content: "\f431";
-}
-.page-node-type-data-set .node-data-set-edit-form .description::before {
-  padding-right: 0.5em;
-  position: absolute;
-  top: 0.075em;
 }
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-review-interval label {
   width: 100%;
@@ -588,28 +718,82 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   display: flex;
   gap: 1em;
 }
+.page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information,
 .page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column,
-.page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used {
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document {
   background: var(--bs-gray-100);
   border: 1px solid var(--bs-gray-200);
   padding: 1em;
   border-radius: var(--bs-border-radius-sm);
 }
-.page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column th, .page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column td,
+.page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information > div,
+.page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column > div,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used > div,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document > div {
+  margin-bottom: 1.5em;
+  padding-bottom: 1.5em;
+  border-bottom: 1px solid var(--bs-gray-200);
+}
+.page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information > div:last-child,
+.page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column > div:last-child,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used > div:last-child,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document > div:last-child {
+  border-bottom: 0;
+}
+.page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information th, .page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information td,
+.page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column th,
+.page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column td,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used th,
-.page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used td {
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used td,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document th,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document td {
   background-color: transparent;
   border: 0 transparent;
 }
+.page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information .field-add-more-submit,
 .page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column .field-add-more-submit,
-.page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used .field-add-more-submit {
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used .field-add-more-submit,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document .field-add-more-submit {
   background-color: var(--bs-gray-700);
   color: var(--bs-white);
 }
-.page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column .field-add-more-submit:hover, .page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column .field-add-more-submit:focus,
+.page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information .field-add-more-submit:hover, .page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information .field-add-more-submit:focus,
+.page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column .field-add-more-submit:hover,
+.page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column .field-add-more-submit:focus,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used .field-add-more-submit:hover,
-.page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used .field-add-more-submit:focus {
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used .field-add-more-submit:focus,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document .field-add-more-submit:hover,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document .field-add-more-submit:focus {
   background-color: var(--bs-gray-800);
+}
+@media only screen and (min-width: 992px) {
+  .page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document .paragraphs-subform {
+    display: flex;
+    gap: 0.5em;
+  }
+}
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document .paragraph-summary {
+  grid-column-start: 1;
+}
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document #edit-field-related-document--description {
+  margin-bottom: 0.5em;
+  margin-top: 1.5em;
+}
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document .delta-order {
+  padding-left: 0.5em;
+  width: 4em;
+}
+.page-node-type-data-set .node-data-set-edit-form .paragraphs-actions {
+  display: inline-flex;
+  gap: 0.5em;
+}
+.page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information .fieldset-legend {
+  font-size: 20px;
+  font-weight: bold;
+}
+.page-node-type-data-set [id*=field-columns-] .paragraph-summary {
+  grid-column-start: 1;
 }
 
 .node--unpublished {
@@ -633,9 +817,9 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 }
 @media screen and (min-width: 40em) {
   .path-frontpage .region-content .layout__region--second {
-    background-image: url(../assets/trees-5767910.svg);
+    background-image: url(../assets/trees.svg);
     background-size: contain;
-    background-repeat: no-repeat;
+    background-repeat: repeat-x;
     background-position: center bottom;
   }
 }
@@ -712,4 +896,8 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 
 time {
   white-space: nowrap;
+}
+
+.form-control.hidden {
+  display: none;
 }

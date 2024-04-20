@@ -56,6 +56,9 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $config_path = DRUPAL_ROOT . '/../config/sync';
     $config_source = new FileStorage($config_path);
     \Drupal::service('config.installer')->installOptionalConfig($config_source);
+    // Trigger the config import events. This normally runs on
+    // `drush config:import` but is not triggered by the above.
+    \Drupal::service('bc_dc.config_import_event_subscriber')->onConfigImport();
   }
 
   /**
@@ -126,6 +129,10 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     // Login as admin.
     $this->drupalLogin($this->rootUser);
 
+    // Check for bc_dc entry on Status report.
+    $this->drupalGet('admin/reports/status');
+    $this->assertSession()->elementExists('xpath', '//div[@class = "system-status-report__status-title"][normalize-space(text()) = "BC Data Catalogue"]');
+
     // Test config for message_gcnotify. Ensures tests cannot send messages.
     $this->drupalGet('admin/config/message/message-gcnotify');
     $edit = [
@@ -157,15 +164,28 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
       'Test organization one ' . $this->randomString(),
       'Test organization two ' . $this->randomString(),
     ];
+    $test_org_names_field_access_flag = [
+      'pub',
+      'auth',
+    ];
     $test_orgs = [];
     foreach ($test_org_names as $key => $name) {
       $test_orgs[$key] = Term::create([
         'vid' => 'organization',
         'name' => $name,
+        'field_access_flag' => $test_org_names_field_access_flag[$key] ?? NULL,
       ]);
       $save = $test_orgs[$key]->save();
       $this->assertSame($save, SAVED_NEW);
     }
+
+    // Create term in document_type vocabulary.
+    $document_type_1 = Term::create([
+      'vid' => 'document_type',
+      'name' => 'Test document_type 1 ' . $this->randomString(),
+    ]);
+    $save = $document_type_1->save();
+    $this->assertSame($save, SAVED_NEW);
 
     // Add missing permissions. These ought to have been imported with config.
     // @todo Get all permissions to import.
@@ -273,6 +293,16 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
       $this->assertSession()->assert($account->hasRole('data_catalogue_user'), 'Test user ' . $username . ' should have role data_catalogue_user.');
     }
 
+    // Test plugin bc_dc_node_assign_owner_action.
+    $bc_dc_node_assign_owner_action = \Drupal::service('plugin.manager.action')->createInstance('bc_dc_node_assign_owner_action', []);
+    $expected = [
+      $this->rootUser->id() => (string) $this->rootUser->id(),
+      $this->users['Test Data catalogue administrator']->id() => (string) $this->users['Test Data catalogue administrator']->id(),
+      $this->users['Test Data catalogue manager']->id() => (string) $this->users['Test Data catalogue manager']->id(),
+      $this->users['Test Data catalogue editor']->id() => (string) $this->users['Test Data catalogue editor']->id(),
+    ];
+    $this->assertSame($expected, $bc_dc_node_assign_owner_action->getEditUsers());
+
     // Re-save page_manager build page. Without this, the route is not created.
     $this->drupalGet('admin/structure/page_manager/manage/data_set_build/general');
     $this->submitForm([], 'Update and save');
@@ -369,10 +399,15 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
       ':data_set_title' => $data_set_title,
       ':data_set_path' => $data_set_path,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "block-views-blockdashboard-moderation-blocks-dashboard-unpublished")]
+    $xpath = $this->assertSession()->buildXPathQuery('//section[contains(@class, "block-views-blockdashboard-moderation-blocks-dashboard-unpublished")]
       [//td[normalize-space(text()) = :data_set_title]]
       [//a[@href = "/node/2/build"][text() = "Build"]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
+    // View page.
+    $this->drupalGet('node/2');
+    $this->assertSession()->statusCodeEquals(200);
+    // The "High value" badge does not appear.
+    $this->assertSession()->pageTextNotContains('High value');
 
     // Admin has access to data_set build page.
     $this->drupalGet('node/2/build');
@@ -390,13 +425,11 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $this->assertSession()->elementNotExists('xpath', '//a[@href = "/node/2/outline"]');
     // Test for fields that should only appear on "Data" data_set nodes.
     $fields_to_hide = [
-      'field_authoritative_info',
       'field_columns',
       'field_critical_information',
       'field_data_quality_issues',
       'field_data_set_historical_change',
       'field_data_sets_used',
-      'field_high_value_info',
       'field_source_system',
     ];
     foreach ($fields_to_hide as $field_key) {
@@ -407,27 +440,38 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
       $this->assertSession()->elementExists('xpath', $xpath);
     }
     // Page has ISO dates.
-    $this->isoDateTest();
+    $this->isoDateTest(FALSE, TRUE);
     // Page links to pathauto path for this page.
     $this->linkByHrefStartsWithExists($data_set_path);
     // Section headers and edit links.
-    // Check for: A div.block-bc-dc-edit-button that has an 'h2' child with the
-    // correct contents and an 'a' descendent with button classes, @aria-label,
-    // @href, and text.
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 1: Details"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 1"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_1")]');
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 2: Description"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 2"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_2")]');
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 3: Utility"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 3"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_3")]');
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 4: Significance"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 4"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_4")]');
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-edit-button")][h2[text() = "Section 5: Data dictionary"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 5"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_5")]');
-    $this->assertSession()->elementExists('xpath', '//*[contains(@class, "node--view-mode-section-4")]');
+    // Check for: A section.block-entity-viewnode that has an 'h2' child with
+    // the correct contents and an 'a' descendent with button classes, and the
+    // correct @aria-label, @href, and text.
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-entity-viewnode")][h2[text() = "Section 1: Details"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 1"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_1")]');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-entity-viewnode")][h2[text() = "Section 2: Description"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 2"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_2")]');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-entity-viewnode")][h2[text() = "Section 3: Origin and classification"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 3"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_3")]');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-entity-viewnode")][h2[text() = "Section 4: Related documents"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 4"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_4")]');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-entity-viewnode")][h2[text() = "Section 5: Significance"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 5"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_5")]');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-entity-viewnode")][h2[text() = "Section 6: Data dictionary"]]//a[@class = "btn btn-primary"][@aria-label = "Edit Section 6"][text() = "Edit"][starts-with(@href, "/node/2/edit?display=section_6")]');
     $this->assertSession()->elementExists('xpath', '//*[contains(@class, "node--view-mode-section-5")]');
+    $this->assertSession()->elementExists('xpath', '//*[contains(@class, "node--view-mode-section-6")]');
     // Build page does not link to referenced entities.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "field--type-entity-reference")]//a');
+
+    // The data_set title should appear in Section 1 of the Build page.
+    $args = [
+      ':data_set_title' => $data_set_title,
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//*[contains(@class, "node--view-mode-section-1")]//div
+      [div[@class = "field__label"][text() = "Asset name"]]
+      [div[@class = "field__item"][text() = :data_set_title]]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
 
     // Check for fields that have inline labels.
     $fields_inline_optional = [
       'field--name-field-series' => ['label' => 'Series', 'text' => 'Optional'],
       'field--name-field-asset-location' => ['label' => 'Location', 'text' => 'Optional'],
+      'field--name-field-published-date' => ['label' => 'Published date', 'text' => 'Optional'],
       'field--name-field-last-review-date' => ['label' => 'Last review date', 'text' => 'Never'],
       'field--name-field-security-classification' => ['label' => 'Security classification', 'text' => 'Required'],
       'field--name-field-source-system' => ['label' => 'Source system', 'text' => 'Optional'],
@@ -444,18 +488,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     }
     // Check for fields that are dates and have inline labels.
     // The time formats are tested elsewhere.
-    $fields_inline_optional = [
-      'field--name-field-published-date' => 'Published date',
-      'field--name-field-modified-date' => 'Modified date',
-    ];
-    foreach ($fields_inline_optional as $class => $label) {
-      $args = [
-        ':class' => $class,
-        ':label' => $label,
-      ];
-      $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div/time', $args);
-      $this->assertSession()->elementExists('xpath', $xpath);
-    }
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--label-inline")][contains(@class, "field--name-field-modified-date")][div[@class = "field__label"][text() = "Modified date"]]/div/time');
 
     // Create security_classification term.
     $security_classification_term = Term::create([
@@ -467,26 +500,17 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $this->click('a[aria-label = "Edit Section 3"]');
     $edit = [
       'field_personal_information' => '0',
-      'edit-field-security-classification-0-target-id' => 'Title (' . $security_classification_term->id() . ')',
+      'field_security_classification' => $security_classification_term->id(),
     ];
     $this->submitForm($edit, 'Save');
-    // Save Section 4 so that the boolean values are FALSE instead of empty.
-    $this->click('a[aria-label = "Edit Section 4"]');
-    $this->submitForm([], 'Save');
-    // Check for fields that are boolean and have inline labels.
-    $fields_inline_optional = [
-      'field--name-field-critical-information' => 'Critical information',
-      'field--name-field-authoritative-info' => 'Authoritative info',
-      'field--name-field-high-value-info' => 'High value info',
+    // Save Section 5 so that the boolean values are not empty.
+    $this->click('a[aria-label = "Edit Section 5"]');
+    $edit = [
+      'edit-field-critical-information-value' => '1',
     ];
-    foreach ($fields_inline_optional as $class => $label) {
-      $args = [
-        ':class' => $class,
-        ':label' => $label,
-      ];
-      $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div[text() = "No"]', $args);
-      $this->assertSession()->elementExists('xpath', $xpath);
-    }
+    $this->submitForm($edit, 'Save');
+    // Check for fields that are boolean and have inline labels.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--label-inline")][contains(@class, "field--name-field-critical-information")][div[@class = "field__label"][text() = "Critical information"]]/div[text() = "Yes"]');
     // Check for fields that are optional and normally have labels above.
     // Labels are inline when the field is empty.
     $fields_inline_optional = [
@@ -507,7 +531,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     // Empty column names section.
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--name-field-columns")]/div/em[text() = "Optional"]');
     // No columns exist on column edit page.
-    $this->click('a[aria-label = "Edit Section 5"]');
+    $this->click('a[aria-label = "Edit Section 6"]');
     $this->assertSession()->statusCodeEquals(200);
     // There should not be any rows under 'tbody', however after hiding items
     // under header_actions in bc_dc_form_node_data_set_edit_form_alter(), one
@@ -528,7 +552,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     // The other fields do not appear.
     $this->assertSession()->pageTextNotContains('Data set column 1 description');
     // Revisit columns page.
-    $this->click('a[aria-label = "Edit Section 5"]');
+    $this->click('a[aria-label = "Edit Section 6"]');
     // The row for each column contains the title and nothing else.
     $args = [
       ':summary-content' => $edit['edit-field-columns-0-subform-field-column-name-0-value'],
@@ -570,18 +594,18 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $args = [
       ':data_set_path' => $data_set_path,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "block-views-blockdashboard-moderation-blocks-dashboard-unpublished")]//tr/td/a[text() = "View"][starts-with(@href, :data_set_path)]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//section[contains(@class, "block-views-blockdashboard-moderation-blocks-dashboard-unpublished")]//tr/td/a[text() = "View"][starts-with(@href, :data_set_path)]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     // Build link.
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-views-blockdashboard-moderation-blocks-dashboard-unpublished")]//tr/td/a[text() = "Build"][@class = "btn btn-primary"][@href = "/node/2/build"]');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-views-blockdashboard-moderation-blocks-dashboard-unpublished")]//tr/td/a[text() = "Build"][@class = "btn btn-primary"][@href = "/node/2/build"]');
     // No empty message.
-    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-views-blockdashboard-moderation-blocks-dashboard-unpublished")]//div[normalize-space(text()) = "You currently do not have any draft metadata records."]');
+    $this->assertSession()->elementNotExists('xpath', '//section[contains(@class, "block-views-blockdashboard-moderation-blocks-dashboard-unpublished")]//div[normalize-space(text()) = "You currently do not have any draft metadata records."]');
 
     // Test bookmarks.
     //
     // No items bookmarked.
     $this->assertSession()->linkNotExists('Remove bookmark');
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//div[normalize-space(text()) = "You currently do not have any metadata records bookmarked."]');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//div[normalize-space(text()) = "You currently do not have any metadata records bookmarked."]');
     // Bookmark an item.
     $this->clickLink('View');
     $this->clickLink('Bookmark');
@@ -594,9 +618,9 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
       ':data_set_title' => $data_set_title,
       ':data_set_path' => $data_set_path,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//a[normalize-space(text()) = :data_set_title][starts-with(@href, :data_set_path)]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//section[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//a[normalize-space(text()) = :data_set_title][starts-with(@href, :data_set_path)]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
-    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//div[normalize-space(text()) = "You currently do not have any metadata records bookmarked."]');
+    $this->assertSession()->elementNotExists('xpath', '//section[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//div[normalize-space(text()) = "You currently do not have any metadata records bookmarked."]');
     // Metadata record count message.
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//*[text() = "You currently have no published metadata records."]');
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//a[text() = "Manage metadata records"]');
@@ -610,13 +634,18 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $this->drupalGet('node/2');
     $this->assertSession()->elementExists('xpath', '//nav[contains(@class, "tabs")]/ul/li/a[@href = "/node/2/revisions"]');
     $this->assertTrue(\Drupal::service('module_handler')->moduleExists('diff'), 'Module diff should be enabled.');
+    // The "High value" badge appears.
+    $this->assertSession()->elementExists('xpath', '//*[contains(@class, "badge dc-badge-high-value icon-bi-award-fill")][text() = "High value"]');
 
     // Publish the data_set.
     $this->drupalGet('node/2/build');
     $edit = [
+      'major_edit' => '1',
       'edit-full-review' => TRUE,
     ];
     $this->submitForm($edit, 'Publish');
+    $this->assertSession()->pageTextContains('Metadata record published');
+    $this->isoDateTest(TRUE, FALSE);
     $this->clickLink('Build');
     // field_last_review should display today.
     $args = [
@@ -629,8 +658,8 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     // There are no data rows, just the empty message.
     $this->drupalGet('user');
     $this->assertSession()->statusCodeEquals(200);
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-views-blockdashboard-moderation-blocks-dashboard-unpublished")]//div[normalize-space(text()) = "You currently do not have any draft metadata records."]');
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-views-blockdashboard-blocks-dashboard-needs-review")]//div[normalize-space(text()) = "You currently have no metadata records needing review."]');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-views-blockdashboard-moderation-blocks-dashboard-unpublished")]//div[normalize-space(text()) = "You currently do not have any draft metadata records."]');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-views-blockdashboard-blocks-dashboard-needs-review")]//div[normalize-space(text()) = "You currently have no metadata records needing review."]');
     // Metadata record count message.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//*[text() = "You currently have no published metadata records."]');
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//*[text() = "You have 1 published metadata record that has been bookmarked 1 times."]');
@@ -642,13 +671,13 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $this->assertSession()->pageTextNotContains('Updated:');
     // Set the updated date later than the bookmark date.
     $data_set = Node::load(2);
-    $data_set->set('field_modified_date', (new \DateTime('tomorrow'))->format('Y-m-d'))->save();
+    $data_set->set('field_modified_date', (new \DateTime('tomorrow'))->format('Y-m-d\TH:i:s'))->save();
     // The data set updated message should appear.
     $this->drupalGet('user');
     $args = [
       ':data_set_path' => $data_set_path,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//*
+    $xpath = $this->assertSession()->buildXPathQuery('//section[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//*
       [span[@class = "badge text-bg-success"][text() = "Updated"]]
       [a[starts-with(@href, :data_set_path)]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
@@ -661,14 +690,14 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $this->drupalGet('admin/reports/dblog', $options);
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-watchdog")]/div/table/tbody/tr/td/a[text() = "Sent message to 1 users when updating data_set 2."]');
     // Get from @title the request that would have been sent to GC Notify.
-    $element = $this->xpath('//div[contains(@class, "view-watchdog")]/div/table/tbody/tr/td/a[contains(@title, "A dataset you have bookmarked has been updated")]');
+    $element = $this->xpath('//div[contains(@class, "view-watchdog")]/div/table/tbody/tr/td/a[contains(@title, "A asset you have bookmarked has been updated")]');
     $element = reset($element);
     $title = $element->getAttribute('title');
     preg_match('/^GC Notify disabled[^:]+: (.+)/', $title, $matches);
     $gcnotify_request = json_decode($matches[1]);
     // Run tests on the request.
-    $this->assertEquals('A dataset you have bookmarked has been updated', $gcnotify_request->rows[1][1]);
-    $this->assertMatchesRegularExpression('(The following dataset has been updated:
+    $this->assertEquals('A asset you have bookmarked has been updated', $gcnotify_request->rows[1][1]);
+    $this->assertMatchesRegularExpression('(The following asset has been updated:
 ' . preg_quote($data_set_title) . '
 https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]));
 
@@ -695,9 +724,14 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Run tests as editor. Some of the above could be tested as editor as well.
     $this->drupalLogin($this->users['Test Data catalogue editor']);
 
+    // "Assets used" uses fieldset/legend.
+    $this->drupalGet('node/2/build');
+    $this->click('a[aria-label = "Edit Section 3"]');
+    $this->assertSession()->elementExists('xpath', '//div[@id = "edit-field-data-sets-used-wrapper"]/div/fieldset/legend[text() = "Assets used"]');
+
     // Import data columns page.
     $this->drupalGet('node/2/build');
-    $this->click('a[aria-label = "Edit Section 5"]');
+    $this->click('a[aria-label = "Edit Section 6"]');
     $this->assertSession()->elementExists('xpath', '//a[@href = "/node/2/add-columns?destination=/node/2/build"][text() = "Import/export data columns"]');
     $this->clickLink('Import/export data columns');
     $this->assertSession()->statusCodeEquals(200);
@@ -756,9 +790,9 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Test value import files.
     $file_types_to_test = [
       'csv',
-      'tsv',
       'ods',
       'xlsx',
+      'tsv',
     ];
     foreach ($file_types_to_test as $file_extension) {
       $this->drupalGet('node/2/add-columns', ['query' => ['destination' => '/node/2/build']]);
@@ -786,6 +820,11 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertStringContainsString('Added 1 data columns from imported file.', $text);
     // Count of columns.
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--name-field-columns")]/div/div[text() = "1"]');
+    // Publish the new columns.
+    $edit = [
+      'major_edit' => '0',
+    ];
+    $this->submitForm($edit, 'Publish');
 
     // Anonymous has no access to data_set build page.
     $this->drupalLogout();
@@ -800,12 +839,13 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->drupalGet('node/2');
     $this->assertSession()->statusCodeEquals(200);
     // Page has ISO dates.
-    $this->isoDateTest();
+    $this->isoDateTest(TRUE, TRUE);
 
     // Anonymous has access to download csv for Metadata record when file has
     // been uploaded.
     $this->drupalGet('node/2/download/columns/csv');
     $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->responseContains('Integer');
     $this->assertSession()->responseContains('Name');
     // Anonymous has access to download xlsx for Metadata record when file has
     // been uploaded.
@@ -818,6 +858,20 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->elementExists('xpath', '//div[@id = "block-dc-theme-content"]');
     // Search block exists.
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "bcbb-search-api-form")]');
+
+    // Test that home page text block can be edited by the DC admin.
+    $this->drupalLogin($this->users['Test Data catalogue administrator']);
+    // Put test text onto the block.
+    $this->drupalGet('admin/content/block');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->clickLink('Home page text');
+    $edit = [
+      'edit-body-0-value' => 'Home page text edit ' . $this->randomString(),
+    ];
+    $this->submitForm($edit, 'Save');
+    // Check it is appears on the home page.
+    $this->drupalGet('home');
+    $this->assertSession()->pageTextContains($edit['edit-body-0-value']);
 
     // Test adding bookmarks.
     $this->drupalLogin($this->users['Test Data catalogue user']);
@@ -906,8 +960,8 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
 
     // Child page.
     $this->drupalGet($child_url);
-    // Child page has book navigation block in sidebar.
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "region-sidebar-second")]/div[@id = "block-dc-theme-booknavigation"]');
+    // Child page has book navigation block in sidebar with class on active.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "region-sidebar-second")]/div[@id = "block-dc-theme-booknavigation"]/ul/li[@class = "active"]/ul/li[not(@class)]');
     // Child page does not have list of child pages.
     $this->assertSession()->elementNotExists('xpath', '//nav[@class = "book-navigation"]/ul[not(@aria-label)]');
     // Child page has a table of contents from toc_filter.
@@ -934,7 +988,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $info_schedule_values[0] = [
       'vid' => 'information_schedule',
       'name' => 'information schedule One ' . $this->randomString(),
-      'field_abbr_full_name' => 'First full name',
+      'field_abbr_full_name' => 'First full name ' . $this->randomString(),
     ];
     $info_schedule_terms[0] = Term::create($info_schedule_values[0]);
     $info_schedule_terms[0]->save();
@@ -942,7 +996,9 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $info_schedule_values[1] = [
       'vid' => 'information_schedule',
       'name' => 'information schedule Two ' . $this->randomString(),
-      'field_schedule_number' => $this->randomMachineName(),
+      'field_abbr_full_name' => 'Second full name ' . $this->randomString(),
+      'field_schedule_number' => 'schedule_number 1 ' . $this->randomMachineName(),
+      'field_classification_code' => 'classification_code 1 ' . $this->randomMachineName(),
       'parent' => $info_schedule_terms[0]->id(),
     ];
     $info_schedule_terms[1] = Term::create($info_schedule_values[1]);
@@ -951,8 +1007,10 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $info_schedule_values[2] = [
       'vid' => 'information_schedule',
       'name' => 'information schedule Three ' . $this->randomString(),
+      'field_abbr_full_name' => 'Third full name ' . $this->randomString(),
       'parent' => $info_schedule_terms[1]->id(),
-      'field_schedule_number' => $this->randomMachineName(),
+      'field_schedule_number' => 'schedule_number 2 ' . $this->randomMachineName(),
+      'field_classification_code' => 'classification_code 2 ' . $this->randomMachineName(),
       'field_active_period' => $record_life_cycle_duration_entity->id(),
       'field_active_period_extension' => $this->randomMachineName(),
       'field_semi_active_period' => $record_life_cycle_duration_entity->id(),
@@ -960,21 +1018,32 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     ];
     $info_schedule_terms[2] = Term::create($info_schedule_values[2]);
     $info_schedule_terms[2]->save();
+    // Fourth.
+    $info_schedule_values[3] = [
+      'vid' => 'information_schedule',
+      'name' => 'information schedule Four ' . $this->randomString(),
+      'field_abbr_full_name' => 'Fourth full name ' . $this->randomString(),
+      'parent' => $info_schedule_terms[2]->id(),
+      'field_schedule_number' => 'schedule_number 3 ' . $this->randomMachineName(),
+      'field_classification_code' => 'classification_code 3 ' . $this->randomMachineName(),
+      'field_active_period' => $record_life_cycle_duration_entity->id(),
+      'field_active_period_extension' => $this->randomMachineName(),
+      'field_semi_active_period' => $record_life_cycle_duration_entity->id(),
+      'field_semi_active_extension' => $this->randomMachineName(),
+    ];
+    $info_schedule_terms[3] = Term::create($info_schedule_values[3]);
+    $info_schedule_terms[3]->save();
     // Set field_information_schedule to value with child.
     $data_set = Node::load(2);
     $data_set->set('field_information_schedule', $info_schedule_terms[1]->id())->save();
-    // Test that the IM classification details appear without a link.
+    // Test that the "Business category" does not appear.
     $this->drupalGet('node/2');
-    $args = [
-      ':classification_details' => $info_schedule_values[1]['name'],
-    ];
     $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-information-schedule")]
-      [div[@class = "field__label"][normalize-space(text()) = "IM classification details"]]
-      [div[@class = "field__item"][text() = :classification_details]]', $args);
-    $this->assertSession()->elementExists('xpath', $xpath);
+      [div[@class = "field__label"][normalize-space(text()) = "Business category"]]', $args);
+    $this->assertSession()->elementNotExists('xpath', $xpath);
 
     // Set field_information_schedule to value without child.
-    $data_set->set('field_information_schedule', $info_schedule_terms[2]->id())->save();
+    $data_set->set('field_information_schedule', $info_schedule_terms[3]->id())->save();
 
     // Test that the information schedule appears correctly.
     $this->drupalGet('node/2');
@@ -989,17 +1058,17 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       [div[@class = "field__label"][normalize-space(text()) = "Information schedule type"]]
       [div[@class = "field__item"][text() = :information_schedule_type]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
-    // Test that the IM classification details appear with a link.
+    // Test that the "Business category" appears with a link.
     $args = [
-      ':classification_details' => $info_schedule_values[1]['name'] . ': ' . $info_schedule_values[2]['name'],
+      ':name' => $info_schedule_values[3]['name'],
     ];
     $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-information-schedule")]
-      [div[@class = "field__label"][normalize-space(text()) = "IM classification details"]]
-      [div[@class = "field__item"]/a[text() = :classification_details]]', $args);
+      [div[@class = "field__label"][normalize-space(text()) = "Business category"]]
+      [div[@class = "field__item"]/a[text() = :name]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     // Schedule code.
     $args = [
-      ':field_schedule_code' => $info_schedule_values[1]['field_schedule_number'] . '-' . $info_schedule_values[2]['field_schedule_number'],
+      ':field_schedule_code' => $info_schedule_values[1]['field_classification_code'] . '-' . $info_schedule_values[2]['field_classification_code'] . '-' . $info_schedule_values[3]['field_classification_code'],
     ];
     $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-schedule-code")]
       [div[@class = "field__label"][normalize-space(text()) = "IM classification code"]]
@@ -1007,10 +1076,10 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->elementExists('xpath', $xpath);
 
     // Update a parent term and see the field_schedule_code updated in children.
-    $new_field_schedule_number = $this->randomMachineName();
-    $info_schedule_terms[0]->set('field_schedule_number', $new_field_schedule_number)->save();
+    $new_field_classification_code = $this->randomMachineName();
+    $info_schedule_terms[0]->set('field_classification_code', $new_field_classification_code)->save();
     $reloaded_term = Term::load($info_schedule_terms[2]->id());
-    $expected = $new_field_schedule_number . '-' . $info_schedule_values[1]['field_schedule_number'] . '-' . $info_schedule_values[2]['field_schedule_number'];
+    $expected = $new_field_classification_code . '-' . $info_schedule_values[1]['field_classification_code'] . '-' . $info_schedule_values[2]['field_classification_code'];
     $this->assertEquals($expected, $reloaded_term->field_schedule_code->value);
 
     // Test "Review needed" messages.
@@ -1029,8 +1098,10 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       'edit-data-set-review-period-alert' => 40,
       'edit-review-needed-message' => $review_needed_messages['review_needed_message'],
       'edit-review-overdue-message' => $review_needed_messages['review_overdue_message'],
+      'edit-info-schedule-pre-title' => 'Information schedule pre-title ' . $this->randomString(),
     ];
     $this->submitForm($edit, 'Save configuration');
+    $this->assertSession()->elementExists('xpath', '//div[@class = "messages-list"]//div[contains(text(), "The configuration options have been saved.")]');
     $this->drupalLogin($this->users['Test Data catalogue administrator']);
 
     // No "Review needed" message appears.
@@ -1060,14 +1131,14 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->drupalLogin($this->rootUser);
     $this->drupalGet('user');
     $this->assertSession()->statusCodeEquals(200);
-    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-views-blockdashboard-blocks-dashboard-needs-review")]//div[normalize-space(text()) = "You currently have no metadata records needing review."]');
+    $this->assertSession()->elementNotExists('xpath', '//section[contains(@class, "block-views-blockdashboard-blocks-dashboard-needs-review")]//div[normalize-space(text()) = "You currently have no metadata records needing review."]');
     $args = [
       // This "Review overdue" is from View dashboard_blocks,
       // dashboard_needs_review, "Content: Review status", Rewrite results.
       ':review_overdue_message' => 'Review overdue',
       ':data_set_title' => $data_set_title,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "block-views-blockdashboard-blocks-dashboard-needs-review")]//tr
+    $xpath = $this->assertSession()->buildXPathQuery('//section[contains(@class, "block-views-blockdashboard-blocks-dashboard-needs-review")]//tr
       [td[normalize-space(text()) = :data_set_title]]
       [td/span[@class = "badge text-bg-danger"][text() = :review_overdue_message]]
       [td/a[@href = "/node/2/build"]]', $args);
@@ -1145,11 +1216,11 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, :class)]', $args);
       $this->assertSession()->elementNotExists('xpath', $xpath);
     }
-    // There is no Section 4 or 5 because this is a Report.
-    $this->assertSession()->pageTextNotContains('Section 4');
-    $this->assertSession()->elementNotExists('xpath', '//*[contains(@class, "node--view-mode-section-4")]');
+    // There is no Section 5 or 6 because this is a Report.
     $this->assertSession()->pageTextNotContains('Section 5');
     $this->assertSession()->elementNotExists('xpath', '//*[contains(@class, "node--view-mode-section-5")]');
+    $this->assertSession()->pageTextNotContains('Section 6');
+    $this->assertSession()->elementNotExists('xpath', '//*[contains(@class, "node--view-mode-section-6")]');
     // Message that required field is empty.
     $this->assertSession()->elementExists('xpath', '//form[@id = "bc-dc-workflow-block-form"]
       [p[text() = "The following fields must be completed before publishing:"]]
@@ -1161,9 +1232,14 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->click('a[aria-label = "Edit Section 2"]');
     $public_label = $this->xpath('//fieldset[@id = "edit-field-visibility--wrapper"]//label[text() = "Public"]');
     $public_label = reset($public_label);
+    $field_contact_name = 'Contact Name ' . $this->randomString();
+    $field_contact_email = 'contact-email-' . $this->randomMachineName() . '@example.com';
     $edit = [
       'edit-body-0-value' => 'Summary ' . $this->randomString(),
       $public_label->getAttribute('for') => TRUE,
+      'edit-field-visibility-3' => '3',
+      'edit-field-contact-name-0-value' => $field_contact_name,
+      'edit-field-contact-email-0-value' => $field_contact_email,
     ];
     $this->submitForm($edit, 'Save');
     // Section 3.
@@ -1171,7 +1247,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Complete required fields.
     $edit = [
       'edit-field-personal-information-0' => '0',
-      'edit-field-security-classification-0-target-id' => 'Title (' . $security_classification_term->id() . ')',
+      'field_security_classification' => $security_classification_term->id(),
     ];
     $this->submitForm($edit, 'Save');
     // Publish button now exists.
@@ -1179,10 +1255,28 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Add revision log message and publish.
     $edit = [
       'edit-revision-log-message' => 'Revision log message ' . $this->randomString(),
+      'major_edit' => '0',
     ];
     $this->submitForm($edit, 'Publish');
+    $this->assertSession()->pageTextContains('Metadata record published');
     // "Personal information" badge does not appear.
     $this->assertSession()->elementNotExists('xpath', '//span[contains(@class, "badge text-bg-warning")][text() = "Personal information"]');
+    // There are no related documents.
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "field--name-field-related-document")]');
+    // Test field_visibility display.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field_visibility")]/div[normalize-space(text()) = "Public"]');
+    // No list when "Public".
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "field_visibility")]//ul');
+    // Contact name.
+    $args = [
+      ':link' => 'mailto:' . $field_contact_email,
+      ':text' => $field_contact_name,
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field_contact")]
+      [div[contains(@class, "field__label")][text() = "Contact"]]
+      [div[contains(@class, "field__item")]/a[@href = :link][text() = :text]]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+
     // Revision log message appears on revisions tab.
     $this->clickLink('Revisions');
     $args = [
@@ -1192,16 +1286,62 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // On Build page, field_data_sets_used is empty.
     $this->clickLink('Build');
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--name-field-data-sets-used")]/div[@class = "field__item"]/em[text() = "Optional"]');
+    // There are no related documents.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--name-field-related-document")]//em[@class = "field-optional"][text() = "Optional"]');
     // On Build page, no workflow block when latest revision is published.
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-workflow-block")]//*[contains(text(), "Latest revision is published")]');
-    // Set node/2 as a data_set used by this data_set.
+
+    // The data_set has never had a full review.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--label-inline")][contains(@class, "field--name-field-last-review-date")][div[@class = "field__label"][text() = "Last review date"]]/div/em[text() = "Never"]');
+    // Submit a full review.
+    $edit = [
+      'edit-full-review' => '1',
+    ];
+    $this->submitForm($edit, 'Update');
+    // Return to the Build page and the review date is now today.
+    $this->clickLink('Build');
+    $args = [
+      ':class' => 'field--name-field-last-review-date',
+      ':label' => 'Last review date',
+      ':text' => date('Y-m-d'),
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div/time[text() = :text]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+
+    $this->click('a[aria-label = "Edit Section 2"]');
+    // Uncheck "Public" access in field_visibility.
+    $edit = [
+      $public_label->getAttribute('for') => NULL,
+    ];
+    $this->submitForm($edit, 'Save');
+
     $this->click('a[aria-label = "Edit Section 3"]');
+    // Test that self-referencing is not allowed in field_data_sets_used.
+    $edit = [
+      'edit-field-data-sets-used-0-target-id' => 'Title (6)',
+    ];
+    $this->submitForm($edit, 'Save');
+    $this->assertSession()->pageTextContains('This entity (node: 6) cannot be referenced.');
+    // Set node/2 as a data_set used by this data_set.
     $edit = [
       'edit-field-data-sets-used-0-target-id' => 'Title (2)',
       // Add "Personal information" badge.
       'edit-field-personal-information-1' => '1',
     ];
     $this->submitForm($edit, 'Save');
+    // Add a related document.
+    $this->click('a[aria-label = "Edit Section 4"]');
+    $this->submitForm([], 'Add Document');
+    $related_document_title = 'Related document title ' . $this->randomString();
+    $related_document_uri = 'http://' . $this->randomMachineName() . '.example.com/';
+    $edit = [
+      'edit-field-related-document-0-subform-field-paragraph-document-type' => $document_type_1->id(),
+      'edit-field-related-document-0-subform-field-paragraph-document-title-0-value' => $related_document_title,
+      'edit-field-related-document-0-subform-field-paragraph-document-link-0-value' => $related_document_uri,
+    ];
+    $this->submitForm($edit, 'Save');
+    // There is now a related document.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--name-field-related-document")]//div[@class = "field__item"][text() = "1"]');
     // field_data_sets_used is not empty. This demonstrates that the Build page
     // is showing the latest version not the default version.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "field--name-field-data-sets-used")]/div[@class = "field__item"]/em[text() = "Optional"]');
@@ -1212,12 +1352,23 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->elementExists('xpath', $xpath);
     // View page still does not have field_data_sets_used.
     $this->clickLink('Current published');
-    $this->assertSession()->elementNotExists('xpath', '//div[text() = "Data sets used"]');
+    $this->assertSession()->elementNotExists('xpath', '//div[text() = "Assets used"]');
     // Publish the changes.
     $this->clickLink('Build');
-    $this->submitForm([], 'Publish');
+    $edit = [
+      'major_edit' => '0',
+    ];
+    $this->submitForm($edit, 'Publish');
+    $this->assertSession()->pageTextContains('Metadata record published');
+    // Related documents appear.
+    $args = [
+      ':href' => $related_document_uri,
+      ':text' => $document_type_1->label() . ': ' . $related_document_title,
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-related-document")]//ul/li/a[@href = :href][text() = :text]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
 
-    // Page has "Data sets used" with link to node/2.
+    // Page has "Assets used" with link to node/2.
     $dc_lineage = $this->assertSession()->elementExists('xpath', '//details[@class = "dc-lineage"]');
     // Uses.
     $args = [
@@ -1229,21 +1380,41 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $args = [
       ':data_set_title' => $data_set_title_2,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//section[not(@aria-label)][contains(text()[2], :data_set_title)]/em[text() = "This report:"]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//div[not(@aria-label)][contains(text()[2], :data_set_title)]/em[text() = "This report:"]', $args);
     $this->assertSession()->elementExists('xpath', $xpath, $dc_lineage);
     // Used-in.
     $this->assertSession()->elementNotExists('xpath', '//div[text() = "Used-in data sets"]');
+
+    // Test field_visibility display.
+    // "Public" was removed above.
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "field_visibility")]/div[normalize-space(text()) = "Public"]');
+    // The one organization is shown and not duplicated even though it is both
+    // OPR and in field_visibility.
+    $field_visibility = $this->xpath('//div[contains(@class, "field_visibility")]//ul/li');
+    $this->assertCount(1, $field_visibility, 'Page has 1 field_visibility value.');
+    $this->assertEquals($test_org_names[2], $field_visibility[0]->getText());
+    // Re-check "Public" access in field_visibility.
+    $this->clickLink('Build');
+    $this->click('a[aria-label = "Edit Section 2"]');
+    $edit = [
+      $public_label->getAttribute('for') => '1',
+    ];
+    $this->submitForm($edit, 'Save');
+    $edit = [
+      'major_edit' => '0',
+    ];
+    $this->submitForm($edit, 'Publish');
 
     // Check node/2 for link back.
     $this->drupalGet('node/2');
     $dc_lineage = $this->assertSession()->elementExists('xpath', '//details[@class = "dc-lineage"]');
     // Uses.
-    $this->assertSession()->elementNotExists('xpath', '//div[text() = "Data sets used"]');
+    $this->assertSession()->elementNotExists('xpath', '//div[text() = "Assets used"]');
     // This data_set.
     $args = [
       ':data_set_title' => $data_set_title,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//section[not(@aria-label)][contains(text()[2], :data_set_title)]/em[text() = "This data:"]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//div[not(@aria-label)][contains(text()[2], :data_set_title)]/em[text() = "This data:"]', $args);
     $this->assertSession()->elementExists('xpath', $xpath, $dc_lineage);
     // Used in.
     $args = [
@@ -1256,7 +1427,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->drupalGet('node/6');
     $this->assertSession()->elementExists('xpath', '//span[contains(@class, "badge text-bg-warning")][text() = "Personal information"]');
     // Permalink appears.
-    $this->assertSession()->elementExists('xpath', '//section[@id = "author_permalink"]//input[substring(@value, string-length(@value) - 6) = "/node/6"]');
+    $this->assertSession()->elementExists('xpath', '//div[@id = "author_permalink"]//input[substring(@value, string-length(@value) - 6) = "/node/6"]');
     // Header search block appears.
     $this->assertSession()->elementExists('xpath', '//header//div[contains(@class, "block-bcbb-search-api-block")]//input[@aria-label = "Search"]');
     // There is no add-columns page for this data_set because it is a Report.
@@ -1303,12 +1474,75 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     }
     // Test content of information_schedule taxonomy term pages.
     $args = [
-      ':title' => $record_life_cycle_duration_values['field_abbr_full_name'],
+      ':full' => ' (' . $record_life_cycle_duration_values['field_abbr_full_name'] . ')',
       ':text' => $record_life_cycle_duration_values['name'],
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-active-period")]/div/abbr[@title = :title][text() = :text]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-active-period")]/div[abbr[text() = :text]][contains(text(), :full)]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
-    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-semi-active-period")]/div/abbr[@title = :title][text() = :text]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-semi-active-period")]/div[abbr[text() = :text]][contains(text(), :full)]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+    // Information schedule type.
+    $args = [
+      ':item' => $info_schedule_values[0]['name'],
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-abbr-full-name")]
+      [div[@class = "field__label"][text() = "Information schedule type"]]
+      [div[@class = "field__item"][text() = :item]]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+    // Information schedule name.
+    $args = [
+      ':item' => $info_schedule_values[1]['field_abbr_full_name'],
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-abbr-full-name")]
+      [div[@class = "field__label"][text() = "Information schedule name"]]
+      [div[@class = "field__item"][text() = :item]]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+    // Business function.
+    $args = [
+      ':item' => $info_schedule_values[2]['field_abbr_full_name'],
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-abbr-full-name")]
+      [div[@class = "field__label"][text() = "Business function"]]
+      [div[@class = "field__item"][text() = :item]]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+    // Business category.
+    $args = [
+      ':item' => $info_schedule_values[3]['field_abbr_full_name'],
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-abbr-full-name")]
+      [div[@class = "field__label"][text() = "Business category"]]
+      [div[@class = "field__item"][text() = :item]]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+
+    // For ARCS, the Information schedule name is the root term full name.
+    // Since this term has not yet been visited, it will show the updated name
+    // for the root term.
+    //
+    // Set the name of the root term.
+    $info_schedule_terms[0]->setName('ARCS')->save();
+    // Create a Fifth term, sibling of Fourth.
+    $info_schedule_values[4] = [
+      'vid' => 'information_schedule',
+      'name' => 'information schedule Five ' . $this->randomString(),
+      'field_abbr_full_name' => 'Fifth full name ' . $this->randomString(),
+      'parent' => $info_schedule_terms[2]->id(),
+      'field_schedule_number' => $this->randomMachineName(),
+      'field_classification_code' => $this->randomMachineName(),
+      'field_active_period' => $record_life_cycle_duration_entity->id(),
+      'field_active_period_extension' => $this->randomMachineName(),
+      'field_semi_active_period' => $record_life_cycle_duration_entity->id(),
+      'field_semi_active_extension' => $this->randomMachineName(),
+    ];
+    $info_schedule_terms[4] = Term::create($info_schedule_values[4]);
+    $info_schedule_terms[4]->save();
+    // Visit the page for the fifth term.
+    $this->drupalGet('taxonomy/term/' . $info_schedule_terms[4]->id());
+    $args = [
+      ':item' => $info_schedule_values[0]['field_abbr_full_name'],
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-abbr-full-name")]
+      [div[@class = "field__label"][text() = "Information schedule name"]]
+      [div[@class = "field__item"][text() = :item]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
 
     // Test Unpublishing.
@@ -1339,7 +1573,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "alert-success")]/em[text() = :title]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     // Check that it is unpublished.
-    $this->assertSession()->elementExists('xpath', '//article[contains(@class, "node--unpublished")]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "node--unpublished")]');
     // Now "Unpublish" page has a message.
     $this->clickLink('Unpublish');
     $text = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "alert-error")]')->getText();
@@ -1359,7 +1593,11 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->linkExists('Unpublish');
     // Re-publish node/2.
     $this->drupalGet('node/2/build');
-    $this->submitForm([], 'Publish');
+    $edit = [
+      'major_edit' => '0',
+    ];
+    $this->submitForm($edit, 'Publish');
+    $this->assertSession()->pageTextContains('Metadata record published');
 
     // Test Dashboard for DC user.
     $this->drupalLogin($this->users['Test Data catalogue user']);
@@ -1367,9 +1605,9 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Block bc_dc_content_summary does not exist.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]');
     // View block dashboard_blocks dashboard_needs_review should not appear.
-    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-views-blockdashboard-blocks-dashboard-needs-review")]');
+    $this->assertSession()->elementNotExists('xpath', '//section[contains(@class, "block-views-blockdashboard-blocks-dashboard-needs-review")]');
     // View block bookmarks appears.
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]');
     // View block saved_searches appears.
     // This test is in ExistingSite because search does not work in Functional.
     // $this->assertSession()->elementExists('xpath', '//div[contains(@class,
@@ -1388,7 +1626,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->clickLink('Dependency report');
     $this->assertSession()->statusCodeEquals(200);
     $args = [
-      ':data_set_title' => $data_set_title . ' (referenced by 1 datasets)',
+      ':data_set_title' => $data_set_title . ' (referenced by 1 assets)',
     ];
     $xpath = $this->assertSession()->buildXPathQuery('//details[summary[contains(text(), :data_set_title)]]', $args);
     $details = $this->assertSession()->elementExists('xpath', $xpath);
@@ -1405,6 +1643,10 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // $this->drupalGet('user/1/saved-searches');
     // $this->assertSession()->statusCodeEquals(200);
     //
+    // Access by authenticated user to documentation.
+    $this->drupalGet('documentation');
+    $this->assertSession()->statusCodeEquals(200);
+
     // Anonymous.
     $this->drupalLogout();
     // No access to bookmarks page.
@@ -1413,26 +1655,40 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // No access to saved searches page.
     $this->drupalGet('user/1/saved-searches');
     $this->assertSession()->statusCodeEquals(404);
+    // No access to documentation.
+    $this->drupalGet('documentation');
+    $this->assertSession()->statusCodeEquals(404);
   }
 
   /**
    * Test for ISO dates in page content.
+   *
+   * @param bool $published_date_should_exist
+   *   Whether the "Published date" field should exist.
+   * @param bool $modified_date_should_exist
+   *   Whether the "Modified date" field should exist.
    */
-  protected function isoDateTest(): void {
+  protected function isoDateTest(bool $published_date_should_exist, bool $modified_date_should_exist): void {
     $date_types = [
-      'Published date',
-      'Modified date',
+      'Published date' => $published_date_should_exist,
+      'Modified date' => $modified_date_should_exist,
     ];
-    foreach ($date_types as $date_type) {
+    foreach ($date_types as $date_type => $should_appear) {
       $args = [
         ':date_type' => $date_type,
       ];
       $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--type-datetime")][div[text() = :date_type]]//time', $args);
-      $time_element = $this->xpath($xpath);
-      $time_element = reset($time_element);
-      $this->assertSession()->assert((bool) $time_element, $date_type . ' element should exist.');
-      $this->assertSession()->assert(preg_match('/^(\d\d\d\d-[01]\d-[0-3]\d)T/', $time_element->getAttribute('datetime'), $matches), $date_type . ' should have ISO-formatted datetime attribute.');
-      $this->assertSession()->assert($time_element->getText() === $matches[1], $date_type . ' contents should match date in datetime attribute.');
+
+      if ($should_appear) {
+        $time_element = $this->assertSession()->elementExists('xpath', $xpath);
+        $datetime = $time_element->getAttribute('datetime');
+        $this->assertSession()->assert(preg_match('/^(\d\d\d\d-[01]\d-[0-3]\d)T/', $datetime, $matches), $date_type . ' should have ISO-formatted datetime attribute.');
+        $formatted_date = \Drupal::service('date.formatter')->format(strtotime($datetime), 'html_date');
+        $this->assertSession()->assert($time_element->getText() === $formatted_date, $date_type . ' contents should match date in datetime attribute.');
+      }
+      else {
+        $this->assertSession()->elementNotExists('xpath', $xpath);
+      }
     }
   }
 

@@ -22,10 +22,12 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 use Drupal\message_gcnotify\Service\GcNotifyApiService;
 use Drupal\node\NodeInterface;
+use Drupal\paragraphs\ParagraphInterface;
 use Drupal\tac_lite\Form\SchemeForm;
 use Drupal\taxonomy\TermInterface;
 use Drupal\user\Entity\User;
 use Drupal\user\UserInterface;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
 use Drupal\views\ViewExecutable;
 
 /**
@@ -59,7 +61,7 @@ function bc_dc_entity_operation(EntityInterface $entity): array {
 }
 
 /**
- * Implements hook_preprocess_HOOK().
+ * Implements hook_preprocess_HOOK() for flag.html.twig.
  */
 function bc_dc_preprocess_flag(array &$variables): void {
   // Replace @title with improved @aria-label.
@@ -77,7 +79,10 @@ function bc_dc_preprocess_flag(array &$variables): void {
       '@count' => $node_bookmark_count,
     ];
     $count_message = \Drupal::translation()->formatPlural($node_bookmark_count, 'Bookmarked by 1 person', 'Bookmarked by @count people', $args);
+    // Visually display the count message.
     $variables['title']['#markup'] = '<span class="title dc-label icon-bi-bookmark-dash-fill">' . $variables['title']['#markup'] . '</span> <span class="count small">' . $count_message->render() . '</span>';
+    // Add the count message to the @aria-label.
+    $variables['attributes']['aria-label'] .= ' ' . $count_message . '.';
   }
   else {
     // Add "add bookmark" icon class.
@@ -95,6 +100,20 @@ function bc_dc_preprocess_node__data_set(array &$variables): void {
       $variables['content'][$field_key]['#access'] = FALSE;
     }
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node--data-set--section-1.html.twig.
+ */
+function bc_dc_preprocess_node__data_set__section_1(array &$variables): void {
+  // Display the data_set title in Section 1 of the Build page.
+  $node = $variables['elements']['#node'];
+  $title = $node->getTitle();
+  $title_label = $node->title->getFieldDefinition()->getLabel();
+  $variables['content']['title'] = [
+    '#markup' => '<div class="field field--label-inline clearfix"><div class="field__label">' . $title_label . '</div><div class="field__item">' . $title . '</div></div>',
+    '#weight' => -10,
+  ];
 }
 
 /**
@@ -140,11 +159,11 @@ function bc_dc_theme(array $existing, string $type, string $theme, string $path)
  * Implements hook_theme_suggestions_HOOK_alter().
  */
 function bc_dc_theme_suggestions_block_alter(array &$suggestions, array $variables): void {
-  // Hide Section 4 & 5 entirely when the data_set does not have field_columns.
+  // Hide Section 5 & 6 entirely when the data_set does not have field_columns.
   // These sections do not have any fields.
   $sections = [
-    'section_4',
     'section_5',
+    'section_6',
   ];
   if (isset($variables['elements']['#plugin_id']) && (
     ($variables['elements']['#plugin_id'] === 'bc_dc_edit_button' && in_array($variables['elements']['#configuration']['query_param'], $sections, TRUE)) ||
@@ -184,6 +203,7 @@ function bc_dc_entity_display_build_alter(array &$build, array $context): void {
     'section_3',
     'section_4',
     'section_5',
+    'section_6',
     'revision_mode',
   ];
   if (!in_array($context['view_mode'], $view_modes, TRUE)) {
@@ -247,6 +267,11 @@ function bc_dc_node_access(NodeInterface $entity, string $operation, AccountInte
     )
   ) {
     return AccessResult::allowed();
+  }
+
+  // Deny access to `book` by permission.
+  if ($entity->bundle() === 'book') {
+    return AccessResult::forbiddenIf(!$account->hasPermission('access data catalogue docs'), 'User does not have permission to access book content.');
   }
 
   return AccessResult::neutral();
@@ -354,13 +379,13 @@ function bc_dc_node_update(NodeInterface $entity): void {
   // Send the notifications.
   //
   // Message subject.
-  $subject = t('A dataset you have bookmarked has been updated');
+  $subject = t('A asset you have bookmarked has been updated');
   // Message body.
   $context = [
     '@title' => $entity->getTitle(),
     '@link' => $entity->toUrl('canonical', ['absolute' => TRUE])->toString(),
   ];
-  $body = t('The following dataset has been updated:
+  $body = t('The following asset has been updated:
 @title
 @link', $context);
   // Send the message and log the result.
@@ -377,6 +402,20 @@ function bc_dc_node_update(NodeInterface $entity): void {
       '@nid' => $entity->id(),
     ];
     \Drupal::logger('bc_dc')->error('Failed sending message when updating data_set @nid.', $context);
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function bc_dc_paragraph_presave(ParagraphInterface $entity): void {
+  // Trim field_paragraph_document_link before saving.
+  $url = $entity->field_paragraph_document_link?->value;
+  if ($url) {
+    $trimmed = trim($url);
+    if ($trimmed !== $url) {
+      $entity->set('field_paragraph_document_link', $trimmed);
+    }
   }
 }
 
@@ -517,10 +556,10 @@ function bc_dc_form_node_data_set_edit_form_alter(array &$form, FormStateInterfa
   // Remove status information.
   $form['advanced']['#access'] = FALSE;
 
-  // On the section 5 build form, add a link to the import/export page.
+  // On the section 6 build form, add a link to the import/export page.
   $node = $form_state->getFormObject()?->getEntity();
   $form_display = \Drupal::request()->get('display');
-  if ($node instanceof NodeInterface && $form_display === 'section_5') {
+  if ($node instanceof NodeInterface && $form_display === 'section_6') {
     // Generate the link.
     $route_parameters = [
       'node' => $node->id(),
@@ -588,16 +627,18 @@ function _bc_dc_form_node_data_set_edit_form_submit(array &$form, FormStateInter
 
   // Check that the root ancestor of the field_data_set_type has not changed.
   // Old field_data_set_type.
-  $node = $form_state->getFormObject()->getEntity();
-  $old_type = (int) $node->field_data_set_type?->first()?->getValue()['target_id'] ?? NULL;
-  // New field_data_set_type.
-  $new_type = (int) $form_state->getValue('field_data_set_type')[0]['target_id'] ?? NULL;
-  // If the type has changed, check if their root ancestors have changed.
-  if ($new_type !== $old_type) {
-    $old_type_root = _bc_dc_get_term_root_ancestor($old_type);
-    $new_type_root = _bc_dc_get_term_root_ancestor($new_type);
-    if (!$new_type_root || $new_type_root->id() !== $old_type_root->id()) {
-      $form_state->setErrorByName('field_data_set_type', t('The metadata root record type cannot be changed.'));
+  if ($form_state->hasValue('field_data_set_type')) {
+    $node = $form_state->getFormObject()->getEntity();
+    $old_type = (int) $node->field_data_set_type?->first()?->getValue()['target_id'] ?? NULL;
+    // New field_data_set_type.
+    $new_type = (int) $form_state->getValue('field_data_set_type')[0]['target_id'] ?? NULL;
+    // If the type has changed, check if their root ancestors have changed.
+    if ($new_type !== $old_type) {
+      $old_type_root = _bc_dc_get_term_root_ancestor($old_type);
+      $new_type_root = _bc_dc_get_term_root_ancestor($new_type);
+      if (!$new_type_root || $new_type_root->id() !== $old_type_root->id()) {
+        $form_state->setErrorByName('field_data_set_type', t('The metadata root record type cannot be changed.'));
+      }
     }
   }
 }
@@ -612,18 +653,18 @@ function bc_dc_taxonomy_term_presave(TermInterface $term): void {
   }
 
   // Set the value for field_schedule_code.
-  // If this item's own field_schedule_number is empty, use empty. Otherwise,
-  // combine with the non-empty values from the ancestor terms.
-  if ((string) $term->field_schedule_number->value === '') {
+  // If this item's own field_classification_code is empty, use empty.
+  // Otherwise, combine with the non-empty values from the ancestor terms.
+  if ((string) $term->field_classification_code->value === '') {
     $new_code = NULL;
   }
   else {
     // Start with code of current term.
-    $new_code = [$term->field_schedule_number->value];
+    $new_code = [$term->field_classification_code->value];
     // Add the codes of ancestor terms.
     $term_parents = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadAllParents($term->parent->target_id);
     foreach ($term_parents as $term_parent) {
-      $term_parent_number = (string) $term_parent->field_schedule_number->value;
+      $term_parent_number = (string) $term_parent->field_classification_code->value;
       if ($term_parent_number !== '') {
         $new_code[] = $term_parent_number;
       }
@@ -645,7 +686,7 @@ function bc_dc_taxonomy_term_presave(TermInterface $term): void {
 function bc_dc_taxonomy_term_update(TermInterface $term): void {
   // If the term is in information_schedule, is not new, and their local code
   // has changed, re-save descendents so that they get the new value as well.
-  if ($term->bundle() === 'information_schedule' && !$term->isNew() && $term->original->field_schedule_number->value !== $term->field_schedule_number->value) {
+  if ($term->bundle() === 'information_schedule' && !$term->isNew() && $term->original->field_classification_code->value !== $term->field_classification_code->value) {
     $termStorage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
     $descendents = $termStorage->loadTree($term->bundle(), $term->id(), NULL, TRUE);
     foreach ($descendents as $descendent) {
@@ -675,6 +716,13 @@ function bc_dc_cron(): void {
 
   // Update every instance of field_review_status.
   \Drupal::service('bc_dc.update_review_status')->updateAll();
+}
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function bc_dc_entity_type_alter(array &$entity_types): void {
+  $entity_types['paragraph']->addConstraint('BcDcUrlConstraint');
 }
 
 /**
@@ -758,6 +806,53 @@ function bc_dc_views_pre_build(ViewExecutable $view): void {
   // Hide vbo_export on search pages for anonymous users.
   if ($view->id() === 'site_search' && \Drupal::currentUser()->isAnonymous()) {
     unset($view->field['views_bulk_operations_bulk_form']);
+  }
+}
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function bc_dc_views_pre_render(ViewExecutable $view): void {
+  switch ($view->id()) {
+    case 'report_builder':
+      $view->element['#attached']['library'][] = 'bcbb_other/bcbb-scroll-tables';
+      break;
+  }
+}
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function bc_dc_views_query_alter(ViewExecutable $view, QueryPluginBase $query): void {
+  switch ($view->id()) {
+    case 'report_builder':
+      foreach ($query->where ?? [] as $condition_group_key => $condition_group) {
+        foreach ($condition_group['conditions'] as $condition_key => $condition) {
+          // Change the data_set type to include all descendents of the term.
+          if ($condition['field'] === 'node_field_data_node_field_revision__node__field_data_set_type.field_data_set_type_target_id = :node__field_data_set_type_field_data_set_type_target_id') {
+            $taxonomy_term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+
+            // Load the term selected in the filter.
+            $term = $taxonomy_term_storage->load($condition['value'][':node__field_data_set_type_field_data_set_type_target_id']);
+
+            // Make an array of tid of current and descendent terms.
+            $descendent_tids = [$term->id()];
+            foreach ($taxonomy_term_storage->loadTree($term->bundle(), $term->id()) as $descendent_term) {
+              $descendent_tids[] = $descendent_term->tid;
+            }
+
+            // Replace the condition with an IN condition.
+            $condition['field'] = 'node_field_data_node_field_revision__node__field_data_set_type.field_data_set_type_target_id IN(:node__field_data_set_type_field_data_set_type_target_id[])';
+            $condition['value'] = [
+              ':node__field_data_set_type_field_data_set_type_target_id[]' => $descendent_tids,
+            ];
+            $query->where[$condition_group_key]['conditions'][$condition_key] = $condition;
+            // Once the condition is replaced, leave both loops.
+            break 2;
+          }
+        }
+      }
+      break;
   }
 }
 
@@ -932,7 +1027,6 @@ function bc_dc_data_set_has_field(NodeInterface $node, string $field_key): bool 
     'field_data_quality_issues',
     'field_data_set_historical_change',
     'field_data_sets_used',
-    'field_high_value_info',
     'field_source_system',
   ];
 

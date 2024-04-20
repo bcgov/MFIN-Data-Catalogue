@@ -10,8 +10,7 @@ stackable: false
 no_patching: false
 storage: folder
 folder: ../config/split/dev
-module:
-  devel: 0
+module: {  }
 theme: {  }
 complete_list: {  }
 partial_list:

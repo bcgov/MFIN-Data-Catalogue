@@ -1,0 +1,64 @@
+uuid: f9b5463b-9f6a-4db5-971e-7f4f7ae8c850
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.data_set
+    - workflows.workflow.editorial
+  module:
+    - bc_dc
+    - book
+    - content_moderation
+    - field_permissions
+    - flag
+    - form_mode_control
+    - node
+    - paragraphs
+    - statistics
+    - system
+id: data_catalogue_api_user
+label: 'Data catalogue API user'
+weight: 5
+is_admin: null
+permissions:
+  - 'access data catalogue docs'
+  - 'access printer-friendly version'
+  - 'access site reports'
+  - 'access user manage'
+  - 'create data_set content'
+  - 'create field_asset_location'
+  - 'create field_organization'
+  - 'create field_paragraph_document_link'
+  - 'create field_paragraph_document_title'
+  - 'create field_paragraph_document_type'
+  - 'create field_related_document'
+  - 'delete own never_published data_set in_org'
+  - 'edit any data_set content'
+  - 'edit field_asset_location'
+  - 'edit field_paragraph_document_link'
+  - 'edit field_paragraph_document_title'
+  - 'edit field_paragraph_document_type'
+  - 'edit field_related_document'
+  - 'flag bookmark'
+  - 'revert data_set revisions'
+  - 'unflag bookmark'
+  - 'use  The form mode section_1 linked to  node entity( data_set )'
+  - 'use  The form mode section_2 linked to  node entity( data_set )'
+  - 'use  The form mode section_3 linked to  node entity( data_set )'
+  - 'use  The form mode section_4 linked to  node entity( data_set )'
+  - 'use  The form mode section_5 linked to  node entity( data_set )'
+  - 'use  The form mode section_6 linked to  node entity( data_set )'
+  - 'use editorial transition archive'
+  - 'use editorial transition archived_draft'
+  - 'use editorial transition archived_published'
+  - 'use editorial transition create_new_draft'
+  - 'use editorial transition publish'
+  - 'view any unpublished content'
+  - 'view data_set revisions'
+  - 'view field_organization'
+  - 'view field_primary_responsibility_org'
+  - 'view latest version'
+  - 'view own field_primary_responsibility_org'
+  - 'view own unpublished content'
+  - 'view post access counter'
+  - 'view unpublished paragraphs'

@@ -2,6 +2,7 @@ bc_dc.data_set_archive_page:
   route_name: bc_dc.data_set_archive_page
   base_route: entity.node.canonical
   title: 'Unpublish'
+  weight: 30
 
 bc_dc.data_set_build_page_tab:
   route_name: bc_dc.data_set_build_page_tab
@@ -27,6 +28,11 @@ bc_dc.user_dependency_report_tab:
   route_name: view.dependency_report.dependency_report_page
   parent_id: bc_dc.user_reports_tab
   title: 'Dependency report'
+
+bc_dc.report_builder_tab:
+  route_name: view.report_builder.page_1
+  parent_id: bc_dc.user_reports_tab
+  title: 'Report builder'
 
 bc_dc.user_manage_tab:
   route_name: bc_dc.user_manage_tab

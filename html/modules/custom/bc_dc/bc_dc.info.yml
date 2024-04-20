@@ -1,7 +1,7 @@
 name: BC Data Catalogue Module
 description: Functionality specific to the BC Data Catalogue.
 type: module
-core_version_requirement: ^10.1
+core_version_requirement: ^10.2
 configure: bc_dc.settings
 package: BC Base Build
 dependencies:
@@ -14,6 +14,7 @@ dependencies:
   - ckeditor_codemirror:ckeditor_codemirror
   - clipboardjs:clipboardjs
   - cm_revision_delete:cm_revision_delete
+  - date_popup:date_popup
   - diff:diff
   - drupal:basic_auth
   - drupal:charts
@@ -22,6 +23,7 @@ dependencies:
   - drupal:datetime
   - drupal:field
   - drupal:filter
+  - drupal:charts_billboard
   - drupal:charts_google
   - drupal:jsonapi
   - drupal:layout_builder
@@ -38,12 +40,13 @@ dependencies:
   - entity_embed:entity_embed
   - entity_reference_revisions:entity_reference_revisions
   - environment_indicator:environment_indicator
+  - field_count_formatter:field_count_formatter
   - field_group:field_group
   - field_permissions:field_permissions
-  - field_token_value:field_token_value
   - flag:flag
   - form_mode_control:form_mode_control
   - formatter_suite:formatter_suite
+  - hierarchical_term_formatter:hierarchical_term_formatter
   - insert_view_adv:insert_view_adv
   - m4032404:m4032404
   - message_gcnotify:message_gcnotify
@@ -63,6 +66,7 @@ dependencies:
   - smart_trim:smart_trim
   - smtp:smtp
   - tac_lite:tac_lite
+  - taxonomy_delete:taxonomy_delete
   - taxonomy_import:taxonomy_import
   - taxonomy_manager:taxonomy_manager
   - taxonomy_max_depth:taxonomy_max_depth

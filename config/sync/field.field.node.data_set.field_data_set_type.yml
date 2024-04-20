@@ -11,7 +11,7 @@ field_name: field_data_set_type
 entity_type: node
 bundle: data_set
 label: 'Record type'
-description: 'Classify the item according to type, sub-type and format as applicable. <a href="/node/22">more information…</a>'
+description: 'Classify the item according to type, sub-type and format as applicable. <a href="/node/107">more information…</a>'
 required: true
 translatable: false
 default_value: {  }
@@ -26,4 +26,5 @@ settings:
       direction: asc
     auto_create: false
     auto_create_bundle: ''
+    allow_self_reference: true
 field_type: entity_reference

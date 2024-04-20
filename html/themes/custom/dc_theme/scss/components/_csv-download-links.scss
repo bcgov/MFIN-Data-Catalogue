@@ -1,0 +1,60 @@
+// link style with icon
+%csv-link {
+  @include icon-bi($bi-cloud-download-fill);
+  font-size: 1rem !important;
+  color: $colorTextLink;
+  text-decoration: none;
+  &:hover {
+    color: $colorTextLink-hover;
+  }
+}
+
+// data dictionary download links
+.dc-details {
+  .item-list {
+    ul {
+      list-style: none;
+      margin: 0;
+      li {
+        margin: 0;
+        a{
+          @extend %csv-link;
+        }
+      }
+    }
+  }
+}
+
+// download search results links on search page
+.bcbb-search-wrapper {
+  .view-site-search {
+    div[id*="edit-actions"] {
+      display:block !important;
+      .bcbb-input-wrapper {
+        @extend %csv-link;
+        display: block;
+        width: 100%;
+        input.btn.btn-primary {
+          border: 0 transparent;
+          background-color: transparent;
+          color: $colorTextLink;
+          font-size: 1rem;
+          &:hover {
+            color: $colorTextLink-hover;
+          }
+        }
+      }
+    }
+  }
+}
+
+// override Drupal's views csv download icon
+
+.views-data-export-feed {
+  a {
+    @extend %csv-link;
+    background-image: none !important;
+    text-indent: 0 !important;
+    width: auto !important;
+  }
+}

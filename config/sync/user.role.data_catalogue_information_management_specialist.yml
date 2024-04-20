@@ -5,6 +5,7 @@ dependencies:
   config:
     - node.type.data_set
   module:
+    - bc_dc
     - book
     - content_moderation
     - field_permissions
@@ -14,9 +15,10 @@ dependencies:
     - paragraphs
 id: data_catalogue_information_management_specialist
 label: 'Data catalogue information management specialist'
-weight: 7
+weight: 8
 is_admin: null
 permissions:
+  - 'access data catalogue docs'
   - 'access help pages'
   - 'access printer-friendly version'
   - 'create field_organization'

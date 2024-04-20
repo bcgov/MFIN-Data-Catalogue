@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\bc_dc\Trait;
+namespace Drupal\bc_dc\Traits;
 
 use Drupal\node\NodeInterface;
 

@@ -19,6 +19,7 @@ class BcDcUnpublish extends BcDcButtonBase {
       'text' => $this->t('Unpublish'),
       'class' => 'btn-secondary',
       'route' => 'bc_dc.data_set_archive_page',
+      'destination' => TRUE,
     ];
   }
 

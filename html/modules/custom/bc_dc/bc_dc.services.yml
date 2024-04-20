@@ -1,4 +1,9 @@
 services:
+  bc_dc.config_import_event_subscriber:
+    class: Drupal\bc_dc\EventSubscriber\BcDcConfigImportEventSubscriber
+    arguments: ['@entity_type.manager']
+    tags:
+      - { name: 'event_subscriber' }
   bc_dc.review_reminder:
     class: Drupal\bc_dc\Service\ReviewReminder
     arguments: ['@config.factory', '@entity_type.manager', '@logger.factory', '@string_translation']

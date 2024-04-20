@@ -11,6 +11,9 @@ bc_dc.settings:
     review_overdue_message:
       type: label
       label: 'Review overdue message'
+    info_schedule_pre_title:
+      type: label
+      label: 'Information schedule term pre-title'
 
 field.formatter.settings.data_set_column_name:
   type: mapping

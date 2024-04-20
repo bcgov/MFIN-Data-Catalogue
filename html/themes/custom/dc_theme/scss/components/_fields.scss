@@ -62,3 +62,7 @@ ul, ol {
 .field_visibility_success {@include field_visibility(var(--bs-success));}
 .field_visibility_warning {@include field_visibility(var(--bs-warning));}
 .field_visibility_danger {@include field_visibility(var(--bs-danger));}
+
+.field-required {
+  color: $colorAlert-error;
+}

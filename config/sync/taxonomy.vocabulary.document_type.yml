@@ -1,0 +1,13 @@
+uuid: 00af3a81-1383-4a0c-94d5-14d057f7752b
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy_max_depth
+third_party_settings:
+  taxonomy_max_depth:
+    max_depth: 0
+name: 'Document type'
+vid: document_type
+description: 'Categorize documents that are related to data, reports and forms'
+weight: 0

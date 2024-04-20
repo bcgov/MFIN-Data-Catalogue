@@ -5,6 +5,7 @@ namespace Drupal\bc_dc\Controller;
 use Drupal\bc_dc\Form\BcDcAddColumnsForm;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Entity\EntityRepositoryInterface;
+use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\node\NodeInterface;
 use Drupal\path_alias\AliasManagerInterface;
@@ -55,6 +56,44 @@ class BcDcCreateFileController extends ControllerBase {
   }
 
   /**
+   * Generate the contents of the download file.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The node.
+   *
+   * @return array[]
+   *   The file contents.
+   */
+  public function createFileContents(NodeInterface $node): array {
+    $fields = BcDcAddColumnsForm::getDataSetFields();
+    $results = [$fields];
+    $paragraph_field_items = $node->get('field_columns')->referencedEntities();
+    foreach ($paragraph_field_items as $paragraph) {
+      // Get the translation.
+      $paragraph = $this->entityRepository->getTranslationFromContext($paragraph);
+      $rows = [];
+      foreach ($fields as $field) {
+        // For entity reference fields, use the labels ofthe referenced
+        // entities. Otherwise, use the value.
+        $row = $paragraph->get('field_' . $field);
+        if ($row instanceof EntityReferenceFieldItemListInterface) {
+          $labels = [];
+          foreach ($row->referencedEntities() as $referenced_entity) {
+            $labels[] = $referenced_entity->label();
+          }
+          $row = implode(', ', $labels);
+        }
+        else {
+          $row = $row->value;
+        }
+        $rows[] = $row;
+      }
+      $results[] = $rows;
+    }
+    return $results;
+  }
+
+  /**
    * Generate the download file and serves it to the browser.
    *
    * @param \Drupal\node\NodeInterface $node
@@ -70,19 +109,8 @@ class BcDcCreateFileController extends ControllerBase {
     if (!in_array($format, static::SUPPORTED_EXTENSIONS, TRUE)) {
       throw new NotFoundHttpException();
     }
-    $fields = BcDcAddColumnsForm::getDataSetFields();
-    $results = [$fields];
-    $paragraph_field_items = $node->get('field_columns')->referencedEntities();
-    foreach ($paragraph_field_items as $paragraph) {
-      // Get the translation.
-      $paragraph = $this->entityRepository->getTranslationFromContext($paragraph);
-      $rows = [];
-      foreach ($fields as $field) {
-        $row = $paragraph->get('field_' . $field)->value;
-        $rows[] = $row;
-      }
-      $results[] = $rows;
-    }
+
+    $results = $this->createFileContents($node);
 
     // Make a filename like "node-file-path_ID_12.csv".
     $node_path = $this->pathAliasManager->getAliasByPath('/node/' . $node->id());

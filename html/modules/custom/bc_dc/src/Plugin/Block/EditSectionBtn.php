@@ -8,6 +8,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Routing\RedirectDestinationInterface;
+use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -90,6 +91,13 @@ class EditSectionBtn extends BlockBase implements ContainerFactoryPluginInterfac
 
     $form_mode = $this->configuration['query_param'];
 
+    return static::buildContent($node, $form_mode, $this->entityTypeManager, $this->redirectDestination);
+  }
+
+  /**
+   * Build block content. Static so it can be called from elsewhere.
+   */
+  public static function buildContent(?NodeInterface $node, string $form_mode, EntityTypeManagerInterface $entityTypeManager, RedirectDestinationInterface $redirectDestination): array {
     $links = [];
 
     $route_parameters = [
@@ -97,11 +105,11 @@ class EditSectionBtn extends BlockBase implements ContainerFactoryPluginInterfac
       // NID for Link::createFromRoute(). Default to 1 so the link is generated.
       // The link does not work anyway, so it does not matter if it points to
       // the wrong node.
-      'node' => $node->id() ?? 1,
+      'node' => $node?->id() ?? 1,
     ];
 
     // Edit links.
-    $form_mode_label = $this->entityTypeManager
+    $form_mode_label = $entityTypeManager
       ->getStorage('entity_form_mode')
       ->load('node.' . $form_mode)
       ->label();
@@ -111,14 +119,14 @@ class EditSectionBtn extends BlockBase implements ContainerFactoryPluginInterfac
           'btn',
           'btn-primary',
         ],
-        'aria-label' => $this->t('Edit @form_mode_label', ['@form_mode_label' => $form_mode_label]),
+        'aria-label' => t('Edit @form_mode_label', ['@form_mode_label' => $form_mode_label]),
       ],
       'query' => [
         'display' => $form_mode,
-        'destination' => $this->redirectDestination->get(),
+        'destination' => $redirectDestination->get(),
       ],
     ];
-    $links[] = Link::createFromRoute($this->t('Edit'), 'entity.node.edit_form', $route_parameters, $link_options);
+    $links[] = Link::createFromRoute(t('Edit'), 'entity.node.edit_form', $route_parameters, $link_options);
 
     // Remove links with no access.
     foreach ($links as $key => $link) {

@@ -1,0 +1,14 @@
+uuid: 31c3ef8b-ea3b-497a-b142-eef0094b3da7
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.data_catalogue_api_user
+  module:
+    - user
+id: user_remove_role_action.data_catalogue_api_user
+label: 'Remove the Data catalogue API user role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: data_catalogue_api_user

@@ -5,17 +5,16 @@ dependencies:
   config:
     - core.entity_view_mode.node.section_1
     - field.field.node.data_set.body
-    - field.field.node.data_set.field_active_period
     - field.field.node.data_set.field_asset_location
     - field.field.node.data_set.field_authoritative_info
     - field.field.node.data_set.field_columns
+    - field.field.node.data_set.field_contact_email
+    - field.field.node.data_set.field_contact_name
     - field.field.node.data_set.field_critical_information
     - field.field.node.data_set.field_data_quality_issues
     - field.field.node.data_set.field_data_set_historical_change
     - field.field.node.data_set.field_data_set_type
     - field.field.node.data_set.field_data_sets_used
-    - field.field.node.data_set.field_final_disposition
-    - field.field.node.data_set.field_high_value_info
     - field.field.node.data_set.field_information_schedule
     - field.field.node.data_set.field_is_complete_review
     - field.field.node.data_set.field_last_review_date
@@ -23,13 +22,12 @@ dependencies:
     - field.field.node.data_set.field_personal_information
     - field.field.node.data_set.field_primary_responsibility_org
     - field.field.node.data_set.field_published_date
+    - field.field.node.data_set.field_related_document
     - field.field.node.data_set.field_review_interval
     - field.field.node.data_set.field_review_status
     - field.field.node.data_set.field_security_classification
-    - field.field.node.data_set.field_semi_active_period
     - field.field.node.data_set.field_series
     - field.field.node.data_set.field_source_system
-    - field.field.node.data_set.field_special_flags
     - field.field.node.data_set.field_visibility
     - node.type.data_set
   module:
@@ -64,16 +62,15 @@ content:
 hidden:
   body: true
   content_moderation_control: true
-  field_active_period: true
   field_asset_location: true
   field_authoritative_info: true
   field_columns: true
+  field_contact_email: true
+  field_contact_name: true
   field_critical_information: true
   field_data_quality_issues: true
   field_data_set_historical_change: true
   field_data_sets_used: true
-  field_final_disposition: true
-  field_high_value_info: true
   field_information_schedule: true
   field_is_complete_review: true
   field_last_review_date: true
@@ -81,12 +78,11 @@ hidden:
   field_personal_information: true
   field_primary_responsibility_org: true
   field_published_date: true
+  field_related_document: true
   field_review_interval: true
   field_review_status: true
   field_security_classification: true
-  field_semi_active_period: true
   field_source_system: true
-  field_special_flags: true
   field_visibility: true
   flag_bookmark: true
   langcode: true

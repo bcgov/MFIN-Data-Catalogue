@@ -1,3 +1,11 @@
+'access data catalogue docs':
+  title: 'Access data catalogue documentation'
+  description: 'Access the documentation pages for the BC Data Catalogue Module.'
+
+'administer data catalogue':
+  title: 'Administer data catalogue'
+  description: 'Administer the BC Data Catalogue Module.'
+
 'archive data_set nodes':
   title: 'Unpublish metadata records'
 'delete any never_published data_set in_org':
@@ -7,6 +15,9 @@
 
 'assign data_catalogue_administrator role':
   title: 'Assign role data_catalogue_administrator'
+  description: 'Used by role_delegation. Declared here so that tests will run.'
+'assign data_catalogue_api_user role':
+  title: 'Assign role data_catalogue_api_user'
   description: 'Used by role_delegation. Declared here so that tests will run.'
 'assign data_catalogue_editor role':
   title: 'Assign role data_catalogue_editor'

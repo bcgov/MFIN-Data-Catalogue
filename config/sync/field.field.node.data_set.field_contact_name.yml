@@ -1,0 +1,19 @@
+uuid: c9e34a91-05b1-4ffa-825c-d38e01129219
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_contact_name
+    - node.type.data_set
+id: node.data_set.field_contact_name
+field_name: field_contact_name
+entity_type: node
+bundle: data_set
+label: 'Contact name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

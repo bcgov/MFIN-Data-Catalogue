@@ -11,7 +11,7 @@ field_name: field_instance_of
 entity_type: paragraph
 bundle: data_column
 label: 'Instance of'
-description: '    These terms represent data that appear in more than one data set and can join data sets together. <a href="/node/7">more information…</a>'
+description: '    These terms represent data that appear in more than one data set and can join data sets together. <a href="/node/129">more information…</a>'
 required: false
 translatable: false
 default_value: {  }
@@ -26,4 +26,5 @@ settings:
       direction: asc
     auto_create: false
     auto_create_bundle: ''
+    allow_self_reference: true
 field_type: entity_reference

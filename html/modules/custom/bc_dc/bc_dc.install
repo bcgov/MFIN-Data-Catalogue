@@ -19,5 +19,87 @@ function bc_dc_requirements(string $phase): array {
     ];
   }
 
+  // Display the BC Data Catalogue version on the status page.
+  if ($phase === 'runtime') {
+    $version = bc_dc_get_version();
+    if ($version) {
+      $value = t('Version @version', ['@version' => $version]);
+    }
+    else {
+      $value = t('Unable to determine version');
+      $euid = posix_geteuid();
+      if ($euid !== fileowner(bc_dc_get_site_root()) || $euid !== fileowner(bc_dc_get_site_root() . '/.git')) {
+        $value .= ' ' . t('(the file owner of the root .git directory and its parent directory must match the user running the Drupal process)');
+      }
+    }
+    $requirements['bc_dc'] = [
+      'title' => t('BC Data Catalogue'),
+      'value' => $value,
+      'severity' => REQUIREMENT_INFO,
+      'weight' => -20,
+    ];
+  }
+
   return $requirements;
+}
+
+/**
+ * Return the path of the site root repository.
+ *
+ * @return string
+ *   The path.
+ */
+function bc_dc_get_site_root(): string {
+  return dirname(DRUPAL_ROOT);
+}
+
+/**
+ * Return the Git command for the site root repository.
+ *
+ * @return string|null
+ *   The command or NULL if exec() is not available.
+ */
+function bc_dc_get_git(): ?string {
+  static $git;
+  if (isset($git)) {
+    return $git;
+  }
+
+  // The exec() PHP function is disabled.
+  if (!function_exists('exec')) {
+    return NULL;
+  }
+
+  $git = 'git -C ' . bc_dc_get_site_root() . ' ';
+  return $git;
+}
+
+/**
+ * Return the version of bc_dc.
+ *
+ * This will be the tag or a string representing the development version.
+ *
+ * @return string|null
+ *   The version or NULL if it cannot be determined.
+ */
+function bc_dc_get_version(): ?string {
+  // Try to get the version from the bc_dc info file.
+  $version = \Drupal::service('extension.list.module')->get('bc_dc')->info['version'] ?? NULL;
+  if ($version) {
+    return $version;
+  }
+
+  // Get the version from the Git repo.
+  $git = bc_dc_get_git();
+  if (!$git) {
+    return NULL;
+  }
+
+  $command = $git . 'describe --tags';
+  $exec = exec($command);
+
+  if (is_string($exec)) {
+    return $exec;
+  }
+  return NULL;
 }

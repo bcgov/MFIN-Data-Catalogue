@@ -5,27 +5,32 @@
  * Theme file.
  */
 
+use Drupal\bc_dc\Plugin\Block\EditSectionBtn;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Link;
+use Drupal\Core\Url;
+use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\TermInterface;
-
-/**
- * Implements hook_preprocess_HOOK() for block--bc-dc-edit-button.html.twig.
- */
-function dc_theme_preprocess_block__bc_dc_edit_button(array &$variables): void {
-  // Add custom classes to data_set build page section headers.
-  $variables['title_attributes']['class'][] = 'h4';
-  $variables['title_attributes']['class'][] = 'fw-bold';
-}
 
 /**
  * Implements hook_preprocess_HOOK() for block--entity-view--node.html.twig.
  */
 function dc_theme_preprocess_block__entity_view__node(array &$variables): void {
   // Adjust spacing.
-  $variables['attributes']['class'][] = 'mb-3';
-  $variables['attributes']['class'][] = 'pb-3';
+  $variables['attributes']['class'][] = 'mb-4';
+  $variables['attributes']['class'][] = 'pb-4';
+
+  if (str_starts_with($variables['content']['#view_mode'], 'section_')) {
+    // Add custom classes to data_set build page section headers.
+    $variables['title_attributes']['class'][] = 'h4';
+    $variables['title_attributes']['class'][] = 'fw-bold';
+
+    // Add section edit button.
+    $node = $variables['content']['#node'];
+    $form_mode = $variables['content']['#view_mode'];
+    $variables['block_suffix'] = EditSectionBtn::buildContent($node, $form_mode, \Drupal::entityTypeManager(), \Drupal::destination());
+  }
 }
 
 /**
@@ -42,14 +47,13 @@ function dc_theme_preprocess_block__facets_summary_block(array &$variables): voi
  * Implements hook_preprocess_HOOK() for block--search-api-saved-searches.html.twig.
  */
 function dc_theme_preprocess_block__search_api_saved_searches(array &$variables): void {
-  $variables['attributes']['class'][] = 'bb-collapse';
-  $variables['attributes']['class'][] = 'bb-collapse-responsive';
   $variables['attributes']['class'][] = 'dc-save-search';
   $variables['attributes']['class'][] = 'mb-0';
   $variables['attributes']['class'][] = 'mb-lg-5';
   $variables['attributes']['class'][] = 'p-lg-4';
   $variables['attributes']['class'][] = 'pt-lg-2';
-  $variables['toggle_variable'] = 'save_this_search';
+  $variables['attributes']['class'][] = 'bcbb-desktop-open';
+  $variables['#attached']['library'][] = 'bcbb_other/bcbb-misc';
 }
 
 /**
@@ -79,9 +83,14 @@ function dc_theme_preprocess_input__submit__paragraph_action(array &$variables):
 function dc_theme_preprocess_node__data_set(array &$variables): void {
   // Prevent page title from appearing in an 'h2' element at the top.
   $variables['page'] = TRUE;
+}
 
-  // Load JS for expanding / collapsing data dictionary columns.
-  $variables['#attached']['library'][] = 'dc_theme/mr-scripts';
+/**
+ * Implements hook_preprocess_HOOK() for field--node--field-columns--data-set.html.twig.
+ */
+function dc_theme_preprocess_field__node__field_columns__data_set(array &$variables): void {
+  // Add expand/collaps toggle button to data dictionary columns.
+  $variables['attributes']['class'][] = 'bcbb-toggle-details-wrapper';
 }
 
 /**
@@ -121,21 +130,9 @@ function dc_theme_preprocess_node__data_set__full(array &$variables): void {
     $information_schedule_root_term = array_pop($parents);
     $variables['information_schedule_type'] = $information_schedule_root_term->label();
 
-    $name_parts = [];
-    foreach ($parents as $term) {
-      if ($term->field_schedule_number->value) {
-        array_unshift($name_parts, $term->label());
-      }
-    }
-    if ($name_parts) {
-      $has_children = (bool) $taxonomy_term_storage->loadChildren($information_schedule_term->id());
-      $information_schedule_details_label = implode(': ', $name_parts);
-      if ($has_children) {
-        $variables['information_schedule_details'] = $information_schedule_details_label;
-      }
-      else {
-        $variables['information_schedule_details'] = $information_schedule_term->toLink($information_schedule_details_label);
-      }
+    $has_children = (bool) $taxonomy_term_storage->loadChildren($information_schedule_term->id());
+    if (!$has_children) {
+      $variables['information_schedule_business_category'] = $information_schedule_term->toLink();
     }
   }
 
@@ -196,11 +193,41 @@ function dc_theme_preprocess_node__data_set__full(array &$variables): void {
       }
       // Theme as list.
       sort($visibility_orgs);
+      $visibility_orgs = array_unique($visibility_orgs);
       $variables['field_visibility_wrapper_class'] = 'field_visibility_danger';
       $variables['field_visibility'] = [
         '#theme' => 'item_list',
         '#items' => $visibility_orgs,
       ];
+    }
+  }
+
+  // Hide field_modified_date when the same as field_published_date.
+  $field_published_date = $variables['node']->field_published_date->date?->format('Y-m-d');
+  $field_modified_date = $variables['node']->field_modified_date->date?->format('Y-m-d');
+  if ($field_published_date === $field_modified_date) {
+    unset($variables['node']->field_modified_date);
+  }
+
+  // "High value" badges at top of page.
+  $variables['badge_high_value'] = [];
+  if ($variables['node']->field_critical_information->value) {
+    $variables['badge_high_value'][] = t('High value');
+  }
+
+  // Display contact name and email. If there is an email, make a link to that
+  // email. If there is a name show that otherwise the email.
+  $field_contact_name = $variables['node']->field_contact_name->value;
+  $field_contact_email = $variables['node']->field_contact_email->value;
+  $variables['field_contact'] = NULL;
+  if ($field_contact_name || $field_contact_email) {
+    if ($field_contact_email) {
+      $text = $field_contact_name ?: $field_contact_email;
+      $url = Url::fromUri('mailto:' . $field_contact_email);
+      $variables['field_contact'] = Link::fromTextAndUrl($text, $url)->toRenderable();
+    }
+    else {
+      $variables['field_contact'] = $field_contact_name;
     }
   }
 }
@@ -214,16 +241,69 @@ function dc_theme_preprocess_node__data_set_build_page(array &$variables): void 
 }
 
 /**
- * Implements hook_preprocess_HOOK() for page--node--add-columns.html.twig.
+ * Implements hook_preprocess_HOOK() for page.html.twig.
  */
-function dc_theme_preprocess_page__node__add_columns(array &$variables): void {
-  $variables['b5_top_container'] = 'container-fluid';
+function dc_theme_preprocess_page(array &$variables): void {
+  // Display this page using the full width of the window.
+  if (!empty($_SESSION['bc_dc_use_wide_page'])) {
+    $variables['b5_top_container'] = 'container-fluid';
+    unset($_SESSION['bc_dc_use_wide_page']);
+  }
 }
 
 /**
  * Implements hook_preprocess_HOOK() for taxonomy-term--information-schedule.html.twig.
  */
 function dc_theme_preprocess_taxonomy_term__information_schedule(array &$variables): void {
+  // Instead of displaying the full name, field_abbr_full_name, display that and
+  // all ancestors using the correct labels for each level.
+  //
+  // Labels for the different levels in the taxonomy.
+  $level_labels = [
+    t('Information schedule type'),
+    t('Information schedule name'),
+    t('Business function'),
+    t('Business category'),
+  ];
+  // Get this term and its ancestors.
+  $taxonomy_term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  $term_and_ancestors = $taxonomy_term_storage->loadAllParents($variables['elements']['#taxonomy_term']->id());
+  $number_of_terms = count($term_and_ancestors);
+  // Remove labels if there are too many.
+  while (count($level_labels) > $number_of_terms) {
+    array_pop($level_labels);
+  }
+  // Add default label if there are too few.
+  while (count($level_labels) < $number_of_terms) {
+    $level_labels[] = t('Sub-type');
+  }
+  // Determine whether the root term is ARCS.
+  $root_term = $term_and_ancestors[array_key_last($term_and_ancestors)];
+  $is_arcs = $root_term->label() === 'ARCS';
+  // Starting from the current term and going up the tree, add the label of each
+  // level to the output using the correct level label.
+  foreach ($term_and_ancestors as $term) {
+    $level = $variables['content']['field_abbr_full_name'];
+    $level['#title'] = array_pop($level_labels);
+    // If the root term is ARCS and this is the second level, use the full name
+    // of the root term for the value.
+    if ($is_arcs && count($level_labels) === 1) {
+      $value = $root_term->field_abbr_full_name->value ?? $term->label();
+    }
+    // Otherwise, the value comes from field_abbr_full_name except for the top
+    // level which uses the term label.
+    elseif (count($level_labels)) {
+      $value = $term->field_abbr_full_name->value ?? $term->label();
+    }
+    else {
+      $value = $term->label();
+    }
+    $level[0]['#context']['value'] = $value;
+    array_unshift($variables['content'], $level);
+  }
+  // Remove the display of the full name.
+  unset($variables['content']['field_abbr_full_name']);
+
   // For entity reference fields, use abbr to provide the full name.
   foreach ($variables['content'] as &$field) {
     // Act only on entity reference fields.
@@ -240,7 +320,7 @@ function dc_theme_preprocess_taxonomy_term__information_schedule(array &$variabl
         '@title' => $title,
         '@text' => $label,
       ];
-      $field[0]['#markup'] = new FormattableMarkup('<abbr title="@title">@text</abbr>', $context);
+      $field[0]['#markup'] = new FormattableMarkup('<abbr>@text</abbr> (@title)', $context);
     }
     else {
       $field[0]['#markup'] = Html::escape($label);
@@ -282,8 +362,31 @@ function dc_theme_preprocess_views_view_fields(array &$variables): void {
  * Implements hook_preprocess_HOOK() for field-multiple-value-form.html.twig.
  */
 function dc_theme_preprocess_field_multiple_value_form(array &$variables): void {
-  if (isset($variables['table']['#header'][0]['data']['#tag']) && $variables['table']['#header'][0]['data']['#tag'] === 'h4') {
-    $variables['table']['#header'][0]['data']['#tag'] = 'label';
+  // In the template, output will be fieldset/legend when `multiple` is set.
+  if ($variables['multiple']) {
+    // Use element title for legend.
+    $variables['legend'] = $variables['element']['#title'];
+
+    // Adjust headers for tabledrag tables.
+    if (isset($variables['table']['#tabledrag']) && count($variables['table']['#header']) === 3) {
+      // Improve table header labels.
+      $variables['table']['#header'] = [
+        [
+          // For unknown reasons, 'data' must be an array to avoid a test error.
+          'data' => [
+            '#markup' => t('Items'),
+          ],
+          'colspan' => 2,
+        ],
+        ['data' => t('Actions')],
+        // Move this into an array to allow adding classes.
+        ['data' => $variables['table']['#header'][2]],
+      ];
+      // Visually hide the header row.
+      foreach (array_keys($variables['table']['#header']) as $key) {
+        $variables['table']['#header'][$key]['class'] = 'visually-hidden';
+      }
+    }
   }
 }
 
@@ -311,5 +414,39 @@ function dc_theme_preprocess_node(&$variables) {
     else {
       $variables['record_type'] = t('record');
     }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page-title.html.twig.
+ */
+function dc_theme_preprocess_page_title(array &$variables): void {
+  // Get the route.
+  $route_match = \Drupal::routeMatch();
+  // Check that it's a term page.
+  if ($route_match->getRouteName() === 'entity.taxonomy_term.canonical') {
+    // Get the term and see if it belongs to vocab information_schedule.
+    $term = $route_match->getParameter('taxonomy_term');
+    if ($term instanceof Term && $term->bundle() === 'information_schedule') {
+      // Get the pre-title from the module configuration.
+      $pre_title_text = (string) \Drupal::config('bc_dc.settings')->get('info_schedule_pre_title');
+      if ($pre_title_text !== '') {
+        // Add a pre-title markup and value.
+        $variables['title_prefix']['pre_title'] = [
+          '#markup' => '<span class="pre-title">' . $pre_title_text . '</span>',
+        ];
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for taxonomy-term--organization.html.twig.
+ */
+function dc_theme_preprocess_taxonomy_term__organization(array &$variables): void {
+  if ($variables['view_mode'] === 'bc_dc_org_footer') {
+    // This variable will be displayed inside a `h2` so ensure it is text-only.
+    // If rendered as a field, it will be in a `div`, not allowed in `h2`.
+    $variables['name'] = $variables['name']['#object']->getName();
   }
 }

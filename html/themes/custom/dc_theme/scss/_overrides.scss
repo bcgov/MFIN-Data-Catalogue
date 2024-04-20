@@ -22,3 +22,8 @@
 time {
   white-space: nowrap;
 }
+
+// Hidden form controls are un-hidden by Bootstrap. Restore them as hidden.
+.form-control.hidden {
+  display: none;
+}

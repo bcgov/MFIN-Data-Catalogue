@@ -1,0 +1,19 @@
+uuid: 985687ac-f1f3-49e3-a679-f1804f6f00c0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_classification_code
+    - taxonomy.vocabulary.information_schedule
+id: taxonomy_term.information_schedule.field_classification_code
+field_name: field_classification_code
+entity_type: taxonomy_term
+bundle: information_schedule
+label: 'Classification code'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

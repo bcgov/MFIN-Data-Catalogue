@@ -18,6 +18,7 @@ module:
   breakpoint: 0
   cancel_button: 0
   charts: 0
+  charts_billboard: 0
   charts_google: 0
   ckeditor5: 0
   ckeditor5_fullscreen: 0
@@ -34,6 +35,7 @@ module:
   csv_serialization: 0
   ctools: 0
   ctools_views: 0
+  date_popup: 0
   datetime: 0
   dblog: 0
   default_content_deploy: 0
@@ -47,9 +49,9 @@ module:
   facets: 0
   facets_summary: 0
   field: 0
+  field_count_formatter: 0
   field_group: 0
   field_permissions: 0
-  field_token_value: 0
   field_ui: 0
   file: 0
   filter: 0
@@ -58,6 +60,7 @@ module:
   formatter_suite: 0
   hal: 0
   help: 0
+  hierarchical_term_formatter: 0
   history: 0
   image: 0
   insert_view_adv: 0
@@ -114,6 +117,7 @@ module:
   svg_image_responsive: 0
   system: 0
   taxonomy: 0
+  taxonomy_delete: 0
   taxonomy_import: 0
   taxonomy_manager: 0
   taxonomy_max_depth: 0
