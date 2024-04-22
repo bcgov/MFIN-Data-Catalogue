@@ -519,6 +519,138 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   background-color: #003366;
 }
 
+.view-report-builder .view-header {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 1.5em;
+}
+.view-report-builder .view-filters .views-exposed-form {
+  margin-bottom: 1em;
+}
+.view-report-builder .view-filters .views-exposed-form *:not(input):not(select):not(button) {
+  padding: 0;
+  margin: 0;
+  float: none;
+  clear: none;
+}
+.view-report-builder .view-filters .views-exposed-form > .form--inline {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5em;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 1.5em;
+}
+.view-report-builder .view-filters .views-exposed-form > .form--inline > div label:first-of-type {
+  font-weight: bold;
+}
+.view-report-builder .view-filters .views-exposed-form > .form--inline .form-radios {
+  font-size: 1rem;
+}
+.view-report-builder .view-filters .views-exposed-form > .form--inline .form-radios.form--inline {
+  display: flex;
+  gap: 1em;
+}
+.view-report-builder .view-filters .views-exposed-form > .form--inline > div[id*=date-value-wrapper] .fieldset-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2em;
+}
+.view-report-builder .view-filters .views-exposed-form > .form--inline > div[id*=date-value-wrapper] .fieldset-wrapper > div[class*=value-min] {
+  grid-column: 1;
+}
+.view-report-builder .view-filters .views-exposed-form > .form--inline > div[id*=date-value-wrapper] .fieldset-wrapper > div[class*=value-max] {
+  grid-column: 2;
+}
+.view-report-builder .view-filters .views-exposed-form > .form--inline > div[id*=date-value-wrapper] .fieldset-wrapper > div:not([class*=value-min]):not([class*=value-max]) {
+  grid-column: 1/-1;
+}
+.view-report-builder .view-filters .views-exposed-form > .form--inline > div[id*=date-value-wrapper] .fieldset-wrapper > div.form-type-date {
+  margin-top: 0.5em;
+}
+.view-report-builder .view-filters .views-exposed-form > .form--inline > div[id*=date-value-wrapper] .fieldset-wrapper > div.form-type-date label {
+  font-size: 0.8em;
+  color: var(--bs-gray-700);
+}
+.view-report-builder .view-filters .views-exposed-form > .form--inline > div[id*=date-value-wrapper] legend {
+  font-size: 1em;
+  font-weight: bold;
+}
+@media only screen and (min-width: 768px) {
+  .view-report-builder .view-filters .views-exposed-form > .form--inline {
+    grid-template-columns: repeat(12, 1fr);
+  }
+  .view-report-builder .view-filters .views-exposed-form > .form--inline > * {
+    grid-column: span 6;
+  }
+  .view-report-builder .view-filters .views-exposed-form > .form--inline > div.form-item-title {
+    grid-column: span 9;
+  }
+  .view-report-builder .view-filters .views-exposed-form > .form--inline > div.form-item-nid {
+    grid-column: span 3;
+  }
+  .view-report-builder .view-filters .views-exposed-form > .form--inline > div[id*=date-value-wrapper] {
+    grid-column: span 12;
+  }
+  .view-report-builder .view-filters .views-exposed-form > .form--inline > div.form-item-owner {
+    grid-column: span 12;
+  }
+  .view-report-builder .view-filters .views-exposed-form > .form--inline > #edit-field-review-status-value--wrapper,
+  .view-report-builder .view-filters .views-exposed-form > .form--inline > #edit-moderation-state--wrapper,
+  .view-report-builder .view-filters .views-exposed-form > .form--inline > #edit-status--wrapper {
+    grid-column: span 4;
+  }
+  .view-report-builder .view-filters .views-exposed-form > .form--inline > div.form-item-items-per-page {
+    grid-column: 4/1;
+  }
+  .view-report-builder .view-filters .views-exposed-form > .form--inline > div.form-actions {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    height: 100%;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .view-report-builder .view-filters .views-exposed-form > .form--inline {
+    row-gap: 2em;
+  }
+  .view-report-builder .view-filters .views-exposed-form > .form--inline > div.form-item-title {
+    grid-column: span 8;
+  }
+  .view-report-builder .view-filters .views-exposed-form > .form--inline > div.form-item-nid {
+    grid-column: span 4;
+  }
+  .view-report-builder .view-filters .views-exposed-form > .form--inline > * {
+    grid-column: span 4;
+  }
+  .view-report-builder .view-filters .views-exposed-form > .form--inline > div.form-item-field-series-target-id {
+    grid-column: span 8;
+  }
+  .view-report-builder .view-filters .views-exposed-form > .form--inline > div.form-item-field-series-target-id select {
+    width: calc(50% - 1em);
+  }
+  .view-report-builder .view-filters .views-exposed-form > .form--inline > div[id*=date-value-wrapper] {
+    grid-column: span 4;
+  }
+  .view-report-builder .view-filters .views-exposed-form > .form--inline > div.form-item-owner {
+    grid-column: span 8;
+  }
+}
+.view-report-builder table {
+  font-size: 1rem;
+  margin-top: 2em;
+}
+.view-report-builder table th {
+  vertical-align: top;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.view-report-builder table tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.view-report-builder table tr:last-child {
+  border-bottom: none;
+}
+
 .page-node-type-data-set {
   /* On Metadata record column edit pages, make the summary take the full width.*/
 }

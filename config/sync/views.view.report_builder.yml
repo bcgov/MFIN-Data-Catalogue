@@ -47,7 +47,7 @@ dependencies:
 id: report_builder
 label: 'Report builder'
 module: views
-description: ''
+description: 'Report: Allows users to customize reports and export to .csv'
 tag: ''
 base_table: node_field_revision
 base_field: vid
@@ -135,7 +135,7 @@ display:
           entity_type: node
           entity_field: nid
           plugin_id: field
-          label: ID
+          label: 'Record ID'
           exclude: false
           alter:
             alter_text: false
@@ -295,69 +295,6 @@ display:
           hide_alter_empty: true
           click_sort_column: target_id
           type: entity_reference_shs
-          settings:
-            link: false
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        field_series:
-          id: field_series
-          table: node__field_series
-          field: field_series
-          relationship: nid
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: Series
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: false
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
           settings:
             link: false
           group_column: target_id
@@ -683,6 +620,69 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+        field_series:
+          id: field_series
+          table: node__field_series
+          field: field_series
+          relationship: nid
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: Series
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: false
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
         field_columns:
           id: field_columns
           table: node__field_columns
@@ -860,6 +860,69 @@ display:
           type: text_default
           settings: {  }
           group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_security_classification:
+          id: field_security_classification
+          table: node__field_security_classification
+          field: field_security_classification
+          relationship: nid
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'Security classification'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -1115,69 +1178,6 @@ display:
           type: count
           settings: {  }
           group_column: ''
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        field_security_classification:
-          id: field_security_classification
-          table: node__field_security_classification
-          field: field_security_classification
-          relationship: nid
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: 'Security classification'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: false
-          group_column: target_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -1691,31 +1691,13 @@ display:
                   placeholder_text: ''
                   collapsible: false
                   is_secondary: false
-              moderation_state:
-                plugin_id: default
-                advanced:
-                  sort_options: false
-                  rewrite:
-                    filter_rewrite_values: ''
-                  collapsible: false
-                  is_secondary: false
-              uid_1:
+              nid:
                 plugin_id: default
                 advanced:
                   placeholder_text: ''
-                  rewrite:
-                    filter_rewrite_values: ''
                   collapsible: false
                   is_secondary: false
               field_data_set_type_target_id:
-                plugin_id: default
-                advanced:
-                  sort_options: false
-                  rewrite:
-                    filter_rewrite_values: ''
-                  collapsible: false
-                  is_secondary: false
-              field_series_target_id:
                 plugin_id: default
                 advanced:
                   sort_options: false
@@ -1747,14 +1729,25 @@ display:
                     filter_rewrite_values: ''
                   collapsible: false
                   is_secondary: false
-              field_personal_information_value:
+              field_series_target_id:
                 plugin_id: default
                 advanced:
                   sort_options: false
                   rewrite:
-                    filter_rewrite_values: "- Any -|- Any -\r\nTrue|Yes\r\nFalse|No"
+                    filter_rewrite_values: ''
                   collapsible: false
                   is_secondary: false
+              field_personal_information_value:
+                plugin_id: bef
+                advanced:
+                  sort_options: false
+                  rewrite:
+                    filter_rewrite_values: "- Any -|Any\r\nTrue|Yes\r\nFalse|No"
+                  collapsible: false
+                  is_secondary: false
+                select_all_none: false
+                select_all_none_nested: false
+                display_inline: true
               field_security_classification_target_id:
                 plugin_id: default
                 advanced:
@@ -1764,11 +1757,70 @@ display:
                   collapsible: false
                   is_secondary: false
               field_critical_information_value:
-                plugin_id: default
+                plugin_id: bef
                 advanced:
                   sort_options: false
                   rewrite:
-                    filter_rewrite_values: "True|Yes\r\nFalse|No"
+                    filter_rewrite_values: "- Any -|Any\r\nTrue|Yes\r\nFalse|No"
+                  collapsible: false
+                  is_secondary: false
+                select_all_none: false
+                select_all_none_nested: false
+                display_inline: true
+              field_published_date_value:
+                plugin_id: default
+                advanced:
+                  collapsible: false
+                  is_secondary: false
+              field_modified_date_value:
+                plugin_id: default
+                advanced:
+                  collapsible: false
+                  is_secondary: false
+              field_last_review_date_value:
+                plugin_id: default
+                advanced:
+                  collapsible: false
+                  is_secondary: false
+              field_review_status_value:
+                plugin_id: bef
+                advanced:
+                  sort_options: false
+                  rewrite:
+                    filter_rewrite_values: ''
+                  collapsible: false
+                  is_secondary: false
+                select_all_none: false
+                select_all_none_nested: false
+                display_inline: false
+              moderation_state:
+                plugin_id: bef
+                advanced:
+                  sort_options: false
+                  rewrite:
+                    filter_rewrite_values: ''
+                  collapsible: false
+                  is_secondary: false
+                select_all_none: false
+                select_all_none_nested: false
+                display_inline: false
+              status:
+                plugin_id: bef
+                advanced:
+                  sort_options: false
+                  rewrite:
+                    filter_rewrite_values: "- Any -|Any\r\nYes|Yes\r\nNo|No"
+                  collapsible: false
+                  is_secondary: false
+                select_all_none: false
+                select_all_none_nested: false
+                display_inline: true
+              uid_1:
+                plugin_id: default
+                advanced:
+                  placeholder_text: ''
+                  rewrite:
+                    filter_rewrite_values: ''
                   collapsible: false
                   is_secondary: false
       access:
@@ -1949,7 +2001,7 @@ display:
           exposed: true
           expose:
             operator_id: nid_op
-            label: ID
+            label: 'Record ID'
             description: ''
             use_operator: false
             operator: nid_op
@@ -2035,59 +2087,6 @@ display:
           vid: data_set_type
           type: select
           hierarchy: true
-          limit: true
-          error_message: true
-        field_series_target_id:
-          id: field_series_target_id
-          table: node__field_series
-          field: field_series_target_id
-          relationship: nid
-          group_type: group
-          admin_label: ''
-          plugin_id: taxonomy_index_tid
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_series_target_id_op
-            label: Series
-            description: ''
-            use_operator: false
-            operator: field_series_target_id_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_series_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              data_catalogue_administrator: '0'
-              data_catalogue_manager: '0'
-              data_catalogue_api_user: '0'
-              data_catalogue_editor: '0'
-              data_catalogue_user: '0'
-              data_catalogue_information_management_specialist: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          vid: data_set_series
-          type: select
-          hierarchy: false
           limit: true
           error_message: true
         field_primary_responsibility_org_target_id:
@@ -2248,27 +2247,27 @@ display:
           hierarchy: true
           limit: true
           error_message: true
-        field_personal_information_value:
-          id: field_personal_information_value
-          table: node__field_personal_information
-          field: field_personal_information_value
+        field_series_target_id:
+          id: field_series_target_id
+          table: node__field_series
+          field: field_series_target_id
           relationship: nid
           group_type: group
           admin_label: ''
-          plugin_id: boolean
-          operator: '='
-          value: All
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
           group: 1
           exposed: true
           expose:
-            operator_id: ''
-            label: 'Personal information'
+            operator_id: field_series_target_id_op
+            label: Series
             description: ''
             use_operator: false
-            operator: field_personal_information_value_op
+            operator: field_series_target_id_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: field_personal_information_value
+            identifier: field_series_target_id
             required: false
             remember: false
             multiple: false
@@ -2282,6 +2281,7 @@ display:
               data_catalogue_editor: '0'
               data_catalogue_user: '0'
               data_catalogue_information_management_specialist: '0'
+            reduce: false
           is_grouped: false
           group_info:
             label: ''
@@ -2294,6 +2294,12 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+          reduce_duplicates: false
+          vid: data_set_series
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
         field_security_classification_target_id:
           id: field_security_classification_target_id
           table: node__field_security_classification
@@ -2347,6 +2353,52 @@ display:
           hierarchy: false
           limit: true
           error_message: true
+        field_personal_information_value:
+          id: field_personal_information_value
+          table: node__field_personal_information
+          field: field_personal_information_value
+          relationship: nid
+          group_type: group
+          admin_label: ''
+          plugin_id: boolean
+          operator: '='
+          value: All
+          group: 1
+          exposed: true
+          expose:
+            operator_id: ''
+            label: 'Personal information'
+            description: ''
+            use_operator: false
+            operator: field_personal_information_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_personal_information_value
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              data_catalogue_administrator: '0'
+              data_catalogue_manager: '0'
+              data_catalogue_api_user: '0'
+              data_catalogue_editor: '0'
+              data_catalogue_user: '0'
+              data_catalogue_information_management_specialist: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
         field_critical_information_value:
           id: field_critical_information_value
           table: node__field_critical_information
@@ -2729,7 +2781,7 @@ display:
             operator: uid_1_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: uid_1
+            identifier: owner
             required: false
             remember: false
             multiple: false
@@ -2795,6 +2847,19 @@ display:
           required: false
       css_class: 'bcbb-fw px-5'
       header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: false
+          content:
+            value: "<h2>Instructions</h2>\r\n<ol>\r\n  <li>Apply filters as needed</li>\r\n  <li>Click <em>Apply</em></li>\r\n  <li>Scroll sideways to see all results. It's a wide table</li>\r\n  <li><b>Optional</b>: At the bottom of the table there is a link to download a <code>.csv</code> file. You can use this in other applications for further analysis.</li>\r\n</ol>"
+            format: full_html
+          tokenize: false
         result:
           id: result
           table: views
@@ -2804,7 +2869,7 @@ display:
           admin_label: ''
           plugin_id: result
           empty: false
-          content: 'Displaying @start - @end of @total'
+          content: "<p class=\"alert alert-primary icon-bi-table mt-4 mb-4\">Displaying @start - @end of @total records.</p>\r\n"
       footer: {  }
       display_extenders: {  }
     cache_metadata:
