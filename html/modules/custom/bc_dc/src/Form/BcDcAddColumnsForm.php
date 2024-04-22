@@ -691,7 +691,7 @@ class BcDcAddColumnsForm extends FormBase {
         }
         elseif (isset($row[$key]) && strlen($row[$key])) {
           $paragraph_fields['field_' . $field] = [
-            'value' => $row[$key],
+            'value' => nl2br($row[$key]),
             'format' => 'basic_html',
           ];
         }
