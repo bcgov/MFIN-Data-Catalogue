@@ -11,7 +11,7 @@ dependencies:
 id: dependency_report
 label: 'Dependency report'
 module: views
-description: ''
+description: 'Report: Displays the assets that use the recored beinng viewed'
 tag: ''
 base_table: node_field_data
 base_field: nid
@@ -558,6 +558,16 @@ display:
       use_ajax: true
       group_by: true
       header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: result
+          empty: false
+          content: "<h2>Dependency report</h2>\r\n<p class=\"alert alert-primary icon-bi-table mt-4 mb-4\">Displaying @start - @end of @total records.</p>"
         area:
           id: area
           table: views
@@ -568,7 +578,7 @@ display:
           plugin_id: text
           empty: false
           content:
-            value: "<h2>Dependency report</h2>\r\n\r\n<button id=\"bcbb-toggle-details-button\" class=\"btn btn-outline-secondary mt-3\" aria-expanded=\"false\">toggle-button</button>"
+            value: '<button id="bcbb-toggle-details-button" class="btn btn-outline-secondary mt-3" aria-expanded="false">toggle-button</button>'
             format: full_html
           tokenize: false
       footer: {  }
