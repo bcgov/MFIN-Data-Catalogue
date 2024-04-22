@@ -825,6 +825,8 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       'major_edit' => '0',
     ];
     $this->submitForm($edit, 'Publish');
+    // Column description is displayed with HTML tags.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--name-field-column-description")]/div/p/strong[text() = "Column description"]');
 
     // Anonymous has no access to data_set build page.
     $this->drupalLogout();

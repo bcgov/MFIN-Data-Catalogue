@@ -1,2 +1,2 @@
-column_name	column_size	column_type
-Name tsv	50	integer
+column_name	column_size	column_type	column_description
+Name tsv	50	integer	<p><strong>Column description</strong></p>

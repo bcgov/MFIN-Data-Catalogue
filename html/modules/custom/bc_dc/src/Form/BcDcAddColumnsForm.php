@@ -686,8 +686,14 @@ class BcDcAddColumnsForm extends FormBase {
       foreach ($import_file_header as $key => $field) {
         // Include any value that is either an entity reference (array) or a
         // non-empty string.
-        if (isset($row[$key]) && (is_array($row[$key]) || strlen($row[$key]))) {
+        if (isset($row[$key]) && is_array($row[$key])) {
           $paragraph_fields['field_' . $field] = $row[$key];
+        }
+        elseif (isset($row[$key]) && strlen($row[$key])) {
+          $paragraph_fields['field_' . $field] = [
+            'value' => $row[$key],
+            'format' => 'basic_html',
+          ];
         }
       }
       // Create the paragraph entity and add it to the node.
