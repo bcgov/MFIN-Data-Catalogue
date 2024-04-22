@@ -676,7 +676,7 @@ display:
           admin_label: ''
           plugin_id: result
           empty: false
-          content: "<h2>Information schedule incomplete</h2>\r\n\r\nDisplaying @start - @end of @total"
+          content: "<h2>Information schedule incomplete</h2>\r\n\r\n<p class=\"alert alert-primary icon-bi-table mt-4 mb-4\">Displaying @start - @end of @total records.</p>"
       footer: {  }
       display_extenders: {  }
     cache_metadata:
