@@ -216,6 +216,10 @@
       margin-bottom: 2em;
     }
 
+    label:not(.option) {
+      font-weight: bold;
+    }
+
     input,select {
       max-width: $max-cpl;
     }
@@ -315,8 +319,13 @@
         font-size: 20px;
         font-weight: bold;
       }
+      label {
+        font-weight: normal;
+      }
     }
-
+    #edit-add-columns-link {
+      margin-bottom: 1em;
+    }
   }
 
   /* On Metadata record column edit pages, make the summary take the full width.*/

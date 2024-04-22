@@ -821,6 +821,9 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 .page-node-type-data-set .node-data-set-edit-form > div {
   margin-bottom: 2em;
 }
+.page-node-type-data-set .node-data-set-edit-form label:not(.option) {
+  font-weight: bold;
+}
 .page-node-type-data-set .node-data-set-edit-form input, .page-node-type-data-set .node-data-set-edit-form select {
   max-width: 45em;
 }
@@ -923,6 +926,12 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 .page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information .fieldset-legend {
   font-size: 20px;
   font-weight: bold;
+}
+.page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information label {
+  font-weight: normal;
+}
+.page-node-type-data-set .node-data-set-edit-form #edit-add-columns-link {
+  margin-bottom: 1em;
 }
 .page-node-type-data-set [id*=field-columns-] .paragraph-summary {
   grid-column-start: 1;
@@ -1033,3 +1042,5 @@ time {
 .form-control.hidden {
   display: none;
 }
+
+/*# sourceMappingURL=style.css.map */
