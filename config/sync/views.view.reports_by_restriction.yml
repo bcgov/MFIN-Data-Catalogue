@@ -13,7 +13,7 @@ dependencies:
 id: reports_by_restriction
 label: 'Reports by restriction'
 module: views
-description: ''
+description: 'Chart: used on metadata metrics report'
 tag: ''
 base_table: node_field_data
 base_field: nid
@@ -232,19 +232,19 @@ display:
                 selected_method:
                   colors:
                     361f1130-4043-40ad-908e-b864aa2dc7bc:
-                      color: '#0432ff'
+                      color: '#003366'
                     82049c48-617f-49da-8bfb-5c440722f8c4:
-                      color: '#aa7941'
+                      color: '#800000'
                     9dc3d512-7dd9-4fff-bc83-6164ec47ab75:
-                      color: '#00fcff'
+                      color: '#008080'
                     a7c22a58-e823-40b7-bd2c-4e21427a314b:
-                      color: '#ff2600'
+                      color: '#4B0082'
                     f8e77c05-4c59-4965-a325-ff840c7a4550:
-                      color: '#d783ff'
+                      color: '#36454F'
                     faba301b-bdf5-4658-abc1-e173b815984f:
-                      color: '#c0c0c0'
+                      color: '#228B22'
                     fff131a4-18ae-42b4-9caa-6f1fe75003b4:
-                      color: '#fefc78'
+                      color: '#654321'
             display:
               title: ''
               title_position: out
