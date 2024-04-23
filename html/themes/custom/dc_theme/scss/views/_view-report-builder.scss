@@ -35,6 +35,9 @@
         }
         // container for date filters
         > div[id*="date-value-wrapper"] {
+          fieldset {
+            width: 100% !important;
+          }
           // make a grid for date input
           .fieldset-wrapper {
             display: grid;

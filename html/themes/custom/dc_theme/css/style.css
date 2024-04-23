@@ -548,6 +548,9 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   display: flex;
   gap: 1em;
 }
+.view-report-builder .view-filters .views-exposed-form > .form--inline > div[id*=date-value-wrapper] fieldset {
+  width: 100% !important;
+}
 .view-report-builder .view-filters .views-exposed-form > .form--inline > div[id*=date-value-wrapper] .fieldset-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
