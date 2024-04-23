@@ -31,4 +31,4 @@ visibility:
   request_path:
     id: request_path
     negate: true
-    pages: /documentation/documentation
+    pages: "/documentation/documentation\r\n/node/*/edit"
