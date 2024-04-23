@@ -357,6 +357,14 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
     font-size: 3em;
   }
 }
+.dc-global-report .bcdc-chart h2 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center;
+}
+.dc-global-report .bcdc-chart .bb-legend-item {
+  font-size: 1rem;
+}
 @media only screen and (min-width: 576px) {
   .dc-global-report .footer-region {
     display: grid;

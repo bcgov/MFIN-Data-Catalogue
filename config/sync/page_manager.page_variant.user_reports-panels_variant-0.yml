@@ -156,7 +156,7 @@ variant_settings:
       weight: 0
       uuid: 66fc60d7-a9c2-42ed-aecf-11e5bb271a4e
       css_classes:
-        - ''
+        - bcdc-chart
       html_id: ''
       css_styles: ''
     9ac92711-41b0-4a52-a059-9b471bb0907e:
@@ -172,7 +172,7 @@ variant_settings:
       weight: 0
       uuid: 9ac92711-41b0-4a52-a059-9b471bb0907e
       css_classes:
-        - ''
+        - bcdc-chart
       html_id: ''
       css_styles: ''
   page_title: Reports
