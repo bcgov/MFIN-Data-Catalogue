@@ -895,10 +895,8 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->drupalGet('node/add/book');
     $this->assertSession()->statusCodeEquals(200);
     $edit_book = [
-      'edit-title-0-value' => 'Test Book ' . $this->randomString(),
+      'edit-title-0-value' => 'Documentation',
       'edit-book-bid' => 'new',
-      'edit-path-0-pathauto' => FALSE,
-      'edit-path-0-alias' => '/documentation',
     ];
     $this->submitForm($edit_book, 'Save');
     $text = $this->assertSession()->elementExists('xpath', '//h1')->getText();
@@ -1646,7 +1644,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // $this->assertSession()->statusCodeEquals(200);
     //
     // Access by authenticated user to documentation.
-    $this->drupalGet('documentation');
+    $this->drupalGet('documentation/documentation');
     $this->assertSession()->statusCodeEquals(200);
 
     // Anonymous.
@@ -1658,7 +1656,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->drupalGet('user/1/saved-searches');
     $this->assertSession()->statusCodeEquals(404);
     // No access to documentation.
-    $this->drupalGet('documentation');
+    $this->drupalGet('documentation/documentation');
     $this->assertSession()->statusCodeEquals(404);
   }
 
