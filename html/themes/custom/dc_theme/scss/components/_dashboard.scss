@@ -68,13 +68,14 @@
   }
 
   .top-right-region {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    .bcbb-search-api-form {
-      align-self: start;
-    }
+    display: flex;
+    //justify-content: center;
+    align-items: center;
+
     .block-bc-dc-content-summary {
-      align-self: end;
+
+      font-size: 1.25em;
+
     }
   }
 

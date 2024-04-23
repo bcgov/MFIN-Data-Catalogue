@@ -239,14 +239,11 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   padding-bottom: 0;
 }
 .path-user .top-right-region {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-}
-.path-user .top-right-region .bcbb-search-api-form {
-  align-self: start;
+  display: flex;
+  align-items: center;
 }
 .path-user .top-right-region .block-bc-dc-content-summary {
-  align-self: end;
+  font-size: 1.25em;
 }
 .path-user .card-group-region .block-views-blockbookmarks-dashboard-bookmarks > h2 {
   display: inline-flex !important;
