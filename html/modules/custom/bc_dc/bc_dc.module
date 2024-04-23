@@ -526,6 +526,8 @@ function bc_dc_form_alter(array &$form, FormStateInterface $form_state, string $
       $form['author']['#access'] = FALSE;
       // Remove "Book outline".
       $form['book']['#access'] = FALSE;
+      // Remove "URL alias".
+      $form['path']['#access'] = FALSE;
       break;
   }
 }
