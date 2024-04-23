@@ -11,7 +11,6 @@ dependencies:
     - webform.webform.create_data_set
   module:
     - bc_dc
-    - bcbb_search
     - panels
     - user
     - views
@@ -43,28 +42,6 @@ variant_settings:
         - card
         - text-bg-light
         - p-4
-      html_id: ''
-      css_styles: ''
-    5b70cafc-c771-4ae8-abf9-8b16c0b269d9:
-      id: bcbb_search_api_block
-      label: 'BCbb Search API Block'
-      label_display: '0'
-      provider: bcbb_search
-      context_mapping: {  }
-      search:
-        search_label: 'Find metadata records'
-        search_placeholder: ''
-        search_btn_label: ''
-        search_url: /search
-        label_sr_only: false
-        search_input_size: false
-        search_input_size_value: null
-        show_advanced_link: false
-      region: top_right
-      weight: 0
-      uuid: 5b70cafc-c771-4ae8-abf9-8b16c0b269d9
-      css_classes:
-        - ''
       html_id: ''
       css_styles: ''
     22170ac7-9bce-48a9-b518-890230c04c74:
