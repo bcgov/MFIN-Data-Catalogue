@@ -7,6 +7,7 @@ dependencies:
     - views.view.bookmarks
     - views.view.most_viewed
     - views.view.reports_by_restriction
+    - views.view.reports_by_security_classification
   module:
     - bc_dc
     - panels
@@ -77,20 +78,6 @@ variant_settings:
       uuid: bdd62cf0-7dbe-4bb1-8b1a-7155b5ec5fb2
       css_classes:
         - card
-      html_id: ''
-      css_styles: ''
-    ec490520-7423-4aaf-b483-0ad8d70e2078:
-      id: bc_dc_classification_chart
-      label: 'Records by classification'
-      label_display: '0'
-      provider: bc_dc
-      context_mapping:
-        user: current_user
-      region: footer_left
-      weight: -10
-      uuid: ec490520-7423-4aaf-b483-0ad8d70e2078
-      css_classes:
-        - ''
       html_id: ''
       css_styles: ''
     dc082711-7cf6-46f8-8d03-093d21fd2fef:
@@ -168,6 +155,22 @@ variant_settings:
       region: footer_right
       weight: 0
       uuid: 66fc60d7-a9c2-42ed-aecf-11e5bb271a4e
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    9ac92711-41b0-4a52-a059-9b471bb0907e:
+      id: 'views_block:reports_by_security_classification-block_security_classification'
+      label: ''
+      label_display: visible
+      provider: views
+      context_mapping: {  }
+      views_label: ''
+      items_per_page: none
+      exposed: {  }
+      region: footer_left
+      weight: 0
+      uuid: 9ac92711-41b0-4a52-a059-9b471bb0907e
       css_classes:
         - ''
       html_id: ''
