@@ -524,6 +524,8 @@ function bc_dc_form_alter(array &$form, FormStateInterface $form_state, string $
       $form['options']['#access'] = FALSE;
       $form['menu']['#access'] = FALSE;
       $form['author']['#access'] = FALSE;
+      // Remove "Book outline".
+      $form['book']['#access'] = FALSE;
       break;
   }
 }
