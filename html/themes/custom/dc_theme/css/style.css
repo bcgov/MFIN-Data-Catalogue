@@ -516,6 +516,16 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   background-color: #003366;
 }
 
+.review_overdue {
+  color: #fff !important;
+  background-color: var(--bs-danger) !important;
+}
+
+.needs_review {
+  color: #000 !important;
+  background-color: var(--bs-warning) !important;
+}
+
 .view-report-builder .view-header {
   max-width: 1300px;
   margin: 0 auto;
@@ -648,6 +658,78 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .view-report-builder table tr:last-child {
+  border-bottom: none;
+}
+
+.view-metadata-record-management .view-filters .views-exposed-form {
+  margin-bottom: 1em;
+}
+.view-metadata-record-management .view-filters .views-exposed-form *:not(input):not(select):not(button) {
+  padding: 0;
+  margin: 0;
+  float: none;
+  clear: none;
+}
+.view-metadata-record-management .view-filters .views-exposed-form > .form--inline {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5em;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 1.5em;
+}
+.view-metadata-record-management .view-filters .views-exposed-form > .form--inline > div label:first-of-type {
+  font-weight: bold;
+}
+@media only screen and (min-width: 768px) {
+  .view-metadata-record-management .view-filters .views-exposed-form > .form--inline {
+    grid-template-columns: repeat(12, 1fr);
+  }
+  .view-metadata-record-management .view-filters .views-exposed-form > .form--inline > * {
+    grid-column: span 4;
+  }
+  .view-metadata-record-management .view-filters .views-exposed-form > .form--inline > div.form-item-title {
+    grid-column: span 8;
+  }
+  .view-metadata-record-management .view-filters .views-exposed-form > .form--inline > div[class*=form-item-uid] {
+    grid-column: span 8;
+  }
+  .view-metadata-record-management .view-filters .views-exposed-form > .form--inline > div.form-actions {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    height: 100%;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .view-metadata-record-management .view-filters .views-exposed-form > .form--inline {
+    row-gap: 2em;
+  }
+  .view-metadata-record-management .view-filters .views-exposed-form > .form--inline > div.form-item-title {
+    grid-column: span 9;
+  }
+  .view-metadata-record-management .view-filters .views-exposed-form > .form--inline > div[class*=form-item-uid] {
+    grid-column: span 9;
+  }
+  .view-metadata-record-management .view-filters .views-exposed-form > .form--inline > * {
+    grid-column: span 3;
+  }
+  .view-metadata-record-management .view-filters .views-exposed-form > .form--inline > div.form-item-owner {
+    grid-column: span 8;
+  }
+}
+.view-metadata-record-management table {
+  font-size: 1rem;
+  margin-top: 2em;
+}
+.view-metadata-record-management table th {
+  vertical-align: top;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.view-metadata-record-management table tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.view-metadata-record-management table tr:last-child {
   border-bottom: none;
 }
 

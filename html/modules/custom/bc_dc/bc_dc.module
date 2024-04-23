@@ -819,6 +819,7 @@ function bc_dc_views_pre_build(ViewExecutable $view): void {
 function bc_dc_views_pre_render(ViewExecutable $view): void {
   switch ($view->id()) {
     case 'report_builder':
+    case 'metadata_record_management':
       $view->element['#attached']['library'][] = 'bcbb_other/bcbb-scroll-tables';
       break;
   }

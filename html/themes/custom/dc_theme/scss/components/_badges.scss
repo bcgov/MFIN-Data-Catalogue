@@ -1,3 +1,13 @@
 .dc-badge-high-value {
   background-color: $colorBrand-primary;
 }
+
+//apply bootstrap style badges to values in views
+.review_overdue {
+  color: #fff !important;
+  background-color: var(--bs-danger) !important;
+}
+.needs_review {
+  color: #000!important;
+  background-color: var(--bs-warning) !important;
+}

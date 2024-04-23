@@ -1,0 +1,83 @@
+.view-metadata-record-management {
+  .view-filters {
+    .views-exposed-form {
+      // reset styles
+      *:not(input):not(select):not(button)
+       {
+        padding: 0;
+        margin: 0;
+        float: none;
+        clear: none;
+      }
+      margin-bottom: 1em;
+      // container for filters
+      > .form--inline {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5em;
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 1.5em;
+        > div label:first-of-type {
+          font-weight: bold;
+        }
+        // mid-sized screen layout
+        @include responsive($md-min) {
+          grid-template-columns: repeat(12, 1fr);
+          > * {
+            // make everything a 1/3 column
+            grid-column: span 4;
+          }
+          // make title field wide
+          > div.form-item-title {
+            grid-column: span 8;
+          }
+          // full width for owner
+          > div[class*="form-item-uid"] {
+            grid-column: span 8;
+          }
+          // align 'submit' with bottom of items per page
+          > div.form-actions {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-end;
+            height: 100%;
+          }
+        }
+        // full width screen layout
+        @include responsive($lg-min) {
+          row-gap: 2em;
+          // align title and ID with other elements
+          > div.form-item-title {
+            grid-column: span 9;
+          }
+          // full width for owner
+          > div[class*="form-item-uid"] {
+            grid-column: span 9;
+          }
+          > * {
+            // make everything a 1/4 column
+            grid-column: span 3;
+          }
+          > div.form-item-owner {
+            grid-column: span 8;
+          }
+        }
+      }
+    }
+  }
+  table {
+    font-size: 1rem;
+    margin-top: 2em;
+    th {
+      vertical-align: top;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    }
+    tr {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}
