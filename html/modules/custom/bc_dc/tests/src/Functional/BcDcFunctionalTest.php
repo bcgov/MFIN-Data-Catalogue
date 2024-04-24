@@ -471,7 +471,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $fields_inline_optional = [
       'field--name-field-series' => ['label' => 'Series', 'text' => 'Optional'],
       'field--name-field-asset-location' => ['label' => 'Location', 'text' => 'Optional'],
-      'field--name-field-published-date' => ['label' => 'Published date', 'text' => 'Optional'],
+      'field--name-field-published-date' => ['label' => 'Record published date', 'text' => 'Optional'],
       'field--name-field-last-review-date' => ['label' => 'Last review date', 'text' => 'Never'],
       'field--name-field-security-classification' => ['label' => 'Security classification', 'text' => 'Required'],
       'field--name-field-source-system' => ['label' => 'Source system', 'text' => 'Optional'],
@@ -488,7 +488,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     }
     // Check for fields that are dates and have inline labels.
     // The time formats are tested elsewhere.
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--label-inline")][contains(@class, "field--name-field-modified-date")][div[@class = "field__label"][text() = "Modified date"]]/div/time');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--label-inline")][contains(@class, "field--name-field-modified-date")][div[@class = "field__label"][text() = "Record modified date"]]/div/time');
 
     // Create security_classification term.
     $security_classification_term = Term::create([
@@ -1684,14 +1684,14 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
    * Test for ISO dates in page content.
    *
    * @param bool $published_date_should_exist
-   *   Whether the "Published date" field should exist.
+   *   Whether the "Record published date" field should exist.
    * @param bool $modified_date_should_exist
-   *   Whether the "Modified date" field should exist.
+   *   Whether the "Record modified date" field should exist.
    */
   protected function isoDateTest(bool $published_date_should_exist, bool $modified_date_should_exist): void {
     $date_types = [
-      'Published date' => $published_date_should_exist,
-      'Modified date' => $modified_date_should_exist,
+      'Record published date' => $published_date_should_exist,
+      'Record modified date' => $modified_date_should_exist,
     ];
     foreach ($date_types as $date_type => $should_appear) {
       $args = [
