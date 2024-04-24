@@ -1339,9 +1339,16 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       'edit-field-related-document-0-subform-field-paragraph-document-title-0-value' => $related_document_title,
       'edit-field-related-document-0-subform-field-paragraph-document-link-0-value' => $related_document_uri,
     ];
+    $this->submitForm($edit, 'Add Document');
+    // Add a second document and save.
+    $related_document_local_uri = '//local/' . $this->randomMachineName();
+    $edit = [
+      'edit-field-related-document-1-subform-field-paragraph-document-type' => $document_type_1->id(),
+      'edit-field-related-document-1-subform-field-paragraph-document-link-0-value' => $related_document_local_uri,
+    ];
     $this->submitForm($edit, 'Save');
     // There is now a related document.
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--name-field-related-document")]//div[@class = "field__item"][text() = "1"]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--name-field-related-document")]//div[@class = "field__item"][text() = "2"]');
     // field_data_sets_used is not empty. This demonstrates that the Build page
     // is showing the latest version not the default version.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "field--name-field-data-sets-used")]/div[@class = "field__item"]/em[text() = "Optional"]');
@@ -1366,6 +1373,15 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       ':text' => $document_type_1->label() . ': ' . $related_document_title,
     ];
     $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-related-document")]//ul/li/a[@href = :href][text() = :text]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+    // Related document without a URL appears.
+    $args = [
+      ':text' => $document_type_1->label() . ':',
+      ':uri' => $related_document_local_uri,
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-related-document")]//ul/li
+      [div[text() = :text]]
+      [code[text() = :uri]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
 
     // Page has "Assets used" with link to node/2.

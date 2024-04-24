@@ -106,7 +106,7 @@ class BcDcRelatedDocuments extends FormatterBase {
             '@label' => $title,
             ':uri' => $uri,
           ];
-          $links[] = $this->t('<div>@label:</div><div class="text-break">:uri</div>', $args);
+          $links[] = $this->t('<div>@label:</div><code class="text-break">:uri</code>', $args);
         }
       }
     }
