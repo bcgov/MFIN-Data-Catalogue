@@ -6,6 +6,7 @@
  */
 
 use Drupal\bc_dc\Controller\BcDcCreateFileController;
+use Drupal\block\Entity\Block;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Access\AccessResultAllowed;
 use Drupal\Core\Access\AccessResultInterface;
@@ -697,6 +698,26 @@ function bc_dc_taxonomy_term_update(TermInterface $term): void {
       $descendent->save();
     }
   }
+}
+
+/**
+ * Implements hook_block_access().
+ */
+function bc_dc_block_access(Block $block, string $operation, AccountInterface $account): AccessResultInterface {
+  switch ($block->getPluginId()) {
+    case 'local_tasks_block':
+      // Hide tabs when editing a data_set in a non-default form display mode.
+      if ($operation === 'view'
+        && \Drupal::request()->query->get('display')
+        && \Drupal::routeMatch()->getRouteName() === 'entity.node.edit_form'
+        && \Drupal::routeMatch()->getParameter('node')->bundle() === 'data_set'
+      ) {
+        return AccessResult::forbidden();
+      }
+      break;
+  }
+
+  return AccessResult::neutral();
 }
 
 /**

@@ -2,8 +2,6 @@ uuid: 8d717b75-7260-4ba1-b38c-e30ea6bf8e17
 langcode: en
 status: true
 dependencies:
-  module:
-    - system
   theme:
     - dc_theme
 _core:
@@ -21,8 +19,4 @@ settings:
   provider: core
   primary: true
   secondary: true
-visibility:
-  request_path:
-    id: request_path
-    negate: true
-    pages: '/node/*/edit'
+visibility: {  }

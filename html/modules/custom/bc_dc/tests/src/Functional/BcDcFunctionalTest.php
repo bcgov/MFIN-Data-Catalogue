@@ -496,8 +496,12 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
       'name' => 'Confidential - Protected eh?',
     ]);
     $security_classification_term->save();
+    // Build page has local tasks block.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-local-tasks-block")]');
     // Save Section 3.
     $this->click('a[aria-label = "Edit Section 3"]');
+    // Section edit pages do not have local tasks block.
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-local-tasks-block")]');
     $edit = [
       'field_personal_information' => '0',
       'field_security_classification' => $security_classification_term->id(),
@@ -568,7 +572,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $this->assertSession()->elementNotExists('xpath', '//input[@value = "Collapse all"]');
 
     // Section 2 edit page.
-    $this->clickLink('Build');
+    $this->clickLink('Cancel');
     $this->click('a[aria-label = "Edit Section 2"]');
     // Submit with some updates.
     $edit = [
