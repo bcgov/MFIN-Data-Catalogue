@@ -783,6 +783,9 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
     content: ":";
   }
 }
+.page-node-type-data-set .field--name-field-related-document code {
+  color: var(--bs-gray-700);
+}
 .page-node-type-data-set .meta-data-record-view .field--name-field-data-set-type *,
 .page-node-type-data-set .meta-data-record-build .field--name-field-data-set-type * {
   margin: 0 !important;
@@ -1132,5 +1135,3 @@ time {
 .form-control.hidden {
   display: none;
 }
-
-/*# sourceMappingURL=style.css.map */
