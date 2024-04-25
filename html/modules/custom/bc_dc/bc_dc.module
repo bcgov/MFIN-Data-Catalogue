@@ -13,6 +13,7 @@ use Drupal\Core\Access\AccessResultInterface;
 use Drupal\Core\Breadcrumb\Breadcrumb;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -59,6 +60,22 @@ function bc_dc_entity_operation(EntityInterface $entity): array {
   }
 
   return $operations;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view_alter() for node.
+ */
+function bc_dc_node_view_alter(array &$build, NodeInterface $entity, EntityViewDisplayInterface $display): void {
+  // Add book search block to front page of books (documentation).
+  // Add it just above existing book sub-page nav.
+  if ((int) ($build['book_navigation']['#book_link']['depth'] ?? 0) === 1) {
+    $block = Block::load('dc_theme_bcbbsearchapiblock_2');
+    $block_content = \Drupal::entityTypeManager()->getViewBuilder('block')->view($block);
+    $build['bcbb_search_api_block'] = $block_content;
+    // Ensure book_navigation is just heavier than bcbb_search_api_block.
+    $build['bcbb_search_api_block']['#weight'] = $build['book_navigation']['#weight'];
+    $build['book_navigation']['#weight']++;
+  }
 }
 
 /**
