@@ -15,7 +15,7 @@
       background-color:  RGBA(var(--bs-light-rgb));
       border: var(--bs-border-width) solid var(--bs-border-color-translucent);
       border-radius: var(--bs-border-radius);
-      padding: 2rem 1.5rem 1rem;
+      padding: 2rem 1.5rem 3rem;
       // this media query comes from the default stable theme 2 col layout
       @media screen and (min-width: 40em) {
         background-image: url(../assets/trees.svg);
@@ -23,7 +23,18 @@
         background-repeat: repeat-x;
         background-position: center bottom;
       }
-
+      .bcbb-search-api-form {
+        .form-item-search-keyword {
+          label {
+            font-weight: bold;
+          }
+        }
+        .description {
+          position: absolute;
+          padding-top: .5em;
+          font-size: 1em;
+        }
+      }
     }
 
 

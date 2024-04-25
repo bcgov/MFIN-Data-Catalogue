@@ -1047,7 +1047,7 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   background-color: RGBA(var(--bs-light-rgb));
   border: var(--bs-border-width) solid var(--bs-border-color-translucent);
   border-radius: var(--bs-border-radius);
-  padding: 2rem 1.5rem 1rem;
+  padding: 2rem 1.5rem 3rem;
 }
 @media screen and (min-width: 40em) {
   .path-frontpage .region-content .layout__region--second {
@@ -1056,6 +1056,14 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
     background-repeat: repeat-x;
     background-position: center bottom;
   }
+}
+.path-frontpage .region-content .layout__region--second .bcbb-search-api-form .form-item-search-keyword label {
+  font-weight: bold;
+}
+.path-frontpage .region-content .layout__region--second .bcbb-search-api-form .description {
+  position: absolute;
+  padding-top: 0.5em;
+  font-size: 1em;
 }
 
 @media only screen and (min-width: 992px) {
@@ -1135,3 +1143,5 @@ time {
 .form-control.hidden {
   display: none;
 }
+
+/*# sourceMappingURL=style.css.map */
