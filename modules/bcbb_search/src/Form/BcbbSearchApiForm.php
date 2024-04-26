@@ -60,7 +60,7 @@ class BcbbSearchApiForm extends FormBase {
 
     $form['search_url'] = [
       '#type' => 'hidden',
-      '#value' => $config['search']['search_url'],
+      '#default_value' => $config['search']['search_url'],
     ];
 
     $form['search_keyword'] = [
