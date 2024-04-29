@@ -945,6 +945,10 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->drupalGet($book_url);
     // Main book page does not have book navigation block.
     $this->assertSession()->elementNotExists('xpath', '//div[@id = "block-dc-theme-booknavigation"]');
+    // Book search appears in main content area.
+    $this->assertSession()->elementExists('xpath', '//div[@id = "block-dc-theme-content"]//div[contains(@class, "bcbb-search-api-form")]');
+    // Book search does not appear in the sidebar.
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "region-sidebar-second")]//div[contains(@class, "bcbb-search-api-form")]');
     // Summary appears in list of child pages.
     $args = [
       ':summary' => $edit_child['edit-body-0-summary'],
@@ -966,6 +970,10 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->drupalGet($child_url);
     // Child page has book navigation block in sidebar with class on active.
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "region-sidebar-second")]/div[@id = "block-dc-theme-booknavigation"]/ul/li[@class = "active"]/ul/li[not(@class)]');
+    // Book search does not appear in main content area.
+    $this->assertSession()->elementNotExists('xpath', '//div[@id = "block-dc-theme-content"]//div[contains(@class, "bcbb-search-api-form")]');
+    // Book search appears in the sidebar.
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "region-sidebar-second")]//div[contains(@class, "bcbb-search-api-form")]');
     // Child page does not have list of child pages.
     $this->assertSession()->elementNotExists('xpath', '//nav[@class = "book-navigation"]/ul[not(@aria-label)]');
     // Child page has a table of contents from toc_filter.
