@@ -121,6 +121,24 @@ class BcbbBookFunctionalTest extends BcbbBrowserTestBase {
     $this->assertSession()->elementNotExists('xpath', '//nav[@aria-labelledby = "primary-tabs-title"]//a[normalize-space(text()) = "Outline"]');
     // "Book outline" edit section does not appear.
     $this->assertSession()->elementNotExists('xpath', '//details[@id = "edit-book"]');
+
+    // Test bcbb_book_navigation block.
+    //
+    // Place block.
+    $this->drupalGet('admin/structure/block/add/bcbb_book_navigation/bcbb_theme', ['query' => ['region' => 'sidebar_first']]);
+    $this->assertSession()->statusCodeEquals(200);
+    $edit = [
+      'edit-settings-book-id' => 1,
+    ];
+    $this->submitForm($edit, 'Save block');
+    $this->assertSession()->statusCodeEquals(200);
+    // Test that book navigation appears on the homepage.
+    $this->drupalGet('');
+    $args = [
+      ':title' => $edit_child['edit-title-0-value'],
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//*[@id = "block-bcbb-theme-bcbasebuildbooknavigation"]/ul/li/a[@href = "/node/2"][text() = :title]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
   }
 
 }
