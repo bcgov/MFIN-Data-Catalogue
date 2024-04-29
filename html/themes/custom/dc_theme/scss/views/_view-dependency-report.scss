@@ -1,0 +1,55 @@
+.view-id-dependency_report {
+  .view-filters {
+    margin-top: 1.5em;
+    .views-exposed-form {
+      // reset styles
+      *:not(input):not(select):not(button) {
+        padding: 0;
+        margin: 0;
+        float: none;
+        clear: none;
+      }
+      margin-bottom: 1em;
+      // container for filters
+      > .form--inline {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 1.5em;
+        padding: 0 .5em;
+        > * {
+          // make everything a full column
+          grid-column: span 12;
+        }
+        > div label:first-of-type {
+          font-weight: bold;
+        }
+        div.form-item-items-per-page {
+          grid-column: span 6;
+        }
+        // align 'submit' with bottom of items per page
+        > div.form-actions {
+          grid-column: span 6;
+          display: flex;
+          gap: .33em;
+          justify-content: flex-start;
+          align-items: flex-end;
+          height: 100%;
+        }
+        // full width screen layout
+        @include responsive($lg-max) {
+          row-gap: 2em;
+          // align title and ID with other elements
+          > [class*="form-item-title"] {
+            grid-column: span 8;
+          }
+          > div.form-item-items-per-page {
+            grid-column: span 2;
+          }
+          > div.form-actions {
+            grid-column: span 2;
+          }
+        }
+      }
+    }
+  }
+}
