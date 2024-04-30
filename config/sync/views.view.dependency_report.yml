@@ -604,7 +604,7 @@ display:
           plugin_id: standard
           required: false
       css_class: 'bcbb-toggle-details-wrapper p-4'
-      use_ajax: true
+      use_ajax: false
       group_by: true
       header:
         result:
