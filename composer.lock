@@ -68,12 +68,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb.git",
-                "reference": "92982b9be7fa3fcfc5e452a169b56fe3fb8eb34c"
+                "reference": "f5690b1732801887d6111b43fc879529bc473fad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/92982b9be7fa3fcfc5e452a169b56fe3fb8eb34c",
-                "reference": "92982b9be7fa3fcfc5e452a169b56fe3fb8eb34c",
+                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/f5690b1732801887d6111b43fc879529bc473fad",
+                "reference": "f5690b1732801887d6111b43fc879529bc473fad",
                 "shasum": ""
             },
             "require": {
@@ -128,11 +128,15 @@
             "type": "drupal-module",
             "extra": {
                 "patches": {
+                    "drupal/core": {
+                        "3392572 - strnatcasecmp(): Passing null to string is deprecated": "https://www.drupal.org/files/issues/2023-10-25/drupal-strnatcasecmp_string_only-3392572-10.patch"
+                    },
                     "drupal/page_manager": {
                         "2756613 - Avoid harcoded prefex and suffix in block region": "https://www.drupal.org/files/issues/page_manager-avoid_prefix_suffix-2756613-8.patch",
                         "3362561 - Path has unnecessary query appended.": "https://www.drupal.org/files/issues/2023-11-29/page_manager-unnecessary_query-3362561-48.patch"
                     },
                     "drupal/panels": {
+                        "3376992 - php8.2 compatibility issue": "https://www.drupal.org/files/issues/2023-07-26/3376992-php8.2-compatibility.patch",
                         "2820617 - Avoid harcoded prefex and suffix in block region": "https://git.drupalcode.org/project/panels/-/merge_requests/12.diff",
                         "2849867 - Custom attributes in panels blocks and variants": "https://www.drupal.org/files/issues/2022-11-17/panels_custom_attributes_in_panels_blocks-2849867-89.patch",
                         "2910704 - IPE toggle preview not working in IE": "https://www.drupal.org/files/issues/panels-ipe-card-flip-ie-error-2910704.diff"
@@ -154,7 +158,7 @@
                 "source": "https://github.com/bcgov/bcbb/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb/issues"
             },
-            "time": "2024-04-29T22:28:35+00:00"
+            "time": "2024-04-30T19:45:10+00:00"
         },
         {
             "name": "bcgov/bcbb_theme",
