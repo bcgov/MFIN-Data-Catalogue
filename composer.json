@@ -54,6 +54,9 @@
     },
     "extra": {
         "patches": {
+            "drupal/core": {
+                "3392572 - strnatcasecmp(): Passing null to string is deprecated": "https://www.drupal.org/files/issues/2023-10-25/drupal-strnatcasecmp_string_only-3392572-10.patch"
+            },
             "drupal/page_manager": {
                 "2756613 - Avoid harcoded prefex and suffix in block region": "https://www.drupal.org/files/issues/page_manager-avoid_prefix_suffix-2756613-8.patch",
                 "3362561 - Path has unnecessary query appended.": "https://www.drupal.org/files/issues/2023-11-29/page_manager-unnecessary_query-3362561-48.patch"
