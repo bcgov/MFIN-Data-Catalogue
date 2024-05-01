@@ -8,8 +8,8 @@ _core:
   default_config_hash: pm8V-xAZgAPqWUKY1vYsK4Ld8ByUuFiu-8sL2nHpgmw
 id: dc_theme_local_actions
 theme: dc_theme
-region: content
-weight: -2
+region: content_top_full
+weight: -4
 provider: null
 plugin: local_actions_block
 settings:

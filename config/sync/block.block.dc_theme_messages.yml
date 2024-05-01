@@ -10,8 +10,8 @@ _core:
   default_config_hash: kT3xzqAg9A6B1stxNUMbHy_5dzmVsUg-XO0w_k39BZo
 id: dc_theme_messages
 theme: dc_theme
-region: content
-weight: -7
+region: content_top_full
+weight: -8
 provider: null
 plugin: system_messages_block
 settings:

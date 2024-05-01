@@ -10,8 +10,8 @@ _core:
   default_config_hash: 2Sb7OjWq2isTuwEX64881Pw1gRFrkq5--2lIZ4tubGE
 id: dc_theme_help
 theme: dc_theme
-region: content
-weight: -3
+region: content_top_full
+weight: -5
 provider: null
 plugin: help_block
 settings:

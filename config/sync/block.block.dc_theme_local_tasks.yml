@@ -8,8 +8,8 @@ _core:
   default_config_hash: KN2u4yHtWY3dO6EpDmCwJ6b7re2B1vPk8h4r7WIPYgY
 id: dc_theme_local_tasks
 theme: dc_theme
-region: content
-weight: -4
+region: content_top_full
+weight: -6
 provider: null
 plugin: local_tasks_block
 settings:
