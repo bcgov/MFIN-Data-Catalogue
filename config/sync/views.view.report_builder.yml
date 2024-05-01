@@ -2871,7 +2871,7 @@ display:
           plugin_id: text
           empty: false
           content:
-            value: "<h2>Instructions</h2>\r\n<ol>\r\n  <li>Apply filters as needed</li>\r\n  <li>Click <em>Apply</em></li>\r\n  <li>Scroll sideways to see all results. It's a wide table</li>\r\n  <li><b>Optional</b>: At the bottom of the table there is a link to download a <code>.csv</code> file. You can use this in other applications for further analysis.</li>\r\n</ol>"
+            value: "<h2>Instructions</h2>\r\n<ol>\r\n  <li>Apply filters as needed</li>\r\n  <li>Click <em>Apply</em></li>\r\n  <li>Scroll sideways to see all results. It's a wide table</li>\r\n  <li><b>Optional</b>: At the bottom of the table there is a link to download a <code>.csv</code> file. You can use this in other applications for further analysis.</li>\r\n</ol>\r\n<section class=\"alert alert-light\" role=\"alert\">\r\n <p>\r\n      Please note that results are limited to the metadata records you have access to. Access is determined by your <a href=\"/node/70\">role</a> and the <a href=\"/node/114\">organization</a> you belong to.\r\n</p>\r\n</section>\r\n"
             format: full_html
           tokenize: false
         result:
