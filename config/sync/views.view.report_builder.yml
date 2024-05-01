@@ -27,6 +27,7 @@ dependencies:
     - taxonomy.vocabulary.data_set_type
     - taxonomy.vocabulary.data_system
     - taxonomy.vocabulary.organization
+    - taxonomy.vocabulary.security_classification
     - user.role.authenticated
   module:
     - better_exposed_filters
@@ -2348,7 +2349,7 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          vid: data_set_series
+          vid: security_classification
           type: select
           hierarchy: false
           limit: true
