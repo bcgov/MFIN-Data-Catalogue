@@ -3,6 +3,10 @@
  * @file
  * Theme override to display a single page.
  *
+ * This is based on bcbb_theme/templates/layout/page.html.twig.
+ *
+ * This version has region content_top_full instead of sidebar_first.
+ *
  * The doctype, html, head and body tags are not in this template. Instead they
  * can be found in the html.html.twig template in this directory.
  *
@@ -105,28 +109,25 @@ set footer_classes = ' ' ~
   <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
 
   {%
-  set sidebar_first_classes = (page.sidebar_first and page.sidebar_second) ? 'col-12 col-sm-6 col-lg-3' : 'col-12 col-lg-3'
+    set sidebar_second_classes = page.sidebar_second ? 'col-12 col-lg-3' : 'col-12'
   %}
 
   {%
-  set sidebar_second_classes = (page.sidebar_first and page.sidebar_second) ? 'col-12 col-sm-6 col-lg-3' : 'col-12 col-lg-3'
+    set content_top_full_classes = page.content_top_full ? 'dc-content-full-wrapper' : ''
   %}
 
   {%
-  set content_classes = (page.sidebar_first and page.sidebar_second) ? 'col-12 col-lg-6' : ((page.sidebar_first or page.sidebar_second) ? 'col-12 col-lg-9' : 'col-12' )
-   %}
-
+    set content_classes = page.sidebar_second ? 'col-12 col-lg-9' : 'col-12'
+  %}
 
   <div class="{{ b5_top_container }}">
     {% if page.breadcrumb %}
       {{ page.breadcrumb }}
     {% endif %}
-    <div class="row g-0">
-      {% if page.sidebar_first %}
-        <div class="order-2 order-lg-1 {{ sidebar_first_classes }}">
-          {{ page.sidebar_first }}
-        </div>
-      {% endif %}
+    <div class="{{ content_top_full_classes }}">
+      {{ page.content_top_full }}
+    </div>
+    <div class="row g-5">
       <div class="order-1 order-lg-2 {{ content_classes }}">
         {{ page.content }}
       </div>
