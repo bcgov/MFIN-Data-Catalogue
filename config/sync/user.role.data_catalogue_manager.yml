@@ -20,7 +20,6 @@ dependencies:
     - taxonomy.vocabulary.record_life_cycle_duration
     - taxonomy.vocabulary.record_special_flags
     - taxonomy.vocabulary.security_classification
-    - taxonomy.vocabulary.source_system
     - taxonomy.vocabulary.tags
     - workflows.workflow.editorial
   module:
@@ -77,7 +76,6 @@ permissions:
   - 'create terms in record_life_cycle_duration'
   - 'create terms in record_special_flags'
   - 'create terms in security_classification'
-  - 'create terms in source_system'
   - 'create terms in tags'
   - 'delete any image media'
   - 'delete any never_published data_set in_org'
@@ -95,7 +93,6 @@ permissions:
   - 'delete terms in record_life_cycle_duration'
   - 'delete terms in record_special_flags'
   - 'delete terms in security_classification'
-  - 'delete terms in source_system'
   - 'delete terms in tags'
   - 'edit any book content'
   - 'edit any image media'
@@ -117,7 +114,6 @@ permissions:
   - 'edit terms in record_life_cycle_duration'
   - 'edit terms in record_special_flags'
   - 'edit terms in security_classification'
-  - 'edit terms in source_system'
   - 'edit terms in tags'
   - 'flag bookmark'
   - 'revert data_set revisions'

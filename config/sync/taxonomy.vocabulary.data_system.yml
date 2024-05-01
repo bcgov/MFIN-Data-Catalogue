@@ -2,7 +2,7 @@ uuid: 15b213f0-5a4f-4dc8-be4d-8a52d7f2372c
 langcode: en
 status: true
 dependencies: {  }
-name: 'Source system'
+name: 'Data system'
 vid: data_system
-description: 'Referenced by <i>field_source_sysyem</i>  in data set.<br><i>Soure system</i> in CA.'
+description: 'Referenced by <i>field_source_system</i>  in data set.<br><i>Source system</i> in CA.'
 weight: 0

@@ -1,8 +1,0 @@
-uuid: b9fa844b-e51e-42c8-b58f-105afac71971
-langcode: en
-status: true
-dependencies: {  }
-name: 'Source system'
-vid: source_system
-description: 'Referenced by <i>field_source_system</i>  in data set.<br><i>Source system</i> in CA.'
-weight: 0
