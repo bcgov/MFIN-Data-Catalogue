@@ -22,9 +22,6 @@ class ReviewReminder implements ContainerInjectionInterface {
   use ReviewReminderTrait;
   use StringTranslationTrait;
 
-  const REVIEW_NEEDED = 1;
-  const REVIEW_OVERDUE = 2;
-
   /**
    * Constructs a new ReviewReminder object.
    *

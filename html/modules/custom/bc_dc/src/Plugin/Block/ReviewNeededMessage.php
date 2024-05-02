@@ -21,9 +21,6 @@ class ReviewNeededMessage extends BlockBase implements ContainerFactoryPluginInt
 
   use ReviewReminderTrait;
 
-  const REVIEW_NEEDED = 1;
-  const REVIEW_OVERDUE = 2;
-
   /**
    * Constructor.
    *

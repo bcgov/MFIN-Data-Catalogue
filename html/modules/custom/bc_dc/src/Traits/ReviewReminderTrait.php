@@ -11,14 +11,9 @@ trait ReviewReminderTrait {
 
   /**
    * Review type constants.
-   *
-   * @todo Define these only here after the upgrade to PHP 8.2
-   *
-   * @code
-   * const REVIEW_NEEDED = 1;
-   * const REVIEW_OVERDUE = 2;
-   * @endcode
    */
+  const REVIEW_NEEDED = 1;
+  const REVIEW_OVERDUE = 2;
 
   /**
    * Determines whether a data_set nodes needs review.
