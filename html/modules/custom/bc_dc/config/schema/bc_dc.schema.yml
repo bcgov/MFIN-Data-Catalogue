@@ -15,14 +15,6 @@ bc_dc.settings:
       type: label
       label: 'Information schedule term pre-title'
 
-field.formatter.settings.data_set_column_name:
-  type: mapping
-  label: 'Data set column name settings'
-  mapping:
-    display_inline:
-      type: boolean
-      label: 'Display inline'
-
 block.settings.bc_dc_edit_button:
   type: block_settings
   mapping:

@@ -1129,8 +1129,7 @@ display:
           hide_alter_empty: true
           click_sort_column: target_id
           type: data_set_column_name
-          settings:
-            display_inline: true
+          settings: {  }
           group_column: ''
           group_columns: {  }
           group_rows: true
