@@ -12,7 +12,7 @@ regions:
   breadcrumb: Breadcrumbs
   content_top_full: 'Content top | Full width'
   content: 'Main content'
-  sidebar_second: 'Sidebar second'
+  sidebar_second: 'Sidebar'
   footer: Footer
 
 libraries:

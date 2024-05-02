@@ -109,7 +109,7 @@ set footer_classes = ' ' ~
   <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
 
   {%
-    set sidebar_second_classes = page.sidebar_second ? 'col-12 col-lg-3' : 'col-12'
+    set sidebar_second_classes = page.sidebar_second ? 'col-sm-12 col-lg-4 offset-lg-1 order-lg-2 region-sidebar region-sidebar-second bcdc-region-sidebar bcdc-region-sidebar-second' : 'col-12 region-sidebar region-sidebar-second bcdc-region-sidebar bcdc-region-sidebar-second'
   %}
 
   {%
@@ -117,7 +117,7 @@ set footer_classes = ' ' ~
   %}
 
   {%
-    set content_classes = page.sidebar_second ? 'col-12 col-lg-9' : 'col-12'
+    set content_classes = page.sidebar_second ? 'col-sm-12 col-lg-7 order-1 main-region bcdc-main-region' : 'col-12 main-region bcdc-main-region'
   %}
 
   <div class="{{ b5_top_container }}">
@@ -128,14 +128,14 @@ set footer_classes = ' ' ~
       {{ page.content_top_full }}
     </div>
     <div class="row g-5">
-      <div class="order-1 order-lg-2 {{ content_classes }}">
-        {{ page.content }}
-      </div>
       {% if page.sidebar_second %}
-        <div class="order-3 {{ sidebar_second_classes }}">
+        <div class="order-lg-2 {{ sidebar_second_classes }}">
           {{ page.sidebar_second }}
         </div>
       {% endif %}
+      <div class="order-lg-1 {{ content_classes }}">
+        {{ page.content }}
+      </div>
     </div>
   </div>
 
