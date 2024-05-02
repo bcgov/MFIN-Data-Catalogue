@@ -86,7 +86,6 @@ class BcbbSearchApiForm extends FormBase {
     // Add a submit button that handles the submission of the form.
     $form['actions']['submit'] = [
       '#type' => 'submit',
-      // This appears as a magnifying glass in the font set by class icon-bi.
       '#value' => $this->t('Search'),
       '#attributes' => [
         'class' => ['bcbb-search-submit-icon'],
