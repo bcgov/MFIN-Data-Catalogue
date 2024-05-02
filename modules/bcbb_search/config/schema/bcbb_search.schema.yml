@@ -30,3 +30,6 @@ block.settings.bcbb_search_api_block:
         show_advanced_link:
           type: boolean
           label: 'Show advanced search link'
+        show_reset_button:
+          type: boolean
+          label: 'Show reset button'

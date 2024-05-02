@@ -165,6 +165,12 @@ class BcbbSearchBlock extends BlockBase implements ContainerFactoryPluginInterfa
       '#default_value' => $config['search']['show_advanced_link'] ?? FALSE,
     ];
 
+    $form['search']['show_reset_button'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Show reset button'),
+      '#default_value' => $config['search']['show_reset_button'] ?? FALSE,
+    ];
+
     return $form;
   }
 

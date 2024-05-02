@@ -60,6 +60,16 @@ class BcbbSearchApiForm extends FormBase {
       ],
     ];
 
+    // Show the "Reset" button if configured to do so, there is a search URL,
+    // and there is a query string.
+    if (!empty($config['search']['show_reset_button']) && $config['search']['search_url'] && $this->getRequest()->query->all()) {
+      $url = Url::fromUserInput($config['search']['search_url']);
+      $form['actions']['reset'] = Link::fromTextAndUrl($this->t('Reset'), $url)->toRenderable();
+      foreach (['btn', 'btn-danger', 'icon-bi-trash3'] as $class) {
+        $form['actions']['reset']['#attributes']['class'][] = $class;
+      }
+    }
+
     return $form;
   }
 
