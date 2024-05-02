@@ -1,0 +1,42 @@
+uuid: d44d3d8d-0004-42d7-b056-8659878517ba
+langcode: en
+status: true
+dependencies:
+  module:
+    - bcbb_search
+    - node
+    - system
+  theme:
+    - dc_theme
+id: dc_theme_bcbbsearchapiblock_2
+theme: dc_theme
+region: sidebar_second
+weight: -8
+provider: null
+plugin: bcbb_search_api_block
+settings:
+  id: bcbb_search_api_block
+  label: 'Search documentation'
+  label_display: '0'
+  provider: bcbb_search
+  search:
+    search_label: 'Search documentation'
+    search_placeholder: ''
+    search_btn_label: 'Search documentation'
+    search_url: /documentation/search
+    label_sr_only: false
+    search_input_size: false
+    search_input_size_value: null
+    show_advanced_link: false
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      book: book
+  request_path:
+    id: request_path
+    negate: true
+    pages: "/documentation/documentation\r\n/node/*/edit"

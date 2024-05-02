@@ -534,6 +534,159 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   background-color: var(--bs-warning) !important;
 }
 
+.page-node-type-book .region-content .block-bcbb-search *,
+.page-node-type-book .bcdc-book-search .block-bcbb-search *,
+.page-node-type-book .region-sidebar-second .block-bcbb-search *,
+.path-documentation .region-content .block-bcbb-search *,
+.path-documentation .bcdc-book-search .block-bcbb-search *,
+.path-documentation .region-sidebar-second .block-bcbb-search * {
+  position: static;
+}
+.page-node-type-book .region-content .block-bcbb-search *:hover, .page-node-type-book .region-content .block-bcbb-search *:active, .page-node-type-book .region-content .block-bcbb-search *:focus,
+.page-node-type-book .bcdc-book-search .block-bcbb-search *:hover,
+.page-node-type-book .bcdc-book-search .block-bcbb-search *:active,
+.page-node-type-book .bcdc-book-search .block-bcbb-search *:focus,
+.page-node-type-book .region-sidebar-second .block-bcbb-search *:hover,
+.page-node-type-book .region-sidebar-second .block-bcbb-search *:active,
+.page-node-type-book .region-sidebar-second .block-bcbb-search *:focus,
+.path-documentation .region-content .block-bcbb-search *:hover,
+.path-documentation .region-content .block-bcbb-search *:active,
+.path-documentation .region-content .block-bcbb-search *:focus,
+.path-documentation .bcdc-book-search .block-bcbb-search *:hover,
+.path-documentation .bcdc-book-search .block-bcbb-search *:active,
+.path-documentation .bcdc-book-search .block-bcbb-search *:focus,
+.path-documentation .region-sidebar-second .block-bcbb-search *:hover,
+.path-documentation .region-sidebar-second .block-bcbb-search *:active,
+.path-documentation .region-sidebar-second .block-bcbb-search *:focus {
+  position: static;
+}
+.page-node-type-book .region-content input.bcbb-search-submit-icon,
+.page-node-type-book .bcdc-book-search input.bcbb-search-submit-icon,
+.page-node-type-book .region-sidebar-second input.bcbb-search-submit-icon,
+.path-documentation .region-content input.bcbb-search-submit-icon,
+.path-documentation .bcdc-book-search input.bcbb-search-submit-icon,
+.path-documentation .region-sidebar-second input.bcbb-search-submit-icon {
+  margin-top: 0.75em;
+  width: auto;
+  text-indent: initial;
+  background-image: none;
+  color: var(--bs-btn-color);
+  background-color: var(--bs-btn-bg);
+  border-color: var(--bs-btn-border-color);
+  border-radius: var(--bs-btn-border-radius);
+}
+.page-node-type-book .region-content input.bcbb-search-submit-icon:hover, .page-node-type-book .region-content input.bcbb-search-submit-icon:focus,
+.page-node-type-book .bcdc-book-search input.bcbb-search-submit-icon:hover,
+.page-node-type-book .bcdc-book-search input.bcbb-search-submit-icon:focus,
+.page-node-type-book .region-sidebar-second input.bcbb-search-submit-icon:hover,
+.page-node-type-book .region-sidebar-second input.bcbb-search-submit-icon:focus,
+.path-documentation .region-content input.bcbb-search-submit-icon:hover,
+.path-documentation .region-content input.bcbb-search-submit-icon:focus,
+.path-documentation .bcdc-book-search input.bcbb-search-submit-icon:hover,
+.path-documentation .bcdc-book-search input.bcbb-search-submit-icon:focus,
+.path-documentation .region-sidebar-second input.bcbb-search-submit-icon:hover,
+.path-documentation .region-sidebar-second input.bcbb-search-submit-icon:focus {
+  background-image: none;
+}
+.page-node-type-book .region-content input.bcbb-search-submit-icon:hover, .page-node-type-book .region-content input.bcbb-search-submit-icon:active, .page-node-type-book .region-content input.bcbb-search-submit-icon:focus,
+.page-node-type-book .bcdc-book-search input.bcbb-search-submit-icon:hover,
+.page-node-type-book .bcdc-book-search input.bcbb-search-submit-icon:active,
+.page-node-type-book .bcdc-book-search input.bcbb-search-submit-icon:focus,
+.page-node-type-book .region-sidebar-second input.bcbb-search-submit-icon:hover,
+.page-node-type-book .region-sidebar-second input.bcbb-search-submit-icon:active,
+.page-node-type-book .region-sidebar-second input.bcbb-search-submit-icon:focus,
+.path-documentation .region-content input.bcbb-search-submit-icon:hover,
+.path-documentation .region-content input.bcbb-search-submit-icon:active,
+.path-documentation .region-content input.bcbb-search-submit-icon:focus,
+.path-documentation .bcdc-book-search input.bcbb-search-submit-icon:hover,
+.path-documentation .bcdc-book-search input.bcbb-search-submit-icon:active,
+.path-documentation .bcdc-book-search input.bcbb-search-submit-icon:focus,
+.path-documentation .region-sidebar-second input.bcbb-search-submit-icon:hover,
+.path-documentation .region-sidebar-second input.bcbb-search-submit-icon:active,
+.path-documentation .region-sidebar-second input.bcbb-search-submit-icon:focus {
+  color: var(--bs-btn-hover-color);
+  background-color: var(--bs-btn-hover-bg);
+  border-color: var(--bs-btn-hover-border-color);
+}
+.page-node-type-book .region-content .block-book-navigation,
+.page-node-type-book .region-content .block-bcbb-book-navigation,
+.page-node-type-book .bcdc-book-search .block-book-navigation,
+.page-node-type-book .bcdc-book-search .block-bcbb-book-navigation,
+.page-node-type-book .region-sidebar-second .block-book-navigation,
+.page-node-type-book .region-sidebar-second .block-bcbb-book-navigation,
+.path-documentation .region-content .block-book-navigation,
+.path-documentation .region-content .block-bcbb-book-navigation,
+.path-documentation .bcdc-book-search .block-book-navigation,
+.path-documentation .bcdc-book-search .block-bcbb-book-navigation,
+.path-documentation .region-sidebar-second .block-book-navigation,
+.path-documentation .region-sidebar-second .block-bcbb-book-navigation {
+  margin-top: 1em;
+}
+@media only screen and (min-width: 576px) {
+  .page-node-type-book .region-content .block-book-navigation,
+  .page-node-type-book .region-content .block-bcbb-book-navigation,
+  .page-node-type-book .bcdc-book-search .block-book-navigation,
+  .page-node-type-book .bcdc-book-search .block-bcbb-book-navigation,
+  .page-node-type-book .region-sidebar-second .block-book-navigation,
+  .page-node-type-book .region-sidebar-second .block-bcbb-book-navigation,
+  .path-documentation .region-content .block-book-navigation,
+  .path-documentation .region-content .block-bcbb-book-navigation,
+  .path-documentation .bcdc-book-search .block-book-navigation,
+  .path-documentation .bcdc-book-search .block-bcbb-book-navigation,
+  .path-documentation .region-sidebar-second .block-book-navigation,
+  .path-documentation .region-sidebar-second .block-bcbb-book-navigation {
+    margin-top: 2em;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .page-node-type-book .contextual,
+  .path-documentation .contextual {
+    display: none;
+  }
+  .page-node-type-book .node__content > .block-bcbb-search form,
+  .path-documentation .node__content > .block-bcbb-search form {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.5em;
+    padding: 0 0.5em;
+  }
+  .page-node-type-book .node__content > .block-bcbb-search form .form-type-textfield,
+  .path-documentation .node__content > .block-bcbb-search form .form-type-textfield {
+    grid-column: span 11;
+  }
+  .page-node-type-book .node__content > .block-bcbb-search form span.bcbb-input-wrapper:nth-child(1), .page-node-type-book .node__content > .block-bcbb-search form span.bcbb-input-wrapper:nth-child(4), .page-node-type-book .node__content > .block-bcbb-search form span.bcbb-input-wrapper:nth-child(5), .page-node-type-book .node__content > .block-bcbb-search form span.bcbb-input-wrapper:nth-child(6),
+  .path-documentation .node__content > .block-bcbb-search form span.bcbb-input-wrapper:nth-child(1),
+  .path-documentation .node__content > .block-bcbb-search form span.bcbb-input-wrapper:nth-child(4),
+  .path-documentation .node__content > .block-bcbb-search form span.bcbb-input-wrapper:nth-child(5),
+  .path-documentation .node__content > .block-bcbb-search form span.bcbb-input-wrapper:nth-child(6) {
+    display: none;
+  }
+  .page-node-type-book .node__content > .block-bcbb-search form span.bcbb-input-wrapper:nth-child(3),
+  .path-documentation .node__content > .block-bcbb-search form span.bcbb-input-wrapper:nth-child(3) {
+    grid-column: span 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    height: 100%;
+  }
+}
+.page-node-type-book .node__content nav.book-navigation,
+.path-documentation .node__content nav.book-navigation {
+  border-top: none;
+  margin: 0;
+}
+.page-node-type-book .node__content > .block-bcbb-search-api-block,
+.path-documentation .node__content > .block-bcbb-search-api-block {
+  border-top: 1px solid #fcba19;
+  margin: 1.5em 0 0;
+  padding: 1.5em 0 0;
+}
+
+@media only screen and (min-width: 576px) {
+  .path-documentation .region-sidebar {
+    padding-left: 1.15em;
+  }
+}
 .view-report-builder .view-header {
   max-width: 1300px;
   margin: 0 auto;

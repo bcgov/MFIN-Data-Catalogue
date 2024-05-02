@@ -1,0 +1,91 @@
+uuid: d21b91ae-fd64-4b96-857b-d2f478f54dfb
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.book_search
+    - views.view.search_book
+  module:
+    - bcbb_book
+    - bcbb_search
+    - panels
+    - views
+id: book_search-layout_builder-0
+label: 'Layout Builder'
+weight: 0
+variant: panels_variant
+variant_settings:
+  id: panels_variant
+  label: null
+  weight: 0
+  uuid: 03ed2b39-40a7-4031-93c9-d38c0c4558e4
+  blocks:
+    571c85f1-bf1f-4e30-a904-bed641dd5814:
+      id: 'views_block:search_book-block_1'
+      label: ''
+      label_display: '0'
+      provider: views
+      context_mapping: {  }
+      views_label: ''
+      items_per_page: none
+      exposed: {  }
+      region: main
+      weight: 0
+      uuid: 571c85f1-bf1f-4e30-a904-bed641dd5814
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+    84d3303c-600f-483f-8449-c7d8909ade19:
+      id: bcbb_search_api_block
+      label: 'BCbb Search API Block'
+      label_display: '0'
+      provider: bcbb_search
+      context_mapping: {  }
+      search:
+        search_label: 'Search documentation'
+        search_placeholder: ''
+        search_btn_label: 'Search documentation'
+        search_url: /documentation/search
+        label_sr_only: false
+        search_input_size: false
+        search_input_size_value: null
+        show_advanced_link: false
+      region: sidebar
+      weight: -1
+      uuid: 84d3303c-600f-483f-8449-c7d8909ade19
+      css_classes:
+        - bcdc-book-search
+      html_id: ''
+      css_styles: ''
+    bdf8bea2-b8de-4d82-baf8-c0e27f21fbf1:
+      id: bcbb_book_navigation
+      label: 'BCBB book navigation'
+      label_display: '0'
+      provider: bcbb_book
+      context_mapping: {  }
+      book_id: 3
+      region: sidebar
+      weight: 0
+      uuid: bdf8bea2-b8de-4d82-baf8-c0e27f21fbf1
+      css_classes:
+        - ''
+      html_id: ''
+      css_styles: ''
+      block_mode: 'all pages'
+  page_title: 'Search documentation'
+  layout: bcbb_main_sidebar_right
+  layout_settings:
+    label: ''
+  builder: standard
+  storage_type: page_manager
+  storage_id: book_search-layout_builder-0
+  css_classes:
+    - bcdc-book-search-page
+  html_id: ''
+  css_styles: ''
+  sections: {  }
+page: book_search
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

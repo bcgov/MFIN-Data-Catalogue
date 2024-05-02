@@ -1,0 +1,21 @@
+uuid: a70f12d9-ef8e-4500-8d50-99fd2a5b84a1
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: book_search
+label: 'Book search'
+description: ''
+use_admin_theme: false
+path: /documentation/search
+access_logic: and
+access_conditions:
+  -
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      authenticated: authenticated
+parameters: {  }

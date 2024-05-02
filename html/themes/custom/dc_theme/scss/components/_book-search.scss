@@ -1,0 +1,115 @@
+// This overrides the default search bar style brought in by the BC base-build theme
+
+.page-node-type-book,
+.path-documentation {
+  .region-content,
+  .bcdc-book-search,
+  .region-sidebar-second {
+    .block-bcbb-search {
+      // reset positioning
+      * {
+        position: static;
+        &:hover,
+        &:active,
+        &:focus {
+          position: static;
+        }
+
+      }
+    }
+    // override default search with icon
+    input.bcbb-search-submit-icon {
+      margin-top: .75em;
+      // make input wide enough for text
+      width: auto;
+      // make label visible
+      text-indent: initial;
+      // remove the icon
+      background-image: none;
+      &:hover,
+      &:focus {
+        background-image: none;
+      }
+      //make input look like a button
+      color: var(--bs-btn-color);
+      background-color: var(--bs-btn-bg);
+      border-color: var(--bs-btn-border-color);
+      border-radius: var(--bs-btn-border-radius);
+      &:hover,
+      &:active,
+      &:focus {
+        color: var(--bs-btn-hover-color);
+        background-color: var(--bs-btn-hover-bg);
+        border-color: var(--bs-btn-hover-border-color);
+      }
+    }
+    // override default margin
+    .block-book-navigation,
+    .block-bcbb-book-navigation {
+      margin-top: 1em;
+    @include responsive() {
+      margin-top: 2em;
+    }
+    }
+  }
+  // search form layout on book's index page
+  @include responsive ($md-min) {
+    // prevent layout jumping around when contextual links are hovered over
+    // This only affects administrators and can be removed if there is a need for the link
+    .contextual {
+      display: none;
+    }
+    .node__content {
+      > .block-bcbb-search {
+        form {
+          display: grid;
+          grid-template-columns: repeat(12, 1fr);
+          gap: 1.5em;
+          padding: 0 .5em;
+          .form-type-textfield {
+            grid-column: span 11;
+          }
+          span.bcbb-input-wrapper {
+          // hide input fields where the type="hidden"
+           &:nth-child(1),
+           &:nth-child(4),
+           &:nth-child(5),
+           &:nth-child(6) {
+             display: none;
+           }
+           // input submit (button)
+           &:nth-child(3) {
+            grid-column: span 1;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-end;
+            height: 100%;
+           }
+          }
+        }
+      }
+    }
+  }
+  // move divider line so it is between content and search/nav
+
+  .node__content  {
+    nav.book-navigation {
+      border-top: none;
+      margin: 0;
+    }
+    > .block-bcbb-search-api-block {
+      border-top: 1px solid $colorBrand-secondary;
+      margin: 1.5em 0 0;
+      padding: 1.5em 0 0;
+    }
+  }
+}
+
+@include responsive() {
+  .path-documentation {
+    .region-sidebar {
+      padding-left: 1.15em;
+    }
+  }
+
+}
