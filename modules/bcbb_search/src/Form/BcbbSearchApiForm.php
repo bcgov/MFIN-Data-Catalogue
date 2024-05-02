@@ -57,7 +57,6 @@ class BcbbSearchApiForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, array $config = NULL): array {
-
     $form['search_url'] = [
       '#type' => 'hidden',
       '#default_value' => $config['search']['search_url'],
@@ -83,6 +82,7 @@ class BcbbSearchApiForm extends FormBase {
     if (isset($config['search']['search_input_size'])) {
       $form['search_keyword']['#size'] = $config['search']['search_input_size'] ? $config['search']['search_input_size_value'] : NULL;
     }
+
     // Add a submit button that handles the submission of the form.
     $form['actions']['submit'] = [
       '#type' => 'submit',
@@ -91,6 +91,7 @@ class BcbbSearchApiForm extends FormBase {
         'class' => ['bcbb-search-submit-icon'],
       ],
     ];
+
     return $form;
   }
 
