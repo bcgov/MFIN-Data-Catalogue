@@ -2,14 +2,10 @@
 
 namespace Drupal\bcbb_search\Form;
 
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
-use Drupal\search_api\ParseMode\ParseModePluginManager;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Builds the search form for the search block.
@@ -17,34 +13,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * This is used by BcbbSearchBlock::build().
  */
 class BcbbSearchApiForm extends FormBase {
-
-  /**
-   * Constructs a BcbbSearchApiForm object.
-   *
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
-   *   The entity_type.manager service.
-   * @param \Drupal\Core\Language\LanguageManagerInterface $languageManager
-   *   The language_manager service.
-   * @param \Drupal\search_api\ParseMode\ParseModePluginManager $pluginManagerSearchApiParseMode
-   *   The plugin.manager.search_api.parse_mode service.
-   */
-  public function __construct(
-    protected EntityTypeManagerInterface $entityTypeManager,
-    protected LanguageManagerInterface $languageManager,
-    protected ParseModePluginManager $pluginManagerSearchApiParseMode,
-  ) {
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container): static {
-    return new static(
-      $container->get('entity_type.manager'),
-      $container->get('language_manager'),
-      $container->get('plugin.manager.search_api.parse_mode'),
-    );
-  }
 
   /**
    * {@inheritdoc}
