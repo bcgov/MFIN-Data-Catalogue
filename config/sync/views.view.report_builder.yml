@@ -1067,7 +1067,7 @@ display:
           id: field_schedule_code
           table: taxonomy_term__field_schedule_code
           field: field_schedule_code
-          relationship: field_primary_responsibility_org
+          relationship: field_information_schedule
           group_type: group
           admin_label: ''
           plugin_id: field
@@ -2857,6 +2857,15 @@ display:
           relationship: none
           group_type: group
           admin_label: 'field_primary_responsibility_org: Taxonomy term'
+          plugin_id: standard
+          required: false
+        field_information_schedule:
+          id: field_information_schedule
+          table: node_revision__field_information_schedule
+          field: field_information_schedule
+          relationship: none
+          group_type: group
+          admin_label: 'field_information_schedule: Taxonomy term'
           plugin_id: standard
           required: false
       css_class: 'bcbb-fw px-5'
