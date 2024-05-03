@@ -22,7 +22,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'Most viewed data sets'
+      title: 'Most viewed records'
       fields:
         title:
           id: title
