@@ -68,12 +68,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb.git",
-                "reference": "d0dc4330359f3a261e0caa6f6aafcd3141c11b40"
+                "reference": "4a76fa689cd7cd32c8621511a223121a8a37ae82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/d0dc4330359f3a261e0caa6f6aafcd3141c11b40",
-                "reference": "d0dc4330359f3a261e0caa6f6aafcd3141c11b40",
+                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/4a76fa689cd7cd32c8621511a223121a8a37ae82",
+                "reference": "4a76fa689cd7cd32c8621511a223121a8a37ae82",
                 "shasum": ""
             },
             "require": {
@@ -159,7 +159,7 @@
                 "source": "https://github.com/bcgov/bcbb/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb/issues"
             },
-            "time": "2024-05-01T18:51:38+00:00"
+            "time": "2024-05-02T21:03:00+00:00"
         },
         {
             "name": "bcgov/bcbb_theme",
@@ -167,12 +167,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb-theme.git",
-                "reference": "780a61dcf1438902b7194e6dc289d4f15d8a85d1"
+                "reference": "64c50bdba6fa0210ee7dce8f6781c95c094b56ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb-theme/zipball/780a61dcf1438902b7194e6dc289d4f15d8a85d1",
-                "reference": "780a61dcf1438902b7194e6dc289d4f15d8a85d1",
+                "url": "https://api.github.com/repos/bcgov/bcbb-theme/zipball/64c50bdba6fa0210ee7dce8f6781c95c094b56ea",
+                "reference": "64c50bdba6fa0210ee7dce8f6781c95c094b56ea",
                 "shasum": ""
             },
             "require": {
@@ -189,7 +189,7 @@
                 "source": "https://github.com/bcgov/bcbb-theme/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb-theme/issues"
             },
-            "time": "2024-05-01T21:58:33+00:00"
+            "time": "2024-05-02T14:54:10+00:00"
         },
         {
             "name": "billboardjs/billboard",
@@ -8172,16 +8172,16 @@
         },
         {
             "name": "drush/drush",
-            "version": "12.5.1",
+            "version": "12.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drush-ops/drush.git",
-                "reference": "71fcea30a22e7336e17be18bb5945400b2c63fad"
+                "reference": "4aebed85dc818ff762f2e24a85b023d2a52050df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drush-ops/drush/zipball/71fcea30a22e7336e17be18bb5945400b2c63fad",
-                "reference": "71fcea30a22e7336e17be18bb5945400b2c63fad",
+                "url": "https://api.github.com/repos/drush-ops/drush/zipball/4aebed85dc818ff762f2e24a85b023d2a52050df",
+                "reference": "4aebed85dc818ff762f2e24a85b023d2a52050df",
                 "shasum": ""
             },
             "require": {
@@ -8304,7 +8304,7 @@
                 "issues": "https://github.com/drush-ops/drush/issues",
                 "security": "https://github.com/drush-ops/drush/security/advisories",
                 "slack": "https://drupal.slack.com/messages/C62H9CWQM",
-                "source": "https://github.com/drush-ops/drush/tree/12.5.1"
+                "source": "https://github.com/drush-ops/drush/tree/12.5.2"
             },
             "funding": [
                 {
@@ -8312,7 +8312,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-20T15:03:27+00:00"
+            "time": "2024-05-02T17:20:48+00:00"
         },
         {
             "name": "egulias/email-validator",
