@@ -638,6 +638,36 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
     margin-top: 2em;
   }
 }
+.page-node-type-book .region-content .btn.btn-danger,
+.page-node-type-book .bcdc-book-search .btn.btn-danger,
+.page-node-type-book .region-sidebar-second .btn.btn-danger,
+.path-documentation .region-content .btn.btn-danger,
+.path-documentation .bcdc-book-search .btn.btn-danger,
+.path-documentation .region-sidebar-second .btn.btn-danger {
+  background-color: #a12622;
+  border: none;
+  border-radius: var(--bs-btn-border-radius);
+  padding: var(--bs-btn-padding-x) calc(var(--bs-btn-padding-y) + 0.25em);
+  margin-top: 0.75em;
+}
+.page-node-type-book .region-content .btn.btn-danger:hover, .page-node-type-book .region-content .btn.btn-danger:active, .page-node-type-book .region-content .btn.btn-danger:focus,
+.page-node-type-book .bcdc-book-search .btn.btn-danger:hover,
+.page-node-type-book .bcdc-book-search .btn.btn-danger:active,
+.page-node-type-book .bcdc-book-search .btn.btn-danger:focus,
+.page-node-type-book .region-sidebar-second .btn.btn-danger:hover,
+.page-node-type-book .region-sidebar-second .btn.btn-danger:active,
+.page-node-type-book .region-sidebar-second .btn.btn-danger:focus,
+.path-documentation .region-content .btn.btn-danger:hover,
+.path-documentation .region-content .btn.btn-danger:active,
+.path-documentation .region-content .btn.btn-danger:focus,
+.path-documentation .bcdc-book-search .btn.btn-danger:hover,
+.path-documentation .bcdc-book-search .btn.btn-danger:active,
+.path-documentation .bcdc-book-search .btn.btn-danger:focus,
+.path-documentation .region-sidebar-second .btn.btn-danger:hover,
+.path-documentation .region-sidebar-second .btn.btn-danger:active,
+.path-documentation .region-sidebar-second .btn.btn-danger:focus {
+  background-color: var(--bs-btn-hover-bg);
+}
 @media only screen and (min-width: 768px) {
   .page-node-type-book .contextual,
   .path-documentation .contextual {
@@ -1346,3 +1376,5 @@ time {
 .form-control.hidden {
   display: none;
 }
+
+/*# sourceMappingURL=style.css.map */
