@@ -3880,7 +3880,7 @@ display:
           id: field_schedule_code
           table: taxonomy_term__field_schedule_code
           field: field_schedule_code
-          relationship: field_primary_responsibility_org
+          relationship: field_information_schedule
           group_type: group
           admin_label: ''
           plugin_id: field
