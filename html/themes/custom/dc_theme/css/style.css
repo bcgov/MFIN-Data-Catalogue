@@ -717,6 +717,10 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
     padding-left: 1.15em;
   }
 }
+.view:has(.view-empty) .feed-icons {
+  display: none;
+}
+
 .view-report-builder .view-header {
   max-width: 1300px;
   margin: 0 auto;

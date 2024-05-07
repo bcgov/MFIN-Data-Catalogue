@@ -1,0 +1,8 @@
+// these styles apply globally to all views
+
+// hide the csv download link if a view has no results
+.view:has(.view-empty) {
+  .feed-icons {
+    display: none;
+  }
+}
