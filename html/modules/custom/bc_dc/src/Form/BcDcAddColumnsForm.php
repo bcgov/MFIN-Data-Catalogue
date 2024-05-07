@@ -2,6 +2,7 @@
 
 namespace Drupal\bc_dc\Form;
 
+use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -43,10 +44,13 @@ class BcDcAddColumnsForm extends FormBase {
   /**
    * Constructor.
    *
+   * @param \Drupal\Component\Datetime\TimeInterface $time
+   *   The datetime.time service.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    *   The entity_type.manager service.
    */
   public function __construct(
+    protected TimeInterface $time,
     protected EntityTypeManagerInterface $entityTypeManager,
   ) {
   }
@@ -56,6 +60,7 @@ class BcDcAddColumnsForm extends FormBase {
    */
   public static function create(ContainerInterface $container): static {
     return new static(
+      $container->get('datetime.time'),
       $container->get('entity_type.manager'),
     );
   }
@@ -661,7 +666,7 @@ class BcDcAddColumnsForm extends FormBase {
       $node->setNewRevision();
       $node->setUnpublished();
       $node->set('moderation_state', 'draft');
-      $node->setRevisionCreationTime(REQUEST_TIME);
+      $node->setRevisionCreationTime($this->time->getRequestTime());
       $node->setRevisionUserId($this->currentUser()->id());
     }
 
