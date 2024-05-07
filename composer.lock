@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "df24b3db021a5e6267fa69a2ae419d5b",
+    "content-hash": "9e0ee656652c960df400c3a7ecb4cc90",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6980,27 +6980,30 @@
         },
         {
             "name": "drupal/taxonomy_manager",
-            "version": "2.0.9",
+            "version": "2.0.11",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/taxonomy_manager.git",
-                "reference": "2.0.9"
+                "reference": "2.0.11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/taxonomy_manager-2.0.9.zip",
-                "reference": "2.0.9",
-                "shasum": "c1956d809ba2149b294eb68fe2f06ada34f4cadc"
+                "url": "https://ftp.drupal.org/files/projects/taxonomy_manager-2.0.11.zip",
+                "reference": "2.0.11",
+                "shasum": "03d50c2702dcf1c2f744ad735ab2037adc422fb1"
             },
             "require": {
                 "drupal/core": "^9.3 || ^10",
                 "drupal/jquery_ui": "^1.4"
             },
+            "require-dev": {
+                "drupal/term_merge": "*"
+            },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.0.9",
-                    "datestamp": "1691588453",
+                    "version": "2.0.11",
+                    "datestamp": "1715070672",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
