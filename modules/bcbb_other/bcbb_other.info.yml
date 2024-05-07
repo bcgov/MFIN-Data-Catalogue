@@ -1,7 +1,7 @@
 name: 'BC Base Build Other'
 description: 'Various other code.'
 type: module
-core_version_requirement: ^10.1
+core_version_requirement: ^10.2 || ^11.0
 package: 'BC Base Build'
 
 dependencies:

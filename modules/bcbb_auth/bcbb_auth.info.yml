@@ -1,7 +1,7 @@
 name: 'BC Base Build Authentication'
 description: 'Authentication configuration.'
 type: module
-core_version_requirement: ^10.1
+core_version_requirement: ^10.2 || ^11.0
 package: 'BC Base Build'
 
 dependencies:
