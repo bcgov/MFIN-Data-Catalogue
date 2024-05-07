@@ -1,7 +1,7 @@
 name: 'Data Catalogue'
 type: theme
 description: 'Theme for the Data Catalogue based on BC Base Build theme.'
-core_version_requirement: ^10.1
+core_version_requirement: ^10.2 || ^11.0
 'base theme': bcbb_theme
 regions:
   header: Header
