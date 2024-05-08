@@ -314,7 +314,7 @@ class BcDcAddColumnsForm extends FormBase {
         continue;
       }
       $settings = $definitions[$field_key]->getSettings();
-      if ($settings['handler'] !== 'default:taxonomy_term') {
+      if ($settings['target_type'] !== 'taxonomy_term') {
         continue;
       }
 
