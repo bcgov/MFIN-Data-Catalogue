@@ -6,7 +6,7 @@ use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Access\AccessResultInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Routing\Access\AccessInterface;
-use Drupal\Core\Routing\RouteMatch;
+use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 
@@ -53,13 +53,13 @@ class BuildEditAccess implements AccessInterface {
    *
    * @param \Drupal\Core\Session\AccountInterface $account
    *   Run access checks for this account.
-   * @param \Drupal\Core\Routing\RouteMatch $route_match
-   *   The RouteMatch object.
+   * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
+   *   A RouteMatchInterface object.
    *
    * @return \Drupal\Core\Access\AccessResultInterface
    *   The access result.
    */
-  public static function access(AccountInterface $account, RouteMatch $route_match): AccessResultInterface {
+  public static function access(AccountInterface $account, RouteMatchInterface $route_match): AccessResultInterface {
     $entity = $route_match->getParameter('node');
 
     $access = static::testAccess($entity);
@@ -72,13 +72,13 @@ class BuildEditAccess implements AccessInterface {
    *
    * @param \Drupal\Core\Session\AccountInterface $account
    *   Run access checks for this account.
-   * @param \Drupal\Core\Routing\RouteMatch $route_match
-   *   The RouteMatch object.
+   * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
+   *   A RouteMatchInterface object.
    *
    * @return \Drupal\Core\Access\AccessResultInterface
    *   The access result.
    */
-  public static function accessAddColumns(AccountInterface $account, RouteMatch $route_match): AccessResultInterface {
+  public static function accessAddColumns(AccountInterface $account, RouteMatchInterface $route_match): AccessResultInterface {
     $node = $route_match->getParameter('node');
 
     // If this node has field_columns, access is the same as ::access().

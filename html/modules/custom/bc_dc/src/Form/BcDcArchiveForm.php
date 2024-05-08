@@ -10,7 +10,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\Access\AccessInterface;
-use Drupal\Core\Routing\RouteMatch;
+use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
@@ -120,13 +120,13 @@ class BcDcArchiveForm extends ConfirmFormBase implements AccessInterface {
    *
    * @param \Drupal\Core\Session\AccountInterface $account
    *   Run access checks for this account.
-   * @param \Drupal\Core\Routing\RouteMatch $route_match
-   *   The RouteMatch object.
+   * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
+   *   A RouteMatchInterface object.
    *
    * @return \Drupal\Core\Access\AccessResultInterface
    *   The access result.
    */
-  public function access(AccountInterface $account, RouteMatch $route_match): AccessResultInterface {
+  public function access(AccountInterface $account, RouteMatchInterface $route_match): AccessResultInterface {
     $entity = $route_match->getParameter('node');
     $entity_owner = $entity->getOwnerId();
 
