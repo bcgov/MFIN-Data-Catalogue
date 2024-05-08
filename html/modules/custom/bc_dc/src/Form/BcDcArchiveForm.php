@@ -16,7 +16,6 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Implements a form to archive a node.
@@ -65,25 +64,11 @@ class BcDcArchiveForm extends ConfirmFormBase implements AccessInterface {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, NodeInterface $node = NULL): array {
-    // Return 404 if this is not a node that can be moderated.
-    $node_definition = $this->entityTypeManager->getDefinition('node');
-    if (!$node || !$this->contentModerationModerationInformation->shouldModerateEntitiesOfBundle($node_definition, $node->bundle())) {
-      throw new NotFoundHttpException();
-    }
-
     // Store the form ID for later use.
     $this->id = (int) $node->id();
 
     // Get the default form.
     $form = parent::buildForm($form, $form_state);
-
-    // If the node is not published, set a message and hide the submit button.
-    if (!$node->isPublished()) {
-      $message = $this->t('This metadata record is already unpublished.');
-      $this->messenger()->addError($message);
-
-      $form['actions']['submit']['#access'] = FALSE;
-    }
 
     return $form;
   }
@@ -141,9 +126,15 @@ class BcDcArchiveForm extends ConfirmFormBase implements AccessInterface {
    * @return \Drupal\Core\Access\AccessResultInterface
    *   The access result.
    */
-  public static function access(AccountInterface $account, RouteMatch $route_match): AccessResultInterface {
+  public function access(AccountInterface $account, RouteMatch $route_match): AccessResultInterface {
     $entity = $route_match->getParameter('node');
     $entity_owner = $entity->getOwnerId();
+
+    // No access if the node is not published or if this is not a node that can
+    // be moderated.
+    if (!$entity->isPublished() || !$this->contentModerationModerationInformation->shouldModerateEntitiesOfBundle($this->entityTypeManager->getDefinition('node'), $entity->bundle())) {
+      return AccessResult::forbidden();
+    }
 
     // The user has access if they are able to edit the entity and either has
     // the permission or are the owner of the entity.

@@ -1602,11 +1602,18 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->elementExists('xpath', $xpath);
     // Check that it is unpublished.
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "node--unpublished")]');
-    // Now "Unpublish" page has a message.
-    $this->clickLink('Unpublish');
-    $text = $this->assertSession()->elementExists('xpath', '//div[contains(@class, "alert-error")]')->getText();
-    $this->assertStringContainsString('This metadata record is already unpublished.', $text);
-    $this->assertSession()->buttonNotExists('Confirm');
+    // Now "Unpublish" tab and page are not there.
+    $this->assertSession()->linkNotExists('Unpublish');
+    $this->drupalGet('node/2/unpublish');
+    $this->assertSession()->statusCodeEquals(404);
+
+    // Re-publish node/2.
+    $this->drupalGet('node/2/build');
+    $edit = [
+      'major_edit' => '0',
+    ];
+    $this->submitForm($edit, 'Publish');
+    $this->assertSession()->pageTextContains('Metadata record published');
 
     // For DC manager, no "Unpublish" link.
     $this->drupalLogin($this->users['Test Data catalogue manager']);
@@ -1619,13 +1626,6 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Now "Unpublish" link exists.
     $this->drupalGet('node/2');
     $this->assertSession()->linkExists('Unpublish');
-    // Re-publish node/2.
-    $this->drupalGet('node/2/build');
-    $edit = [
-      'major_edit' => '0',
-    ];
-    $this->submitForm($edit, 'Publish');
-    $this->assertSession()->pageTextContains('Metadata record published');
 
     // Test Dashboard for DC user.
     $this->drupalLogin($this->users['Test Data catalogue user']);
