@@ -196,6 +196,9 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     // Module configuration.
     // @todo Remove this section and have the config come in from config import.
     //
+    // Set site name.
+    $site_name = 'Site name ' . $this->randomString();
+    $this->config('system.site')->set('name', $site_name)->save();
     // Configure registration_role module.
     $this->drupalGet('admin/people/registration-role');
     $edit = [
@@ -419,6 +422,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $breadcrumbs = $this->xpath('//ol[@class = "breadcrumb"]/li/a');
     $this->assertCount(1, $breadcrumbs, 'Page has 1 breadcrumb.');
     $this->assertEquals('/', $breadcrumbs[0]->getAttribute('href'));
+    $this->assertEquals($site_name, $breadcrumbs[0]->getText());
     // "Edit" tab does appear for data_set content type.
     $this->assertSession()->elementExists('xpath', '//a[@href = "/node/2/edit"]');
     // "Outline" tab does not appear for data_set content type.

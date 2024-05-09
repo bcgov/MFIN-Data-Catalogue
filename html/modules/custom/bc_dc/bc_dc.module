@@ -953,6 +953,19 @@ function bc_dc_preprocess_links__toolbar_user(array &$variables): void {
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for breadcrumb.
+ */
+function bc_dc_preprocess_breadcrumb(array &$variables): void {
+  // Set the "Home" breadcrumb link text to the site name.
+  foreach ($variables['links'] ?? [] as $key => $link) {
+    if ($link->getUrl()->getRouteName() === '<front>') {
+      $site_name = \Drupal::config('system.site')->get('name');
+      $variables['breadcrumb'][$key]['text'] = $site_name;
+    }
+  }
+}
+
+/**
  * Implements hook_system_breadcrumb_alter().
  */
 function bc_dc_system_breadcrumb_alter(Breadcrumb &$breadcrumb, RouteMatchInterface $route_match, array $context): void {
