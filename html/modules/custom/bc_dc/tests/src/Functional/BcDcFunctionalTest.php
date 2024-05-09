@@ -1105,20 +1105,14 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       'review_needed_message' => 'Review needed. ' . $this->randomString(),
       'review_overdue_message' => 'Review overdue. ' . $this->randomString(),
     ];
-    // Save messages and review interval in config. This used to be done with
-    // $this->config(), but that no longer works.
-    $this->drupalLogin($this->rootUser);
-    $this->drupalGet('admin/config/data-catalogue');
-    $edit = [
+    // Save messages and review interval in config.
+    $this->config('bc_dc.settings')
       // Ensure an item with a 1 month interval will appear as needing review.
-      'edit-data-set-review-period-alert' => 40,
-      'edit-review-needed-message' => $review_needed_messages['review_needed_message'],
-      'edit-review-overdue-message' => $review_needed_messages['review_overdue_message'],
-      'edit-info-schedule-pre-title' => 'Information schedule pre-title ' . $this->randomString(),
-    ];
-    $this->submitForm($edit, 'Save configuration');
-    $this->assertSession()->elementExists('xpath', '//div[@class = "messages-list"]//div[contains(text(), "The configuration options have been saved.")]');
-    $this->drupalLogin($this->users['Test Data catalogue administrator']);
+      ->set('data_set_review_period_alert', 40)
+      ->set('review_needed_message', $review_needed_messages['review_needed_message'])
+      ->set('review_overdue_message', $review_needed_messages['review_overdue_message'])
+      ->set('info_schedule_pre_title', 'Information schedule pre-title ' . $this->randomString())
+      ->save();
 
     // No "Review needed" message appears.
     $this->drupalGet('node/2');
