@@ -11,7 +11,7 @@ dependencies:
 id: dc_theme_pageviewtracker
 theme: dc_theme
 region: header
-weight: 0
+weight: -9
 provider: null
 plugin: bc_dc_page_view_tracker
 settings:

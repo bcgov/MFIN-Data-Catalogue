@@ -61,48 +61,26 @@ set nav_classes = 'navbar navbar-expand-lg' ~
 %}
 
 {%
-set footer_classes = ' ' ~
-  (b5_footer_schema != 'none' ? " footer-#{b5_footer_schema}" : ' ') ~
-  (b5_footer_schema != 'none' ? (b5_footer_schema == 'dark' ? ' text-light' : ' text-dark' ) : ' ') ~
-  (b5_footer_bg_schema != 'none' ? " bg-#{b5_footer_bg_schema}" : ' ')
+  set footer_classes = 'mt-auto bcbb-footer'
 %}
 
 <header class="{{ header_classes }}">
 
 
-    <div class="container my-1 my-lg-2">
+  <div class="container my-1 my-lg-2">
+    {% if page.header %}
       {{ page.header }}
-      <div class="d-lg-flex align-items-center justify-content-between">
-
-        {{ page.branding }}
-
-        {% if page.search %}
-        <div class="flex-lg-grow-1 ms-lg-5">
-          {{ page.search }}
-        </div>
-        {% endif %}
-
-    </div>
-</div>
-
-  {% if page.nav_main or page.nav_additional %}
-  <nav class="{{ nav_classes }}">
-    <div class="{{ b5_top_container }} d-flex">
-
-      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-              aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse justify-content-md-end" id="navbarSupportedContent">
+    {% endif %}
+    <div class="bcbb-header-branding bcbb-header-search bcdc-nav">
+      {{ page.branding }}
+      {% if page.nav_main %}
         {{ page.nav_main }}
-        {{ page.nav_additional }}
-      </div>
+      {% endif %}
+      {% if page.search %}
+        {{ page.search }}
+      {% endif %}
     </div>
-  </nav>
-  {% endif %}
-
+  </div>
 </header>
 
 <main role="main">
@@ -122,8 +100,12 @@ set footer_classes = ' ' ~
 
   <div class="{{ b5_top_container }}">
     {% if page.breadcrumb %}
-      {{ page.breadcrumb }}
-    {% endif %}
+      <div class="bcbb-fw bcbb-breadcrumbs">
+        <div class="container ps-4">
+          {{ page.breadcrumb }}
+        </div>
+      </div>
+      {% endif %}
     <div class="{{ content_top_full_classes }}">
       {{ page.content_top_full }}
     </div>
@@ -142,7 +124,7 @@ set footer_classes = ' ' ~
 </main>
 
 {% if page.footer %}
-<footer class="mt-auto {{ footer_classes }}">
+<footer class="{{ footer_classes }}">
   <div class="{{ b5_top_container }}">
     {{ page.footer }}
   </div>

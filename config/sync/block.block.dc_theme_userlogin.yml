@@ -8,8 +8,8 @@ dependencies:
     - dc_theme
 id: dc_theme_userlogin
 theme: dc_theme
-region: header
-weight: 0
+region: nav_main
+weight: -7
 provider: null
 plugin: user_login_block
 settings:

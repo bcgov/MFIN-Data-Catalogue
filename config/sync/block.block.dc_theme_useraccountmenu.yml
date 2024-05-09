@@ -11,8 +11,8 @@ dependencies:
     - dc_theme
 id: dc_theme_useraccountmenu
 theme: dc_theme
-region: header
-weight: 0
+region: nav_main
+weight: -8
 provider: null
 plugin: 'system_menu_block:account'
 settings:
