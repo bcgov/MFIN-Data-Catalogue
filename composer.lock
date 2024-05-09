@@ -68,12 +68,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb.git",
-                "reference": "981eee046de7c01b76bf01da4a3e3d16e832a3f0"
+                "reference": "4cb317d36a2b9d3ad9c8a22287c8790a05e9c18b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/981eee046de7c01b76bf01da4a3e3d16e832a3f0",
-                "reference": "981eee046de7c01b76bf01da4a3e3d16e832a3f0",
+                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/4cb317d36a2b9d3ad9c8a22287c8790a05e9c18b",
+                "reference": "4cb317d36a2b9d3ad9c8a22287c8790a05e9c18b",
                 "shasum": ""
             },
             "require": {
@@ -132,6 +132,10 @@
                     "drupal/core": {
                         "3392572 - strnatcasecmp(): Passing null to string is deprecated": "https://www.drupal.org/files/issues/2023-10-25/drupal-strnatcasecmp_string_only-3392572-10.patch"
                     },
+                    "drupal/diff": {
+                        "2834253 - Missing column headings in Revisions list": "https://www.drupal.org/files/issues/2024-05-09/diff-missing_column_headers-2834253-23.patch",
+                        "3183380 - Add 'compare revisions' button on top for long form": "https://www.drupal.org/files/issues/2024-05-09/diff-add_compare_revisions-3183380-19.patch"
+                    },
                     "drupal/page_manager": {
                         "2756613 - Avoid harcoded prefex and suffix in block region": "https://www.drupal.org/files/issues/page_manager-avoid_prefix_suffix-2756613-8.patch",
                         "3362561 - Path has unnecessary query appended.": "https://www.drupal.org/files/issues/2023-11-29/page_manager-unnecessary_query-3362561-48.patch"
@@ -159,7 +163,7 @@
                 "source": "https://github.com/bcgov/bcbb/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb/issues"
             },
-            "time": "2024-05-07T16:56:13+00:00"
+            "time": "2024-05-09T15:30:07+00:00"
         },
         {
             "name": "bcgov/bcbb_theme",
