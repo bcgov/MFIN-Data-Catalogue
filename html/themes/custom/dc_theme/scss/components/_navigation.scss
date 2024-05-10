@@ -30,11 +30,11 @@
           &[data-drupal-link-system-path="user"],
           &[data-drupal-link-system-path="user/logout"] {
             text-indent: -9999px;
-            height: 2em;
-            width: 2em;
+            height: 2.5em;
+            width: 2.5em;
             overflow: hidden;
             background-position: center center;
-            @include responsive() {
+            @include responsive($lg-min) {
               width: auto;
               height: auto;
               overflow: auto;

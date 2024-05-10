@@ -52,14 +52,12 @@
 .bcbb-header-branding.bcbb-header-search.bcdc-nav {
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-template-rows: 1fr 1fr;
   gap: .5em;
   grid-template-areas:
     "branding nav"
     "search search";
     @include responsive($lg-min) {
       grid-template-columns: auto 1fr auto;
-      grid-template-rows: 1fr;
       grid-template-areas:
       "branding search nav";
     }

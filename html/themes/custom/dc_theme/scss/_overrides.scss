@@ -27,3 +27,13 @@ time {
 .form-control.hidden {
   display: none;
 }
+
+
+//logo link to home in header
+html.bcbb-theme a img.site-logo {
+  height: 30px;
+  max-height: 40px;
+  @include responsive() {
+    height: 40px;
+  }
+}

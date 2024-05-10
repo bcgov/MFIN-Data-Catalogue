@@ -46,14 +46,12 @@
 .bcbb-header-branding.bcbb-header-search.bcdc-nav {
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-template-rows: 1fr 1fr;
   gap: 0.5em;
   grid-template-areas: "branding nav" "search search";
 }
 @media only screen and (min-width: 992px) {
   .bcbb-header-branding.bcbb-header-search.bcdc-nav {
     grid-template-columns: auto 1fr auto;
-    grid-template-rows: 1fr;
     grid-template-areas: "branding search nav";
   }
 }
@@ -206,6 +204,11 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 
 .field-required {
   color: #a12622;
+}
+
+.region-search #bcbb-search-api-form * {
+  font-size: 1em;
+  border-color: var(--bs-gray-900);
 }
 
 @media only screen and (min-width: 992px) {
@@ -759,12 +762,12 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 }
 .region-nav-main ul[data-block=nav_main] li a[data-drupal-link-system-path="node/3"], .region-nav-main ul[data-block=nav_main] li a[data-drupal-link-system-path=user], .region-nav-main ul[data-block=nav_main] li a[data-drupal-link-system-path="user/logout"] {
   text-indent: -9999px;
-  height: 2em;
-  width: 2em;
+  height: 2.5em;
+  width: 2.5em;
   overflow: hidden;
   background-position: center center;
 }
-@media only screen and (min-width: 576px) {
+@media only screen and (min-width: 992px) {
   .region-nav-main ul[data-block=nav_main] li a[data-drupal-link-system-path="node/3"], .region-nav-main ul[data-block=nav_main] li a[data-drupal-link-system-path=user], .region-nav-main ul[data-block=nav_main] li a[data-drupal-link-system-path="user/logout"] {
     width: auto;
     height: auto;
@@ -1460,6 +1463,16 @@ time {
 
 .form-control.hidden {
   display: none;
+}
+
+html.bcbb-theme a img.site-logo {
+  height: 30px;
+  max-height: 40px;
+}
+@media only screen and (min-width: 576px) {
+  html.bcbb-theme a img.site-logo {
+    height: 40px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
