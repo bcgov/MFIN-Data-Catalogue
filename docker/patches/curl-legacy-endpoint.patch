@@ -1,0 +1,30 @@
+From aa6ff7d1aa04f55d8a4a4be1c6c14b146c984e9c Mon Sep 17 00:00:00 2001
+From: sylus <sylus1984@gmail.com>
+Date: Wed, 3 May 2023 15:54:07 -0400
+Subject: [PATCH] feat(openssl): Support for legacy endpoints
+
+---
+ Dockerfile | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/Dockerfile b/Dockerfile
+index 00d29b2..f2a816a 100644
+--- a/docker/Dockerfile
++++ b/docker/Dockerfile
+@@ -113,3 +113,13 @@ RUN ln -s /var/www/vendor/drush/drush/drush /usr/local/bin/drush
+
+ # Reset Cache
+ RUN php -r 'opcache_reset();'
++
++# OpenSSL 3.0 disables UnsafeLegacyRenegotiation by default, must re-enable it for some endpoints
++RUN sed -i 's/providers = provider_sect/providers = provider_sect\n\
++ssl_conf = ssl_sect\n\
++\n\
++[ssl_sect]\n\
++system_default = system_default_sect\n\
++\n\
++[system_default_sect]\n\
++Options = UnsafeLegacyRenegotiation/' /etc/ssl/openssl.cnf
+--
+2.37.1 (Apple Git-137.1)
+
