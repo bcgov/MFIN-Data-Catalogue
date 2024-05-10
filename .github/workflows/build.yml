@@ -20,7 +20,7 @@ jobs:
       run: |
         export DB_TYPE=mysql
         export DB_PORT=3306
-        git clone --branch 10.1.x-php8.1 https://github.com/drupalwxt/docker-scaffold.git docker
+        git clone --branch 10.2.x-php8.2 https://github.com/drupalwxt/docker-scaffold.git docker
         make build
         docker compose -f docker-compose.ci.yml up -d
         docker ps -a

@@ -24,7 +24,7 @@ jobs:
       run: |
         export DB_TYPE=mysql
         export DB_PORT=3306
-        git clone --branch 10.1.x-php8.1 https://github.com/drupalwxt/docker-scaffold.git docker
+        git clone --branch 10.2.x-php8.2 https://github.com/drupalwxt/docker-scaffold.git docker
         make build
         docker compose -f docker-compose.ci.yml up -d
         docker ps -a
@@ -53,7 +53,7 @@ jobs:
       run: echo "GITHUB_REFERENCE=$(echo ${GITHUB_REF#refs/tags/})" >> $GITHUB_ENV
 
     - name: Login to Container Registry 🐸
-      uses: docker/login-action@v2
+      uses: docker/login-action@v2    
       with:
         registry: ${{ env.CONTAINER_REGISTRY }}
         username: ${{ env.CONTAINER_REGISTRY_USERNAME }}
@@ -62,6 +62,7 @@ jobs:
     - name: Build and push PHP-FPM 🐳
       run: |
         docker tag mfin-data-catalogue-web:latest ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}:${{ env.GITHUB_REFERENCE }}
+        docker tag mfin-data-catalogue-web:latest ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}:
         docker push ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}:${{ env.GITHUB_REFERENCE }}
 
     - name: Build and push Nginx 🐳
