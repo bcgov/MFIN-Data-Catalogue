@@ -1,7 +1,11 @@
 // style links for user menu
 .region-nav-main {
+  font-size: .85em;
+  $localColor: var(--bs-gray-900);
+  $iconColor: $localColor;
+  $borderColor: $localColor;
+  $hoverColor: $colorInputBorder;
   ul[data-block="nav_main"] {
-    $iconColor: var(--bs-gray-900);
     // layout the menu
     display: flex;
     flex-direction: row;
@@ -10,11 +14,16 @@
       a {
         // make user menu links square with icons on mobile
         display: block;
-        border: 1px solid var(--bs-gray-900);
+        border: 1px solid $borderColor;
         border-radius: var(--bs-border-radius-sm);
-        color: var(--bs-gray-900);
+        color: $localColor;
         background-repeat: no-repeat;
         background-size: 1.25em 1.25em;
+        &:hover,
+        &:focus,
+        &:active {
+          background-color: $hoverColor;
+        }
           // node/3 is the documentation on all environments
           // if the path to docs changes, this will need to be update
           &[data-drupal-link-system-path="node/3"],
@@ -26,8 +35,8 @@
             overflow: hidden;
             background-position: center center;
             @include responsive() {
-              line-height: 1em;
               width: auto;
+              height: auto;
               overflow: auto;
               text-indent: 0;
               padding-right: 2em;
@@ -48,4 +57,25 @@
       }
     }
   }
+
+  // make log in with IDIR form look like user menu links
+  .openid-connect-login-form {
+    input[type="submit"] {
+      background: transparent;
+      padding: .5rem 2em .5rem .5rem;
+      border-radius: var(--bs-border-radius-sm);
+      border: 1px solid $borderColor;
+      transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+      background-repeat: no-repeat;
+      background-size: 1.25em 1.25em;
+      background-position: calc(100% - 0.25em) center;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='#{svg-color($iconColor)}' class='bi bi-person-fill' viewBox='0 0 16 16'%3E%3Cpath d='M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6'/%3E%3C/svg%3E");
+      &:hover,
+        &:focus,
+        &:active {
+          background-color: $hoverColor;
+        }
+    }
+  }
+
 }

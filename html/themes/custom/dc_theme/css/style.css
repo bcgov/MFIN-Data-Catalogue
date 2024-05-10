@@ -43,6 +43,30 @@
   margin-top: 1.25em;
 }
 
+.bcbb-header-branding.bcbb-header-search.bcdc-nav {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0.5em;
+  grid-template-areas: "branding nav" "search search";
+}
+@media only screen and (min-width: 992px) {
+  .bcbb-header-branding.bcbb-header-search.bcdc-nav {
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: 1fr;
+    grid-template-areas: "branding search nav";
+  }
+}
+.bcbb-header-branding.bcbb-header-search.bcdc-nav .region-branding {
+  grid-area: branding;
+}
+.bcbb-header-branding.bcbb-header-search.bcdc-nav .region-nav-main {
+  grid-area: nav;
+}
+.bcbb-header-branding.bcbb-header-search.bcdc-nav .region-search {
+  grid-area: search;
+}
+
 .flag-bookmark {
   margin-bottom: 1em;
 }
@@ -714,6 +738,9 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
     padding-left: 1.15em;
   }
 }
+.region-nav-main {
+  font-size: 0.85em;
+}
 .region-nav-main ul[data-block=nav_main] {
   display: flex;
   flex-direction: row;
@@ -727,6 +754,9 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   background-repeat: no-repeat;
   background-size: 1.25em 1.25em;
 }
+.region-nav-main ul[data-block=nav_main] li a:hover, .region-nav-main ul[data-block=nav_main] li a:focus, .region-nav-main ul[data-block=nav_main] li a:active {
+  background-color: rgb(217, 217, 217);
+}
 .region-nav-main ul[data-block=nav_main] li a[data-drupal-link-system-path="node/3"], .region-nav-main ul[data-block=nav_main] li a[data-drupal-link-system-path=user], .region-nav-main ul[data-block=nav_main] li a[data-drupal-link-system-path="user/logout"] {
   text-indent: -9999px;
   height: 2em;
@@ -736,8 +766,8 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 }
 @media only screen and (min-width: 576px) {
   .region-nav-main ul[data-block=nav_main] li a[data-drupal-link-system-path="node/3"], .region-nav-main ul[data-block=nav_main] li a[data-drupal-link-system-path=user], .region-nav-main ul[data-block=nav_main] li a[data-drupal-link-system-path="user/logout"] {
-    line-height: 1em;
     width: auto;
+    height: auto;
     overflow: auto;
     text-indent: 0;
     padding-right: 2em;
@@ -752,6 +782,20 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 }
 .region-nav-main ul[data-block=nav_main] li a[data-drupal-link-system-path="user/logout"] {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23ar(--bs-gray-900)' class='bi bi-box-arrow-right' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z'/%3E%3Cpath fill-rule='evenodd' d='M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z'/%3E%3C/svg%3E");
+}
+.region-nav-main .openid-connect-login-form input[type=submit] {
+  background: transparent;
+  padding: 0.5rem 2em 0.5rem 0.5rem;
+  border-radius: var(--bs-border-radius-sm);
+  border: 1px solid var(--bs-gray-900);
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  background-repeat: no-repeat;
+  background-size: 1.25em 1.25em;
+  background-position: calc(100% - 0.25em) center;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23ar(--bs-gray-900)' class='bi bi-person-fill' viewBox='0 0 16 16'%3E%3Cpath d='M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6'/%3E%3C/svg%3E");
+}
+.region-nav-main .openid-connect-login-form input[type=submit]:hover, .region-nav-main .openid-connect-login-form input[type=submit]:focus, .region-nav-main .openid-connect-login-form input[type=submit]:active {
+  background-color: rgb(217, 217, 217);
 }
 
 .view:has(.view-empty) .feed-icons {
