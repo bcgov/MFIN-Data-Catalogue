@@ -1,54 +1,46 @@
 .block-bc-dc-org-footer {
-  border-bottom: 1px solid var(--bs-dark-border-subtle);
   margin-bottom: 1.15em;
+  color: #fff;
+  border-bottom: 1px solid var(--bs-gray-400);
+  @include responsive($lg-min) {
+    border-right: 1px solid var(--bs-gray-400);
+    padding-right: 1.5em;
+    border-bottom: none;
+  }
+
+  .bcdc-org-has-image {
+    @include responsive($lg-min) {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1em;
+    }
+  }
+
   h2 {
     font-size: 1.35em;
     flex-basis: auto;
   }
+
   img {
-    $size: 80px;
-    max-width: $size !important;
-    max-height: $size !important;
+    max-width: $imgSizeOrg !important;
+    max-height: $imgSizeOrg !important;
     height: auto;
     &[src*=".svg"] {
-      width: $size;
+      width: $imgSizeOrg;
     }
   }
-
 
   .field--name-field-footer-links {
-    width: 100%;
-    padding-top: .15em;
-  }
 
-  ul {
-    $cols: 3;
-    $gap-col: 1em;
-    $gap-row: .75em;
-    padding-left: 0;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    list-style: none;
-    gap: $gap-row $gap-col;
-    @include responsive($lg-min) {
-      flex-direction: row;
-    }
-    li {
-      flex-basis: calc(100% / $cols - $gap-col);
-      a,
-      a:hover,
-      a:focus,
-      a:visited {
-        color: #fff;
+    ul {
+      list-style: none;
+      padding-left: 0;
+      @include responsive($lg-min) {
+        margin-left: calc($imgSizeOrg + 1em);
       }
-      a,
-      a:visited {
-        text-decoration: none;
-      }
-      a:hover,
-      a:focus {
-        text-decoration: underline;
+     
+      li {
+        padding: .5em 0;
       }
     }
   }

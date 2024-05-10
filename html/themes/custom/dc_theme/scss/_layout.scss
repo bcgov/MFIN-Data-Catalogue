@@ -75,6 +75,21 @@
 
 }
 
+// footer layout
+.bcbb-footer {
+  .container {
+    .region-footer {
+      // use a grid if there is an org on the footer
+      &:has(.block-bc-dc-org-footer) {
+        @include responsive($lg-min) {
+          display: grid;
+          gap: 2em;
+          grid-template-columns: 2fr 1fr;
+        }
+      }
+    }
+  }
+}
 
 
 

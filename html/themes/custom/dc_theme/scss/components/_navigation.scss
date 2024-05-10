@@ -79,3 +79,16 @@
   }
 
 }
+
+// style links in the footer
+.region-footer {
+  a {
+    color: var(--bs-gray-400) !important;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+    &:hover,
+    &:focus,
+    &:active {
+      color: var(--bs-gray-200) !important;
+    }
+  }
+}
