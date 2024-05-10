@@ -61,8 +61,7 @@ jobs:
 
     - name: Build and push PHP-FPM 🐳
       run: |
-        docker tag mfin-data-catalogue-web:latest ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}:${{ env.GITHUB_REFERENCE }}
-        docker tag mfin-data-catalogue-web:latest ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}:
+        docker tag mfin-data-catalogue-web:latest ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}:${{ env.GITHUB_REFERENCE }}        
         docker push ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}:${{ env.GITHUB_REFERENCE }}
 
     - name: Build and push Nginx 🐳
