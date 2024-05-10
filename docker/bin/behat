@@ -1,0 +1,52 @@
+#!/bin/bash
+# strict mode http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+
+# Source all the configuration environment variables from the .env file.
+dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+. ${dir}/source_config
+
+if ! type docker > /dev/null; then
+  echo "Docker is required to be present on $PATH"
+  exit 0
+fi
+
+if [ -z "${BEHAT_PATH-}" ]; then
+  echo "No behat configuration detected exiting..."
+  exit
+fi
+
+if [[ "${CI:-}" ]] ; then
+  vol="-v ${PWD}/docker/conf/drupal/settings.php:/var/www/html/sites/default/settings.php \
+       -v /tmp:/tmp/"
+else
+  vol="-v ${PWD}:/var/www \
+       -v /tmp:/tmp/"
+fi
+
+HTTP_PROXY="${HTTP_PROXY:-}"
+NO_PROXY="${NO_PROXY:-}"
+DB_TYPE="${DB_TYPE:-mysql}"
+DB_PORT="${DB_PORT:-3306}"
+DB_NAME="${DB_NAME:-wxt}"
+
+docker run -i \
+  --entrypoint=/var/www/vendor/bin/behat \
+  ${vol} \
+  -w "/var/www/html/${BEHAT_PATH}" \
+  -e HTTP_PROXY=$HTTP_PROXY \
+  -e HTTPS_PROXY=$HTTP_PROXY \
+  -e http_proxy=$HTTP_PROXY \
+  -e https_proxy=$HTTP_PROXY \
+  -e NO_PROXY=hub,$NO_PROXY \
+  -e no_proxy=hub,$NO_PROXY \
+  -e BEHAT_PARAMS='{"extensions":{"Drupal\\DrupalExtension":{"drupal":{"drupal_root":"/var/www/html"}, "drush":{"root":"/var/www/html"}}, "Behat\\MinkExtension":{"base_url" : "http://nginx", "selenium2":{"wd_host":"http://hub:4444/wd/hub"}}}}' \
+  -e DB_TYPE=$DB_TYPE \
+  -e DB_PORT=$DB_PORT \
+  -e DB_NAME=$DB_NAME \
+  --sig-proxy=true \
+  --pid=host \
+  --volumes-from "${DOCKER_NAME}_web" \
+  --net "${DOCKER_IMAGE}_default" \
+  --rm \
+  "${DOCKER_IMAGE}-cli" "$@"

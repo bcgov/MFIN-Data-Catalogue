@@ -1,0 +1,19 @@
+#!/bin/bash
+# strict mode http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
+# Source all the configuration environment variables from the .env file.
+dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+. ${dir}/source_config
+
+echo "Linting Drupal Dockerfile(s) ..."
+
+find docker -type f \
+       -name Dockerfile \
+       -exec sh -c 'ls {} && \
+                    printf "\n" && \
+                    docker run \
+                               -v ${PWD}/{}:/Dockerfile:ro \
+                               --rm \
+                               hadolint/hadolint hadolint --ignore DL3006 Dockerfile' \;

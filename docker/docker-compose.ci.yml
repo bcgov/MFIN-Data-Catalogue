@@ -1,0 +1,51 @@
+# Docker Compose (v2)
+
+version: "2"
+services:
+  web:
+    extends:
+      file: docker-compose.base.yml
+      service: web
+    volumes:
+      - ./docker/conf/drupal/settings.php:/var/www/html/sites/default/settings.php:ro
+      - files_data:/var/www/html/sites/default/files
+      - files_private_data:/var/www/files_private
+
+  cli:
+    extends:
+      file: docker-compose.base.yml
+      service: cli
+    volumes:
+      - ./docker/conf/drupal/settings.php:/var/www/html/sites/default/settings.php:ro
+      - ./docker/conf/drupal/default.settings.php:/var/www/html/sites/default/default.settings.php:ro
+      - ./docker/bin:/var/www/docker/bin
+      - files_data:/var/www/html/sites/default/files
+      - files_private_data:/var/www/files_private
+
+  nginx:
+    extends:
+      file: docker-compose.base.yml
+      service: nginx
+    volumes:
+      - ./docker/conf/nginx.conf:/etc/nginx/nginx.conf:ro
+      - files_data:/var/www/html/sites/default/files
+
+  db:
+    extends:
+      file: docker-compose.base.yml
+      service: ${DB_TYPE:-mysql}
+
+  hub:
+    extends:
+      file: docker-compose.base.yml
+      service: hub
+
+  firefox:
+    extends:
+      file: docker-compose.base.yml
+      service: firefox
+
+volumes:
+  db_data:
+  files_data:
+  files_private_data:

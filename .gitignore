@@ -35,6 +35,5 @@ ddev-cron-log.txt
 **/sass/*.css
 
 # Custom
-docker
 config/sync/openid_connect.client.keycloak.yml
 files-private
