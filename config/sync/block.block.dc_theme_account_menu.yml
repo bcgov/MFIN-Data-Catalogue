@@ -12,7 +12,7 @@ _core:
   default_config_hash: tEVswtpcr2M4ePxS7qQA_ip48yLsXIb0rPgCMuw3v64
 id: dc_theme_account_menu
 theme: dc_theme
-region: nav_additional
+region: header
 weight: -7
 provider: null
 plugin: 'system_menu_block:account'
