@@ -1,0 +1,6 @@
+adding:
+  tags:
+    robots: ''
+removing:
+  tags:
+    robots: 'noindex, nofollow'

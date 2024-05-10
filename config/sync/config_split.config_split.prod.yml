@@ -13,4 +13,5 @@ folder: ../config/split/prod
 module: {  }
 theme: {  }
 complete_list: {  }
-partial_list: {  }
+partial_list:
+  - metatag.metatag_defaults.global
