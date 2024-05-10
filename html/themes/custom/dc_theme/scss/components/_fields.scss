@@ -70,7 +70,7 @@ ul, ol {
 // search field in header
 
 .region-search {
-  #bcbb-search-api-form {
+  form[id*="bcbb-search-api"] {
     * {
       font-size: 1em;
       // set this to the same color as .region-nav-main $localColor in _navigation.scss

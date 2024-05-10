@@ -214,7 +214,7 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   color: #a12622;
 }
 
-.region-search #bcbb-search-api-form * {
+.region-search form[id*=bcbb-search-api] * {
   font-size: 1em;
   border-color: var(--bs-gray-900);
 }
