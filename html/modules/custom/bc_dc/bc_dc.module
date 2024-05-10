@@ -1114,3 +1114,20 @@ function bc_dc_data_set_has_field(NodeInterface $node, string $field_key): bool 
   // Otherwise, hide the field.
   return FALSE;
 }
+
+/**
+ * Implements hook_robotstxt().
+ */
+function bc_dc_robotstxt(): array {
+  // Get the content of robots.txt from config.
+  $content = trim(\Drupal::config('robotstxt.settings')->get('content'));
+
+  // When there is no content set, use the default file from Drupal core.
+  if (!$content) {
+    $robotstxt = file_get_contents(DRUPAL_ROOT . '/core/assets/scaffold/files/robots.txt');
+    return [$robotstxt];
+  }
+
+  // Default to adding nothing.
+  return [];
+}

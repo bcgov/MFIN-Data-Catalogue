@@ -12,6 +12,7 @@ storage: folder
 folder: ../config/split/prod
 module: {  }
 theme: {  }
-complete_list: {  }
+complete_list:
+  - robotstxt.settings
 partial_list:
   - metatag.metatag_defaults.global
