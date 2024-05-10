@@ -44,7 +44,7 @@ variant_settings:
       context_mapping: {  }
       search:
         search_label: 'Search documentation'
-        search_placeholder: ''
+        search_placeholder: 'Documentation search terms'
         search_btn_label: 'Search documentation'
         search_url: /documentation/search
         label_sr_only: false
