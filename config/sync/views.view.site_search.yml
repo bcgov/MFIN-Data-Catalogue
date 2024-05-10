@@ -2441,8 +2441,10 @@ display:
               administrator: '0'
               data_catalogue_administrator: '0'
               data_catalogue_manager: '0'
+              data_catalogue_api_user: '0'
               data_catalogue_editor: '0'
               data_catalogue_user: '0'
+              data_catalogue_information_management_specialist: '0'
             expose_fields: false
             placeholder: ''
             searched_fields_id: search_api_fulltext_searched_fields
