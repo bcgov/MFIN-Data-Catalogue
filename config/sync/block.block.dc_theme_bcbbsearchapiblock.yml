@@ -20,7 +20,7 @@ settings:
   provider: bcbb_search
   search:
     search_label: Search
-    search_placeholder: ''
+    search_placeholder: 'Data catalogue search terms'
     search_btn_label: ''
     search_url: /search
     label_sr_only: true

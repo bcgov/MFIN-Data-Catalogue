@@ -28,7 +28,7 @@ variant_settings:
       context_mapping: {  }
       search:
         search_label: 'Find metadata records'
-        search_placeholder: ''
+        search_placeholder: 'Data catalogue search terms'
         search_btn_label: ''
         search_url: /search
         label_sr_only: false

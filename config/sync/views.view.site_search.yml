@@ -2446,7 +2446,7 @@ display:
               data_catalogue_user: '0'
               data_catalogue_information_management_specialist: '0'
             expose_fields: false
-            placeholder: ''
+            placeholder: 'Data catalogue search terms'
             searched_fields_id: search_api_fulltext_searched_fields
             value_maxlength: 128
           is_grouped: false
