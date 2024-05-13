@@ -681,6 +681,11 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   padding: 1.5em 0 0;
 }
 
+.region-search input,
+.region-search input::placeholder {
+  font-size: 0.85em;
+}
+
 .region-nav-main {
   font-size: 0.85em;
 }

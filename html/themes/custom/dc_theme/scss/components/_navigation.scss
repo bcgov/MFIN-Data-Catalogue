@@ -1,6 +1,6 @@
 // style links for user menu
 .region-nav-main {
-  font-size: .85em;
+  font-size: $headerText;
   $localColor: var(--bs-gray-900);
   $iconColor: $localColor;
   $borderColor: $localColor;

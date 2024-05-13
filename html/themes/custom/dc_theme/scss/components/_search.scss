@@ -5,6 +5,7 @@
   .region-content,
   .bcdc-book-search,
   .region-sidebar-second {
+
     
     // override default search so submit uses text instead of icon
     input.bcbb-search-submit-icon {
@@ -86,5 +87,15 @@
       margin: 1.5em 0 0;
       padding: 1.5em 0 0;
     }
+  }
+}
+
+
+
+.region-search {
+  input,
+  input::placeholder {
+    // make search input text the same size as the navigation links
+    font-size: $headerText;
   }
 }
