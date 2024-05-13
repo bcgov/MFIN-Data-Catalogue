@@ -665,6 +665,10 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   border-right: 1px solid var(--bs-border-color);
   border-radius: var(--bs-border-radius);
 }
+.page-node-type-book .region-content .block-bcbb-search form input.form-submit,
+.path-documentation .region-content .block-bcbb-search form input.form-submit {
+  border-radius: 0 var(--bs-btn-border-radius) var(--bs-btn-border-radius) 0;
+}
 .page-node-type-book .node__content nav.book-navigation,
 .path-documentation .node__content nav.book-navigation {
   border-top: none;

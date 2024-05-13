@@ -6,7 +6,7 @@
   .bcdc-book-search,
   .region-sidebar-second {
     
-    // override default search with icon so submit uses text
+    // override default search so submit uses text instead of icon
     input.bcbb-search-submit-icon {
       margin-top: .75em;
       // make input wide enough for text
@@ -57,20 +57,25 @@
       grid-template-columns: auto 1fr;
       margin-bottom: 1em;
     }
+    //make text input full width of the column, wrapping buttons below
     .form-item-search-keyword {
       grid-column: span 2;
       input {
         border-right: 1px solid var(--bs-border-color);
         border-radius: var(--bs-border-radius);
-
       }
     }
   }
 
-
+  .region-content {
+    .block-bcbb-search form {
+      input.form-submit {    
+        border-radius: 0 var(--bs-btn-border-radius) var(--bs-btn-border-radius) 0;      
+      }
+    }
+  }
 
   // move divider line so it is between content and search/nav
-
   .node__content  {
     nav.book-navigation {
       border-top: none;
