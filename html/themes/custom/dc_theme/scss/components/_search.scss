@@ -5,19 +5,8 @@
   .region-content,
   .bcdc-book-search,
   .region-sidebar-second {
-    .block-bcbb-search {
-      // reset positioning
-      * {
-        position: static;
-        &:hover,
-        &:active,
-        &:focus {
-          position: static;
-        }
-
-      }
-    }
-    // override default search with icon
+    
+    // override default search with icon so submit uses text
     input.bcbb-search-submit-icon {
       margin-top: .75em;
       // make input wide enough for text
@@ -40,24 +29,20 @@
       &:focus {
         color: var(--bs-btn-hover-color);
         background-color: var(--bs-btn-hover-bg);
-        border-color: var(--bs-btn-hover-border-color);
+        border-color: var(--bs-btn-hover-border-color); 
       }
     }
-    // override default margin
-    .block-book-navigation,
-    .block-bcbb-book-navigation {
-      margin-top: 1em;
-    @include responsive() {
-      margin-top: 2em;
-    }
-    }
+
+
+
     // make reset button look like all the other reset buttons
     .btn.btn-danger {
       background-color: $colorAlert-error;
       border: none;
       border-radius: var(--bs-btn-border-radius);
-      padding: var(--bs-btn-padding-x) calc(var(--bs-btn-padding-y) + .25em);
+      padding: .45rem .75rem;
       margin-top: 0.75em;
+      width: fit-content;
       &:hover,
       &:active,
       &:focus {
@@ -65,44 +50,25 @@
       }
     }
   }
-  // search form layout on book's index page
-  @include responsive ($md-min) {
-    // prevent layout jumping around when contextual links are hovered over
-    // This only affects administrators and can be removed if there is a need for the link
-    .contextual {
-      display: none;
+
+  .region-sidebar-second,
+  .bcdc-book-search-page {
+    .block-bcbb-search form {
+      grid-template-columns: auto 1fr;
+      margin-bottom: 1em;
     }
-    .node__content {
-      > .block-bcbb-search {
-        form {
-          display: grid;
-          grid-template-columns: repeat(12, 1fr);
-          gap: 1.5em;
-          padding: 0 .5em;
-          .form-type-textfield {
-            grid-column: span 11;
-          }
-          span.bcbb-input-wrapper {
-          // hide input fields where the type="hidden"
-           &:nth-child(1),
-           &:nth-child(4),
-           &:nth-child(5),
-           &:nth-child(6) {
-             display: none;
-           }
-           // input submit (button)
-           &:nth-child(3) {
-            grid-column: span 1;
-            display: flex;
-            justify-content: flex-start;
-            align-items: flex-end;
-            height: 100%;
-           }
-          }
-        }
+    .form-item-search-keyword {
+      grid-column: span 2;
+      input {
+        border-right: 1px solid var(--bs-border-color);
+        border-radius: var(--bs-border-radius);
+
       }
     }
   }
+
+
+
   // move divider line so it is between content and search/nav
 
   .node__content  {
@@ -116,13 +82,4 @@
       padding: 1.5em 0 0;
     }
   }
-}
-
-@include responsive() {
-  .path-documentation {
-    .region-sidebar {
-      padding-left: 1.15em;
-    }
-  }
-
 }

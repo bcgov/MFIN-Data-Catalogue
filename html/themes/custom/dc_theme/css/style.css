@@ -566,32 +566,6 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   background-color: var(--bs-warning) !important;
 }
 
-.page-node-type-book .region-content .block-bcbb-search *,
-.page-node-type-book .bcdc-book-search .block-bcbb-search *,
-.page-node-type-book .region-sidebar-second .block-bcbb-search *,
-.path-documentation .region-content .block-bcbb-search *,
-.path-documentation .bcdc-book-search .block-bcbb-search *,
-.path-documentation .region-sidebar-second .block-bcbb-search * {
-  position: static;
-}
-.page-node-type-book .region-content .block-bcbb-search *:hover, .page-node-type-book .region-content .block-bcbb-search *:active, .page-node-type-book .region-content .block-bcbb-search *:focus,
-.page-node-type-book .bcdc-book-search .block-bcbb-search *:hover,
-.page-node-type-book .bcdc-book-search .block-bcbb-search *:active,
-.page-node-type-book .bcdc-book-search .block-bcbb-search *:focus,
-.page-node-type-book .region-sidebar-second .block-bcbb-search *:hover,
-.page-node-type-book .region-sidebar-second .block-bcbb-search *:active,
-.page-node-type-book .region-sidebar-second .block-bcbb-search *:focus,
-.path-documentation .region-content .block-bcbb-search *:hover,
-.path-documentation .region-content .block-bcbb-search *:active,
-.path-documentation .region-content .block-bcbb-search *:focus,
-.path-documentation .bcdc-book-search .block-bcbb-search *:hover,
-.path-documentation .bcdc-book-search .block-bcbb-search *:active,
-.path-documentation .bcdc-book-search .block-bcbb-search *:focus,
-.path-documentation .region-sidebar-second .block-bcbb-search *:hover,
-.path-documentation .region-sidebar-second .block-bcbb-search *:active,
-.path-documentation .region-sidebar-second .block-bcbb-search *:focus {
-  position: static;
-}
 .page-node-type-book .region-content input.bcbb-search-submit-icon,
 .page-node-type-book .bcdc-book-search input.bcbb-search-submit-icon,
 .page-node-type-book .region-sidebar-second input.bcbb-search-submit-icon,
@@ -640,36 +614,6 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   background-color: var(--bs-btn-hover-bg);
   border-color: var(--bs-btn-hover-border-color);
 }
-.page-node-type-book .region-content .block-book-navigation,
-.page-node-type-book .region-content .block-bcbb-book-navigation,
-.page-node-type-book .bcdc-book-search .block-book-navigation,
-.page-node-type-book .bcdc-book-search .block-bcbb-book-navigation,
-.page-node-type-book .region-sidebar-second .block-book-navigation,
-.page-node-type-book .region-sidebar-second .block-bcbb-book-navigation,
-.path-documentation .region-content .block-book-navigation,
-.path-documentation .region-content .block-bcbb-book-navigation,
-.path-documentation .bcdc-book-search .block-book-navigation,
-.path-documentation .bcdc-book-search .block-bcbb-book-navigation,
-.path-documentation .region-sidebar-second .block-book-navigation,
-.path-documentation .region-sidebar-second .block-bcbb-book-navigation {
-  margin-top: 1em;
-}
-@media only screen and (min-width: 576px) {
-  .page-node-type-book .region-content .block-book-navigation,
-  .page-node-type-book .region-content .block-bcbb-book-navigation,
-  .page-node-type-book .bcdc-book-search .block-book-navigation,
-  .page-node-type-book .bcdc-book-search .block-bcbb-book-navigation,
-  .page-node-type-book .region-sidebar-second .block-book-navigation,
-  .page-node-type-book .region-sidebar-second .block-bcbb-book-navigation,
-  .path-documentation .region-content .block-book-navigation,
-  .path-documentation .region-content .block-bcbb-book-navigation,
-  .path-documentation .bcdc-book-search .block-book-navigation,
-  .path-documentation .bcdc-book-search .block-bcbb-book-navigation,
-  .path-documentation .region-sidebar-second .block-book-navigation,
-  .path-documentation .region-sidebar-second .block-bcbb-book-navigation {
-    margin-top: 2em;
-  }
-}
 .page-node-type-book .region-content .btn.btn-danger,
 .page-node-type-book .bcdc-book-search .btn.btn-danger,
 .page-node-type-book .region-sidebar-second .btn.btn-danger,
@@ -679,8 +623,9 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   background-color: #a12622;
   border: none;
   border-radius: var(--bs-btn-border-radius);
-  padding: var(--bs-btn-padding-x) calc(var(--bs-btn-padding-y) + 0.25em);
+  padding: 0.45rem 0.75rem;
   margin-top: 0.75em;
+  width: fit-content;
 }
 .page-node-type-book .region-content .btn.btn-danger:hover, .page-node-type-book .region-content .btn.btn-danger:active, .page-node-type-book .region-content .btn.btn-danger:focus,
 .page-node-type-book .bcdc-book-search .btn.btn-danger:hover,
@@ -700,37 +645,25 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 .path-documentation .region-sidebar-second .btn.btn-danger:focus {
   background-color: var(--bs-btn-hover-bg);
 }
-@media only screen and (min-width: 768px) {
-  .page-node-type-book .contextual,
-  .path-documentation .contextual {
-    display: none;
-  }
-  .page-node-type-book .node__content > .block-bcbb-search form,
-  .path-documentation .node__content > .block-bcbb-search form {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 1.5em;
-    padding: 0 0.5em;
-  }
-  .page-node-type-book .node__content > .block-bcbb-search form .form-type-textfield,
-  .path-documentation .node__content > .block-bcbb-search form .form-type-textfield {
-    grid-column: span 11;
-  }
-  .page-node-type-book .node__content > .block-bcbb-search form span.bcbb-input-wrapper:nth-child(1), .page-node-type-book .node__content > .block-bcbb-search form span.bcbb-input-wrapper:nth-child(4), .page-node-type-book .node__content > .block-bcbb-search form span.bcbb-input-wrapper:nth-child(5), .page-node-type-book .node__content > .block-bcbb-search form span.bcbb-input-wrapper:nth-child(6),
-  .path-documentation .node__content > .block-bcbb-search form span.bcbb-input-wrapper:nth-child(1),
-  .path-documentation .node__content > .block-bcbb-search form span.bcbb-input-wrapper:nth-child(4),
-  .path-documentation .node__content > .block-bcbb-search form span.bcbb-input-wrapper:nth-child(5),
-  .path-documentation .node__content > .block-bcbb-search form span.bcbb-input-wrapper:nth-child(6) {
-    display: none;
-  }
-  .page-node-type-book .node__content > .block-bcbb-search form span.bcbb-input-wrapper:nth-child(3),
-  .path-documentation .node__content > .block-bcbb-search form span.bcbb-input-wrapper:nth-child(3) {
-    grid-column: span 1;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
-    height: 100%;
-  }
+.page-node-type-book .region-sidebar-second .block-bcbb-search form,
+.page-node-type-book .bcdc-book-search-page .block-bcbb-search form,
+.path-documentation .region-sidebar-second .block-bcbb-search form,
+.path-documentation .bcdc-book-search-page .block-bcbb-search form {
+  grid-template-columns: auto 1fr;
+  margin-bottom: 1em;
+}
+.page-node-type-book .region-sidebar-second .form-item-search-keyword,
+.page-node-type-book .bcdc-book-search-page .form-item-search-keyword,
+.path-documentation .region-sidebar-second .form-item-search-keyword,
+.path-documentation .bcdc-book-search-page .form-item-search-keyword {
+  grid-column: span 2;
+}
+.page-node-type-book .region-sidebar-second .form-item-search-keyword input,
+.page-node-type-book .bcdc-book-search-page .form-item-search-keyword input,
+.path-documentation .region-sidebar-second .form-item-search-keyword input,
+.path-documentation .bcdc-book-search-page .form-item-search-keyword input {
+  border-right: 1px solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
 }
 .page-node-type-book .node__content nav.book-navigation,
 .path-documentation .node__content nav.book-navigation {
@@ -744,11 +677,6 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   padding: 1.5em 0 0;
 }
 
-@media only screen and (min-width: 576px) {
-  .path-documentation .region-sidebar {
-    padding-left: 1.15em;
-  }
-}
 .region-nav-main {
   font-size: 0.85em;
 }
