@@ -37,7 +37,7 @@ variant_settings:
         search_input_size_value: null
         show_advanced_link: true
       region: main
-      weight: 1
+      weight: -8
       uuid: 911500f9-9c75-43ca-a73c-1551a9b198fa
       css_classes:
         - ''
@@ -53,7 +53,7 @@ variant_settings:
       view_mode: full
       context_mapping: {  }
       region: main
-      weight: 0
+      weight: -9
       uuid: e1c7523b-64ff-446b-8054-b336cc1e5bbf
       css_classes:
         - ''
@@ -62,13 +62,13 @@ variant_settings:
     458835cd-b5af-46ca-a535-17d51c7313dc:
       id: system_branding_block
       label: 'Site branding'
-      label_display: visible
+      label_display: '0'
       provider: system
       context_mapping: {  }
-      use_site_logo: true
+      use_site_logo: false
       use_site_name: true
-      use_site_slogan: true
-      region: main
+      use_site_slogan: false
+      region: header
       weight: -1
       uuid: 458835cd-b5af-46ca-a535-17d51c7313dc
       css_classes:
