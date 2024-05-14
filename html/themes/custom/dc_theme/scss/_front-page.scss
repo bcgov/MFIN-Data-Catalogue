@@ -1,44 +1,51 @@
 .path-frontpage {
 
-  .region-content {
-
-    margin-top: 3em;
-    margin-bottom: 2em;
-
-    .layout__region--first {
-      @include responsive {
-        padding-right: 3rem;
-      }
-    }
-
-    .layout__region--second {
-      background-color:  RGBA(var(--bs-light-rgb));
-      border: var(--bs-border-width) solid var(--bs-border-color-translucent);
-      border-radius: var(--bs-border-radius);
-      padding: 2rem 1.5rem 3rem;
-      // this media query comes from the default stable theme 2 col layout
-      @media screen and (min-width: 40em) {
-        background-image: url(../assets/trees.svg);
-        background-size: contain;
-        background-repeat: repeat-x;
-        background-position: center bottom;
-      }
-      .bcbb-search-api-form {
-        .form-item-search-keyword {
-          label {
-            font-weight: bold;
-          }
-        }
-        .description {
-          position: absolute;
-          padding-top: .5em;
-          font-size: 1em;
-        }
-      }
-    }
-
-
-
+  // hide breadcrumbs on home. This should be investigated, it twig
+  // there should be no html generated here if there are no breadcrumbs
+  .bcbb-breadcrumbs {
+    display:none;
   }
+  .bcdc-main-region {
+    padding: 0;
+  }
+
+  .header-region {
+    $bannerHeightMax: 180px;
+    $bannerHeightMin: 80px;
+    margin: 0px calc(50% - 50vw);
+    margin-top: 0 !important;
+    background: rgb(8, 49, 85);
+    .block-system-branding-block {
+      width: 100%;
+      margin: 0 auto;
+      > div > div {
+        width: 100%;
+      }
+      
+      .site-title {
+        height: $bannerHeightMin;
+        display: grid;
+        width: 100%;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        @include responsive() {
+          height: $bannerHeightMax;
+          &:after {
+            content: "";
+            display: block;
+            height: $bannerHeightMax;
+            background-image: url(../assets/data-cat.svg);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: 75% center;          
+          }
+        }     
+      }
+    }
+    * {
+      color: white !important;
+    }
+    
+  } 
 
 }

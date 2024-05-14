@@ -99,13 +99,13 @@ set nav_classes = 'navbar navbar-expand-lg' ~
   %}
 
   <div class="{{ b5_top_container }}">
-    {% if page.breadcrumb %}
+    {% if not page.breadcrumb.isempty %}
       <div class="bcbb-fw bcbb-breadcrumbs">
         <div class="container ps-4">
           {{ page.breadcrumb }}
         </div>
       </div>
-      {% endif %}
+    {% endif %}
     <div class="{{ content_top_full_classes }}">
       {{ page.content_top_full }}
     </div>

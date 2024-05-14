@@ -1308,36 +1308,47 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   background-color: transparent;
 }
 
-.path-frontpage .region-content {
-  margin-top: 3em;
-  margin-bottom: 2em;
+.path-frontpage .bcbb-breadcrumbs {
+  display: none;
+}
+.path-frontpage .bcdc-main-region {
+  padding: 0;
+}
+.path-frontpage .header-region {
+  margin: 0px calc(50% - 50vw);
+  margin-top: 0 !important;
+  background: rgb(8, 49, 85);
+}
+.path-frontpage .header-region .block-system-branding-block {
+  width: 100%;
+  margin: 0 auto;
+}
+.path-frontpage .header-region .block-system-branding-block > div > div {
+  width: 100%;
+}
+.path-frontpage .header-region .block-system-branding-block .site-title {
+  height: 80px;
+  display: grid;
+  width: 100%;
+  grid-template-columns: auto 1fr;
+  align-items: center;
 }
 @media only screen and (min-width: 576px) {
-  .path-frontpage .region-content .layout__region--first {
-    padding-right: 3rem;
+  .path-frontpage .header-region .block-system-branding-block .site-title {
+    height: 180px;
   }
-}
-.path-frontpage .region-content .layout__region--second {
-  background-color: RGBA(var(--bs-light-rgb));
-  border: var(--bs-border-width) solid var(--bs-border-color-translucent);
-  border-radius: var(--bs-border-radius);
-  padding: 2rem 1.5rem 3rem;
-}
-@media screen and (min-width: 40em) {
-  .path-frontpage .region-content .layout__region--second {
-    background-image: url(../assets/trees.svg);
+  .path-frontpage .header-region .block-system-branding-block .site-title:after {
+    content: "";
+    display: block;
+    height: 180px;
+    background-image: url(../assets/data-cat.svg);
+    background-repeat: no-repeat;
     background-size: contain;
-    background-repeat: repeat-x;
-    background-position: center bottom;
+    background-position: 75% center;
   }
 }
-.path-frontpage .region-content .layout__region--second .bcbb-search-api-form .form-item-search-keyword label {
-  font-weight: bold;
-}
-.path-frontpage .region-content .layout__region--second .bcbb-search-api-form .description {
-  position: absolute;
-  padding-top: 0.5em;
-  font-size: 1em;
+.path-frontpage .header-region * {
+  color: white !important;
 }
 
 .block-bc-dc-org-footer {
