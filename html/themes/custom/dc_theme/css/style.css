@@ -742,6 +742,7 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   padding: 0.5rem 2em 0.5rem 0.5rem;
   border-radius: var(--bs-border-radius-sm);
   border: 1px solid var(--bs-gray-900);
+  color: var(--bs-gray-900);
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
   background-repeat: no-repeat;
   background-size: 1.25em 1.25em;
@@ -1471,3 +1472,5 @@ html.bcbb-theme a img.site-logo {
     height: 40px;
   }
 }
+
+/*# sourceMappingURL=style.css.map */

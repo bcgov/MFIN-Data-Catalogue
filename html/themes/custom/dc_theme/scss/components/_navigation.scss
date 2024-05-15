@@ -68,6 +68,7 @@
       padding: .5rem 2em .5rem .5rem;
       border-radius: var(--bs-border-radius-sm);
       border: 1px solid $borderColor;
+      color: $borderColor;
       transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
       background-repeat: no-repeat;
       background-size: 1.25em 1.25em;
