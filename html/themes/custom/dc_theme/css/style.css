@@ -573,6 +573,7 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 .path-documentation .bcdc-book-search input.bcbb-search-submit-icon,
 .path-documentation .region-sidebar-second input.bcbb-search-submit-icon {
   margin-top: 0.75em;
+  border-radius: var(--bs-btn-border-radius) !important;
   width: auto;
   text-indent: initial;
   background-image: none;
@@ -702,8 +703,13 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   background-repeat: no-repeat;
   background-size: 1.25em 1.25em;
 }
+@media only screen and (min-width: 576px) {
+  .region-nav-main ul[data-block=nav_main] li a {
+    border-radius: var(--bs-border-radius);
+  }
+}
 .region-nav-main ul[data-block=nav_main] li a:hover, .region-nav-main ul[data-block=nav_main] li a:focus, .region-nav-main ul[data-block=nav_main] li a:active {
-  background-color: rgb(217, 217, 217);
+  background-color: var(--bs-gray-200);
 }
 .region-nav-main ul[data-block=nav_main] li a[data-drupal-link-system-path="node/3"], .region-nav-main ul[data-block=nav_main] li a[data-drupal-link-system-path=user], .region-nav-main ul[data-block=nav_main] li a[data-drupal-link-system-path="user/logout"] {
   text-indent: -9999px;
@@ -743,7 +749,7 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23ar(--bs-gray-900)' class='bi bi-person-fill' viewBox='0 0 16 16'%3E%3Cpath d='M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6'/%3E%3C/svg%3E");
 }
 .region-nav-main .openid-connect-login-form input[type=submit]:hover, .region-nav-main .openid-connect-login-form input[type=submit]:focus, .region-nav-main .openid-connect-login-form input[type=submit]:active {
-  background-color: rgb(217, 217, 217);
+  background-color: var(--bs-gray-200);
 }
 
 .region-footer a {

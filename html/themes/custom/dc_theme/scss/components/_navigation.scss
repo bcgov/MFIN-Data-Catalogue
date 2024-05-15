@@ -4,7 +4,7 @@
   $localColor: var(--bs-gray-900);
   $iconColor: $localColor;
   $borderColor: $localColor;
-  $hoverColor: $colorInputBorder;
+  $hoverColor: var(--bs-gray-200);
   ul[data-block="nav_main"] {
     // layout the menu
     display: flex;
@@ -16,6 +16,9 @@
         display: block;
         border: 1px solid $borderColor;
         border-radius: var(--bs-border-radius-sm);
+        @include  responsive() {
+          border-radius: var(--bs-border-radius);
+        }
         color: $localColor;
         background-repeat: no-repeat;
         background-size: 1.25em 1.25em;

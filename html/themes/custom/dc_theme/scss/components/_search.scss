@@ -10,6 +10,7 @@
     // override default search so submit uses text instead of icon
     input.bcbb-search-submit-icon {
       margin-top: .75em;
+      border-radius: var(--bs-btn-border-radius) !important;
       // make input wide enough for text
       width: auto;
       // make label visible
