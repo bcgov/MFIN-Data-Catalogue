@@ -1100,6 +1100,10 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
     margin-bottom: 0.5rem;
   }
 }
+.page-node-type-data-set .node--view-mode-full .block-bc-dc .icon-bi-award-fill::before,
+.page-node-type-data-set .node--view-mode-full .dataset-alerts .icon-bi-award-fill::before {
+  font-size: 0.765em;
+}
 .page-node-type-data-set a[href^="/search?"] {
   background-image: url(../assets/icon_search_link.svg);
   background-repeat: no-repeat;
@@ -1467,5 +1471,3 @@ html.bcbb-theme a img.site-logo {
     height: 40px;
   }
 }
-
-/*# sourceMappingURL=style.css.map */

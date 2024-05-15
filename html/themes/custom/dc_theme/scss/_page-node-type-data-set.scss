@@ -104,6 +104,10 @@
       @include responsive {
         margin-bottom: .5rem;
       }
+      // adjust high value icon size so it doesn't resize the badge
+      .icon-bi-award-fill::before {
+        font-size: .765em;
+      }
     }
 
   }
