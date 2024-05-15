@@ -1,10 +1,5 @@
 .path-frontpage {
 
-  // hide breadcrumbs on home. This should be investigated, it twig
-  // there should be no html generated here if there are no breadcrumbs
-  .bcbb-breadcrumbs {
-    display:none;
-  }
   .bcdc-main-region {
     padding: 0;
   }
@@ -12,24 +7,28 @@
   .header-region {
     $bannerHeightMax: 180px;
     $bannerHeightMin: 80px;
+    // bust the wraper out of it's container and make it full width
     margin: 0px calc(50% - 50vw);
     margin-top: 0 !important;
     background: rgb(8, 49, 85);
+
     .block-system-branding-block {
       width: 100%;
       margin: 0 auto;
+      // work around for a wrapper div added by Drupal
       > div > div {
         width: 100%;
-      }
-      
+      }  
+
       .site-title {
-        height: $bannerHeightMin;
+        min-height: $bannerHeightMin;
         display: grid;
         width: 100%;
         grid-template-columns: auto 1fr;
         align-items: center;
+        // show the background image and ensure it won't collide with text
         @include responsive() {
-          height: $bannerHeightMax;
+          min-height: $bannerHeightMax;
           &:after {
             content: "";
             display: block;
@@ -47,5 +46,50 @@
     }
     
   } 
+
+  .main-region {
+    padding: 0 1em;
+  }
+
+  .block-bcbb-search {
+    border: 1px solid var(--bs-gray-300);
+    background-color: var(--bs-gray-100);
+    border-radius: var(--bs-border-radius);
+    padding: 1em 1.5em 2em;
+    form#bcbb-search-api-form {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      .form-item {
+        float: none;
+        margin-right: 0;
+      }
+      .form-text {
+        $iconColor: $colorBlack;
+        border-radius: var(--bs-border-radius) 0 0 var(--bs-border-radius);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' shape-rendering='geometricPrecision' width='50' height='50' fill='#{svg-color($iconColor)}' viewBox='0 0 16 16' opacity='.75'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0'/%3E%3C/svg%3E%0A");
+        background-repeat: no-repeat;
+        background-size: 1em 1em;
+        padding-left: 2em;
+        background-position: .5em center;
+      }
+      input.form-submit { 
+        background-image: none;
+        width: auto;
+        text-indent: initial;
+        background-color: var(--bs-btn-bg);
+        border-color: var(--bs-btn-border-color);
+        &:hover,
+        &:focus,
+        &:active {
+          background-color: var(--bs-btn-hover-bg);
+          border-color: var(--bs-btn-hover-border-color);
+        }
+      }
+      .description {
+        position: absolute;
+      }
+    }
+  }
+
 
 }

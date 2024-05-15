@@ -1308,9 +1308,6 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   background-color: transparent;
 }
 
-.path-frontpage .bcbb-breadcrumbs {
-  display: none;
-}
 .path-frontpage .bcdc-main-region {
   padding: 0;
 }
@@ -1327,7 +1324,7 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   width: 100%;
 }
 .path-frontpage .header-region .block-system-branding-block .site-title {
-  height: 80px;
+  min-height: 80px;
   display: grid;
   width: 100%;
   grid-template-columns: auto 1fr;
@@ -1335,7 +1332,7 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 }
 @media only screen and (min-width: 576px) {
   .path-frontpage .header-region .block-system-branding-block .site-title {
-    height: 180px;
+    min-height: 180px;
   }
   .path-frontpage .header-region .block-system-branding-block .site-title:after {
     content: "";
@@ -1349,6 +1346,45 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 }
 .path-frontpage .header-region * {
   color: white !important;
+}
+.path-frontpage .main-region {
+  padding: 0 1em;
+}
+.path-frontpage .block-bcbb-search {
+  border: 1px solid var(--bs-gray-300);
+  background-color: var(--bs-gray-100);
+  border-radius: var(--bs-border-radius);
+  padding: 1em 1.5em 2em;
+}
+.path-frontpage .block-bcbb-search form#bcbb-search-api-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+.path-frontpage .block-bcbb-search form#bcbb-search-api-form .form-item {
+  float: none;
+  margin-right: 0;
+}
+.path-frontpage .block-bcbb-search form#bcbb-search-api-form .form-text {
+  border-radius: var(--bs-border-radius) 0 0 var(--bs-border-radius);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' shape-rendering='geometricPrecision' width='50' height='50' fill='%23000' viewBox='0 0 16 16' opacity='.75'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0'/%3E%3C/svg%3E%0A");
+  background-repeat: no-repeat;
+  background-size: 1em 1em;
+  padding-left: 2em;
+  background-position: 0.5em center;
+}
+.path-frontpage .block-bcbb-search form#bcbb-search-api-form input.form-submit {
+  background-image: none;
+  width: auto;
+  text-indent: initial;
+  background-color: var(--bs-btn-bg);
+  border-color: var(--bs-btn-border-color);
+}
+.path-frontpage .block-bcbb-search form#bcbb-search-api-form input.form-submit:hover, .path-frontpage .block-bcbb-search form#bcbb-search-api-form input.form-submit:focus, .path-frontpage .block-bcbb-search form#bcbb-search-api-form input.form-submit:active {
+  background-color: var(--bs-btn-hover-bg);
+  border-color: var(--bs-btn-hover-border-color);
+}
+.path-frontpage .block-bcbb-search form#bcbb-search-api-form .description {
+  position: absolute;
 }
 
 .block-bc-dc-org-footer {
