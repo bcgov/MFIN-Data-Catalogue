@@ -99,7 +99,7 @@ class ReviewReminder implements ContainerInjectionInterface {
       return NULL;
     }
 
-    $subject = $this->t('Data sets you maintain need updates', [], ['langcode' => $account->getPreferredLangcode()]);
+    $subject = $this->t('Metadata records you maintain need updates', [], ['langcode' => $account->getPreferredLangcode()]);
 
     $success = GcNotifyApiService::sendMessage([$email], $subject, $body);
     if ($success) {
