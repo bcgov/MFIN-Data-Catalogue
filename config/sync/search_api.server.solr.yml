@@ -41,7 +41,7 @@ backend_config:
   connector: solr_cloud_basic_auth
   connector_config:
     scheme: http
-    host: solr.openplus.ca
+    host: solr
     port: 8983
     path: /
     core: bc-data-catalogue
