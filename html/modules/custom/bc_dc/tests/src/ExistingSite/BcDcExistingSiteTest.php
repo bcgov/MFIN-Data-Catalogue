@@ -48,9 +48,9 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     $this->assertSession()->statusCodeEquals(200);
 
     // Login button in the header.
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "region-header")]/div[contains(@class, "block-user-login-block")]//input[@value = "Log in with IDIR"]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "region-nav-main")]/div[contains(@class, "block-user-login-block")]//input[@value = "Log in with IDIR"]');
     // No links in login block. By default, a password reset link appears.
-    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "region-header")]/div[contains(@class, "block-user-login-block")]//a');
+    $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "region-nav-main")]/div[contains(@class, "block-user-login-block")]//a');
 
     // Header search block does not appear.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-bcbb-search-api-block")]');
