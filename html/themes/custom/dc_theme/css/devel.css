@@ -8,8 +8,6 @@ This file should be empty on production */
 #dc_data_usage_value_information_management details.field_related_document > summary {
   padding: 0;
 }
-/* fixes sideways 'jiggle' caused by some conflict with bootstrap*/
-.bcbb-theme html {overflow-x: hidden;}
 
 /* hide breadcrumbs on home. This should be investigated, in twig
  there should be no html generated here if there are no breadcrumbs */
