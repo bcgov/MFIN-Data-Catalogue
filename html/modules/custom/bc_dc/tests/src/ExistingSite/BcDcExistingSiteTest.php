@@ -126,7 +126,7 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
     $this->drupalGet('test-set');
     $this->assertSession()->statusCodeEquals(200);
     $container = $this->assertSession()->elementExists('xpath', '//div
-      [*[text() = "Data set editor"]]
+      [*[text() = "Metadata record editor"]]
       [div/a[starts-with(@href, "/search?f%5B0%5D=author_id%3A")]]');
     $container = $this->assertSession()->elementExists('xpath', '//div
       [*[text() = "Office of primary responsibility"]]
