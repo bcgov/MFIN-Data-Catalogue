@@ -62,28 +62,13 @@ function bcbb_book_node_allowed_in_book(NodeInterface $node): bool {
  * Implements hook_menu_local_tasks_alter().
  */
 function bcbb_book_menu_local_tasks_alter(array &$data, string $route_name, RefinableCacheableDependencyInterface &$cacheability): void {
-  // Act only on certain routes.
-  $node_routes = [
-    'entity.node.canonical',
-    'entity.node.edit_form',
-    'entity.node.latest_version',
-    'entity.node.version_history',
-    'entity.node.workflow_history',
-    'node_authlink.node_authlink_node_form',
-    'entity.node.entityqueue',
-    'bc_dc.data_set_build_page_tab',
-  ];
-  if (!in_array($route_name, $node_routes)) {
-    return;
-  }
-
   // Get the current node.
   $node = \Drupal::routeMatch()->getParameter('node');
   if (is_numeric($node)) {
     $node = \Drupal::entityTypeManager()->getStorage('node')->load($node);
   }
 
-  // Remove outline tab if node is not a book.
+  // Hide book outline tab on content types that are not allowed to be in books.
   if ($node instanceof NodeInterface) {
     if (!bcbb_book_node_allowed_in_book($node)) {
       unset($data['tabs'][0]['entity.node.book_outline_form']);
