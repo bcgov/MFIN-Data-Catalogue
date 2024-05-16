@@ -68,12 +68,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb.git",
-                "reference": "4cb317d36a2b9d3ad9c8a22287c8790a05e9c18b"
+                "reference": "0f290fee3381572c7b769172029f3ec55a342041"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/4cb317d36a2b9d3ad9c8a22287c8790a05e9c18b",
-                "reference": "4cb317d36a2b9d3ad9c8a22287c8790a05e9c18b",
+                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/0f290fee3381572c7b769172029f3ec55a342041",
+                "reference": "0f290fee3381572c7b769172029f3ec55a342041",
                 "shasum": ""
             },
             "require": {
@@ -133,6 +133,7 @@
                         "3392572 - strnatcasecmp(): Passing null to string is deprecated": "https://www.drupal.org/files/issues/2023-10-25/drupal-strnatcasecmp_string_only-3392572-10.patch"
                     },
                     "drupal/diff": {
+                        "2954352 - Local tasks for node not visible on diff.revisions_diff route": "https://www.drupal.org/files/issues/2024-05-16/diff-add_local_tasks-2954352-17.patch",
                         "2834253 - Missing column headings in Revisions list": "https://www.drupal.org/files/issues/2024-05-09/diff-missing_column_headers-2834253-23.patch",
                         "3183380 - Add 'compare revisions' button on top for long form": "https://www.drupal.org/files/issues/2024-05-09/diff-add_compare_revisions-3183380-19.patch"
                     },
@@ -163,7 +164,7 @@
                 "source": "https://github.com/bcgov/bcbb/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb/issues"
             },
-            "time": "2024-05-09T15:30:07+00:00"
+            "time": "2024-05-16T16:17:48+00:00"
         },
         {
             "name": "bcgov/bcbb_theme",
