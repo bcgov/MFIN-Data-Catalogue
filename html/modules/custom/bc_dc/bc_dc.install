@@ -11,6 +11,7 @@
 function bc_dc_requirements(string $phase): array {
   $requirements = [];
 
+  // ZipArchive is used by phpoffice/phpspreadsheet.
   if (!class_exists('ZipArchive')) {
     $requirements['bc_dc_ZipArchive'] = [
       'title' => t('BC Data Catalogue Module'),
