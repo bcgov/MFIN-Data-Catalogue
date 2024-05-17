@@ -17,7 +17,7 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:taxonomy_term'
+  handler: 'default:filter_existing_terms'
   handler_settings:
     target_bundles:
       data_set_series: data_set_series
@@ -26,4 +26,5 @@ settings:
       direction: asc
     auto_create: false
     auto_create_bundle: ''
+    allow_self_reference: false
 field_type: entity_reference
