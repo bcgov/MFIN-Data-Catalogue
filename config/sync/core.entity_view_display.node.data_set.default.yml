@@ -203,7 +203,7 @@ content:
     type: data_set_facet_search_link
     label: inline
     settings:
-      format_as_list: false
+      format_as_list: true
     third_party_settings: {  }
     weight: 6
     region: content

@@ -136,7 +136,7 @@ class BcDcExistingSiteTest extends BcbbExistingSiteBase {
       [div/a[starts-with(@href, "/search?f%5B0%5D=source_system%3A")]]');
     $container = $this->assertSession()->elementExists('xpath', '//div
       [*[text() = "Series"]]
-      [div/a[starts-with(@href, "/search?f%5B0%5D=series%3A")]]');
+      [//ul/li/a[starts-with(@href, "/search?f%5B0%5D=series%3A")]]');
 
     // Test Dashboard for DC user.
     // These tests are here instead of in Functional tests because search does
