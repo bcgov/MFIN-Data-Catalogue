@@ -6,7 +6,7 @@
   .bcdc-book-search,
   .region-sidebar-second {
 
-    
+
     // override default search so submit uses text instead of icon
     input.bcbb-search-submit-icon {
       margin-top: .75em;
@@ -31,7 +31,7 @@
       &:focus {
         color: var(--bs-btn-hover-color);
         background-color: var(--bs-btn-hover-bg);
-        border-color: var(--bs-btn-hover-border-color); 
+        border-color: var(--bs-btn-hover-border-color);
       }
     }
 
@@ -71,8 +71,8 @@
 
   .region-content {
     .block-bcbb-search form {
-      input.form-submit {    
-        border-radius: 0 var(--bs-btn-border-radius) var(--bs-btn-border-radius) 0;      
+      input.form-submit {
+        border-radius: 0 var(--bs-btn-border-radius) var(--bs-btn-border-radius) 0;
       }
     }
   }
