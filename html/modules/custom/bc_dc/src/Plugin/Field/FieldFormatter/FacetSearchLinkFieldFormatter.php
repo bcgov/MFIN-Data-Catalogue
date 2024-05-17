@@ -5,6 +5,7 @@ namespace Drupal\bc_dc\Plugin\Field\FieldFormatter;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 
 /**
@@ -25,9 +26,34 @@ class FacetSearchLinkFieldFormatter extends FormatterBase {
   /**
    * {@inheritdoc}
    */
+  public static function defaultSettings(): array {
+    return [
+      'format_as_list' => FALSE,
+    ] + parent::defaultSettings();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function settingsForm(array $form, FormStateInterface $form_state): array {
+    $form = parent::settingsForm($form, $form_state);
+
+    $form['format_as_list'] = [
+      '#title' => $this->t('Format as list'),
+      '#type' => 'checkbox',
+      '#default_value' => !empty($this->getSetting('format_as_list')),
+    ];
+
+    return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function settingsSummary(): array {
     $summary = [];
     $summary[] = $this->t('Links to the facet search for this item. This only works for taxonomy terms.');
+    $summary[] = $this->getSetting('format_as_list') ? $this->t('Format as list.') : $this->t('Do not format as list.');
     return $summary;
   }
 
@@ -43,7 +69,7 @@ class FacetSearchLinkFieldFormatter extends FormatterBase {
    * {@inheritdoc}
    */
   public function viewElements(FieldItemListInterface $items, $langcode): array {
-    $element = [];
+    $links = [];
 
     foreach ($items as $item) {
       if (!$item->entity) {
@@ -60,10 +86,25 @@ class FacetSearchLinkFieldFormatter extends FormatterBase {
         ],
       ];
       // Link to search for this item value.
-      $element[] = Link::createFromRoute($item->entity->getName(), 'page_manager.page_view_site_search_site_search-panels_variant-0', [], $options)->toRenderable();
+      $links[] = Link::createFromRoute($item->entity->getName(), 'page_manager.page_view_site_search_site_search-panels_variant-0', [], $options)->toRenderable();
     }
 
-    return $element;
+    if (!$links) {
+      return [];
+    }
+
+    if ($this->getSetting('format_as_list')) {
+      return [
+        [
+          '#theme' => 'item_list',
+          '#list_type' => 'ul',
+          '#items' => $links,
+        ],
+      ];
+    }
+    else {
+      return $links;
+    }
   }
 
 }

@@ -163,7 +163,8 @@ content:
   field_primary_responsibility_org:
     type: data_set_facet_search_link
     label: above
-    settings: {  }
+    settings:
+      format_as_list: false
     third_party_settings: {  }
     weight: 3
     region: content
@@ -201,14 +202,16 @@ content:
   field_series:
     type: data_set_facet_search_link
     label: inline
-    settings: {  }
+    settings:
+      format_as_list: false
     third_party_settings: {  }
     weight: 6
     region: content
   field_source_system:
     type: data_set_facet_search_link
     label: inline
-    settings: {  }
+    settings:
+      format_as_list: false
     third_party_settings: {  }
     weight: 15
     region: content

@@ -35,3 +35,11 @@ block.settings.bc_dc_edit_button:
     query_param:
       type: string
       label: 'Query param'
+
+field.formatter.settings.data_set_facet_search_link:
+  type: mapping
+  label: 'Data set facet search link settings'
+  mapping:
+    format_as_list:
+      type: boolean
+      label: 'Format as list'
