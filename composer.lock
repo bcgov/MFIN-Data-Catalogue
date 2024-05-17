@@ -172,12 +172,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb-theme.git",
-                "reference": "e2bf64d6290fbd91bf5dabed52e1828ce04bb04c"
+                "reference": "c0c7b50a8c56a7757140275835157a0cd2a12e83"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb-theme/zipball/e2bf64d6290fbd91bf5dabed52e1828ce04bb04c",
-                "reference": "e2bf64d6290fbd91bf5dabed52e1828ce04bb04c",
+                "url": "https://api.github.com/repos/bcgov/bcbb-theme/zipball/c0c7b50a8c56a7757140275835157a0cd2a12e83",
+                "reference": "c0c7b50a8c56a7757140275835157a0cd2a12e83",
                 "shasum": ""
             },
             "require": {
@@ -194,7 +194,7 @@
                 "source": "https://github.com/bcgov/bcbb-theme/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb-theme/issues"
             },
-            "time": "2024-05-16T15:25:38+00:00"
+            "time": "2024-05-16T16:53:59+00:00"
         },
         {
             "name": "billboardjs/billboard",
