@@ -44,3 +44,23 @@ jobs:
             /var/www/html/modules/custom/bc_dc \
             /var/www/html/themes/contrib/bcbb_theme \
             /var/www/html/themes/custom/dc_theme
+
+    - name: Scan PHP-FPM image for vulnerabilities
+      uses: aquasecurity/trivy-action@0.20.0
+      with:
+        image-ref: 'mfin-data-catalogue-web:latest'
+        format: 'table'
+        exit-code: '1'
+        ignore-unfixed: true
+        vuln-type: 'os,library'
+        severity: 'CRITICAL'
+
+    - name: Scan Nginx image for vulnerabilities
+      uses: aquasecurity/trivy-action@0.20.0
+      with:
+        image-ref: 'mfin-data-catalogue-nginx:latest'
+        format: 'table'
+        exit-code: '1'
+        ignore-unfixed: true
+        vuln-type: 'os,library'
+        severity: 'CRITICAL'
