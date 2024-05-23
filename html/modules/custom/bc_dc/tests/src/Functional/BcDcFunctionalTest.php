@@ -869,8 +869,14 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Search block exists.
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "bcbb-search-api-form")]');
 
-    // Test that home page text block can be edited by the DC admin.
+    // Login as admin.
     $this->drupalLogin($this->users['Test Data catalogue administrator']);
+
+    // Test that admin has permission to edit using taxonomy_manager.
+    $this->drupalGet('taxonomy_manager/term/' . $document_type_1->id() . '/edit');
+    $this->assertSession()->statusCodeEquals(200);
+
+    // Test that home page text block can be edited by the DC admin.
     // Put test text onto the block.
     $this->drupalGet('admin/content/block');
     $this->assertSession()->statusCodeEquals(200);

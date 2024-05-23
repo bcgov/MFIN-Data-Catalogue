@@ -68,12 +68,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb.git",
-                "reference": "0f290fee3381572c7b769172029f3ec55a342041"
+                "reference": "1d3030b5f1862e94af3cb8581035a302f719acd7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/0f290fee3381572c7b769172029f3ec55a342041",
-                "reference": "0f290fee3381572c7b769172029f3ec55a342041",
+                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/1d3030b5f1862e94af3cb8581035a302f719acd7",
+                "reference": "1d3030b5f1862e94af3cb8581035a302f719acd7",
                 "shasum": ""
             },
             "require": {
@@ -150,6 +150,9 @@
                     "drupal/role_delegation": {
                         "3284859 - Roles being stripped from users when saved if user has no access to roles field": "https://www.drupal.org/files/issues/2023-11-08/role_delegation-roles-being-stripped-3284859-4.patch"
                     },
+                    "drupal/taxonomy_manager": {
+                        "3449448 - Unable to edit terms without 'administer taxonomy' permission": "https://www.drupal.org/files/issues/2024-05-23/taxonomy_manager-unable_to_edit-3449448-4.patch"
+                    },
                     "drupal/vbo_export": {
                         "3257067 - Ensure PrivateTempStore key is not too long": "https://www.drupal.org/files/issues/2023-06-29/vbo_export-cid_too_long-3257067-9.patch"
                     }
@@ -164,7 +167,7 @@
                 "source": "https://github.com/bcgov/bcbb/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb/issues"
             },
-            "time": "2024-05-16T16:17:48+00:00"
+            "time": "2024-05-23T17:10:12+00:00"
         },
         {
             "name": "bcgov/bcbb_theme",
