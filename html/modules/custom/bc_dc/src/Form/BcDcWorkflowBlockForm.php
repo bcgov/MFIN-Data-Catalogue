@@ -40,7 +40,8 @@ class BcDcWorkflowBlockForm extends FormBase {
       $empty_required = [];
       foreach ($args['node']->getFields() as $field) {
         $fieldDefinition = $field->getFieldDefinition();
-        if ($field->isEmpty() && $fieldDefinition->isRequired()) {
+        // Add to list if the field is empty, required, and in this data_set.
+        if ($field->isEmpty() && $fieldDefinition->isRequired() && bc_dc_data_set_has_field($args['node'], $fieldDefinition->getName())) {
           $empty_required[] = $fieldDefinition->getLabel();
         }
       }

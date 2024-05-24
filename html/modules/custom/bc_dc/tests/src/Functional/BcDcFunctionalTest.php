@@ -514,7 +514,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     // Save Section 5 so that the boolean values are not empty.
     $this->click('a[aria-label = "Edit Section 5"]');
     $edit = [
-      'edit-field-critical-information-value' => '1',
+      'field_critical_information' => '1',
     ];
     $this->submitForm($edit, 'Save');
     // Check for fields that are boolean and have inline labels.
