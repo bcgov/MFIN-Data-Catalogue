@@ -11,7 +11,7 @@ entity_type: node
 bundle: data_set
 label: 'Critical information'
 description: 'This data set contains information critical to the public interest or government business continuity. <a href="/node/94">more information…</a>'
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''

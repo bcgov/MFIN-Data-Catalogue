@@ -1227,7 +1227,8 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   display: inline;
   max-width: 6em;
 }
-.page-node-type-data-set .node-data-set-edit-form #edit-field-personal-information {
+.page-node-type-data-set .node-data-set-edit-form #edit-field-personal-information,
+.page-node-type-data-set .node-data-set-edit-form #edit-field-critical-information {
   display: flex;
   gap: 1em;
 }
@@ -1473,5 +1474,3 @@ html.bcbb-theme a img.site-logo {
     height: 40px;
   }
 }
-
-/*# sourceMappingURL=style.css.map */

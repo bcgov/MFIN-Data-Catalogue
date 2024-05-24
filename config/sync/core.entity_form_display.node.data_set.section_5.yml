@@ -61,11 +61,10 @@ bundle: data_set
 mode: section_5
 content:
   field_critical_information:
-    type: boolean_checkbox
+    type: options_buttons
     weight: 1
     region: content
-    settings:
-      display_label: true
+    settings: {  }
     third_party_settings: {  }
   field_data_set_type:
     type: options_shs
