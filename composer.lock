@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4fb4517cf3a61c20845507c652e61670",
+    "content-hash": "ce6c43d77a7109f30f9ecaf345e53cee",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -9055,6 +9055,21 @@
                 }
             ],
             "time": "2023-11-28T21:12:40+00:00"
+        },
+        {
+            "name": "jquery/fancytree",
+            "version": "2.37.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/mar10/fancytree/archive/refs/tags/v2.37.0.zip"
+            },
+            "type": "drupal-library",
+            "extra": {
+                "installer-name": "jquery.fancytree"
+            },
+            "license": [
+                "MIT"
+            ]
         },
         {
             "name": "laminas/laminas-stdlib",

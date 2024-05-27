@@ -57,6 +57,22 @@
         {
             "type": "package",
             "package": {
+                "name": "jquery/fancytree",
+                "version": "2.37.0",
+                "type": "drupal-library",
+                "extra": {
+                    "installer-name": "jquery.fancytree"
+                },
+                "dist": {
+                    "url": "https://github.com/mar10/fancytree/archive/refs/tags/v2.37.0.zip",
+                    "type": "zip"
+                },
+                "license": "MIT"
+            }
+        },
+        {
+            "type": "package",
+            "package": {
                 "name": "tabby/tabby",
                 "version": "12.0.3",
                 "type": "drupal-library",
@@ -110,6 +126,7 @@
         "drupal/views_argument_token": "^2.0",
         "drupal/views_field_view": "^1.0@beta",
         "drupal/webform_content_creator": "^4.0",
+        "jquery/fancytree": "^2",
         "oomphinc/composer-installers-extender": "^2.0",
         "phpoffice/phpspreadsheet": "^1.29",
         "tabby/tabby": "^12.0",
