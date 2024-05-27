@@ -68,12 +68,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb.git",
-                "reference": "1d3030b5f1862e94af3cb8581035a302f719acd7"
+                "reference": "e456d868775cd711651d0554643124dc49ec9fd9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/1d3030b5f1862e94af3cb8581035a302f719acd7",
-                "reference": "1d3030b5f1862e94af3cb8581035a302f719acd7",
+                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/e456d868775cd711651d0554643124dc49ec9fd9",
+                "reference": "e456d868775cd711651d0554643124dc49ec9fd9",
                 "shasum": ""
             },
             "require": {
@@ -151,6 +151,7 @@
                         "3284859 - Roles being stripped from users when saved if user has no access to roles field": "https://www.drupal.org/files/issues/2023-11-08/role_delegation-roles-being-stripped-3284859-4.patch"
                     },
                     "drupal/taxonomy_manager": {
+                        "3449481 - Install jquery.fancytree via Composer instead of CDN": "https://www.drupal.org/files/issues/2024-05-27/taxonomy_manager-remove_cdn-3449481-4.patch",
                         "3449448 - Unable to edit terms without 'administer taxonomy' permission": "https://www.drupal.org/files/issues/2024-05-23/taxonomy_manager-unable_to_edit-3449448-4.patch"
                     },
                     "drupal/vbo_export": {
@@ -167,7 +168,7 @@
                 "source": "https://github.com/bcgov/bcbb/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb/issues"
             },
-            "time": "2024-05-23T17:10:12+00:00"
+            "time": "2024-05-27T19:27:35+00:00"
         },
         {
             "name": "bcgov/bcbb_theme",
