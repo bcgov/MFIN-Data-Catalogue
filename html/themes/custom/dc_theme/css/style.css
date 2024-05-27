@@ -1234,6 +1234,7 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 }
 .page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information,
 .page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-series,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document {
   background: var(--bs-gray-100);
@@ -1243,6 +1244,7 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 }
 .page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information > div,
 .page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column > div,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-series > div,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used > div,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document > div {
   margin-bottom: 1.5em;
@@ -1251,6 +1253,7 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 }
 .page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information > div:last-child,
 .page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column > div:last-child,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-series > div:last-child,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used > div:last-child,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document > div:last-child {
   border-bottom: 0;
@@ -1258,6 +1261,8 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 .page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information th, .page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information td,
 .page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column th,
 .page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column td,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-series th,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-series td,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used th,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used td,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document th,
@@ -1267,6 +1272,7 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 }
 .page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information .field-add-more-submit,
 .page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column .field-add-more-submit,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-series .field-add-more-submit,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used .field-add-more-submit,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document .field-add-more-submit {
   background-color: var(--bs-gray-700);
@@ -1275,6 +1281,8 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
 .page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information .field-add-more-submit:hover, .page-node-type-data-set .node-data-set-edit-form .dc-mr-contact-information .field-add-more-submit:focus,
 .page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column .field-add-more-submit:hover,
 .page-node-type-data-set .node-data-set-edit-form .edit-data-dictionary-column .field-add-more-submit:focus,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-series .field-add-more-submit:hover,
+.page-node-type-data-set .node-data-set-edit-form .field--name-field-series .field-add-more-submit:focus,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used .field-add-more-submit:hover,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-data-sets-used .field-add-more-submit:focus,
 .page-node-type-data-set .node-data-set-edit-form .field--name-field-related-document .field-add-more-submit:hover,
@@ -1474,3 +1482,5 @@ html.bcbb-theme a img.site-logo {
     height: 40px;
   }
 }
+
+/*# sourceMappingURL=style.css.map */
