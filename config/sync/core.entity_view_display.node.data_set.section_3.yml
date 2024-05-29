@@ -31,6 +31,7 @@ dependencies:
     - field.field.node.data_set.field_visibility
     - node.type.data_set
   module:
+    - field_count_formatter
     - layout_builder
     - user
 third_party_settings:
@@ -43,10 +44,9 @@ bundle: data_set
 mode: section_3
 content:
   field_data_sets_used:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
+    type: count
+    label: inline
+    settings: {  }
     third_party_settings: {  }
     weight: 1
     region: content

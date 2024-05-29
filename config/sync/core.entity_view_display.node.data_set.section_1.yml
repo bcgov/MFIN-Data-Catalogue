@@ -31,7 +31,7 @@ dependencies:
     - field.field.node.data_set.field_visibility
     - node.type.data_set
   module:
-    - formatter_suite
+    - field_count_formatter
     - layout_builder
     - shs
     - user
@@ -53,17 +53,9 @@ content:
     weight: 0
     region: content
   field_series:
-    type: formatter_suite_general_entity_reference
+    type: count
     label: inline
-    settings:
-      entityReferenceStyle: title
-      titleCustomText: ''
-      classes: ''
-      openLinkIn: _self
-      linkTopic: any
-      listStyle: ul
-      listSeparator: ', '
-      showLink: 0
+    settings: {  }
     third_party_settings: {  }
     weight: 1
     region: content
