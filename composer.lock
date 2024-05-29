@@ -68,12 +68,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb.git",
-                "reference": "e456d868775cd711651d0554643124dc49ec9fd9"
+                "reference": "b64ec52379b81d8fcc024c2c13fd703d6e912610"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/e456d868775cd711651d0554643124dc49ec9fd9",
-                "reference": "e456d868775cd711651d0554643124dc49ec9fd9",
+                "url": "https://api.github.com/repos/bcgov/bcbb/zipball/b64ec52379b81d8fcc024c2c13fd703d6e912610",
+                "reference": "b64ec52379b81d8fcc024c2c13fd703d6e912610",
                 "shasum": ""
             },
             "require": {
@@ -168,7 +168,7 @@
                 "source": "https://github.com/bcgov/bcbb/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb/issues"
             },
-            "time": "2024-05-27T19:27:35+00:00"
+            "time": "2024-05-29T20:16:45+00:00"
         },
         {
             "name": "bcgov/bcbb_theme",
@@ -176,12 +176,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb-theme.git",
-                "reference": "aadece78ee24f4a5f107dc5f864dae2e5edd6e47"
+                "reference": "a8ee8013eb2ffc8b34d9ead2ecb4d5be1bc084b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb-theme/zipball/aadece78ee24f4a5f107dc5f864dae2e5edd6e47",
-                "reference": "aadece78ee24f4a5f107dc5f864dae2e5edd6e47",
+                "url": "https://api.github.com/repos/bcgov/bcbb-theme/zipball/a8ee8013eb2ffc8b34d9ead2ecb4d5be1bc084b0",
+                "reference": "a8ee8013eb2ffc8b34d9ead2ecb4d5be1bc084b0",
                 "shasum": ""
             },
             "require": {
@@ -198,7 +198,7 @@
                 "source": "https://github.com/bcgov/bcbb-theme/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb-theme/issues"
             },
-            "time": "2024-05-21T13:11:49+00:00"
+            "time": "2024-05-29T19:14:02+00:00"
         },
         {
             "name": "billboardjs/billboard",
@@ -4769,26 +4769,26 @@
         },
         {
             "name": "drupal/jquery_ui",
-            "version": "1.6.0",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/jquery_ui.git",
-                "reference": "8.x-1.6"
+                "reference": "8.x-1.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/jquery_ui-8.x-1.6.zip",
-                "reference": "8.x-1.6",
-                "shasum": "0ddccdcf35a066de1843e1d9670677ee1a2faac0"
+                "url": "https://ftp.drupal.org/files/projects/jquery_ui-8.x-1.7.zip",
+                "reference": "8.x-1.7",
+                "shasum": "3f893843ec30fed18fa1b0cb326e51880b0cb686"
             },
             "require": {
-                "drupal/core": "^9.2 || ^10"
+                "drupal/core": "^9.2 || ^10 || ^11"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.6",
-                    "datestamp": "1668521197",
+                    "version": "8.x-1.7",
+                    "datestamp": "1717002098",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
