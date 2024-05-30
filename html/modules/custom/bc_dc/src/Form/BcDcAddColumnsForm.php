@@ -3,6 +3,7 @@
 namespace Drupal\bc_dc\Form;
 
 use Drupal\Component\Datetime\TimeInterface;
+use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -682,29 +683,7 @@ class BcDcAddColumnsForm extends FormBase {
 
     // Create paragraph entities for each row of $import_file_contents.
     foreach ($import_file_contents as $row) {
-      // Initial values for new entity.
-      $paragraph_fields = [
-        'type' => 'data_column',
-      ];
-
-      // Set the field for any values that are included.
-      foreach ($import_file_header as $key => $field) {
-        // Include any value that is either an entity reference (array) or a
-        // non-empty string.
-        if (isset($row[$key]) && is_array($row[$key])) {
-          $paragraph_fields['field_' . $field] = $row[$key];
-        }
-        elseif (isset($row[$key]) && strlen($row[$key])) {
-          $paragraph_fields['field_' . $field] = [
-            'value' => nl2br($row[$key]),
-            'format' => 'basic_html',
-          ];
-        }
-      }
-      // Create the paragraph entity and add it to the node.
-      $paragraph = $paragraph_storage->create($paragraph_fields);
-      $node->field_columns->appendItem($paragraph);
-      $paragraph->save();
+      static::addOneColumn($import_file_header, $row, $paragraph_storage, $node);
     }
     $node->save();
 
@@ -713,6 +692,44 @@ class BcDcAddColumnsForm extends FormBase {
       '@count' => count($import_file_contents),
     ];
     $this->messenger()->addStatus($this->t('Added @count data columns from imported file.', $context));
+  }
+
+  /**
+   * Add one column to a node's field_columns.
+   *
+   * @param string[] $import_file_header
+   *   An array of import file headers.
+   * @param array $row
+   *   An array of information about the column to add.
+   * @param \Drupal\Core\Entity\EntityStorageInterface $paragraph_storage
+   *   A paragraph storage instance.
+   * @param \Drupal\node\NodeInterface $node
+   *   The node to add the column to.
+   */
+  public static function addOneColumn(array $import_file_header, array $row, EntityStorageInterface $paragraph_storage, NodeInterface $node): void {
+    // Initial values for new entity.
+    $paragraph_fields = [
+      'type' => 'data_column',
+    ];
+
+    // Set the field for any values that are included.
+    foreach ($import_file_header as $key => $field) {
+      // Include any value that is either an entity reference (array) or a
+      // non-empty string.
+      if (isset($row[$key]) && is_array($row[$key])) {
+        $paragraph_fields['field_' . $field] = $row[$key];
+      }
+      elseif (isset($row[$key]) && strlen($row[$key])) {
+        $paragraph_fields['field_' . $field] = [
+          'value' => nl2br($row[$key]),
+          'format' => 'basic_html',
+        ];
+      }
+    }
+    // Create the paragraph entity and add it to the node.
+    $paragraph = $paragraph_storage->create($paragraph_fields);
+    $node->field_columns->appendItem($paragraph);
+    $paragraph->save();
   }
 
 }
