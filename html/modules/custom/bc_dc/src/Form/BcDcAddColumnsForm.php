@@ -656,7 +656,6 @@ class BcDcAddColumnsForm extends FormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state): void {
     $node_storage = $this->entityTypeManager->getStorage('node');
-    $paragraph_storage = $this->entityTypeManager->getStorage('paragraph');
 
     // The columns need to be added to the latest revision.
     // Load the most recent revision.
@@ -680,18 +679,71 @@ class BcDcAddColumnsForm extends FormBase {
     for ($counter = 0; $counter < $count_of_paragraph_entities; $counter++) {
       $node->field_columns->removeItem(0);
     }
-
-    // Create paragraph entities for each row of $import_file_contents.
-    foreach ($import_file_contents as $column) {
-      static::addOneColumn($import_file_header, $column, $paragraph_storage, $node);
-    }
     $node->save();
 
-    // Set success message.
-    $context = [
-      '@count' => count($import_file_contents),
+    // Create paragraph entities for each row of $import_file_contents
+    // using batch.
+    $operations = [];
+    foreach ($import_file_contents as $column) {
+      $operations[] = [
+        [static::class, 'callbackBatchOperation'],
+        [
+          (int) $node->id(),
+          $import_file_header,
+          [$column],
+        ],
+      ];
+    }
+    $batch = [
+      'title' => $this->t('Adding columns'),
+      'operations' => $operations,
+      'finished' => [static::class, 'callbackBatchFinished'],
     ];
-    $this->messenger()->addStatus($this->t('Added @count data columns from imported file.', $context));
+    batch_set($batch);
+  }
+
+  /**
+   * Implements callback_batch_operation().
+   */
+  public static function callbackBatchOperation(int $nid, array $header, array $columns, array|\ArrayAccess &$context): void {
+    $entityTypeManager = \Drupal::entityTypeManager();
+    $node_storage = $entityTypeManager->getStorage('node');
+    $paragraph_storage = $entityTypeManager->getStorage('paragraph');
+
+    // Initialize the count if empty.
+    $context['results']['count'] ??= 0;
+
+    // The columns need to be added to the latest revision.
+    // Load the most recent revision.
+    $latestRevisionId = $node_storage->getLatestRevisionId($nid);
+    $node = $node_storage->loadRevision($latestRevisionId);
+
+    foreach ($columns as $column) {
+      static::addOneColumn($header, $column, $paragraph_storage, $node);
+      // Increment the count.
+      $context['results']['count']++;
+    }
+
+    $node->save();
+  }
+
+  /**
+   * Implements callback_batch_finished().
+   */
+  public static function callbackBatchFinished($success, $results, $operations, string $elapsed): void {
+    $messenger = \Drupal::messenger();
+
+    if ($success) {
+      // Set success message.
+      $context = [
+        '@count' => $results['count'],
+      ];
+      $messenger->addStatus(t('Added @count data columns from imported file.', $context));
+    }
+    else {
+      // Set failure message.
+      $messenger->addError(t('Adding data columns failed.'));
+    }
   }
 
   /**
