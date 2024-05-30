@@ -24,7 +24,7 @@ RUN apk --update add --no-cache bash \
 
 # Resolve https://github.com/composer/composer/issues/11913
 RUN apk add --update \
-    && apk add --no-cache curl@edge --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community \
+    && apk add --no-cache curl --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community \
     && rm -rf /var/cache/apk/*
 
 COPY docker/conf/ssmtp.conf /etc/ssmtp/ssmtp.conf
