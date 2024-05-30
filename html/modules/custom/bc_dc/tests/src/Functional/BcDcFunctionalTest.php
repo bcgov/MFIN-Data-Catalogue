@@ -187,6 +187,14 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $save = $document_type_1->save();
     $this->assertSame($save, SAVED_NEW);
 
+    // Create term in data_set_series vocabulary.
+    $data_set_series_1 = Term::create([
+      'vid' => 'data_set_series',
+      'name' => 'Test data_set_series 1 ' . $this->randomString(),
+    ]);
+    $save = $data_set_series_1->save();
+    $this->assertSame($save, SAVED_NEW);
+
     // Add missing permissions. These ought to have been imported with config.
     // @todo Get all permissions to import.
     $role = Role::load('authenticated');
@@ -1324,6 +1332,13 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--label-inline")][contains(@class, :class)][div[@class = "field__label"][text() = :label]]/div/time[text() = :text]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
 
+    $this->click('a[aria-label = "Edit Section 1"]');
+    // Add a series.
+    $edit = [
+      'edit-field-series-0-target-id' => 'Title (' . $data_set_series_1->id() . ')',
+    ];
+    $this->submitForm($edit, 'Save');
+
     $this->click('a[aria-label = "Edit Section 2"]');
     // Uncheck "Public" access in field_visibility.
     $edit = [
@@ -1365,13 +1380,19 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->submitForm($edit, 'Save');
     // There is now a related document.
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "field--name-field-related-document")]//div[@class = "field__item"][text() = "2"]');
-    // field_data_sets_used is not empty. This demonstrates that the Build page
-    // is showing the latest version not the default version.
+    // field_data_sets_used is shown as a count. This demonstrates that the
+    // Build page is showing the latest version not the default version.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "field--name-field-data-sets-used")]/div[@class = "field__item"]/em[text() = "Optional"]');
     $args = [
-      ':data_set_title' => $data_set_title,
+      ':count' => 1,
     ];
-    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-data-sets-used")]/div[@class = "field__items"]/div[@class = "field__item"]/a[text() = :data_set_title]', $args);
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-data-sets-used")]/div[@class = "field__items"]/div[@class = "field__item"][text() = :count]', $args);
+    $this->assertSession()->elementExists('xpath', $xpath);
+    // Series is shown as a count.
+    $args = [
+      ':count' => 1,
+    ];
+    $xpath = $this->assertSession()->buildXPathQuery('//div[contains(@class, "field--name-field-series")]/div[@class = "field__items"]/div[@class = "field__item"][text() = :count]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
     // View page still does not have field_data_sets_used.
     $this->clickLink('Current published');
