@@ -22,6 +22,11 @@ RUN apk --update add --no-cache bash \
                                 ssmtp \
                                 zlib-dev
 
+# Resolve https://github.com/composer/composer/issues/11913
+RUN apk add --update \
+    && apk add --no-cache curl@edge \
+    && rm -rf /var/cache/apk/*
+
 COPY docker/conf/ssmtp.conf /etc/ssmtp/ssmtp.conf
 RUN echo "hostname=drupalwxt.github.io" >> /etc/ssmtp/ssmtp.conf
 RUN echo 'sendmail_path = "/usr/sbin/ssmtp -t"' > /usr/local/etc/php/conf.d/mail.ini
@@ -61,7 +66,7 @@ RUN mkdir -p /usr/src/php/ext/redis \
 
 # Composer recommended settings
 ENV COMPOSER_ALLOW_SUPERUSER 1
-ENV COMPOSER_VERSION 2.4.4
+ENV COMPOSER_VERSION 2.7.6
 ENV COMPOSER_MEMORY_LIMIT -1
 ENV COMPOSER_EXIT_ON_PATCH_FAILURE 1
 
