@@ -682,8 +682,8 @@ class BcDcAddColumnsForm extends FormBase {
     }
 
     // Create paragraph entities for each row of $import_file_contents.
-    foreach ($import_file_contents as $row) {
-      static::addOneColumn($import_file_header, $row, $paragraph_storage, $node);
+    foreach ($import_file_contents as $column) {
+      static::addOneColumn($import_file_header, $column, $paragraph_storage, $node);
     }
     $node->save();
 
@@ -699,14 +699,14 @@ class BcDcAddColumnsForm extends FormBase {
    *
    * @param string[] $import_file_header
    *   An array of import file headers.
-   * @param array $row
+   * @param array $column
    *   An array of information about the column to add.
    * @param \Drupal\Core\Entity\EntityStorageInterface $paragraph_storage
    *   A paragraph storage instance.
    * @param \Drupal\node\NodeInterface $node
    *   The node to add the column to.
    */
-  public static function addOneColumn(array $import_file_header, array $row, EntityStorageInterface $paragraph_storage, NodeInterface $node): void {
+  public static function addOneColumn(array $import_file_header, array $column, EntityStorageInterface $paragraph_storage, NodeInterface $node): void {
     // Initial values for new entity.
     $paragraph_fields = [
       'type' => 'data_column',
@@ -716,12 +716,12 @@ class BcDcAddColumnsForm extends FormBase {
     foreach ($import_file_header as $key => $field) {
       // Include any value that is either an entity reference (array) or a
       // non-empty string.
-      if (isset($row[$key]) && is_array($row[$key])) {
-        $paragraph_fields['field_' . $field] = $row[$key];
+      if (isset($column[$key]) && is_array($column[$key])) {
+        $paragraph_fields['field_' . $field] = $column[$key];
       }
-      elseif (isset($row[$key]) && strlen($row[$key])) {
+      elseif (isset($column[$key]) && strlen($column[$key])) {
         $paragraph_fields['field_' . $field] = [
-          'value' => nl2br($row[$key]),
+          'value' => nl2br($column[$key]),
           'format' => 'basic_html',
         ];
       }
