@@ -684,13 +684,14 @@ class BcDcAddColumnsForm extends FormBase {
     // Create paragraph entities for each row of $import_file_contents
     // using batch.
     $operations = [];
-    foreach ($import_file_contents as $column) {
+    $batch_size = $this->config('bc_dc.settings')->get('data_set_column_add_batch_size') ?? 50;
+    foreach (array_chunk($import_file_contents, $batch_size) as $columns) {
       $operations[] = [
         [static::class, 'callbackBatchOperation'],
         [
           (int) $node->id(),
           $import_file_header,
-          [$column],
+          $columns,
         ],
       ];
     }

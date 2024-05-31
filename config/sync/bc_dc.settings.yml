@@ -1,3 +1,4 @@
+data_set_column_add_batch_size: 50
 data_set_review_period_alert: 30
 review_needed_message: 'Review needed.'
 review_overdue_message: 'Review overdue.'

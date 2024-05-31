@@ -71,6 +71,15 @@ class BcDcSettingsForm extends ConfigFormBase {
       '#value' => $this->t('Send metadata record review reminders'),
     ];
 
+    $form['data_set_column_add_batch_size'] = [
+      '#type' => 'number',
+      '#title' => $this->t('Add columns batch size'),
+      '#description' => $this->t('The number of columns to add in each batch when importing data columns.'),
+      '#required' => TRUE,
+      '#default_value' => $bc_dc_settings->get('data_set_column_add_batch_size'),
+      '#min' => 1,
+      '#step' => 1,
+    ];
     $form['data_set_review_period_alert'] = [
       '#type' => 'number',
       '#title' => $this->t('Review period alert'),
@@ -114,6 +123,7 @@ class BcDcSettingsForm extends ConfigFormBase {
     // Save individual config values.
     $bc_dc_settings = $this->config('bc_dc.settings');
     $fields_to_save = [
+      'data_set_column_add_batch_size',
       'data_set_review_period_alert',
       'review_needed_message',
       'review_overdue_message',

@@ -2,6 +2,9 @@ bc_dc.settings:
   type: config_object
   label: 'BC Data Catalogue Module settings'
   mapping:
+    data_set_column_add_batch_size:
+      type: integer
+      label: 'Add columns batch size'
     data_set_review_period_alert:
       type: integer
       label: 'Review period alert'
