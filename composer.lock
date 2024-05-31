@@ -14902,16 +14902,16 @@
         },
         {
             "name": "composer/class-map-generator",
-            "version": "1.2.1",
+            "version": "1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/class-map-generator.git",
-                "reference": "d90e2bcf9f846562a39c232eeb01fae0ebab3c3e"
+                "reference": "acd227952154850d0bb7d65caa4f9edf9cd806a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/class-map-generator/zipball/d90e2bcf9f846562a39c232eeb01fae0ebab3c3e",
-                "reference": "d90e2bcf9f846562a39c232eeb01fae0ebab3c3e",
+                "url": "https://api.github.com/repos/composer/class-map-generator/zipball/acd227952154850d0bb7d65caa4f9edf9cd806a7",
+                "reference": "acd227952154850d0bb7d65caa4f9edf9cd806a7",
                 "shasum": ""
             },
             "require": {
@@ -14955,7 +14955,7 @@
             ],
             "support": {
                 "issues": "https://github.com/composer/class-map-generator/issues",
-                "source": "https://github.com/composer/class-map-generator/tree/1.2.1"
+                "source": "https://github.com/composer/class-map-generator/tree/1.3.2"
             },
             "funding": [
                 {
@@ -14971,7 +14971,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-05-31T13:29:08+00:00"
+            "time": "2024-05-31T19:45:56+00:00"
         },
         {
             "name": "composer/composer",
