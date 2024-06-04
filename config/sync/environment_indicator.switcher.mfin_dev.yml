@@ -1,0 +1,11 @@
+uuid: 27f7d9e5-b50e-4543-ae7c-a464d7d76353
+langcode: en
+status: true
+dependencies: {  }
+machine: mfin_dev
+description: null
+name: 'Dev'
+weight: '1'
+url: 'https://dev.cat.data.fin.gov.bc.ca'
+fg_color: 'hsl(116,38.8%,86%)'
+bg_color: 'hsl(126,79%,20.7%)'

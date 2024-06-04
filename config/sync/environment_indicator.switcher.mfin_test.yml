@@ -1,0 +1,11 @@
+uuid: 42f490ea-d1ce-4fec-8039-038921ec39f5
+langcode: en
+status: true
+dependencies: {  }
+machine: mfin_test
+description: null
+name: 'Test'
+weight: '2'
+url: 'https://test.cat.data.fin.gov.bc.ca'
+fg_color: 'hsl(0,100%,10.2%)'
+bg_color: 'hsl(41,96%,50%)'

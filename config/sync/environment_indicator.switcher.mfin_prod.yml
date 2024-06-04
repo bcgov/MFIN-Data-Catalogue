@@ -1,0 +1,11 @@
+uuid: c1e9dc6a-ba83-4b00-b804-671d8bf4361e
+langcode: en
+status: true
+dependencies: {  }
+machine: mfin_prod
+description: null
+name: 'Production'
+weight: '3'
+url: 'https://cat.data.fin.gov.bc.ca'
+fg_color: 'hsl(0,100%,94.5%)'
+bg_color: 'hsl(0,100%,30%)'
