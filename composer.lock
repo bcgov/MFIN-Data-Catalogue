@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ce6c43d77a7109f30f9ecaf345e53cee",
+    "content-hash": "0194308288e737ccc3f8f12c05561447",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -198,6 +198,36 @@
                 "issues": "https://github.com/bcgov/bcbb-theme/issues"
             },
             "time": "2024-05-29T19:14:02+00:00"
+        },
+        {
+            "name": "bcgov/gdx_analytics_drupal_snowplow",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/chrislaick/gdx_analytics_drupal_snowplow.git",
+                "reference": "a212809ffa7d866c2526fd673df825be0cd505dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/chrislaick/gdx_analytics_drupal_snowplow/zipball/a212809ffa7d866c2526fd673df825be0cd505dd",
+                "reference": "a212809ffa7d866c2526fd673df825be0cd505dd",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "drupal-module",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "The GDX Analytics Drupal Snowplow module.",
+            "homepage": "https://github.com/bcgov/GDX-Analytics-Drupal-Snowplow",
+            "keywords": [
+                "Drupal",
+                "analytics"
+            ],
+            "support": {
+                "source": "https://github.com/chrislaick/gdx_analytics_drupal_snowplow/tree/main"
+            },
+            "time": "2024-06-06T19:35:17+00:00"
         },
         {
             "name": "billboardjs/billboard",
