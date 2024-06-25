@@ -67,7 +67,6 @@
                 "3362561 - Path has unnecessary query appended.": "https://www.drupal.org/files/issues/2023-11-29/page_manager-unnecessary_query-3362561-48.patch"
             },
             "drupal/panels": {
-                "3376992 - php8.2 compatibility issue": "https://www.drupal.org/files/issues/2023-07-26/3376992-php8.2-compatibility.patch",
                 "2820617 - Avoid harcoded prefex and suffix in block region": "https://git.drupalcode.org/project/panels/-/merge_requests/12.diff",
                 "2849867 - Custom attributes in panels blocks and variants": "https://www.drupal.org/files/issues/2022-11-17/panels_custom_attributes_in_panels_blocks-2849867-89.patch",
                 "2910704 - IPE toggle preview not working in IE": "https://www.drupal.org/files/issues/panels-ipe-card-flip-ie-error-2910704.diff"
