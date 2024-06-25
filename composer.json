@@ -232,7 +232,8 @@
         },
         "patches": {
             "drupal/charts": {
-                "3442641 - Chart segments are all the same color in Views pie/donut charts": "https://www.drupal.org/files/issues/2024-04-22/charts-pie_donut_colors-3442641-4.patch"
+                "3442641 - Chart segments are all the same color in Views pie/donut charts": "https://www.drupal.org/files/issues/2024-04-22/charts-pie_donut_colors-3442641-4.patch",
+                "3456882 - HTML encodings (e.g. '&amp;') showing up in legend": "https://git.drupalcode.org/project/charts/-/merge_requests/98.patch"
             },
             "drupal/conditional_fields": {
                 "2550167 - Allow creating dependency on taxonomy parent term": "https://www.drupal.org/files/issues/2024-03-05/conditional_fields-taxonomy_parent_term-2550167-16.patch"
