@@ -147,7 +147,8 @@ class ReviewReminder implements ContainerInjectionInterface {
             'query' => ['destination' => $update['dataset_url']],
             'absolute' => TRUE,
           ]);
-          $body[] = $update['title'] . "\n" . $update['dataset_url'];
+          // GC Notify requires Markdown formatting, not HTML.
+          $body[] = sprintf('* [%s](%s)', $update['title'], $url_via_login->toString());
         }
       }
     }
