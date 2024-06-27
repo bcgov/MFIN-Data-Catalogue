@@ -80,20 +80,16 @@ class ReviewReminder implements ContainerInjectionInterface {
   public function sendRemindersToOneUser(int $uid, array $notifications): ?bool {
     $account = $this->entityTypeManager->getStorage('user')->load($uid);
     $email = $account?->getEmail();
+    $logger = $this->getLogger('bc_dc');
+
     if (!$email) {
-      $context = [
-        '@uid' => $uid,
-      ];
-      $this->getLogger('bc_dc')->error('ReviewReminder: User @uid has no email address.', $context);
+      $logger->error('ReviewReminder: User @uid has no email address.', ['@uid' => $uid]);
       return NULL;
     }
 
     $body = $this->generateBody($notifications);
     if (!$body) {
-      $context = [
-        '@uid' => $uid,
-      ];
-      $this->getLogger('bc_dc')->error('ReviewReminder: Empty message for user @uid.', $context);
+      $logger->error('ReviewReminder: Empty message for user @uid.', ['@uid' => $uid]);
       return NULL;
     }
 
@@ -101,16 +97,10 @@ class ReviewReminder implements ContainerInjectionInterface {
 
     $success = GcNotifyApiService::sendMessage([$email], $subject, $body);
     if ($success) {
-      $context = [
-        '@uid' => $uid,
-      ];
-      $this->getLogger('bc_dc')->notice('Sent ReviewReminder message to user @uid.', $context);
+      $logger->notice('Sent ReviewReminder message to user @uid.', ['@uid' => $uid]);
     }
     else {
-      $context = [
-        '@uid' => $uid,
-      ];
-      $this->getLogger('bc_dc')->error('Failed to send ReviewReminder message to user @uid.', $context);
+      $logger->error('Failed to send ReviewReminder message to user @uid.', ['@uid' => $uid]);
     }
 
     return $success;
