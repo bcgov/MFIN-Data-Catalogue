@@ -385,41 +385,39 @@ function bc_dc_node_update(NodeInterface $entity): void {
     }
   }
 
+  $logger = \Drupal::logger('bc_dc');
+
   // No recipients.
   if (!$send_to) {
-    $context = [
-      '@nid' => $entity->id(),
-    ];
-    \Drupal::logger('bc_dc')->notice('No messages to send when updating data_set @nid.', $context);
+    $logger->notice('No messages to send when updating data_set @nid.', ['@nid' => $entity->id()]);
     return;
   }
 
   // Send the notifications.
   //
   // Message subject.
-  $subject = t('A asset you have bookmarked has been updated');
+  $subject = t('An asset you have bookmarked has been updated');
   // Message body.
-  $context = [
+
+  // The URL goes through user/login since we are emailing this
+  // out to people who may not be logged in yet.
+  $body = t("The following asset has been updated:\n* [@title](@asset_url_via_login)", [
     '@title' => $entity->getTitle(),
-    '@link' => $entity->toUrl('canonical', ['absolute' => TRUE])->toString(),
-  ];
-  $body = t('The following asset has been updated:
-@title
-@link', $context);
+    '@asset_url_via_login' => Url::fromRoute('user.login', [], [
+      'query' => ['destination' => '/node/' . $entity->id()],
+      'absolute' => TRUE,
+    ])->toString(),
+  ]);
   // Send the message and log the result.
   $success = GcNotifyApiService::sendMessage($send_to, $subject, $body);
   if ($success) {
-    $context = [
+    $logger->notice('Sent message to @count users when updating data_set @nid.', [
       '@count' => count($send_to),
       '@nid' => $entity->id(),
-    ];
-    \Drupal::logger('bc_dc')->notice('Sent message to @count users when updating data_set @nid.', $context);
+    ]);
   }
   else {
-    $context = [
-      '@nid' => $entity->id(),
-    ];
-    \Drupal::logger('bc_dc')->error('Failed sending message when updating data_set @nid.', $context);
+    $logger->error('Failed sending message when updating data_set @nid.', ['@nid' => $entity->id()]);
   }
 }
 
