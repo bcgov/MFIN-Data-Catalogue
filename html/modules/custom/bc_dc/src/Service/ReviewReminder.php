@@ -129,12 +129,12 @@ class ReviewReminder implements ContainerInjectionInterface {
         $body[] = $update_message . ':';
         foreach ($notifications[$update_type] as $update) {
           // If a user clicks one of these links to one of
-          // their Metadata Recordsin the email they receive,
+          // their Metadata Records in the email they receive,
           // they will confusingly get a "Not Found" error if they are not logged in.
           // So we make the link to instead to the login page, with a REDIRECT
           // to the real URL we want to take them to.
           $url_via_login = Url::fromRoute('user.login', [], [
-            'query' => ['destination' => $update['dataset_url']],
+            'query' => ['destination' => '/node/' . $update['dataset_nid']],
             'absolute' => TRUE,
           ]);
           // GC Notify requires Markdown formatting, not HTML.
@@ -187,7 +187,7 @@ class ReviewReminder implements ContainerInjectionInterface {
       if ($review_status) {
         $reminders[$data_set->getOwnerId()][$review_status][] = [
           'title' => $data_set->getTitle(),
-          'dataset_url' => $data_set->toUrl('canonical', ['absolute' => FALSE])->toString(),
+          'dataset_nid' => $data_set_nid,
         ];
       }
     }
