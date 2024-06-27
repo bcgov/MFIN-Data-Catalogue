@@ -10,6 +10,7 @@ use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\Logger\LoggerChannelTrait;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslationInterface;
+use Drupal\Core\Url;
 use Drupal\message_gcnotify\Service\GcNotifyApiService;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -137,7 +138,16 @@ class ReviewReminder implements ContainerInjectionInterface {
       if (!empty($notifications[$update_type])) {
         $body[] = $update_message . ':';
         foreach ($notifications[$update_type] as $update) {
-          $body[] = $update['title'] . "\n" . $update['url'];
+          // If a user clicks one of these links to one of
+          // their Metadata Recordsin the email they receive,
+          // they will confusingly get a "Not Found" error if they are not logged in.
+          // So we make the link to instead to the login page, with a REDIRECT
+          // to the real URL we want to take them to.
+          $url_via_login = Url::fromRoute('user.login', [], [
+            'query' => ['destination' => $update['dataset_url']],
+            'absolute' => TRUE,
+          ]);
+          $body[] = $update['title'] . "\n" . $update['dataset_url'];
         }
       }
     }
@@ -186,7 +196,7 @@ class ReviewReminder implements ContainerInjectionInterface {
       if ($review_status) {
         $reminders[$data_set->getOwnerId()][$review_status][] = [
           'title' => $data_set->getTitle(),
-          'url' => $data_set->toUrl('canonical', ['absolute' => TRUE])->toString(),
+          'dataset_url' => $data_set->toUrl('canonical', ['absolute' => FALSE])->toString(),
         ];
       }
     }
