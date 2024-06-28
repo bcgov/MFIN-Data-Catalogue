@@ -678,7 +678,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-views-blockdashboard-blocks-dashboard-needs-review")]//div[normalize-space(text()) = "You currently have no metadata records needing review."]');
     // Metadata record count message.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//*[text() = "You currently have no published metadata records."]');
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//*[text() = "You have 1 published metadata record that has been bookmarked 1 times."]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//*[text() = "You have 1 published metadata record that has been bookmarked once."]');
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//a[text() = "Manage metadata records"]');
 
     // Test data set update message.
