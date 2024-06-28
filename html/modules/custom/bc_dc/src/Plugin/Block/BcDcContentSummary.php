@@ -89,11 +89,16 @@ class BcDcContentSummary extends BlockBase implements ContainerFactoryPluginInte
         $total_bookmarks += bc_dc_count_node_bookmarks($node);
       }
 
-      $args = [
-        '@count' => $total_nodes,
-        '@bookmarks' => $total_bookmarks,
-      ];
-      $message = $this->formatPlural($total_nodes, 'You have @count published metadata record that has been bookmarked @bookmarks times.', 'You have @count published metadata records that have been bookmarked @bookmarks times.', $args);
+      $message = $this->formatPlural($total_nodes,
+        'You have @count published metadata record that has been @bookmarked_times.',
+        'You have @count published metadata records that have been @bookmarked_times.', [
+          '@count' => $total_nodes,
+          '@bookmarked_times' => $this->formatPlural($total_bookmarks,
+            'bookmarked once',
+            'bookmarked @num_bookmarks times', [
+              '@num_bookmarks' => $total_bookmarks,
+            ]),
+        ]);
     }
     else {
       $message = $this->t('You currently have no published metadata records.');
