@@ -93,10 +93,11 @@ function bc_dc_preprocess_flag(array &$variables): void {
   // If at least one user has bookmarked an item, add a message with the count.
   $node_bookmark_count = bc_dc_count_node_bookmarks($variables['flaggable']);
   if ($node_bookmark_count > 0) {
-    $args = [
-      '@count' => $node_bookmark_count,
-    ];
-    $count_message = \Drupal::translation()->formatPlural($node_bookmark_count, 'Bookmarked by 1 person', 'Bookmarked by @count people', $args);
+    $count_message = \Drupal::translation()->formatPlural($node_bookmark_count,
+      'Bookmarked by 1 person',
+      'Bookmarked by @count people', [
+        '@count' => $node_bookmark_count,
+      ]);
     // Visually display the count message.
     $variables['title']['#markup'] = '<span class="title dc-label icon-bi-bookmark-dash-fill">' . $variables['title']['#markup'] . '</span> <span class="count small">' . $count_message->render() . '</span>';
     // Add the count message to the @aria-label.
