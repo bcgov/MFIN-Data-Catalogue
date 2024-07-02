@@ -13,7 +13,7 @@ jobs:
       run: echo "GITHUB_REFERENCE=$(echo ${GITHUB_REF#refs/tags/})" >> $GITHUB_ENV
 
     - name: Checkout Tenant GitOps Repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         repository: bcgov-c/tenant-gitops-ea352d
         path: tenant-gitops

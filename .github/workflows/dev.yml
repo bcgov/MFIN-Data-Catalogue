@@ -96,7 +96,7 @@ jobs:
         docker push ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}-nginx:${{ env.GITHUB_REFERENCE }}
 
     - name: Checkout Tenant GitOps Repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         repository: bcgov-c/tenant-gitops-ea352d
         path: tenant-gitops
