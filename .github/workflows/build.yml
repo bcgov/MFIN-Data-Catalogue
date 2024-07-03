@@ -48,7 +48,7 @@ jobs:
     - name: Scan PHP-FPM image for vulnerabilities
       uses: aquasecurity/trivy-action@0.20.0
       with:
-        image-ref: 'mfin-data-catalogue-web:latest'
+        image-ref: 'fintranet-web:latest'
         format: 'table'
         exit-code: '0'
         ignore-unfixed: true
@@ -58,7 +58,7 @@ jobs:
     - name: Scan Nginx image for vulnerabilities
       uses: aquasecurity/trivy-action@0.20.0
       with:
-        image-ref: 'mfin-data-catalogue-nginx:latest'
+        image-ref: 'fintranet-nginx:latest'
         format: 'table'
         exit-code: '0'
         ignore-unfixed: true
