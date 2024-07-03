@@ -1,9 +1,9 @@
 {
-    "name": "bcgov-c/mfin-data-catalogue",
-    "description": "BC MFIN Data Catalogue",
+    "name": "bcgov-c/fintranet",
+    "description": "Ministry of Finance Intranet",
     "type": "project",
     "license": "GPL-2.0-or-later",
-    "homepage": "https://github.com/bcgov-c/MFIN-Data-Catalogue",
+    "homepage": "https://github.com/bcgov-c/fintranet",
     "repositories": [
         {
             "type": "composer",
@@ -167,18 +167,18 @@
     "scripts": {
         "clean-billboardjs": "./scripts/clean-billboardjs.sh",
         "pre-install-cmd": [
-            "BCGovC\\MfinDataCatalogue\\ScriptHandler::checkComposerVersion"
+            "BCGovC\\Fintranet\\ScriptHandler::checkComposerVersion"
         ],
         "pre-update-cmd": [
-            "BCGovC\\MfinDataCatalogue\\ScriptHandler::checkComposerVersion"
+            "BCGovC\\Fintranet\\ScriptHandler::checkComposerVersion"
         ],
         "post-install-cmd": [
             "@clean-billboardjs",
-            "BCGovC\\MfinDataCatalogue\\ScriptHandler::createRequiredFiles"
+            "BCGovC\\Fintranet\\ScriptHandler::createRequiredFiles"
         ],
         "post-update-cmd": [
             "@clean-billboardjs",
-            "BCGovC\\MfinDataCatalogue\\ScriptHandler::createRequiredFiles"
+            "BCGovC\\Fintranet\\ScriptHandler::createRequiredFiles"
         ]
     },
     "extra": {
