@@ -9,7 +9,7 @@ on:
 
 env:
   COMPOSER_MEMORY_LIMIT: -1
-  CONTAINER_IMAGE_NAME: mfin-data-catalogue
+  CONTAINER_IMAGE_NAME: fintranet
   CONTAINER_REGISTRY: ${{ secrets.CONTAINER_REGISTRY }}
   CONTAINER_REGISTRY_USERNAME: ${{ secrets.CONTAINER_REGISTRY_USERNAME }}
   CONTAINER_REGISTRY_PASSWORD: ${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
@@ -61,7 +61,7 @@ jobs:
     - name: Scan PHP-FPM image for vulnerabilities
       uses: aquasecurity/trivy-action@0.20.0
       with:
-        image-ref: 'mfin-data-catalogue-web:latest'
+        image-ref: 'fintranet-web:latest'
         format: 'table'
         exit-code: '0'
         ignore-unfixed: true
@@ -71,7 +71,7 @@ jobs:
     - name: Scan Nginx image for vulnerabilities
       uses: aquasecurity/trivy-action@0.20.0
       with:
-        image-ref: 'mfin-data-catalogue-nginx:latest'
+        image-ref: 'fintranet-nginx:latest'
         format: 'table'
         exit-code: '0'
         ignore-unfixed: true
@@ -87,18 +87,18 @@ jobs:
 
     - name: Build and push PHP-FPM 🐳
       run: |
-        docker tag mfin-data-catalogue-web:latest ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}:${{ env.GITHUB_REFERENCE }}
+        docker tag fintranet-web:latest ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}:${{ env.GITHUB_REFERENCE }}
         docker push ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}:${{ env.GITHUB_REFERENCE }}
 
     - name: Build and push Nginx 🐳
       run: |
-        docker tag mfin-data-catalogue-nginx:latest ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}-nginx:${{ env.GITHUB_REFERENCE }}
+        docker tag fintranet-nginx:latest ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}-nginx:${{ env.GITHUB_REFERENCE }}
         docker push ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}-nginx:${{ env.GITHUB_REFERENCE }}
 
     - name: Checkout Tenant GitOps Repo
       uses: actions/checkout@v3
       with:
-        repository: bcgov-c/tenant-gitops-ea352d
+        repository: bcgov-c/tenant-gitops-f61fc4
         path: tenant-gitops
         ssh-key: ${{ secrets.SSH_KEY }}
         persist-credentials: true
@@ -108,7 +108,7 @@ jobs:
       with:
         cmd: |
           yq -i '.drupal.tag = strenv(GITHUB_REFERENCE) |
-                 .nginx.tag = strenv(GITHUB_REFERENCE) ' tenant-gitops/helm-drupal/charts/drupal/values-mfin-data-catalogue-dev.yaml
+                 .nginx.tag = strenv(GITHUB_REFERENCE) ' tenant-gitops/helm-drupal/charts/drupal/values-fintranet-dev.yaml
 
     - name: Commit files
       run: |
@@ -123,4 +123,4 @@ jobs:
         ssh: true
         branch: main
         directory: tenant-gitops
-        repository: bcgov-c/tenant-gitops-ea352d
+        repository: bcgov-c/tenant-gitops-f61fc4
