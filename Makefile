@@ -1,5 +1,5 @@
 include .env
-NAME := $(or $(BASE_IMAGE),$(BASE_IMAGE),bcgov-c/mfin-data-catalogue)
+NAME := $(or $(BASE_IMAGE),$(BASE_IMAGE),bcgov-c/fintranet)
 VERSION := $(or $(VERSION),$(VERSION),'latest')
 PLATFORM := $(shell uname -s)
 $(eval GIT_USERNAME := $(if $(GIT_USERNAME),$(GIT_USERNAME),github-token))
