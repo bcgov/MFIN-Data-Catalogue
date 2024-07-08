@@ -207,9 +207,6 @@
             "html/themes/contrib/{$name}": [
                 "type:drupal-theme"
             ],
-            "drush/Commands/contrib/{$name}": [
-                "type:drupal-drush"
-            ],
             "html/modules/custom/{$name}": [
                 "type:drupal-custom-module"
             ],
