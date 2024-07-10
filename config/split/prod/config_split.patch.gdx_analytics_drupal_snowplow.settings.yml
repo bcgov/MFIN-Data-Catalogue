@@ -1,0 +1,4 @@
+adding:
+  gdx_collector_mode: spt.apps.gov.bc.ca
+removing:
+  gdx_collector_mode: spm.apps.gov.bc.ca
