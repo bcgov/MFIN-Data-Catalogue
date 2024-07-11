@@ -1,0 +1,12 @@
+// Banner wrapper element class
+// ------------------------------
+.banner {
+  border: 1px solid $theme-gray-lighter;
+  padding: 2rem;
+  text-align: center;
+  .pane-content {
+    display: inline-block;
+    width: 100%;
+    p { margin: 0; }
+  }
+}

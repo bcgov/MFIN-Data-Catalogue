@@ -1,0 +1,22 @@
+
+// Page 404 & 403
+// ------------------------------
+
+.error-wrapper {
+  text-align: center;
+  .block-system {
+    margin-top: 2rem;
+    color: $theme-text-dark--secondary;
+  }
+  .block-search {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid $theme-gray-light;
+  }
+}
+
+.error-code {
+  font-size: 10rem;
+  font-weight: 100;
+  line-height: 10rem;
+}

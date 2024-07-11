@@ -1,0 +1,40 @@
+// Styles Included in the CKEditor
+
+// Variables
+@import "variables";
+
+// Bootstrap components
+@import "bootstrap";
+
+// Mixins
+@import "mixins";
+
+// Base
+@import "base/basis";
+@import "base/type";
+
+
+// Components / Forms
+@import "components/form/buttons";
+
+// Components / Modules
+@import "components/modules/poll";
+
+// Components / Content
+@import "content/teaser/teaser";
+
+// Components / Content Components
+@import "content/paragraphs/paragraph";
+@import "content/paragraphs/text";
+
+
+// Components / Commerce
+@import "components/commerce/product-teaser";
+@import "components/commerce/product";
+
+
+// Editor width should be equal as the article width
+body.cke_editable {
+  width: 770px;
+  margin: 15px 0 0 20px;
+}

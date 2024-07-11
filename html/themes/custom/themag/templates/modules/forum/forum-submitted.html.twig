@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Theme override for a forum post submission string.
+ *
+ * The submission string indicates when and by whom a topic was submitted.
+ *
+ * Available variables:
+ * - author: The author of the post.
+ * - time: How long ago the post was created.
+ * - topic: An object with the raw data of the post. Potentially unsafe. Be
+ *   sure to clean this data before printing.
+ *
+ * @see template_preprocess_forum_submitted()
+ */
+#}
+{% if time %}
+  <div class="submitted">
+    <div class="submitted__author">
+      {% trans %}By {{ author }}{% endtrans %}
+    </div>
+    <div class="submitted__time">
+      {% trans %}{{ time }} ago{% endtrans %}
+    </div>
+  </div>
+{% else %}
+  {{ 'n/a'|t }}
+{% endif %}

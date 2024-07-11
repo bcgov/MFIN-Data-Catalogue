@@ -1,0 +1,174 @@
+@import 'variables';
+
+// Bootstrap
+//
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
+
+// Columns 4/4/4
+//
+.themag-layout--threecol-section--4-4-4 {
+
+  .themag-layout__region {
+    @include make-col(12);
+    margin-bottom: $section--margin-bottom;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    @include media-breakpoint-up(lg) {
+      @include make-col(4);
+      margin-bottom: 0;
+    }
+  }
+}
+
+
+// Columns 6/4/4
+//
+.themag-layout--threecol-section--6-4-4 {
+
+  .themag-layout__region:last-child {
+    margin-bottom: 0;
+  }
+
+  .themag-layout__region--first {
+    @include make-col(12);
+    margin-bottom: $section--margin-bottom;
+    @include media-breakpoint-up(md) {
+      @include make-col(12);
+    }
+    @include media-breakpoint-up(lg) {
+      @include make-col(4);
+      margin-bottom: 0;
+    }
+    @include media-breakpoint-up(xl) {
+      @include make-col(6);
+    }
+  }
+
+  .themag-layout__region--second,
+  .themag-layout__region--third {
+    @include make-col(12);
+    margin-bottom: $section--margin-bottom;
+    @include media-breakpoint-up(md) {
+      @include make-col(6);
+      margin-bottom: 0;
+    }
+    @include media-breakpoint-up(lg) {
+      @include make-col(4);
+    }
+    @include media-breakpoint-up(xl) {
+      @include make-col(3);
+    }
+  }
+}
+
+
+// Columns 4/6/4
+//
+.themag-layout--threecol-section--4-6-4 {
+
+  .themag-layout__region:last-child {
+    margin-bottom: 0;
+  }
+
+  .themag-layout__region--second {
+    @include make-col(12);
+    margin-bottom: $section--margin-bottom;
+    order: 1;
+    @include media-breakpoint-up(md) {
+      @include make-col(12);
+    }
+    @include media-breakpoint-up(lg) {
+      @include make-col(4);
+      margin-bottom: 0;
+      order: 2;
+    }
+    @include media-breakpoint-up(xl) {
+      @include make-col(6);
+    }
+  }
+
+  .themag-layout__region--first,
+  .themag-layout__region--third {
+    @include make-col(12);
+    margin-bottom: $section--margin-bottom;
+    @include media-breakpoint-up(md) {
+      @include make-col(6);
+      margin-bottom: 0;
+    }
+    @include media-breakpoint-up(lg) {
+      @include make-col(4);
+    }
+    @include media-breakpoint-up(xl) {
+      @include make-col(3);
+    }
+  }
+
+  .themag-layout__region--first {
+    order: 2;
+    @include media-breakpoint-up(lg) {
+      order: 1;
+    }
+  }
+
+  .themag-layout__region--third {
+    order: 3;
+  }
+}
+
+
+// Columns 4/6/4
+//
+.themag-layout--threecol-section--4-4-6 {
+
+  .themag-layout__region--third {
+    @include make-col(12);
+    order: 1;
+    margin-bottom: $section--margin-bottom;
+    @include media-breakpoint-up(md) {
+      @include make-col(12);
+    }
+    @include media-breakpoint-up(lg) {
+      @include make-col(4);
+      order: 3;
+      margin-bottom: 0;
+    }
+    @include media-breakpoint-up(xl) {
+      @include make-col(6);
+    }
+  }
+
+  .themag-layout__region--first,
+  .themag-layout__region--second {
+    @include make-col(12);
+    margin-bottom: $section--margin-bottom;
+    @include media-breakpoint-up(md) {
+      @include make-col(6);
+      margin-bottom: 0;
+    }
+    @include media-breakpoint-up(lg) {
+      @include make-col(4);
+    }
+    @include media-breakpoint-up(xl) {
+      @include make-col(3);
+    }
+  }
+
+  .themag-layout__region--first {
+    order: 2;
+    @include media-breakpoint-up(lg) {
+      order: 1;
+    }
+  }
+
+  .themag-layout__region--second {
+    order: 3;
+    margin-bottom: 0;
+    @include media-breakpoint-up(lg) {
+      order: 2;
+    }
+  }
+}

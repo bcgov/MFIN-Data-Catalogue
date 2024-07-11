@@ -1,0 +1,269 @@
+// -------------------------
+// Teaser list
+// -------------------------
+.teaser--list {
+  .teaser--f,
+  .teaser--d,
+  .teaser--e {
+    border-top: 1px dashed $theme-gray-lighter;
+  }
+
+  .views-row {
+    .teaser {
+      margin-top: 15px;
+      padding-top: 15px;
+    }
+    &:nth-child(1) .teaser {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+    .teaser--a,
+    .teaser--b,
+    .teaser--c {
+      margin-top: 0;
+      margin-bottom: 30px;
+      padding-top: 0;
+    }
+
+    &:nth-last-child(1) .teaser  {
+      margin-bottom: 0;
+    }
+  }
+
+  &.teaser--card .views-row:nth-child(1) {
+    .teaser--a,
+    .teaser--b,
+    .teaser--c {
+      border-top: 1px solid $theme-gray-lighter;
+    }
+  }
+}
+
+// -------------------------
+// Teaser Ggrid
+// -------------------------
+%teaser--grid {
+   @include media-breakpoint-up(md) {
+      @include make-row;
+    }
+
+  .views-row {
+    margin-top: 15px;
+    padding-top: 15px;
+    .teaser--d {
+      border-top: 1px dashed $theme-gray-lighter;
+      padding-top: 15px;
+      margin-top: -15px;
+    }
+    &:nth-child(1) {
+      margin-top: 0;
+      padding-top: 0;
+      .teaser--d {
+        border-top: none;
+      }
+    }
+    @include media-breakpoint-up(md) {
+      @include make-col-ready;
+    }
+  }
+}
+
+// Teaser 2 column grid
+// -------------------------
+.teaser--2-col-grid {
+  @extend %teaser--grid;
+  .views-row {
+    @include media-breakpoint-up(md) {
+      @include make-col(6);
+      &:nth-child(2) {
+        margin-top: 0;
+        padding-top: 0;
+        .teaser--d {
+          border-top: none;
+        }
+      }
+    }
+  }
+}
+
+// Teaser 3 column grid
+// -------------------------
+.teaser--3-col-grid {
+  @extend %teaser--grid;
+  .views-row {
+    @include media-breakpoint-up(lg) {
+      @include make-col(4);
+      &:nth-child(1),
+      &:nth-child(2),
+      &:nth-child(3) {
+        margin-top: 0;
+        padding-top: 0;
+        .teaser--d {
+          border-top: none;
+        }
+      }
+    }
+  }
+}
+
+// Teaser 4 column grid
+// -------------------------
+.teaser--4-col-grid {
+  @extend %teaser--grid;
+  .views-row {
+    @include media-breakpoint-up(md) {
+      @include make-col(6);
+      &:nth-child(2) {
+        margin-top: 0;
+        padding-top: 0;
+      }
+    }
+    @include media-breakpoint-up(lg) {
+      @include make-col(3);
+      &:nth-child(2),
+      &:nth-child(3),
+      &:nth-child(4) {
+        margin-top: 0;
+        padding-top: 0;
+      }
+    }
+  } // .views-row
+}
+
+
+// ------------------------------
+// Teaser Block 3 Col Attachment
+// ------------------------------
+.block__content > div > .teaser--block-2col {
+  .contextual {
+    display: none;
+  }
+  @include make-row();
+  > div {
+    @include make-col-ready();
+    @include make-col(12);
+    @include media-breakpoint-up(lg) {
+      @include make-col(6);
+    }
+  }
+
+  .attachment .views-element-container {
+    margin-bottom: 30px;
+    &:nth-last-child(1) {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// ------------------------------
+// Teaser Block 3 Col Attachment
+// ------------------------------
+.block__content > div > .teaser--block-3col {
+  .contextual {
+    display: none;
+  }
+  @include make-row();
+  > div {
+    @include make-col-ready();
+    @include make-col(12);
+    @include media-breakpoint-up(lg) {
+      @include make-col(4);
+    }
+  }
+
+  .attachment-before {
+    margin-bottom: 10px;
+    @include media-breakpoint-up(lg) {
+      margin-bottom: 0;
+    }
+  }
+}
+
+
+// -------------------------
+// Popular content teasers
+// -------------------------
+.view-popular-content .image-wrapper {
+  position: relative;
+  .field__label {
+    display: none;
+  }
+  .overlay {
+    background: linear-gradient(-135deg, transparentize(#9c27b0, .7) 10%, transparentize($blue-100, .5));
+    font-size: 1.125rem;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 20;
+    >div {
+      width: 100px;
+      height: 100px;
+      margin: -50px 0 0 -50px;
+      border: 1px dashed transparentize(#FFF, .1);
+      border-radius: 100px;
+      font-weight: bold;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    }
+    .counter {
+      font-size: 4rem;
+      line-height: 100px;
+    }
+    .views-counter {
+      font-size: 1rem;
+      font-weight: normal;
+    }
+  }
+  a {
+    color: $theme-text-light--primary;
+  }
+}
+
+// ------------------------------
+// Most commented teasers
+// ------------------------------
+.most-commented .views-row {
+  margin-bottom: .5rem;
+  padding: 0 2rem .5rem;
+  border-bottom: 1px dashed $theme-gray-lightest;
+  &.views-row-last {
+    border-bottom: none;
+  }
+}
+
+.most-commented {
+  text-align: center;
+  .comments-count-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: .5rem;
+    i.fa {
+      color: $theme-primary-color;
+      font-size: 3.125rem;
+    }
+    .comments-count-number {
+      width: 100%;
+      color: #FFF;
+      font-size: 1.25rem;
+      font-weight: bold;
+      text-align: center;
+      position: absolute;
+      top: 10px;
+      z-index: 1;
+    }
+  }
+  h3 {
+    margin-bottom: .2rem;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+  }
+  .post-date {
+    color: $theme-text-dark--secondary;
+    font-size: .8rem;
+  }
+}

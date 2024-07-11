@@ -1,0 +1,43 @@
+// =========================
+// Article Preview
+// =========================
+
+.node-preview-container {
+  background: $gray-blue-50;
+  padding: 0 1rem;
+  box-shadow: 0 .25rem .5rem 0 rgba(#000, .4);
+  position: relative;
+  z-index: 50;
+
+  .node-preview-form-select {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .node-preview-backlink {
+      font-weight: bold;
+      text-decoration: underline;
+      white-space: nowrap;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    .form-item-view-mode {
+      flex: 0;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      label {
+        margin: 0 .5rem 0;
+        text-transform: none;
+        white-space: nowrap;
+      }
+    }
+
+    input[type='submit'] {
+      display: none;
+    }
+  };
+}

@@ -1,0 +1,214 @@
+# ==========================================
+# HOME PAGE LAYOUTS
+# ==========================================
+
+layout_a:
+  label: 'Landing page layout A'
+  icon: layout-a.png
+  path: templates/panels-layouts/landing/layout-a
+  template: layout--a
+  category: 'TheMAG Layouts'
+  default_region: middle
+  regions:
+    featured:
+      label: Featured
+    top:
+      label: Top
+    top_left_below:
+      label: 'Top left below'
+    top_middle_below:
+      label: 'Top middle below'
+    top_right_below:
+      label: 'Top right below'
+    middle_left_above:
+      label: 'Middle left above'
+    middle_right_above:
+      label: 'Middle right above'
+    middle:
+      label: Middle
+    middle_left_below:
+      label: 'Middle left below'
+    middle_middle_below:
+      label: 'Middle middle below'
+    middle_right_below:
+      label: 'Middle right below'
+    bottom_left_above:
+      label: 'Bottom left above'
+    bottom_right_above:
+      label: 'Bottom right above'
+    bottom:
+      label: Bottom
+
+
+# ==========================================
+# PAGE LAYOUTS
+# ==========================================
+
+
+# Page Layout 1 (One Column)
+# -----------------------------------------
+
+page_1:
+  label: 'Basic page layout 1'
+  category: 'TheMAG Layouts'
+  path: templates/panels-layouts/page/page_1
+  template: layout--page-1
+  icon: page_1.png
+  regions:
+    page_header:
+      label: Page Header (Content Introductory)
+    page_tabs:
+      label: Tabs
+    page_content:
+      label: 'Content'
+  default_region: page_page_content
+
+
+# Page Layout 2 (Sidebar right)
+# -----------------------------------------
+
+page_2:
+  label: 'Basic page layout 2 (Sidebar right)'
+  category: 'TheMAG Layouts'
+  path: templates/panels-layouts/page/page_2
+  template: layout--page-2
+  icon: page_2.png
+  regions:
+    page_header:
+      label: Page Header (Content Introductory)
+    page_tabs:
+      label: Tabs
+    page_content:
+      label: 'Content'
+    page_sidebar_right:
+      label: 'Sidebar Right'
+  default_region: page_content
+
+
+# Page Layout 3 (Bricks)
+# -----------------------------------------
+
+page_3:
+  label: 'Basic page layout 3 (Bricks)'
+  category: 'TheMAG Layouts'
+  path: templates/panels-layouts/page/page_3
+  template: layout--page-3
+  icon: page_3.png
+  regions:
+    page_header:
+      label: Page Header (Content Introductory)
+    page_tabs:
+      label: Tabs
+    page_content_top:
+      label: 'Content Top'
+    page_content:
+      label: 'Content'
+    page_sidebar_right:
+      label: 'Sidebar Right'
+    page_content_bottom:
+      label: 'Content Bottom'
+    page_content_bottom_below_first:
+      label: 'Content Bottom Below First'
+    page_content_bottom_below_second:
+      label: 'Content Bottom Below Second'
+  default_region: page_content
+
+
+
+# ==========================================
+# ARTICLE LAYOUTS
+# ==========================================
+
+# Article Layout 1 (With right sidebar)
+# -----------------------------------------
+
+article_1:
+  label: 'Article layout 1 (Sidebar right)'
+  category: 'TheMAG Layouts'
+  path: templates/panels-layouts/article/article_1
+  template: layout--article-1
+  icon: article_1.png
+  regions:
+    article_content_top:
+      label: 'Content Top'
+    tabs:
+      label: Tabs
+    article_header:
+      label: Article Header (Content Introductory)
+    article_footer:
+      label: Article Footer (Article Meta)
+    article_social_buttons:
+      label: Share Buttons
+    article_content:
+      label: 'Main Article Content'
+    article_comments:
+      label: 'Comments'
+    article_sidebar_right:
+      label: 'Sidebar Right'
+    article_content_bottom:
+      label: 'Content Bottom'
+  default_region: article_content
+
+
+# Article Layout 2 (No sidebar)
+# -----------------------------------------
+
+article_2:
+  label: 'Article layout 2 (No Sidebar)'
+  category: 'TheMAG Layouts'
+  path: templates/panels-layouts/article/article_2
+  template: layout--article-2
+  icon: article_2.png
+  regions:
+    article_content_top:
+      label: 'Content Top'
+    tabs:
+      label: Tabs
+    article_media:
+      label: Article Media (Introduction Image)
+    article_header:
+      label: Article Header (Content Introductory)
+    article_footer:
+      label: Article Footer (Article Meta)
+    article_social_buttons:
+      label: Sharqe Buttons
+    article_content:
+      label: 'Main Article Content'
+    article_comments:
+      label: 'Comments'
+    article_content_bottom:
+      label: 'Content Bottom'
+  default_region: article_content
+
+
+# Article Layout 3 (With right sidebar)
+# -----------------------------------------
+
+article_3:
+  label: 'Article layout 3 (Sidebar right)'
+  category: 'TheMAG Layouts'
+  path: templates/panels-layouts/article/article_3
+  template: layout--article-3
+  icon: article_3.png
+  regions:
+    article_content_top:
+      label: 'Content Top'
+    tabs:
+      label: Tabs
+    article_media:
+      label: Article Media (Introduction Image)
+    article_header:
+      label: Article Header (Content Introductory)
+    article_footer:
+      label: Article Footer (Article Meta)
+    article_social_buttons:
+      label: Share Buttons
+    article_content:
+      label: 'Main Article Content'
+    article_comments:
+      label: 'Comments'
+    article_sidebar_right:
+      label: 'Sidebar Right'
+    article_content_bottom:
+      label: 'Content Bottom'
+  default_region: article_content

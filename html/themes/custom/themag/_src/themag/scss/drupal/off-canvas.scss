@@ -1,0 +1,99 @@
+//
+// @file
+// CSS for off-canvas dialog.
+//
+
+// Off-Canvas base
+//
+#drupal-off-canvas *,
+#drupal-off-canvas *:not(div) {
+  color: rgba(#FFF, .4);
+  background: #263238;
+}
+
+// Off-Canvas
+//
+.ui-dialog-off-canvas {
+
+  .inline-block-create-button,
+  .inline-block-list__item {
+    background-color: darken(#263238, 5%);
+    &:hover {
+      background-color: darken(#263238, 10%);
+    }
+  }
+
+  .description,
+  .form-item .description,
+  .details-description {
+    color: rgba(#FFF, .4);
+  }
+
+  summary {
+    display: block;
+
+    &:hover {
+      background: darken(#263238, 5%);
+    }
+  }
+  details[open] > summary {
+    background: darken(#263238, 10%);
+  }
+}
+
+
+.ui-widget {
+
+  &.ui-dialog.ui-dialog-off-canvas {
+    background: #263238;
+    font-size: 16px;
+
+    .ui-dialog-titlebar {
+      background: darken(#263238, 10%);
+    }
+  }
+}
+
+
+//
+// Off-canvas Forms
+//
+#drupal-off-canvas {
+
+  // Label
+  //
+  label {
+    color: #FFF;
+  }
+
+  // Description
+  //
+  .description,
+  .form-item .description,
+  .details-description {
+    color: rgba(#FFF, .4);
+
+    a {
+      //color: rgba(#FFF, .6);
+      text-decoration: underline;
+      &:hover {
+        color: rgba(#FFF, .6);
+      }
+    }
+  }
+
+  // Details
+  //
+  details {
+    summary {
+      &:hover, &:focus {
+        background-color: darken(#263238, 10%);
+        color: #FFF;
+      }
+    }
+    &[open] > summary {
+      background-color: darken(#263238, 10%);
+      color: #FFF;
+    }
+  }
+}

@@ -1,0 +1,138 @@
+  // MailChimp
+
+
+// Mailchimp Signup Block
+//
+.block--poll {
+  background: transparent;
+  border: 1px solid $gray-blue-100;
+  color: $gray-blue-900;
+  padding: 2rem;
+
+  // In a dark layout wrapper
+  .themag-layout--black & {
+    border-color: #282d2f;
+    color: $theme-text-light--secondary;
+  }
+
+  .block__title {
+    margin-bottom: .5rem;
+    text-align: left;
+    .title-text {
+      background: transparent;
+      color: $theme-gray;
+      padding: 0 .1rem;
+    }
+    &:before, &:after {
+      display: none;
+    }
+  }
+  .form-actions {
+    margin-top: .5rem;
+    margin-bottom: 0;
+  }
+  input[type="submit"] {
+    background-color: $theme-primary-color;
+    border-color: $theme-primary-color;
+    width: 100%;
+    margin-top: .25rem;
+    color: #FFF;
+  }
+}
+
+
+// Poll
+//
+.poll__question {
+  line-height: 1.1;
+  
+  // In a dark layout wrapper
+  .themag-layout--black & {
+    color: $theme-text-light--primary;
+  }
+}
+
+.poll__choice__title {
+  font-weight: bold;
+}
+
+.poll__total {
+  font-size: .778rem;
+  color: $theme-gray-light;
+}
+
+// Poll Vote
+//
+
+.poll--vote {
+  .poll__choice__title {
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  .poll__choice {
+
+    .form-actions {
+      margin-top: 1rem;
+      margin-bottom: 0;
+    }
+  }
+  #edit-result {
+    background: transparent;
+    border-color: $theme-gray-lighter;
+    color: $theme-gray-dark;
+    text-shadow: none;
+
+    // In a dark layout wrapper
+    .themag-layout--black & {
+      color: $theme-text-light--primary;
+    }
+  }
+}
+
+// Poll Results
+//
+.poll__result {
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.poll--results {
+  .poll__question {
+    margin-bottom: 1.2rem;
+  }
+  .poll__choice {
+    display: flex;
+    margin-bottom: .5rem;
+    > * {
+      margin-right: .5rem;
+    }
+  }
+}
+
+.poll__choice__percent {
+  color: $theme-primary-color;
+  font-family: $theme-headings-font-family;
+  font-size: 1.8rem;
+  font-weight: 300;
+}
+
+.poll__choice__votes {
+  margin-top: .2rem;
+  font-size: .7rem;
+  color: $theme-gray-light;
+}
+
+
+.poll .bar .foreground {
+  background: $theme-primary-color;
+}
+
+
+
+// Large Poll Block (it depends on region).
+.block-region-top,
+.block-region-middle,
+.block-region-bottom,
+.block-region-article-content-top,
+.block-region-article-content-bottom {
+}

@@ -1,0 +1,30 @@
+themag.xs:
+  label: 'Extra small devices'
+  mediaQuery: ''
+  weight: 0
+  multipliers:
+    - 1x
+themag.sm:
+  label: 'Small devices'
+  mediaQuery: 'all and (min-width: 544px)'
+  weight: 1
+  multipliers:
+    - 1x
+themag.md:
+  label: 'Medium devices'
+  mediaQuery: 'all and (min-width: 768px)'
+  weight: 2
+  multipliers:
+    - 1x
+themag.lg:
+  label: 'Large devices'
+  mediaQuery: 'all and (min-width: 992px)'
+  weight: 3
+  multipliers:
+    - 1x
+themag.xl:
+  label: 'Extra large devices'
+  mediaQuery: 'all and (min-width: 1200px)'
+  weight: 4
+  multipliers:
+    - 1x

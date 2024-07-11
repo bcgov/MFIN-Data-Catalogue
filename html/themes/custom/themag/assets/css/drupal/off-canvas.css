@@ -1,0 +1,76 @@
+#drupal-off-canvas *,
+#drupal-off-canvas *:not(div) {
+  color: rgba(255, 255, 255, 0.4);
+  background: #263238;
+}
+
+.ui-dialog-off-canvas .inline-block-create-button,
+.ui-dialog-off-canvas .inline-block-list__item {
+  background-color: #1c2429;
+}
+
+.ui-dialog-off-canvas .inline-block-create-button:hover,
+.ui-dialog-off-canvas .inline-block-list__item:hover {
+  background-color: #11171a;
+}
+
+.ui-dialog-off-canvas .description,
+.ui-dialog-off-canvas .form-item .description,
+.ui-dialog-off-canvas .details-description {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.ui-dialog-off-canvas summary {
+  display: block;
+}
+
+.ui-dialog-off-canvas summary:hover {
+  background: #1c2429;
+}
+
+.ui-dialog-off-canvas details[open] > summary {
+  background: #11171a;
+}
+
+.ui-widget.ui-dialog.ui-dialog-off-canvas {
+  background: #263238;
+  font-size: 16px;
+}
+
+.ui-widget.ui-dialog.ui-dialog-off-canvas .ui-dialog-titlebar {
+  background: #11171a;
+}
+
+#drupal-off-canvas label {
+  color: #FFF;
+}
+
+#drupal-off-canvas .description,
+#drupal-off-canvas .form-item .description,
+#drupal-off-canvas .details-description {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+#drupal-off-canvas .description a,
+#drupal-off-canvas .form-item .description a,
+#drupal-off-canvas .details-description a {
+  text-decoration: underline;
+}
+
+#drupal-off-canvas .description a:hover,
+#drupal-off-canvas .form-item .description a:hover,
+#drupal-off-canvas .details-description a:hover {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+#drupal-off-canvas details summary:hover, #drupal-off-canvas details summary:focus {
+  background-color: #11171a;
+  color: #FFF;
+}
+
+#drupal-off-canvas details[open] > summary {
+  background-color: #11171a;
+  color: #FFF;
+}
+
+/*# sourceMappingURL=../sourcemap/drupal/off-canvas.css.map */

@@ -1,0 +1,60 @@
+//
+// Default display
+//
+.user__info-wrapper {
+  background-color: $theme-gray-lightest;
+  padding: 4rem 2rem;
+
+  .field--name-user-picture img {
+    border-radius: 50%;
+  }
+
+  h1 {
+    margin-bottom: .8rem;
+  }
+
+  .field--name-field-short-bio {
+    margin-bottom: 1rem;
+  }
+
+  .user__social-pages {
+    a {
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      margin-right: 15px;
+      border: 2px solid $gray-blue-900;
+      border-radius: 50%;
+      color: $gray-blue-900;
+      text-align: center;
+      @include media-breakpoint-up(md) {
+        width: 40px;
+        height: 40px;
+      }
+      svg {
+        margin: auto;
+      }
+    }
+
+    .social-menu--link-title {
+      margin-left: -10px;
+      margin-right: 15px;
+    }
+
+    a, a svg {
+      transition: background-color .2s ease-in-out, color .2s ease-in-out;
+      text-decoration: none;
+    }
+
+    a:hover {
+      background-color: $gray-blue-900;
+      color: $white;
+      opacity: 1;
+      svg {
+        color: $white;
+      }
+    }
+  }
+}

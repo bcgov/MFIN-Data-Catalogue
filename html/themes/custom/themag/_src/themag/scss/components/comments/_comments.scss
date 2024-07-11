@@ -1,0 +1,143 @@
+// Comments
+// ------------------
+.field--name-field-comment,
+.field--name-field-mg-comments {
+  background-color: $comments-bg;
+  padding: 1.5rem;
+  @include media-breakpoint-up(lg) {
+    padding: 2.5rem 3rem 3rem;
+  }
+
+  h2.title {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: #000;
+    font-size: .9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    @include media-breakpoint-up(lg) {
+      margin-bottom: 2rem;
+    }
+  }
+
+  .form-wrapper > .form-group {
+    margin-top: 0;
+  }
+
+  label,
+  .grippie {
+    display: none;
+  }
+  textarea {
+    height: 70px;
+    margin-bottom: 1rem;
+    transition: height .2s ease-in-out;
+    &:focus {
+      height: 120px;
+    }
+  }
+  .form-actions {
+    margin-bottom: 0;
+  }
+}
+
+
+// ----------------
+// Comment
+// ----------------
+.comment {
+  display: flex;
+  margin-bottom: 15px;
+  font-size: .889rem;
+  font-weight: normal;
+  color: $theme-text-dark--primary;
+  @include media-breakpoint-up(lg) {
+    font-size: .889rem;
+  }
+}
+
+.user-image {
+  flex: 0 0 65px;
+  overflow: hidden;
+  border-radius: 3px;
+  img {
+    border-radius: 3px;
+  }
+}
+
+.comment-user-info {
+  margin: 0 0 10px;
+  padding: 0 0 0 10px;
+  border-left: 3px solid $theme-gray-light;
+  > div {
+    display: inline-block;
+    vertical-align: middle
+  }
+}
+
+.comment-user-name {
+  color: $theme-primary-color;
+  font-weight: bold;
+}
+
+.comment-date {
+  color: $theme-gray-light;
+  font-size: 12px;
+}
+
+
+// Replays (indented comments)
+.indented .comment {
+  margin-left: 4px;
+  .user-image {
+    flex: 0 0 36px;
+  }
+  @include media-breakpoint-up(md) {
+    margin-left: 62px;
+  }
+}
+
+.indented > .indented {
+  margin-left: 0px;
+  @include media-breakpoint-up(md) {
+    margin-left: 51px;
+  }
+}
+
+// Comment Links
+// ---------------------
+.comment__links {
+  display: flex;
+  margin: .6667rem 0;
+  font-size: .7rem;
+  text-transform: uppercase;
+  color: $theme-gray;
+  > *:not(:first-child) {
+    margin-left: .7778rem;
+  }
+  ul.links {
+    display: flex;
+    li:not(:first-child) {
+      margin-left: .7778rem;
+    }
+  }
+  @include media-breakpoint-up(lg) {
+    font-size: 11px;
+  }
+  a {
+    color: $black;
+    font-weight: bold;
+  }
+}
+
+// Mark "New"
+// ---------------------
+ mark {
+  background: $red;
+  padding: 0 .5rem;
+  height: 14px;
+  display: inline-block;
+  font-size: 80%;
+  line-height: 14px;
+  color: #FFF;
+}

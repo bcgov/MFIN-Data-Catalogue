@@ -1,0 +1,119 @@
+// -------------------------
+// Superfish
+// Header Main Menu
+// -------------------------
+
+ul.sf-menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  z-index: 10;
+  li {
+    white-space: nowrap;
+    transition: background .2s;
+  }
+  a {
+    padding: .75rem 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+  }
+
+  // Items with Submenu
+  // --------------------
+  .sf-with-ul {
+    padding-right: 24px;
+    position: relative;
+  }
+
+  span.sf-sub-indicator {
+   width: 8px;
+   height: 4px;
+   right: 9px;
+   &:after {
+     display: block;
+     width: 0;
+     height: 0;
+     border-top: 4px solid #000;
+     border-right: 4px solid transparent;
+     border-left: 4px solid transparent;
+     content: "";
+   }
+  }
+
+  >li {
+    >a {
+      padding: 15px 14px;
+      color: $sf-level-1-link-color;
+      font-weight: $sf-level-1-font-weight;
+      font-size: $sf-level-1-font-size;
+      text-transform: $sf-level-1-text-transform;
+      &:hover {
+        color: $sf-level-1-link-color-hover;
+      }
+    }
+    &.sfHover {
+      background-color: $sf-level-2-bg-color;
+      > a {
+        color: $sf-level-1-link-color-active;
+      }
+    }
+  }
+
+  // Level 2+
+  // ------------
+  ul {
+    background: transparent;
+    width: auto!important;
+    min-width: 12em;
+    box-shadow: 0 5px 5px 0 transparentize(#000, .9);
+    border-bottom: none;
+    li {
+      border-bottom: $sf-level-2-link-border-bottom;
+      a {
+        background-color: $sf-level-2-bg-color;
+        color: $sf-level-2-link-color;
+        font-size: $sf-level-2-font-size;
+        font-weight: $sf-level-2-font-weight;
+        text-transform: $sf-level-2-text-transform;
+        &:hover {
+          background-color: $sf-level-2-bg-color-hover;
+          color: $sf-level-2-link-color-hover;
+        }
+      }
+      &.sfHover > a {
+        background-color: darken($sf-level-2-bg-color, 2%);
+        color: $sf-level-2-link-color-hover;
+      }
+      &.last {
+        border-bottom: none;
+      }
+    }
+    ul li a {
+      background: darken($sf-level-2-bg-color, 2%);
+    }
+
+    span.sf-sub-indicator {
+      width: 4px;
+      height: 8px;
+      right: 15px;
+      opacity: .3;
+      &:after {
+        border-top: 4px solid transparent;
+        border-bottom: 4px solid transparent;
+        border-left: 4px solid #000;
+      }
+    }
+  }
+}
+
+.sf-menu li:hover,
+.sf-menu li.sfHover {
+  transition: none;
+  ul {
+    top: 100%!important;
+  }
+  ul ul {
+    top: 0!important;
+  }
+}

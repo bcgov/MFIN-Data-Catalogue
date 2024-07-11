@@ -1,0 +1,35 @@
+//
+// Scroll to top button
+//
+.scroll-to-top-button {
+  background: $gray-blue-900;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 0 10px 0 transparentize($gray-blue-900, .5);
+  border-radius: 50%;
+  transition: all .25s ease-in-out, bottom .7s ease-in-out;
+  opacity: .3;
+  color: #FFF;
+  font-size: 1.5rem;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  position: fixed;
+  right: 2rem;
+  bottom: -200px;
+  z-index: 800;
+  &.active {
+    bottom: 30px;
+    text-decoration: none;
+  }
+  &:hover {
+    background: $gray-blue-900;
+    color: #FFF;
+    text-decoration: none;
+    opacity: 1;
+  }
+}

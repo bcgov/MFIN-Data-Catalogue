@@ -1,0 +1,209 @@
+// Content Grids
+//
+
+
+// ===================
+// Content Grid A
+// ===================
+
+.content-grid-a {
+  display: flex;
+  flex-wrap: wrap;
+  > .view-content {
+    width: 100%;
+    @include media-breakpoint-up(lg) {
+      width: 50%;
+    }
+    .teaser {
+      height: 50vh;
+      @include media-breakpoint-up(lg) {
+        height: 60vh;
+        @media screen and (max-height: 700px) {
+          height: 70vh;
+        }
+      }
+    }
+  }
+  > .attachment-after {
+    display: flex;
+    width: 100%;
+    @include media-breakpoint-up(lg) {
+      width: 50%;
+    }
+    .teaser {
+      height: 30vh;
+      @media screen and (max-height: 700px) {
+        height: 35vh;
+      }
+    }
+  }
+  .views-element-container {
+    width: 50%;
+  }
+}
+
+
+// ===================
+// Content Grid B
+// ===================
+
+.content-grid-b {
+  display: flex;
+  flex-wrap: wrap;
+  > .view-content {
+    width: 100%;
+    order: 1;
+    .teaser {
+      height: 60vh;
+      @include media-breakpoint-up(lg) {
+        height: 60vh;
+        @media screen and (max-height: 700px) {
+          height: 70vh;
+        }
+      }
+    }
+  }
+  > .attachment-before,
+  > .attachment-after {
+    .teaser {
+      height: 30vh;
+      @media screen and (max-height: 700px) {
+        height: 35vh;
+      }
+    }
+  }
+  > .attachment-before {
+    width: 50%;
+    order: 2;
+  }
+  > .attachment-after {
+    width: 50%;
+    order: 3;
+  }
+  @include media-breakpoint-up(lg) {
+    > .view-content {
+      width: 50%;
+      order: 2;
+    }
+    > .attachment-before {
+      width: 25%;
+      order: 1;
+    }
+    > .attachment-after {
+      width: 25%;
+      order: 3;
+    }
+  }
+}
+
+
+// ===================
+// Content Grid C
+// ===================
+
+.content-grid-c {
+  display: flex;
+  flex-wrap: wrap;
+  > .view-content {
+    width: 100%;
+    @include media-breakpoint-up(lg) {
+      width: 50%;
+    }
+    .teaser {
+      height: 50vh;
+      @include media-breakpoint-up(lg) {
+        height: 60vh;
+        @media screen and (max-height: 700px) {
+          height: 70vh;
+        }
+      }
+    }
+  }
+  > .attachment-after {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    @include media-breakpoint-up(lg) {
+      width: 50%;
+    }
+    .teaser {
+      height: 35vh;
+      @include media-breakpoint-up(lg) {
+        height: 60vh;
+        @media screen and (max-height: 700px) {
+          height: 70vh;
+        }
+      }
+    }
+  }
+  .views-element-container {
+    width: 100%;
+    @include media-breakpoint-up(lg) {
+      width: 50%;
+    }
+  }
+}
+
+
+// ===================
+// Content Grid D
+// ===================
+
+.content-grid-d {
+  display: flex;
+  flex-wrap: wrap;
+  > .view-content {
+    width: 100%;
+    @include media-breakpoint-up(lg) {
+      width: 50%;
+    }
+    .teaser {
+      height: 50vh;
+      @include media-breakpoint-up(lg) {
+        height: 60vh;
+        @media screen and (max-height: 700px) {
+          height: 70vh;
+        }
+      }
+    }
+  }
+  > .attachment-after {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    @include media-breakpoint-up(lg) {
+      width: 50%;
+    }
+    .teaser {
+      height: 35vh;
+      @include media-breakpoint-up(lg) {
+        height: 60vh;
+        @media screen and (max-height: 700px) {
+          height: 70vh;
+        }
+      }
+    }
+  }
+  .views-element-container {
+    width: 100%;
+    @include media-breakpoint-up(lg) {
+      width: 50%;
+    }
+    &:first-child .view-content {
+      display: flex;
+      flex-wrap: wrap;
+      > * {
+        width: 50%;
+        @include media-breakpoint-up(lg) {
+          width: 100%;
+        }
+      }
+      .teaser {
+        height: 30vh;
+        @media screen and (max-height: 700px) {
+          height: 35vh;
+        }
+      }
+    }
+  }
+}

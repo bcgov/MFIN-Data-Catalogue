@@ -1,0 +1,24 @@
+
+// Maintenance page
+// ------------------------------
+
+.maintenance-page .layout-container {
+  width: auto;
+  margin: 1.5rem;
+  padding: 3rem;
+  border: 1px solid $theme-gray-lighter;
+  @include media-breakpoint-up(md) {
+    width: 700px;
+    margin: 3rem auto;
+  }
+  header {
+    border-bottom: 1px solid $theme-gray-lighter;
+    margin-bottom: 1rem;
+    padding-bottom: 1.4rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    color: #000;
+  }
+}

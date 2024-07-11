@@ -1,0 +1,50 @@
+// ------------------
+// Field Category
+// ------------------
+.category-icon-wrapper {
+  display: inline-block;
+  margin-bottom: .5rem;
+  padding-left: 14px;
+  font-size: 1rem;
+  line-height: 1rem;
+  position: relative;
+  left: 5px;
+  @include media-breakpoint-up(lg) {
+    margin-bottom: .7rem;
+    padding-left: 18px;
+  }
+    a {
+      color: $theme-gray;
+    }
+}
+
+.category-icon {
+  background: $theme-gray-lighter;
+  width: 7px;
+  height: 14px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  @include media-breakpoint-up(lg) {
+    width: 10px;
+    height: 20px;
+  }
+  &:before,
+  &:after {
+    content: "";
+    display: block;
+    background: inherit;
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+  }
+  &:before {
+    box-shadow: inset 0 0 20px 0 transparentize(#000, .7);
+    left: -5px;
+    top: -5px;
+    z-index: 0;
+  }
+}

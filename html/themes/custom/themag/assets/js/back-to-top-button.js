@@ -1,0 +1,1 @@
+!function(o){"use strict";var a=o('<a href="#top" class="scroll-to-top-button" onclick="return 0" data-smooth-scroll><i class="fas fa-angle-up"></i></a>');a.appendTo(o("body")),o(window).scroll(function(){700<=o(window).scrollTop()?o(a).addClass("active"):o(a).removeClass("active")})}(jQuery);

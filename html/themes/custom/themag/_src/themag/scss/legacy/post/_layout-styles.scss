@@ -1,0 +1,68 @@
+// ------------------------------
+// Post Layout 1
+// ------------------------------
+
+.post-layout-1 {
+  .rrssb-buttons-wrapper {
+    padding-top: 1rem;
+    border-top: 1px dashed $theme-gray-lighter;
+    @include media-breakpoint-up(lg) {
+      padding-top: 0;
+      border-top: none;
+    }
+  }
+  .comments-wrapper {
+    background-color: lighten($gray-blue-50, 3%);
+    margin-top: 4rem;
+    border-radius: 3px;
+  }
+}
+
+// ------------------------------
+// Post Layout 2
+// ------------------------------
+
+.post-layout-2 {
+  .comments-wrapper {
+    background-color: lighten($gray-blue-50, 3%);
+    margin-bottom: -2rem;
+  }
+}
+
+// ------------------------------
+// Post Layout 3
+// ------------------------------
+
+.post-layout-3 {
+  .comments-wrapper {
+    background-color: lighten($gray-blue-50, 3%);
+  }
+}
+
+
+// ------------------------------
+//  Parallax teaser image
+// ------------------------------
+.teaser-image-parallax {
+  height: 400px;
+  position: relative;
+  &:before {
+    content: "";
+    display: block;
+    background: transparentize(#000, .6);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+  }
+  @include media-breakpoint-up(sm) {
+    height: 460px;
+    @media screen and ( min-height: 800px ){
+      height: 600px;
+    }
+  }
+  a {
+    color: #FFF;
+  }
+}

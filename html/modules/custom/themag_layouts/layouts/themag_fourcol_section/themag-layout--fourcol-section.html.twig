@@ -1,0 +1,47 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a four-column layout.
+ *
+ * Available variables:
+ * - content: The content for this layout.
+ * - attributes: HTML attributes for the layout <div>.
+ * - container_attributes: HTML attributes for the container element.
+ * - row_attributes: HTML attributes for the row element.
+ *
+ * @ingroup themeable
+ */
+#}
+{% if content %}
+
+  <div {{ attributes }}>
+    <div {{ container_attributes }}>
+      <div {{ row_attributes }}>
+        {% if content.first %}
+          <div {{ region_attributes.first.addClass('themag-layout__region', 'themag-layout__region--first') }}>
+            {{ content.first }}
+          </div>
+        {% endif %}
+
+        {% if content.second %}
+          <div {{ region_attributes.second.addClass('themag-layout__region', 'themag-layout__region--second') }}>
+            {{ content.second }}
+          </div>
+        {% endif %}
+
+        {% if content.third %}
+          <div {{ region_attributes.third.addClass('themag-layout__region', 'themag-layout__region--third') }}>
+            {{ content.third }}
+          </div>
+        {% endif %}
+
+        {% if content.fourth %}
+          <div {{ region_attributes.fourth.addClass('themag-layout__region', 'themag-layout__region--forth') }}>
+            {{ content.fourth }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+{% endif %}

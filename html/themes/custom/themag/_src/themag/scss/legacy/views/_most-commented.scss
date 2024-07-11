@@ -1,0 +1,43 @@
+// ------------------------------
+// Most commented teasers
+// ------------------------------
+.most-commented .views-row {
+  margin-bottom: .5rem;
+  padding: 0 2rem .5rem;
+  border-bottom: 1px dashed $theme-gray-lightest;
+  &.views-row-last {
+    border-bottom: none;
+  }
+}
+
+.most-commented {
+  text-align: center;
+  .comments-count-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: .5rem;
+    i.fa {
+      color: $theme-primary-color;
+      font-size: 3.125rem;
+    }
+    .comments-count-number {
+      width: 100%;
+      color: #FFF;
+      font-size: 1.25rem;
+      font-weight: bold;
+      text-align: center;
+      position: absolute;
+      top: 10px;
+      z-index: 1;
+    }
+  }
+  h3 {
+    margin-bottom: .2rem;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+  }
+  .post-date {
+    color: $theme-text-dark--secondary;
+    font-size: .8rem;
+  }
+}

@@ -1,0 +1,89 @@
+// Channel Field (deprecated style)
+//
+.field--name-field-mg-category,
+.field--name-field-channel {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}
+
+.teaser__channel i,
+.field--name-field-mg-category i,
+.field--name-field-channel i {
+  display: block;
+  width: .5556rem;
+  height: 1.1111rem;
+  margin-right: .3rem;
+  position: relative;
+  &:before, &:after {
+    content: '';
+    display: block;
+    background-color: inherit;
+    position: absolute;
+    width: .5556rem;
+    height: 1.1111rem;
+  }
+  &:before {
+    box-shadow: inset 0 0 0 10px rgba(#000, .1);
+    top: -.2778rem;
+    left: -.2778rem;
+    z-index: 1;
+  }
+  &:after {
+    top: 0;
+    left: 0;
+    z-index: 2;
+  }
+}
+
+
+// Channel
+//
+.channel {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  line-height: 1;
+
+  &__icon {
+    width: .5556rem;
+    height: 1.1111rem;
+    margin-right: .3rem;
+    position: relative;
+    &:before, &:after {
+      content: '';
+      display: block;
+      background-color: inherit;
+      position: absolute;
+      width: .5556rem;
+      height: 1.1111rem;
+    }
+    &:before {
+      box-shadow: inset 0 0 0 10px rgba(#000, .1);
+      top: -.2778rem;
+      left: -.2778rem;
+      z-index: 1;
+    }
+    &:after {
+      top: 0;
+      left: 0;
+      z-index: 2;
+    }
+  }
+
+  &__label {
+    color: $theme-gray-dark;
+
+    a {
+      color: $theme-gray-dark;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &--white, &--white a {
+    color: rgba($white, .7);
+  }
+}

@@ -1,0 +1,7 @@
+themag_layouts.themag_layouts_form:
+  path: '/admin/config/themag/layouts-configuration'
+  defaults:
+    _form: '\Drupal\themag_layouts\Form\TheMAGLayoutsConfigurationForm'
+    _title: 'TheMAG layouts settings'
+  requirements:
+    _permission: 'configure any layout'

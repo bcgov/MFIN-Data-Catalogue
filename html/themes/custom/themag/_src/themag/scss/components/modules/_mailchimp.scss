@@ -1,0 +1,96 @@
+// MailChimp
+
+
+// Mailchimp Signup Block
+//
+.block--mailchimp-signup {
+  background: #11171a;
+  border: 1px solid #11171a;
+  color: #FFF;
+  padding: 2rem;
+
+  .block__title {
+    margin-bottom: .5rem;
+    text-align: left;
+    .title-text {
+      background: transparent;
+      color: $theme-gray;
+      padding: 0 .1rem;
+    }
+    &:before, &:after {
+      display: none;
+    }
+  }
+  .form-actions {
+    margin-bottom: 0;
+  }
+  input[type="submit"] {
+    background-color: $theme-primary-color;
+    border-color: $theme-primary-color;
+    width: 100%;
+    margin-top: .25rem;
+    color: #FFF;
+  }
+}
+
+.mailchimp-newsletter__teaser {
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.mailchimp-newsletter__title {
+  margin-bottom: .5rem;
+  line-height: 1.1;
+  text-shadow: 0 1px 1px #FFF;
+}
+
+.mailchimp-newsletter__message {
+  opacity: .5;
+}
+
+
+// Large Mailchimp Signup Block (it depends on region).
+.block-region-top,
+.block-region-middle,
+.block-region-bottom,
+.block-region-article-content-top,
+.block-region-article-content-bottom,
+.themag-layout--onecol-section {
+  .block--mailchimp-signup {
+    border: none;
+    .mailchimp-newsletter__teaser {
+      @include media-breakpoint-up(lg) {
+        font-size: 1.2rem;
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+    }
+    .mailchimp-newsletter__title {
+      font-size: 2.4rem;
+      font-weight: bold;
+    }
+    form {
+      display: flex;
+      margin-left: auto;
+      margin-right: auto;
+      @include media-breakpoint-up(lg) {
+        width: 50%;
+      }
+    }
+    .mailchimp-newsletter-mergefields {
+      flex-grow: 1;
+    }
+    .form-actions {
+      margin-bottom: .375rem;
+    }
+    input[type="submit"] {
+      margin-top: 0;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    input[type="email"] {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+}

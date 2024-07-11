@@ -1,0 +1,20 @@
+// Use this file to write and compile SCSS. Note that the compiled CSS file
+// (assets/css/subtheme.css) is already included in the sub-theme.
+//
+// To compile the SCSS, first, run "npm install" or "yarn install"
+// from the sub-theme directory to install the required packages,
+// then run the "gulp" command to watch for changes in SCSS files and compile the style.
+//
+// The simplest way to override the theme style is by overriding the SCSS variables.
+// To do that, uncomment the line above:
+//
+// @import "themag/scss/themag";
+//
+// Then, use _variables.scss to override the default variables from TheMAG.
+//
+// If you'd like to have more control over TheMAG style components,
+// you can import all the components separately instead of importing the entire style at once.
+//
+
+@import "variables";
+// @import "themag/scss/themag";

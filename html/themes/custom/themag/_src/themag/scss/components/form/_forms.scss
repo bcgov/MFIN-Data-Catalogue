@@ -1,0 +1,181 @@
+//
+// Form wrapper
+//
+.form-wrapper {
+}
+
+//
+// Form item
+//
+.form-item,
+.form-actions {
+  margin-top: .375rem;
+  margin-bottom: .375rem;
+}
+
+table .form-item,
+table .form-actions {
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.form-item {
+  label:not(.option) {
+    margin-bottom: 0;
+    font-size: .778rem;
+    font-weight: bold;
+  }
+  input.error,
+  textarea.error,
+  select.error {
+    border: 1px solid $red-200;
+  }
+}
+
+//
+// Form Action Wrapper
+//
+.form-actions {
+  .button {
+    margin-right: .278rem;
+  }
+}
+
+//
+// Text input fields
+//
+%text-input {
+  background-color: $input-bg;
+  display: block;
+  width: 100%;
+  padding: 10px 1rem;
+  border: 1px solid;
+  border-color: $input-border-color;
+  border-radius: $input-border-radius;
+  box-shadow: $input-box-shadow;
+  color: $input-color;
+  font-size: .85rem;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color .15s;
+  @include media-breakpoint-up(md) {
+    font-size: .85rem;
+  }
+  &:focus, &:active {
+    border-color: $input-focus-border-color;
+    outline: none;
+    &::placeholder {
+      opacity: .7;
+    }
+  }
+  &::placeholder {
+    color: $input-placeholder-color;
+    transition: opacity .2s;
+  }
+}
+
+@each $type in text, password, color, date, datetime-local, email, month, number, range, search, tel, time, url, week {
+  input[type=#{$type}] {
+    @extend %text-input;
+  }
+}
+
+//
+// Select
+//
+select {
+  @extend %text-input;
+  width: auto;
+  height: 40px;
+}
+
+//
+// Text Area
+//
+textarea {
+  @extend %text-input;
+}
+
+//
+// Radio & Checkbox
+//
+
+input[type="radio"] {
+  margin-left: 3px;
+}
+
+.form-checkboxes .form-item,
+.form-radios .form-item {
+  margin-top: .1em;
+  margin-bottom: .1em;
+  label.option {
+    font-size: .9rem;
+  }
+}
+
+.form-type-radio .description,
+.form-type-checkbox .description {
+  margin-left: 0;
+}
+
+//
+// Descriptions
+//
+.description {
+  margin: 10px 0 0;
+  font-size: .778rem;
+  color: $theme-gray-light;
+  a {
+    text-decoration: underline;
+  }
+}
+
+
+//
+// Details
+//
+details {
+  summary {
+    display: block;
+    background-color: $theme-gray-lightest;
+    padding: 1rem;
+    font-size: .9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all .2s ease-in-out;
+    &:before {
+      font-family: "Font Awesome 5 Free";
+      content: "\f107";
+      margin-right: 10px;
+    }
+    &:hover {
+      background-color: darken($theme-gray-lightest, 2%);
+    }
+    &[aria-expanded="true"] {
+      &:before {
+        content: "\f106";
+      }
+    }
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+  .details-wrapper {
+    background-color: #FFF;
+    padding: 1.5rem;
+    border: 1px solid $theme-gray-lightest;
+    border-top: none;
+
+  }
+  a.details-title {
+    color: #000;
+    text-decoration: none;
+  }
+
+  .action {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid $theme-gray-lighter;
+  }
+}

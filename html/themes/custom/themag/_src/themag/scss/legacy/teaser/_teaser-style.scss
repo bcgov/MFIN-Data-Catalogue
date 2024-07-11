@@ -1,0 +1,349 @@
+// -----------------------------------
+// General teaser style
+// -----------------------------------
+.teaser {
+  position: relative;
+  overflow: hidden;
+  // Post Type (iscons)
+  .field-mg-post-type .field-item {
+    display: inline-block;
+    margin-right: 2px;
+  }
+  
+  .media-contained {
+    position: absolute;
+    top: .5rem;
+    left: .8rem;
+    color: #FFF;
+    font-size: 1rem;
+    opacity: .7;
+    > * {
+      margin-right: 5px;
+    }
+  }
+  
+  // Posot Type
+  .field--post-type {
+    color: transparentize($theme-text-light--primary, .3);
+    line-height: 16px;
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    z-index: 5;
+  }
+  // Teaser image
+  .field--name-field-mg-image,
+  .field--name-field-mg-image a {
+    display: block;
+    position: relative;
+    // Element for image over effect
+    &:before {
+      content: "";
+      display: block;
+      transition: all 250ms ease-in-out;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 5;
+    }
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+  .comments-count {
+    color: transparentize($theme-text-light--primary, .3);
+    font-size: .8rem;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 5;
+    @include media-breakpoint-up(lg) {
+      font-size: .6667rem;
+    }
+  }
+  a {
+    transition: all 250ms ease-in-out;
+    color: $theme-gray-dark;
+    text-decoration: none;
+  }
+  a:hover .field--name-field-mg-image:before,
+  .field--name-field-mg-image a:hover:before {
+    box-shadow: inset 0 0 1.778rem .444rem rgba(#000, .5);
+    color: #000;
+  }
+
+  // Teaser title
+  .teaser-title {
+    font-family: $theme-headings-font-family;
+    a {
+      transition: all 200ms ease-in-out;
+      color: $theme-gray-dark;
+      text-decoration: none;
+      position: relative;
+      &:hover {
+        color: $theme-text-light--primary;
+        background: $theme-gray-dark;
+      }
+    }
+  }
+  // Teaser author
+  .submitted {
+    margin-top: .7rem;
+    color: $theme-gray;
+    font-size: .8rem;
+    @include media-breakpoint-up(lg) {
+      margin-top: .5rem;
+      font-size: .667rem;
+    }
+  }
+  // Teaser summary snippet
+  .field--name-field-mg-summary {
+    color: $theme-gray;
+  }
+}
+
+
+// -----------------------------------
+// Teaser Style (A)
+// -----------------------------------
+.teaser--a {
+  height: 100%;
+
+  .teaser-title {
+    font-size: 1.6rem;
+    @include media-breakpoint-up(lg) {
+      font-size: 2rem;
+    }
+  }
+  .field--name-field-mg-summary {
+    display: none;
+    padding: 0 4rem;
+    font-size: 1rem;
+    line-height: 1.1rem;
+    @include media-breakpoint-up(lg) {
+      display: block;
+      font-size: .889rem;
+    }
+  }
+  a {
+    color: $theme-gray-dark;
+    text-decoration: none;
+    &:hover {
+      color: $theme-gray;
+    }
+  }
+}
+// Compact Teaser Style (A)
+.teaser--compact .teaser--a {
+  .field--name-field-mg-summary {
+    color: $theme-text-light--secondary;
+  }
+}
+// Big Teaser Style (A)
+.teaser--big .teaser--a {
+  @media (min-width: 992px) {
+    .teaser-title {
+      font-size: 3.111rem;
+    }
+  }
+}
+
+// -----------------------------------
+// Teaser Style (B)
+// -----------------------------------
+.teaser--b {
+  height: 100%;
+  .teaser-content-wrapper {
+    padding: 1.5rem;
+  }
+  .teaser-title {
+    font-size: 2rem;
+    @include media-breakpoint-up(lg) {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+.teaser--4-col-grid .teaser--b  {
+  @include media-breakpoint-up(lg) {
+    .teaser-content-wrapper {
+      padding: 1.2rem;
+    }
+    .teaser-title {
+      font-size: 1.34rem;
+    }
+  }
+}
+
+// -----------------------------------
+// Teaser Style (C)
+// -----------------------------------
+.teaser--c {
+  @extend .teaser--b;
+  .teaser-title {
+    font-size: 1.6rem;
+    @include media-breakpoint-up(lg) {
+      font-size: 1.34rem;
+    }
+  }
+}
+
+// -----------------------------------
+// Teaser Style (D)
+// -----------------------------------
+.teaser--d {
+  display: flex;
+  .teaser-content-wrapper {
+    padding-left: 1rem;
+    padding-top: 5px;
+  }
+  .image-wrapper {
+    flex: 0 0 120px;
+    position: relative;
+    @include media-breakpoint-up(sm) {
+      flex: 0 0 auto;
+    }
+    @include media-breakpoint-only(lg) {
+      flex: 0 0 138px;
+    }
+  }
+  .comments-count {
+    top: 12px;
+    right: 12px;
+  }
+  .category-icon-wrapper {
+    @include media-breakpoint-up(lg) {
+      font-size: .95rem;
+    }
+  }
+  .teaser-title {
+    font-size: 1.2rem;
+    @include media-breakpoint-only(lg) {
+      font-size: 1rem;
+    }
+  }
+}
+
+// -----------------------------------
+// Teaser Style (E)
+// -----------------------------------
+.teaser--e {
+  @extend .teaser--d;
+  .teaser-title {
+    margin-bottom: 0;
+    font-size: 1.2rem;
+    @include media-breakpoint-up(lg) {
+      font-size: 1rem;
+    }
+  }
+  .submitted {
+    margin-top: .5rem;
+  }
+}
+
+// -----------------------------------
+// Teaser Style (F)
+// -----------------------------------
+.teaser--f {
+  .teaser-content-wrapper {
+    margin-top: 1.2rem;
+    padding: 0 1.5rem;
+  }
+  .image-wrapper {
+    position: relative;
+  }
+  .teaser-title {
+    font-size: 1.6rem;
+    @include media-breakpoint-up(lg) {
+      font-size: 1.4rem;
+    }
+  }
+  .field--name-field-mg-summary {
+    color: $theme-text-dark--secondary;
+    font-size: 1rem;
+    @include media-breakpoint-up(lg) {
+      font-size: .778rem;
+    }
+  }
+  .submitted {
+    color: $theme-text-dark--primary;
+  }
+}
+
+.teaser--list .teaser--f {
+  @include media-breakpoint-up(xl) {
+    display: flex;
+    .teaser-image {
+      flex: 0 0 270px;
+    }
+    .image-wrapper {
+      flex: 0 0 270px;
+    }
+    .teaser-content-wrapper {
+      margin-top: 0;
+      padding: 0 0 0 1.5rem;
+    }
+  }
+}
+
+// -----------------------------------
+// Compact teaser
+// -----------------------------------
+//
+// Compact teaser depending on
+// Bootstrap breakpoints.
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .teaser-#{$infix}-compact {
+      display: block;
+      border: none!important;
+      vertical-align: middle;
+      .teaser-content-wrapper {
+        background-image: linear-gradient(to top, transparentize(#000, 0), transparentize(#000, 1));
+        color: $theme-text-light--primary;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 20;
+      }
+      a {
+        color: $theme-text-light--primary;
+        text-decoration: none;
+      }
+      .field--name-field-mg-summary {
+        color: $theme-text-light--secondary;
+      }
+      .submitted {
+        color: $theme-gray-light;
+        .name {
+          color: $theme-gray-lighter;
+          font-weight: bold;
+        }
+      }
+    }
+    // Compact teaser hover
+    .teaser--compact a:hover {
+      .field-mg-image:before {
+        box-shadow: inset 0 0 3rem .5rem transparentize(#000, .5);
+      }
+      .teaser-title a {
+        background: none;
+        color: #FFF;
+      }
+    }
+  }
+}
+
+// ---------------------------------------
+// Teaser card
+// ---------------------------------------
+.teaser--card  .teaser {
+  border: 1px solid $theme-gray-lighter;
+}

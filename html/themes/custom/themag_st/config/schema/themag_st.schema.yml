@@ -1,0 +1,5 @@
+# Schema for the configuration files of the TheMAG theme.
+
+themag_st.settings:
+  type: theme_settings
+  label: 'TheMAG subtheme settings'

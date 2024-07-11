@@ -1,0 +1,24 @@
+// Page Content Type
+//
+
+.layout--page-1,
+.layout--page-2,
+.layout--page-3 {
+  padding: 3rem 1rem;
+  @include media-breakpoint-up(lg) {
+    padding: 3rem 1rem;
+  }
+  .block--page-title-block {
+    @include default_page_title_style;
+  }
+}
+
+.layout__region--page-header {
+  margin-bottom: 2rem;
+  .block {
+    margin-bottom: .5rem;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

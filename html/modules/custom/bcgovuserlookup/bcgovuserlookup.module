@@ -1,0 +1,38 @@
+<?php
+
+/**
+ * @file
+ * bcgovuserlookup.module
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ *
+ * For all Node edit forms...
+ */
+function bcgovuserlookup_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  // Set the Author field to use our new Reference Handler.
+  $form['uid']['widget'][0]['target_id']["#selection_handler"] = "bcgovuserselector";
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function bcgovuserlookup_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  // For all views exposed filters, look for autocomplete user-ref fields,
+  // and set them to use our new Reference Handler.
+  if ($form_id == 'views_exposed_form') {
+    foreach ($form as $key => $val) {
+      if (substr($key, 0, 1) != '#'
+          && isset($val['#target_type']) && $val['#target_type'] == 'user'
+          && isset($val['#type'])        && $val['#type'] == 'entity_autocomplete'
+      ) {
+        $form[$key]["#selection_handler"] = "bcgovuserselector";
+      }
+    }
+  }
+}

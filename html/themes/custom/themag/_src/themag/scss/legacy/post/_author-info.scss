@@ -1,0 +1,26 @@
+// ----------------------------
+// NODE: Author
+// ----------------------------
+.author-info-wrapper {
+  border-bottom: 1px dashed $theme-gray-lighter;
+}
+
+.submitted {
+  color: $theme-text-dark--secondary;
+  font-size: .9rem;
+  .user-picture  img {
+    width: 30px;
+    height: auto;
+    border-radius: 50%;
+    @include media-breakpoint-up(md) {
+      width: 50px;
+    }
+  }
+  a {
+    color: $theme-text-dark--primary;
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

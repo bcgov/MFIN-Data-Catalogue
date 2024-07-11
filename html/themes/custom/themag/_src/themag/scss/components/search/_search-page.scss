@@ -1,0 +1,69 @@
+//
+// Search page
+//
+body.path-search {
+  .block--system-main-block h2 {
+    font-weight: 300;
+  }
+}
+
+// Search form
+// ------------------------
+
+.search-form {
+  margin-bottom: 1.5rem;
+
+  > div {
+    margin-bottom: 1.5rem;
+  }
+  .search-help-link {
+    display: none;
+  }
+  #edit-basic {
+    display: flex;
+    align-items: center;
+    .form-item {
+      flex: 1;
+      margin: 0;
+    }
+    label {
+      display: none;
+    }
+    input[type="submit"],
+    button {
+      margin-left: .5rem;
+      flex-grow: 0;
+    }
+  }
+}
+
+// Search results
+// ------------------------
+.search-results {
+  margin: 0;
+  padding: 0;
+  >li {
+    background: transparent;
+    margin: 0;
+    padding: 1rem;
+    transition: background .2s ease-in-out;
+    &:hover {
+      background: $theme-gray-lightest;
+    }
+  }
+  h3.search-result__title {
+    font-size: 1.2rem;
+    a {
+      color: $theme-gray-dark;
+    }
+  }
+  .search-result__snippet-info {
+    margin-bottom: .2rem;
+    color: $theme-text-dark--secondary;
+  }
+  .search-result__info {
+    margin: 0;
+    color: $theme-gray-light;
+    font-size: .8rem;
+  }
+}

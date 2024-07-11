@@ -1,0 +1,16 @@
+{
+  "name": "drupal-ckeditor-libraries-group/youtube",
+  "description": "CKEditor 4 youtube plugin",
+  "type": "drupal-library",
+  "keywords": ["ckeditor", "plugin", "youtube"],
+  "homepage": "https://github.com/fonini/ckeditor-youtube-plugin",
+  "license": [
+    "GPL-2.0-or-later",
+    "LGPL-2.1-or-later",
+    "MPL-1.1"
+  ],
+  "support": {
+    "issues": "https://github.com/fonini/ckeditor-youtube-plugin/issues",
+    "source": "https://github.com/fonini/ckeditor-youtube-plugin/tree/master"
+  }
+}

@@ -1,0 +1,43 @@
+{#
+/**
+ * @file
+ * Default theme implementation for an entity pager.
+ *
+ * The list of items are presented next to each other in a usable way using
+ * minimalist amount of CSS (see entity_pager.css).
+ *
+ * Available variables:
+ * - count_word: The word to use for the count of items.
+ * - links: An array of links to render:
+ *   - prev: Link to previous node.
+ *   - all_link: Link to All listing group of records.
+ *   - next: Link to next node in the sequence.
+ *   - count: Count of number of nodes in the group.
+ *
+ * @see template_preprocess_views_view_entity_pager()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'views-view-entity-pager',
+    'entity-pager',
+    'count-word-' ~ count_word
+  ]
+%}
+
+<div class="container">
+	<div{{ attributes.addClass(classes) }}>
+	  <ul class="entity-pager-list row justify-content-between no-gutters">
+	    {% for key, link in links %}
+	      {% if link %}
+	        <li class="entity-pager-item entity-pager-item-{{ key }} col-4">
+	          {{ link }}
+	        </li>
+	      {% endif %}
+	    {% endfor %}
+	  </ul>
+	</div>
+</div>
+

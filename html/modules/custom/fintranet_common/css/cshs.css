@@ -1,0 +1,30 @@
+/**
+ * Fix CSHS margins
+ */
+.views-exposed-form .form-type--cshs .select-wrapper {
+  margin-right: 0;
+}
+
+.views-exposed-form .form-type--cshs .select-wrapper--level-1 {
+  margin-left: 8px;
+}
+
+/**
+ * Fix Media library
+ */
+.media-library-item__preview-wrapper .media-library-item__attributes {
+  display: none;
+}
+
+.media-library-item__click-to-select-trigger {
+  height: auto !important;
+}
+
+.fw-semibold {
+  font-weight: 575;
+}
+
+.word-wrap {
+  overflow-wrap: break-word;
+  word-break: normal !important;
+}

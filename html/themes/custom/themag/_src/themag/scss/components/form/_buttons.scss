@@ -1,0 +1,64 @@
+button, input[type='submet'] {
+  &:focus {
+    outline: none;
+  }
+}
+
+
+// Button
+//
+.button {
+  display: inline-block;
+  background-color: transparent;
+  padding: 10px 1.5rem;
+  border: 1px solid;
+  border-color: $input-border-color;
+  border-radius: $input-border-radius;
+  color: $theme-gray-dark;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+  @include media-breakpoint-up(lg) {
+    font-size: .85rem;
+  }
+    &:hover {
+      background-color: #FFF;
+      border-color: $gray-blue-50;
+      color: $theme-gray-dark;
+      box-shadow: 0 2px .25rem 0 rgba(#000, .2);
+    }
+  &:active {
+    box-shadow: none;
+  }
+}
+
+
+// Button class on <a> tag
+//
+a.button {
+  text-decoration: none;
+}
+
+
+// Primary button
+//
+.button--primary {
+  background-color: $theme-primary-color;
+  border-color: $theme-primary-color;
+  color: #FFF;
+  &:hover {
+    background-color: lighten($theme-primary-color, 5%);
+    border-color: lighten($theme-primary-color, 5%);
+    color: #FFF;
+    text-shadow: 0 -1px 0 rgba($theme-primary-color, .3);
+  }
+}
+
+// Large button
+.button--large {
+  @include media-breakpoint-up(lg) {
+    padding: 15px 3rem;
+  }
+}

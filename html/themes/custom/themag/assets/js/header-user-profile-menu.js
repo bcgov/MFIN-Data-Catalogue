@@ -1,0 +1,1 @@
+!function(e){"use strict";var t=e(".header__toggleable-account-menu");t.find(".js-toggle-account-menu").on("click",function(){e(this).toggleClass("is--active"),t.find(".menu").toggleClass("is--active")})}(jQuery);

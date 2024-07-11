@@ -1,0 +1,8 @@
+name: 'TheMAG Layouts'
+type: module
+description: 'TheMAG configurable layouts'
+core_version_requirement: ^9 || ^10
+package: 'TheMAG'
+dependencies:
+  - layout_builder
+configure: themag_layouts.themag_layouts_form

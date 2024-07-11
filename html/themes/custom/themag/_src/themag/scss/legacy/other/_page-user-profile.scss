@@ -1,0 +1,115 @@
+// --------------------
+// Authenticated
+// User Dashboard
+// --------------------
+
+.path-user {
+
+  .form-type-managed-file {
+    padding: 1rem;
+    border: 1px solid $gray-blue-100;
+    border-radius: $border-radius;
+  }
+
+  .image-widget {
+    display: flex;
+    align-items: center;
+    .image-preview {
+      margin-right: 1rem;
+    }
+  }
+}
+
+// Address book
+// --------------------
+.view-profiles {
+  .view-content {
+    margin-top: 1.5rem;
+  }
+
+  .field--name-address {
+    padding: 1rem;
+    border: 1px solid $gray-blue-100;
+  }
+  .dropbutton-widget {
+    border-top: none;
+  }
+}
+
+// Order item page
+// -------------------
+
+.order-information {
+  margin-top: 2rem;
+
+  .view-commerce-order-item-table {
+    margin-top: 2rem;
+  }
+
+  // Order total
+  // ---------------
+  .order-total-line-value {
+    width: auto;
+    min-width: 80px;
+  }
+
+  .order-total-line__subtotal {
+    color: $gray-blue-600;
+  }
+
+  .order-total-line__total {
+    width: auto;
+    min-width: 80px;
+    color: $gray-blue-900;
+    font-size: 1.8rem;
+    .order-total-line-label {
+      margin-right: 1rem;
+    }
+  }
+}
+
+
+// --------------------
+// User Profile Page
+// (Author Page)
+// --------------------
+.user-profile-wrapper {
+  background: $theme-gray-lightest;
+  padding: 2rem;
+  text-align: center;
+  @include media-breakpoint-up(md) {
+    text-align: left;
+  }
+  .user-picture {
+    margin-bottom: 1rem;
+    @include media-breakpoint-up(md) {
+      margin-bottom: 0;
+    }
+    img {
+      background: #FFF;
+      padding: 2px;
+      border: 1px solid $theme-gray-light;
+      border-radius: 50%;
+    }
+  }
+  .user-social {
+    padding-bottom: .5rem;
+    margin-bottom: .5rem;
+    border-bottom: 1px solid $theme-gray-lighter;
+    li {
+      display: inline-block;
+      margin-right: .5rem;
+    }
+    a {
+      transition: all .25s ease-in-out;
+      color: $theme-gray-light;
+    }
+    a:hover {
+      color: $theme-gray-dark;
+    }
+  }
+  .user-signature {
+    color: $theme-text-dark--secondary;
+    font-size: .9rem;
+  }
+}

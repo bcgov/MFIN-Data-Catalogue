@@ -1,0 +1,40 @@
+// Messages
+//
+.messages {
+  border: 1px solid $theme-gray-lighter;
+  border-left-width: 5px;
+  padding: .5rem;
+  font-size: .85rem;
+  margin: 1rem;
+
+  a {
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &--status {
+    background: #e8f5e9;
+    border-color: #81c784;
+    color: #388e3c;
+  }
+
+  &--warning {
+    background: #ffecb3;
+    border-color: #ffb300;
+    color: #ff8f00;
+  }
+
+  &--error {
+    background: #ffcdd2;
+    border-color: #f44336;
+    color: #c62828;
+  }
+
+  .layout-builder__message--overrides & {
+    background: #e3f2fd;
+    border-color: #64b5f6;
+    color: #42a5f5;
+  }
+}

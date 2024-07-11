@@ -1,0 +1,1 @@
+!function(i,t){"use strict";t.behaviors.themagCartBlock={attach:function(t){var c=i(t),n=c.find(".cart--cart-block"),a=c.find(".cart-block--link__expand");0<n.find(".cart-block--contents").length&&a.on("click",function(){a.toggleClass("cart-block--link-active")})}}}(jQuery,Drupal,drupalSettings);

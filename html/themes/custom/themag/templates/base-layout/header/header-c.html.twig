@@ -1,0 +1,38 @@
+{# Header C #}
+
+<header class="header header--{{ themag.header_style|clean_class }}">
+
+  <div class="header__container-wrapper--header__top d-none d-lg-block">
+    <div class="header__container header__container--boxed">
+      <div class="header__top">
+        <div class="header__top__left">
+          {{ page.logo }}
+        </div>
+        <div class="header__top__right">
+          {{ themag.header_banner|raw }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="header__container-wrapper--header__main js-sticky-header-element">
+    <div class="header__container header__container--boxed">
+      <div class="header__main">
+        <div class="header__main__left">
+          <div class="d-lg-none">
+            {{ page.logo }}
+          </div>
+          <div class="d-none d-lg-block">
+            {{ page.header_primary_menu }}
+          </div>
+        </div>
+        <div class="header__main__right">
+          {% include '@themag/base-layout/header/components/social-media-pages-menu.html.twig' %}
+          {% include '@themag/base-layout/header/components/user-action-menu.html.twig' %}
+        </div>
+      </div>
+    </div>
+    {{ page.search }}
+  </div>
+
+</header>

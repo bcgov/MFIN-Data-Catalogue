@@ -1,0 +1,20 @@
+// Quote
+//
+.paragraph--type--quote {
+  .field--name-field-text {
+    color: #000;
+    font-size: 2rem;
+    line-height: 2rem;
+    font-weight: 900;
+    font-style: italic;
+  }
+  .field--name-field-source {
+    color: $theme-gray-light;
+    font-size: 1.2rem;
+    font-style: italic;
+    &:before {
+      content: '-';
+      margin-right: .5rem;
+    }
+  }
+}

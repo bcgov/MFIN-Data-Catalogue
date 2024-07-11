@@ -1,0 +1,257 @@
+// ---------------------------------------
+// FEATURED GRIDS
+// ---------------------------------------
+.teaser--featured {
+  background-position: center center;
+  background-size: cover;
+  display: block;
+  a {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    &:before {
+      content: "";
+      display: block;
+      transition: all 250ms ease-in-out;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 5;
+    }
+    &:hover:before {
+      box-shadow: inset 0 0 3rem .5rem transparentize(#000, .5);
+    }
+  }
+  .content-wrapper {
+    white-space: normal;
+  }
+}
+
+.teaser--featured-compact {
+  display: block;
+  @include media-breakpoint-up(lg) {
+    vertical-align: middle;
+  }
+  .teaser-content-wrapper {
+    background-image: linear-gradient(to top, transparentize(#000, 0), transparentize(#000, 1));
+    padding: 1rem;
+    color: $theme-text-light--primary;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+  }
+  .field-category {
+    color: $theme-text-light--primary;
+  }
+  a {
+    color: $theme-text-light--primary;
+    text-decoration: none;
+  }
+  .submitted {
+    color: $theme-gray-light;
+    font-size: .778rem;
+    @include media-breakpoint-up(lg) {
+      font-size: .667rem;
+    }
+    .name {
+      color: $theme-gray-lighter;
+      font-weight: bold;
+    }
+  }
+}
+// Compact teaser over effect
+.teaser--compact a:hover {
+  .field-mg-image:before {
+    box-shadow: inset 0 0 3rem .5rem transparentize(#000, .5);
+  }
+  .title a {
+    background: none;
+    color: #FFF;
+  }
+}
+
+// ------------------------------
+// View: Featured teaser (A)
+// ------------------------------
+.featured--a {
+  .view-content {
+    @include clearfix;
+    overflow: auto;
+    white-space: nowrap;
+    @include media-breakpoint-up(xl) {
+      overflow: visible;
+    }
+    .views-row {
+      display: inline-block;
+      width: 90%;
+      * {
+          white-space: normal;
+      }
+      @include media-breakpoint-up(xl) {
+        float: left;
+        width: calc(100%/3);
+      }
+    }
+  }
+  .teaser {
+    height: 380px;
+    @include media-breakpoint-up(sm) {
+      height: 480px;
+    }
+  }
+  .teaser-content-wrapper {
+    text-align: center;
+    padding: 0 2rem 2rem;
+  }
+  .teaser-title {
+    font-size: 2.222rem;
+  }
+  .submitted {
+    margin-top: .889rem;
+  }
+}
+
+// ------------------------------
+// View: Featured teaser (B)
+// ------------------------------
+.featured--b {
+  display: flex;
+  flex-wrap: wrap;
+
+  .teaser-content-wrapper {
+    text-align: left;
+    padding: 0 1.4rem 1.4rem;
+    @include media-breakpoint-up(lg) {
+      padding: 0 4rem 1.1rem 1.1rem;
+    }
+  }
+
+  >.view-content {
+    flex: 0 0 100%;
+    @include media-breakpoint-up(lg) {
+      flex: 0 0 50%;
+    }
+    .teaser {
+      height: 380px;
+      @include media-breakpoint-up(sm) {
+        height: 480px;
+      }
+    }
+    .teaser-content-wrapper {
+      padding: 0 1.4rem 1.4rem;
+      @include media-breakpoint-up(lg) {
+        padding: 0 25% 1.778rem 1.778rem;
+      }
+    }
+    .teaser-title {
+      font-size: 2.4rem;
+    }
+  }
+  .attachment-after,
+  .attachment-before {
+    flex: 0 0 100%;
+    @include media-breakpoint-up(lg) {
+      flex: 0 0 50%;
+    }
+    .view-content {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .views-row {
+      flex: 0 0 100%;
+      @include media-breakpoint-up(sm) {
+        flex: 0 0 50%;
+      }
+    }
+    .teaser {
+      height: 240px;
+      .teaser-title {
+        font-size: 1.8rem;
+        @include media-breakpoint-up(lg) {
+          font-size: 1.333rem;
+        }
+      }
+    }
+  }
+}
+
+// ------------------------------
+// View: Featured teaser (C)
+// ------------------------------
+.featured--c {
+  @extend .featured--b;
+  >.view-content {
+    order: 1;
+    @include media-breakpoint-up(lg) {
+      order: 2;
+    }
+  }
+  .attachment-before {
+    order: 2;
+    @include media-breakpoint-up(lg) {
+      order: 1;
+    }
+  }
+  .attachment-after {
+    order: 3;
+  }
+  .attachment-after,
+  .attachment-before {
+    @include media-breakpoint-up(lg) {
+      flex: 0 0 25%;
+      .views-row {
+        flex: 0 0 100%;
+      }
+    }
+  }
+}
+
+
+// ------------------------------
+// View: Featured teaser (D)
+// ------------------------------
+.featured--d {
+  .teaser {
+    height: 400px;
+    @include media-breakpoint-up(sm) {
+      height: 460px;
+      @media screen and ( min-height: 800px ){
+        height: 600px;
+      }
+    }
+
+    a:before {
+      background: transparentize(#000, .6)
+    }
+  }
+  .teaser-content-wrapper {
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 780px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    position: relative;
+    @include media-breakpoint-up(md) {
+      max-width: 980px;
+    }
+  }
+  .teaser-title {
+    font-size: 2.4rem;
+    @include media-breakpoint-up(lg) {
+      font-size: 3.1rem;
+    }
+  }
+  .submitted {
+    margin-top: 1rem;
+  }
+}

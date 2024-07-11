@@ -1,0 +1,45 @@
+{#
+/**
+ * @file
+ * Theme override to present all user data.
+ *
+ * This template is used when viewing a registered user's page,
+ * e.g., example.com/user/123. 123 being the user's ID.
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ *   print a subset such as 'content.field_example'. Fields attached to a user
+ *   such as 'user_picture' are available as 'content.user_picture'.
+ * - attributes: HTML attributes for the container element.
+ * - user: A Drupal User entity.
+ *
+ * @see template_preprocess_user()
+ */
+#}
+
+<div{{ attributes.addClass('user-profile-wrapper') }}>
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col col-auto">
+        {% if content %}
+          <div class="user-picture">{{ content.user_picture }}</div>
+        {% endif %}
+      </div>
+      <div class="col col-auto">
+
+        <h1 class="user-name">{{ user.getDisplayName }}</h1>
+        <ul class="list-unstyled user-social">
+          <li><a href="https://www.facebook.com"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+          <li><a href="https://twitter.com"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+          <li><a href="https://youtube.com"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+          <li><a href="https://pinterest.com"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+          <li><a href="https://instagram.com"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+        </ul>
+
+        <div class="text-sm">{{ content|without('user_picture') }}</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+

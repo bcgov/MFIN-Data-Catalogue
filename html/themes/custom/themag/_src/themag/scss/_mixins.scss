@@ -1,0 +1,85 @@
+// Buttons
+//
+
+@mixin  button__reset {
+  background-color: transparent;
+  border: none;
+  line-height: 1;
+}
+
+
+// ---------------
+// Components
+// ---------------
+
+@mixin default_page_title_style() {
+  position: relative;
+  &:after,
+  &:before {
+    content: "";
+    display: block;
+    width: 100%;
+    border-top: 1px solid $theme-gray-light;
+    position: absolute;
+    bottom: calc(41% + 1.5px);
+    z-index: 0;
+  }
+  &:before {
+    bottom: calc(41% - 1.5px);
+  }
+
+  .page-title {
+    display: inline-block;
+    background-color: $body-bg;
+    margin-bottom: 0;
+    padding-right: 1.5rem;
+    color: #000;
+    position: relative;
+    z-index: 5;
+  }
+}
+
+// ---------------
+// Helpers
+// ---------------
+
+// Reset ul/ol lists
+@mixin  list__reset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li {
+    margin: 0;
+  }
+}
+
+// CSS image replacement
+@mixin text-hide() {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+@mixin full-width() {
+  margin-left: -9999rem;
+  margin-right: -9999rem;
+  padding-left: 9999rem;
+  padding-right: 9999rem;
+  position: static;
+}
+
+@mixin make-blank-overlay() {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+@mixin make-color-overlay($bg-color) {
+  @include make-blank-overlay();
+  background: $bg-color;
+}

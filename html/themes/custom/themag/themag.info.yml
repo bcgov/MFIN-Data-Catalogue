@@ -1,0 +1,77 @@
+name: TheMAG (base theme)
+type: theme
+description: 'Responsive Blog/Magazine Theme.'
+core_version_requirement: ^9 || ^10
+version: 4.3.0
+base theme: charm
+hidden: false
+
+regions:
+  top_bar_first: 'Top bar first'
+  top_bar_second: 'Top bar second'
+  logo: 'Logo'
+  header_primary_menu: 'Header primary menu'
+  search: 'Search'
+  offcanvas_sidebar: 'Off-Canvas sidebar'
+  content_top: 'Content: Top'
+  content_administration: 'Tabs'
+  content: 'Content: Main content'
+  content_right: 'Content: Right'
+  content_bottom: 'Content: Bottom'
+  footer_first: 'Footer first'
+  footer_second: 'Footer second'
+  footer_third: 'Footer third'
+  footer_bottom_first: 'Footer bottom first'
+  footer_bottom_second: 'Footer bottom second'
+
+# CKEditor styles
+#
+ckeditor_stylesheets:
+  - assets/css/ckeditor.css
+
+
+# Libraries
+#
+libraries:
+  - charm/font-awesome-4-upgrade-cdn
+  - charm/parallax-js
+  - themag/google-fonts
+  - themag/off-canvas-main-menu
+  - themag/drupal-tabs
+  - themag/themag-utilities
+  - themag/global-styling
+
+
+# Library Overrides
+#
+libraries-override:
+  classy/messages: false
+
+  shariff/shariff-min:
+    css:
+      component:
+        /libraries/shariff/shariff.min.css: false
+        /libraries/shariff//shariff.min.css: false
+
+  shariff/shariff-complete:
+    css:
+      component:
+        /libraries/shariff/shariff.complete.css: false
+        /libraries/shariff//shariff.complete.css: false
+
+  we_megamenu/form.we-mega-menu-frontend:
+    css:
+      theme:
+        assets/includes/bootstrap/css/bootstrap.min.css: false
+        assets/css/we_megamenu_backend.css: false
+
+
+# Library Extends
+#
+libraries-extend:
+  core/drupal.dialog.off_canvas:
+    - themag/drupal.dialog.off_canvas
+  layout_builder/drupal.layout_builder:
+    - themag/drupal.layout_builder
+  we_megamenu/form.we-mega-menu-frontend:
+    - themag/we-mega-menu

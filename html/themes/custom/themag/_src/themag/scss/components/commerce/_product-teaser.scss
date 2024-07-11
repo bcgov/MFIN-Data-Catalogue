@@ -1,0 +1,57 @@
+// Default product teaser
+.product-teaser {
+
+  // Product image in teaser
+  .field--type-image {
+    display: block;
+    position: relative;
+    &:before {
+      content: "";
+      display: block;
+      transition: all 250ms ease-in-out;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 5;
+    }
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .field--name-title {
+    font-size: 1.333rem;
+    font-weight: 300;
+  }
+
+  .field--name-price {
+    margin-bottom: 10px;
+    color: #000;
+    font-size: 1.2rem;
+  }
+
+  a {
+    color: $gray-blue-600;
+    text-decoration: none;
+  }
+
+  a:hover {
+    .field--type-image:before {
+      box-shadow: inset 0 0 2rem .4rem rgba(#000, .2);
+    }
+  }
+}
+
+
+// Default -product teaser style
+.product-teaser-default {
+  display: inline-block;
+  .product-info-wrapper {
+    margin-top: 1rem;
+    text-align: center;
+  }
+}

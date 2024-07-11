@@ -1,0 +1,48 @@
+{# Load RRSSB library #}
+{{ attach_library('charm/rrssb') }}
+
+<div class="rrssb-buttons-wrapper">
+  <ul class="rrssb-buttons">
+
+    {% if themag.rrssb_buttons['rrssb_facebook'] %}
+      {% include '@themag/_legacy/components/social/rrssb-buttons/rrssb-facebook.html.twig' %}
+    {% endif %}
+
+    {% if themag.rrssb_buttons['rrssb_twitter'] %}
+      {% include '@themag/_legacy/components/social/rrssb-buttons/rrssb-twitter.html.twig' %}
+    {% endif %}
+
+    {% if themag.rrssb_buttons['rrssb_googleplus'] %}
+      {% include '@themag/_legacy/components/social/rrssb-buttons/rrssb-googleplus.html.twig' %}
+    {% endif %}
+
+    {% if themag.rrssb_buttons['rrssb_tumblr'] %}
+      {% include '@themag/_legacy/components/social/rrssb-buttons/rrssb-tumblr.html.twig' %}
+    {% endif %}
+
+    {% if themag.rrssb_buttons['rrssb_linkedin'] %}
+      {% include '@themag/_legacy/components/social/rrssb-buttons/rrssb-linkedin.html.twig' %}
+    {% endif %}
+
+    {% if themag.rrssb_buttons['rrssb_reddit'] %}
+      {% include '@themag/_legacy/components/social/rrssb-buttons/rrssb-reddit.html.twig' %}
+    {% endif %}
+
+    {% if themag.rrssb_buttons['rrssb_vk'] %}
+      {% include '@themag/_legacy/components/social/rrssb-buttons/rrssb-vk.html.twig' %}
+    {% endif %}
+
+    {% if themag.rrssb_buttons['rrssb_hackernews'] %}
+      {% include '@themag/_legacy/components/social/rrssb-buttons/rrssb-hackernews.html.twig' %}
+    {% endif %}
+
+    {% if themag.rrssb_buttons['rrssb_pocket'] %}
+      {% include '@themag/_legacy/components/social/rrssb-buttons/rrssb-pocket.html.twig' %}
+    {% endif %}
+
+    {% if themag.rrssb_buttons['rrssb_email'] %}
+      {% include '@themag/_legacy/components/social/rrssb-buttons/rrssb-email.html.twig' %}
+    {% endif %}
+
+  </ul>
+</div>

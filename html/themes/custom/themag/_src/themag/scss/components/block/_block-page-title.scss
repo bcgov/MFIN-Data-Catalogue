@@ -1,0 +1,16 @@
+.block--page-title-block {
+  .field__label {
+    color: #000;
+  }
+}
+
+// Default page title style
+// ----------------------------
+
+.block--region-content-header,
+.block--layout-builder {
+
+  &.block--page-title-block {
+    @include default_page_title_style;
+  }
+}

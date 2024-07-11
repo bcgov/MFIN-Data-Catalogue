@@ -1,0 +1,235 @@
+.forum table {
+  width: 100%;
+}
+
+.forum table thead {
+  background: #263238;
+  border-top: 1px solid #263238;
+  border-bottom: 4px solid #263238;
+  color: #FFF;
+}
+
+.forum table thead th {
+  padding: 1rem;
+  white-space: nowrap;
+}
+
+.forum table thead th a {
+  color: #FFF;
+}
+
+.forum table tbody tr {
+  border-top: 1px solid #cfd8dc;
+}
+
+.forum table tbody td {
+  padding: 1rem 1rem;
+}
+
+.forum {
+  font-size: .888rem;
+}
+
+.forum__forum-details, .forum__container-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.forum__icon {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  margin: 0 16px 0 0;
+  background-image: url(../../../images/forum-icons.png);
+  background-repeat: no-repeat;
+}
+
+.forum__topic-status--new {
+  background-position: -24px 0;
+}
+
+.forum__topic-status--hot {
+  background-position: -48px 0;
+}
+
+.forum__topic-status--hot-new {
+  background-position: -72px 0;
+}
+
+.forum__topic-status--sticky {
+  background-position: -96px 0;
+}
+
+.forum__topic-status--closed {
+  background-position: -120px 0;
+}
+
+.forum__title, .forum__name {
+  font-weight: bold;
+  overflow: hidden;
+}
+
+.forum__title a, .forum__name a {
+  color: #263238;
+}
+
+.forum__description {
+  color: rgba(38, 50, 56, 0.54);
+}
+
+@media (min-width: 992px) {
+  .forum__description {
+    font-size: .7778rem;
+  }
+}
+
+.forum__description p:last-child {
+  margin-bottom: 0;
+}
+
+.forum__topics, .forum__posts, .forum__replies {
+  text-align: right;
+}
+
+@media (min-width: 992px) {
+  .forum__topics, .forum__posts, .forum__replies {
+    width: 150px;
+  }
+}
+
+.forum__topics a, .forum__posts a, .forum__replies a {
+  display: block;
+  font-size: .7778rem;
+}
+
+@media (min-width: 992px) {
+  .forum__topics a, .forum__posts a, .forum__replies a {
+    white-space: nowrap;
+  }
+}
+
+.forum__last-reply {
+  text-align: right;
+}
+
+@media (min-width: 992px) {
+  .forum__last-reply {
+    width: 250px;
+  }
+}
+
+.forum .indented {
+  margin-left: 16px;
+}
+
+.forum .forum-container {
+  border-bottom: 4px solid #263238;
+}
+
+.forum__forum-list .forum__topics {
+  text-align: right;
+}
+
+.forum__forum-list .forum__posts {
+  text-align: right;
+}
+
+.forum__forum-list .forum__last-reply {
+  text-align: right;
+}
+
+.forum .submitted {
+  font-size: .7778rem;
+}
+
+@media (min-width: 992px) {
+  .forum .submitted {
+    white-space: nowrap;
+  }
+}
+
+.forum .submitted__author {
+  white-space: nowrap;
+}
+
+.forum .submitted__time {
+  color: rgba(38, 50, 56, 0.54);
+}
+
+.forum__forum-topic-list thead th:nth-child(2),
+.forum__forum-topic-list thead th:nth-child(3) {
+  text-align: right;
+}
+
+.forum__forum-topic-list .forum__topic {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.forum__forum-topic-list .forum__topic .submitted {
+  font-weight: normal;
+}
+
+@media (min-width: 768px) {
+  .forum__forum-topic-list .forum__topic .submitted {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+.forum__forum-topic-list .forum__topic .submitted__author a {
+  color: #42a5f5;
+}
+
+@media (min-width: 768px) {
+  .forum__forum-topic-list .forum__topic .submitted__time:before {
+    content: "|";
+    display: inline-block;
+    margin: 0 4px 0 8px;
+  }
+}
+
+.forum-comment {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid #eceff1;
+  border-radius: 0.25rem;
+  padding: 16px;
+}
+
+@media (min-width: 992px) {
+  .forum-comment {
+    padding: 32px;
+  }
+}
+
+.forum-comment-form {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid #eceff1;
+  border-radius: 0.25rem;
+  padding: 16px;
+  font-size: .7778rem;
+}
+
+@media (min-width: 992px) {
+  .forum-comment-form {
+    padding: 32px;
+  }
+}
+
+.forum-comment-form .filter-wrapper {
+  border: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.forum-comment-form .form-actions {
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+/*# sourceMappingURL=../../sourcemap/components/modules/forum.css.map */

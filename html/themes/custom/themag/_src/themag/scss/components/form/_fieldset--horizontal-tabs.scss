@@ -1,0 +1,49 @@
+// Horizontal Tabs
+//
+.horizontal-tabs {
+  margin: 0 0 1rem 0;
+  padding: 0;
+  border: none;
+  ul.horizontal-tabs-list {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid $theme-gray;
+    .horizontal-tab-button {
+      margin: 0;
+      padding: 0;
+      background-color: transparent;
+      border: none;
+      text-transform: uppercase;
+      a, &.selected a {
+        color: $theme-gray;
+        margin-bottom: -3px;
+        padding: .5rem 1rem;
+        transition: color .2s ease-in-out;
+        @include media-breakpoint-up(lg) {
+          padding: 1rem 2rem;
+        }
+        &:hover {
+          background-color: transparent;
+          color: #000;
+        }
+      }
+      &.selected a {
+        border-bottom: 6px solid #000;
+        color: #000;
+      }
+    }
+  }
+  details.horizontal-tabs-pane {
+    padding: 1rem 0 0 0;
+    > .details-wrapper {
+      background: transparent;
+      padding: 0;
+      border: none;
+    }
+    table tr:first-child {
+      th, td {
+        border-top: none;
+      }
+    }
+  }
+}

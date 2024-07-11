@@ -1,0 +1,70 @@
+themag_onecol_section:
+  label: 'TheMAG one column configurable layout'
+  path: layouts/themag_onecol_section
+  template: themag-layout--onecol-section
+  library: themag_layouts/themag_onecol_section
+  class: '\Drupal\themag_layouts\Plugin\Layout\TheMAGOneColumnLayout'
+  category: 'TheMAG configurable layouts'
+  default_region: first
+  icon_map:
+    - [first]
+  regions:
+    first:
+      label: First
+
+
+themag_twocol_section:
+  label: 'TheMAG two columns configurable layout'
+  path: layouts/themag_twocol_section
+  template: themag-layout--twocol-section
+  library: themag_layouts/themag_twocol_section
+  class: '\Drupal\themag_layouts\Plugin\Layout\TheMAGTwoColumnLayout'
+  category: 'TheMAG configurable layouts'
+  default_region: first
+  icon_map:
+    - [first, second]
+  regions:
+    first:
+      label: First
+    second:
+      label: Second
+
+
+themag_threecol_section:
+  label: 'TheMAG three columns configurable layout'
+  path: layouts/themag_threecol_section
+  template: themag-layout--threecol-section
+  library: themag_layouts/themag_threecol_section
+  class: '\Drupal\themag_layouts\Plugin\Layout\TheMAGThreeColumnLayout'
+  category: 'TheMAG configurable layouts'
+  default_region: first
+  icon_map:
+    - [first, second, third]
+  regions:
+    first:
+      label: First
+    second:
+      label: Second
+    third:
+      label: Third
+
+
+themag_fourcol_section:
+  label: 'TheMAG four columns configurable layout'
+  path: layouts/themag_fourcol_section
+  template: themag-layout--fourcol-section
+  library: themag_layouts/themag_fourcol_section
+  class: '\Drupal\themag_layouts\Plugin\Layout\TheMAGFourColumnLayout'
+  category: 'TheMAG configurable layouts'
+  default_region: first
+  icon_map:
+    - [first, second, third, fourth]
+  regions:
+    first:
+      label: First
+    second:
+      label: Second
+    third:
+      label: Third
+    fourth:
+      label: Fourth

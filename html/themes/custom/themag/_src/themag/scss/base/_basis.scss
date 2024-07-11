@@ -1,0 +1,44 @@
+// HTML and Body
+html, body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: $theme-body-bg;
+  color: $theme-body-color;
+}
+
+* {
+  outline: none;
+}
+
+// In case Bootstrap container appears
+// into another Bootstrap container
+.container .container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+// Drupal System Admin
+.layout-container {
+  margin: 0;
+}
+
+// Layout Wrapper
+.block-system {
+  position: relative;
+  z-index: 1;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// Drupal Dragable
+.tabledrag-handle {
+  box-sizing: content-box;
+}

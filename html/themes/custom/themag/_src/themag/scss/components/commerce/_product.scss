@@ -1,0 +1,108 @@
+.product-summary-wrapper {
+
+  .field--name-title {
+     margin-bottom: .5rem;
+     font-size: 1.333rem;
+     font-weight: 300;
+   }
+  .field--name-price {
+    margin-bottom: .5rem;
+    color: #000;
+    font-size: 3.5rem;
+    font-weight: 300;
+  }
+  .field--name-field-summary {
+    margin-bottom: 2rem;
+  }
+
+  // Add to cart an variation
+  .field--name-variations {
+    .form-submit {
+      display: block;
+    }
+  }
+
+  // Add to cart + Quantity
+  form.commerce-order-item-add-to-cart-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+
+    input {
+      border-radius: 0;
+      padding-top: .8rem;
+      padding-bottom: .8rem;
+    }
+
+    // Quantity field
+    .field--name-quantity {
+      flex: 0 0 80px;
+      margin-right: 1rem;
+      @include media-breakpoint-up(lg) {
+        flex: 0 0 100px;
+      }
+      label {
+        display: none;
+      }
+    }
+
+    .form-wrapper {
+      display: flex;
+    }
+    .form-group  {
+      margin: 0 .5rem;
+    }
+    .field--widget-commerce-quantity {
+      order: 2
+    }
+
+    // Add to cart button
+    .form-actions {
+      flex: 1;
+      order: 3;
+      input {
+        width: 100%;
+      }
+    }
+
+    // Product Attributes
+    .field--widget-commerce-product-variation-attributes {
+      width: 100%;
+      order: 1;
+      .attribute-widgets {
+        background: $theme-gray-lightest;
+        width: 100%;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        &:empty {
+          display: none;
+        }
+        .form-item {
+          margin: 0 .5rem 0 0;
+        }
+      }
+    }
+  }
+
+  // Category
+  .field--name-field-category {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid $gray-blue-100;
+  }
+}
+
+.field--name-field-summary,
+.field--name-body,
+.field--name-field-additional-informations {
+  color: $gray-blue-600;
+}
+
+
+
+.form.commerce-order-item-add-to-cart-form {
+  flex-wrap: wrap;
+}
+
+
+

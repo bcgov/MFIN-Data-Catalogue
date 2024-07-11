@@ -1,0 +1,119 @@
+// Block
+//
+
+// Block Titles
+//
+.block__title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  font-family: $block-title-font-family;
+  font-size: $block-title-mobile-font-size;
+  font-weight: $block-title-weight;
+  text-align: $block-text-align;
+  text-transform: $block-text-transform;
+  position: relative;
+  @include media-breakpoint-up(lg) {
+    font-size: $block-title-font-size;
+  }
+  &:after,
+  &:before {
+    content: "";
+    display: block;
+    flex: 1 1 auto;
+    height: 4px;
+    border-top: 1px solid $block-title-horizontal-lines-color;
+    border-bottom: 1px solid $block-title-horizontal-lines-color;
+  }
+  &:before {
+    //bottom: calc(50% - 1.5px);
+  }
+  .title-text {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 2px 8px 2px;
+    color: $block-title-color;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+// ----------------
+// Block spacing
+// ----------------
+
+// Blocks in Panel layouts
+//
+[class*="block-region-"] .block {
+  margin-bottom: 3rem;
+}
+
+.layout__region--article-header,
+.layout__region--article-footer,
+.layout__region--article-social-buttons {
+  .block {
+    margin-bottom: 0;
+  }
+}
+
+.block--region-content-header {
+  margin-bottom: .5rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Blocks in the right sidebar
+//
+.layout__region--article-sidebar-right .block,
+.block-region-article-sidebar-right {
+  margin-bottom: 2rem;
+}
+
+// Block inside content administration region
+//
+.block--region-content-administration {
+  margin-bottom: 2rem;
+  .layout-builder-powered-page & {
+    margin-bottom: 0;
+  }
+}
+
+// Blocks in the footer area
+//
+.page-footer {
+  .block:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+  .block--views:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+}
+
+
+// LAYOUT BUILDER
+//
+// Block added to TheMAG layouts used by layout builder module.
+
+.themag-layout {
+  .block:not(:last-child) {
+    margin-bottom: 2rem;
+    @include media-breakpoint-up(lg) {
+      margin-bottom: 3rem;
+    }
+  }
+}
+
+.themag-layout--black {
+
+  .block__title {
+    &:before,
+    &:after {
+      border-color: $gray-blue-800;
+    }
+
+    .title-text {
+      color: $white;
+    }
+  }
+}

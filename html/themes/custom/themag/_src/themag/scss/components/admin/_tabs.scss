@@ -1,0 +1,147 @@
+//
+// Primary and Secondary Tabs
+//
+
+// Variables
+$mobile-tabs-bg-color: $gray-blue-50 !default;
+$mobile-active-tab-width: 80% !default;
+$mobile-tab-height: 40px !default;
+
+
+.tabs {
+  padding-top: $mobile-tab-height;
+  border: 1px solid $mobile-tabs-bg-color;
+  border-radius: $border-radius;
+  position: relative;
+  @include media-breakpoint-up(lg) {
+    padding-top: 0;
+    border: none;
+    border-radius: 0;
+  }
+}
+
+// Primary & Secondary Tabs
+// --------------------------
+ul.primary,
+ul.secondary {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.btn-tabs-toggler {
+  background-color: $mobile-tabs-bg-color;
+  display: block;
+  width: 100% - $mobile-active-tab-width;
+  height: $mobile-tab-height;
+  border: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  @include media-breakpoint-up(lg) {
+    display: none;
+  }
+}
+
+// Primary tabs
+// --------------------------
+//
+.tabs ul.primary {
+  background-color: $mobile-tabs-bg-color;
+  display: block;
+  margin-top: -1px;
+  border: 0;
+  border-radius: $border-radius;
+  position: static;
+  max-height: 0;
+  overflow: hidden;
+  &.active {
+    max-height: 999rem;
+  }
+  @include media-breakpoint-up(lg) {
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    max-height: none;
+    align-items: baseline;
+    padding: 0;
+    border: none;
+    //border-bottom: 1px solid $gray-blue-100;
+    border-radius: .3rem;
+    overflow: visible;
+  }
+
+  > li {
+    display: block;
+    margin: 0;
+    @include media-breakpoint-up(lg) {
+      flex: 1;
+      white-space: nowrap;
+    }
+    &.is-active {
+      width: $mobile-active-tab-width;
+      position: absolute;
+      left: 0;
+      top: 0;
+      @include media-breakpoint-up(lg) {
+        width: auto;
+        position: static;
+      }
+    }
+    a {
+      display: block;
+      background: transparent;
+      height: $mobile-tab-height;
+      padding: 0 1.5rem;
+      border-top: 1px solid #FFF;
+      color: $gray-blue-300;
+      line-height: $mobile-tab-height;
+      text-decoration: none;
+      text-align: left;
+      transition: all .2s ease-in-out;
+      @include media-breakpoint-up(lg) {
+        background-color: $gray-blue-50;
+        height: auto;
+        line-height: 1;
+        padding: 1rem 1.5rem;
+        border: none;
+        border-top: 1px solid transparent;
+        border-bottom: 1px solid transparent;
+        text-align: center;
+      }
+
+      &:hover {
+        color: $gray-blue-900;
+        //border-bottom-color: $gray-blue-400;
+      }
+    }
+
+    &.is-active a {
+      color: #000;
+      font-weight: bold;
+      border-top: none;
+      @include media-breakpoint-up(lg) {
+        background-color: $body-bg;
+        box-shadow: 0 -.3rem .5rem 0 rgba(#000, .2);
+        //border-bottom-color: $gray-blue-900;
+      }
+    }
+  }
+}
+
+// Secondary tabs
+// --------------------------
+//
+.tabs ul.secondary {
+  display: flex;
+  border-bottom: 1px solid $gray-blue-100;
+  li a {
+    display: block;
+    padding: .5rem 1rem;
+    color: $gray-blue-300;
+    &.is-active {
+      color: $gray-blue-900;
+      font-weight: bold;
+    }
+  }
+}

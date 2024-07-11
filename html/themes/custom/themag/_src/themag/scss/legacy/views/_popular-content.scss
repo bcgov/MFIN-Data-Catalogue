@@ -1,0 +1,42 @@
+// -------------------------
+// Popular content teasers
+// -------------------------
+.view-popular-content .image-wrapper {
+  position: relative;
+  .field__label {
+    display: none;
+  }
+  .overlay {
+    background: linear-gradient(-135deg, transparentize(#9c27b0, .7) 10%, transparentize($blue-100, .5));
+    font-size: 1.125rem;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 20;
+    >div {
+      width: 100px;
+      height: 100px;
+      margin: -50px 0 0 -50px;
+      border: 1px dashed transparentize(#FFF, .1);
+      border-radius: 100px;
+      font-weight: bold;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    }
+    .counter {
+      font-size: 4rem;
+      line-height: 100px;
+    }
+    .views-counter {
+      font-size: 1rem;
+      font-weight: normal;
+    }
+  }
+  a {
+    color: $theme-text-light--primary;
+  }
+}

@@ -1,0 +1,23 @@
+// Field
+//
+
+.field {
+}
+
+.field__label {
+  color: $theme-gray-light;
+  &:after {
+    content: ':';
+  }
+}
+
+.field__items {
+
+}
+
+.field--label-inline {
+  display: flex;
+  .field__label {
+    margin-right: .5556rem;
+  }
+}

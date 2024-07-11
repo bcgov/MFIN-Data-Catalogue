@@ -1,0 +1,36 @@
+// Paragraph Text
+//
+.paragraph--type--text {
+  font-size: 1.1428rem;
+  line-height: 1.57;
+  @include media-breakpoint-up(lg) {
+    font-size: 1.1111rem;
+  }
+  p {
+    margin-bottom: 1.7rem;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  p.dropcaps {
+    &:first-letter {
+      display: block;
+      float: left;
+      margin: 0 1rem 0 0;
+      font-family: $headings-font-family;
+      font-size: 5rem;
+      line-height: 1;
+      font-weight: bold;
+    }
+  }
+  hr {
+    width: 45%;
+    margin: 2rem auto;
+    border-top: 4px dotted $theme-gray-lighter;
+  }
+}
+
+// CKEditor Body
+body.cke_editable {
+  @extend .paragraph--type--text;
+}

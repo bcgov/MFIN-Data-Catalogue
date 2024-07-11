@@ -1,0 +1,415 @@
+@import "colors";
+
+// =============================
+// Colors
+// =============================
+
+// Primary Color
+$theme-primary-color: $blue-400 !default;
+
+// Grays
+$theme-gray-dark:                       $gray-blue-900 !default;
+$theme-gray:                            $gray-blue-500 !default;
+$theme-gray-light:                      $gray-blue-300 !default;
+$theme-gray-lighter:                    $gray-blue-100 !default;
+$theme-gray-lightest:                   $gray-blue-50 !default;
+
+
+// =============================
+// Text
+// =============================
+
+// Text Colors
+$theme-text-dark--primary: $gray-blue-900 !default;
+$theme-text-dark--secondary: transparentize($gray-blue-900, .46) !default;
+$theme-text-dark--hint: transparentize($gray-blue-900, .62) !default;
+$theme-text-light--primary: #FFF !default;;
+$theme-text-light--secondary: transparentize(#FFF, .25) !default;
+$theme-text-light--hint: transparentize(#FFF, .7) !default;
+
+// Font Family
+$theme-base-font-family: "Roboto", sans-serif !default;
+$theme-headings-font-family: "Roboto Condensed", sans-serif !default;
+$font-awesome: "Font Awesome 5 Free" !default;
+
+// Base font sizes
+$theme-font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
+
+// Headings
+$theme-headings-font-family: $theme-headings-font-family !default;
+$theme-headings-font-weight: 700 !default;;
+
+// Headings sizes
+$theme-h1-font-size:  $theme-font-size-base * 3 !default;
+
+// Lead text
+$theme-lead-font-size: ($theme-font-size-base * 1.25) !default;
+$theme-lead-font-weight: 300 !default;
+
+// Muted text
+$theme-text-muted: $theme-text-dark--secondary !default;
+
+
+// =============================
+// Layout
+// =============================
+
+// Grid breakpoints
+$theme-container-max-widths-sm: 540px !default;
+$theme-container-max-widths-md: 720px !default;
+$theme-container-max-widths-lg: 960px !default;
+$theme-container-max-widths-xl: 1200px !default;
+
+// Grid columns
+$theme-grid-columns: 12 !default;
+$theme-grid-gutter-width: 1.6667rem !default;
+
+
+// =============================
+// Body
+// =============================
+
+$theme-body-bg: #fafafa !default;
+$theme-body-color: $theme-text-dark--primary !default;
+
+// =============================
+// Top bar
+// =============================
+$top-bar-bg: #FFF !default;
+$top-bar-border-bottom: $theme-gray-lightest !default;
+$top-bar-border-deviders: $theme-gray-lighter !default;
+
+// Top bar links
+$top-bar-link-color: $theme-text-dark--secondary !default;
+$top-bar-link-hover: $theme-text-dark--primary !default;
+
+// =============================
+// Header
+// =============================
+
+$header-bg: #FFF !default;
+$header-boreder-bottom: 1px solid $theme-gray-light !default;
+$header-border-deviders: $theme-gray-lighter !default; // Color for dividers in the header.
+$header-top-bg: $header-bg; // Applies on Header B, C, D.
+$header-top-border-bottom: 1px solid $theme-gray-lightest; // Applies on Header B, C, D.
+
+// Header Links
+$header-link-color: $gray-blue-900 !default;
+$header-link-hover-color: $header-link-color !default;
+
+// Header social links
+$header-social-menu-link-color: $theme-gray-light !default;
+$header-social-menu-link-hover-color: $theme-gray-light !default;
+
+// Header action menu (user account, search, cart)
+$header-action-menu-link-color: $gray-blue-900 !default;
+$header-action-menu-link-hover-color: $gray-blue-700 !default;
+
+
+// =============================
+// Footer
+// =============================
+$footer-bg: $theme-gray-lightest;
+
+
+// =============================
+// Search Form
+// =============================
+
+$search-toggleable-block-bg: $theme-gray-lightest !default;;
+$search-button-color: #f44336 !default;
+
+
+// =============================
+// Block
+// =============================
+
+// Block Title
+$block-title-font-family: $theme-base-font-family !default;
+$block-title-color: $theme-body-color !default;
+$block-title-font-size: .7rem !default;
+$block-title-mobile-font-size: .9rem !default;
+$block-title-weight: bold !default;
+$block-text-align: center !default;
+$block-text-transform: uppercase !default;
+$block-title-horizontal-lines-color: $theme-gray-lighter;
+
+
+// =============================
+// Header Main Navigation
+// =============================
+
+$main-navigation-font-size: .889rem !default;
+$main-navigation-font-weight: bold !default;
+$main-navigation-text-transform: uppercase !default;
+
+$main-navigation-link-color: $gray-blue-900 !default;
+$main-navigation-link-hover-color: $gray-blue-900 !default;
+$main-navigation-link-hover-bg: lighten($gray-blue-50, 2%) !default;
+$main-navigation-link-active-color: $main-navigation-link-hover-color !default;
+$main-navigation-link-active-bg: $main-navigation-link-hover-bg !default;
+
+
+// =============================
+// WE Mega Menu
+// =============================
+$we-submenu-min-width: 170px !default;
+$we-submenu-bg-color: rgba(#FFF, .9) !default;
+
+// Level 1
+$we-menu-level-1-font-size: $main-navigation-font-size !default;
+$we-menu-level-1-font-weight: $main-navigation-font-weight !default;
+$we-menu-level-1-text-transform: $main-navigation-text-transform !default;
+$we-menu-level-1-link-color: $main-navigation-link-color !default;
+$we-menu-level-1-link-color-hover: $main-navigation-link-hover-color !default;
+$we-menu-level-1-link-hover-background: $main-navigation-link-hover-bg !default;
+$we-menu-level-1-link-active-color: $main-navigation-link-active-color !default
+$we-menu-level-1-link-active-background: $main-navigation-link-active-bg !default;
+$we-menu-level-1-link-arrow-color: $main-navigation-link-color !default;
+
+
+// =============================
+// TB Mega Menu
+// =============================
+
+$tb-menu-background-color: transparentize(#FFF, .1) !default;
+
+// TB Megamenu Level 1
+$tb-menu-level-1-font-size: $main-navigation-font-size !default;
+$tb-menu-level-1-font-weight: $main-navigation-font-weight !default;
+$tb-menu-level-1-text-transform: $main-navigation-text-transform !default;
+
+$tb-menu-level-1-link-color: $main-navigation-link-color !default;
+$tb-menu-level-1-link-color-hover: $main-navigation-link-hover-color !default;
+$tb-menu-level-1-link-hover-background: $main-navigation-link-hover-bg !default;
+$tb-menu-level-1-link-active-color: $main-navigation-link-active-color !default
+$tb-menu-level-1-link-active-background: $main-navigation-link-active-bg !default;
+$tb-menu-level-1-link-arrow-color: $tb-menu-level-1-link-color !default;
+
+// TB Megamenu Level 2+
+$tb-menu-level-2-font-size: $tb-menu-level-1-font-size !default;
+$tb-menu-level-2-font-weight: normal !default;
+$tb-menu-level-2-text-transform: none !default;
+$tb-menu-level-2-link-border-bottom: 1px solid $gray-blue-50 !default;
+$tb-menu-level-2-link-color: $tb-menu-level-1-link-color !default;
+$tb-menu-level-2-link-hover-color: rgba($tb-menu-level-2-link-color, .8) !default;
+$tb-menu-level-2-hover-background: $tb-menu-level-1-link-hover-background !default;
+$tb-menu-level-2-link-arrow-color: $tb-menu-level-2-link-hover-color !default;
+$tb-menu-level-2-link-active-background: $gray-blue-50 !default;
+$tb-menu-level-2-link-active-color: $tb-menu-level-2-link-color !default;
+
+
+// =============================
+// Superfish Header Menu (Legacy)
+// =============================
+
+// Superfish Level 1
+$sf-level-1-bg-color: transparentize($theme-gray-lightest, .1) !default;
+$sf-level-1-bg-hover-color: transparentize(#FFF, .5) !default;
+$sf-level-1-link-color: $header-link-color !default;
+$sf-level-1-link-color-hover: $header-link-hover-color !default;
+$sf-level-1-link-color-active: #000 !default;
+$sf-level-1-link-arrow-down-color: $sf-level-1-link-color !default;
+$sf-level-1-font-size: $main-navigation-font-size !default;
+$sf-level-1-font-weight: $main-navigation-font-weight !default;
+$sf-level-1-text-transform: uppercase !default;
+
+// Superfish Level 2+
+$sf-level-2-bg-color: $sf-level-1-bg-color !default;
+$sf-level-2-bg-color-hover: #FFF !default;
+$sf-level-2-link-color: $gray-blue-800 !default;
+$sf-level-2-link-color-hover: #000 !default;
+$sf-level-2-link-border-bottom: 1px solid transparentize(#FFF, .15) !default;
+$sf-level-2-link-arrow-down-color: $sf-level-2-link-color !default;
+$sf-level-2-font-size: 0.778rem !default;
+$sf-level-2-font-weight: normal !default;
+$sf-level-2-text-transform: none !default;
+
+
+// =============================
+// Responsive side menu
+// =============================
+
+$sidr-desktop-width: 360px !default;
+$sidr-mobile-width: 280px !default;
+
+$sidr-background: $theme-gray-dark !default;
+$sidr-background-shadow-color: $theme-gray-dark !default;
+$sidr-box-shadow-color: $theme-gray-dark !default;
+$sidr-input-background-color: $theme-gray-dark !default;
+
+$sidr-font-size: .9rem !default;
+$sidr-text-color: $theme-text-dark--primary !default;
+
+// Menu Level 1
+$sidr-menu-level1-link-bg: $theme-gray-dark !default;
+$sidr-menu-level1-border-bottom: 1px solid transparentize($theme-gray-light, .8) !default;
+$sidr-menu-level1-link-text-color: $theme-text-light--primary !default;
+
+// Menu Level 2
+$sidr-menu-level2-link-bg: #FFF !default;
+$sidr-menu-level2-border-bottom: 1px solid $theme-gray-lighter !default;
+$sidr-menu-level2-link-text-color: $theme-gray-dark !default;
+
+
+// =============================
+// Teasers
+// =============================
+
+$teaser-block--border: 1px solid $theme-gray-lighter !default;
+
+// Channel
+$teaser-channel--link-color: $theme-gray !default;
+$teaser-channel--link-hover-color: $teaser-channel--link-color !default;
+
+// Headline
+$teaser-headline--link-color: $gray-blue-900 !default;
+$teaser-headline--link-hover-color: #FFF !default;
+$teaser-headline--link-bg-color-hover: $gray-blue-900 !default;
+
+// Author
+$teaser-authored--color: $theme-gray-light !default;
+$teaser-authored--link-color: $theme-gray !default;
+$teaser-authored--link-hover-color: $teaser-authored--link-color !default;
+
+// Teaser Text
+$teaser-text--color: $theme-gray-light !default;
+
+
+// =============================
+// Comments
+// =============================
+
+$comments-bg: lighten($theme-gray-lightest, 2%);
+
+
+// =============================
+// Slick Slider
+// =============================
+
+$slick-direction-button-bg-color: transparent !default;
+$slick-direction-button-font-color: $theme-text-light--primary !default;
+$slick-direction-button-width: 65px !default;
+$slick-direction-button-height: $slick-direction-button-width !default;
+$slick-direction-button-border: none !default;
+$slick-direction-button-border-radius: 0 !default;
+
+
+// =============================
+// Vertical Tabs
+// =============================
+
+$vertical-tabs-bg-color: transparentize(#FFF, .5) !default;
+$vertical-tabs-border-width: 1px !default;
+$vertical-tabs-border-color: transparentize(#000, .85) !default;
+
+
+// =============================
+// Overridden
+// Bootstrap variables
+// =============================
+
+// Body
+$body-bg: $theme-body-bg;
+$body-color: $theme-body-color;
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+$container-max-widths: (
+    sm: $theme-container-max-widths-sm,
+    md: $theme-container-max-widths-md,
+    lg: $theme-container-max-widths-lg,
+    xl: $theme-container-max-widths-xl
+);
+
+// Spacing
+//
+// Control the default styling of most Bootstrap elements by modifying these
+// variables. Mostly focused on spacing.
+// You can add more entries to the $spacers map, should you need more variation.
+
+$spacer: 1rem !default;
+$spacers: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$spacers: map-merge(
+    (
+      0: 0,
+      1: ($spacer * .25),
+      2: ($spacer * .5),
+      3: $spacer,
+      4: ($spacer * 1.5),
+      5: ($spacer * 2),
+      6: ($spacer * 3),
+      7: ($spacer * 4),
+      8: ($spacer * 6)
+    ),
+    $spacers
+);
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+$grid-columns: $theme-grid-columns;
+$grid-gutter-width: $theme-grid-gutter-width;
+
+// Text
+$font-family-base: $theme-base-font-family;
+$font-size-base: $theme-font-size-base;
+
+// Headings
+$h1-font-size: $theme-h1-font-size;
+$headings-font-family: $theme-headings-font-family;
+$headings-font-weight: $theme-headings-font-weight;
+
+// Lead
+$lead-font-size: $theme-lead-font-size;
+$lead-font-weight: $theme-lead-font-weight;
+
+// Muted
+$text-muted: $theme-text-muted;
+
+
+// Forms
+
+$input-bg:                              #FFF;
+$input-disabled-bg:                     $gray-blue-200;
+
+$input-color:                           $theme-gray;
+$input-border-color:                    $gray-blue-100;
+$input-border-width:                    1px;
+$input-box-shadow:                      inset 0 1px 1px rgba($theme-gray-dark, .075);
+
+$input-focus-bg:                        $input-bg;
+$input-focus-border-color:              lighten($theme-primary-color, 15%);
+$input-focus-color:                     $input-color;
+
+$input-placeholder-color:               $theme-gray-light;
+
+
+// Tables
+//
+// Customizes the `.table` component with basic values, each used across all table variations.
+$table-cell-padding:          .75rem;
+$table-cell-padding-sm:       .3rem;
+
+$table-bg:                    transparent;
+$table-accent-bg:             rgba(#000, .05);
+$table-hover-bg:              rgba(#000, .075);
+$table-active-bg:             $table-hover-bg;
+
+$table-border-width:          1px;
+$table-border-color:          $theme-gray-lightest;
+
+$table-head-bg:               $gray-blue-100;
+$table-head-color:            $theme-gray-dark;
+
+$table-dark-bg:               $theme-gray-dark;
+$table-dark-accent-bg:        rgba(#FFF, .05);
+$table-dark-hover-bg:         rgba(#FFF, .075);
+$table-dark-border-color:     lighten($theme-gray-dark, 7.5%);
+$table-dark-color:            $body-bg;
+
+$table-striped-order:         odd;
+$table-caption-color:         $text-muted;

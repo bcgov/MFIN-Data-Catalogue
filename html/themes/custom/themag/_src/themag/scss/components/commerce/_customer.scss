@@ -1,0 +1,45 @@
+//
+// Address book
+//
+.view-profiles {
+  .view-content {
+    margin-top: 1.5rem;
+  }
+  .field--name-address {
+    padding: 1rem;
+    border: 1px solid $gray-blue-100;
+  }
+  .dropbutton-widget {
+    border-top: none;
+  }
+}
+
+
+//
+// Orders page
+//
+.order-information {
+  margin-top: 2rem;
+  .view-commerce-order-item-table {
+    margin-top: 2rem;
+  }
+
+  // Order total
+  //
+  .order-total-line-value {
+    width: auto;
+    min-width: 80px;
+  }
+  .order-total-line__subtotal {
+    color: $gray-blue-600;
+  }
+  .order-total-line__total {
+    width: auto;
+    min-width: 80px;
+    color: $gray-blue-900;
+    font-size: 1.8rem;
+    .order-total-line-label {
+      margin-right: 1rem;
+    }
+  }
+}

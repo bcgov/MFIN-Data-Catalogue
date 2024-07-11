@@ -1,0 +1,51 @@
+//
+// Edit User Page
+//
+
+.user-logged-in .user-form {
+  @include media-breakpoint-up(lg) {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    .horizontal-tabs-list {
+      display: flex;
+      justify-content: space-between;
+      > li {
+        flex: 1;
+        text-align: center;
+      }
+    }
+    .horizontal-tabs ul.horizontal-tabs-list {
+      margin-bottom: 2rem;
+      .horizontal-tab-button a,
+      .horizontal-tab-button.selected a,
+      .horizontal-tab-button a,
+      .horizontal-tab-button.selected a {
+        border-bottom-width: 3px;
+        padding-left: .5rem;
+        padding-right: .5rem;
+        text-transform: none;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+.path-user {
+  .form-type-managed-file {
+    margin-bottom: 2rem;
+    padding: 1rem 1rem 2rem;
+    border-bottom: 5px solid $gray-blue-50;
+  }
+  .focal-point-preview-link {
+    display: none;
+  }
+  .image-widget {
+    display: flex;
+    align-items: center;
+    .image-preview {
+      margin-right: 1rem;
+    }
+  }
+}
+

@@ -1,0 +1,1 @@
+!function(e){"use strict";Drupal.behaviors.themagPhotoswipeInarticleGalleryGrid={attach:function(a){e(a).find(".paragraph--type--mg-parag-photo-gallery, .view-mode-gallery-grid").once().photoSwipe()}}}(jQuery);

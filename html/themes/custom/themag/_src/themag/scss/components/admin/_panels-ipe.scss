@@ -1,0 +1,139 @@
+//
+// IPE Wrapper
+//
+.ipe-tab-content  {
+  a, div, h1, h2, h3, h4, h5, h6 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif!important;
+  }
+}
+
+
+//
+// IPE Site elements
+//
+div.ipe-actions {
+  align-items: center;
+  a {
+    color: #000!important;
+  }
+}
+
+
+//
+// IPE Picker
+//
+.ipe-tab.active a, .ipe-tab a:hover {
+  color: $blue-light-600;
+  border-bottom: 3px solid $blue-light-600;
+}
+
+.ipe-tab-content {
+  padding: 10px 0 0;
+  border: none;
+}
+
+.ipe-layout-image {
+  width: auto;
+}
+
+.ipe-category-picker-search {
+  background: transparent;
+  margin-top: -10px;
+  padding: 0;
+  border: none;
+  input[type="text"], input[type="search"] {
+    width: 100%;
+    margin: 0;
+    padding: .4rem;
+    border-radius: 0;
+    text-align: center;
+  }
+  .ipe-icon-search {
+    display: none;
+  }
+}
+
+.ipe-category {
+  padding: 14px;
+  border: none;
+  border-radius: 0;
+  font-size: 14px;
+  line-height: 14px;
+  &.ipe-create-category {
+    background: $blue-light-600;
+    padding: 16px 12px 17px;
+  }
+  .ipe-category-count {
+    background: $gray-800;
+  }
+  &:hover {
+    background: $gray-200;
+    color: $gray-900;
+  }
+  &.active {
+    background: #FFF;
+    color: #000;
+    .ipe-category-count  {
+      background: $blue-light-600;
+    }
+  }
+}
+
+#panels-ipe-tray .ipe-category {
+  margin-right: 0;
+}
+
+.ipe-layout {
+  @extend .ipe-category;
+  width: 150px;
+  margin-top: 10px;
+  .ipe-layout-label {
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+    color: $gray-800;
+  }
+  .ipe-current-layout-label {
+    background: transparent;
+    border: 1px solid $blue-light-600;
+    color: $blue-light-600;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+  &:hover {
+    background-color: $gray-100;
+  }
+}
+
+.ipe-blockpicker-item a {
+  background: transparent;
+  border: 1px solid $gray-300;
+  &:hover {
+    color: $blue-light-600;
+    border: 1px solid $blue-light-600;
+    h5 {
+      color: $blue-light-600;
+    }
+  }
+}
+
+.ipe-category-picker-top {
+  &.active {
+    padding-top: 0;
+  }
+}
+
+.ipe-category-picker-bottom {
+  background: #000;
+  color: #FFF;
+  padding: 0;
+  min-height: 40px;
+  &.top-open {
+    border: none;
+  }
+  a {
+    color: #FFF;
+  }
+}

@@ -1,0 +1,261 @@
+//
+// @file
+// Styling for the Forum module.
+//
+
+// Import bootstrap mixins.
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+
+// Import TheMAG variables.
+@import "../../variables";
+
+// Import TheMAG mixins.
+@import "../../mixins";
+
+
+// General style for the main forum table.
+//
+.forum table {
+  width: 100%;
+
+  thead {
+    background: $theme-gray-dark;
+    border-top: 1px solid $theme-gray-dark;
+    border-bottom: 4px solid $theme-gray-dark;
+    color: $theme-text-light--primary;
+
+    th {
+      padding: $spacer;
+      white-space: nowrap;
+
+      a {
+        color: $theme-text-light--primary;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      border-top: 1px solid $theme-gray-lighter;
+    }
+    td {
+      padding: $spacer $spacer;
+    }
+  }
+}
+
+
+// Forum
+//
+.forum {
+  font-size: .888rem;
+
+  //
+  &__forum-details,
+  &__container-details{
+    display: flex;
+  }
+
+  // Icons
+  //
+  &__icon {
+    flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+    margin: 0 16px 0 0;
+    background-image: url(../../../images/forum-icons.png);
+    background-repeat: no-repeat;
+  }
+
+  &__topic-status--new {
+    background-position: -24px 0;
+  }
+  &__topic-status--hot {
+    background-position: -48px 0;
+  }
+  &__topic-status--hot-new {
+    background-position: -72px 0;
+  }
+  &__topic-status--sticky {
+    background-position: -96px 0;
+  }
+  &__topic-status--closed {
+    background-position: -120px 0;
+  }
+
+  // Forum and topic title.
+  //
+  &__title,
+  &__name, {
+    font-weight: bold;
+    overflow: hidden;
+    a {
+      color: $theme-text-dark--primary;
+    }
+  }
+
+  // Forum description.
+  //
+  &__description {
+    color: $theme-text-dark--secondary;
+    @include media-breakpoint-up(lg) {
+      font-size: .7778rem;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__topics,
+  &__posts,
+  &__replies {
+    text-align: right;
+    @include media-breakpoint-up(lg) {
+      width: 150px;
+    }
+
+    // New topic link
+    a {
+      display: block;
+      font-size: .7778rem;
+      @include media-breakpoint-up(lg) {
+        white-space: nowrap;
+      }
+    }
+  }
+
+  &__last-reply {
+    text-align: right;
+    @include media-breakpoint-up(lg) {
+      width: 250px;
+    }
+  }
+
+  // Forum indent element.
+  //
+  .indented {
+    margin-left: 16px;
+  }
+
+  // Forum containers.
+  //
+  .forum-container {
+    //border-top: 2px solid $theme-gray-dark;
+    border-bottom: 4px solid $theme-gray-dark;
+  }
+
+  // Forum list
+  //
+  &__forum-list {
+
+    .forum__topics {
+      text-align: right;
+    }
+
+    .forum__posts {
+      text-align: right;
+    }
+
+    .forum__last-reply {
+      text-align: right;
+    }
+  }
+}
+
+
+// Author info
+//
+.forum .submitted {
+  font-size: .7778rem;
+  @include media-breakpoint-up(lg) {
+    white-space: nowrap;
+  }
+
+  &__author {
+    white-space: nowrap;
+  }
+
+  &__time {
+    color: $theme-text-dark--secondary;
+  }
+}
+
+
+// Forum topic list table
+//
+.forum__forum-topic-list {
+
+  thead th:nth-child(2),
+  thead th:nth-child(3) {
+    text-align: right;
+  }
+
+  // Forum topic <td>
+  //
+  .forum__topic {
+    display: flex;
+
+    // Submitted info under topic title.
+    //
+    .submitted {
+      font-weight: normal;
+      @include media-breakpoint-up(md) {
+        display: flex;
+      }
+
+      &__author a {
+        color: $theme-primary-color;
+      }
+
+      &__time:before {
+        @include media-breakpoint-up(md) {
+          content: "|";
+          display: inline-block;
+          margin: 0 4px 0 8px;
+        }
+      }
+    }
+  }
+}
+
+
+// Forum topic node
+//
+.forum-comment {
+  background: rgba(#FFF, .5);
+  border: 1px solid $theme-gray-lightest;
+  border-radius: $border-radius;
+  padding: 16px;
+
+  @include media-breakpoint-up(lg) {
+    padding: 32px;
+  }
+}
+
+
+// Forum comment form
+//
+.forum-comment-form {
+  background: rgba(#FFF, .5);
+  border: 1px solid $theme-gray-lightest;
+  border-radius: $border-radius;
+  padding: 16px;
+  font-size: .7778rem;
+  @include media-breakpoint-up(lg) {
+    padding: 32px;
+  }
+
+  .filter-wrapper {
+    border: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .form-actions {
+    margin-top: 16px;
+    margin-bottom: 0;
+  }
+}

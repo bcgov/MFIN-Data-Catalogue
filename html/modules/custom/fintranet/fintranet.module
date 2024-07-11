@@ -1,0 +1,321 @@
+<?php
+
+/**
+ * @file
+ * fintranet.module
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
+use Drupal\Core\Render\Markup;
+use Drupal\file\Entity\File;
+use Drupal\views\ViewExecutable;
+
+/**
+ * DEV Tools: Add Twig template suggestions for fieldset elements.
+ *
+ * @param array $suggestions
+ *   The suggestions.
+ * @param array $variables
+ *   The variables.
+ * @param mixed $hook
+ *   The hook.
+ */
+function fintranet_theme_suggestions_fieldset_alter(array &$suggestions, array $variables, $hook) {
+  if (isset($variables['element']['#id'])) {
+    $id = str_replace("-", "_", $variables['element']['#id']);
+    $suggestions[] = $hook . '__' . $id;
+  }
+}
+
+/**
+ * Prepares variables for `we-megamenu-backend.html.twig`.
+ */
+function fintranet_preprocess_we_megamenu_backend(array &$variables) {
+  // Override the mega menu admin page styles to match our front-end design.
+  $variables['#attached']['library'][] = 'fintranet/we_megamenu';
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function fintranet_menu_local_tasks_alter(&$data, &$route_name) {
+  // Hide default local task tabs from Admin content and media.
+  unset($data['tabs'][0]['comment.admin']);
+  unset($data['tabs'][0]['poll.poll_overview']);
+  unset($data['tabs'][0]['views_view:view.scheduler_scheduled_content.overview']);
+  unset($data['tabs'][0]['entity.media.collection']);
+}
+
+/**
+ * Get list of Media edit-forms, and associated file-fields.
+ */
+function _fintranet__get_media_edit_forms($with_filefields = FALSE) {
+  $mediaFormsAndFilefields = [
+    // EDIT_FORM_NAME              => FILE_FIELD_NAME_FOR_THIS_MEDIA_TYPE
+    // --------------------------     -----------------------------------.
+    'media_document_edit_form'     => 'field_media_file',
+    'media_form_edit_form'         => 'field_media_file',
+    /* Let's not bother with Galleries for now, as they already have
+     * the "_0" style suffixes. See FINTRA-1 for more details. */
+    // 'media_gallery_edit_form'      => 'field_gallery',
+    'media_image_edit_form'        => 'field_image',
+    'media_vector_image_edit_form' => 'field_media_svg',
+    'media_teaser_image_edit_form' => 'field_image',
+    'media_video_edit_form'        => 'field_media_video_file',
+  ];
+
+  return $with_filefields ? $mediaFormsAndFilefields : array_keys($mediaFormsAndFilefields);
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function fintranet_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Forms using the field_icon.
+  $field_icon_form_ids = [
+    'node_program_form',
+    'node_program_edit_form',
+    'node_service_form',
+    'node_service_edit_form',
+    'taxonomy_term_audience_form',
+    'taxonomy_term_category_form',
+  ];
+  if (in_array($form_id, $field_icon_form_ids)) {
+    // Hide field icon additional settings in the form display.
+    $form['field_icon']['widget'][0]['settings']['#access'] = FALSE;
+    // Set a default icon style value to prevent errors.
+    $form['field_icon']['widget'][0]['settings']['style']['#default_value'] = 'far';
+    $form['field_icon']['widget'][0]['icon_name']['#description'] = t('Enter a search term or view the <a href="https://fontawesome.com/icons" target="_blank">Font Awesome icon gallery</a> for a list of icon names.');
+  }
+
+  // Add our '_fintranet__delete_old_file' form submit-handler
+  // to the Media edit forms, for all Media types.
+  if (in_array($form_id, _fintranet__get_media_edit_forms())) {
+    foreach (array_keys($form['actions']) as $action) {
+      if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+        // "Unshift" it onto the START of the array, so that it runs before any
+        // of the other submit-handlers (so that they don't rename the new file
+        // before we can delete the old one).
+        array_unshift($form['actions'][$action]['#submit'], '_fintranet__delete_old_file');
+      }
+    }
+  }
+
+  // Set up the "Add a new file" button so that each time it is clicked,
+  // the "Description" field (which appears after the file upload) gets
+  // some modifications (make it required, and change label/help text).
+  if ($form_id == 'media_form_add_form' ||
+      $form_id == 'media_form_edit_form'
+  ) {
+    // Convenience variable.
+    $upload_widget =& $form['field_form_additional_documents']['widget'];
+
+    if (!empty($upload_widget)) {
+      foreach (Element::children($upload_widget) as $element_index) {
+        $upload_widget[$element_index]['#process'][] = '_fintranet__modify_file_description_field';
+      }
+    }
+  }
+}
+
+/**
+ * Delete old file upon Media edit-form submit.
+ *
+ * If the user has clicked "Remove" to take off the old file-attachment and
+ * replaced it, we want the new file to have the same filename as the old one.
+ * But drupal will append '_0' to the new one to make it unique, and will not
+ * actually delete the old one (even though it is now orphaned), until
+ * cron runs.
+ *
+ * So we delete the old file right now, which allows the new file to receive the
+ * proper name.
+ */
+function _fintranet__delete_old_file(array $form, FormStateInterface $form_state) {
+  // Each of the 7 different media types uses a different field
+  // for their file-attachment. Get the name of that field for
+  // our current media-type (which is in the form-id):
+  $forms_and_fields = _fintranet__get_media_edit_forms($with_filefields = TRUE);
+  $file_field_name = $forms_and_fields[$form['#form_id']];
+
+  // The user is submitting an edit-request, via the edit form.
+  // Separate out the "old" (pre edit) vs "new" (post-edit).
+  // ...
+  // Get info about the old File-attachment.
+  // (Note that a "media" is actually a "Media entity".)
+  $old_mediaentity_id = $form_state->getformObject()->getEntity()->id();
+  $old_mediaentity = \Drupal::service('entity_type.manager')->getStorage('media')->load($old_mediaentity_id);
+  $old_mediaentity_file_field = $old_mediaentity->get($file_field_name);
+
+  // Check to make sure there is an old file to delete.
+  if (!empty($old_mediaentity_file_field->getValue())) {
+
+    $old_media__file_id = $old_mediaentity_file_field->getValue()[0]['target_id'];
+
+    $new_form_fids = $form_state->getValue($file_field_name)[0]['fids'];
+    $new_media__file_id = empty($new_form_fids) ? NULL : $new_form_fids[0];
+
+    // Note that even if no new file is attached, we still should
+    // delete the old one (Drupal doesn't otherwise), because if this
+    // file is reattached later and before cron runs to delete the old one,
+    // it will be forced to use the _0 extension since the old file
+    // will still be sitting around.
+    //
+    // Do not delete if it's the same file object still attached.
+    if ($old_media__file_id != $new_media__file_id) {
+      // The file has been switched or removed. Delete the old file.
+      $old_file = File::load($old_media__file_id);
+      // Check to make sure the file is not used elsewhere before we delete it.
+      // We expect the "usage" data to look like this:
+      // [ "file" => [ "media" => [ 881 => "1"]]].
+      $usage = \Drupal::service('file.usage')->listUsage($old_file);
+      if (count($usage) == 1
+      && isset($usage['file'])
+      && isset($usage['file']['media'])
+      && isset($usage['file']['media'][$old_mediaentity_id])
+      ) {
+        // Remove the old file-object.
+        // This also removes the file from the filesystem.
+        $old_file->delete();
+
+        // If we ever decide to RENAME (rather than delete) the file,
+        // here is a good way:
+        // https://drupal.stackexchange.com/questions/242331/how-to-rename-file-before-after-upload
+      }
+      // Else, the file is being used elsewhere...
+      // too bad! -- the _0 suffix will get appended.
+    }
+
+  }
+}
+
+/**
+ * Modify the 'Description' field (part of file upload) on Forms.
+ *
+ * Make the field required, and explain more clearly what the field is for.
+ */
+function _fintranet__modify_file_description_field($element) {
+  $element['description']['#required'] = TRUE;
+
+  $element['description']['#title'] = 'Download label';
+  $element['description']['#description'] = Markup::create(
+    "<em>Briefly</em> describe how this file relates to the Form. For example:
+     <ul>
+      <li>Employee Form - Instructions</li>
+      <li>Policy ABC, which Form XYZ addresses</li>
+     </ul>"
+  );
+
+  return $element;
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function fintranet_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  $node_forms = [
+    'node_program_form',
+    'node_program_edit_form',
+    'node_service_form',
+    'node_service_edit_form',
+  ];
+
+  if (in_array($form_id, $node_forms)) {
+    // Disable the third array key option in field_audience.
+    $audience_tid = array_keys($form['field_audience']['widget']['#options']);
+    $form['field_audience']['widget'][$audience_tid[2]] = ['#disabled' => TRUE];
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function fintranet_form_media_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $media = $form_state->getFormObject()->getEntity();
+  // Form media add/edit forms.
+  if ($media->bundle() == 'form') {
+    $form['name']['widget'][0]['value']['#title'] = 'Form name';
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function fintranet_form_media_confirm_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Set confirm delete default value for media files.
+  $form['also_delete_file']['#default_value'] = 1;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function fintranet_form_editor_media_dialog_alter(array &$form, FormStateInterface $form_state) {
+  if (isset($form_state->getUserInput()['editor_object'])) {
+    $editor_object = $form_state->getUserInput()['editor_object'];
+    $media_embed_element = $editor_object['attributes'];
+  }
+  else {
+    // Retrieve the user input from form state.
+    $media_embed_element = $form_state->get('media_embed_element');
+  }
+
+  $form['extra_classes'] = [
+    '#title' => t('Extra Classes'),
+    '#type' => 'textfield',
+    '#step' => '1',
+    '#default_value' => empty($media_embed_element['class']) ? '' : $media_embed_element['class'],
+    '#parents' => ['attributes', 'class'],
+  ];
+  $form['data-my-data'] = [
+    '#title' => t('Extra Data Attribute'),
+    '#type' => 'textfield',
+    '#step' => '1',
+    '#default_value' => empty($media_embed_element['data-my-data']) ? '' : $media_embed_element['data-my-data'],
+    '#parents' => ['attributes', 'data-my-data'],
+  ];
+}
+
+/**
+ * Implements hook_form_views_exposed_form_alter().
+ */
+function fintranet_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $view_ids = ['catalogue'];
+  if ($form_id == 'views_exposed_form' && in_array($form_state->get('view')->id(), $view_ids)) {
+    // Change textfield size to 40.
+    $form['query']['#size'] = 40;
+    // Remove lowest relevance option.
+    unset($form['sort_bef_combine']['#options']['search_api_relevance_ASC']);
+  }
+}
+
+/**
+ * Implements hook_rabbit_hole_values_alter().
+ */
+function fintranet_rabbit_hole_values_alter(&$values) {
+  // Do not bypass rabbit hole redirects even for admin users.
+  // https://www.drupal.org/project/rabbit_hole/issues/2560355#comment-13917053.
+  $values["bypass_access"] = FALSE;
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function fintranet_preprocess_node(&$variables) {
+  if ($variables['node']->getType() == 'article') {
+    $variables['comment_count'] = $variables['node']->get('field_comment')->comment_count;
+  }
+}
+
+/**
+ * Implements hook_views_pre_render().
+ *
+ * Add the JS/CSS to make the 'copy form URL to clipboard' look good and
+ * function correctly, on the 'Forms' view, as well as other formatting for
+ * the forms search-result page.
+ */
+function fintranet_views_pre_render(ViewExecutable $view) {
+  if (isset($view) && ($view->storage->id() == 'forms')) {
+    $view->element['#attached']['library'][] = 'fintranet/form_search_view';
+  }
+}

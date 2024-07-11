@@ -1,0 +1,216 @@
+// Content Header
+
+.page-node-type-article {
+  .region--content-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .block--page-title-block {
+    background-color: transparent;
+    &:before,
+    &:after {
+      display: none;
+    }
+  }
+}
+
+
+// ========================
+// Panelized Articles
+// ========================
+.page-node-type-article {
+
+  .layout__region--tabs .block {
+    margin-bottom: 2rem;
+  }
+
+  // Article header and footer
+  .layout__region--article-header,
+  .layout__region--article-footer {
+    a {
+      color: $theme-gray-dark;
+    }
+  }
+}
+
+
+// ========================
+// Article Layout 1
+// ========================
+
+.layout--article-1 {
+  .layout__region--article-header {
+    margin-bottom: 1rem;
+  }
+  .layout__region--article-footer {
+    margin-bottom: 1rem;
+  }
+  .layout__region--article-social-buttons {
+    margin-bottom: 1rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px dotted $gray-blue-100;
+  }
+  .field--name-field-comment {
+    margin-bottom: 3rem;
+  }
+}
+
+
+// ================================================
+// Article Layout 2 and Article Layout 3
+// ================================================
+
+.layout--article-2 {
+  // Page title
+  h1.page-title {
+    @include media-breakpoint-up(lg) {
+      font-size: 3.5556rem;
+    }
+  }
+  // Tabs
+  .tabs ul.primary {
+    justify-content: center;
+  }
+  // Article  Header & Media
+  .layout__article-intro {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    color: #FFF;
+    text-align: center;
+    a {
+      color: #FFF;
+    }
+  }
+  // Parallax element
+  .layout__article-intro,
+  .parallax {
+    height: 60vh;
+  }
+  // Parallax media
+  .parallax {
+    background-color: transparent;
+  }
+  // Article media
+  .layout__region--article-media {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    .field--name-field-teaser-media {
+      position: relative;
+      &:before {
+        content: "";
+        display: block;
+        @include make-color-overlay(rgba($gray-blue-900, .1));
+        height: 60vh;
+        z-index: 0;
+      }
+    }
+  }
+  // Article footer
+  .layout__region--article-footer {
+    margin-top: .8889rem;
+  }
+  .node__meta {
+    display: inline-flex;
+    color: rgba(#FFF, .7);
+    a {
+      color: #FFF;
+    }
+  }
+  // Block in Social Buttons region.
+  .block-region-article-social-buttons .block {
+    margin-bottom: 2rem;
+  }
+  // Article content
+  .layout__region--article-content {
+    margin-bottom: 2rem;
+  }
+  // Comments
+  .layout__region--article-comments {
+    background-color: $comments-bg;
+    margin-top: 2rem;
+  }
+  .block-region-article-comments .block {
+    margin-bottom: 0;
+  }
+  .field--name-field-comment {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+
+// ========================
+// Article Layout 3
+// ========================
+
+.layout--article-3 {
+
+  // Article media
+  .layout__region--article-media .block,
+  .layout__article-intro {
+    margin-bottom: 0;
+  }
+  // Page title
+  h1.page-title {
+    @include media-breakpoint-up(lg) {
+      font-size: 3.5556rem;
+    }
+  }
+  // Article  Header & Media
+  .layout__article-intro {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+    text-align: center;
+    a {
+      color: #FFF;
+    }
+  }
+  .layout__article-intro,
+  .parallax {
+    height: 60vh;
+  }
+  // Parallax media
+  .parallax {
+    background-color: transparent;
+  }
+  // Article media
+  .layout__region--article-media {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    .field--name-field-teaser-media {
+      position: relative;
+      &:before {
+        content: "";
+        display: block;
+        @include make-color-overlay(rgba($gray-blue-900, .1));
+        height: 60vh;
+        z-index: 0;
+      }
+    }
+  }
+  // Article Meta
+  .layut__meta-wrapper > .container {
+    margin-bottom: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $theme-gray-lighter;
+  }
+  .layout__region--article-social-buttons {
+    margin-top: 1rem;
+    @include media-breakpoint-up(lg) {
+      margin-top: 0;
+    }
+  }
+}

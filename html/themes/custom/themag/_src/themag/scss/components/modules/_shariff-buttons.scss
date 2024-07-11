@@ -1,0 +1,123 @@
+//
+// Shariff social buttons
+//
+
+
+// Service colors
+$shariff-service: (
+    addthis: (color: #f8694d , hover: #f8694d),
+    diaspora: (color: #999 , hover: #b3b3b3),
+    facebook: (color: #3b5998 , hover: #4273c8),
+    flattr: (color: #7ea352 , hover: #F67C1A),
+    flipboard: (color: #e12828 , hover: #ff2e2e),
+    googleplus: (color: #d34836 , hover: #f75b44),
+    linkedin: (color: #0077b5 , hover: #0369a0),
+    mail: (color: $blue-light , hover: $blue-light-300),
+    pinterest: (color: #bd081c  , hover: lighten(#bd081c, 5%)),
+    print: (color: #999, hover: #a8a8a8),
+    qzone: (color: #2B82D9, hover: #398FE6),
+    reddit: (color: #ff4500, hover: #ff6a33),
+    stumbleupon: (color: #eb4924, hover: #ef7053),
+    telegram: (color: #0088cc, hover: #007dbb),
+    tencent-weibo: (color: #26ACE0, hover: #38BBEB),
+    threema: (color: #333333, hover: #1f1f1f),
+    tumblr: (color: #36465D, hover: #44546B),
+    twitter: (color: #55acee, hover: #32bbf5),
+    vk: (color: #5d7fa4, hover: #678eb4),
+    weibo: (color: #F56770, hover: #FA7F8A),
+    whatsapp: (color: #5cbe4a, hover: #34af23),
+    xing: (color: #126567, hover: #29888a),
+);
+
+.shariff[data-css="min"],
+.shariff[data-css="complete"] {
+  ul {
+    @include list__reset;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: none;
+    flex: inherit;
+    li {
+      flex: 1;
+      margin: 0 .2778rem 0;
+      font-family: $theme-base-font-family;
+      text-transform: capitalize;
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+  a {
+    display: block;
+    min-width: 6rem;
+    padding: .4rem .5556rem;
+    border-radius: .25rem;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    line-height: 1rem;
+    white-space: nowrap;
+    .share_text {
+      display: none;
+      font-size: .85rem;
+      @include media-breakpoint-up(md) {
+        display: inline-block;
+        margin-left: .5rem;
+      }
+    }
+  }
+  
+
+  // White
+  //
+  ul.theme-white {
+    @each $key, $val in $shariff-service {
+      li.#{$key} a{
+        color: map_get($val, color);
+        border-color: map_get($val, color);
+        &:hover {
+          background-color: map_get($val, color);
+          color: #FFF;
+        }
+      }
+    }
+  }
+
+  // Gray
+  //
+  ul.theme-grey {
+    @each $key, $val in $shariff-service {
+      li.#{$key} a{
+        color: $theme-gray-dark;
+        border-color: $theme-gray-dark;
+        &:hover {
+          background-color: map_get($val, color);
+          color: #FFF;
+          border-color: map_get($val, color);
+        }
+      }
+    }
+  }
+
+  // Colored
+  //
+  ul.theme-colored {
+    @each $key, $val in $shariff-service {
+      li.#{$key} a {
+        background-color: map_get($val, color);
+        border: 1px solid map_get($val, color);
+        color: #FFF;
+        &:hover {
+          background-color: map_get($val, hover);
+          border-color: map_get($val, hover);
+        }
+      }
+    }
+  }
+}
+
+
+

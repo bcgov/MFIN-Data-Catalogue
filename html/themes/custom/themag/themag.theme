@@ -1,0 +1,11 @@
+<?php
+
+/**
+ * @file
+ * Themag.template.
+ */
+
+// Include files with preprocess functions.
+foreach (glob(dirname(__FILE__) . '/includes/*.inc') as $filename) {
+  require_once dirname(__FILE__) . '/includes/' . basename($filename);
+}

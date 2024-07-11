@@ -1,0 +1,18 @@
+// Layout Builder confirmation messages
+//
+.layout-builder-discard-changes,
+.layout-builder-revert-overrides {
+
+  &.confirmation {
+    max-width: 600px;
+    margin: 3rem auto;
+    padding: 3rem;
+    border: 1px solid #cfd8dc;
+    font-size: 1.5rem;
+    text-align: center;
+
+    .form-actions {
+      margin-top: 1rem;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{#  Extends slick.html.twig from the Slick module templates #}
+
+{% extends "@slick/slick.html.twig" %}
+
+{% block slick_arrow %}
+  <nav{{ arrow_attributes.addClass(arrow_classes) }}>
+    <button type="button" data-role="none" class="slick-prev" aria-label="{{ settings.prevArrow|t }}" tabindex="0">
+      <i class="fas fa-chevron-left fa-2x"></i>
+
+    {% if arrow_down_attributes is defined %}
+      <button{{ arrow_down_attributes.addClass('slick-down')
+      .setAttribute('type', 'button')
+      .setAttribute('data-role', 'none')
+      .setAttribute('data-target', settings.downArrowTarget)
+      .setAttribute('data-offset', settings.downArrowOffset) }}></button>
+    {% endif %}
+
+    <button type="button" data-role="none" class="slick-next" aria-label="{{ settings.nextArrow|t }}" tabindex="0">
+      <i class="fas fa-chevron-right fa-2x"></i>
+    </button>
+  </nav>
+{% endblock %}

@@ -1,0 +1,64 @@
+// Featured slider
+// --------------------
+.slick--optionset--themag-slider {
+  position: relative;
+  .featured--d & {
+    height: 400px;
+    overflow: hidden;
+    @include media-breakpoint-up(sm) {
+      height: 460px;
+      @media screen and (min-height: 800px) {
+        height: 600px;
+      }
+    }
+  }
+
+  // Preview/Next navigation
+  nav.slick__arrow button {
+    background: transparent;
+    margin-top: -24px;
+    border: none;
+    color: #FFF;
+    position: absolute;
+    top: 50%;
+    transition: all .2s ease-in-out;
+    opacity: .3;
+    &.slick-prev {
+      left: 1rem;
+    }
+    &.slick-next {
+      right: 1rem;
+    }
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  // Dots navigation
+  .slick-dots {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: absolute;
+    bottom: 1rem;
+    li {
+      opacity: .3;
+      &.slick-active {
+        opacity: 1;
+      }
+    }
+    button {
+      @include text-hide(true);
+      background: transparent;
+      width: 35px;
+      height: 10px;
+      margin: 0 .3rem;
+      border: none;
+      border-top: 2px solid #FFF;
+      overflow: hidden;
+    }
+  }
+}

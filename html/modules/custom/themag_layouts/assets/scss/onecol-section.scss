@@ -1,0 +1,73 @@
+@import 'variables';
+
+// Bootstrap
+//
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
+// Columns 6/6
+//
+.themag-layout--onecol-section {
+
+  &--7,
+  &--8,
+  &--9,
+  &--10,
+  &--11,
+  &--12 {
+    .themag-layout__region {
+      @include make-col(12);
+      margin: auto;
+    }
+  }
+
+  &--7 {
+    .themag-layout__region {
+      @include media-breakpoint-up(lg) {
+        @include make-col(7);
+      }
+    }
+  }
+
+  &--8 {
+    .themag-layout__region {
+      @include media-breakpoint-up(lg) {
+        @include make-col(8);
+      }
+    }
+  }
+
+  &--9 {
+    .themag-layout__region {
+      @include media-breakpoint-up(lg) {
+        @include make-col(9);
+      }
+    }
+  }
+
+  &--10 {
+    .themag-layout__region {
+      @include media-breakpoint-up(lg) {
+        @include make-col(10);
+      }
+    }
+  }
+
+  &--11 {
+    .themag-layout__region {
+      @include media-breakpoint-up(lg) {
+        @include make-col(11);
+      }
+    }
+  }
+
+  &--8 {
+    .themag-layout__region {
+      @include media-breakpoint-up(lg) {
+        @include make-col(8);
+      }
+    }
+  }
+
+}

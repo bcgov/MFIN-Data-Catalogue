@@ -1,0 +1,15 @@
+{
+  "name": "@drupal-ckeditor-libraries-group/youtube",
+  "description": "CKEditor 4 youtube plugin",
+  "keywords": ["ckeditor", "plugin", "youtube"],
+  "homepage": "https://github.com/fonini/ckeditor-youtube-plugin",
+  "bugs": {
+    "url": "https://github.com/fonini/ckeditor-youtube-plugin/issues"
+  },
+  "license" : "(GPL-2.0-or-later OR LGPL-2.1-or-later OR MPL-1.1)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fonini/ckeditor-youtube-plugin.git",
+    "directory": "plugins/youtube"
+	}
+}

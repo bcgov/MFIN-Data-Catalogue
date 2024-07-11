@@ -1,0 +1,79 @@
+// ---------------------------------
+// Media: Video paragraph
+// ---------------------------------
+.paragraph--type--embed-video.paragraph--view-mode--default,
+.paragraph--type--video.paragraph--view-mode--default {
+  .field--name-field-description {
+    padding: 10px 0 10px;
+    color: rgba(38, 50, 56, 0.38);
+    font-size: .9rem;
+    text-align: center;
+  }
+}
+
+// -----------------------------
+// PhotoSwipe
+// Paragraph gallery grid
+// -----------------------------
+.mg-gallery, .view-mode-gallery-grid {
+  display: flex;
+  flex-wrap: wrap;
+  //margin: 1.5rem 0;
+  img {
+    width: 100%;
+    height: auto;
+    transition: all 200ms ease-in-out;
+    &:hover {
+      box-shadow: 0 0 5px 0 transparentize(#000, .3);
+    }
+  }
+  figure {
+    width: 33%;
+    margin: 0;
+    padding: 1px;
+    cursor: pointer;
+    @include media-breakpoint-up(lg) {
+      width: 20%;
+      padding: 5px;
+    }
+  }
+  figcaption {
+    display: none;
+  }
+}
+
+// -----------------------------
+// Slick Slider
+// Paragraph gallery slider
+// -----------------------------
+.paragraph--type--gallery-slider {
+  figure {
+    margin-bottom: 0;
+  }
+}
+
+
+// -----------------------------
+// Text
+// -----------------------------
+.paragraph--type--mg-parag-text-html {
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  // Blockquote
+  // ---------------
+  .blockquote {
+    border-left: .556rem solid $theme-gray-lighter;
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
+    &.blockquote-reverse {
+      border-left: none;
+      padding-left: 0;
+      border-right: .556rem solid $theme-gray-lighter;
+      padding-right: 1.5rem;
+      text-align: right;
+    }
+  }
+}

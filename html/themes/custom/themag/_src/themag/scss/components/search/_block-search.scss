@@ -1,0 +1,85 @@
+// Default Search Block
+// -----------------------
+.block--search form {
+  display: flex;
+  align-items: center;
+  > * {
+    flex: 0;
+    margin: 0;
+  }
+  .form-item-keys {
+    flex: 1;
+    margin-right: .5rem;
+  }
+  input[type='submit'] {
+    background: $search-button-color;
+    border-color: $search-button-color;
+    color: $theme-text-light--primary;
+  }
+}
+
+// Search Wrapper
+// ------------------------
+.region-search {
+  background: $search-toggleable-block-bg;
+  max-height: 0;
+  overflow-y: hidden;
+  transition: max-height .3s ease;
+  &.active {
+    max-height: 60px;
+  }
+}
+
+// Header Search Block
+// ------------------------
+.block--region-search {
+  .visually-hidden {
+    display: none;
+  }
+  form {
+    background: $search-toggleable-block-bg;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .form-item {
+    flex: 1;
+    margin: 0;
+  }
+  .form-actions {
+    padding-top: 0;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+  }
+  .form-action {
+    text-align: right;
+  }
+  input[type='text'],
+  input[type='search'] {
+    background: transparent;
+    width: 100%;
+    height: 40px;
+    margin: 0;
+    padding-left: 0;
+    border: none;
+    color: $theme-gray-dark;
+    font-size: 1rem;
+    box-shadow: none;
+    @include media-breakpoint-up(lg) {
+      font-size: 1.3rem;
+    }
+  }
+  input[type='submit'] {
+    background: $search-button-color;
+    margin-right: 0;
+    padding: 5px 15px;
+    border-color: $search-button-color;
+    border-radius: .3rem;
+    color: $theme-text-light--primary;
+    font-size: .9rem;
+    font-weight: bold;
+    @include media-breakpoint-up(lg) {
+      font-size: 1rem;
+    }
+  }
+}

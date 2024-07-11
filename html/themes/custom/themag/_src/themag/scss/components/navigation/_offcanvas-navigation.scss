@@ -1,0 +1,155 @@
+
+// Responsive Sidr Menu
+// ----------------------------------------
+.sidr {
+  display: block;
+  position: fixed;
+  top: 0;
+  height: 100%;
+  z-index: 999999;
+  width: $sidr-mobile-width;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-size: $sidr-font-size;
+  background: $sidr-background;
+  color: $sidr-text-color;
+  box-shadow: 0 0 5px 5px $sidr-background-shadow-color inset;
+  @include media-breakpoint-up(lg) {
+    width: $sidr-desktop-width;
+  }
+  &.right {
+    left: auto;
+    right: -$sidr-mobile-width;
+    @include media-breakpoint-up(lg) {
+      right: -$sidr-desktop-width;
+    }
+  }
+  &.left {
+    left: -$sidr-mobile-width;
+    right: auto;
+    @include media-breakpoint-up(lg) {
+      left: -$sidr-desktop-width;
+    }
+  }
+}
+
+// Sidr Panes & Blocksv
+// -------------------
+.sidr .block {
+  margin-bottom: 2rem;
+  .block__title {
+    background: none;
+    margin: 0;
+    padding: 1rem;
+    font-size: .7rem;
+    text-align: left;
+    text-transform: uppercase;
+    &:before, &:after {
+      display: none;
+    }
+    .title-text {
+      background: none;
+      padding: 0;
+      color: rgba(#FFF, .5);
+    }
+  }
+  .block__content {
+    padding: 1rem;
+  }
+}
+
+// Sidr Main Menu
+// -------------------
+.sidr ul.menu {
+  @include list-unstyled;
+  background: $sidr-menu-level1-link-bg;
+  margin: 0;
+  padding: 0;
+
+  a,
+  .nolink {
+    display: block;
+    padding: 15px 20px;
+    border-bottom: $sidr-menu-level1-border-bottom;
+    color: $sidr-menu-level1-link-text-color;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    position: relative;
+    cursor: pointer;
+  }
+  li.menu-item--expanded {
+    >a:before,
+    >.nolink:before {
+      content: "";
+      display: block;
+      color: $sidr-menu-level1-link-text-color;
+      border-top: 4px solid $sidr-menu-level1-link-text-color;;
+      border-right: 4px solid transparent;
+      border-left: 4px solid transparent;
+      position: absolute;
+      right: 20px;
+      top: 50%;
+    }
+    ul {
+      background: $sidr-menu-level2-link-bg;
+      li.menu-item--expanded>a:before,
+      li.menu-item--expanded>.nolink:before {
+        color: $sidr-menu-level2-link-text-color;
+      }
+      a,
+      .nolink {
+        padding: 10px 20px 10px 40px;
+        border-bottom: $sidr-menu-level2-border-bottom;
+        color: $sidr-menu-level2-link-text-color;
+        font-weight: normal;
+        text-transform: none;
+      }
+      li.menu-item--expanded ul a {
+        color: $sidr-menu-level2-link-text-color;
+        padding-left: 60px;
+      }
+    }
+  }
+  li.menu-item--expanded>ul {
+    max-height: 0;
+    overflow-y: hidden;
+    transition: max-height .5s ease-in-out;
+    &.open {
+      max-height: 800px;
+    }
+  }
+}
+
+// Soocial menu in sidr
+// -----------------------
+.sidr .social-menu {
+  display: block;
+  margin: 0;
+  //padding: 20px;
+  text-align: center;
+  li {
+    display: inline-block;
+  }
+  a:hover {
+    color: #FFF;
+  }
+}
+
+// Overlay
+// -----------
+.offcanvas-sidebar-overlay {
+  background: #000;
+  opacity: 0;
+  transition: opacity 1s ease;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 100%;
+  z-index: 100;
+  &.active {
+    right: 0;
+    opacity: .5;
+  }
+}

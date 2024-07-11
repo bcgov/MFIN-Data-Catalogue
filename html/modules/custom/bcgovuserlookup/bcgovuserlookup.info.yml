@@ -1,0 +1,5 @@
+name: bcgovuserlookup
+type: module
+description: Look up user by name rather than by IDIR hash.
+package: BC GOV
+core_version_requirement: ^9 || ^10

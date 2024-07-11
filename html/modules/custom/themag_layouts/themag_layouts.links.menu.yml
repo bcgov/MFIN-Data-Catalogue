@@ -1,0 +1,7 @@
+themag_layouts.themag_layouts_form:
+  title: 'TheMAG layouts settings'
+  description: 'Configure TheMAG layouts.'
+  route_name: themag_layouts.themag_layouts_form
+  menu_name: admin
+  parent: system.admin_config_ui
+  weight: 0

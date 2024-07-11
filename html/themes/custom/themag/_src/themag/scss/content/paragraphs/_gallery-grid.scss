@@ -1,0 +1,24 @@
+// Gallery Grid Paragraph
+//
+
+.paragraph--type--gallery-grid {
+  margin-bottom: 1.5rem;
+  @include media-breakpoint-up(lg) {
+    margin-bottom: 1rem
+  }
+}
+
+.media-gallery.view-mode-gallery-grid {
+  display: flex;
+  flex-wrap: wrap;
+  figure {
+    width: 25%;
+    margin-bottom: 0;
+    @include media-breakpoint-up(lg) {
+      margin-bottom: 1rem;
+    }
+    .photoswipe__image-caption {
+      display: none;
+    }
+  }
+}

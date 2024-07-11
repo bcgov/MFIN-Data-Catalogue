@@ -1,0 +1,32 @@
+global:
+  version: 1
+  css:
+    theme:
+      assets/css/subtheme-new.css: {}
+  js:
+    //weatherwidget.io/js/widget.min.js: { type: external, minified: true }
+
+custom-css:
+  version: 1
+  css:
+    theme:
+      assets/css/custom.css: {}
+
+custom-js:
+  version: 1
+  js:
+    assets/js/bootstrap.bundle.min.js: {}
+    assets/js/search-focus.js: {}
+
+fontawesome:
+  version: 1
+  js:
+    assets/fontawesome/js/all.min.js: {}
+    assets/fontawesome/js/regular.min.js: {}
+
+google-fonts:
+  version: 1
+  css:
+    base:
+      https://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,500,500i,600,600i,700,700i: { type: external }
+      https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700: { type: external }

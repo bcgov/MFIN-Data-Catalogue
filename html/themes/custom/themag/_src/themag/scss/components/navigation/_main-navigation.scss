@@ -1,0 +1,27 @@
+// Header Main Navigation
+//
+.block--region-header-primary-menu  {
+  > ul.menu {
+    @include list__reset;
+    display: flex;
+    > li > a {
+      padding: 15px;
+      border-radius: .25rem;
+      margin-right: 1px;
+      color: $main-navigation-link-color;
+      font-weight: $main-navigation-font-weight;
+      font-size: $main-navigation-font-size;
+      line-height: 1;
+      text-transform: $main-navigation-text-transform;
+      transition: all .3s ease-in-out;
+      &:hover {
+        background: $main-navigation-link-hover-bg;
+        color: $main-navigation-link-hover-color;
+      }
+    }
+    li.menu-item--active-trail > a {
+      background: $main-navigation-link-active-bg;
+      color: $main-navigation-link-active-color;
+    }
+  }
+}

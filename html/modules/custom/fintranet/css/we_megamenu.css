@@ -1,0 +1,8 @@
+/* Ensure top-level mega menu items extend edge-to-edge */
+.we-mega-menu-ul>.we-mega-menu-li {
+  position: initial !important;
+}
+
+.we-mega-menu-ul>.we-mega-menu-li>.we-mega-menu-submenu {
+  width: 95% !important;
+}

@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Small teaser item
+ */
+#}
+
+{% extends 'node--teaser.html.twig' %}
+
+{% set teaser_classes = [
+  'teaser--item',
+  'teaser--small-item'
+] %}
+
+{% set attributes = attributes.addClass(teaser_classes) %}

@@ -1,0 +1,199 @@
+# Admin: Content
+
+fintranet_common.add_article:
+  route_name: node.add
+  title: 'Add Article'
+  route_parameters:
+    node_type: article
+  options:
+    query:
+      destination: '/admin/content/article'
+  appears_on:
+    - view.fintranet_admin_content.page_3
+
+fintranet_common.add_program:
+  route_name: node.add
+  title: 'Add Program'
+  route_parameters:
+    node_type: program
+  options:
+    query:
+      destination: '/admin/content/program'
+  appears_on:
+    - view.fintranet_admin_content.page_4
+
+fintranet_common.add_service:
+  route_name: node.add
+  title: 'Add Service'
+  route_parameters:
+    node_type: service
+  options:
+    query:
+      destination: '/admin/content/service'
+  appears_on:
+    - view.fintranet_admin_content.page_5
+
+fintranet_common.add_page:
+  route_name: node.add
+  title: 'Add Page'
+  route_parameters:
+    node_type: page
+  options:
+    query:
+      destination: '/admin/content/page'
+  appears_on:
+    - view.fintranet_admin_content.page_6
+
+fintranet_common.add_organization:
+  route_name: node.add
+  title: 'Add Organization'
+  route_parameters:
+    node_type: organization
+  options:
+    query:
+      destination: '/admin/content/organization'
+  appears_on:
+    - view.fintranet_admin_content.page_7
+
+fintranet_common.add_landing_page:
+  route_name: node.add
+  title: 'Add Landing page'
+  route_parameters:
+    node_type: themag_landing_page
+  options:
+    query:
+      destination: '/admin/content/landing-page'
+  appears_on:
+    - view.fintranet_admin_content.page_8
+
+fintranet_common.add_staff_post:
+  route_name: node.add
+  title: 'Add Staff Post'
+  route_parameters:
+    node_type: post
+  options:
+    query:
+      destination: '/admin/content/staff-post'
+  appears_on:
+    - view.fintranet_admin_content.page_9
+
+fintranet_common.add_event:
+  route_name: node.add
+  title: 'Add Event'
+  route_parameters:
+    node_type: event
+  options:
+    query:
+      destination: '/admin/content/event'
+  appears_on:
+    - view.fintranet_admin_content.page_10
+
+fintranet_common.add_job:
+  route_name: node.add
+  title: 'Add Job'
+  route_parameters:
+    node_type: job_posting
+  options:
+    query:
+      destination: '/admin/content/job'
+  appears_on:
+    - view.fintranet_admin_content.page_11
+
+fintranet_common.add_block:
+  route_name: block_content.add_form
+  title: 'Add Block'
+  route_parameters:
+    block_content_type: content
+  options:
+    query:
+      destination: '/admin/content/block'
+  appears_on:
+    - view.fintranet_admin_content_block.page_1
+
+# Admin: Media
+
+fintranet_common.add_media:
+  route_name: entity.media.add_page
+  title: 'Add media'
+  options:
+    query:
+      destination: '/admin/media'
+  appears_on:
+    - view.fintranet_admin_media.page_1
+
+fintranet_common.add_document:
+  route_name: entity.media.add_form
+  title: 'Add Document'
+  route_parameters:
+    media_type: document
+  options:
+    query:
+      destination: '/admin/media/document'
+  appears_on:
+    - view.fintranet_admin_media.page_2
+
+fintranet_common.add_form:
+  route_name: entity.media.add_form
+  title: 'Add Form'
+  route_parameters:
+    media_type: form
+  options:
+    query:
+      destination: '/admin/media/form'
+  appears_on:
+    - view.fintranet_admin_media.page_3
+
+fintranet_common.add_image:
+  route_name: entity.media.add_form
+  title: 'Add Image'
+  route_parameters:
+    media_type: image
+  options:
+    query:
+      destination: '/admin/media/image'
+  appears_on:
+    - view.media_library.page_1
+
+fintranet_common.add_svg:
+  route_name: entity.media.add_form
+  title: 'Add SVG'
+  route_parameters:
+    media_type: vector_image
+  options:
+    query:
+      destination: '/admin/media/svg'
+  appears_on:
+    - view.media_library.page_2
+
+fintranet_common.add_teaser:
+  route_name: entity.media.add_form
+  title: 'Add Teaser'
+  route_parameters:
+    media_type: teaser_image
+  options:
+    query:
+      destination: '/admin/media/teaser'
+  appears_on:
+    - view.media_library.page_3
+
+fintranet_common.add_gallery:
+  route_name: entity.media.add_form
+  title: 'Add Gallery'
+  route_parameters:
+    media_type: gallery
+  options:
+    query:
+      destination: '/admin/media/gallery'
+  appears_on:
+    - view.media_library.page_4
+
+fintranet_common.add_video:
+  route_name: entity.media.add_form
+  title: 'Add Video'
+  route_parameters:
+    media_type: video
+  options:
+    query:
+      destination: '/admin/media/video'
+  appears_on:
+    - view.media_library.page_5

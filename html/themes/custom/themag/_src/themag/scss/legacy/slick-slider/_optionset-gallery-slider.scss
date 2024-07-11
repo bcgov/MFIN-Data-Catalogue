@@ -1,0 +1,75 @@
+// --------------------
+// Gallery slider
+// --------------------
+
+.slick--optionset--gallery-slider {
+  position: relative;
+
+  // Preview/Next navigation
+  nav.slick__arrow button {
+    display: none;
+    background: rgba(#202936, .25);
+    width: 100px;
+    height: 100px;
+    border: none;
+    color: #FFF;
+    position: absolute;
+    top: calc(50% - 50px);
+    bottom: auto;
+    transition: all .2s ease-in-out;
+    opacity: .8;
+    @include media-breakpoint-up(lg) {
+      display: block;
+    }
+    &.slick-prev {
+      left: 0;
+    }
+    &.slick-next {
+      right: 0;
+    }
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  // Dots navigation
+  .slick-dots {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: absolute;
+    bottom: 1.5rem;
+    li {
+      opacity: .3;
+      &.slick-active {
+        opacity: 1;
+        button {
+          background-color: #FFF;
+        }
+      }
+    }
+    button {
+      @include text-hide(true);
+      width: 6px;
+      height: 6px;
+      margin: 0 .3rem;
+      padding: 0;
+      border: 1px solid #FFF;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+  }
+
+  // Slides
+  .slick-slide {
+    margin: 0;
+    &:hover {
+      .nav.slick__arrow button {
+        opacity: .9;
+      }
+    }
+  }
+}

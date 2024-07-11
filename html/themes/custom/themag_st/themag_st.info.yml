@@ -1,0 +1,41 @@
+name: FINtranet
+type: theme
+description: 'Custom FINtranet theme developed from TheMAG subtheme.'
+core_version_requirement: ^9 || ^10
+base theme: themag
+
+# CKEditor styles
+#
+ckeditor_stylesheets:
+  - assets/css/ckeditor.css
+
+libraries:
+  - themag_st/global
+  - themag_st/fontawesome
+  - themag_st/google-fonts
+  - themag_st/custom-js
+
+# Libraries Override
+#
+#libraries-override:
+#  themag/global-styling:
+#    css:
+#      theme:
+#        assets/css/themag.css: false
+
+regions:
+  top_bar_first: 'Top bar first'
+  top_bar_second: 'Top bar second'
+  logo: 'Logo'
+  header_primary_menu: 'Primary menu'
+  search: 'Search'
+  offcanvas_sidebar: 'Off-Canvas sidebar'
+  content_administration: 'Tabs'
+  content_header: 'Content Header'
+  content: 'Content'
+  footer_first: 'Footer first'
+  footer_second: 'Footer second'
+  footer_third: 'Footer third'
+  footer_bottom_first: 'Footer bottom first'
+  footer_bottom_second: 'Footer bottom second'
+  hidden: 'Hidden'

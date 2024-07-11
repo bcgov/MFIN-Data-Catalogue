@@ -1,0 +1,24 @@
+{{ attach_library('themag/commerce-cart-block') }}
+
+{% set count_text = count_text|split(' ') %}
+
+<div{{ attributes}}>
+  <div class="cart-block--summary">
+    <a class="cart-block--link__expand" href="{{ url }}">
+      <span class="cart-block--summary__icon"><i class="fa fa-shopping-bag" aria-hidden="true"></i></span>
+      <span class="cart-block--summary__count">{{ count_text.0 }}</span>
+    </a>
+  </div>
+  {% if content %}
+  <div class="cart-block--contents">
+    <div class="cart-block--contents__inner">
+      <div class="cart-block--contents__items">
+        {{ content }}
+      </div>
+      <div class="cart-block--contents__links">
+        {{ links }}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>

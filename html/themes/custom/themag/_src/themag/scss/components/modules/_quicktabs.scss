@@ -1,0 +1,65 @@
+// QuickTabs
+//
+.quicktabs-hide {
+  display: none;
+}
+
+
+ul.quicktabs-tabs {
+  @include list__reset;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid $theme-gray-lighter;
+  margin-bottom: 1.5rem;
+  @include media-breakpoint-up(lg) {
+    justify-content: start;
+  }
+  > li {
+    flex: 1;
+    margin-bottom: -2px;
+    text-align: center;
+    @include media-breakpoint-up(lg) {
+      flex: 0;
+      //margin-bottom: -3px;
+      font-size: .8898rem;
+      text-align: left;
+      white-space: nowrap;
+    }
+    a {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      padding: 1rem .5rem;
+      border-bottom: 4px solid transparent;
+      color: $theme-gray;
+      text-decoration: navajowhite;
+      transition: color .2s ease-in-out;
+      @include media-breakpoint-up(lg) {
+        padding: 0 1rem .8rem;
+        //border-bottom: 6px solid transparent;
+      }
+      &:hover {
+        background-color: transparent;
+        color: #000;
+      }
+    }
+    &.active a {
+      border-bottom-color: #000;
+      color: #000;
+      font-weight: bold;
+    }
+  }
+}
+
+
+// QuickTabs Accordion (jQuery UI)
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+a.ui-button:active,
+.ui-button:active,
+.ui-button.ui-state-active:hover {
+  background-color: $theme-gray-dark;
+  border-color: $theme-gray-dark;
+}

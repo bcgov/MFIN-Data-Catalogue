@@ -1,0 +1,46 @@
+// Full Pager
+// ------------------------
+ul.pager__items {
+ display: block;
+ margin: 3rem 0 0 0;
+ padding: 2rem 0 0 0;
+ border-top: 2px solid $theme-gray-lightest;
+ text-align: center;
+  li {
+    display: inline-block;
+    margin: .5rem 0;
+    padding: 0;
+      a {
+        display: block;
+        padding: 0 5px;
+        color: $theme-gray;
+        text-decoration: none;
+        transition: background .2s ease-in-out;
+        @include media-breakpoint-up(md) {
+          padding: 5px 15px;
+          border: 1px solid $theme-gray-lighter;
+        }
+        &:hover {
+          background: $theme-gray-lightest;
+        }
+      }
+      &.is-active {
+        background: $theme-gray-light;
+        border-color: $theme-gray-light;
+        color: $theme-text-light--primary;
+        a { color: #FFF; }
+        a:hover { background: $theme-gray-light; }
+      }
+  }
+}
+
+
+// Load More Button
+// ------------------------
+.pager--load-more {
+  @include list__reset;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid $theme-gray-lightest;
+  text-align: center;
+}

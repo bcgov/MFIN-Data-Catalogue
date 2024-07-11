@@ -1,0 +1,100 @@
+@import 'variables';
+
+// Bootstrap
+//
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
+// Columns 6/6
+//
+.themag-layout--twocol-section--6-6 {
+
+  .themag-layout__region {
+    margin-bottom: $section--margin-bottom;
+    @include media-breakpoint-up(md) {
+      @include make-col(6);
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Columns 4/8
+//
+.themag-layout--twocol-section--4-8 {
+
+  .themag-layout__region--first {
+    order: 2;
+    @include media-breakpoint-up(lg) {
+      @include make-col(4);
+      order: 1;
+    }
+  }
+
+  .themag-layout__region--second {
+    margin-bottom: $section--margin-bottom;
+    order: 1;
+    @include media-breakpoint-up(lg) {
+      @include make-col(8);
+      margin-bottom: 0;
+      order: 2;
+    }
+  }
+}
+
+// Columns 8/4
+//
+.themag-layout--twocol-section--8-4 {
+
+  .themag-layout__region--first {
+    margin-bottom: $section--margin-bottom;
+    @include media-breakpoint-up(lg) {
+      @include make-col(8)
+      margin-bottom: 0;
+    }
+  }
+
+  .themag-layout__region--second {
+    @include media-breakpoint-up(lg) {
+      @include make-col(4);
+    }
+  }
+}
+
+// Columns 3/9
+//
+.themag-layout--twocol-section--3-9 {
+
+  .themag-layout__region--first {
+    margin-bottom: $section--margin-bottom;
+    @include media-breakpoint-up(lg) {
+      @include make-col(3);
+      margin-bottom: 0;
+    }
+  }
+
+  .themag-layout__region--second {
+    @include media-breakpoint-up(lg) {
+      @include make-col(9);
+    }
+  }
+}
+
+// Columns 9/3
+//
+.themag-layout--twocol-section--9-3 {
+
+  .themag-layout__region--first {
+    margin-bottom: $section--margin-bottom;
+    @include media-breakpoint-up(lg) {
+      @include make-col(9);
+      margin-bottom: 0;
+    }
+  }
+
+  .themag-layout__region--second {
+    @include media-breakpoint-up(lg) {
+      @include make-col(3);
+    }
+  }
+}

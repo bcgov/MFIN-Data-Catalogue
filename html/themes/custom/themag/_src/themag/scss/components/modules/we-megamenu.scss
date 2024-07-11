@@ -1,0 +1,227 @@
+// Import TheMAG variables.
+@import "../../variables";
+
+// Import TheMAG mixins.
+@import "../../mixins";
+
+$opacity: 0; // "1" for debug.
+$visibility: hidden; // "visible" for debug.
+
+
+// Hack
+//
+.col- {
+  width: 100%;
+}
+
+// Wrapper
+//
+.navbar-we-mega-menu.navbar {
+
+  .container,
+  .container-fluid {
+    padding: 0;
+    position: static;
+    width: auto;
+  }
+
+  .left > .we-mega-menu-submenu {
+    left: 0;
+  }
+
+  .center > .we-mega-menu-submenu {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .right > .we-mega-menu-submenu {
+    right: 0;
+  }
+}
+
+// Col
+//
+.we-mega-menu-col {
+  background-color: $we-submenu-bg-color;
+  transition: all .1s ease;
+}
+
+.nav-tabs {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  > li {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+// The Megamenu
+//
+.we-mega-menu-ul {
+  display: flex;
+  border-bottom: 0 none;
+  position: relative;
+
+  .dropdown-menu {
+    margin-top: 0;
+  }
+
+  .we-mega-menu-li {
+    display: block;
+    border: none;
+    padding: 0;
+    position: relative;
+
+    // Menu links style.
+    // It affects all links on all levels.
+    > a,
+    > span {
+      display: block;
+      padding: .5rem 1rem;
+      color: $main-navigation-link-color;
+      font-size: $main-navigation-font-size;
+      font-weight: $main-navigation-font-weight;
+      text-transform: $main-navigation-text-transform;
+
+      i {
+        margin-right: 4px;
+      }
+    }
+
+    &:hover,
+    &:focus,
+    &.active-trail {
+      background-color: $main-navigation-link-hover-bg;
+    }
+
+    &.dropdown-menu {
+
+      .we-mega-menu-submenu {
+        opacity: $opacity;
+        visibility: $visibility;
+      }
+
+      &:hover,
+      &:focus {
+        > .we-mega-menu-submenu {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+  }
+
+  // Parent menu item.
+  //
+  .dropdown-menu {
+    > a,
+    > span {
+      position: relative;
+    }
+  }
+}
+
+// Style for the first level of links
+.navbar-we-mega-menu.navbar .we-mega-menu-ul > li.we-mega-menu-li {
+  border-radius: 4px;
+  > a,
+  > span {
+    font-size: $we-menu-level-1-font-size;
+    font-weight: $we-menu-level-1-font-weight;
+    text-transform: $we-menu-level-1-text-transform;
+    display: flex;
+    align-items: center;
+  }
+
+  &[data-submenu="1"] {
+    &:hover {
+      background-color: $we-submenu-bg-color;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      box-shadow: 0 1px 7px 0 rgba(#000, .2);
+    }
+
+    > a,
+    > span {
+      &:after {
+        content: "";
+        display: block;
+        margin-left: 8px;
+        border-top: 4px solid #263238;
+        border-right: 4px solid transparent;
+        border-left: 4px solid transparent;
+      }
+    }
+  }
+}
+
+
+// Submenu
+//
+.we-mega-menu-submenu {
+  position: absolute;
+  z-index: 99;
+  transition: all .1s ease;;
+  min-width: $we-submenu-min-width;
+  box-shadow: 0 4px 7px 0 rgba(#000, .2);
+
+  ul {
+    margin: 0;
+  }
+
+  li.we-mega-menu-li {
+    display: block;
+    position: relative;
+    border-bottom: $tb-menu-level-2-link-border-bottom;
+
+    > a,
+    > span {
+      font-size: $tb-menu-level-2-font-size;
+      font-weight: $tb-menu-level-2-font-weight;
+      text-transform: $tb-menu-level-2-text-transform;
+    }
+
+    &[data-submenu="1"] {
+      > a,
+      > span {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &:after {
+          content: "";
+          display: block;
+          margin-left: 8px;
+          border-top: 4px solid transparent;
+          border-bottom: 4px solid transparent;
+          border-left: 4px solid #263238;
+        }
+      }
+    }
+
+    // Submenu level 2+
+    //
+    .we-mega-menu-submenu {
+      //display: none; // dev
+      top: 0;
+      left: 100%;
+      margin: 0;
+      min-width: $we-submenu-min-width;
+      box-shadow: 0 4px 7px 0 rgba(#000, .2);
+
+      .dropdown-menu {
+        min-width: initial;
+      }
+    }
+  }
+}
+
+
+// Block
+// A regular block inside the menu
+//
+.type-of-block {
+  padding: 1rem;
+}

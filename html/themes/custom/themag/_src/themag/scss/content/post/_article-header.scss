@@ -1,0 +1,49 @@
+// Article Header Component
+//
+.article-header {
+
+  &__content {
+    position: relative;
+    z-index: 5;
+  }
+
+  &__channel {
+    margin-bottom: .25rem;
+  }
+
+  &__title {
+
+  }
+
+  &__meta {
+    margin-top: .75rem;
+  }
+}
+
+
+// Header - Layout 2
+//
+.article-header--layout-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  position: relative;
+  &:before {
+    @include make-blank-overlay;
+    content: '';
+    background: rgba($theme-gray-dark, .1);
+  }
+
+
+  .article-header__content {
+    max-width: 960px;
+    text-align: center;
+  }
+
+  .article-header__meta {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+}

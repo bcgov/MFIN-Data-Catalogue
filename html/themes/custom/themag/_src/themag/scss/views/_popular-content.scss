@@ -1,0 +1,35 @@
+// Popular content view
+//
+
+.view-mg-popular-content {
+  .view-content ul {
+    counter-reset: popular_counter;
+    > li {
+      counter-increment: popular_counter;
+      .field--name-field-teaser-media:before {
+        content: counter(popular_counter);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 5rem;
+        height: 5rem;
+        border: 1px dashed rgba(#FFF, .8);
+        border-radius: 50%;
+        color: #FFF;
+        font-size: 3.6rem;
+        font-weight: bold;
+        line-height: 1;
+        position: absolute;
+        top: calc(50% - 2.5rem);
+        left: calc(50% - 2.5rem);
+        z-index: 10;
+      }
+    }
+  }
+  .field--name-field-teaser-media:after {
+    @include make-blank-overlay;
+    content: "";
+    background: linear-gradient(-135deg, transparentize(#9c27b0, .7) 10%, transparentize($theme-primary-color, .5));
+  }
+}

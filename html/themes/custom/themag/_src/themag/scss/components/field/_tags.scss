@@ -1,0 +1,31 @@
+// ------------------------------
+// NODE: Tags
+// ------------------------------
+
+.field--name-field-tags,
+.field--name-field-mg-tags {
+  margin: 1.5rem 0 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid $theme-gray-lighter;
+  font-size: .8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  @include media-breakpoint-up(lg) {
+    font-size: .7rem;
+  }
+  a {
+    color: $theme-gray-dark;
+  }
+  .field__label:after {
+    content: ':';
+  }
+  .field__items {
+    display: flex;
+  }
+  .field__item {
+    margin-right: .5556rem;
+    &:before {
+      content: '#';
+    }
+  }
+}

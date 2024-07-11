@@ -1,0 +1,1 @@
+!function(i){"use strict";Drupal.behaviors.themagTabs={attach:function(t){var a=i(t).find(".tabs"),n=i(t).find(".js-toggle-primary-tabs");a.length&&n.once().on("click",function(){a.toggleClass("active")})}}}(jQuery);
