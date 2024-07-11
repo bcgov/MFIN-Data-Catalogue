@@ -11,10 +11,15 @@
         },
         {
             "type": "vcs",
+            "url": "https://github.com/bcgov/bcbb"
+        },
+        {
+            "type": "vcs",
             "url": "https://github.com/chrislaick/gdx_analytics_drupal_snowplow"
         }
     ],
     "require": {
+        "bcgov/bcbb": "1.0.x@dev",
         "bcgov/gdx_analytics_drupal_snowplow": "dev-main",
         "composer/installers": "^2.2",
         "drupal/core-composer-scaffold": "~10.2.7",
