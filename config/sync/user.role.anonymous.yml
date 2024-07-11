@@ -1,4 +1,4 @@
-uuid: d2027071-c0b8-456e-86d3-37f4dccf9333
+uuid: 34d41714-4b22-49c7-bb81-80a3b58a4107
 langcode: en
 status: true
 dependencies:
@@ -6,9 +6,9 @@ dependencies:
     - filter.format.restricted_html
   module:
     - comment
-    - field_permissions
+    - contact
     - filter
-    - media
+    - search
     - system
 _core:
   default_config_hash: 6WavjUYXIegP9AAg2zXGx54MWIVoomC3SZhNiqe-Dyk
@@ -19,7 +19,6 @@ is_admin: false
 permissions:
   - 'access comments'
   - 'access content'
+  - 'access site-wide contact form'
+  - 'search content'
   - 'use text format restricted_html'
-  - 'view field_primary_responsibility_org'
-  - 'view media'
-  - 'view own field_primary_responsibility_org'

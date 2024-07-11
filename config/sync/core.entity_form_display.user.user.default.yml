@@ -1,13 +1,12 @@
-uuid: 47c62f4d-6aa9-4c42-b3d5-8ead2c5cd6f6
+uuid: bf56d1a4-8108-4e9e-bee5-2d3d9afe32b9
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.user.user.field_first_name
-    - field.field.user.user.field_last_name
-    - field.field.user.user.field_organization
+    - field.field.user.user.user_picture
+    - image.style.thumbnail
   module:
-    - path
+    - image
     - user
 _core:
   default_config_hash: FaQ9Ptcpxpg30AtiqRDtl_8zbJArHP1LPfug_s59TOA
@@ -19,48 +18,21 @@ content:
   account:
     weight: -10
     region: content
-    settings: {  }
-    third_party_settings: {  }
   contact:
     weight: 5
     region: content
-  field_first_name:
-    type: string_textfield
-    weight: 31
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_last_name:
-    type: string_textfield
-    weight: 32
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_organization:
-    type: options_buttons
-    weight: 33
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   language:
     weight: 0
     region: content
-    settings: {  }
-    third_party_settings: {  }
-  path:
-    type: path
-    weight: 30
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   timezone:
     weight: 6
     region: content
-    settings: {  }
+  user_picture:
+    type: image_image
+    weight: -1
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
     third_party_settings: {  }
-hidden:
-  langcode: true
+hidden: {  }

@@ -1,158 +1,49 @@
 _core:
   default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc
 module:
-  admin_toolbar: 0
-  admin_toolbar_tools: 0
-  auto_username: 0
-  basic_auth: 0
-  bcbb: 0
-  bcbb_auth: 0
-  bcbb_layouts: 0
-  bcbb_other: 0
-  bcbb_search: 0
-  better_exposed_filters: 0
-  better_normalizers: 0
+  announcements_feed: 0
+  automated_cron: 0
+  big_pipe: 0
   block: 0
   block_content: 0
-  book: 0
   breakpoint: 0
-  cancel_button: 0
-  charts: 0
-  charts_billboard: 0
   ckeditor5: 0
-  ckeditor5_fullscreen: 0
-  ckeditor_codemirror: 0
-  clipboardjs: 0
-  cm_revision_delete: 0
   comment: 0
-  conditional_fields: 0
   config: 0
-  config_ignore: 0
-  config_split: 0
-  content_moderation: 0
+  contact: 0
   contextual: 0
-  csv_serialization: 0
-  ctools: 0
-  ctools_views: 0
-  date_popup: 0
   datetime: 0
   dblog: 0
-  default_content_deploy: 0
-  diff: 0
   dynamic_page_cache: 0
   editor: 0
-  embed: 0
-  entity_embed: 0
-  entity_reference_revisions: 0
-  environment_indicator: 0
-  facets: 0
-  facets_summary: 0
   field: 0
-  field_count_formatter: 0
-  field_group: 0
-  field_permissions: 0
   field_ui: 0
   file: 0
   filter: 0
-  flag: 0
-  form_mode_control: 0
-  formatter_suite: 0
-  gdx_analytics_drupal_snowplow: 0
-  hal: 0
   help: 0
-  hierarchical_term_formatter: 0
   history: 0
   image: 0
-  insert_view_adv: 0
-  jquery_ui: 0
-  jquery_ui_datepicker: 0
-  jquery_ui_slider: 0
-  jquery_ui_touch_punch: 0
-  jsonapi: 0
-  language: 0
-  layout_builder: 0
-  layout_discovery: 0
   link: 0
-  linkit: 0
-  m4032404: 0
-  media: 0
-  media_library: 0
   menu_link_content: 0
   menu_ui: 0
-  message_gcnotify: 0
-  metatag: 0
+  mysql: 0
   node: 0
-  openid_connect: 0
   options: 0
   page_cache: 0
-  page_manager: 0
-  page_manager_ui: 0
-  panels: 0
-  paragraphs_features: 0
   path: 0
   path_alias: 0
-  pgsql: 0
-  rabbit_hole: 0
-  realname: 0
-  registration_role: 0
-  responsive_image: 0
-  rest: 0
-  robotstxt: 0
-  role_delegation: 0
-  search_api: 0
-  search_api_db: 0
-  search_api_db_defaults: 0
-  search_api_saved_searches: 0
-  search_api_solr: 0
-  search_api_solr_admin: 0
-  serialization: 0
-  shield: 0
+  search: 0
   shortcut: 0
-  shs: 0
-  smart_trim: 0
-  smtp: 0
-  statistics: 0
-  svg_image: 0
-  svg_image_responsive: 0
   system: 0
   taxonomy: 0
-  taxonomy_delete: 0
-  taxonomy_import: 0
-  taxonomy_manager: 0
-  taxonomy_max_depth: 0
   text: 0
-  toc_api: 0
-  toc_filter: 0
-  token: 0
   toolbar: 0
-  tour: 0
-  twig_tweak: 0
-  ultimate_cron: 0
   update: 0
   user: 0
-  vbo_export: 0
-  views_argument_token: 0
-  views_bulk_edit: 0
-  views_bulk_operations: 0
-  views_data_export: 0
-  views_field_view: 0
   views_ui: 0
-  webform: 0
-  webform_content_creator: 0
-  webform_ui: 0
-  workflows: 0
-  pathauto: 1
-  externalauth: 10
   views: 10
-  paragraphs: 11
-  bc_dc: 100
-  bcbb_book: 100
-  tac_lite: 100
   standard: 1000
 theme:
+  olivero: 0
   claro: 0
-  stable9: 0
-  bootstrap5: 0
-  bcbb_theme: 0
-  dc_theme: 0
 profile: standard

@@ -1,11 +1,11 @@
-uuid: db129726-68b5-49c7-93a9-df8908aef985
+uuid: 8f09ce0c-bf09-4676-83d7-bffa59ffc100
 langcode: en
 status: false
 dependencies:
   module:
     - block_content
 _core:
-  default_config_hash: 4tedlMuvQjDOdvHdw86_e-2Rt78aR7TGFMfOK8Ejppg
+  default_config_hash: Q7yUUYeRLByl-MCGveKKF_KhAtNICLCMJuKWfugCvso
 id: block_content.full
 label: Full
 description: ''

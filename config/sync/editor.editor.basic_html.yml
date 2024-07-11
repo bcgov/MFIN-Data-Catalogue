@@ -1,4 +1,4 @@
-uuid: 88f6127f-af41-4fb3-a797-301ea59ce50b
+uuid: ffed0947-5d10-44d8-ad04-f7e4b5b04215
 langcode: en
 status: true
 dependencies:
@@ -7,7 +7,7 @@ dependencies:
   module:
     - ckeditor5
 _core:
-  default_config_hash: lZlUTSJqWaN3iU0I0fhvQVgqf4ps9fxPPC-g_9aWIRc
+  default_config_hash: rrcLa1jOgI7xezeJia25MS2tmm_3e6VZOQaCIPF9b-I
 format: basic_html
 editor: ckeditor5
 settings:
@@ -22,11 +22,11 @@ settings:
       - numberedList
       - '|'
       - blockQuote
+      - drupalInsertImage
       - '|'
       - heading
       - code
       - '|'
-      - Fullscreen
       - sourceEditing
   plugins:
     ckeditor5_heading:
@@ -36,6 +36,8 @@ settings:
         - heading4
         - heading5
         - heading6
+    ckeditor5_imageResize:
+      allow_resize: true
     ckeditor5_list:
       properties:
         reversed: false
@@ -56,24 +58,8 @@ settings:
         - '<h4 id>'
         - '<h5 id>'
         - '<h6 id>'
-    ckeditor_codemirror_source_editing:
-      enable: true
-      mode: htmlmixed
-      options:
-        autoCloseBrackets: true
-        autoCloseTags: true
-        folding: true
-        lineNumbers: true
-        lineWrapping: true
-        matchBrackets: true
-        matchTags: true
-        searchBottom: true
-        styleActiveLine: true
-    linkit_extension:
-      linkit_enabled: true
-      linkit_profile: default
 image_upload:
-  status: false
+  status: true
   scheme: public
   directory: inline-images
   max_size: ''

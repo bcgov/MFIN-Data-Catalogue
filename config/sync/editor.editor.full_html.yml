@@ -1,4 +1,4 @@
-uuid: 02d32682-da05-4ac0-bcff-4e3550b3d011
+uuid: 2567f8bc-77c7-4a47-a474-ae617a961d8d
 langcode: en
 status: true
 dependencies:
@@ -7,7 +7,7 @@ dependencies:
   module:
     - ckeditor5
 _core:
-  default_config_hash: m3pL_vbOaNdIkaQFbupVk6gUbrQgO6j9KxoL6yw6yNw
+  default_config_hash: OPWefDnwy4tmy2n7dGK-VjZwSnqspgJ6m8148XlsA0A
 format: full_html
 editor: ckeditor5
 settings:
@@ -26,18 +26,14 @@ settings:
       - numberedList
       - '|'
       - blockQuote
-      - drupalMedia
+      - drupalInsertImage
       - insertTable
       - horizontalLine
       - '|'
       - heading
-      - style
-      - '-'
       - codeBlock
-      - Fullscreen
+      - '|'
       - sourceEditing
-      - insertViewAdv
-      - node
   plugins:
     ckeditor5_codeBlock:
       languages:
@@ -90,6 +86,8 @@ settings:
         - heading4
         - heading5
         - heading6
+    ckeditor5_imageResize:
+      allow_resize: true
     ckeditor5_list:
       properties:
         reversed: true
@@ -97,50 +95,6 @@ settings:
       multiBlock: true
     ckeditor5_sourceEditing:
       allowed_tags: {  }
-    ckeditor5_style:
-      styles:
-        -
-          label: 'Alert primary'
-          element: '<p class="alert alert-primary">'
-        -
-          label: 'Alert secondary'
-          element: '<p class="alert alert-secondary">'
-        -
-          label: 'Alert success'
-          element: '<p class="alert alert-success">'
-        -
-          label: 'Alert danger'
-          element: '<p class="alert alert-danger">'
-        -
-          label: 'Alert warning'
-          element: '<p class="alert alert-warning">'
-        -
-          label: 'Alert info'
-          element: '<p class="alert alert-info">'
-        -
-          label: 'Alert light'
-          element: '<p class="alert alert-light">'
-        -
-          label: 'Alert dark'
-          element: '<p class="alert alert-dark">'
-    ckeditor_codemirror_source_editing:
-      enable: true
-      mode: htmlmixed
-      options:
-        autoCloseBrackets: true
-        autoCloseTags: true
-        folding: true
-        lineNumbers: true
-        lineWrapping: true
-        matchBrackets: true
-        matchTags: true
-        searchBottom: true
-        styleActiveLine: true
-    linkit_extension:
-      linkit_enabled: true
-      linkit_profile: default
-    media_media:
-      allow_view_mode_override: false
 image_upload:
   status: true
   scheme: public

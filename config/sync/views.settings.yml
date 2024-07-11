@@ -1,19 +1,19 @@
 _core:
-  default_config_hash: uZHsLrDp1ThO0RvupHKcPzLOyVvWexm58JTTHNDo7yc
+  default_config_hash: 8oDr9oPVb_ostrNnVV6V7VdphwoH_u-NqTS0u7SE7qc
 display_extenders: {  }
 sql_signature: false
 ui:
   show:
     additional_queries: false
-    advanced_column: true
-    default_display: true
+    advanced_column: false
+    default_display: false
     performance_statistics: false
     preview_information: true
     sql_query:
-      enabled: true
-      where: below
+      enabled: false
+      where: above
     display_embed: false
-  always_live_preview: false
+  always_live_preview: true
   exposed_filter_any_label: old_any
 field_rewrite_elements:
   div: DIV

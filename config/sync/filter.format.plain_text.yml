@@ -1,11 +1,9 @@
-uuid: c7464b84-e5df-4a3e-8a8e-98b198e0fd1c
+uuid: a0da2c14-468a-4425-9414-16e99a97da44
 langcode: en
 status: true
-dependencies:
-  module:
-    - toc_filter
+dependencies: {  }
 _core:
-  default_config_hash: NIKBt6kw_uPhNI0qtR2DnRf7mSOgAQdx7Q94SKMjXbQ
+  default_config_hash: JLMwODO0epnA_H-jFlH9ezVfa5YBJniRv3MmLqYNl_Q
 name: 'Plain text'
 format: plain_text
 weight: 10
@@ -29,13 +27,3 @@ filters:
     weight: 0
     settings:
       filter_url_length: 72
-  toc_filter:
-    id: toc_filter
-    provider: toc_filter
-    status: false
-    weight: 0
-    settings:
-      type: default
-      auto: ''
-      block: '0'
-      exclude_above: '0'

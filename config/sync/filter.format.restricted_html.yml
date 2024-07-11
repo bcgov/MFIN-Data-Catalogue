@@ -1,11 +1,9 @@
-uuid: 81203590-e799-4b45-9ebd-1dfab1eb4a65
+uuid: 3353460b-1700-4213-ac4e-91f799201427
 langcode: en
 status: true
-dependencies:
-  module:
-    - toc_filter
+dependencies: {  }
 _core:
-  default_config_hash: oz6NyPDAB4HB6N9hgH2LwNVtCd-sXbMG1fbn5KsRIDI
+  default_config_hash: QiKqQS_YGAT3Qr4vaAgZICJknm-MGCzt_xBAMqg-tRM
 name: 'Restricted HTML'
 format: restricted_html
 weight: 1
@@ -32,13 +30,3 @@ filters:
     weight: 0
     settings:
       filter_url_length: 72
-  toc_filter:
-    id: toc_filter
-    provider: toc_filter
-    status: false
-    weight: 0
-    settings:
-      type: default
-      auto: ''
-      block: '0'
-      exclude_above: '0'
