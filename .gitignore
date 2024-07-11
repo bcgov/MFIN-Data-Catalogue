@@ -1,3 +1,4 @@
+# Ignore Drupal core & scaffolded files
 html/*
 !html/modules/
 html/modules/*
@@ -6,6 +7,7 @@ html/modules/*
 html/themes/*
 !html/themes/custom/
 
+# Ignore Composer vendor folders
 vendor
 */*/*/vendor
 */*/vendor
@@ -34,7 +36,7 @@ ddev-cron-log.txt
 *.sass-cache*
 **/sass/*.css
 
-# Custom
-docker
-config/sync/openid_connect.client.keycloak.yml
-files-private
+# Ignore Exports
+*.gz
+*.sql
+*.zip
