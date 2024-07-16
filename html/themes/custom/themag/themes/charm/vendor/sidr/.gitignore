@@ -1,0 +1,13 @@
+*~
+*.diff
+*.patch
+.DS_Store
+.tags
+.tags_sorted_by_file
+node_modules
+.sass-cache
+.bundle/
+vendor/
+bower_components/
+dist/coverage/
+dist/stylesheets/*.map
