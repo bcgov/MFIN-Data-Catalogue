@@ -43,6 +43,7 @@ dependencies:
     - entityqueue
     - environment_indicator
     - field_permissions
+    - file
     - filter
     - media
     - moderation_sidebar
@@ -120,6 +121,7 @@ permissions:
   - 'delete any content block content'
   - 'delete any document media'
   - 'delete any event content'
+  - 'delete any file'
   - 'delete any form media'
   - 'delete any gallery media'
   - 'delete any image media'
@@ -141,6 +143,7 @@ permissions:
   - 'delete own article content'
   - 'delete own document media'
   - 'delete own event content'
+  - 'delete own files'
   - 'delete own form media'
   - 'delete own gallery media'
   - 'delete own image media'

@@ -7,12 +7,12 @@ dependencies:
 id: event
 label: Event
 type: 'canonical_entities:node'
-pattern: '/event/[node:field_event_date:date:custom:Y]/[node:field_event_date:date:custom:m]/[node:field_event_date:date:custom:d]/[node:title]'
+pattern: '/event/[node:field_event_date_smart:value-custom:Y]-[node:field_event_date_smart:value-custom:m]-[node:field_event_date_smart:value-custom:d]/[node:title]'
 selection_criteria:
-  1eb1e819-fcca-4f4b-b70a-63a92bac4e64:
+  8fba7558-cfd5-4ca9-8564-98a753a91c73:
     id: 'entity_bundle:node'
     negate: false
-    uuid: 1eb1e819-fcca-4f4b-b70a-63a92bac4e64
+    uuid: 8fba7558-cfd5-4ca9-8564-98a753a91c73
     context_mapping:
       node: node
     bundles:

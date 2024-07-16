@@ -109,8 +109,15 @@ filters:
     status: false
     weight: 0
     settings:
-      remove_width_height: false
-      table_bordered: false
-      table_condensed: false
-      table_row_hover: false
-      table_striping: false
+      remove_width_height: '0'
+      table_bordered: '0'
+      table_condensed: '0'
+      table_row_hover: '0'
+      table_striping: '0'
+  token_filter:
+    id: token_filter
+    provider: token_filter
+    status: false
+    weight: 0
+    settings:
+      replace_empty: '0'

@@ -172,15 +172,15 @@ filters:
     status: true
     weight: -43
     settings:
-      remove_width_height: true
-      table_bordered: false
-      table_condensed: false
-      table_row_hover: true
-      table_striping: false
+      remove_width_height: '1'
+      table_bordered: '0'
+      table_condensed: '0'
+      table_row_hover: '1'
+      table_striping: '0'
   token_filter:
     id: token_filter
     provider: token_filter
     status: true
     weight: -48
     settings:
-      replace_empty: true
+      replace_empty: '1'

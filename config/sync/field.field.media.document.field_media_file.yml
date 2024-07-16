@@ -25,7 +25,7 @@ third_party_settings:
         pathauto: true
         transliterate: true
     redirect: false
-    retroactive_update: true
+    retroactive_update: false
     active_updating: true
   disable_field:
     add_disable: none
