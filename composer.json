@@ -217,6 +217,8 @@
         }
     },
     "require-dev": {
+        "drupal/coder": "^8.3",
+        "mglaman/drupal-check": "^1.4",
         "drupal/core-dev": "^10.1",
         "kint-php/kint": "^5.0"
     }
