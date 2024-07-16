@@ -4,8 +4,8 @@ status: true
 dependencies: {  }
 machine: test
 description: null
-name: Test
+name: TEST
 weight: 1
 url: 'https://test.intranet.fin.gov.bc.ca'
-fg_color: '#1E4E9C'
-bg_color: '#FFF291'
+fg_color: '#1e4e9c'
+bg_color: '#fff291'

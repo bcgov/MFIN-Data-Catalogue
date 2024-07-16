@@ -1,10 +1,10 @@
-uuid: 92423dfe-519d-40a9-a981-742b722042e3
+uuid: 2f91c549-96f7-4b44-82a3-b9ea2df3fc00
 langcode: en
 status: true
 dependencies: {  }
-machine: production
+machine: prod
 description: null
-name: Production
+name: PROD
 weight: 2
 url: 'https://intranet.fin.gov.bc.ca'
 fg_color: '#1E4E9C'

@@ -4,8 +4,8 @@ status: true
 dependencies: {  }
 machine: dev
 description: null
-name: Dev
+name: DEV
 weight: 0
 url: 'https://dev.intranet.fin.gov.bc.ca'
-fg_color: '#1E4E9C'
-bg_color: '#9EFF91'
+fg_color: '#1e4e9c'
+bg_color: '#9eff91'
