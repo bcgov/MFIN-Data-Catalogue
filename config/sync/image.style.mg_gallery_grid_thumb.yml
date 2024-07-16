@@ -1,0 +1,15 @@
+uuid: 0351db80-a82f-4d51-ad7c-3030c121ec00
+langcode: en
+status: true
+dependencies: {  }
+name: mg_gallery_grid_thumb
+label: 'Gallery grid thumb'
+effects:
+  f99d95ab-76c2-4b17-abeb-9c98edf6b058:
+    uuid: f99d95ab-76c2-4b17-abeb-9c98edf6b058
+    id: image_scale_and_crop
+    weight: 2
+    data:
+      width: 175
+      height: 175
+      anchor: center-center

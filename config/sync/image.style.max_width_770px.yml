@@ -1,0 +1,15 @@
+uuid: 003c5a29-9119-41bb-a8e0-bf1a8a63405c
+langcode: en
+status: true
+dependencies: {  }
+name: max_width_770px
+label: 'In-Article Image 770px'
+effects:
+  32b3c0c4-fdd2-487a-8480-a45d569bedfc:
+    uuid: 32b3c0c4-fdd2-487a-8480-a45d569bedfc
+    id: image_scale
+    weight: 1
+    data:
+      width: 770
+      height: null
+      upscale: false

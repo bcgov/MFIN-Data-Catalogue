@@ -1,0 +1,11 @@
+uuid: f2a1b76e-3c70-40b9-ba42-87fb3948c9ad
+langcode: en
+status: true
+dependencies: {  }
+machine: test
+description: null
+name: Test
+weight: 1
+url: 'https://test.intranet.fin.gov.bc.ca'
+fg_color: '#1E4E9C'
+bg_color: '#FFF291'

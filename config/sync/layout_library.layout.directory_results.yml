@@ -1,0 +1,299 @@
+uuid: daf030c6-ca00-4415-85c8-9c413b9a3d0b
+langcode: en
+status: true
+dependencies: {  }
+id: directory_results
+label: 'Directory Results'
+targetEntityType: node
+targetBundle: themag_landing_page
+layout:
+  -
+    layout_id: themag_onecol_section
+    layout_settings:
+      context_mapping: {  }
+      section_bg: ''
+      section_padding: ''
+      section_margin: ''
+      section_custom_classes: mb-5
+      container_style: container-full
+      row_custom_classes: ''
+      no_gutters: 0
+      column_widths: '12'
+      sticky_columns: null
+      first:
+        custom_classes: ''
+    components:
+      52b0ab26-3357-4dd3-9f8c-20511bc36c58:
+        uuid: 52b0ab26-3357-4dd3-9f8c-20511bc36c58
+        region: first
+        configuration:
+          id: 'views_block:header-block_6'
+          label: ''
+          label_display: '0'
+          provider: views
+          context_mapping: {  }
+          views_label: ''
+          items_per_page: none
+        weight: 0
+        additional: {  }
+    third_party_settings: {  }
+  -
+    layout_id: themag_twocol_section
+    layout_settings:
+      context_mapping: {  }
+      section_bg: ''
+      section_padding: ''
+      section_margin: my-default
+      section_custom_classes: 'directory-results section2'
+      container_style: container
+      row_custom_classes: ''
+      no_gutters: 0
+      column_widths: custom
+      sticky_columns: 0
+      first:
+        custom_classes: 'column1 col-12 col-lg-3 border-right list'
+      second:
+        custom_classes: 'column2 col-12 col-lg-9'
+    components:
+      25ca9adf-0ded-419a-82cb-e76ca820c94a:
+        uuid: 25ca9adf-0ded-419a-82cb-e76ca820c94a
+        region: second
+        configuration:
+          id: 'views_block:directory-block_1'
+          label: ''
+          label_display: '0'
+          provider: views
+          context_mapping: {  }
+          views_label: ''
+          items_per_page: none
+        weight: 0
+        additional: {  }
+      7653153b-8c29-4b30-9dab-11498a3ce38c:
+        uuid: 7653153b-8c29-4b30-9dab-11498a3ce38c
+        region: first
+        configuration:
+          id: 'facet_block:directory_type'
+          label: 'Directory - Type'
+          label_display: '0'
+          provider: facets
+          context_mapping: {  }
+        weight: -9
+        additional:
+          component_attributes:
+            block_attributes:
+              id: facetType
+              class: 'collapse show pb-3 pl-4 m-0 border-bottom'
+              style: ''
+              data: ''
+            block_title_attributes:
+              id: ''
+              class: ''
+              style: ''
+              data: ''
+            block_content_attributes:
+              id: ''
+              class: ''
+              style: ''
+              data: ''
+      917b21ba-e929-4039-ae32-9002955f96a5:
+        uuid: 917b21ba-e929-4039-ae32-9002955f96a5
+        region: first
+        configuration:
+          id: 'facet_block:directory_audience'
+          label: 'Directory - Audience'
+          label_display: '0'
+          provider: facets
+          context_mapping: {  }
+        weight: -7
+        additional:
+          component_attributes:
+            block_attributes:
+              id: facetAudience
+              class: 'collapse show pb-3 pl-4 m-0 border-bottom'
+              style: ''
+              data: ''
+            block_title_attributes:
+              id: ''
+              class: ''
+              style: ''
+              data: ''
+            block_content_attributes:
+              id: ''
+              class: ''
+              style: ''
+              data: ''
+      cab67e2c-5887-494c-957b-1c568f48a5fd:
+        uuid: cab67e2c-5887-494c-957b-1c568f48a5fd
+        region: first
+        configuration:
+          id: 'block_content:87867ace-7d7d-46ee-8d4f-5fe329447999'
+          label: 'Facet - Category Button'
+          label_display: '0'
+          provider: block_content
+          status: true
+          info: ''
+          view_mode: full
+          context_mapping: {  }
+        weight: -6
+        additional:
+          component_attributes:
+            block_attributes:
+              id: ''
+              class: m-0
+              style: ''
+              data: ''
+            block_title_attributes:
+              id: ''
+              class: ''
+              style: ''
+              data: ''
+            block_content_attributes:
+              id: ''
+              class: ''
+              style: ''
+              data: ''
+      3cd73fd6-a393-4a7d-98ac-5316908bc619:
+        uuid: 3cd73fd6-a393-4a7d-98ac-5316908bc619
+        region: first
+        configuration:
+          id: 'facet_block:directory_category'
+          label: 'Directory - Category'
+          label_display: '0'
+          provider: facets
+          context_mapping: {  }
+        weight: -5
+        additional:
+          component_attributes:
+            block_attributes:
+              id: facetCategory
+              class: 'collapse show pb-3 pl-4 m-0 border-bottom'
+              style: ''
+              data: ''
+            block_title_attributes:
+              id: ''
+              class: ''
+              style: ''
+              data: ''
+            block_content_attributes:
+              id: ''
+              class: ''
+              style: ''
+              data: ''
+      015dbe7a-64de-4cfc-9e64-e05762cd7a55:
+        uuid: 015dbe7a-64de-4cfc-9e64-e05762cd7a55
+        region: first
+        configuration:
+          id: 'block_content:78275c47-bacc-4949-97b3-1c9aa02adf2a'
+          label: 'Facet - Organization Button'
+          label_display: '0'
+          provider: block_content
+          status: true
+          info: ''
+          view_mode: full
+          context_mapping: {  }
+        weight: -4
+        additional:
+          component_attributes:
+            block_attributes:
+              id: ''
+              class: m-0
+              style: ''
+              data: ''
+            block_title_attributes:
+              id: ''
+              class: ''
+              style: ''
+              data: ''
+            block_content_attributes:
+              id: ''
+              class: ''
+              style: ''
+              data: ''
+      f99e7932-0236-4f89-8a34-0814b23d0fb1:
+        uuid: f99e7932-0236-4f89-8a34-0814b23d0fb1
+        region: first
+        configuration:
+          id: 'facet_block:directory_organization'
+          label: 'Directory - Organization'
+          label_display: '0'
+          provider: facets
+          context_mapping: {  }
+        weight: -3
+        additional:
+          component_attributes:
+            block_attributes:
+              id: facetOrganization
+              class: 'collapse show pb-3 pl-4 m-0 border-bottom'
+              style: ''
+              data: ''
+            block_title_attributes:
+              id: ''
+              class: ''
+              style: ''
+              data: ''
+            block_content_attributes:
+              id: ''
+              class: ''
+              style: ''
+              data: ''
+      11b49c2b-ec5f-4d1b-aebe-a50e370a0f7b:
+        uuid: 11b49c2b-ec5f-4d1b-aebe-a50e370a0f7b
+        region: first
+        configuration:
+          id: 'block_content:c19ae627-0a88-4484-b097-c281bbaeae8b'
+          label: 'Facet - Content Type Button'
+          label_display: '0'
+          provider: block_content
+          status: true
+          info: ''
+          view_mode: full
+          context_mapping: {  }
+        weight: -10
+        additional:
+          component_attributes:
+            block_attributes:
+              id: ''
+              class: m-0
+              style: ''
+              data: ''
+            block_title_attributes:
+              id: ''
+              class: ''
+              style: ''
+              data: ''
+            block_content_attributes:
+              id: ''
+              class: ''
+              style: ''
+              data: ''
+      6e6dc8ca-e1fa-4c38-999d-a0af62cc2a9b:
+        uuid: 6e6dc8ca-e1fa-4c38-999d-a0af62cc2a9b
+        region: first
+        configuration:
+          id: 'block_content:a6b2bdf1-7b6e-42eb-84b2-988342fabc39'
+          label: 'Facet - Audience Button'
+          label_display: '0'
+          provider: block_content
+          status: true
+          info: ''
+          view_mode: full
+          context_mapping: {  }
+        weight: -8
+        additional:
+          component_attributes:
+            block_attributes:
+              id: ''
+              class: m-0
+              style: ''
+              data: ''
+            block_title_attributes:
+              id: ''
+              class: ''
+              style: ''
+              data: ''
+            block_content_attributes:
+              id: ''
+              class: ''
+              style: ''
+              data: ''
+    third_party_settings: {  }

@@ -1,0 +1,29 @@
+uuid: 63c8600b-e79a-40e1-87c5-1d00b90d4f65
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_organization
+    - media.type.video
+    - taxonomy.vocabulary.organization
+id: media.video.field_organization
+field_name: field_organization
+entity_type: media
+bundle: video
+label: Organization
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      organization: organization
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

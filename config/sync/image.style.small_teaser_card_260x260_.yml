@@ -1,0 +1,17 @@
+uuid: 43976e45-3755-43f3-9c4f-ae2a55459d97
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: small_teaser_card_260x260_
+label: "Small Teaser Card (260x260)\t"
+effects:
+  e5d6d040-506f-4f7b-8b9f-ad98ba4adf86:
+    uuid: e5d6d040-506f-4f7b-8b9f-ad98ba4adf86
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 260
+      height: 260
+      crop_type: focal_point

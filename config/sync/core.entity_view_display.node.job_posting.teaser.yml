@@ -1,0 +1,33 @@
+uuid: 7864bb88-0f89-445c-8f2a-f163ffdb35d4
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.job_posting.field_closing_date
+    - field.field.node.job_posting.field_job_classification
+    - field.field.node.job_posting.field_job_posting_url
+    - field.field.node.job_posting.field_job_type
+    - field.field.node.job_posting.field_organization_1
+    - node.type.job_posting
+  module:
+    - user
+id: node.job_posting.teaser
+targetEntityType: node
+bundle: job_posting
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_closing_date: true
+  field_job_classification: true
+  field_job_posting_url: true
+  field_job_type: true
+  field_organization_1: true
+  published_at: true
+  search_api_excerpt: true
+  shariff_field: true

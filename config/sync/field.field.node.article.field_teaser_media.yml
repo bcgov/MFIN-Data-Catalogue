@@ -1,0 +1,44 @@
+uuid: 783f5a2a-2333-4a8d-8458-cbb7ee3645df
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_teaser_media
+    - media.type.teaser_image
+    - node.type.article
+  module:
+    - disable_field
+    - unique_field_ajax
+third_party_settings:
+  unique_field_ajax:
+    unique: 0
+    per_lang: 0
+    case_sensitive: 0
+    use_ajax: 0
+    no_enforce: 0
+    message: ''
+    message_warning: ''
+  disable_field:
+    add_disable: none
+    edit_disable: none
+id: node.article.field_teaser_media
+field_name: field_teaser_media
+entity_type: node
+bundle: article
+label: Teaser
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      teaser_image: teaser_image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

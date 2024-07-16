@@ -1,5 +1,5 @@
 _core:
-  default_config_hash: '-htDFWUv1S4OlJMzta2nhFl4QbhJvu0D9xsJ-clxo-M'
+  default_config_hash: w314Zp7B4NbrlV4KeeZLNSmTTpdJiv-KwZO2E1fSSK0
 langcode: en
 anonymous: Anonymous
 verify_mail: true
@@ -12,7 +12,7 @@ notify:
   register_admin_created: true
   register_no_approval_required: true
   register_pending_approval: true
-register: visitors_admin_approval
+register: visitors
 cancel_method: user_cancel_block
 password_reset_timeout: 86400
 password_strength: true

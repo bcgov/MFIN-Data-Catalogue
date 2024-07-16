@@ -1,4 +1,4 @@
-uuid: c4da611d-c587-4a9a-b0ef-f0c568f14004
+uuid: 68749b02-5493-479a-92c7-2f41d31b4019
 langcode: en
 status: true
 dependencies:
@@ -6,16 +6,26 @@ dependencies:
     - field.storage.node.field_tags
     - node.type.article
     - taxonomy.vocabulary.tags
-_core:
-  default_config_hash: QdUgf_beeoaPiyKorFv0q1fcJpWH_uZTqe_xoVJacrw
+  module:
+    - disable_field
+third_party_settings:
+  disable_field:
+    add_disable: roles_enable
+    add_roles:
+      - editor
+      - administrator
+    edit_disable: roles_enable
+    edit_roles:
+      - editor
+      - administrator
 id: node.article.field_tags
 field_name: field_tags
 entity_type: node
 bundle: article
 label: Tags
-description: 'Enter a comma-separated list. For example: Amsterdam, Mexico City, "Cleveland, Ohio"'
+description: 'Use tags to rank in the search results for keywords that are <b>not present in the title or body text</b>.<br> Enter multiple tags separated with a comma ",".'
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
@@ -24,6 +34,8 @@ settings:
     target_bundles:
       tags: tags
     sort:
-      field: _none
+      field: name
+      direction: asc
     auto_create: true
+    auto_create_bundle: ''
 field_type: entity_reference

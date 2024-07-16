@@ -1,0 +1,32 @@
+uuid: 66bd3d6e-daa2-4453-af58-24452cd1a9ee
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - filter.format.basic_html
+    - filter.format.full_html
+    - node.type.service
+  module:
+    - text
+id: node.service.body
+field_name: body
+entity_type: node
+bundle: service
+label: 'Service description'
+description: ''
+required: true
+translatable: true
+default_value:
+  -
+    value: "<p>At quis risus sed vulputate odio ut. Magnis dis parturient montes nascetur ridiculus mus mauris vitae. In vitae turpis massa sed elementum tempus. Sem integer vitae justo eget magna fermentum iaculis eu. Egestas dui id ornare arcu odio ut sem nulla pharetra. Feugiat nibh sed pulvinar proin gravida hendrerit. Morbi tristique senectus et netus et.</p>\r\n\r\n<h2>How to request</h2>\r\n\r\n<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&nbsp;Integer eget aliquet nibh praesent tristique magna. Turpis egestas sed tempus urna et pharetra pharetra massa massa. Odio euismod lacinia at quis risus sed. Euismod elementum nisi quis eleifend quam adipiscing vitae proin. Rhoncus dolor purus non enim praesent. In hendrerit gravida rutrum quisque non. Et malesuada fames ac turpis egestas sed.</p>\r\n\r\n<h2>Turnaround time</h2>\r\n\r\n<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&nbsp;Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\r\n"
+    summary: ''
+    format: basic_html
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+  allowed_formats:
+    - basic_html
+    - full_html
+field_type: text_with_summary

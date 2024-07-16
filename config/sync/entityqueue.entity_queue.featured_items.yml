@@ -1,0 +1,26 @@
+uuid: 3d403ec0-d7c0-46ef-b072-4a1180353912
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: featured_items
+label: 'Home - Articles (8 items)'
+handler: simple
+handler_configuration: {  }
+entity_settings:
+  target_type: node
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      article: article
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+queue_settings:
+  min_size: 0
+  max_size: 8
+  act_as_queue: true
+  reverse: true

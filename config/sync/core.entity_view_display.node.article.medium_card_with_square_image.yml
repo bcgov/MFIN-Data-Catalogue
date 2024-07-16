@@ -1,0 +1,52 @@
+uuid: 7fb96ca4-c542-445b-8253-6812af854540
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.node.medium_card_with_square_image
+    - field.field.node.article.body
+    - field.field.node.article.field_audience
+    - field.field.node.article.field_channel
+    - field.field.node.article.field_comment
+    - field.field.node.article.field_organization_1
+    - field.field.node.article.field_tags
+    - field.field.node.article.field_teaser_media
+    - field.field.node.article.layout_selection
+    - node.type.article
+  module:
+    - user
+id: node.article.medium_card_with_square_image
+targetEntityType: node
+bundle: article
+mode: medium_card_with_square_image
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  field_channel:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  workflow_buttons:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  body: true
+  field_audience: true
+  field_comment: true
+  field_organization_1: true
+  field_tags: true
+  field_teaser_media: true
+  layout_selection: true
+  links: true
+  published_at: true
+  search_api_excerpt: true
+  shariff_field: true

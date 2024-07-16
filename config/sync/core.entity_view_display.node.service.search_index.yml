@@ -1,0 +1,58 @@
+uuid: bdc55b15-d602-4696-9ccf-b6b95d03741a
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_index
+    - field.field.node.service.body
+    - field.field.node.service.field_audience
+    - field.field.node.service.field_availability
+    - field.field.node.service.field_category
+    - field.field.node.service.field_cost
+    - field.field.node.service.field_eligibility_details
+    - field.field.node.service.field_icon
+    - field.field.node.service.field_organization_1
+    - field.field.node.service.field_organization_2
+    - field.field.node.service.field_tags
+    - node.type.service
+  module:
+    - layout_builder
+    - text
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.service.search_index
+targetEntityType: node
+bundle: service
+mode: search_index
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_audience: true
+  field_availability: true
+  field_category: true
+  field_cost: true
+  field_eligibility_details: true
+  field_icon: true
+  field_organization_1: true
+  field_organization_2: true
+  field_tags: true
+  links: true
+  published_at: true
+  search_api_excerpt: true
+  shariff_field: true
+  synonyms: true
+  workflow_buttons: true

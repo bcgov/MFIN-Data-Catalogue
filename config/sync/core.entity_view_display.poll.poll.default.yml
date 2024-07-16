@@ -1,0 +1,26 @@
+uuid: 2b0e7cde-c165-4ea4-8c55-699afc92258e
+langcode: en
+status: true
+dependencies:
+  module:
+    - layout_builder
+    - layout_library
+    - poll
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+  layout_library:
+    enable: false
+id: poll.poll.default
+targetEntityType: poll
+bundle: poll
+mode: default
+content:
+  poll_votes:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

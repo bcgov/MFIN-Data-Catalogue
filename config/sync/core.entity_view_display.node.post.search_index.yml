@@ -1,0 +1,40 @@
+uuid: 036f1edd-8059-4dcf-9b8f-29e078a623ec
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_index
+    - field.field.node.post.body
+    - field.field.node.post.field_comment
+    - field.field.node.post.field_staff_media
+    - field.field.node.post.field_tags
+    - node.type.post
+  module:
+    - layout_builder
+    - text
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.post.search_index
+targetEntityType: node
+bundle: post
+mode: search_index
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_comment: true
+  field_staff_media: true
+  field_tags: true
+  flag_like: true
+  links: true
+  published_at: true
+  search_api_excerpt: true
+  shariff_field: true

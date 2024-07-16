@@ -1,14 +1,16 @@
-uuid: d5bedb39-f3c4-4172-b015-d22938a57f5c
+uuid: 33d1c99e-aa8e-42bb-884c-60c085f29d72
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.body
+    - filter.format.basic_html
+    - filter.format.full_html
     - node.type.page
   module:
     - text
 _core:
-  default_config_hash: KHu9I-pR4FnP79crRJ5gVD_1mKGSZcJsdIm9bn64iFg
+  default_config_hash: rUop-8b6hvxxDYbv-KobTfNIBNbPY9qOPl8f6kBNSpw
 id: node.page.body
 field_name: body
 entity_type: node
@@ -22,5 +24,7 @@ default_value_callback: ''
 settings:
   display_summary: true
   required_summary: false
-  allowed_formats: {  }
+  allowed_formats:
+    - basic_html
+    - full_html
 field_type: text_with_summary

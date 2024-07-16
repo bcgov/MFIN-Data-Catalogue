@@ -1,0 +1,17 @@
+uuid: 75cdc7f5-2607-42c3-ad4f-7d0926f18155
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: medium_teaser_item
+label: 'Medium Teaser Item (270x152)'
+effects:
+  960e3df4-f91b-4c70-9c6c-cb5b45491192:
+    uuid: 960e3df4-f91b-4c70-9c6c-cb5b45491192
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 270
+      height: 152
+      crop_type: focal_point

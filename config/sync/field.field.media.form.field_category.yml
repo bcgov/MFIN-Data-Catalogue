@@ -1,0 +1,29 @@
+uuid: 26889444-0b3c-4b5c-923a-4afce567833c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_category
+    - media.type.form
+    - taxonomy.vocabulary.category
+id: media.form.field_category
+field_name: field_category
+entity_type: media
+bundle: form
+label: 'Form category'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      category: category
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

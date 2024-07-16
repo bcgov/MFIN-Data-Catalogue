@@ -1,0 +1,23 @@
+uuid: 68c45327-27cc-482b-be33-100504f19331
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - taxonomy
+id: product_categories
+label: 'Product Categories'
+type: 'canonical_entities:taxonomy_term'
+pattern: '/shop/[term:parents:join-path]/[term:name]'
+selection_criteria:
+  2bb63777-5090-4481-b5fd-252ae202d85a:
+    id: 'entity_bundle:taxonomy_term'
+    negate: false
+    uuid: 2bb63777-5090-4481-b5fd-252ae202d85a
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    bundles:
+      mg_product_categories: mg_product_categories
+selection_logic: and
+weight: 5
+relationships: {  }

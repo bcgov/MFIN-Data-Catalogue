@@ -1,0 +1,44 @@
+uuid: f58249e3-6de4-442a-9e8f-3528a4a66213
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.small_compact_teaser
+    - field.field.node.article.body
+    - field.field.node.article.field_audience
+    - field.field.node.article.field_channel
+    - field.field.node.article.field_comment
+    - field.field.node.article.field_organization_1
+    - field.field.node.article.field_tags
+    - field.field.node.article.field_teaser_media
+    - field.field.node.article.layout_selection
+    - node.type.article
+  module:
+    - user
+id: node.article.small_compact_teaser
+targetEntityType: node
+bundle: article
+mode: small_compact_teaser
+content:
+  field_channel:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  body: true
+  content_moderation_control: true
+  field_audience: true
+  field_comment: true
+  field_organization_1: true
+  field_tags: true
+  field_teaser_media: true
+  layout_selection: true
+  links: true
+  published_at: true
+  search_api_excerpt: true
+  shariff_field: true
+  workflow_buttons: true

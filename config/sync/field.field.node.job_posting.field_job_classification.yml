@@ -1,0 +1,19 @@
+uuid: c486469b-c238-4caa-b78f-3a05520b7401
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_job_classification
+    - node.type.job_posting
+id: node.job_posting.field_job_classification
+field_name: field_job_classification
+entity_type: node
+bundle: job_posting
+label: 'Job classification'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

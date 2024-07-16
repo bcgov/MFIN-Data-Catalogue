@@ -1,0 +1,19 @@
+uuid: b5d78050-481c-4ef7-b55a-f75edba7d129
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_eligibility_details
+    - node.type.service
+id: node.service.field_eligibility_details
+field_name: field_eligibility_details
+entity_type: node
+bundle: service
+label: 'Eligibility details'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

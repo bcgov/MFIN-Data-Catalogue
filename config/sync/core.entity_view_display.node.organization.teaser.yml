@@ -1,0 +1,45 @@
+uuid: d142f091-4e5c-4d73-862d-0d6545cd5304
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.organization.body
+    - field.field.node.organization.field_articles
+    - field.field.node.organization.field_organization_1
+    - field.field.node.organization.field_quick_links
+    - field.field.node.organization.field_related_box
+    - field.field.node.organization.field_teaser_media
+    - node.type.organization
+  module:
+    - user
+id: node.organization.teaser
+targetEntityType: node
+bundle: organization
+mode: teaser
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+  workflow_buttons:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  body: true
+  field_articles: true
+  field_organization_1: true
+  field_quick_links: true
+  field_related_box: true
+  field_teaser_media: true
+  published_at: true
+  search_api_excerpt: true
+  shariff_field: true

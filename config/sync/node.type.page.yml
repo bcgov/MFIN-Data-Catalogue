@@ -1,13 +1,24 @@
-uuid: 73039ad6-eab8-4547-b4f2-b3af2db85770
+uuid: d10f944d-7ea2-43a2-a8f4-5d6e3db2ea7b
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - menu_ui
+    - node_revision_delete
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+  node_revision_delete:
+    minimum_revisions_to_keep: 1
+    minimum_age_to_delete: 0
+    when_to_delete: 0
 _core:
   default_config_hash: KuyA4NHPXcmKAjRtwa0vQc2ZcyrUJy6IlS2TAyMNRbc
-name: 'Basic page'
+name: Page
 type: page
-description: "Use <em>basic pages</em> for your static content, such as an 'About us' page."
+description: 'Use <em>pages</em> for your static content with custom layouts stored in the node.'
 help: ''
 new_revision: true
-preview_mode: 1
+preview_mode: 0
 display_submitted: false

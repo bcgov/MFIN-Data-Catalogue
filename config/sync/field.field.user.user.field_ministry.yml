@@ -1,0 +1,20 @@
+uuid: 9690f892-5b2b-419a-bf61-7829c9174de2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_ministry
+  module:
+    - user
+id: user.user.field_ministry
+field_name: field_ministry
+entity_type: user
+bundle: user
+label: Ministry
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

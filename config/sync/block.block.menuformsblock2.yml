@@ -1,0 +1,25 @@
+uuid: 0c0d08ba-3ede-4391-834a-cbbfe85cade9
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:menu:3a0e9649-7c21-40bc-b7d0-326965e5f8c9'
+  module:
+    - block_content
+  theme:
+    - themag_st
+id: menuformsblock2
+theme: themag_st
+region: hidden
+weight: 0
+provider: null
+plugin: 'block_content:3a0e9649-7c21-40bc-b7d0-326965e5f8c9'
+settings:
+  id: 'block_content:3a0e9649-7c21-40bc-b7d0-326965e5f8c9'
+  label: 'Menu - Forms Block 2'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

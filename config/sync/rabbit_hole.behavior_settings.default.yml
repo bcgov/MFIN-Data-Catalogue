@@ -1,0 +1,13 @@
+uuid: 297311c5-6502-453f-8dd1-fabf9d5bd870
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: hzh9CgsYCGxPEcbR3ieT1la6e43lMv-ivoN7oZJKkQQ
+id: default
+targetEntityType: null
+bundle: null
+action: display_page
+no_bypass: null
+bypass_message: null
+configuration: {  }

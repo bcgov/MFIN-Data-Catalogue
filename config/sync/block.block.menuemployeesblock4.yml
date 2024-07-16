@@ -1,0 +1,25 @@
+uuid: 7e154e41-224b-409b-adc6-a2a3968e61fd
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:menu:82cc5cdb-2499-413c-bb75-26373dd7bf40'
+  module:
+    - block_content
+  theme:
+    - themag_st
+id: menuemployeesblock4
+theme: themag_st
+region: hidden
+weight: 0
+provider: null
+plugin: 'block_content:82cc5cdb-2499-413c-bb75-26373dd7bf40'
+settings:
+  id: 'block_content:82cc5cdb-2499-413c-bb75-26373dd7bf40'
+  label: 'Menu - Employees Block 4'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

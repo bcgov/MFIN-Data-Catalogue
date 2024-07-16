@@ -1,0 +1,17 @@
+uuid: eb077759-0839-4163-bacf-6a42bc52a4ac
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: medium_teaser_card
+label: 'Medium Teaser Card (370x208)'
+effects:
+  dae16309-290f-43fa-acf8-f048646b5288:
+    uuid: dae16309-290f-43fa-acf8-f048646b5288
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 370
+      height: 208
+      crop_type: focal_point

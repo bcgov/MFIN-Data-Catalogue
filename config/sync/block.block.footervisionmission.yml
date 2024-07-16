@@ -1,0 +1,25 @@
+uuid: d365bd45-4626-4412-b6e8-013053bbf01f
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:8f6e89f2-3954-4c92-898f-1f7183278e03'
+  module:
+    - block_content
+  theme:
+    - themag_st
+id: footervisionmission
+theme: themag_st
+region: footer_third
+weight: -14
+provider: null
+plugin: 'block_content:8f6e89f2-3954-4c92-898f-1f7183278e03'
+settings:
+  id: 'block_content:8f6e89f2-3954-4c92-898f-1f7183278e03'
+  label: 'Footer - Vision & Mission'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

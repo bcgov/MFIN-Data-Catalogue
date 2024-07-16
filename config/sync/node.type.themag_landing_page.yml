@@ -1,0 +1,24 @@
+uuid: 908d8f8f-a387-47ff-ba31-155eb0598c81
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - node_revision_delete
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - footer
+      - main
+    parent: 'main:'
+  node_revision_delete:
+    minimum_revisions_to_keep: 1
+    minimum_age_to_delete: 0
+    when_to_delete: 0
+name: 'Landing page'
+type: themag_landing_page
+description: "Use <em>landing pages</em> for high traffic pages with complex layouts, which must be stored in config.\r\n"
+help: 'To edit the layout of this Landing Page, use <a href="/admin/structure/layouts">Layout Library</a>.'
+new_revision: true
+preview_mode: 0
+display_submitted: false

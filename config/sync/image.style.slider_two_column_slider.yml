@@ -1,0 +1,17 @@
+uuid: 39d94e31-aca5-4bdf-a724-384928b1a462
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: slider_two_column_slider
+label: 'Slider - Two Column Slider (800x600)'
+effects:
+  f8f58558-0353-4dd9-8111-ac254e35f558:
+    uuid: f8f58558-0353-4dd9-8111-ac254e35f558
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 800
+      height: 600
+      crop_type: focal_point

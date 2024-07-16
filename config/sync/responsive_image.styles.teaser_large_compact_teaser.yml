@@ -1,0 +1,24 @@
+uuid: 29025695-d2f8-4f0c-a0ae-e65d59214411
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.large_compact_teaser
+    - image.style.medium_compact_teaser
+  theme:
+    - themag
+id: teaser_large_compact_teaser
+label: 'Teaser: Large Compact Teaser'
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: large_compact_teaser
+    breakpoint_id: themag.md
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: medium_compact_teaser
+    breakpoint_id: themag.xs
+    multiplier: 1x
+breakpoint_group: themag
+fallback_image_style: large_compact_teaser

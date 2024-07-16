@@ -1,0 +1,69 @@
+uuid: 16d9cba7-bb9c-4ea6-9610-ebe8509a1f04
+langcode: en
+status: true
+dependencies: {  }
+id: forms
+label: Forms
+targetEntityType: node
+targetBundle: themag_landing_page
+layout:
+  -
+    layout_id: themag_onecol_section
+    layout_settings:
+      context_mapping: {  }
+      section_bg: ''
+      section_padding: ''
+      section_margin: ''
+      section_custom_classes: 'forms section1'
+      container_style: container-full
+      row_custom_classes: ''
+      no_gutters: 1
+      column_widths: '12'
+      sticky_columns: null
+      first:
+        custom_classes: ''
+    components:
+      8a1c9747-e824-48b6-9463-3681effcfd0b:
+        uuid: 8a1c9747-e824-48b6-9463-3681effcfd0b
+        region: first
+        configuration:
+          id: 'views_block:header-block_10'
+          label: ''
+          label_display: '0'
+          provider: views
+          context_mapping: {  }
+          views_label: ''
+          items_per_page: none
+        weight: 1
+        additional: {  }
+    third_party_settings: {  }
+  -
+    layout_id: themag_onecol_section
+    layout_settings:
+      context_mapping: {  }
+      section_bg: white
+      section_padding: py-xsmall
+      section_margin: ''
+      section_custom_classes: 'forms section2'
+      container_style: container
+      row_custom_classes: ''
+      no_gutters: 1
+      column_widths: '12'
+      sticky_columns: null
+      first:
+        custom_classes: ''
+    components:
+      08aed6da-932a-461e-b1da-6451cc559edf:
+        uuid: 08aed6da-932a-461e-b1da-6451cc559edf
+        region: first
+        configuration:
+          id: 'views_block:forms-block_1'
+          label: ''
+          label_display: '0'
+          provider: views
+          context_mapping: {  }
+          views_label: ''
+          items_per_page: none
+        weight: 0
+        additional: {  }
+    third_party_settings: {  }

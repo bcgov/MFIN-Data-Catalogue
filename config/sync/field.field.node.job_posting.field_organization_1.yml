@@ -1,0 +1,29 @@
+uuid: 9969458c-4ec8-458e-9421-b23be62f3d57
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_organization_1
+    - node.type.job_posting
+    - taxonomy.vocabulary.organization
+id: node.job_posting.field_organization_1
+field_name: field_organization_1
+entity_type: node
+bundle: job_posting
+label: Organization
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      organization: organization
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

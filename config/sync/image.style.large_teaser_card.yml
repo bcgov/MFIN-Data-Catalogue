@@ -1,0 +1,17 @@
+uuid: 902e9ecf-a459-4800-97b0-2a9860e0b997
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: large_teaser_card
+label: 'Large Teaser Card (730×417)'
+effects:
+  7cdd5265-eb26-419f-b8cc-0c61f204eceb:
+    uuid: 7cdd5265-eb26-419f-b8cc-0c61f204eceb
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 730
+      height: 417
+      crop_type: focal_point

@@ -1,0 +1,12 @@
+uuid: f1d541e2-0393-4cd1-9605-3f42fcccaea8
+langcode: en
+status: true
+dependencies: {  }
+id: callout_warning
+label: 'Callout warning'
+image: themes/custom/themag_st/assets/ckeditor-templates/callout-warning.png
+description: ''
+html:
+  value: "<div class=\"callout callout-warning\">\r\n<p>Enter text here</p>\r\n</div>\r\n"
+  format: full_html
+weight: -8

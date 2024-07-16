@@ -1,0 +1,18 @@
+uuid: 5d6a006f-b526-455a-8ef1-b57cfcce0bd0
+langcode: en
+status: true
+dependencies: {  }
+id: dev
+label: Development
+description: ''
+weight: 0
+stackable: false
+no_patching: false
+storage: folder
+folder: ../config/split/dev
+module:
+  devel: 0
+theme: {  }
+complete_list: {  }
+partial_list:
+  - user.role.authenticated

@@ -1,0 +1,19 @@
+uuid: bccb8d34-75f1-4523-9152-7d2816039814
+langcode: en
+status: true
+dependencies:
+  module:
+    - layout_builder
+    - taxonomy
+id: taxonomy_term.layout_builder__layout
+field_name: layout_builder__layout
+entity_type: taxonomy_term
+type: layout_section
+settings: {  }
+module: layout_builder
+locked: true
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

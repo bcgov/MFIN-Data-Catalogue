@@ -1,0 +1,25 @@
+uuid: 10a46bfe-2849-46e6-beb4-e80f61e1ece4
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:menu:9fd50ecb-a9e5-47fd-9be4-8a96c490cabd'
+  module:
+    - block_content
+  theme:
+    - themag_st
+id: menuservicesprogramsblock2
+theme: themag_st
+region: hidden
+weight: 0
+provider: null
+plugin: 'block_content:9fd50ecb-a9e5-47fd-9be4-8a96c490cabd'
+settings:
+  id: 'block_content:9fd50ecb-a9e5-47fd-9be4-8a96c490cabd'
+  label: 'Menu - Services & Programs Block 2'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

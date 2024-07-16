@@ -1,0 +1,108 @@
+uuid: e8f52efd-2798-43ae-bf6e-6bbf5a87b42e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.medium_teaser_card_with_teaser_text
+    - field.field.node.article.body
+    - field.field.node.article.field_audience
+    - field.field.node.article.field_channel
+    - field.field.node.article.field_comment
+    - field.field.node.article.field_organization_1
+    - field.field.node.article.field_tags
+    - field.field.node.article.field_teaser_media
+    - field.field.node.article.layout_selection
+    - node.type.article
+  module:
+    - field_formatter
+    - field_formatter_class
+    - smart_trim
+    - user
+id: node.article.medium_teaser_card_with_teaser_text
+targetEntityType: node
+bundle: article
+mode: medium_teaser_card_with_teaser_text
+content:
+  body:
+    type: smart_trim
+    label: hidden
+    settings:
+      trim_length: 180
+      trim_type: chars
+      trim_suffix: ...
+      wrap_output: false
+      wrap_class: trimmed
+      more:
+        display_link: true
+        target_blank: false
+        link_trim_only: false
+        class: 'more-link mt-2'
+        text: 'Read article →'
+        aria_label: 'Read more about [node:title]'
+        token_browser: ''
+      summary_handler: trim
+      trim_options:
+        text: true
+        trim_zero: false
+        replace_tokens: false
+    third_party_settings:
+      field_formatter_class:
+        class: ''
+    weight: 2
+    region: content
+  field_channel:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_teaser_media:
+    type: field_formatter_with_inline_settings
+    label: hidden
+    settings:
+      field_name: field_image
+      type: image
+      settings:
+        image_link: ''
+        image_style: medium_teaser_card
+      label: hidden
+      link_to_entity: false
+    third_party_settings:
+      field_formatter_class:
+        class: ''
+    weight: 0
+    region: content
+  published_at:
+    type: timestamp
+    label: hidden
+    settings:
+      date_format: custom
+      custom_date_format: 'M d, Y'
+      timezone: ''
+      tooltip:
+        date_format: long
+        custom_date_format: ''
+      time_diff:
+        enabled: false
+        future_format: '@interval hence'
+        past_format: '@interval ago'
+        granularity: 2
+        refresh: 60
+    third_party_settings:
+      field_formatter_class:
+        class: ''
+    weight: 3
+    region: content
+hidden:
+  content_moderation_control: true
+  field_audience: true
+  field_comment: true
+  field_organization_1: true
+  field_tags: true
+  layout_selection: true
+  links: true
+  search_api_excerpt: true
+  shariff_field: true
+  workflow_buttons: true

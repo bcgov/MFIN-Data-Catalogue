@@ -1,0 +1,17 @@
+uuid: ed8bdeba-1812-4124-bf3b-58e530818084
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: slider_center_mode_slider
+label: 'Slider - Center Mode Slider (1200x600)'
+effects:
+  61055354-ad03-4ee9-b0a9-35cfe930adc3:
+    uuid: 61055354-ad03-4ee9-b0a9-35cfe930adc3
+    id: focal_point_crop
+    weight: 1
+    data:
+      width: 1200
+      height: 600
+      crop_type: focal_point

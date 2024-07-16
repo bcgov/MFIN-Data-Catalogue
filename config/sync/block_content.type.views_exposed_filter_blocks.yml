@@ -1,0 +1,8 @@
+uuid: 177aef95-e486-4f86-99c2-739e80a1b8a8
+langcode: en
+status: true
+dependencies: {  }
+id: views_exposed_filter_blocks
+label: 'Views exposed filter blocks'
+revision: 0
+description: 'Do not use. Reserved for the Administrator role only.'

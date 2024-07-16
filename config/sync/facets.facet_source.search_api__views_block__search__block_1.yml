@@ -1,0 +1,9 @@
+uuid: d515603f-4456-40c3-a3c4-755e5a065f26
+langcode: en
+status: true
+dependencies: {  }
+id: search_api__views_block__search__block_1
+name: 'search_api:views_block__search__block_1'
+filter_key: null
+url_processor: query_string
+breadcrumb: {  }

@@ -1,0 +1,25 @@
+uuid: e1702b8b-fbff-4fc2-8a79-e1d49eaa3188
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_icon
+    - node.type.service
+  module:
+    - fontawesome
+id: node.service.field_icon
+field_name: field_icon
+entity_type: node
+bundle: service
+label: Icon
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    icon_name: book-open
+    settings: 'a:3:{s:11:"fixed-width";s:5:"fa-fw";s:7:"masking";a:2:{s:4:"mask";s:0:"";s:5:"style";s:3:"far";}s:16:"power_transforms";a:3:{s:5:"scale";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_y";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_x";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}}}'
+    style: far
+default_value_callback: ''
+settings: {  }
+field_type: fontawesome_icon

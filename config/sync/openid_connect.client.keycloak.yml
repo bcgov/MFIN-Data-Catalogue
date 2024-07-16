@@ -1,0 +1,20 @@
+uuid: 3066ac70-0869-4e4f-81cb-a9414cc09d38
+langcode: en
+status: true
+dependencies: {  }
+id: keycloak
+label: 'Azure IDIR'
+plugin: generic
+settings:
+  client_id: '(-- Will be overridden by settings.php. --)'
+  client_secret: '(-- Will be overridden by settings.php. --)'
+  iss_allowed_domains: ''
+  issuer_url: ''
+  authorization_endpoint: 'https://WILL.BE.OVERRIDDEN.BY.settings.php'
+  token_endpoint: 'https://WILL.BE.OVERRIDDEN.BY.settings.php'
+  userinfo_endpoint: 'https://WILL.BE.OVERRIDDEN.BY.settings.php'
+  end_session_endpoint: 'https://WILL.BE.OVERRIDDEN.BY.settings.php'
+  scopes:
+    - openid
+    - email
+    - profile

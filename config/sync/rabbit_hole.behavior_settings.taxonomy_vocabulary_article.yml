@@ -1,0 +1,13 @@
+uuid: c1c317ff-7b19-400b-bf90-13bd68a16de3
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.article
+id: taxonomy_vocabulary_article
+targetEntityType: null
+bundle: null
+action: page_redirect
+no_bypass: null
+bypass_message: null
+configuration: {  }

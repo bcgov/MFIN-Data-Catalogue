@@ -1,27 +1,30 @@
-uuid: bb9cb427-1db3-4bd2-a133-28f6f056aa17
+uuid: 747b682a-31d5-4996-8c35-2a5bb9d476a4
 langcode: en
 status: true
 dependencies:
+  config:
+    - core.entity_view_mode.node.tiny_teaser_item
+    - node.type.article
   module:
     - node
     - user
 _core:
-  default_config_hash: YqZN5rc7XDQcFcInc8wkzuaHJmC5YvirhTmDcrarT6M
+  default_config_hash: tDcmzGfShE0XJbfwJzyA6lJTUYC6X4iVu887dgoFfDg
 id: content_recent
-label: 'Recent content'
+label: '(TM) Recent articles'
 module: node
-description: 'Recent content.'
-tag: default
+description: 'Block with three most recent articles.'
+tag: ''
 base_table: node_field_data
 base_field: nid
 display:
   default:
     id: default
-    display_title: Default
+    display_title: Master
     display_plugin: default
     position: 0
     display_options:
-      title: 'Recent content'
+      title: Latest
       fields:
         title:
           id: title
@@ -127,7 +130,7 @@ display:
         type: some
         options:
           offset: 0
-          items_per_page: 10
+          items_per_page: 3
       exposed_form:
         type: basic
         options:
@@ -158,20 +161,20 @@ display:
           content: 'No content available.'
           tokenize: false
       sorts:
-        changed:
-          id: changed
+        created:
+          id: created
           table: node_field_data
-          field: changed
+          field: created
           relationship: none
           group_type: group
           admin_label: ''
           entity_type: node
-          entity_field: changed
+          entity_field: created
           plugin_id: date
           order: DESC
           expose:
             label: ''
-            field_identifier: changed
+            field_identifier: created
           exposed: false
           granularity: second
       arguments: {  }
@@ -257,17 +260,62 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            article: article
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
       style:
         type: html_list
         options:
-          grouping: {  }
           row_class: ''
-          default_row_class: true
+          default_row_class: false
+          uses_fields: false
           type: ul
-          wrapper_class: item-list
+          wrapper_class: 'list list--tiny'
           class: ''
       row:
-        type: fields
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: tiny_teaser_item
       query:
         type: views_query
         options:
@@ -276,18 +324,9 @@ display:
           distinct: false
           replica: false
           query_tags: {  }
-      relationships:
-        uid:
-          id: uid
-          table: node_field_data
-          field: uid
-          relationship: none
-          group_type: group
-          admin_label: author
-          entity_type: node
-          entity_field: uid
-          plugin_id: standard
-          required: true
+      relationships: {  }
+      css_class: ''
+      show_admin_links: false
       use_more: false
       use_more_always: false
       use_more_text: More
@@ -307,11 +346,14 @@ display:
       tags: {  }
   block_1:
     id: block_1
-    display_title: Block
+    display_title: 'Most recent articles'
     display_plugin: block
     position: 1
     display_options:
+      display_description: 'List with 3 most recent articles.'
       display_extenders: {  }
+      block_description: 'Most recent articles'
+      block_category: '(TM) Blocks'
     cache_metadata:
       max-age: -1
       contexts:

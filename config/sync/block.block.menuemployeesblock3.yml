@@ -1,0 +1,25 @@
+uuid: 8c48fb05-852c-4a3f-8d3d-a175eb332451
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:menu:dd6c567f-2537-4be7-b809-4a51ab53118e'
+  module:
+    - block_content
+  theme:
+    - themag_st
+id: menuemployeesblock3
+theme: themag_st
+region: hidden
+weight: 0
+provider: null
+plugin: 'block_content:dd6c567f-2537-4be7-b809-4a51ab53118e'
+settings:
+  id: 'block_content:dd6c567f-2537-4be7-b809-4a51ab53118e'
+  label: 'Menu - Employees Block 3'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

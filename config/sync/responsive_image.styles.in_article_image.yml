@@ -1,0 +1,24 @@
+uuid: e5c0afd7-6773-4ebc-a830-51bbf3e93458
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.max_width_400px
+    - image.style.max_width_770px
+  theme:
+    - themag
+id: in_article_image
+label: 'In-Article Image'
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: max_width_770px
+    breakpoint_id: themag.md
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: max_width_400px
+    breakpoint_id: themag.xs
+    multiplier: 1x
+breakpoint_group: themag
+fallback_image_style: max_width_770px

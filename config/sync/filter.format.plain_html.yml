@@ -1,0 +1,16 @@
+uuid: 9938950a-a949-4b83-a17e-475e85cfc3dc
+langcode: en
+status: false
+dependencies: {  }
+name: 'Plain HTML'
+format: plain_html
+weight: -8
+filters:
+  slick_filter:
+    id: slick_filter
+    provider: slick
+    status: false
+    weight: 4
+    settings:
+      optionset: default
+      media_switch: ''

@@ -1,0 +1,41 @@
+uuid: a75b9e96-df8c-48ae-8e31-38afc99bd8c5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tags
+    - node.type.service
+    - taxonomy.vocabulary.tags
+  module:
+    - disable_field
+third_party_settings:
+  disable_field:
+    add_disable: roles_enable
+    add_roles:
+      - editor
+      - administrator
+    edit_disable: roles_enable
+    edit_roles:
+      - editor
+      - administrator
+id: node.service.field_tags
+field_name: field_tags
+entity_type: node
+bundle: service
+label: Tags
+description: 'Use tags to rank in the search results for keywords that are <b>not present in the title or body text</b>.<br> Enter multiple tags separated with a comma ",".'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      tags: tags
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,15 @@
+uuid: 0e124e76-27f6-4db0-ac93-f5a3a2a7d6a4
+langcode: en
+status: true
+dependencies: {  }
+name: max_width_400px
+label: 'In-Article Image 400px'
+effects:
+  66576a87-5e00-4588-80e3-8453737a5ace:
+    uuid: 66576a87-5e00-4588-80e3-8453737a5ace
+    id: image_scale
+    weight: 1
+    data:
+      width: 400
+      height: null
+      upscale: false

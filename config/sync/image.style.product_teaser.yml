@@ -1,0 +1,15 @@
+uuid: ac5da99a-d3f6-46b7-b082-65fd58e6a835
+langcode: en
+status: true
+dependencies: {  }
+name: product_teaser
+label: 'Product Teaser (370×370)'
+effects:
+  6374ded4-70d0-4377-ba77-5ff7a7bbf43c:
+    uuid: 6374ded4-70d0-4377-ba77-5ff7a7bbf43c
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 370
+      height: 370
+      anchor: center-center

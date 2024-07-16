@@ -1,0 +1,23 @@
+uuid: 48f1d156-c777-4b4f-9c32-fa37cf13ea06
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - themag_st
+id: themag_st_sitebranding_3
+theme: themag_st
+region: logo
+weight: -9
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: false
+  use_site_slogan: false
+visibility: {  }

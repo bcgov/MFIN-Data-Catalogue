@@ -1,38 +1,87 @@
-uuid: bf56d1a4-8108-4e9e-bee5-2d3d9afe32b9
+uuid: babf97ab-ff15-4777-b232-95fa4fa5ae72
 langcode: en
 status: true
 dependencies:
   config:
+    - field.field.user.user.field_branch
+    - field.field.user.user.field_division
+    - field.field.user.user.field_job_title
+    - field.field.user.user.field_linkedin
+    - field.field.user.user.field_ministry
+    - field.field.user.user.field_user_bio
+    - field.field.user.user.layout_builder__layout
     - field.field.user.user.user_picture
     - image.style.thumbnail
   module:
-    - image
+    - focal_point
+    - text
     - user
 _core:
-  default_config_hash: FaQ9Ptcpxpg30AtiqRDtl_8zbJArHP1LPfug_s59TOA
+  default_config_hash: K-1rBM8mTIkFp9RqOC2tMRUukOQ1xbRCfSKK8dEddnA
 id: user.user.default
 targetEntityType: user
 bundle: user
 mode: default
 content:
-  account:
-    weight: -10
+  field_branch:
+    type: string_textfield
+    weight: 2
     region: content
-  contact:
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_division:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_job_title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_ministry:
+    type: string_textfield
+    weight: 4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_user_bio:
+    type: text_textarea_with_summary
     weight: 5
     region: content
-  language:
-    weight: 0
-    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
   timezone:
     weight: 6
     region: content
   user_picture:
-    type: image_image
-    weight: -1
+    type: image_focal_point
+    weight: 0
     region: content
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
+      preview_link: false
+      offsets: '50,50'
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  account: true
+  contact: true
+  field_linkedin: true
+  language: true
+  layout_builder__layout: true
+  path: true

@@ -1,0 +1,8 @@
+uuid: 9393c8d8-382b-4cc9-a35e-bbb4440a2ecb
+langcode: en
+status: true
+dependencies: {  }
+name: Category
+vid: category
+description: 'Use categories to organize your forms, services and programs.'
+weight: -8

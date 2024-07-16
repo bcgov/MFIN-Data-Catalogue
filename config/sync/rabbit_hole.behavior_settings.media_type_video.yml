@@ -1,0 +1,13 @@
+uuid: 637d9068-477a-4e6e-a9dc-777a90ded8a2
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.video
+id: media_type_video
+targetEntityType: null
+bundle: null
+action: display_page
+no_bypass: null
+bypass_message: null
+configuration: {  }

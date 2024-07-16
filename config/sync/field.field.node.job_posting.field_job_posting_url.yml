@@ -1,0 +1,28 @@
+uuid: c21e86f2-e3f8-4735-be22-80ce51a863c9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_job_posting_url
+    - node.type.job_posting
+  module:
+    - disable_field
+    - link
+third_party_settings:
+  disable_field:
+    add_disable: none
+    edit_disable: none
+id: node.job_posting.field_job_posting_url
+field_name: field_job_posting_url
+entity_type: node
+bundle: job_posting
+label: 'Job posting URL'
+description: 'Example URL: https://bcpublicservice.hua.hrsmart.com/hr/ats/Posting/view/108298'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 0
+  link_type: 16
+field_type: link

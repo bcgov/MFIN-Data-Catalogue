@@ -1,0 +1,16 @@
+uuid: cd5f5b9f-11bb-484c-a759-e546fdd152ed
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+  enforced:
+    module:
+      - slick
+_core:
+  default_config_hash: '-Plpqk58vhNT0G0LUAQoW6AjvSxUl6myg817pn82IWk'
+id: media.slick
+label: 'Gallery Slider'
+description: ''
+targetEntityType: media
+cache: true

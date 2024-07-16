@@ -1,31 +1,36 @@
-uuid: 48e5b5d3-785d-4ffc-8fbe-331bcefe92f9
+uuid: 37ef8c7e-e1d7-4df7-85c7-d727d5b2f456
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.user.compact
+    - field.field.user.user.field_branch
+    - field.field.user.user.field_division
+    - field.field.user.user.field_job_title
+    - field.field.user.user.field_linkedin
+    - field.field.user.user.field_ministry
+    - field.field.user.user.field_user_bio
+    - field.field.user.user.layout_builder__layout
     - field.field.user.user.user_picture
-    - image.style.thumbnail
   module:
-    - image
     - user
 _core:
-  default_config_hash: 00zr_RBdTjPjBGITD3h4c1ESQZimjdVCcHGt1trLqIY
+  default_config_hash: '-cLsS3M3JycipXQt9rEb81_HxKneReoGuRh8ijcOPXs'
 id: user.user.compact
 targetEntityType: user
 bundle: user
 mode: compact
-content:
-  user_picture:
-    type: image
-    label: hidden
-    settings:
-      image_style: thumbnail
-      image_link: content
-      image_loading:
-        attribute: lazy
-    third_party_settings: {  }
-    weight: 0
-    region: content
+content: {  }
 hidden:
+  field_branch: true
+  field_division: true
+  field_job_title: true
+  field_linkedin: true
+  field_ministry: true
+  field_user_bio: true
+  layout_builder__layout: true
   member_for: true
+  profile_customer: true
+  realname: true
+  search_api_excerpt: true
+  user_picture: true

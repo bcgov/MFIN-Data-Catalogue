@@ -1,0 +1,24 @@
+uuid: 96dae560-4978-47a6-a038-fcf62bafecad
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_form_description
+    - filter.format.restricted_html
+    - media.type.form
+  module:
+    - text
+id: media.form.field_form_description
+field_name: field_form_description
+entity_type: media
+bundle: form
+label: 'Form description'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - restricted_html
+field_type: text_long

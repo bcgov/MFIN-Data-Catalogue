@@ -1,0 +1,41 @@
+uuid: 091900a8-7a57-4e7b-ad82-3e989d855c36
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.teaser_image.field_height
+    - field.field.media.teaser_image.field_image
+    - field.field.media.teaser_image.field_organization
+    - field.field.media.teaser_image.field_width
+    - media.type.teaser_image
+    - responsive_image.styles.in_article_image
+  module:
+    - field_formatter_class
+    - responsive_image
+id: media.teaser_image.default
+targetEntityType: media
+bundle: teaser_image
+mode: default
+content:
+  field_image:
+    type: responsive_image
+    label: visually_hidden
+    settings:
+      responsive_image_style: in_article_image
+      image_link: file
+      image_loading:
+        attribute: eager
+    third_party_settings:
+      field_formatter_class:
+        class: ''
+    weight: 0
+    region: content
+hidden:
+  created: true
+  field_height: true
+  field_organization: true
+  field_width: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true

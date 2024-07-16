@@ -1,0 +1,68 @@
+uuid: e5616901-2a9f-4805-a378-1c04d11feee5
+langcode: en
+status: false
+dependencies:
+  enforced:
+    module:
+      - slick
+id: gallery_slider
+name: gallery_slider
+weight: -10
+label: 'Gallery Slider'
+group: ''
+skin: ''
+breakpoints: 0
+optimized: false
+options:
+  options__active_tab: edit-options-settings
+  settings:
+    mobileFirst: true
+    asNavFor: ''
+    accessibility: true
+    adaptiveHeight: true
+    autoplay: false
+    pauseOnHover: true
+    pauseOnDotsHover: false
+    autoplaySpeed: 3000
+    arrows: true
+    prevArrow: ''
+    nextArrow: ''
+    downArrow: false
+    downArrowTarget: ''
+    downArrowOffset: 0
+    centerMode: false
+    centerPadding: 50px
+    dots: true
+    dotsClass: slick-dots
+    appendDots: $(element)
+    draggable: true
+    fade: false
+    focusOnSelect: false
+    infinite: true
+    initialSlide: 0
+    lazyLoad: ''
+    mouseWheel: false
+    randomize: false
+    respondTo: window
+    rtl: false
+    rows: 1
+    slidesPerRow: 1
+    slide: ''
+    slidesToShow: 1
+    slidesToScroll: 1
+    speed: 500
+    swipe: true
+    swipeToSlide: false
+    edgeFriction: 0.35
+    touchMove: true
+    touchThreshold: 5
+    useCSS: true
+    cssEase: ease
+    cssEaseBezier: ease
+    cssEaseOverride: ease
+    useTransform: true
+    easing: ''
+    variableWidth: false
+    vertical: false
+    verticalSwiping: false
+    waitForAnimate: true

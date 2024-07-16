@@ -1,0 +1,17 @@
+uuid: 24a73976-c61e-4c1f-a4c7-9e25dc52d695
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: paragraph_preview
+label: 'Paragraph Preview'
+effects:
+  5eafbe74-288d-4ab3-b4f3-4c35ef6b387e:
+    uuid: 5eafbe74-288d-4ab3-b4f3-4c35ef6b387e
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 150
+      height: 90
+      crop_type: focal_point

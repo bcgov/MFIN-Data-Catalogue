@@ -1,0 +1,74 @@
+uuid: 71aac378-be64-4577-be1b-93178efa4c2c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.job_posting.field_closing_date
+    - field.field.node.job_posting.field_job_classification
+    - field.field.node.job_posting.field_job_posting_url
+    - field.field.node.job_posting.field_job_type
+    - field.field.node.job_posting.field_organization_1
+    - node.type.job_posting
+  module:
+    - datetime
+    - link
+    - options
+    - user
+id: node.job_posting.default
+targetEntityType: node
+bundle: job_posting
+mode: default
+content:
+  field_closing_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_job_classification:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_job_posting_url:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_job_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_organization_1:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  published_at: true
+  search_api_excerpt: true
+  shariff_field: true

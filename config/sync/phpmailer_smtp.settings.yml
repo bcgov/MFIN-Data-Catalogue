@@ -1,0 +1,22 @@
+_core:
+  default_config_hash: Wkmn-jEru9OubwF4XTXJNzX89A62mX8PlyDco6TMYl4
+smtp_host: APPS.SMTP.GOV.BC.CA
+smtp_hostbackup: ''
+smtp_port: 25
+smtp_protocol: ''
+smtp_username: ''
+smtp_password: ''
+smtp_hide_password: false
+smtp_fromname: ''
+smtp_always_replyto: false
+smtp_keepalive: false
+smtp_debug: 4
+smtp_debug_log: true
+phpmailer_smtp_test: ''
+smtp_ssl_verify_peer: true
+smtp_ssl_verify_peer_name: true
+smtp_ssl_allow_self_signed: false
+smtp_envelope_sender_option: default
+smtp_envelope_sender: ''
+smtp_ehlo_host: ''
+smtp_timeout: 30

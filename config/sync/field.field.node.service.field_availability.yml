@@ -1,0 +1,19 @@
+uuid: 0ddddc1f-845b-4f67-aee0-2e2e11010eb4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_availability
+    - node.type.service
+id: node.service.field_availability
+field_name: field_availability
+entity_type: node
+bundle: service
+label: Availability
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

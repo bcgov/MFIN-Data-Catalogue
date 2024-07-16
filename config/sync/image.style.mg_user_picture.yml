@@ -1,0 +1,17 @@
+uuid: 5bb0acb5-42ab-4cfd-952f-3ae3f27c9ab1
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: mg_user_picture
+label: 'User profile picture'
+effects:
+  1a5fa2ee-3145-4166-a04c-198a73e9e942:
+    uuid: 1a5fa2ee-3145-4166-a04c-198a73e9e942
+    id: focal_point_scale_and_crop
+    weight: 2
+    data:
+      width: 300
+      height: 300
+      crop_type: focal_point

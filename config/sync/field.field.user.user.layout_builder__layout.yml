@@ -1,0 +1,21 @@
+uuid: d20936d1-f86b-41d7-9cca-c3d777273cfe
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.layout_builder__layout
+  module:
+    - layout_builder
+    - user
+id: user.user.layout_builder__layout
+field_name: layout_builder__layout
+entity_type: user
+bundle: user
+label: Layout
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: layout_section

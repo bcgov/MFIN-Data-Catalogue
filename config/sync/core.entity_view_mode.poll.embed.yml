@@ -1,0 +1,11 @@
+uuid: 32f99849-9c08-4c76-a28d-ad12bd66631e
+langcode: en
+status: true
+dependencies:
+  module:
+    - poll
+id: poll.embed
+label: Embed
+description: ''
+targetEntityType: poll
+cache: true

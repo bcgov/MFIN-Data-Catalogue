@@ -1,0 +1,17 @@
+uuid: 864154d9-2ec7-4a90-928a-e70fa5c11e22
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: small_teaser_item
+label: 'Small Teaser Item (170x170)'
+effects:
+  5dde7aa2-9e23-4b97-aa4c-bcd43a141812:
+    uuid: 5dde7aa2-9e23-4b97-aa4c-bcd43a141812
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 170
+      height: 170
+      crop_type: focal_point

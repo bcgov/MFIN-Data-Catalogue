@@ -1,0 +1,17 @@
+uuid: 5e9acb35-7070-4a06-b290-c033d2c68650
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: medium_teaser_card_square
+label: 'Medium Teaser Card - Square (370x370)'
+effects:
+  3fcf2ace-f203-4597-8aad-374868014564:
+    uuid: 3fcf2ace-f203-4597-8aad-374868014564
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 370
+      height: 370
+      crop_type: focal_point

@@ -1,0 +1,283 @@
+uuid: 63fc1c91-a752-493e-b919-adafabc6282e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_display.comment.comment.default
+    - core.entity_view_mode.node.full
+    - field.field.node.event.body
+    - field.field.node.event.field_audience
+    - field.field.node.event.field_comment
+    - field.field.node.event.field_event_address
+    - field.field.node.event.field_event_city
+    - field.field.node.event.field_event_date_smart
+    - field.field.node.event.field_event_map_address
+    - field.field.node.event.field_event_online
+    - field.field.node.event.field_organization_1
+    - field.field.node.event.field_tags
+    - field.field.node.event.field_teaser_media
+    - node.type.event
+    - views.view.events
+    - views.view.header
+  module:
+    - comment
+    - layout_builder
+    - layout_library
+    - options
+    - themag_layouts
+    - user
+    - views
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: themag_onecol_section
+        layout_settings:
+          context_mapping: {  }
+          section_bg: ''
+          section_padding: ''
+          section_margin: my-default
+          section_custom_classes: ''
+          container_style: container-full
+          row_custom_classes: ''
+          no_gutters: 1
+          column_widths: '12'
+          sticky_columns: null
+          first:
+            custom_classes: ''
+        components:
+          406e7149-95eb-4c38-90b8-3ac499df6e87:
+            uuid: 406e7149-95eb-4c38-90b8-3ac499df6e87
+            region: first
+            configuration:
+              id: 'views_block:header-block_4'
+              label: ''
+              label_display: '0'
+              provider: views
+              context_mapping: {  }
+              views_label: ''
+              items_per_page: none
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: themag_twocol_section
+        layout_settings:
+          context_mapping: {  }
+          section_bg: ''
+          section_padding: ''
+          section_margin: ''
+          section_custom_classes: mb-6
+          container_style: container
+          row_custom_classes: ''
+          no_gutters: 0
+          column_widths: 8-4
+          sticky_columns: 0
+          first:
+            custom_classes: ''
+          second:
+            custom_classes: ''
+        components:
+          d015a603-ccc2-409a-b4d5-d9c5c3fa51ff:
+            uuid: d015a603-ccc2-409a-b4d5-d9c5c3fa51ff
+            region: first
+            configuration:
+              id: 'field_block:node:event:body'
+              label: 'Event Description'
+              label_display: visible
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: -10
+            additional: {  }
+          5f3102d7-d52c-4ea3-ac3b-078e8bc1cbae:
+            uuid: 5f3102d7-d52c-4ea3-ac3b-078e8bc1cbae
+            region: first
+            configuration:
+              id: 'field_block:node:event:field_tags'
+              label: Tags
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_label
+                label: inline
+                settings:
+                  link: true
+                third_party_settings: {  }
+            weight: -9
+            additional: {  }
+          36fd195d-16f8-4ebd-ae8b-f8c5c3b3858e:
+            uuid: 36fd195d-16f8-4ebd-ae8b-f8c5c3b3858e
+            region: second
+            configuration:
+              id: 'views_block:events-block_2'
+              label: ''
+              label_display: visible
+              provider: views
+              context_mapping: {  }
+              views_label: ''
+              items_per_page: none
+            weight: 1
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: themag_onecol_section
+        layout_settings:
+          context_mapping: {  }
+          section_bg: gray-light
+          section_padding: ''
+          section_margin: ''
+          section_custom_classes: ''
+          container_style: container-full
+          row_custom_classes: ''
+          no_gutters: 1
+          column_widths: '12'
+          sticky_columns: null
+          first:
+            custom_classes: ''
+        components:
+          0b787f1d-a0df-4258-92e7-8d2f6de10840:
+            uuid: 0b787f1d-a0df-4258-92e7-8d2f6de10840
+            region: first
+            configuration:
+              id: 'field_block:node:event:field_event_map_address'
+              label: 'Event Map Address'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: simple_gmap
+                label: hidden
+                settings:
+                  include_map: true
+                  include_static_map: false
+                  include_link: false
+                  include_text: false
+                  iframe_height: '400'
+                  iframe_width: 100%
+                  iframe_title: ''
+                  static_scale: 1
+                  zoom_level: 14
+                  link_text: 'View larger map'
+                  map_type: m
+                  langcode: en
+                  apikey: ''
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: themag_onecol_section
+        layout_settings:
+          context_mapping: {  }
+          section_bg: gray-light
+          section_padding: py-xsmall
+          section_margin: ''
+          section_custom_classes: ''
+          container_style: container
+          row_custom_classes: ''
+          no_gutters: 0
+          column_widths: '9'
+          sticky_columns: null
+          first:
+            custom_classes: ''
+        components:
+          7aa28fbe-985e-4066-85fa-2ca85774aad5:
+            uuid: 7aa28fbe-985e-4066-85fa-2ca85774aad5
+            region: first
+            configuration:
+              id: 'field_block:node:event:field_comment'
+              label: Comments
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: comment_default
+                label: hidden
+                settings:
+                  view_mode: default
+                  pager_id: 0
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+  layout_library:
+    enable: false
+id: node.event.full
+targetEntityType: node
+bundle: event
+mode: full
+content:
+  field_comment:
+    type: comment_default
+    label: above
+    settings:
+      view_mode: default
+      pager_id: 0
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  field_event_online:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_tags:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_teaser_media:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 109
+    region: content
+  flag_event_attendance:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 10
+    region: first
+  flag_interested_event:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 10
+    region: first
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  body: true
+  field_audience: true
+  field_event_address: true
+  field_event_city: true
+  field_event_date_smart: true
+  field_event_map_address: true
+  field_organization_1: true
+  published_at: true
+  search_api_excerpt: true
+  shariff_field: true

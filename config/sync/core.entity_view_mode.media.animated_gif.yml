@@ -1,0 +1,11 @@
+uuid: 1cfa72c4-ab0c-4aff-8aca-1e5e9f481979
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.animated_gif
+label: 'Animated GIF'
+description: ''
+targetEntityType: media
+cache: true

@@ -1,0 +1,54 @@
+uuid: 4140f1d2-2d31-44af-86b4-327c3a15e667
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.article.field_color
+    - field.field.taxonomy_term.article.field_teaser_media
+    - taxonomy.vocabulary.article
+  module:
+    - color_field
+    - layout_builder
+    - layout_library
+    - text
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+  layout_library:
+    enable: false
+id: taxonomy_term.article.default
+targetEntityType: taxonomy_term
+bundle: article
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_color:
+    type: color_field_formatter_css
+    label: above
+    settings:
+      selector: body
+      property: background-color
+      important: '1'
+      opacity: true
+      advanced: false
+      css: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_teaser_media:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  search_api_excerpt: true

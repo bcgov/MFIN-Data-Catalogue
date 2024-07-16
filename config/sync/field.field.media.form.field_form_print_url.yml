@@ -1,0 +1,19 @@
+uuid: 769998b9-726e-47a8-9158-eb35c0c076ea
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_form_print_url
+    - media.type.form
+id: media.form.field_form_print_url
+field_name: field_form_print_url
+entity_type: media
+bundle: form
+label: 'Link to form (print, publicly accessible)'
+description: 'Use this field to link to a PDF, Excel or Word form hosted on an external site.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

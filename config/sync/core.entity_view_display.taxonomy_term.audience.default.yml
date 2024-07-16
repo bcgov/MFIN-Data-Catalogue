@@ -1,0 +1,32 @@
+uuid: 09c87e78-560f-4762-a2aa-c4c5650da376
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.audience.field_icon
+    - taxonomy.vocabulary.audience
+  module:
+    - fontawesome
+    - text
+id: taxonomy_term.audience.default
+targetEntityType: taxonomy_term
+bundle: audience
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_icon:
+    type: fontawesome_icon_formatter
+    label: above
+    settings:
+      layers: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  search_api_excerpt: true

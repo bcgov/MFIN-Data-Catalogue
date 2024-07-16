@@ -1,0 +1,23 @@
+uuid: c375129d-bbaa-4660-afda-bc55b446b71b
+langcode: en
+status: true
+dependencies: {  }
+name: blue_diagonals_overlay
+label: 'Blue Diagonals Overlay (1600 x 600)'
+effects:
+  71576238-9e00-4a01-b479-f01e4712e904:
+    uuid: 71576238-9e00-4a01-b479-f01e4712e904
+    id: image_scale
+    weight: 1
+    data:
+      width: null
+      height: 600
+      upscale: true
+  fe238550-9a1d-4108-a301-87dce2cd9b4f:
+    uuid: fe238550-9a1d-4108-a301-87dce2cd9b4f
+    id: image_crop
+    weight: 2
+    data:
+      width: 1600
+      height: 600
+      anchor: right-center

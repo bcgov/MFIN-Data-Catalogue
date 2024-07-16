@@ -1,0 +1,255 @@
+uuid: 53740831-0e51-424d-82ad-70290597f525
+langcode: en
+status: true
+dependencies:
+  config:
+    - entityqueue.entity_queue.featured_items
+    - entityqueue.entity_queue.home_articles_bottom
+    - entityqueue.entity_queue.home_articles_top
+    - entityqueue.entity_queue.home_page_organizations
+    - filter.format.basic_html
+    - filter.format.full_html
+    - filter.format.html
+    - filter.format.restricted_html
+    - filter.format.staff
+    - media.type.document
+    - media.type.form
+    - media.type.gallery
+    - media.type.image
+    - media.type.teaser_image
+    - media.type.vector_image
+    - media.type.video
+    - node.type.article
+    - node.type.event
+    - node.type.job_posting
+    - node.type.organization
+    - node.type.page
+    - node.type.post
+    - node.type.program
+    - node.type.service
+    - node.type.themag_landing_page
+    - taxonomy.vocabulary.category
+    - taxonomy.vocabulary.organization
+    - taxonomy.vocabulary.tags
+    - workflows.workflow.editorial
+  module:
+    - block
+    - block_content_permissions
+    - bootstrap_site_alert
+    - comment
+    - content_moderation
+    - contextual
+    - entity_usage
+    - entityqueue
+    - environment_indicator
+    - field_permissions
+    - filter
+    - media
+    - moderation_sidebar
+    - node
+    - path
+    - poll
+    - publication_date
+    - quick_node_clone
+    - redirect
+    - role_delegation
+    - system
+    - taxonomy
+    - toolbar
+id: editor
+label: Editor
+weight: -7
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access content'
+  - 'access content overview'
+  - 'access contextual links'
+  - 'access entity usage statistics'
+  - 'access environment indicator'
+  - 'access media overview'
+  - 'access poll overview'
+  - 'access site reports'
+  - 'access taxonomy overview'
+  - 'access toolbar'
+  - 'administer blocks'
+  - 'administer bootstrap site alerts'
+  - 'administer comments'
+  - 'administer entityqueue'
+  - 'administer menu'
+  - 'administer nodes'
+  - 'administer polls'
+  - 'administer redirects'
+  - 'administer themes'
+  - 'administer users'
+  - 'assign author role'
+  - 'cancel account'
+  - 'change own username'
+  - 'clone article content'
+  - 'clone event content'
+  - 'clone organization content'
+  - 'clone page content'
+  - 'clone program content'
+  - 'clone service content'
+  - 'clone themag_landing_page content'
+  - 'create article content'
+  - 'create content block content'
+  - 'create document media'
+  - 'create event content'
+  - 'create field_tags'
+  - 'create form media'
+  - 'create gallery media'
+  - 'create image media'
+  - 'create job_posting content'
+  - 'create organization content'
+  - 'create page content'
+  - 'create polls'
+  - 'create post content'
+  - 'create program content'
+  - 'create service content'
+  - 'create teaser_image media'
+  - 'create terms in category'
+  - 'create terms in organization'
+  - 'create terms in tags'
+  - 'create themag_landing_page content'
+  - 'create url aliases'
+  - 'create vector_image media'
+  - 'create video media'
+  - 'delete all revisions'
+  - 'delete any article content'
+  - 'delete any content block content'
+  - 'delete any document media'
+  - 'delete any event content'
+  - 'delete any form media'
+  - 'delete any gallery media'
+  - 'delete any image media'
+  - 'delete any job_posting content'
+  - 'delete any organization content'
+  - 'delete any page content'
+  - 'delete any post content'
+  - 'delete any program content'
+  - 'delete any service content'
+  - 'delete any teaser_image media'
+  - 'delete any themag_landing_page content'
+  - 'delete any vector_image media'
+  - 'delete any video media'
+  - 'delete article revisions'
+  - 'delete event revisions'
+  - 'delete job_posting revisions'
+  - 'delete media'
+  - 'delete organization revisions'
+  - 'delete own article content'
+  - 'delete own document media'
+  - 'delete own event content'
+  - 'delete own form media'
+  - 'delete own gallery media'
+  - 'delete own image media'
+  - 'delete own job_posting content'
+  - 'delete own organization content'
+  - 'delete own page content'
+  - 'delete own post content'
+  - 'delete own program content'
+  - 'delete own service content'
+  - 'delete own teaser_image media'
+  - 'delete own themag_landing_page content'
+  - 'delete own vector_image media'
+  - 'delete own video media'
+  - 'delete page revisions'
+  - 'delete post revisions'
+  - 'delete program revisions'
+  - 'delete service revisions'
+  - 'delete terms in tags'
+  - 'delete themag_landing_page revisions'
+  - 'edit any article content'
+  - 'edit any document media'
+  - 'edit any event content'
+  - 'edit any form media'
+  - 'edit any gallery media'
+  - 'edit any image media'
+  - 'edit any job_posting content'
+  - 'edit any organization content'
+  - 'edit any page content'
+  - 'edit any post content'
+  - 'edit any program content'
+  - 'edit any service content'
+  - 'edit any teaser_image media'
+  - 'edit any themag_landing_page content'
+  - 'edit any vector_image media'
+  - 'edit any video media'
+  - 'edit field_tags'
+  - 'edit own article content'
+  - 'edit own document media'
+  - 'edit own event content'
+  - 'edit own field_tags'
+  - 'edit own form media'
+  - 'edit own gallery media'
+  - 'edit own image media'
+  - 'edit own job_posting content'
+  - 'edit own organization content'
+  - 'edit own page content'
+  - 'edit own polls'
+  - 'edit own post content'
+  - 'edit own program content'
+  - 'edit own service content'
+  - 'edit own teaser_image media'
+  - 'edit own themag_landing_page content'
+  - 'edit own vector_image media'
+  - 'edit own video media'
+  - 'edit terms in category'
+  - 'edit terms in organization'
+  - 'edit terms in tags'
+  - 'manipulate all entityqueues'
+  - 'manipulate entityqueues'
+  - 'revert all revisions'
+  - 'revert article revisions'
+  - 'revert event revisions'
+  - 'revert job_posting revisions'
+  - 'revert organization revisions'
+  - 'revert page revisions'
+  - 'revert post revisions'
+  - 'revert program revisions'
+  - 'revert service revisions'
+  - 'revert themag_landing_page revisions'
+  - 'select account cancellation method'
+  - 'set article published on date'
+  - 'update any basic block content'
+  - 'update any content block content'
+  - 'update any menu block content'
+  - 'update any views_exposed_filter_blocks block content'
+  - 'update featured_items entityqueue'
+  - 'update home_articles_bottom entityqueue'
+  - 'update home_articles_top entityqueue'
+  - 'update home_page_organizations entityqueue'
+  - 'update media'
+  - 'use editorial transition delete'
+  - 'use editorial transition publish'
+  - 'use editorial transition restore'
+  - 'use editorial transition save_draft'
+  - 'use editorial transition save_unpublished'
+  - 'use editorial transition unpublish'
+  - 'use moderation sidebar'
+  - 'use text format basic_html'
+  - 'use text format full_html'
+  - 'use text format html'
+  - 'use text format restricted_html'
+  - 'use text format staff'
+  - 'view all revisions'
+  - 'view any unpublished content'
+  - 'view article revisions'
+  - 'view event revisions'
+  - 'view field_tags'
+  - 'view job_posting revisions'
+  - 'view media'
+  - 'view organization revisions'
+  - 'view own field_tags'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view page revisions'
+  - 'view poll results'
+  - 'view post revisions'
+  - 'view program revisions'
+  - 'view restricted block content'
+  - 'view service revisions'
+  - 'view the administration theme'
+  - 'view themag_landing_page revisions'
+  - 'view user email addresses'

@@ -1,0 +1,38 @@
+uuid: ad3ec855-e8cb-4cf7-a884-94b9b9c4915b
+langcode: en
+status: true
+dependencies: {  }
+id: event_calendar
+label: 'Event calendar'
+targetEntityType: node
+targetBundle: themag_landing_page
+layout:
+  -
+    layout_id: themag_onecol_section
+    layout_settings:
+      section_bg: ''
+      section_padding: py-large
+      section_margin: my-default
+      section_custom_classes: ''
+      container_style: container
+      row_custom_classes: ''
+      no_gutters: 0
+      column_widths: '12'
+      sticky_columns: null
+      first:
+        custom_classes: ''
+    components:
+      5ad4b3d5-b970-4953-99d3-a7704437417e:
+        uuid: 5ad4b3d5-b970-4953-99d3-a7704437417e
+        region: first
+        configuration:
+          id: 'views_block:events-block_3'
+          label: ''
+          label_display: '0'
+          provider: views
+          context_mapping: {  }
+          views_label: ''
+          items_per_page: none
+        weight: 1
+        additional: {  }
+    third_party_settings: {  }

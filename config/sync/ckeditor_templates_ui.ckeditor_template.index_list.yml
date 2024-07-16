@@ -1,0 +1,12 @@
+uuid: cf1c46a7-1ba1-463d-8e05-0977d75f2b02
+langcode: en
+status: true
+dependencies: {  }
+id: index_list
+label: 'On this page'
+image: themes/custom/themag_st/assets/ckeditor-templates/on-this-page.png
+description: ''
+html:
+  value: "<div class=\"index-list\">\r\n<ul>\r\n\t<li>Anchor link 1</li>\r\n\t<li>Anchor link 2</li>\r\n\t<li>Anchor link 3</li>\r\n\t<li>Anchor link 4</li>\r\n</ul>\r\n</div>\r\n"
+  format: full_html
+weight: -7

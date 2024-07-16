@@ -1,0 +1,42 @@
+uuid: af2c5c35-b19b-4c47-933e-ccc376b2ebf7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.video.field_media_video_file
+    - field.field.media.video.field_organization
+    - media.type.video
+  module:
+    - blazy
+    - field_formatter_class
+    - file
+id: media.video.default
+targetEntityType: media
+bundle: video
+mode: default
+content:
+  field_media_video_file:
+    type: file_video
+    label: hidden
+    settings:
+      controls: true
+      autoplay: false
+      loop: false
+      multiple_file_display_type: tags
+      muted: false
+      width: 640
+      height: 360
+    third_party_settings:
+      field_formatter_class:
+        class: 'd-flex justify-content-center'
+      blazy:
+        blazy: false
+    weight: 0
+    region: content
+hidden:
+  created: true
+  field_organization: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true

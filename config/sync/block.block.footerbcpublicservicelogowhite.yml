@@ -1,0 +1,25 @@
+uuid: 8aaf6b5a-5950-4c67-904a-d70ddaa2f65f
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:4d372b3d-eef8-4b24-a62d-c292b28534d6'
+  module:
+    - block_content
+  theme:
+    - themag_st
+id: footerbcpublicservicelogowhite
+theme: themag_st
+region: footer_third
+weight: -13
+provider: null
+plugin: 'block_content:4d372b3d-eef8-4b24-a62d-c292b28534d6'
+settings:
+  id: 'block_content:4d372b3d-eef8-4b24-a62d-c292b28534d6'
+  label: 'Footer - BC Public Service Logo White'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

@@ -1,0 +1,17 @@
+uuid: bbb5b7ed-cf5f-4a8e-88b3-4355107caddf
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: mg_user_profile_picture_thumbnail
+label: 'User profile picture (thumbnail)'
+effects:
+  93439f2f-de76-4a2b-8760-62ce78922296:
+    uuid: 93439f2f-de76-4a2b-8760-62ce78922296
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 100
+      height: 100
+      crop_type: focal_point

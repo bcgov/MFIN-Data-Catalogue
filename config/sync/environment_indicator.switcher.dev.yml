@@ -1,0 +1,11 @@
+uuid: 612d627d-8df4-4c10-81a2-8722f59a7525
+langcode: en
+status: true
+dependencies: {  }
+machine: dev
+description: null
+name: Dev
+weight: 0
+url: 'https://dev.intranet.fin.gov.bc.ca'
+fg_color: '#1E4E9C'
+bg_color: '#9EFF91'

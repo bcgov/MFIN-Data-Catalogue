@@ -1,0 +1,12 @@
+uuid: b68e9918-9fe9-457d-b4e6-1f546f425d2c
+langcode: en
+status: true
+dependencies: {  }
+id: contact_ministry_of_finance
+label: 'General Enquiries'
+recipients:
+  - employee.communications@gov.bc.ca
+reply: ''
+weight: 0
+message: ''
+redirect: /home

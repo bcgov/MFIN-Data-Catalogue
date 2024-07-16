@@ -1,11 +1,11 @@
 _core:
-  default_config_hash: t7clj3mzmOGrXX0HuCH5usf0vEqRtnMTBFVBIEmZ5pc
+  default_config_hash: V9UurX2GPT05NWKG9f2GWQqFG2TRG8vczidwjpy7Woo
 first_day: 0
 country:
-  default: ''
+  default: CA
 timezone:
   default: America/Vancouver
   user:
-    configurable: true
+    configurable: false
     default: 0
     warn: false

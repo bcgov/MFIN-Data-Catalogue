@@ -1,0 +1,37 @@
+uuid: 6fec7abf-3127-4719-8732-1b617f6ce333
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+    - user
+  theme:
+    - themag_st
+id: tabs
+theme: themag_st
+region: content_administration
+weight: 0
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Tabs (community content)'
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility:
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      authenticated: authenticated
+      author: author
+      editor: editor
+      administrator: administrator
+  request_path:
+    id: request_path
+    negate: false
+    pages: '/user/*'

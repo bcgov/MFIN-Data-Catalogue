@@ -1,0 +1,22 @@
+uuid: 1e402919-9ffd-41d6-ae3e-00a8a4f325fd
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: org
+label: Organization
+type: 'canonical_entities:taxonomy_term'
+pattern: '/organization/tag/[term:field_synonym:0]'
+selection_criteria:
+  b822f903-0bbd-4ff3-a4d3-87a8fdc56e89:
+    id: 'entity_bundle:taxonomy_term'
+    negate: false
+    uuid: b822f903-0bbd-4ff3-a4d3-87a8fdc56e89
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    bundles:
+      organization: organization
+selection_logic: and
+weight: -7
+relationships: {  }

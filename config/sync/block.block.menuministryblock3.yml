@@ -1,0 +1,25 @@
+uuid: 3c83443d-4e78-4e77-96a3-ca6fbbfe81d3
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:menu:e7074ea7-7007-469a-b9e2-ef75070f4f13'
+  module:
+    - block_content
+  theme:
+    - themag_st
+id: menuministryblock3
+theme: themag_st
+region: hidden
+weight: 0
+provider: null
+plugin: 'block_content:e7074ea7-7007-469a-b9e2-ef75070f4f13'
+settings:
+  id: 'block_content:e7074ea7-7007-469a-b9e2-ef75070f4f13'
+  label: 'Menu - Ministry Block 3'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

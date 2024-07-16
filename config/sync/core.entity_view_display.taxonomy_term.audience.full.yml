@@ -1,0 +1,33 @@
+uuid: 353d6837-ed7b-4d17-833d-5ad95861fbad
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.full
+    - field.field.taxonomy_term.audience.field_icon
+    - taxonomy.vocabulary.audience
+  module:
+    - layout_builder
+    - layout_library
+    - text
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+  layout_library:
+    enable: false
+id: taxonomy_term.audience.full
+targetEntityType: taxonomy_term
+bundle: audience
+mode: full
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_icon: true
+  search_api_excerpt: true

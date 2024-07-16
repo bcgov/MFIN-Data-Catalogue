@@ -1,0 +1,20 @@
+uuid: bce11da5-a397-4291-9b86-78a014aae723
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_branch
+  module:
+    - user
+id: user.user.field_branch
+field_name: field_branch
+entity_type: user
+bundle: user
+label: Branch
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

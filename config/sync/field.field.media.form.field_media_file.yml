@@ -1,0 +1,47 @@
+uuid: feff2e3e-b7fa-4d7b-916a-944c181c80c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_media_file
+    - media.type.form
+  module:
+    - file
+    - filefield_paths
+third_party_settings:
+  filefield_paths:
+    enabled: true
+    file_path:
+      value: forms
+      options:
+        slashes: false
+        pathauto: false
+        transliterate: false
+    file_name:
+      value: '[media:field_form_number:value].[file:ffp-extension-original]'
+      options:
+        slashes: true
+        pathauto: true
+        transliterate: true
+    redirect: false
+    retroactive_update: true
+    active_updating: true
+    replace: 1
+id: media.form.field_media_file
+field_name: field_media_file
+entity_type: media
+bundle: form
+label: 'Upload form (print, government access only)'
+description: 'Use this field to upload a PDF, Excel or Word form to this site.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: forms
+  file_extensions: 'pdf doc docx docm dot dotm dotx xls xlsx xlsm xlt xltm xltx'
+  max_filesize: '10 MB'
+  description_field: false
+field_type: file

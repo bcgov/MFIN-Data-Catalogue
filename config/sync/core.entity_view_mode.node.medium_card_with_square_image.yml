@@ -1,0 +1,11 @@
+uuid: eb3b763d-39ed-4c6e-9e0d-ef1e22a27d21
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.medium_card_with_square_image
+label: 'Medium Card With Square Image'
+description: ''
+targetEntityType: node
+cache: true

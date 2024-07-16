@@ -1,0 +1,157 @@
+uuid: fd269c4f-bc26-47bc-8d4d-a6b0ca66fcdc
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.basic_html
+    - filter.format.restricted_html
+    - filter.format.staff
+    - media.type.document
+    - media.type.form
+    - media.type.gallery
+    - media.type.image
+    - media.type.teaser_image
+    - media.type.vector_image
+    - media.type.video
+    - node.type.article
+    - node.type.event
+    - node.type.job_posting
+    - node.type.organization
+    - node.type.page
+    - node.type.post
+    - node.type.program
+    - node.type.service
+    - workflows.workflow.editorial
+  module:
+    - block
+    - block_content_permissions
+    - block_permissions
+    - content_moderation
+    - entity_usage
+    - environment_indicator
+    - field_permissions
+    - filter
+    - media
+    - moderation_sidebar
+    - node
+    - poll
+    - publication_date
+    - quick_node_clone
+    - role_delegation
+    - system
+    - toolbar
+id: author
+label: Author
+weight: -8
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access content overview'
+  - 'access entity usage statistics'
+  - 'access environment indicator'
+  - 'access media overview'
+  - 'access poll overview'
+  - 'access toolbar'
+  - 'administer blocks'
+  - 'administer blocks provided by block_content'
+  - 'administer nodes'
+  - 'administer polls'
+  - 'assign author role'
+  - 'clone article content'
+  - 'clone page content'
+  - 'clone program content'
+  - 'clone service content'
+  - 'create article content'
+  - 'create content block content'
+  - 'create document media'
+  - 'create event content'
+  - 'create field_tags'
+  - 'create form media'
+  - 'create gallery media'
+  - 'create image media'
+  - 'create job_posting content'
+  - 'create page content'
+  - 'create polls'
+  - 'create post content'
+  - 'create program content'
+  - 'create service content'
+  - 'create vector_image media'
+  - 'create video media'
+  - 'delete any content block content'
+  - 'delete any vector_image media'
+  - 'delete media'
+  - 'delete own article content'
+  - 'delete own document media'
+  - 'delete own event content'
+  - 'delete own form media'
+  - 'delete own gallery media'
+  - 'delete own image media'
+  - 'delete own job_posting content'
+  - 'delete own page content'
+  - 'delete own post content'
+  - 'delete own program content'
+  - 'delete own service content'
+  - 'delete own teaser_image media'
+  - 'delete own vector_image media'
+  - 'delete own video media'
+  - 'edit any article content'
+  - 'edit any document media'
+  - 'edit any form media'
+  - 'edit any gallery media'
+  - 'edit any image media'
+  - 'edit any organization content'
+  - 'edit any page content'
+  - 'edit any program content'
+  - 'edit any service content'
+  - 'edit any vector_image media'
+  - 'edit any video media'
+  - 'edit field_tags'
+  - 'edit own article content'
+  - 'edit own document media'
+  - 'edit own event content'
+  - 'edit own field_tags'
+  - 'edit own form media'
+  - 'edit own gallery media'
+  - 'edit own image media'
+  - 'edit own job_posting content'
+  - 'edit own organization content'
+  - 'edit own page content'
+  - 'edit own polls'
+  - 'edit own post content'
+  - 'edit own program content'
+  - 'edit own service content'
+  - 'edit own vector_image media'
+  - 'edit own video media'
+  - 'revert article revisions'
+  - 'revert organization revisions'
+  - 'revert page revisions'
+  - 'revert program revisions'
+  - 'revert service revisions'
+  - 'set article published on date'
+  - 'update any content block content'
+  - 'update any views_exposed_filter_blocks block content'
+  - 'update media'
+  - 'use editorial transition delete'
+  - 'use editorial transition publish'
+  - 'use editorial transition restore'
+  - 'use editorial transition save_draft'
+  - 'use editorial transition save_unpublished'
+  - 'use editorial transition unpublish'
+  - 'use moderation sidebar'
+  - 'use text format basic_html'
+  - 'use text format restricted_html'
+  - 'use text format staff'
+  - 'view all revisions'
+  - 'view any unpublished content'
+  - 'view article revisions'
+  - 'view field_tags'
+  - 'view media'
+  - 'view organization revisions'
+  - 'view own field_tags'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view page revisions'
+  - 'view poll results'
+  - 'view program revisions'
+  - 'view service revisions'
+  - 'view the administration theme'

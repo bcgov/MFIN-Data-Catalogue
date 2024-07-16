@@ -1,0 +1,21 @@
+uuid: 143e62a8-c55a-4228-a608-c746133dc1c9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.layout_selection
+    - node.type.themag_landing_page
+id: node.themag_landing_page.layout_selection
+field_name: layout_selection
+entity_type: node
+bundle: themag_landing_page
+label: Layout
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: layout_library
+  handler_settings: {  }
+field_type: entity_reference

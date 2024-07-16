@@ -1,0 +1,13 @@
+uuid: c017f93e-5e42-4e1a-9e10-b0c7ae3775c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.gallery
+id: media_type_gallery
+targetEntityType: null
+bundle: null
+action: display_page
+no_bypass: null
+bypass_message: null
+configuration: {  }

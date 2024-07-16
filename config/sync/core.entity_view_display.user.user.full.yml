@@ -1,0 +1,145 @@
+uuid: 4e8e9b09-551f-42a1-b67c-3eda0a3d3bb0
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.user.full
+    - field.field.user.user.field_branch
+    - field.field.user.user.field_division
+    - field.field.user.user.field_job_title
+    - field.field.user.user.field_linkedin
+    - field.field.user.user.field_ministry
+    - field.field.user.user.field_user_bio
+    - field.field.user.user.layout_builder__layout
+    - field.field.user.user.user_picture
+    - views.view.mg_content_related_by_author
+    - views.view.user_profile
+  module:
+    - image
+    - layout_builder
+    - layout_library
+    - themag_layouts
+    - user
+    - views
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: true
+    sections:
+      -
+        layout_id: themag_onecol_section
+        layout_settings:
+          context_mapping: {  }
+          section_bg: gray-light
+          section_padding: py-medium
+          section_margin: my-default
+          section_custom_classes: ''
+          container_style: container-full
+          row_custom_classes: ''
+          no_gutters: 1
+          column_widths: '12'
+          sticky_columns: null
+          first:
+            custom_classes: ''
+        components:
+          71f1d30f-6a0e-4a8d-951d-dd58b8f66171:
+            uuid: 71f1d30f-6a0e-4a8d-951d-dd58b8f66171
+            region: first
+            configuration:
+              id: 'views_block:user_profile-block_1'
+              label: ''
+              label_display: '0'
+              provider: views
+              context_mapping: {  }
+              views_label: ''
+              items_per_page: none
+            weight: 1
+            additional: {  }
+          3739908d-a9b0-426f-8460-293d09be95ad:
+            uuid: 3739908d-a9b0-426f-8460-293d09be95ad
+            region: content
+            configuration:
+              id: 'field_block:user:user:user_picture'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: image
+                label: hidden
+                settings:
+                  image_link: ''
+                  image_style: ''
+                  image_loading:
+                    attribute: lazy
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: themag_twocol_section
+        layout_settings:
+          context_mapping: {  }
+          section_bg: ''
+          section_padding: ''
+          section_margin: my-default
+          section_custom_classes: ''
+          container_style: container
+          row_custom_classes: ''
+          no_gutters: 0
+          column_widths: 8-4
+          sticky_columns: 1
+          first:
+            custom_classes: ''
+          second:
+            custom_classes: ''
+        components:
+          f73f0f07-5fee-4388-9f5a-adc5160a717b:
+            uuid: f73f0f07-5fee-4388-9f5a-adc5160a717b
+            region: first
+            configuration:
+              id: 'views_block:mg_content_related_by_author-block_1'
+              label: ''
+              label_display: visible
+              provider: views
+              context_mapping: {  }
+              views_label: ''
+              items_per_page: none
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+  layout_library:
+    enable: false
+_core:
+  default_config_hash: V51QPCKkgNREKtSmB9Iu2wmAMEpktVpnzklWaZV8UYo
+id: user.user.full
+targetEntityType: user
+bundle: user
+mode: full
+content:
+  member_for:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  user_picture:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_branch: true
+  field_division: true
+  field_job_title: true
+  field_linkedin: true
+  field_ministry: true
+  field_user_bio: true
+  layout_builder__layout: true
+  profile_customer: true
+  realname: true
+  search_api_excerpt: true

@@ -1,0 +1,30 @@
+uuid: 48634bc1-6489-4d53-9f86-a38f8ff51681
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_form_number
+    - media.type.form
+  module:
+    - unique_field_ajax
+third_party_settings:
+  unique_field_ajax:
+    unique: 1
+    per_lang: 0
+    case_sensitive: 0
+    use_ajax: 0
+    no_enforce: 0
+    message: 'The form number has to be unique.'
+    message_warning: ''
+id: media.form.field_form_number
+field_name: field_form_number
+entity_type: media
+bundle: form
+label: 'Form number'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

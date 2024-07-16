@@ -1,0 +1,11 @@
+uuid: 92423dfe-519d-40a9-a981-742b722042e3
+langcode: en
+status: true
+dependencies: {  }
+machine: production
+description: null
+name: Production
+weight: 2
+url: 'https://intranet.fin.gov.bc.ca'
+fg_color: '#1E4E9C'
+bg_color: '#FF919E'

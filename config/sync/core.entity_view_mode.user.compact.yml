@@ -1,11 +1,11 @@
-uuid: 87444584-d535-431c-864e-efcdd795e576
+uuid: 60187651-4541-40ef-b250-45189456ad55
 langcode: en
 status: true
 dependencies:
   module:
     - user
 _core:
-  default_config_hash: TtD7OuGskOsQfoGyxXkrdtllBpR37J19d5BMQDZWJgA
+  default_config_hash: 71CSAr_LNPcgu6D6jI4INl1KATkahmeyUFBETAWya8g
 id: user.compact
 label: Compact
 description: ''

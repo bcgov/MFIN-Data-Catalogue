@@ -1,0 +1,22 @@
+uuid: f65bfa08-db53-4069-8e6d-9fd600ecf55a
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.themag_landing_page
+id: node.themag_landing_page.promote
+field_name: promote
+entity_type: node
+bundle: themag_landing_page
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

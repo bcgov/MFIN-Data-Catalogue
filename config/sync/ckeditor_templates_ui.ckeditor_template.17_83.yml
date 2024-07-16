@@ -1,0 +1,12 @@
+uuid: 3ad9f6c4-13d9-4a04-a13b-dad876f96c9f
+langcode: en
+status: true
+dependencies: {  }
+id: '17_83'
+label: 'Two column 17 / 83'
+image: themes/custom/themag_st/assets/ckeditor-templates/two-column-17-83.png
+description: ''
+html:
+  value: "<div class=\"row two-col-left\">\r\n<div class=\"col-md-2 col-sidebar\">\r\n<p>Enter text here</p>\r\n</div>\r\n\r\n<div class=\"col-md-10 col-main\">\r\n<p>Enter text here</p>\r\n</div>\r\n</div>"
+  format: html
+weight: -6

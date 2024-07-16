@@ -1,0 +1,11 @@
+uuid: 9869c810-d193-42e1-a402-548f20aa957b
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: user.author_info
+label: 'Author Info'
+description: ''
+targetEntityType: user
+cache: true

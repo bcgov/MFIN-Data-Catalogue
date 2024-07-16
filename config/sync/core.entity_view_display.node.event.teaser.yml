@@ -1,0 +1,50 @@
+uuid: 3b08dca0-2b13-413b-8184-d54c92c2e693
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.event.body
+    - field.field.node.event.field_audience
+    - field.field.node.event.field_comment
+    - field.field.node.event.field_event_address
+    - field.field.node.event.field_event_city
+    - field.field.node.event.field_event_date_smart
+    - field.field.node.event.field_event_map_address
+    - field.field.node.event.field_event_online
+    - field.field.node.event.field_organization_1
+    - field.field.node.event.field_tags
+    - field.field.node.event.field_teaser_media
+    - node.type.event
+  module:
+    - user
+id: node.event.teaser
+targetEntityType: node
+bundle: event
+mode: teaser
+content:
+  flag_event_attendance:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  body: true
+  field_audience: true
+  field_comment: true
+  field_event_address: true
+  field_event_city: true
+  field_event_date_smart: true
+  field_event_map_address: true
+  field_event_online: true
+  field_organization_1: true
+  field_tags: true
+  field_teaser_media: true
+  published_at: true
+  search_api_excerpt: true
+  shariff_field: true

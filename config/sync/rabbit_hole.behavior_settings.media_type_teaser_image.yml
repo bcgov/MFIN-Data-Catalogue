@@ -1,0 +1,13 @@
+uuid: 309e48c8-d29a-44f0-894a-c61e83adf5b1
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.teaser_image
+id: media_type_teaser_image
+targetEntityType: null
+bundle: null
+action: display_page
+no_bypass: null
+bypass_message: null
+configuration: {  }

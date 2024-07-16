@@ -1,0 +1,46 @@
+uuid: 706cbe82-ec4b-47b8-9b9a-4d7873e1da4d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.animated_gif
+    - field.field.media.image.field_height
+    - field.field.media.image.field_image
+    - field.field.media.image.field_organization
+    - field.field.media.image.field_width
+    - media.type.image
+  module:
+    - field_formatter_class
+    - image
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: media.image.animated_gif
+targetEntityType: media
+bundle: image
+mode: animated_gif
+content:
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: file
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings:
+      field_formatter_class:
+        class: ''
+    weight: 0
+    region: content
+hidden:
+  created: true
+  field_height: true
+  field_organization: true
+  field_width: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true

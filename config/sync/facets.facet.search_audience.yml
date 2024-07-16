@@ -1,0 +1,56 @@
+uuid: d2b77198-2c3d-44f4-ac39-674c674ce320
+langcode: en
+status: true
+dependencies:
+  config:
+    - search_api.index.search
+    - views.view.search
+  module:
+    - search_api
+id: search_audience
+name: 'Search - Audience'
+weight: 0
+min_count: 1
+missing: false
+missing_label: others
+url_alias: audience
+facet_source_id: 'search_api:views_block__search__block_1'
+field_identifier: field_audience
+query_operator: or
+hard_limit: 0
+exclude: false
+use_hierarchy: false
+keep_hierarchy_parents_active: false
+hierarchy:
+  type: taxonomy
+  config: {  }
+expand_hierarchy: false
+enable_parent_when_child_gets_disabled: true
+widget:
+  type: checkbox
+  config:
+    show_numbers: true
+    soft_limit: 0
+    show_reset_link: false
+    reset_text: 'Show all'
+    hide_reset_when_no_selection: false
+    soft_limit_settings:
+      show_less_label: 'Show less'
+      show_more_label: 'Show more'
+empty_behavior:
+  behavior: none
+only_visible_when_facet_source_is_visible: false
+show_only_one_result: false
+show_title: false
+processor_configs:
+  translate_entity_aggregated_fields:
+    processor_id: translate_entity_aggregated_fields
+    weights:
+      build: 5
+    settings: {  }
+  url_processor_handler:
+    processor_id: url_processor_handler
+    weights:
+      pre_query: 50
+      build: 15
+    settings: {  }

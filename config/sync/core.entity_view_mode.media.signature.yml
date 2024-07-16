@@ -1,0 +1,11 @@
+uuid: f8c365d0-e589-4f17-b994-0b5ee322322c
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.signature
+label: Signature
+description: ''
+targetEntityType: media
+cache: true

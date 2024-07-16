@@ -1,0 +1,25 @@
+uuid: 3248aa38-9e17-47bd-ae36-c2650c346493
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:menu:3440550f-6dc7-4f7b-a018-b9252d73fe78'
+  module:
+    - block_content
+  theme:
+    - themag_st
+id: menuservicesprogramsblock3
+theme: themag_st
+region: hidden
+weight: 0
+provider: null
+plugin: 'block_content:3440550f-6dc7-4f7b-a018-b9252d73fe78'
+settings:
+  id: 'block_content:3440550f-6dc7-4f7b-a018-b9252d73fe78'
+  label: 'Menu - Services & Programs Block 3'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

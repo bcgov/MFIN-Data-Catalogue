@@ -1,0 +1,22 @@
+uuid: 2b64c3e1-8b48-4ee1-bb18-76a25eed9c7f
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: event
+label: Event
+type: 'canonical_entities:node'
+pattern: '/event/[node:field_event_date:date:custom:Y]/[node:field_event_date:date:custom:m]/[node:field_event_date:date:custom:d]/[node:title]'
+selection_criteria:
+  1eb1e819-fcca-4f4b-b70a-63a92bac4e64:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 1eb1e819-fcca-4f4b-b70a-63a92bac4e64
+    context_mapping:
+      node: node
+    bundles:
+      event: event
+selection_logic: and
+weight: -9
+relationships: {  }

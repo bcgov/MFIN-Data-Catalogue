@@ -1,0 +1,17 @@
+uuid: 6eb2a61e-5418-4ebe-af18-83d46fffcb86
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: small_compact_teaser
+label: "Small Compact Teaser (260x260)\t"
+effects:
+  53617b00-9fe7-4f39-bc5b-468c5bfec930:
+    uuid: 53617b00-9fe7-4f39-bc5b-468c5bfec930
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 260
+      height: 260
+      crop_type: focal_point

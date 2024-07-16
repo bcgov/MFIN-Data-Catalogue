@@ -1,0 +1,29 @@
+uuid: b68e5cfe-b1bf-4571-8f76-8379374072c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_teaser_media
+    - media.type.teaser_image
+    - taxonomy.vocabulary.article
+id: taxonomy_term.article.field_teaser_media
+field_name: field_teaser_media
+entity_type: taxonomy_term
+bundle: article
+label: 'Teaser Media'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      teaser_image: teaser_image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

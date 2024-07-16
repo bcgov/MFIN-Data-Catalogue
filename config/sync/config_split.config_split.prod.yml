@@ -1,0 +1,16 @@
+uuid: aa511f7f-2144-4080-af1c-21eb28da311d
+langcode: en
+status: true
+dependencies: {  }
+id: prod
+label: Production
+description: ''
+weight: 0
+stackable: false
+no_patching: false
+storage: folder
+folder: ../config/split/prod
+module: {  }
+theme: {  }
+complete_list: {  }
+partial_list: {  }

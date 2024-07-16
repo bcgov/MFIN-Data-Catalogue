@@ -1,0 +1,35 @@
+uuid: a4fc3b47-923f-4e96-a572-aec6b3ace960
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_organization_1
+    - node.type.themag_landing_page
+    - taxonomy.vocabulary.organization
+  module:
+    - disable_field
+third_party_settings:
+  disable_field:
+    add_disable: none
+    edit_disable: none
+id: node.themag_landing_page.field_organization_1
+field_name: field_organization_1
+entity_type: node
+bundle: themag_landing_page
+label: Organization
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      organization: organization
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

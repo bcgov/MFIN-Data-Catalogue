@@ -1,0 +1,42 @@
+uuid: 4f33763c-95f0-43cc-a582-92a1e675c3c2
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.basic
+    - field.storage.block_content.field_organization
+    - taxonomy.vocabulary.organization
+  content:
+    - 'taxonomy_term:organization:3f852cd5-6595-4ea8-ae9b-8e572e05af3a'
+    - 'taxonomy_term:organization:98ce99e1-96f5-4ddd-83de-eb2d9d2e1b19'
+  module:
+    - disable_field
+third_party_settings:
+  disable_field:
+    add_disable: none
+    edit_disable: none
+id: block_content.basic.field_organization
+field_name: field_organization
+entity_type: block_content
+bundle: basic
+label: Organization
+description: ''
+required: true
+translatable: true
+default_value:
+  -
+    target_uuid: 3f852cd5-6595-4ea8-ae9b-8e572e05af3a
+  -
+    target_uuid: 98ce99e1-96f5-4ddd-83de-eb2d9d2e1b19
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      organization: organization
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

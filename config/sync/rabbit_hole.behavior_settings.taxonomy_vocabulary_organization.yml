@@ -1,0 +1,13 @@
+uuid: 5da99878-0b2f-4df1-9bd0-689ce227febc
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.organization
+id: taxonomy_vocabulary_organization
+targetEntityType: null
+bundle: null
+action: page_redirect
+no_bypass: null
+bypass_message: null
+configuration: {  }

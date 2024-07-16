@@ -1,0 +1,179 @@
+uuid: a4fa08ba-3960-4b53-9b1c-a8e4c745ccf7
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.organization.body
+    - field.field.node.organization.field_articles
+    - field.field.node.organization.field_organization_1
+    - field.field.node.organization.field_quick_links
+    - field.field.node.organization.field_related_box
+    - field.field.node.organization.field_teaser_media
+    - node.type.organization
+    - views.view.header
+  module:
+    - layout_builder
+    - layout_library
+    - themag_layouts
+    - user
+    - views
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: themag_onecol_section
+        layout_settings:
+          context_mapping: {  }
+          section_bg: ''
+          section_padding: ''
+          section_margin: my-default
+          section_custom_classes: ''
+          container_style: container-full
+          row_custom_classes: ''
+          no_gutters: 1
+          column_widths: '12'
+          sticky_columns: null
+          first:
+            custom_classes: ''
+        components:
+          10cd5699-8cb0-4490-a663-54a0fe73529d:
+            uuid: 10cd5699-8cb0-4490-a663-54a0fe73529d
+            region: first
+            configuration:
+              id: 'views_block:header-block_5'
+              label: ''
+              label_display: '0'
+              provider: views
+              context_mapping: {  }
+              views_label: ''
+              items_per_page: none
+            weight: 1
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: themag_twocol_section
+        layout_settings:
+          context_mapping: {  }
+          section_bg: ''
+          section_padding: ''
+          section_margin: my-default
+          section_custom_classes: ''
+          container_style: container
+          row_custom_classes: ''
+          no_gutters: 0
+          column_widths: 8-4
+          sticky_columns: 1
+          first:
+            custom_classes: ''
+          second:
+            custom_classes: ''
+        components:
+          6febe619-ca12-42b8-a530-a872cf3a4069:
+            uuid: 6febe619-ca12-42b8-a530-a872cf3a4069
+            region: first
+            configuration:
+              id: 'field_block:node:organization:body'
+              label: Body
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings:
+                  field_formatter_class:
+                    class: ''
+            weight: -8
+            additional: {  }
+          0715e930-6713-46e1-974e-7cd40aa4a7ef:
+            uuid: 0715e930-6713-46e1-974e-7cd40aa4a7ef
+            region: second
+            configuration:
+              id: 'field_block:node:organization:field_articles'
+              label: Articles
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_entity_view
+                label: hidden
+                settings:
+                  view_mode: small_teaser_item
+                third_party_settings:
+                  field_formatter_class:
+                    class: ''
+            weight: -10
+            additional:
+              component_attributes:
+                block_attributes:
+                  id: ''
+                  class: ''
+                  style: ''
+                  data: ''
+                block_title_attributes:
+                  id: ''
+                  class: ''
+                  style: ''
+                  data: ''
+                block_content_attributes:
+                  id: ''
+                  class: ''
+                  style: ''
+                  data: ''
+          fbe7ccbc-4b6b-4245-b8bf-b1f876b6ae1a:
+            uuid: fbe7ccbc-4b6b-4245-b8bf-b1f876b6ae1a
+            region: second
+            configuration:
+              id: 'field_block:node:organization:field_related_box'
+              label: 'Related box'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings:
+                  field_formatter_class:
+                    class: ''
+            weight: -8
+            additional: {  }
+        third_party_settings: {  }
+  layout_library:
+    enable: false
+id: node.organization.full
+targetEntityType: node
+bundle: organization
+mode: full
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: first
+  workflow_buttons:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: first
+hidden:
+  body: true
+  field_articles: true
+  field_organization_1: true
+  field_quick_links: true
+  field_related_box: true
+  field_teaser_media: true
+  links: true
+  published_at: true
+  search_api_excerpt: true
+  shariff_field: true
