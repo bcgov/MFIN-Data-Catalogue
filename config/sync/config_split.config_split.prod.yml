@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: prod
-label: Production
+label: PROD
 description: ''
 weight: 0
 stackable: false
