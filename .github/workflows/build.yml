@@ -41,9 +41,8 @@ jobs:
             --report=full \
             --colors \
             /var/www/html/modules/contrib/bcbb \
-            /var/www/html/modules/custom/bc_dc \
-            /var/www/html/themes/contrib/bcbb_theme \
-            /var/www/html/themes/custom/dc_theme
+            /var/www/html/modules/custom/fintranet \
+            /var/www/html/modules/custom/fintranet_common \
 
     - name: Scan PHP-FPM image for vulnerabilities
       uses: aquasecurity/trivy-action@0.20.0

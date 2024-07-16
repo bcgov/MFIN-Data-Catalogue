@@ -23,11 +23,11 @@ jobs:
     - name: Export github reference var
       run: echo "GITHUB_REFERENCE=$(echo ${GITHUB_REF#refs/tags/})" >> $GITHUB_ENV
 
-    - name: Update Data Catalogue version
+    - name: Update application version
       uses: mikefarah/yq@v4.34.1
       with:
         cmd: |
-          yq eval '.version = strenv(GITHUB_REFERENCE)' -i html/modules/custom/bc_dc/bc_dc.info.yml
+          yq eval '.version = strenv(GITHUB_REFERENCE)' -i html/modules/custom/fintranet_common/fintranet_common.info.yml
 
     - name: Build out the Drupal infrastructure
       run: |
@@ -54,9 +54,8 @@ jobs:
             --report=full \
             --colors \
             /var/www/html/modules/contrib/bcbb \
-            /var/www/html/modules/custom/bc_dc \
-            /var/www/html/themes/contrib/bcbb_theme \
-            /var/www/html/themes/custom/dc_theme
+            /var/www/html/modules/custom/fintranet \
+            /var/www/html/modules/custom/fintranet_common \
 
     - name: Scan PHP-FPM image for vulnerabilities
       uses: aquasecurity/trivy-action@0.20.0
