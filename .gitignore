@@ -8,9 +8,10 @@ html/themes/*
 !html/themes/custom/
 
 # Ignore Composer vendor folders
-/vendor
-*/*/*/vendor
-*/*/vendor
+/vendor/
+
+# Ignore NPM folders
+node_modules
 
 # Ignore Development Files
 .env
