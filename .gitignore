@@ -14,7 +14,6 @@ html/themes/*
 node_modules
 
 # Ignore Development Files
-.env
 .idea
 *.backup
 *.ddev
