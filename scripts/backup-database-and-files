@@ -8,6 +8,7 @@ ENV_NAME=$2
 
 DRUPAL_ROOT="/var/www"
 BACKUPS_DIR="$DRUPAL_ROOT/backups"
+mkdir -p $BACKUPS_DIR
 
 # The files we commit to git can't extend onto the backups dir,
 # as it is not mounted at deploy-time. So, rather than committing a
