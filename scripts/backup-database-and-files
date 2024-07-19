@@ -6,7 +6,7 @@ echo "Beginning backup of database and files..."
 APP_NAME=$1
 ENV_NAME=$2
 
-DRUPAL_ROOT="/app"
+DRUPAL_ROOT="/var/www"
 BACKUPS_DIR="$DRUPAL_ROOT/backups"
 
 # The files we commit to git can't extend onto the backups dir,
@@ -33,9 +33,9 @@ DAILY_BACKUPS_DIR="$BACKUPS_DIR/daily"
 #           e.g. "2024-05-02.UTC.11h30.fin-intra-dev.commit-123abc4d"
 #   * the DB dump file.
 #           e.g. "DB_DUMP.2024-05-02.UTC.11h30.fin-intra-dev.commit-123abc4d.SQL.GZ"
-COMMIT_HASH=$(cat /app/build-hash.txt | cut -c 1-8)
+# COMMIT_HASH=$(cat /app/build-hash.txt | cut -c 1-8)
 TIME_AND_DATE=$(date +"%F.UTC.%Hh%M")
-BACKUP_DESCRIPTOR=$TIME_AND_DATE.${APP_NAME}-${ENV_NAME}.commit-$COMMIT_HASH
+BACKUP_DESCRIPTOR=$TIME_AND_DATE.${APP_NAME}-${ENV_NAME}.commit
 
 # Get previous backup dir,
 #   as a reference to make hard-links against during rsync, below.
@@ -53,7 +53,7 @@ mkdir -p $THIS_BACKUP_DIR
 # Do the database dump
 DB_OUTPUT_FILENAME=DB_DUMP.$BACKUP_DESCRIPTOR.sql.GZ
 echo "Dumping database to file '$DB_OUTPUT_FILENAME' ..."
-/app/vendor/bin/drush sql:dump -vvv | gzip > $THIS_BACKUP_DIR/$DB_OUTPUT_FILENAME
+drush sql:dump -vvv | gzip > $THIS_BACKUP_DIR/$DB_OUTPUT_FILENAME
 
 # Back up the public/private-files directories.
 for public_or_private_files in public-files private-files; do
@@ -68,11 +68,11 @@ for public_or_private_files in public-files private-files; do
 
   # - set up Source Dir, and
   # - exclude directories with unneeded (cached, derived) files.
-  if [[ $public_or_private_files == "private-files" ]]; then
-    SOURCE_DIR="$DRUPAL_ROOT/private-files"
+  if [[ $public_or_private_files == "private" ]]; then
+    SOURCE_DIR="/private"
     rsync_options="$rsync_options --exclude=styles"
   else
-    SOURCE_DIR="$DRUPAL_ROOT/docroot/sites/default/files"
+    SOURCE_DIR="$DRUPAL_ROOT/html/sites/default/files"
     rsync_options="$rsync_options --exclude=styles --exclude=css --exclude=js --exclude=php"
   fi
 
