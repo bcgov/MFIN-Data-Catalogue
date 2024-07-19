@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# Set up
+DIR_DAILY="/app/backups/daily" ;
+DIR_MONTHLY="/app/backups/monthly"
+
+# Find the directory that contains the latest daily backup.
+LATEST_BACKUP=$(ls $DIR_DAILY -t1|head -n1)
+
+# "Copy" (using hard-links) this latest backup into the 'monthly' directory.
+echo "Cloning '$DIR_DAILY/$LATEST_BACKUP' into '$DIR_MONTHLY/$LATEST_BACKUP'."
+cp --recursive --link  $DIR_DAILY/$LATEST_BACKUP  $DIR_MONTHLY/$LATEST_BACKUP
+
+echo "Monthly clone of a backup is complete."

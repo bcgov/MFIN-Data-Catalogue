@@ -1,0 +1,95 @@
+#!/bin/bash
+
+echo
+echo "Beginning backup of database and files..."
+
+APP_NAME=$1
+ENV_NAME=$2
+
+DRUPAL_ROOT="/app"
+BACKUPS_DIR="$DRUPAL_ROOT/backups"
+
+# The files we commit to git can't extend onto the backups dir,
+# as it is not mounted at deploy-time. So, rather than committing a
+# readme file in the backups dir, we generate it here:
+cat > $BACKUPS_DIR/README.txt <<- END_OF_README
+	These backups (and this README) are managed by openshift-based cronjobs.
+	See:
+	  - /app/scripts
+	  - /app/openshift/templates/app-deploy.yaml
+
+	The backups directory itself is mounted as type 'netapp-file-backup',
+	which means that OCIO will be managing backups of this directory for us.
+
+	See https://github.com/BCDevOps/backup-container?tab=readme-ov-file#backup-storage-volume
+END_OF_README
+
+# target dir for backups (NO trailing slash)
+DAILY_BACKUPS_DIR="$BACKUPS_DIR/daily"
+
+# Set up the 'backup descriptor'. This will be used for each of:
+#   * the directory name, for this backup.
+#          (this directory will also contain the 'public/private-files' backups)
+#           e.g. "2024-05-02.UTC.11h30.fin-intra-dev.commit-123abc4d"
+#   * the DB dump file.
+#           e.g. "DB_DUMP.2024-05-02.UTC.11h30.fin-intra-dev.commit-123abc4d.SQL.GZ"
+COMMIT_HASH=$(cat /app/build-hash.txt | cut -c 1-8)
+TIME_AND_DATE=$(date +"%F.UTC.%Hh%M")
+BACKUP_DESCRIPTOR=$TIME_AND_DATE.${APP_NAME}-${ENV_NAME}.commit-$COMMIT_HASH
+
+# Get previous backup dir,
+#   as a reference to make hard-links against during rsync, below.
+#      find: gets all directories in the 'daily' dir,
+#                 which contain the word 'commit-', to exclude any special directories (e.g. ".git") that we might someday add.
+#      xargs ls -td1:  Sort them by date, newest to oldest.
+#      head -n1: Grab the newest one off the top.
+MOST_RECENT_BACKUP_DIR=$(find $DAILY_BACKUPS_DIR -maxdepth 1 -type d -name "*commit-*" | xargs ls -td1 | head -n1)
+
+# Create the dir for this backup.
+THIS_BACKUP_DIR="$DAILY_BACKUPS_DIR/$BACKUP_DESCRIPTOR"
+echo "Creating new backup directory: $THIS_BACKUP_DIR"
+mkdir -p $THIS_BACKUP_DIR
+
+# Do the database dump
+DB_OUTPUT_FILENAME=DB_DUMP.$BACKUP_DESCRIPTOR.sql.GZ
+echo "Dumping database to file '$DB_OUTPUT_FILENAME' ..."
+/app/vendor/bin/drush sql:dump -vvv | gzip > $THIS_BACKUP_DIR/$DB_OUTPUT_FILENAME
+
+# Back up the public/private-files directories.
+for public_or_private_files in public-files private-files; do
+
+  # Switches to pass into the rsync command.
+  rsync_options=""
+
+  # If we have a reference directory, use it with the '--link-dest' option for rsync.
+  if [ -n "$MOST_RECENT_BACKUP_DIR" ]; then
+    rsync_options="--link-dest=$MOST_RECENT_BACKUP_DIR/$public_or_private_files"
+  fi
+
+  # - set up Source Dir, and
+  # - exclude directories with unneeded (cached, derived) files.
+  if [[ $public_or_private_files == "private-files" ]]; then
+    SOURCE_DIR="$DRUPAL_ROOT/private-files"
+    rsync_options="$rsync_options --exclude=styles"
+  else
+    SOURCE_DIR="$DRUPAL_ROOT/docroot/sites/default/files"
+    rsync_options="$rsync_options --exclude=styles --exclude=css --exclude=js --exclude=php"
+  fi
+
+  # Set up directory to copy into.
+  DEST_DIR=$THIS_BACKUP_DIR/$public_or_private_files
+  echo "Creating directory $DEST_DIR"
+  mkdir -p $DEST_DIR
+
+  # "Copy" the files to the new backup directory.
+  #  Note that, to save disk-space, we use the "--link-dest" switch.
+  #  With it, rsync will use hard-links for any/all identical files
+  #  that already exist in the reference directory.
+  echo "rsync-ing $public_or_private_files, with:"
+  echo "rsync -a $rsync_options  $SOURCE_DIR/  $DEST_DIR/"
+  rsync -a $rsync_options  $SOURCE_DIR/  $DEST_DIR/
+
+done
+
+echo
+echo "Backups complete."
