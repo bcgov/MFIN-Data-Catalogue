@@ -91,6 +91,11 @@ COPY config/ /var/www/config/
 # Copy possible load.environment.php
 COPY load.environment.php /var/www/
 
+# Copy patches directory for local patches.
+# Create the directory if it doesn't exist in the build context.
+RUN mkdir -p patches
+COPY patches/ /var/www/patches/
+
 WORKDIR /var/www
 
 RUN apk --update --no-cache add git openssh-client; \
