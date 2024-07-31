@@ -16,7 +16,7 @@ fi
 
 DAYS_TO_KEEP=$2
 
-BACKUPS_ROOT="/var/www/backups"
+BACKUPS_ROOT="/backup"
 BACKUPS_TO_PRUNE="$BACKUPS_ROOT/$PERIODICITY"
 
 echo "Looking in the $BACKUPS_TO_PRUNE directory for any $PERIODICITY backups"

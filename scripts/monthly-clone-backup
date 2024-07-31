@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # Set up
-DIR_DAILY="/var/www/backups/daily" ;
-DIR_MONTHLY="/var/www/backups/monthly"
+DIR_DAILY="/backup/daily" ;
+DIR_MONTHLY="/backup/monthly"
 
 # Find the directory that contains the latest daily backup.
 LATEST_BACKUP=$(ls $DIR_DAILY -t1|head -n1)

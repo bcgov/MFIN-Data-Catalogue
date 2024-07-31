@@ -7,7 +7,10 @@ APP_NAME=$1
 ENV_NAME=$2
 
 DRUPAL_ROOT="/var/www"
-BACKUPS_DIR="$DRUPAL_ROOT/backups"
+BACKUPS_DIR="/backup"
+
+# Directory should already be mounted, but this at least tests
+#  that it is there (perms error, if not).
 mkdir -p $BACKUPS_DIR
 
 # The files we commit to git can't extend onto the backups dir,
