@@ -9,9 +9,14 @@ ENV_NAME=$2
 DRUPAL_ROOT="/var/www"
 BACKUPS_DIR="/backup"
 
-# Directory should already be mounted, but this at least tests
-#  that it is there (perms error, if not).
-mkdir -p $BACKUPS_DIR
+PRIVATE_FILES_PATH="/private"
+PUBLIC_FILES_PATH="$DRUPAL_ROOT/html/sites/default/files"
+
+# Directory should already be mounted. Test that it is there.
+if [ ! -d $BACKUPS_DIR ]; then
+  echo "About to do backups, but backup dir '$BACKUPS_DIR' doesn't exist!"
+  exit 1;
+fi
 
 # The files we commit to git can't extend onto the backups dir,
 # as it is not mounted at deploy-time. So, rather than committing a
@@ -72,11 +77,11 @@ for public_or_private_files in public-files private-files; do
 
   # - set up Source Dir, and
   # - exclude directories with unneeded (cached, derived) files.
-  if [[ $public_or_private_files == "private" ]]; then
-    SOURCE_DIR="/private"
+  if [[ $public_or_private_files == "private-files" ]]; then
+    SOURCE_DIR=$PRIVATE_FILES_PATH
     rsync_options="$rsync_options --exclude=styles"
   else
-    SOURCE_DIR="$DRUPAL_ROOT/html/sites/default/files"
+    SOURCE_DIR=$PUBLIC_FILES_PATH
     rsync_options="$rsync_options --exclude=styles --exclude=css --exclude=js --exclude=php"
   fi
 
