@@ -21,6 +21,10 @@ jobs:
         export DB_TYPE=mysql
         export DB_PORT=3306
         git clone --branch 10.2.x-php8.2 https://github.com/drupalwxt/docker-scaffold.git docker
+
+        # Add support for rsync, before we run the build.
+        echo "RUN apk --update add --no-cache rsync" >> docker/Dockerfile
+
         make build
         docker compose -f docker-compose.ci.yml up -d
         docker ps -a
