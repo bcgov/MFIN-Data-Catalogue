@@ -30,3 +30,5 @@ echo "  ... (End of deletion list.)"
 find  $BACKUPS_TO_PRUNE  -maxdepth 1  -mtime +$DAYS_TO_KEEP  -exec rm -rf {} \;
 
 echo "Pruning complete."
+sleep 20
+echo "(done)"

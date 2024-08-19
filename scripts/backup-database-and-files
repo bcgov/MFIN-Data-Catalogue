@@ -107,3 +107,5 @@ done
 
 echo
 echo "Backups complete."
+sleep 20
+echo "(done)"
