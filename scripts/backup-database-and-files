@@ -53,6 +53,8 @@ BACKUP_DESCRIPTOR=$TIME_AND_DATE.${APP_NAME}-${ENV_NAME}
 #      xargs ls -td1:  Sort them by date, newest to oldest.
 #      head -n1: Grab the newest one off the top.
 MOST_RECENT_BACKUP_DIR=$(find $DAILY_BACKUPS_DIR -maxdepth 1 -type d -name "*.UTC.*.${APP_NAME}-${ENV_NAME}" | xargs ls -td1 | head -n1)
+# If there are no backups, this will return "." rather than nothing. Fix this.
+if [[ $MOST_RECENT_BACKUP_DIR == "." ]]; then MOST_RECENT_BACKUP_DIR=""; fi
 
 # Create the dir for this backup.
 THIS_BACKUP_DIR="$DAILY_BACKUPS_DIR/$BACKUP_DESCRIPTOR"
