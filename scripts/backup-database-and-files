@@ -39,20 +39,20 @@ DAILY_BACKUPS_DIR="$BACKUPS_DIR/daily"
 # Set up the 'backup descriptor'. This will be used for each of:
 #   * the directory name, for this backup.
 #          (this directory will also contain the 'public/private-files' backups)
-#           e.g. "2024-05-02.UTC.11h30.fin-intra-dev.commit-123abc4d"
+#           e.g. "2024-05-02.UTC.11h30.fintra2-dev"
 #   * the DB dump file.
-#           e.g. "DB_DUMP.2024-05-02.UTC.11h30.fin-intra-dev.commit-123abc4d.SQL.GZ"
-# COMMIT_HASH=$(cat /app/build-hash.txt | cut -c 1-8)
+#           e.g. "DB_DUMP.2024-05-02.UTC.11h30.fintra2-dev.SQL.GZ"
+# COMMIT_HASH=$(cat /app/build-hash.txt | cut -c 1-8)   // Commit-hash is not currently available, so commented out.
 TIME_AND_DATE=$(date +"%F.UTC.%Hh%M")
-BACKUP_DESCRIPTOR=$TIME_AND_DATE.${APP_NAME}-${ENV_NAME}.commit
+BACKUP_DESCRIPTOR=$TIME_AND_DATE.${APP_NAME}-${ENV_NAME}
 
 # Get previous backup dir,
 #   as a reference to make hard-links against during rsync, below.
 #      find: gets all directories in the 'daily' dir,
-#                 which contain the word 'commit-', to exclude any special directories (e.g. ".git") that we might someday add.
+#                 which look like our backup dir name, to exclude any special directories (e.g. ".git") that we might someday add.
 #      xargs ls -td1:  Sort them by date, newest to oldest.
 #      head -n1: Grab the newest one off the top.
-MOST_RECENT_BACKUP_DIR=$(find $DAILY_BACKUPS_DIR -maxdepth 1 -type d -name "*commit-*" | xargs ls -td1 | head -n1)
+MOST_RECENT_BACKUP_DIR=$(find $DAILY_BACKUPS_DIR -maxdepth 1 -type d -name "*.UTC.*.${APP_NAME}-${ENV_NAME}" | xargs ls -td1 | head -n1)
 
 # Create the dir for this backup.
 THIS_BACKUP_DIR="$DAILY_BACKUPS_DIR/$BACKUP_DESCRIPTOR"
