@@ -8,6 +8,9 @@ ENV_NAME=$2
 
 DRUPAL_ROOT="/var/www"
 BACKUPS_DIR="/backup"
+DAILY_BACKUPS_DIR="$BACKUPS_DIR/daily"
+WEEKLY_BACKUPS_DIR="$BACKUPS_DIR/weekly"
+MONTHLY_BACKUPS_DIR="$BACKUPS_DIR/monthly"
 
 PRIVATE_FILES_PATH="/private"
 PUBLIC_FILES_PATH="$DRUPAL_ROOT/html/sites/default/files"
@@ -24,17 +27,17 @@ fi
 cat > $BACKUPS_DIR/README.txt <<- END_OF_README
 	These backups (and this README) are managed by openshift-based cronjobs.
 	See:
-	  - /app/scripts
-	  - /app/openshift/templates/app-deploy.yaml
+	  - $DRUPAL_ROOT/scripts
+
+  In tenant-gitops repo, see:
+    - helm-drupal/charts/drupal/conf/drupal-cron-backup.bash
+	  - helm-drupal/charts/drupal/templates/cronjob/drupal-backup.yaml
 
 	The backups directory itself is mounted as type 'netapp-file-backup',
 	which means that OCIO will be managing backups of this directory for us.
 
 	See https://github.com/BCDevOps/backup-container?tab=readme-ov-file#backup-storage-volume
 END_OF_README
-
-# target dir for backups (NO trailing slash)
-DAILY_BACKUPS_DIR="$BACKUPS_DIR/daily"
 
 # Set up the 'backup descriptor'. This will be used for each of:
 #   * the directory name, for this backup.
@@ -52,7 +55,7 @@ BACKUP_DESCRIPTOR=$TIME_AND_DATE.${APP_NAME}-${ENV_NAME}
 #                 which look like our backup dir name, to exclude any special directories (e.g. ".git") that we might someday add.
 #      xargs ls -td1:  Sort them by date, newest to oldest.
 #      head -n1: Grab the newest one off the top.
-MOST_RECENT_BACKUP_DIR=$(find $DAILY_BACKUPS_DIR -maxdepth 1 -type d -name "*.UTC.*.${APP_NAME}-${ENV_NAME}" | xargs ls -td1 | head -n1)
+MOST_RECENT_BACKUP_DIR=$(ls -dt1  $DAILY_BACKUPS_DIR/*.UTC.* | head -n1 )
 # If there are no backups, this will return "." rather than nothing. Fix this.
 if [[ $MOST_RECENT_BACKUP_DIR == "." ]]; then MOST_RECENT_BACKUP_DIR=""; fi
 
@@ -105,7 +108,109 @@ for public_or_private_files in public-files private-files; do
 
 done
 
+#
+#
+# End of the primary, 'daily' backup
+#
+####
+
+
+####
+#
+# Weekly/Monthly backups (of backups), setup...
+#
+
+# Use 'basic calculator' to support floating-point math.
+FLOATING_POINT_SUPPORT="bc -l"
+
+# Find weekly and monthly latest-backup.
+#   Check for "UTC" to allow any other files to be ignored.
+WEEKLY_LB=$( ls -dt1  $WEEKLY_BACKUPS_DIR/*.UTC.* | head -n1 )
+MONTHLY_LB=$(ls -dt1 $MONTHLY_BACKUPS_DIR/*.UTC.* | head -n1 )
+
+# Calculate ages in days, by getting seconds-since-epoch for the file, and comparing with seconds-since-epoch for right now.
+if [ -n WEEKLY_LB ]; then
+  AGE_OF_WEEKLY_LB_IN_DAYS=$($FLOATING_POINT_SUPPORT <<< "($(date +%s) - $(date -r $WEEKLY_LB +%s))/24/60/60" )
+else
+  AGE_OF_WEEKLY_LB_IN_DAYS=5000   # To make sure we get a backup.
+fi
+
+if [ -n MONTHLY_LB ]; then
+  AGE_OF_MONTHLY_LB_IN_DAYS=$($FLOATING_POINT_SUPPORT <<< "($(date +%s) - $(date -r $MONTHLY_LB +%s))/24/60/60" )
+else
+  AGE_OF_MONTHLY_LB_IN_DAYS=5000   # To make sure we get a backup.
+fi
+
+# Set up timezone, for use with 'date' command.
+#   Note that technically it changes to "GMT+7" during daylight savings, but
+#   we've coded this below to not care about that one hour.
+#   (The lean Alpine linux seems to not support "America/Vancouver" type of timezones.)
+TZ="GMT+8"
+
+
+#
+# Weekly backup
+#
+
+# Week-days elapsed, right now. (aka 'floating point day-of-the-week')
+#   0.0  = midnight Monday morning
+#   0.5  = Monday noon
+#   1.75 = Tues 6pm
+#      etc.
+WD_ELAPSED=$($FLOATING_POINT_SUPPORT <<< "$(date +%u)-1 + $(date +%H)/24")
+
+# Do a weekly backup if
+#   * it's near the end of the week (Friday evening midnight), OR
+#   * (for some reason) there hasn't been a weekly backup for over a week.
+
+REQUIREMENT="( $WD_ELAPSED > 4.75  &&  $WD_ELAPSED < 5.25)  ||  $AGE_OF_WEEKLY_LB_IN_DAYS > 7"
+if [[ $($FLOATING_POINT_SUPPORT <<< $REQUIREMENT) -eq 1 ]]; then
+  echo "Doing a weekly backup!"
+
+  # Create the dir for this backup.
+  NEW_WEEKLY_BACKUP_DIR="$WEEKLY_BACKUPS_DIR/$BACKUP_DESCRIPTOR"
+  echo "Creating new backup directory: $NEW_WEEKLY_BACKUP_DIR"
+  mkdir -p $NEW_WEEKLY_BACKUP_DIR
+
+  # "Copy" (using hard-links) latest daily backup that we just made, into the 'weekly' directory.
+  echo "Cloning '$THIS_BACKUP_DIR' into '$NEW_WEEKLY_BACKUP_DIR'."
+  cp --recursive --link  $THIS_BACKUP_DIR  $NEW_WEEKLY_BACKUP_DIR
+
+else
+  echo "No need for a weekly backup."
+
+fi
+
+
+#
+# Monthly backup
+#
+
+# Day of month right now.
+DAY_OF_MONTH_NOW=$(date +%d)
+
+# Do a monthly backup if
+#   * it's the beginning of the month and the latest monthly backup is at least a week old, OR
+#   * (for some reason) there hasn't been a monthly backup for over a month.
+REQUIREMENT="($DAY_OF_MONTH_NOW <= 7  &&  $AGE_OF_MONTHLY_LB_IN_DAYS > 7)  ||  $AGE_OF_MONTHLY_LB_IN_DAYS > 31"
+if [ $($FLOATING_POINT_SUPPORT <<< $REQUIREMENT) -eq 1 ]; then
+  echo "Doing a monthly backup!"
+
+  # Create the dir for this backup.
+  NEW_MONTHLY_BACKUP_DIR="$MONTHLY_BACKUPS_DIR/$BACKUP_DESCRIPTOR"
+  echo "Creating new backup directory: $NEW_MONTHLY_BACKUP_DIR"
+  mkdir -p $NEW_MONTHLY_BACKUP_DIR
+
+  # "Copy" (using hard-links) latest daily backup that we just made, into the 'monthly' directory.
+  echo "Cloning '$THIS_BACKUP_DIR' into '$NEW_MONTHLY_BACKUP_DIR'."
+  cp --recursive --link  $THIS_BACKUP_DIR  $NEW_MONTHLY_BACKUP_DIR
+
+else
+  echo "No need for a monthly backup."
+
+fi
+
+
+
 echo
 echo "Backups complete."
-sleep 20
-echo "(done)"
