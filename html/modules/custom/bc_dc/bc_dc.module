@@ -926,6 +926,11 @@ function bc_dc_menu_local_tasks_alter(array &$data, string $route_name, Refinabl
     if (!$user->hasPermission('use  The form mode default linked to  node entity( data_set )')) {
       unset($data['tabs'][0]['entity.node.edit_form']);
     }
+    else {
+      // We're changing the "Build" tab to be the "Edit" tab.
+      // So the old drupal "Edit" tab it getting relabeled.
+      $data['tabs'][0]['entity.node.edit_form']['#link']['title'] = t('Drupal Edit');
+    }
   }
 
   // Rename certain tabs.

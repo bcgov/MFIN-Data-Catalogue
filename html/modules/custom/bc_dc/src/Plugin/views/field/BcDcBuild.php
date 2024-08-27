@@ -16,7 +16,8 @@ class BcDcBuild extends BcDcButtonBase {
    */
   protected function buttonConfig(): array {
     return [
-      'text' => $this->t('Build'),
+      // This shows up in the 'Operations' section of the 'user/123/manage' screen.
+      'text' => $this->t('Edit'),
       'class' => 'btn-primary',
       'route' => 'bc_dc.data_set_build_page_tab',
     ];
