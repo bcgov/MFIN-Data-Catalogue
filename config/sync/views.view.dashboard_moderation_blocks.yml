@@ -303,7 +303,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: Build
+            text: Edit  # Button on right side of metadata-records list on dashboard.
             make_link: true
             path: '/node/{{ nid }}/build'
             absolute: false
@@ -311,7 +311,7 @@ display:
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: 'Build {{ title }}'
+            alt: 'Edit {{ title }}'
             rel: ''
             link_class: 'btn btn-primary'
             prefix: ''

@@ -10,10 +10,10 @@
  */
 function bc_dc_views_data_alter(array &$data) {
   $data['node']['bc_dc_build'] = [
-    'title' => t('Build link'),
+    'title' => t('Edit link'),
     'field' => [
-      'title' => t('Build'),
-      'help' => t('Links to Build page.'),
+      'title' => t('Edit'),
+      'help' => t('Links to Edit page (previously known as "Build page").'),
       'id' => 'bc_dc_build',
     ],
   ];

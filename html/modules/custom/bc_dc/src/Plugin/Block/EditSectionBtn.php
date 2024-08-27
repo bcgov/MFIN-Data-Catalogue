@@ -126,7 +126,7 @@ class EditSectionBtn extends BlockBase implements ContainerFactoryPluginInterfac
         'destination' => $redirectDestination->get(),
       ],
     ];
-    $links[] = Link::createFromRoute(t('Edit'), 'entity.node.edit_form', $route_parameters, $link_options);
+    $links[] = Link::createFromRoute(t('Modify') /*The blue buttons on the Build page */, 'entity.node.edit_form', $route_parameters, $link_options);
 
     // Remove links with no access.
     foreach ($links as $key => $link) {
