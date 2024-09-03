@@ -125,17 +125,18 @@ FLOATING_POINT_SUPPORT="bc -l"
 
 # Find weekly and monthly latest-backup.
 #   Check for "UTC" to allow any other files to be ignored.
+# ("LB" = latest backup)
 WEEKLY_LB=$( ls -dt1  $WEEKLY_BACKUPS_DIR/*.UTC.* | head -n1 )
 MONTHLY_LB=$(ls -dt1 $MONTHLY_BACKUPS_DIR/*.UTC.* | head -n1 )
 
 # Calculate ages in days, by getting seconds-since-epoch for the file, and comparing with seconds-since-epoch for right now.
-if [ -n WEEKLY_LB ]; then
+if [ -n $WEEKLY_LB ]; then
   AGE_OF_WEEKLY_LB_IN_DAYS=$($FLOATING_POINT_SUPPORT <<< "($(date +%s) - $(date -r $WEEKLY_LB +%s))/24/60/60" )
 else
   AGE_OF_WEEKLY_LB_IN_DAYS=5000   # To make sure we get a backup.
 fi
 
-if [ -n MONTHLY_LB ]; then
+if [ -n $MONTHLY_LB ]; then
   AGE_OF_MONTHLY_LB_IN_DAYS=$($FLOATING_POINT_SUPPORT <<< "($(date +%s) - $(date -r $MONTHLY_LB +%s))/24/60/60" )
 else
   AGE_OF_MONTHLY_LB_IN_DAYS=5000   # To make sure we get a backup.
