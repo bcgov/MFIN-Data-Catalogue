@@ -170,14 +170,12 @@ REQUIREMENT="( $WD_ELAPSED > 4.75  &&  $WD_ELAPSED < 5.25)  ||  $AGE_OF_WEEKLY_L
 if [[ $($FLOATING_POINT_SUPPORT <<< $REQUIREMENT) -eq 1 ]]; then
   echo "Doing a weekly backup!"
 
-  # Create the dir for this backup.
-  NEW_WEEKLY_BACKUP_DIR="$WEEKLY_BACKUPS_DIR/$BACKUP_DESCRIPTOR"
-  echo "Creating new backup directory: $NEW_WEEKLY_BACKUP_DIR"
-  mkdir -p $NEW_WEEKLY_BACKUP_DIR
+  # Make sure the weekly backups dir exists.
+  mkdir -p $WEEKLY_BACKUPS_DIR
 
   # "Copy" (using hard-links) latest daily backup that we just made, into the 'weekly' directory.
-  echo "Cloning '$THIS_BACKUP_DIR' into '$NEW_WEEKLY_BACKUP_DIR'."
-  cp --recursive --link  $THIS_BACKUP_DIR  $NEW_WEEKLY_BACKUP_DIR
+  echo "Cloning '$THIS_BACKUP_DIR' into '$WEEKLY_BACKUPS_DIR'."
+  cp --recursive --link  $THIS_BACKUP_DIR  $WEEKLY_BACKUPS_DIR
 
 else
   echo "No need for a weekly backup."
@@ -199,14 +197,12 @@ REQUIREMENT="($DAY_OF_MONTH_NOW <= 7  &&  $AGE_OF_MONTHLY_LB_IN_DAYS > 7)  ||  $
 if [ $($FLOATING_POINT_SUPPORT <<< $REQUIREMENT) -eq 1 ]; then
   echo "Doing a monthly backup!"
 
-  # Create the dir for this backup.
-  NEW_MONTHLY_BACKUP_DIR="$MONTHLY_BACKUPS_DIR/$BACKUP_DESCRIPTOR"
-  echo "Creating new backup directory: $NEW_MONTHLY_BACKUP_DIR"
-  mkdir -p $NEW_MONTHLY_BACKUP_DIR
+  # Make sure the monthly backups dir exists.
+  mkdir -p $MONTHLY_BACKUPS_DIR
 
   # "Copy" (using hard-links) latest daily backup that we just made, into the 'monthly' directory.
-  echo "Cloning '$THIS_BACKUP_DIR' into '$NEW_MONTHLY_BACKUP_DIR'."
-  cp --recursive --link  $THIS_BACKUP_DIR  $NEW_MONTHLY_BACKUP_DIR
+  echo "Cloning '$THIS_BACKUP_DIR' into '$MONTHLY_BACKUPS_DIR'."
+  cp --recursive --link  $THIS_BACKUP_DIR  $MONTHLY_BACKUPS_DIR
 
 else
   echo "No need for a monthly backup."
