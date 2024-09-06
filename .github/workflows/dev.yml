@@ -20,8 +20,12 @@ jobs:
     steps:
     - uses: actions/checkout@master
 
-    - name: Export github reference var
-      run: echo "GITHUB_REFERENCE=$(echo ${GITHUB_REF#refs/tags/})" >> $GITHUB_ENV
+    - name: Record git state
+      run: |
+        # Export github reference var
+        echo "GITHUB_REFERENCE=$(echo ${GITHUB_REF#refs/tags/})" >> $GITHUB_ENV
+        # Record current git commit.
+        echo $GITHUB_SHA > build-hash.txt
 
     - name: Update application version
       uses: mikefarah/yq@v4.34.1
