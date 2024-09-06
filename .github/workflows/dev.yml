@@ -20,12 +20,8 @@ jobs:
     steps:
     - uses: actions/checkout@master
 
-    - name: Record git state
-      run: |
-        # Export github reference var
-        echo "GITHUB_REFERENCE=$(echo ${GITHUB_REF#refs/tags/})" >> $GITHUB_ENV
-        # Record current git commit.
-        echo $GITHUB_SHA > build-hash.txt
+    - name: Export github reference var
+      run: echo "GITHUB_REFERENCE=$(echo ${GITHUB_REF#refs/tags/})" >> $GITHUB_ENV
 
     - name: Update application version
       uses: mikefarah/yq@v4.34.1
@@ -41,6 +37,9 @@ jobs:
 
         # Add support for rsync, before we run the build.
         echo "RUN apk --update add --no-cache rsync" >> docker/Dockerfile
+
+        # Have the build record the git-commit hash as a file.
+        echo "RUN echo '$GITHUB_SHA' > /var/www/build-hash.txt" >> docker/Dockerfile
 
         make build
         docker compose -f docker-compose.ci.yml up -d
