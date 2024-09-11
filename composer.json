@@ -74,7 +74,6 @@
                 "3284859 - Roles being stripped from users when saved if user has no access to roles field": "https://www.drupal.org/files/issues/2023-11-08/role_delegation-roles-being-stripped-3284859-4.patch"
             },
             "drupal/taxonomy_manager": {
-                "3449481 - Install jquery.fancytree via Composer instead of CDN": "https://www.drupal.org/files/issues/2024-05-27/taxonomy_manager-remove_cdn-3449481-4.patch",
                 "3449448 - Unable to edit terms without 'administer taxonomy' permission": "https://www.drupal.org/files/issues/2024-05-23/taxonomy_manager-unable_to_edit-3449448-4.patch"
             },
             "drupal/vbo_export": {
