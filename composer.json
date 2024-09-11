@@ -63,8 +63,7 @@
                 "2834253 - Missing column headings in Revisions list": "https://www.drupal.org/files/issues/2024-05-09/diff-missing_column_headers-2834253-23.patch"
             },
             "drupal/page_manager": {
-                "2756613 - Avoid harcoded prefex and suffix in block region": "https://www.drupal.org/files/issues/page_manager-avoid_prefix_suffix-2756613-8.patch",
-                "3362561 - Path has unnecessary query appended.": "https://www.drupal.org/files/issues/2023-11-29/page_manager-unnecessary_query-3362561-48.patch"
+                "2756613 - Avoid harcoded prefex and suffix in block region": "https://www.drupal.org/files/issues/page_manager-avoid_prefix_suffix-2756613-8.patch"
             },
             "drupal/panels": {
                 "2820617 - Avoid harcoded prefex and suffix in block region": "https://git.drupalcode.org/project/panels/-/merge_requests/12.diff",
