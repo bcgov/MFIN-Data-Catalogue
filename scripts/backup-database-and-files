@@ -169,8 +169,7 @@ WD_ELAPSED=$($FLOATING_POINT_SUPPORT <<< "$(date +%u)-1 + $(date +%H)/24")
 echo "(Days of work-week that have elapsed: '$WD_ELAPSED'. We do a  weekly backup at ~5.0)"
 echo "(Most-recent weekly backup is from $AGE_OF_WEEKLY_LB_IN_DAYS days ago.)"
 
-# Temporarily, run this on Tuesday night, not Friday, as a test.
-REQUIREMENT="( $WD_ELAPSED >= 1.75  &&  $WD_ELAPSED <= 2.25)  ||  $AGE_OF_WEEKLY_LB_IN_DAYS >= 7"
+REQUIREMENT="( $WD_ELAPSED >= 4.75  &&  $WD_ELAPSED <= 5.25)  ||  $AGE_OF_WEEKLY_LB_IN_DAYS >= 7"
 if [[ $($FLOATING_POINT_SUPPORT <<< $REQUIREMENT) -eq 1 ]]; then
   echo "Doing a weekly backup!"
 
