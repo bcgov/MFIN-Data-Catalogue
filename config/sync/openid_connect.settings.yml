@@ -9,10 +9,5 @@ redirect_login: user
 redirect_logout: ''
 userinfo_mappings:
   timezone: zoneinfo
-role_mappings:
-  administrator: {  }
-  data_catalogue_administrator: {  }
-  data_catalogue_manager: {  }
-  data_catalogue_editor: {  }
-  data_catalogue_user: {  }
-  data_catalogue_information_management_specialist: {  }
+role_mappings: {  }
+autostart_login: true
