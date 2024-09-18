@@ -1171,8 +1171,8 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Test bc_dc.review_reminder service, ReviewReminder class.
     $bc_dc_review_reminder = \Drupal::service('bc_dc.review_reminder');
     $data_set_url = $data_set->toUrl('canonical', ['absolute' => TRUE])->toString();
-    // Test ::getReminders().
-    $reminders = $bc_dc_review_reminder->getReminders();
+    // Test ::getAssetsNeedingReview().
+    $reminders = $bc_dc_review_reminder->getAssetsNeedingReview();
     $expected = [
       1 => [
         $bc_dc_review_reminder::REVIEW_OVERDUE => [
