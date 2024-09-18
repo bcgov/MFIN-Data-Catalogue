@@ -27,10 +27,13 @@ use Drupal\node\NodeInterface;
 use Drupal\paragraphs\ParagraphInterface;
 use Drupal\tac_lite\Form\SchemeForm;
 use Drupal\taxonomy\TermInterface;
+use Drupal\taxonomy\Entity\Term;
 use Drupal\user\Entity\User;
 use Drupal\user\UserInterface;
 use Drupal\views\Plugin\views\query\QueryPluginBase;
 use Drupal\views\ViewExecutable;
+
+use function PHPUnit\Framework\isNull;
 
 /**
  * Implements hook_entity_operation().
@@ -379,47 +382,109 @@ function bc_dc_node_update(NodeInterface $entity): void {
   // some time in the past when it was know that an update was made.
   foreach ($bookmark_flaggings as $bookmark_flagging) {
     if ($new_modified_date > $bookmark_flagging->get('field_last_viewed_date')->value) {
-      $email = $bookmark_flagging->getOwner()->getEmail();
+      $owner = $bookmark_flagging->getOwner();
+      $email = $owner->getEmail();
       if ($email) {
-        $send_to[] = $email;
+        _bc_dc_send_email_re_changed_asset($owner, $entity);
       }
     }
   }
+}
 
-  $logger = \Drupal::logger('bc_dc');
+function _bc_dc_send_email_re_changed_asset($owner, $asset) {
 
-  // No recipients.
-  if (!$send_to) {
-    $logger->notice('No messages to send when updating data_set @nid.', ['@nid' => $entity->id()]);
-    return;
+// We want to be able to say what kind of metadata record this is:
+//   - Postgres database
+//   - CHEFS form
+//     etc.
+// To do this, we first look up the data-type term, and its ancestors.
+// Then we make a few changes (so that it reads better), and render it.
+
+  // Build an array of this asset's dataset_type's term's name, and its ancestors' names.
+  //   We are trying to build this var: $nice_record_type_name.
+  // e.g. Data -> File -> CSV.              => "CSV data-file"
+  //      Data -> Database -> Postgres      => "Postgres database"
+  //      Data -> Database                  => "Database"
+  //      Form -> CHEFS                     => "CHEFS form"
+  //      Report                            => "Report"
+  //      Data                              => "Data-source"
+
+  $dataset_type_names = [];
+  $dataset_type_tid = $asset->field_data_set_type[0]->getValue()['target_id'];
+  $term_ancestry = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadAllParents($dataset_type_tid);
+  foreach ($term_ancestry as $dataset_type_term) {
+    $dataset_type_names[] = $dataset_type_term->getName();
   }
 
-  // Send the notifications.
-  //
-  // Message subject.
-  $subject = t('An asset you have bookmarked has been updated');
-  // Message body.
+  // $term_ancestry looks like 0=>'Postgres', 1='Database', 2=>'Data'.
+  //   We want this reversed for our manipulations below.
+  $dataset_type_names = array_reverse($dataset_type_names);
 
-  // The URL goes through user/login since we are emailing this
-  // out to people who may not be logged in yet.
-  $body = t("The following asset has been updated:\n* [@title](@asset_url_via_login)", [
-    '@title' => $entity->getTitle(),
-    '@asset_url_via_login' => Url::fromRoute('user.login', [], [
-      'query' => ['destination' => '/node/' . $entity->id()],
-      'absolute' => TRUE,
-    ])->toString(),
-  ]);
+  if ($dataset_type_names[0] == 'Data') {
+    // Rename 'File' to be clearer.
+    if ($dataset_type_names[1] == 'File') {
+      $dataset_type_names[1] = 'Data-file';
+    }
+
+    // Throw away the first 'Data' term. We'll just call it a
+    // "Postgres database", not "Postgres database 'data'".
+    array_shift($dataset_type_names);
+  }
+
+  $nice_record_type_name = isset($dataset_type_names[1])
+    ? $dataset_type_names[1] . ' ' . strtolower($dataset_type_names[0])
+    : $dataset_type_names[0];
+
+  # This "remove-bookmark" link doesn't work, I think due to the CSRF token being connected to the wrong user?
+  # $remove_bookmark_link = Url::fromRoute('flag.action_link_unflag', ['flag'=>'bookmark', 'entity_id'=> $asset->id()], ['absolute' => TRUE])->toString(),
+
+  $subject = 'Your bookmarked metadata record has been updated';
+
+  $body_content = t(<<<END_BODY
+Dear @first_name,
+
+In the Finance Data Catalog, you previously asked be notified of any changes to [@asset_name](@asset_url), which is a @nice_record_type_name. This metadata-record has just been updated. Click to view the updated record:
+
+- [@direct_asset_url](@asset_url)
+
+If you no longer want these reminders, you can opt out of them:
+
+- [Your Data Catalog notifications-preferences](@subscriber_alerts_url)
+
+For more information or assistance, please contact @contact_email.
+
+Ministry of Finance Data Catalogue
+@data_cat_main_url
+END_BODY
+    , [
+      '@first_name' => $owner->field_first_name->value,
+      '@nice_record_type_name' => $nice_record_type_name,
+      '@asset_name' => $asset->getTitle(),
+      '@direct_asset_url' => Url::fromRoute('entity.node.canonical',
+        ['node' => $asset->id()],
+        ['absolute' => TRUE]
+        )->toString(),
+      '@asset_url' => Url::fromRoute('user.login', [], [
+          'query' => ['destination' => '/node/' . $asset->id()],
+          'absolute' => TRUE,
+        ])->toString(),
+      '@subscriber_alerts_url' => Url::fromRoute('user.login', [], [
+        'query' => ['destination' => '/user/' . $owner->id() . '/bookmarks'],
+        'absolute' => TRUE,
+        ])->toString(),
+      '@contact_email' => 'Nicole.deGreef@gov.bc.ca',
+      '@data_cat_main_url' => Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString(),
+    ]
+  );
+
   // Send the message and log the result.
-  $success = GcNotifyApiService::sendMessage($send_to, $subject, $body);
-  if ($success) {
-    $logger->notice('Sent message to @count users when updating data_set @nid.', [
-      '@count' => count($send_to),
-      '@nid' => $entity->id(),
-    ]);
-  }
-  else {
-    $logger->error('Failed sending message when updating data_set @nid.', ['@nid' => $entity->id()]);
-  }
+  $success = GcNotifyApiService::sendMessage([$owner->getEmail()], $subject, $body_content);
+  $logger = \Drupal::logger('bc_dc');
+  $logger->notice(($success ? 'Sent message' : 'Failed sending message')
+            . 'to user @user_num when updating data_set @nid.', [
+      '@user_num' => $owner->id(),
+      '@nid' => $asset->id(),
+  ]);
 }
 
 /**
@@ -454,7 +519,7 @@ function bc_dc_user_update(UserInterface $account): void {
  * Helper function to update TAC config per user based on user org.
  *
  * @param \Drupal\user\UserInterface $account
- *   The accoun to act on.
+ *   The account to act on.
  */
 function bc_dc_update_tac(UserInterface $account): void {
   // Automatically set tac tid.
