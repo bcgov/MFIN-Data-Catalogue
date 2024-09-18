@@ -447,14 +447,12 @@ In the Finance Data Catalog, you previously asked be notified of any changes to 
 
 - [@direct_asset_url](@asset_url)
 
+___
+
 If you no longer want these reminders, you can opt out of them:
 
 - [Your Data Catalog notifications-preferences](@subscriber_alerts_url)
 
-For more information or assistance, please contact @contact_email.
-
-Ministry of Finance Data Catalogue
-@data_cat_main_url
 END_BODY
     , [
       '@first_name' => $owner->field_first_name->value,
@@ -472,10 +470,10 @@ END_BODY
         'query' => ['destination' => '/user/' . $owner->id() . '/bookmarks'],
         'absolute' => TRUE,
         ])->toString(),
-      '@contact_email' => 'Nicole.deGreef@gov.bc.ca',
-      '@data_cat_main_url' => Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString(),
     ]
   );
+
+  $body_content .= _bc_dc_get_email_footer();
 
   // Send the message and log the result.
   $success = GcNotifyApiService::sendMessage([$owner->getEmail()], $subject, $body_content);
@@ -485,6 +483,19 @@ END_BODY
       '@user_num' => $owner->id(),
       '@nid' => $asset->id(),
   ]);
+}
+
+function _bc_dc_get_email_footer() {
+  return t(<<<END_EMAIL_FOOTER
+For more information or assistance, please contact @contact_email.
+
+Ministry of Finance Data Catalogue
+@data_cat_main_url
+END_EMAIL_FOOTER, [
+      '@contact_email' => 'Nicole.deGreef@gov.bc.ca',
+      '@data_cat_main_url' => Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString(),
+    ]
+  );
 }
 
 /**

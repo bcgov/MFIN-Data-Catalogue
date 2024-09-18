@@ -1186,7 +1186,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSame($reminders, $expected);
     // Test ::generateBody().
     // Generate empty reminder body.
-    $reminderBody = $bc_dc_review_reminder->generateBody([]);
+    $reminderBody = $bc_dc_review_reminder->generateBody([], 1);
     $this->assertNull($reminderBody);
     // Generate reminder body for user 1.
     $reminderBody = $bc_dc_review_reminder->generateBody($reminders[1]);

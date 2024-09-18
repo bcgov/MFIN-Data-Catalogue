@@ -2,6 +2,7 @@
 
 namespace Drupal\bc_dc\Service;
 
+use DateTime;
 use Drupal\bc_dc\Traits\ReviewReminderTrait;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
@@ -87,7 +88,7 @@ class ReviewReminder implements ContainerInjectionInterface {
       return NULL;
     }
 
-    $body = $this->generateBody($assets_needing_review_for_user);
+    $body = $this->generateBody($assets_needing_review_for_user, $uid);
     if (!$body) {
       $logger->error('ReviewReminder: Empty message for user @uid.', ['@uid' => $uid]);
       return NULL;
@@ -116,18 +117,26 @@ class ReviewReminder implements ContainerInjectionInterface {
    * @return string|null
    *   The body of the message or NULL if there is no message to send.
    */
-  public function generateBody(array $assets_needing_review_for_user): ?string {
+  public function generateBody(array $assets_needing_review_for_user, $uid): ?string {
 
-    $bc_dc_settings = $this->configFactory->get('bc_dc.settings');
+    $user = $this->entityTypeManager->getStorage('user')->load($uid);
 
-    $body = [];
+    $body = <<<END_INTRO
+Dear {$user->field_first_name->value},
+
+To uphold the trust of our users in the Data Catalogue, it is important that the records are reviewed periodically. Your attention to this ensures the accuracy and reliability of the data we maintain.
+
+Please review the following records:
+
+
+END_INTRO;
+
     $update_types = [
-      static::REVIEW_OVERDUE => trim($bc_dc_settings->get('review_overdue_message'), '.'),
-      static::REVIEW_NEEDED => trim($bc_dc_settings->get('review_needed_message'), '.'),
+      static::REVIEW_OVERDUE,
+      static::REVIEW_NEEDED,
     ];
-    foreach ($update_types as $update_type => $update_message) {
+    foreach ($update_types as $update_type) {
       if (!empty($assets_needing_review_for_user[$update_type])) {
-        $body[] = $update_message . ':';
         foreach ($assets_needing_review_for_user[$update_type] as $asset_needing_review) {
           // If a user clicks one of these links to one of
           // their Metadata Records in the email they receive,
@@ -138,15 +147,47 @@ class ReviewReminder implements ContainerInjectionInterface {
             'query' => ['destination' => '/node/' . $asset_needing_review->id()],
             'absolute' => TRUE,
           ]);
+          $prev_review_date = strtotime($asset_needing_review->field_last_review_date->value);
+          $review_freq_months = $asset_needing_review->field_review_interval->value;
+
+          // Calculate $next_review_date
+          list($y,$m,$d) = explode(' ',date('Y m d',$prev_review_date));
+          $m += $review_freq_months;
+          $next_review_date = (new DateTime())->setDate($y, $m, $d)->format('U');
+
+          $date_formatter = \Drupal::service('date.formatter');
+
           // GC Notify requires Markdown formatting, not HTML.
-          $body[] = sprintf('* [%s](%s)', $asset_needing_review->getTitle(), $url_via_login->toString());
+          $body .= t(<<<END_ITEM_TO_REVIEW
+[@asset_title](@url_via_login) @review_is_overdue
+* Last Reviewed: @prev_review_date
+* Review Frequency: @review_freq
+* Next Review Due: @next_review_date (@next_review_ago_or_fromnow)
+
+
+END_ITEM_TO_REVIEW,  [
+              '@asset_title'      => $asset_needing_review->getTitle(),
+              '@url_via_login'    => $url_via_login->toString(),
+              '@review_is_overdue'=> $update_type == STATIC::REVIEW_OVERDUE
+                                        ? '(review of this record is **overdue**)'
+                                        : '',
+              '@prev_review_date' => date('F j, Y', $prev_review_date),
+              '@review_freq'      => $review_freq_months == 12
+                                        ? 'Annually'
+                                        : $this->formatPlural($review_freq_months, 'Every month', 'Every @count months'),
+              '@next_review_ago_or_fromnow' => time() > $next_review_date
+                                        ? $date_formatter->formatTimeDiffSince($next_review_date) . ' overdue'
+                                        : $date_formatter->formatTimeDiffUntil($next_review_date) . ' from now',
+              '@next_review_date' => date('F j, Y', $next_review_date),
+            ]
+          );
         }
       }
     }
-    if ($body) {
-      return implode("\n\n", $body);
-    }
-    return NULL;
+
+    $body .= "___\n\n" ._bc_dc_get_email_footer();
+
+    return $body;
   }
 
   /**
