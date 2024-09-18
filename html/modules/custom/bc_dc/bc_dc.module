@@ -27,13 +27,10 @@ use Drupal\node\NodeInterface;
 use Drupal\paragraphs\ParagraphInterface;
 use Drupal\tac_lite\Form\SchemeForm;
 use Drupal\taxonomy\TermInterface;
-use Drupal\taxonomy\Entity\Term;
 use Drupal\user\Entity\User;
 use Drupal\user\UserInterface;
 use Drupal\views\Plugin\views\query\QueryPluginBase;
 use Drupal\views\ViewExecutable;
-
-use function PHPUnit\Framework\isNull;
 
 /**
  * Implements hook_entity_operation().
@@ -374,10 +371,8 @@ function bc_dc_node_update(NodeInterface $entity): void {
   /** @var \Drupal\flag\FlaggingInterface[] $bookmark_flaggings Array of flaggings. */
   $bookmark_flaggings = $flag_service->getEntityFlaggings($bookmark_flag, $entity);
 
-  // Create an array of users who need to be notified of the change.
-  /** @var string[] $send_to Array of email addresses. */
-  $send_to = [];
-  // Add to the list if the data set was modified after the last viewed date.
+  // Email users who asked to be notified of the change,
+  // if the data set was modified after the last viewed date.
   // We compare dates because field_modified_date might not be set to now, but
   // some time in the past when it was know that an update was made.
   foreach ($bookmark_flaggings as $bookmark_flagging) {
@@ -391,24 +386,33 @@ function bc_dc_node_update(NodeInterface $entity): void {
   }
 }
 
+/**
+ * Send an email to someone re a bookmarked asset having been updated.
+ *
+ * @param \Drupal\user\Entity\User $owner
+ *   User who bookmarked this Metadata record.
+ * @param [type] $asset
+ *   The Metadata record they bookmarked.
+ */
 function _bc_dc_send_email_re_changed_asset($owner, $asset) {
 
-// We want to be able to say what kind of metadata record this is:
-//   - Postgres database
-//   - CHEFS form
-//     etc.
-// To do this, we first look up the data-type term, and its ancestors.
-// Then we make a few changes (so that it reads better), and render it.
-
-  // Build an array of this asset's dataset_type's term's name, and its ancestors' names.
-  //   We are trying to build this var: $nice_record_type_name.
-  // e.g. Data -> File -> CSV.              => "CSV data-file"
+  // We want to be able to say what kind of metadata record this is:
+  // - Postgres database
+  // - CHEFS form
+  // etc.
+  // To do this, we first look up the data-type term, and its ancestors.
+  // Then we make a few changes (so that it reads better), and render it.
+  //
+  // Build an array of this asset's dataset_type's term's name,
+  // and its ancestors' names.
+  // We are trying to build this var: $nice_record_type_name.
+  /* e.g. Data -> File -> CSV.              => "CSV data-file"
   //      Data -> Database -> Postgres      => "Postgres database"
   //      Data -> Database                  => "Database"
   //      Form -> CHEFS                     => "CHEFS form"
   //      Report                            => "Report"
   //      Data                              => "Data-source"
-
+   */
   $dataset_type_names = [];
   $dataset_type_tid = $asset->field_data_set_type[0]->getValue()['target_id'];
   $term_ancestry = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadAllParents($dataset_type_tid);
@@ -417,7 +421,7 @@ function _bc_dc_send_email_re_changed_asset($owner, $asset) {
   }
 
   // $term_ancestry looks like 0=>'Postgres', 1='Database', 2=>'Data'.
-  //   We want this reversed for our manipulations below.
+  // -- We want this reversed for our manipulations below.
   $dataset_type_names = array_reverse($dataset_type_names);
 
   if ($dataset_type_names[0] == 'Data') {
@@ -435,9 +439,12 @@ function _bc_dc_send_email_re_changed_asset($owner, $asset) {
     ? $dataset_type_names[1] . ' ' . strtolower($dataset_type_names[0])
     : $dataset_type_names[0];
 
-  # This "remove-bookmark" link doesn't work, I think due to the CSRF token being connected to the wrong user?
-  # $remove_bookmark_link = Url::fromRoute('flag.action_link_unflag', ['flag'=>'bookmark', 'entity_id'=> $asset->id()], ['absolute' => TRUE])->toString(),
-
+  // This "remove-bookmark" link doesn't work, I think due to
+  // the CSRF token being connected to the wrong user?
+  /* $remove_bookmark_link = Url::fromRoute('flag.action_link_unflag',
+  ['flag'=>'bookmark', 'entity_id'=> $asset->id()],
+  ['absolute' => TRUE])->toString(),
+   */
   $subject = 'Your bookmarked metadata record has been updated';
 
   $body_content = t(<<<END_BODY
@@ -447,14 +454,12 @@ In the Finance Data Catalog, you previously asked be notified of any changes to 
 
 - [@direct_asset_url](@asset_url)
 
+___
+
 If you no longer want these reminders, you can opt out of them:
 
 - [Your Data Catalog notifications-preferences](@subscriber_alerts_url)
 
-For more information or assistance, please contact @contact_email.
-
-Ministry of Finance Data Catalogue
-@data_cat_main_url
 END_BODY
     , [
       '@first_name' => $owner->field_first_name->value,
@@ -463,27 +468,44 @@ END_BODY
       '@direct_asset_url' => Url::fromRoute('entity.node.canonical',
         ['node' => $asset->id()],
         ['absolute' => TRUE]
-        )->toString(),
+      )->toString(),
       '@asset_url' => Url::fromRoute('user.login', [], [
-          'query' => ['destination' => '/node/' . $asset->id()],
-          'absolute' => TRUE,
-        ])->toString(),
+        'query' => ['destination' => '/node/' . $asset->id()],
+        'absolute' => TRUE,
+      ])->toString(),
       '@subscriber_alerts_url' => Url::fromRoute('user.login', [], [
         'query' => ['destination' => '/user/' . $owner->id() . '/bookmarks'],
         'absolute' => TRUE,
-        ])->toString(),
-      '@contact_email' => 'Nicole.deGreef@gov.bc.ca',
-      '@data_cat_main_url' => Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString(),
+      ])->toString(),
     ]
   );
+
+  $body_content .= _bc_dc_get_email_footer();
 
   // Send the message and log the result.
   $success = GcNotifyApiService::sendMessage([$owner->getEmail()], $subject, $body_content);
   $logger = \Drupal::logger('bc_dc');
   $logger->notice(($success ? 'Sent message' : 'Failed sending message')
             . 'to user @user_num when updating data_set @nid.', [
-      '@user_num' => $owner->id(),
-      '@nid' => $asset->id(),
+              '@user_num' => $owner->id(),
+              '@nid' => $asset->id(),
+            ]
+  );
+}
+
+/**
+ * Get the common text we put in email footers.
+ */
+function _bc_dc_get_email_footer() {
+  return t(<<<END_EMAIL_FOOTER
+For more information or assistance, please contact @contact_email.
+
+Ministry of Finance Data Catalogue
+@data_cat_main_url
+END_EMAIL_FOOTER
+  , [
+    '@contact_email' => 'Nicole.deGreef@gov.bc.ca',
+    '@data_cat_main_url' => Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString(),
   ]);
 }
 
