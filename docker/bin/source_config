@@ -1,0 +1,8 @@
+#!/bin/bash
+# strict mode http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+
+dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Source all the configuration environment variables from the .env file.
+. ${dir}/../../.env

@@ -1,0 +1,194 @@
+#!/bin/bash
+
+# Docroot.
+cd /var/www/html/;
+
+# Trap.
+if [[ $# -eq 0 ]]; then
+  exit 1
+fi
+
+COMMAND=$1
+export DB_NAME="${2:-wxt}"
+export DB_TYPE="${3:-mysql}"
+export DB_PORT="${4:-3306}"
+PROFILE_NAME="${5:-wxt}"
+NFS=$6
+EXIT_VALUE=0
+
+##
+# SCRIPT COMMANDS
+##
+
+# drupal_init
+#
+# Configure the initial Drupal f.s.
+#
+drupal_init() {
+  header Configure the initial Drupal f.s.
+
+  chmod 777 /var/www/html/sites/default
+
+  if [ -f /var/www/html/sites/default/settings.php ]; then
+    chmod 777 /var/www/html/sites/default/settings.php
+    rm /var/www/html/sites/default/settings.php
+  fi
+
+  if [ -f /var/www/html/sites/default/default.settings.php ]; then
+    chmod 777 /var/www/html/sites/default/default.settings.php
+    rm /var/www/html/sites/default/default.settings.php
+  fi
+
+  cp /var/www/docker/conf/drupal/default.settings.php /var/www/html/sites/default/default.settings.php
+}
+
+# drupal_install
+#
+# Installs Drupal distribution.
+#
+drupal_install() {
+  header Install Drupal distribution
+  # We will let bash manage errors with set -e (errexit)
+  set -e
+
+  if [[ "$DB_TYPE" == "pgsql" ]]; then
+    DB_CONNECTION="pgsql://root:root@db:5432"
+  else
+    DB_CONNECTION="mysql://root:root@db:3306"
+  fi
+
+  time drush si "${PROFILE_NAME}" \
+    --sites-subdir=default \
+    --db-url="${DB_CONNECTION}"/"${DB_NAME}" \
+    --account-name=admin \
+    --account-pass=Drupal@`date +'%Y'` \
+    --site-mail=admin@example.com \
+    --site-name="Drupal Install Profile (${PROFILE_NAME})" \
+    wxt_extension_configure_form.select_all='TRUE' \
+    install_configure_form.update_status_module='array(FALSE,FALSE)' \
+    --yes
+  set +e
+}
+
+# drupal_migrate
+#
+# Initialize migrate along with default content.
+#
+drupal_migrate() {
+  header Initialize migrate and default content
+  cd /var/www/html/sites/default
+  drush migrate:import --group wxt --tag 'Core'
+  drush migrate:import --group gcweb --tag 'Core'
+  drush migrate:import --group gcweb --tag 'Menu'
+}
+
+# drupal_perm
+#
+# Configure the settings.php and files directory permissions.
+#
+drupal_perm() {
+  header Configure the settings.php and files directory permissions
+
+  if [[ $NFS != "nfs" ]]; then
+    chown -R -f :www-data /var/www/html/
+    sleep 5
+  fi
+
+  php -r 'opcache_reset();';
+
+  sleep 5
+
+  chmod 444 sites/default/settings.php
+
+  if [ ! -d /var/www/files_private ]; then
+    mkdir /var/www/files_private;
+  fi
+
+  chmod 777 -R /var/www/files_private;
+  chmod 777 -R sites/default/files
+}
+
+# drupal_updatedb
+#
+# Update Drupal with database updates.
+#
+drupal_updatedb() {
+  header Update Drupal with database updates.
+  # We will let bash manage errors with set -e (errexit)
+  set -e
+  drush -y updatedb
+  set +e
+}
+
+##
+# UTILITY FUNCTIONS:
+##
+
+# Prints a message about the section of the script.
+header() {
+  set +xv
+  echo
+  echo "** $@"
+  echo
+  set -xv
+}
+
+# Sets the exit level to error.
+set_error() {
+  EXIT_VALUE=1
+}
+
+# Runs a command and sets an error if it fails.
+run_test() {
+  if ! $@; then
+    set_error
+  fi
+}
+
+# Runs a command showing all the lines executed
+run_command() {
+  set -xv
+  $@
+  set +xv
+}
+
+##
+# SCRIPT MAIN:
+##
+
+# Capture all errors and set our overall exit value.
+trap 'set_error' ERR
+
+case $COMMAND in
+  drupal-first-run)
+    run_command drupal_init
+    run_command drupal_install
+    run_command drupal_perm
+    ;;
+
+  drupal-init)
+    run_command drupal_init
+    ;;
+
+  drupal-install)
+    run_command drupal_install
+    ;;
+
+  drupal-migrate)
+    run_command drupal_migrate
+    ;;
+
+  drupal-perm)
+    run_command drupal_perm
+    ;;
+
+  drupal-updatedb)
+    run_command drupal_updatedb
+    ;;
+
+  run-test)
+    run_command run_test
+    ;;
+esac
+
+exit $EXIT_VALUE
