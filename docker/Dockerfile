@@ -20,6 +20,7 @@ RUN apk --update add --no-cache bash \
                                 mysql-client \
                                 patch \
                                 postgresql-client \
+                                rsync \
                                 ssmtp \
                                 zlib-dev
 
