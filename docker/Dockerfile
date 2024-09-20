@@ -4,6 +4,7 @@ FROM drupal:10.2-php8.2-fpm-alpine
 ARG SSH_PRIVATE_KEY
 ARG GIT_USERNAME
 ARG GIT_PASSWORD
+ARG GITHUB_SHA
 
 RUN apk --update add fcgi \
     && curl -o /usr/local/bin/php-fpm-healthcheck https://raw.githubusercontent.com/renatomefi/php-fpm-healthcheck/master/php-fpm-healthcheck \
@@ -120,3 +121,6 @@ RUN ln -s /var/www/vendor/drush/drush/drush /usr/local/bin/drush
 
 # Reset Cache
 RUN php -r 'opcache_reset();'
+
+# Record which git commit is loaded into the pod.
+RUN echo "$GITHUB_SHA" > /var/www/build-hash.txt

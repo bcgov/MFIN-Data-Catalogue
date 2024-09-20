@@ -41,9 +41,6 @@ jobs:
         # Add support for rsync, before we run the build.
         echo "RUN apk --update add --no-cache rsync" >> docker/Dockerfile
 
-        # Have the build record the git-commit hash as a file.
-        echo "RUN echo '$GITHUB_SHA' > /var/www/build-hash.txt" >> docker/Dockerfile
-
         make build
         docker compose -f docker-compose.ci.yml up -d
         docker ps -a
