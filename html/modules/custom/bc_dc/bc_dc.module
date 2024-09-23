@@ -450,15 +450,18 @@ function _bc_dc_send_email_re_changed_asset($owner, $asset) {
   $body_content = t(<<<END_BODY
 Dear @first_name,
 
-In the Finance Data Catalog, you previously asked be notified of any changes to [@asset_name](@asset_url), which is a @nice_record_type_name. This metadata-record has just been updated. Click to view the updated record:
+In the Finance Data Catalogue, you previously bookmarked the metadata record "[@asset_name](@asset_url)", which is a @nice_record_type_name.
+
+It has just been updated. Click to view the updated record:
 
 - [@direct_asset_url](@asset_url)
 
 ___
 
-If you no longer want these reminders, you can opt out of them:
+If you no longer want these reminders, you can unbookmark the related record here:
 
-- [Your Data Catalog notifications-preferences](@subscriber_alerts_url)
+- ["My bookmarks", in the Finance Data Catalogue](@subscriber_alerts_url)
+
 
 END_BODY
     , [
