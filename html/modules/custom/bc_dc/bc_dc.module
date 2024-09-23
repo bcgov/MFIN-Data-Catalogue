@@ -445,7 +445,7 @@ function _bc_dc_send_email_re_changed_asset($owner, $asset) {
   ['flag'=>'bookmark', 'entity_id'=> $asset->id()],
   ['absolute' => TRUE])->toString(),
    */
-  $subject = 'Your bookmarked metadata record has been updated';
+  $subject = t('Update to "@asset_name" metadata record', ['@asset_name' => $asset->getTitle()]);
 
   $body_content = t(<<<END_BODY
 Dear @first_name,
