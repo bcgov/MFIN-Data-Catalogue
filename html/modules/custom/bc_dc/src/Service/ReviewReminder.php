@@ -122,23 +122,20 @@ class ReviewReminder implements ContainerInjectionInterface {
 
     $user = $this->entityTypeManager->getStorage('user')->load($uid);
 
-    $body = <<<END_INTRO
-Dear {$user->field_first_name->value},
-
-To uphold the trust of our users in the Data Catalogue, it is important that the records are reviewed periodically. Your attention to this ensures the accuracy and reliability of the data we maintain.
-
-Please review the following records:
-
-
-END_INTRO;
-
     $update_types = [
       static::REVIEW_OVERDUE,
       static::REVIEW_NEEDED,
     ];
+    $body_records_to_review = '';
+    $count_records_to_review = 0;
+
+    // First, loop through the records needing review, and
+    // render the text for each one of them, to go in the email.
     foreach ($update_types as $update_type) {
       if (!empty($assets_needing_review_for_user[$update_type])) {
         foreach ($assets_needing_review_for_user[$update_type] as $asset_needing_review) {
+          ++$count_records_to_review;
+
           // If a user clicks one of these links to one of
           // their Metadata Records in the email they receive,
           // they will confusingly get a "Not Found" error
@@ -160,15 +157,15 @@ END_INTRO;
           $date_formatter = \Drupal::service('date.formatter');
 
           // GC Notify requires Markdown formatting, not HTML.
-          $body .= t(<<<END_ITEM_TO_REVIEW
+          $body_records_to_review .= t(<<<END_RECORD_TO_REVIEW
 [@asset_title](@url_via_login) @review_is_overdue
 * Last Reviewed: @prev_review_date
 * Review Frequency: @review_freq
 * Next Review Due: @next_review_date (@next_review_ago_or_fromnow)
 
 
-END_ITEM_TO_REVIEW
-            , [
+END_RECORD_TO_REVIEW,
+            [
               '@asset_title'       => $asset_needing_review->getTitle(),
               '@url_via_login'     => $url_via_login->toString(),
               '@review_is_overdue' => $update_type == static::REVIEW_OVERDUE
@@ -188,7 +185,29 @@ END_ITEM_TO_REVIEW
       }
     }
 
-    $body .= "___\n\n" . _bc_dc_get_email_footer();
+    // Now add on the header and footer.
+    $body = t(<<<END_BODY
+Dear @first_name,
+
+To uphold the trust of our users in the Data Catalogue, it is important that the records are reviewed periodically. Your attention to this ensures the accuracy and reliability of the data we maintain.
+
+Please review the following @count_records:
+
+
+@records_to_review
+
+___
+
+@email_footer
+
+END_BODY,
+      [
+        '@first_name' => $user->field_first_name->value,
+        '@count_records' => $this->formatPlural($count_records_to_review, 'record', '@count records'),
+        '@records_to_review' => $body_records_to_review,
+        '@email_footer' => _bc_dc_get_email_footer(),
+      ]
+    );
 
     return $body;
   }
