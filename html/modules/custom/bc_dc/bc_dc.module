@@ -463,8 +463,8 @@ If you no longer want these reminders, you can unbookmark the related record her
 - ["My bookmarks", in the Finance Data Catalogue](@subscriber_alerts_url)
 
 
-END_BODY
-    , [
+END_BODY,
+    [
       '@first_name' => $owner->field_first_name->value,
       '@nice_record_type_name' => $nice_record_type_name,
       '@asset_name' => $asset->getTitle(),
@@ -500,14 +500,18 @@ END_BODY
  * Get the common text we put in email footers.
  */
 function _bc_dc_get_email_footer() {
+  $is_test_or_dev = preg_match('/(dev|test)/i', \Drupal::config('environment_indicator')->get('name'));
+
   return t(<<<END_EMAIL_FOOTER
-For more information or assistance, please contact @contact_email.
+For more information or assistance, please @contact_us.
 
 Ministry of Finance Data Catalogue
 @data_cat_main_url
-END_EMAIL_FOOTER
-  , [
-    '@contact_email' => 'Nicole.deGreef@gov.bc.ca',
+END_EMAIL_FOOTER,
+  [
+    '@contact_us' => $is_test_or_dev
+      ? 'contact Nicole.deGreef@gov.bc.ca'
+      : 'reach out via [Finance Data Catalogue Support](https://fincsp.atlassian.net/servicedesk/customer/portal/12)',
     '@data_cat_main_url' => Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString(),
   ]);
 }
