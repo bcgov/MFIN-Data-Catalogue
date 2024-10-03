@@ -1,8 +1,0 @@
-uuid: 9b2948b7-1e9c-475e-8987-8dee928b146d
-langcode: en
-status: true
-dependencies: {  }
-id: event_date_full
-label: 'Event Date Full'
-locked: false
-pattern: 'l, M j, Y'

@@ -1,7 +1,0 @@
-name: Environment Indicator Tweaks
-type: module
-description: Alterations to Environment Indicator module, for use in BC Gov.
-package: Province of British Columbia
-core_version_requirement: ^9 || ^10
-dependencies:
-  - environment_indicator

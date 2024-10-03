@@ -1,8 +1,0 @@
-uuid: d0e9f89f-ae3a-4f56-b215-a1825e678da6
-langcode: en
-status: true
-dependencies: {  }
-id: menu
-label: Menu
-revision: 0
-description: 'Use <i>menu</i> blocks for content in the mega menu.'

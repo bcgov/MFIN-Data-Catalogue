@@ -1,8 +1,0 @@
-uuid: 8992d401-ac69-4176-a1c0-97ea81a062b0
-langcode: en
-status: true
-dependencies: {  }
-id: short_date_and_time
-label: 'Short date and time'
-locked: false
-pattern: 'M d, Y g:ia'

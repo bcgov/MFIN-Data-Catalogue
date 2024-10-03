@@ -1,8 +1,0 @@
-uuid: 788d8bb6-4597-4968-8f37-585579c65a38
-langcode: en
-status: true
-dependencies: {  }
-id: event_date
-label: 'Event Date'
-locked: false
-pattern: j

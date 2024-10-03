@@ -1,5 +1,0 @@
-name: FINtranet
-description: Customizations for the Ministry of Finance Intranet.
-package: Ministry of Finance Intranet
-type: module
-core_version_requirement: ^9 || ^10

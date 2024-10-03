@@ -1,1 +1,0 @@
-!function(t){Drupal.behaviors.themagWeMegaMenu={attach:function(a){t(a).find(".we-mega-menu-li").each(function(a,n){var e=t(n),i=e.data("icon"),c=e.find("> span")||e.find("> a");i&&t('<i class="'+i+'"></i>').prependTo(c)})}}}(jQuery);

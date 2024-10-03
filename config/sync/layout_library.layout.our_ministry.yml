@@ -1,9 +1,0 @@
-uuid: b6bcc723-4d58-46ec-880f-4a6eea998c88
-langcode: en
-status: true
-dependencies: {  }
-id: our_ministry
-label: 'Our Ministry'
-targetEntityType: node
-targetBundle: themag_landing_page
-layout: {  }

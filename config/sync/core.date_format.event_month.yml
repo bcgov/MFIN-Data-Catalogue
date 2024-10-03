@@ -1,8 +1,0 @@
-uuid: 4d23843b-18e3-4d55-b9af-21f00d199e38
-langcode: en
-status: true
-dependencies: {  }
-id: event_month
-label: 'Event Month'
-locked: false
-pattern: M

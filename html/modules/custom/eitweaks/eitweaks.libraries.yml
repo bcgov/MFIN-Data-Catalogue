@@ -1,6 +1,0 @@
-eitweaks:
-  version: 1
-  js:
-    js/eitweaks.js: {}
-  dependencies:
-    - core/jquery

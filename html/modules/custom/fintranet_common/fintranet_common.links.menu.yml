@@ -1,8 +1,0 @@
-# Admin: Content
-
-fintranet_common.admin_content_trash:
-  title: 'Trash'
-  description: 'Trash content'
-  parent: system.admin_content
-  route_name: view.fintranet_admin_content.page_2
-  weight: 1

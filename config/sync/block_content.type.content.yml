@@ -1,8 +1,0 @@
-uuid: 272bfd35-953f-4901-945f-5b3e7f45a1dc
-langcode: en
-status: true
-dependencies: {  }
-id: content
-label: Content
-revision: 0
-description: 'Use <i>content</i> blocks to embed reuseable content via the WYSIWYG toolbar.'
