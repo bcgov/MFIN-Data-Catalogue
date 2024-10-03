@@ -18,7 +18,7 @@ jobs:
 
     - name: Build out the Drupal infrastructure
       run: |
-        export DB_TYPE=mysql
+        export DB_TYPE=mysql  # NEWBB -confirm database type
         export DB_PORT=3306
         git clone --branch 10.2.x-php8.2 https://github.com/drupalwxt/docker-scaffold.git docker
 
@@ -32,26 +32,26 @@ jobs:
 
     - name: Run installation
       run: |
-        export DB_TYPE=mysql
+        export DB_TYPE=mysql  # NEWBB -confirm database type
         export DB_PORT=3306
         make drupal_install
 
     - name: Run tests
       run: |
-        export DB_TYPE=mysql
+        export DB_TYPE=mysql  # NEWBB -confirm database type
         export DB_PORT=3306
         ./docker/bin/phpcs --standard=/var/www/html/core/phpcs.xml \
             --extensions=php,module,inc,install,test,profile,theme \
             --report=full \
             --colors \
-            /var/www/html/modules/contrib/bcbb \
-            /var/www/html/modules/custom/fintranet \
-            /var/www/html/modules/custom/fintranet_common \
+            /var/www/html/modules/contrib/NEWBB_module_to_test \
+            /var/www/html/modules/custom/NEWBB_other_module_to_test \
+            /var/www/html/modules/custom/NEWBB_another_module_to_test \
 
     - name: Scan PHP-FPM image for vulnerabilities
       uses: aquasecurity/trivy-action@0.20.0
       with:
-        image-ref: 'fintranet-web:latest'
+        image-ref: 'newbbproj-web:latest'
         format: 'table'
         exit-code: '0'
         ignore-unfixed: true
@@ -61,7 +61,7 @@ jobs:
     - name: Scan Nginx image for vulnerabilities
       uses: aquasecurity/trivy-action@0.20.0
       with:
-        image-ref: 'fintranet-nginx:latest'
+        image-ref: 'newbbproj-nginx:latest'
         format: 'table'
         exit-code: '0'
         ignore-unfixed: true

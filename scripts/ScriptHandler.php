@@ -1,6 +1,6 @@
 <?php
 
-namespace BCGovC\Fintranet;
+namespace BCGovC\NewBBProj;
 
 use Composer\Script\Event;
 use Composer\Semver\Comparator;
@@ -125,7 +125,7 @@ class ScriptHandler {
     $name = $composer->getPackage()->getName();
 
     $projDir = realpath(dirname($composerFile));
-    $projectName = $io->ask('Enter composer project name (bcgov-c/fintranet): ', 'bcgov-c/fintranet');
+    $projectName = $io->ask('Enter composer project name (bcgov-c/newbbproj): ', 'bcgov-c/newbbproj');
 
     $finder = new Finder();
     foreach ($finder->files()->name('/composer\.(json|lock)/i')->in($projDir) as $file) {

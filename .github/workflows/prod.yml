@@ -15,7 +15,7 @@ jobs:
     - name: Checkout Tenant GitOps Repo
       uses: actions/checkout@v3
       with:
-        repository: bcgov-c/tenant-gitops-f61fc4
+        repository: bcgov-c/tenant-gitops-newbblicenseplate
         path: tenant-gitops
         ssh-key: ${{ secrets.SSH_KEY }}
         persist-credentials: true
@@ -25,7 +25,7 @@ jobs:
       with:
         cmd: |
           yq -i '.drupal.tag = strenv(GITHUB_REFERENCE) |
-                 .nginx.tag = strenv(GITHUB_REFERENCE) ' tenant-gitops/helm-drupal/charts/drupal/values-fintranet-prod.yaml
+                 .nginx.tag = strenv(GITHUB_REFERENCE) ' tenant-gitops/helm-drupal/charts/drupal/values-newbbproj-prod.yaml
 
     - name: Commit files
       run: |
@@ -40,4 +40,4 @@ jobs:
         ssh: true
         branch: main
         directory: tenant-gitops
-        repository: bcgov-c/tenant-gitops-f61fc4
+        repository: bcgov-c/tenant-gitops-newbblicenseplate

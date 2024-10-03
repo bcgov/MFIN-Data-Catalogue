@@ -9,7 +9,7 @@ on:
 
 env:
   COMPOSER_MEMORY_LIMIT: -1
-  CONTAINER_IMAGE_NAME: fintranet
+  CONTAINER_IMAGE_NAME: newbbproj
   CONTAINER_REGISTRY: ${{ secrets.CONTAINER_REGISTRY }}
   CONTAINER_REGISTRY_USERNAME: ${{ secrets.CONTAINER_REGISTRY_USERNAME }}
   CONTAINER_REGISTRY_PASSWORD: ${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
@@ -27,11 +27,11 @@ jobs:
       uses: mikefarah/yq@v4.34.1
       with:
         cmd: |
-          yq eval '.version = strenv(GITHUB_REFERENCE)' -i html/modules/custom/fintranet_common/fintranet_common.info.yml
+          yq eval '.version = strenv(GITHUB_REFERENCE)' -i html/modules/custom/newbbproj_common/newbbproj_common.info.yml
 
     - name: Build out the Drupal infrastructure
       run: |
-        export DB_TYPE=mysql
+        export DB_TYPE=mysql  # NEWBB -confirm database type
         export DB_PORT=3306
         git clone --branch 10.2.x-php8.2 https://github.com/drupalwxt/docker-scaffold.git docker
 
@@ -48,26 +48,26 @@ jobs:
 
     - name: Run installation
       run: |
-        export DB_TYPE=mysql
+        export DB_TYPE=mysql  # NEWBB -confirm database type
         export DB_PORT=3306
         make drupal_install
 
     - name: Run tests
       run: |
-        export DB_TYPE=mysql
+        export DB_TYPE=mysql  # NEWBB -confirm database type
         export DB_PORT=3306
         ./docker/bin/phpcs --standard=/var/www/html/core/phpcs.xml \
             --extensions=php,module,inc,install,test,profile,theme \
             --report=full \
             --colors \
-            /var/www/html/modules/contrib/bcbb \
-            /var/www/html/modules/custom/fintranet \
-            /var/www/html/modules/custom/fintranet_common \
+            /var/www/html/modules/contrib/NEWBB_module_to_test \
+            /var/www/html/modules/custom/NEWBB_other_module_to_test \
+            /var/www/html/modules/custom/NEWBB_another_module_to_test \
 
     - name: Scan PHP-FPM image for vulnerabilities
       uses: aquasecurity/trivy-action@0.20.0
       with:
-        image-ref: 'fintranet-web:latest'
+        image-ref: 'newbbproj-web:latest'
         format: 'table'
         exit-code: '0'
         ignore-unfixed: true
@@ -77,7 +77,7 @@ jobs:
     - name: Scan Nginx image for vulnerabilities
       uses: aquasecurity/trivy-action@0.20.0
       with:
-        image-ref: 'fintranet-nginx:latest'
+        image-ref: 'newbbproj-nginx:latest'
         format: 'table'
         exit-code: '0'
         ignore-unfixed: true
@@ -93,18 +93,18 @@ jobs:
 
     - name: Build and push PHP-FPM 🐳
       run: |
-        docker tag fintranet-web:latest ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}:${{ env.GITHUB_REFERENCE }}
+        docker tag newbbproj-web:latest ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}:${{ env.GITHUB_REFERENCE }}
         docker push ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}:${{ env.GITHUB_REFERENCE }}
 
     - name: Build and push Nginx 🐳
       run: |
-        docker tag fintranet-nginx:latest ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}-nginx:${{ env.GITHUB_REFERENCE }}
+        docker tag newbbproj-nginx:latest ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}-nginx:${{ env.GITHUB_REFERENCE }}
         docker push ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}-nginx:${{ env.GITHUB_REFERENCE }}
 
     - name: Checkout Tenant GitOps Repo
       uses: actions/checkout@v3
       with:
-        repository: bcgov-c/tenant-gitops-f61fc4
+        repository: bcgov-c/tenant-gitops-newbblicenseplate
         path: tenant-gitops
         ssh-key: ${{ secrets.SSH_KEY }}
         persist-credentials: true
@@ -114,7 +114,7 @@ jobs:
       with:
         cmd: |
           yq -i '.drupal.tag = strenv(GITHUB_REFERENCE) |
-                 .nginx.tag = strenv(GITHUB_REFERENCE) ' tenant-gitops/helm-drupal/charts/drupal/values-fintranet-dev.yaml
+                 .nginx.tag = strenv(GITHUB_REFERENCE) ' tenant-gitops/helm-drupal/charts/drupal/values-newbbproj-dev.yaml
 
     - name: Commit files
       run: |
@@ -129,4 +129,4 @@ jobs:
         ssh: true
         branch: main
         directory: tenant-gitops
-        repository: bcgov-c/tenant-gitops-f61fc4
+        repository: bcgov-c/tenant-gitops-newbblicenseplate
