@@ -168,12 +168,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcgov/bcbb-theme.git",
-                "reference": "a8ee8013eb2ffc8b34d9ead2ecb4d5be1bc084b0"
+                "reference": "ca0c3da4162f10c9ebed71ede7d95ae71869fbd0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb-theme/zipball/a8ee8013eb2ffc8b34d9ead2ecb4d5be1bc084b0",
-                "reference": "a8ee8013eb2ffc8b34d9ead2ecb4d5be1bc084b0",
+                "url": "https://api.github.com/repos/bcgov/bcbb-theme/zipball/ca0c3da4162f10c9ebed71ede7d95ae71869fbd0",
+                "reference": "ca0c3da4162f10c9ebed71ede7d95ae71869fbd0",
                 "shasum": ""
             },
             "require": {
@@ -190,7 +190,7 @@
                 "source": "https://github.com/bcgov/bcbb-theme/tree/1.0.x",
                 "issues": "https://github.com/bcgov/bcbb-theme/issues"
             },
-            "time": "2024-05-29T19:14:02+00:00"
+            "time": "2024-10-09T17:57:41+00:00"
         },
         {
             "name": "bcgov/gdx_analytics_drupal_snowplow",
@@ -19703,5 +19703,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }
