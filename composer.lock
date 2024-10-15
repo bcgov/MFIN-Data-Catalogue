@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "384a429232381189d88b566844cbcada",
+    "content-hash": "10adb28f63d4a1620579ff469860a5fa",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5863,6 +5863,98 @@
                 "source": "https://cgit.drupalcode.org/pathauto",
                 "issues": "https://www.drupal.org/project/issues/pathauto",
                 "documentation": "https://www.drupal.org/docs/8/modules/pathauto"
+            }
+        },
+        {
+            "name": "drupal/r4032login",
+            "version": "2.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/r4032login.git",
+                "reference": "2.2.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/r4032login-2.2.2.zip",
+                "reference": "2.2.2",
+                "shasum": "1e6d306590ee321f520f0a9ca12ed6303778197f"
+            },
+            "require": {
+                "drupal/core": "^9.3 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.2.2",
+                    "datestamp": "1718893090",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "bdone",
+                    "homepage": "https://www.drupal.org/user/687670"
+                },
+                {
+                    "name": "Bevan",
+                    "homepage": "https://www.drupal.org/user/49989"
+                },
+                {
+                    "name": "deekayen",
+                    "homepage": "https://www.drupal.org/user/972"
+                },
+                {
+                    "name": "Grayle",
+                    "homepage": "https://www.drupal.org/user/3145497"
+                },
+                {
+                    "name": "lotyrin",
+                    "homepage": "https://www.drupal.org/user/216580"
+                },
+                {
+                    "name": "markdorison",
+                    "homepage": "https://www.drupal.org/user/346106"
+                },
+                {
+                    "name": "ms2011",
+                    "homepage": "https://www.drupal.org/user/108440"
+                },
+                {
+                    "name": "Nixou",
+                    "homepage": "https://www.drupal.org/user/2304734"
+                },
+                {
+                    "name": "pwolanin",
+                    "homepage": "https://www.drupal.org/user/49851"
+                },
+                {
+                    "name": "RobLoach",
+                    "homepage": "https://www.drupal.org/user/61114"
+                },
+                {
+                    "name": "shrop",
+                    "homepage": "https://www.drupal.org/user/14767"
+                },
+                {
+                    "name": "Sk8erPeter",
+                    "homepage": "https://www.drupal.org/user/1441344"
+                }
+            ],
+            "description": "Redirect anonymous users from 403 Access Denied pages to the /user/login page.",
+            "homepage": "https://www.drupal.org/project/r4032login",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/r4032login",
+                "issues": "https://www.drupal.org/project/issues/r4032login"
             }
         },
         {
@@ -19701,7 +19793,7 @@
     },
     "prefer-stable": true,
     "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform": {},
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
 }

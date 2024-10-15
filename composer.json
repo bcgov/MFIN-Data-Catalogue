@@ -119,6 +119,7 @@
         "drupal/insert_view_adv": "^2.0@alpha",
         "drupal/message_gcnotify": "^1.0.1",
         "drupal/paragraphs_features": "^2.0@beta",
+        "drupal/r4032login": "^2.2",
         "drupal/registration_role": "^2.0",
         "drupal/search_api_saved_searches": "^1.0",
         "drupal/shs": "^2.0@RC",
