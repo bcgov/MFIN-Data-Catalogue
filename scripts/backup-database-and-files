@@ -42,9 +42,9 @@ END_OF_README
 # Set up the 'backup descriptor'. This will be used for each of:
 #   * the directory name, for this backup.
 #          (this directory will also contain the 'public/private-files' backups)
-#           e.g. "2024-05-02.UTC.11h30.projectname-dev"
+#           e.g. "2024-05-02.UTC.11h30.newbbproj-dev"
 #   * the DB dump file.
-#           e.g. "DB_DUMP.2024-05-02.UTC.11h30.projectname-dev.SQL.GZ"
+#           e.g. "DB_DUMP.2024-05-02.UTC.11h30.newbbproj-dev.SQL.GZ"
 # COMMIT_HASH=$(cat /app/build-hash.txt | cut -c 1-8)   // Commit-hash is not currently available, so commented out.
 TIME_AND_DATE=$(date +"%F.UTC.%Hh%M")
 BACKUP_DESCRIPTOR=$TIME_AND_DATE.${APP_NAME}-${ENV_NAME}
