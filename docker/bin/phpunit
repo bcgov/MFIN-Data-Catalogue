@@ -1,0 +1,46 @@
+#!/bin/bash
+# strict mode http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+
+# Source all the configuration environment variables from the .env file.
+dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+. ${dir}/source_config
+
+if ! type docker > /dev/null; then
+  echo "Docker is required to be present on $PATH"
+  exit 0
+fi
+
+if [[ "${CI:-}" ]] ; then
+  vol="-v ${PWD}/docker/conf/drupal/settings.php:/var/www/html/sites/default/settings.php \
+       -v /tmp:/tmp/ \
+       -v ${PWD}/docker/conf/drupal/phpunit.xml:/var/www/html/core/phpunit.xml"
+else
+  vol="-v ${PWD}:/var/www \
+       -v /tmp:/tmp/"
+fi
+
+DB_TYPE="${DB_TYPE:-mysql}"
+DB_PORT="${DB_PORT:-3306}"
+DB_NAME="${DB_NAME:-wxt}"
+
+if [[ "$DB_TYPE" == "pgsql" ]]; then
+  DB_CONNECTION="pgsql://root:root@db:5432"
+else
+  DB_CONNECTION="mysql://root:root@db:3306"
+fi
+
+docker run -i \
+  --entrypoint=/var/www/vendor/bin/phpunit \
+  ${vol} \
+  -w "/var/www/html" \
+  -e "SIMPLETEST_DB=${DB_CONNECTION}/${DB_NAME}" \
+  -e DB_TYPE=$DB_TYPE \
+  -e DB_PORT=$DB_PORT \
+  -e DB_NAME=$DB_NAME \
+  --sig-proxy=true \
+  --pid=host \
+  --volumes-from "${DOCKER_NAME}_web" \
+  --net "${DOCKER_IMAGE}_default" \
+  --rm \
+  "${DOCKER_IMAGE}-cli" "$@"

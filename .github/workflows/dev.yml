@@ -33,7 +33,10 @@ jobs:
       run: |
         export DB_TYPE=mysql  # NEWBB -confirm database type
         export DB_PORT=3306
-        git clone --branch 10.2.x-php8.2 https://github.com/drupalwxt/docker-scaffold.git docker
+
+        # # We used to 'git clone' to get the '/docker' directory loaded,
+        # # but now we have made that code part of this repo. Commenting it out:
+        # git clone --branch 10.2.x-php8.2 https://github.com/drupalwxt/docker-scaffold.git docker
 
         # Add support for rsync, before we run the build.
         echo "RUN apk --update add --no-cache rsync" >> docker/Dockerfile
