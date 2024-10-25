@@ -24,12 +24,12 @@ jobs:
 
       - name: Configure JFrog CLI
         run: |
-          jfrog config add data-catalogue-rt --url=${{ env.ARTIFACTORY_URL }} --user=${{ env.CONTAINER_REGISTRY_USERNAME }} --password=${{ env.CONTAINER_REGISTRY_PASSWORD }}
+          jf config add data-catalogue-rt --url=https://artifacts.developer.gov.bc.ca:443 --user=${{ env.CONTAINER_REGISTRY_USERNAME }} --password=${{ env.CONTAINER_REGISTRY_PASSWORD }}
       
       - name: Check JFrog Connection
         id: check_connection
         run: |
-          response=$(jfrog rt ping)
+          response=$(jf rt ping)
           echo "Response: $response"
           echo "::set-output name=status::$response"
 
