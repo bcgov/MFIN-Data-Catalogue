@@ -22,7 +22,7 @@ jobs:
           curl -fL https://getcli.jfrog.io | sh
           sudo mv jfrog /usr/local/bin/jf
           sudo chmod +x /usr/local/bin/jf
-          jf version
+          jf -v
 
       - name: Configure JFrog CLI
         run: |
