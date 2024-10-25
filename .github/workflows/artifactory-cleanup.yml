@@ -2,12 +2,12 @@ name: Cleanup Artifacts
 
 on:
   workflow_dispatch:  # Allows manual triggering of the workflow
-#   schedule:
-#     - cron: '0 0 * * *'  # Adjust the schedule as needed
+  schedule:
+    - cron: '0 0 * * 6'  # Adjust the schedule as needed
 
 env:
   CONTAINER_REPO: ${{ secrets.CONTAINER_REPO }} 
-  ARTIFACTORY_URL: ${{ secrets.CONTAINER_REGISTRY }}
+  ARTIFACTORY_URL: ${{ secrets.ARTIFACTORY_URL }}
   CONTAINER_REGISTRY_USERNAME: ${{ secrets.CONTAINER_REGISTRY_USERNAME }}
   CONTAINER_REGISTRY_PASSWORD: ${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
 
@@ -26,7 +26,7 @@ jobs:
 
       - name: Configure JFrog CLI
         run: |
-          jf config add data-catalogue-rt --url=https://artifacts.developer.gov.bc.ca:443 --user=${{ env.CONTAINER_REGISTRY_USERNAME }} --password=${{ env.CONTAINER_REGISTRY_PASSWORD }}
+          jf config add data-catalogue-rt --url=${{ env.ARTIFACTORY_URL }} --user=${{ env.CONTAINER_REGISTRY_USERNAME }} --password=${{ env.CONTAINER_REGISTRY_PASSWORD }}
       
       - name: Check JFrog Connection
         id: check_connection
@@ -40,7 +40,7 @@ jobs:
         if: ${{ env.STATUS == 'OK' }}
         run: |
           folders=("mfin-data-catalogue" "mfin-data-catalogue-nginx")
-          n=5
+          n=20
           repo=${{ env.CONTAINER_REPO }}
 
           for folder in "${folders[@]}"; do              
