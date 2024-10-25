@@ -40,7 +40,7 @@ jobs:
         if: ${{ env.STATUS == 'OK' }}
         run: |
           folders=("mfin-data-catalogue" "mfin-data-catalogue-nginx")
-          n = 5
+          n=5
           repo=${{ env.CONTAINER_REPO }}
 
           for folder in "${folders[@]}"; do              
