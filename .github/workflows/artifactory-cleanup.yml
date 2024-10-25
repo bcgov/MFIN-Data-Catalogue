@@ -33,24 +33,21 @@ jobs:
         run: |
           response=$(jf rt ping)
           echo "Response: $response"
-          echo "::set-output name=status::$response"
+          echo "STATUS=$response" >> $GITHUB_ENV
 
 
       - name: Search and Remove Old Artifacts
-        if: steps.check_connection.outputs.status == 'OK'
+        if: ${{ env.STATUS == 'OK' }}
         run: |
-          folders=("mfin-data-catalogue" "mfin-data-catalogue-nginx")  # Define the folders to search
-          n= 5  # Number of images to keep
+          folders=("mfin-data-catalogue" "mfin-data-catalogue-nginx")
+          n = 5
           repo=${{ env.CONTAINER_REPO }}
 
-          for folder in "${folders[@]}"; do
-            # Create a search pattern           
+          for folder in "${folders[@]}"; do              
             pattern="$repo/$folder/1.0.0-dev*/"
-
-            # Search and store results in a separate file
+           
             jf rt s "$pattern" --limit=1000 --sort-by="created" --sort-order="desc" | jq -r '.[].path' | cut -d'/' -f1-3 | sort -u > "${folder//\//_}_artifacts.txt"
-
-            # Check total entries and delete old folders if necessary
+            
             total_folders=$(wc -l < "${folder//\//_}_artifacts.txt")
             if [ $total_folders -gt $n ]; then
               echo "Deleting $((total_folders - n)) old folders from $folder..."
