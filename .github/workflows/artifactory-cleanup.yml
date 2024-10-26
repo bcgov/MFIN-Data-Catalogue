@@ -1,9 +1,9 @@
 name: Cleanup Artifacts
 
 on:
-  workflow_dispatch:  # Allows manual triggering of the workflow
+  workflow_dispatch:
   schedule:
-    - cron: '0 0 * * 6'  # Adjust the schedule as needed
+    - cron: '0 0 * * 6'
 
 env:
   CONTAINER_REPO: ${{ secrets.CONTAINER_REPO }} 
@@ -40,7 +40,7 @@ jobs:
         if: ${{ env.STATUS == 'OK' }}
         run: |
           folders=("mfin-data-catalogue" "mfin-data-catalogue-nginx")
-          n=20
+          n=30
           repo=${{ env.CONTAINER_REPO }}
 
           for folder in "${folders[@]}"; do              
@@ -50,11 +50,12 @@ jobs:
             
             total_folders=$(wc -l < "${folder//\//_}_artifacts.txt")
             if [ $total_folders -gt $n ]; then
-              echo "Deleting $((total_folders - n)) old folders from $folder..."
-              #head -n $((total_folders - n)) "${folder//\//_}_artifacts.txt" | xargs -I {} jf rt del "{}" --quiet
-               head -n $((total_folders - n)) "${folder//\//_}_artifacts.txt" | xargs -I {} echo "{}"
+              echo "Deleting $((total_folders - n)) old Images from $folder..."
+              head -n $((total_folders - n)) "${folder//\//_}_artifacts.txt" | xargs -I {} echo "{}"
+              head -n $((total_folders - n)) "${folder//\//_}_artifacts.txt" | xargs -I {} jf rt del "{}" --dry-run=true --quiet
+             
             else
-              echo "No folders to delete in $folder."
+              echo "No Images to delete in $folder."
             fi
           done
 
