@@ -1,9 +1,9 @@
 name: Cleanup Artifacts
 
 on:
-  workflow_dispatch:  # Allows manual triggering of the workflow
-#   schedule:
-#     - cron: '0 0 * * *'  # Adjust the schedule as needed
+  workflow_dispatch: 
+  schedule:
+    - cron: '0 0 15 * *'
 
 env:
   CONTAINER_REPO: ${{ secrets.CONTAINER_REPO }} 
@@ -17,48 +17,53 @@ jobs:
 
     steps:
 
-      - name: Set up JFrog CLI
-        run: |
-          curl -fL https://getcli.jfrog.io | sh
-          sudo mv jfrog /usr/local/bin/
-
-      - name: Configure JFrog CLI
-        run: |
-          jfrog config add data-catalogue-rt --url=${{ env.ARTIFACTORY_URL }} --user=${{ env.CONTAINER_REGISTRY_USERNAME }} --password=${{ env.CONTAINER_REGISTRY_PASSWORD }}
+      - uses: jfrog/setup-jfrog-cli@v4
+        env:
+          JF_URL: ${{ env.ARTIFACTORY_URL }}
+          JF_USER: ${{ env.CONTAINER_REGISTRY_USERNAME }}
+          JF_PASSWORD: ${{ env.CONTAINER_REGISTRY_PASSWORD }}
+   
+      - run: jf --version
       
       - name: Check JFrog Connection
         id: check_connection
         run: |
-          response=$(jfrog rt ping)
+          response=$(jf rt ping)
           echo "Response: $response"
-          echo "::set-output name=status::$response"
+          echo "STATUS=$response" >> $GITHUB_ENV
 
 
       - name: Search and Remove Old Artifacts
-        if: steps.check_connection.outputs.status == 'OK'
+        if: ${{ env.STATUS == 'OK' }}
         run: |
-          folders=("mfin-data-catalogue" "mfin-data-catalogue-nginx")  # Define the folders to search
-          n= 5  # Number of images to keep
+          folders=("mfin-data-catalogue" "mfin-data-catalogue-nginx")
+          n=30  
           repo=${{ env.CONTAINER_REPO }}
+          echo "Retiaining $n images"
 
-          for folder in "${folders[@]}"; do
-            # Create a search pattern           
-            pattern="$repo/$folder/1.0.0-dev*/"
+          for folder in "${folders[@]}"; do                  
+            pattern="$repo/$folder/1.0.0-*/"
 
-            # Search and store results in a separate file
             jf rt s "$pattern" --limit=1000 --sort-by="created" --sort-order="desc" | jq -r '.[].path' | cut -d'/' -f1-3 | sort -u > "${folder//\//_}_artifacts.txt"
-
-            # Check total entries and delete old folders if necessary
+            
             total_folders=$(wc -l < "${folder//\//_}_artifacts.txt")
             if [ $total_folders -gt $n ]; then
-              echo "Deleting $((total_folders - n)) old folders from $folder..."
-              #head -n $((total_folders - n)) "${folder//\//_}_artifacts.txt" | xargs -I {} jf rt del "{}" --quiet
-               head -n $((total_folders - n)) "${folder//\//_}_artifacts.txt" | xargs -I {} echo "{}"
+             while IFS= read -r artifact; do
+                echo "Attempting to delete: $artifact"
+      
+                # Delete the artifact and capture the response
+                response=$(jf rt del "$artifact" --dry-run=true --quiet=true)
+      
+                # Check for failure in the response
+                if echo "$response" | jq -e '.status == "failure"' > /dev/null; then
+                  echo "Failed to delete $artifact. Response: $response"
+                else
+                  echo "Successfully deleted $artifact."
+                fi    
+              done < <(head -n $((total_folders - n)) "${folder//\//_}_artifacts.txt")
             else
               echo "No folders to delete in $folder."
             fi
           done
-
-      - name: Clean Up Temporary Files
-        run: |
+          echo "Clean Up Temporary Files"
           rm -f *_artifacts.txt
