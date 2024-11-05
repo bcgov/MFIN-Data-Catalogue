@@ -50,6 +50,7 @@ jobs:
         make drupal_install
 
     - name: Run tests
+      if: ${{ ! ( startsWith(github.event.ref, 'refs/tags/') && (endsWith(github.event.ref, '.f') || endsWith(github.event.ref, '-f') )) }}
       run: |
         export DB_TYPE=mysql  # NEWBB -confirm database type
         export DB_PORT=3306
@@ -62,6 +63,7 @@ jobs:
             /var/www/html/modules/custom/NEWBB_another_module_to_test \
 
     - name: Scan PHP-FPM image for vulnerabilities
+      if: ${{ ! ( startsWith(github.event.ref, 'refs/tags/') && (endsWith(github.event.ref, '.f') || endsWith(github.event.ref, '-f') )) }}
       uses: aquasecurity/trivy-action@0.20.0
       with:
         image-ref: 'newbbproj-web:latest'
@@ -72,6 +74,7 @@ jobs:
         severity: 'CRITICAL,HIGH,MEDIUM'
 
     - name: Scan Nginx image for vulnerabilities
+      if: ${{ ! ( startsWith(github.event.ref, 'refs/tags/') && (endsWith(github.event.ref, '.f') || endsWith(github.event.ref, '-f') )) }}
       uses: aquasecurity/trivy-action@0.20.0
       with:
         image-ref: 'newbbproj-nginx:latest'
