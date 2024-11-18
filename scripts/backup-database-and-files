@@ -12,7 +12,7 @@ DAILY_BACKUPS_DIR="$BACKUPS_DIR/daily"
 WEEKLY_BACKUPS_DIR="$BACKUPS_DIR/weekly"
 MONTHLY_BACKUPS_DIR="$BACKUPS_DIR/monthly"
 
-PRIVATE_FILES_PATH="/private"
+PRIVATE_FILES_PATH="$DRUPAL_ROOT/private"
 PUBLIC_FILES_PATH="$DRUPAL_ROOT/html/sites/default/files"
 
 # Directory should already be mounted. Test that it is there.
