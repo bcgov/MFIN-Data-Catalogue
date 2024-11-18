@@ -1,12 +1,12 @@
-name: Cleanup Artifacts
+name: Cleanup artifacts
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * 6'
+    - cron: '0 0 * * *'
 
 env:
-  CONTAINER_REPO: ${{ secrets.CONTAINER_REPO }} 
+  CONTAINER_REPO: ${{ secrets.CONTAINER_REPO }}
   ARTIFACTORY_URL: ${{ secrets.ARTIFACTORY_URL }}
   CONTAINER_REGISTRY_USERNAME: ${{ secrets.CONTAINER_REGISTRY_USERNAME }}
   CONTAINER_REGISTRY_PASSWORD: ${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
@@ -21,10 +21,10 @@ jobs:
           JF_URL: ${{ env.ARTIFACTORY_URL }}
           JF_USER: ${{ env.CONTAINER_REGISTRY_USERNAME }}
           JF_PASSWORD: ${{ env.CONTAINER_REGISTRY_PASSWORD }}
-   
+
       - run: jf --version
 
-      
+
       - name: Check JFrog Connection
         id: check_connection
         run: |
@@ -33,42 +33,43 @@ jobs:
           echo "STATUS=$response" >> $GITHUB_ENV
 
 
-      - name: Search and Remove Old Artifacts
+      - name: Search and delete old artifacts
         if: ${{ env.STATUS == 'OK' }}
         run: |
           folders=("fintranet" "fintranet-nginx")
-          n=15
+          n=20
           repo=${{ env.CONTAINER_REPO }}
-          echo "Retiaining $n images"
+          echo "Retaining $n images"
 
-          for folder in "${folders[@]}"; do              
+          for folder in "${folders[@]}"; do
             pattern="$repo/$folder/1.0.0-*/"
-           
+
             jf rt s "$pattern" --limit=1000 --sort-by="created" --sort-order="desc" | jq -r '.[].path' | cut -d'/' -f1-3 | sort -u > "${folder//\//_}_artifacts.txt"
-            
+
             total_folders=$(wc -l < "${folder//\//_}_artifacts.txt")
             if [ $total_folders -gt $n ]; then
 
-              echo "Deleting $((total_folders - n)) old Images from $folder..."             
+              echo "Deleting $((total_folders - n)) images from $folder folder..."
               while IFS= read -r artifact; do
                 echo "Attempting to delete: $artifact"
-      
+
                 # Delete the artifact and capture the response
                 response=$(jf rt del "$artifact" --dry-run=false --quiet=true)
-      
+
                 # Check for failure in the response
                 if echo "$response" | jq -e '.status == "failure"' > /dev/null; then
                   echo "Failed to delete $artifact. Response: $response"
                 else
                   echo "Successfully deleted $artifact."
                 fi
-      
+
               done < <(head -n $((total_folders - n)) "${folder//\//_}_artifacts.txt")
-             
+
             else
-              echo "No Images to delete in $folder."
+              echo "No images to delete in $folder folder."
             fi
           done
-          echo "Clean Up Temporary Files"
 
           rm -f *_artifacts.txt
+
+          echo "Successfully cleaned up temporary files."
