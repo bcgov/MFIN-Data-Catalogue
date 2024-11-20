@@ -1,25 +1,39 @@
-Base Build
+Base Build - Drupal side
 ==========
 
 Brings the deployment introduced by Openplus to the MFIN DataCatalogue project, into any project.
 
 This is intended to be used for Drupal projects in the Ministry of Finance, but could easily be used for other applications.
 
-How to use
-----------
+---------
+Note that there are two branches in this repo, containing the two halves of the basebuild:
 
-Install this project in its own branch, with its own remote.
+  * drupal
+  * gitops
 
-    git remote add base-build https://github.com/danhgov/basebuild.git
-    git fetch base-build
+The 'drupal' branch is discussed here.
 
-Make sure you're on your `master` branch, and merge in the Base Build's latest code.
+See the README in the 'gitops' branch for a discussion of it.
+
+How to use the 'drupal' branch
+------------------------------
+
+Install this project in its own branch, with its own remote, and only fetch the 'drupal' branch from it.
+
+    git remote add basebuild  https://github.com/bcgov-c/fin-basebuild.git --track drupal
+    git fetch basebuild
+
+Create a local branch that tracks the remote one.
+
+    git branch --track drupal basebuild/drupal
+
+Make sure you're on your own project's main branch, and merge in the Base Build's latest code.
 
     git checkout master
-    git merge base-build/master --allow-unrelated-histories -m "Add base-build code to our project."
+    git merge basebuild/drupal --allow-unrelated-histories -m "Add basebuild code to our Drupal project."
     # (And resolve any merge-conflicts.)
 
-Search for instances of the text "newbb" (aka "new base build"). They are all things you'll need to set for your project:
+Search for instances of the text "newbb" (aka "new basebuild"). They are all things you'll need to set for your project:
 
 * `newbbproj` should be replaced with your project-name.
 * `newbblicenseplate` must be replaced with the 6-character "license plate" of your openshift project.
@@ -27,20 +41,19 @@ Search for instances of the text "newbb" (aka "new base build"). They are all th
 
 You are ready to go!
 
----
+In the future
+-------------
+When there are **new changes in the basebuild** branch/repo:
+ * `git fetch` them, and merge the gitops branch into your code again.
+ * MANUALLY inspect the updates. If there are parts of it you don't want, then add the `--no-commit` option to your `git merge` command, and then edit out the changes you don't want before doing a `git commit` to complete the merge.
 
-In the future, you can pull updates that may have been committed on the base-build into your project.
+If there are **changes in your project** that should be shared with the basebuild:
 
-    # Fetch the updates
-    git fetch base-build
+* `git checkout gitops`
+* _Cherry-pick_ commits onto this branch.
+* **Never `git merge` from your project into the basebuild!**
+* `git push basebuild` to share them back to the basebuild remote.
 
-    # MANUALLY inspect the updates prior to continuing with the merge.
+-----
 
-    # THEN, continue with the merge...
-    git merge base-build/master -m "Merge updates from base-build project into ours."
-
-
----------
-
-(NEWBB - After getting set up you should replace this README file with a description of YOUR project.)
-
+NEWBB: Once you have your project set up, you can delete some of the above text, and convert this README to be the README for your own project, not for the basebuild.
