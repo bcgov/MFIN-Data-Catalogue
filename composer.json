@@ -155,7 +155,8 @@
             "cweagans/composer-patches": true,
             "wikimedia/composer-merge-plugin": true,
             "oomphinc/composer-installers-extender": true,
-            "php-http/discovery": true
+            "php-http/discovery": true,
+            "tbachert/spi": true
         },
         "sort-packages": true
     },
