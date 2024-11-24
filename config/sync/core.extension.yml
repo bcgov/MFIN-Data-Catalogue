@@ -19,6 +19,9 @@ module:
   cancel_button: 0
   charts: 0
   charts_billboard: 0
+  chosen: 0
+  chosen_field: 0
+  chosen_lib: 0
   ckeditor5: 0
   ckeditor5_fullscreen: 0
   ckeditor_codemirror: 0

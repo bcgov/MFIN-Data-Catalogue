@@ -102,6 +102,7 @@
         "drupal/better_normalizers": "^2.0@beta",
         "drupal/cancel_button": "^1.4",
         "drupal/charts": "^5.0",
+        "drupal/chosen": "^4.0",
         "drupal/ckeditor_codemirror": "^3.0@beta",
         "drupal/clipboardjs": "dev-2.0.x#adb3f68",
         "drupal/cm_revision_delete": "^1.1.4",

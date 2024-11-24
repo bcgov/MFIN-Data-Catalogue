@@ -31,6 +31,7 @@ dependencies:
     - field.field.node.data_set.field_visibility
     - node.type.data_set
   module:
+    - chosen_field
     - shs
 id: node.data_set.section_1
 targetEntityType: node
@@ -48,14 +49,10 @@ content:
       force_deepest: false
     third_party_settings: {  }
   field_series:
-    type: entity_reference_autocomplete
+    type: chosen_select
     weight: 2
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   title:
     type: string_textfield
