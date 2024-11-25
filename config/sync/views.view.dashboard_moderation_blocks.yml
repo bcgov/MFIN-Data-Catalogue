@@ -303,7 +303,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: Edit  # Button on right side of metadata-records list on dashboard.
+            text: Edit
             make_link: true
             path: '/node/{{ nid }}/build'
             absolute: false
