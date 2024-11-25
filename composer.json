@@ -229,6 +229,7 @@
         "composer-exit-on-patch-failure": true,
         "merge-plugin": {
             "include": [
+                "html/modules/contrib/chosen/composer.libraries.json",
                 "html/modules/contrib/ckeditor_codemirror/composer.libraries.json",
                 "html/modules/contrib/clipboardjs/composer.libraries.json"
             ]

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a9f013b8024c1f286c6f09c503280092",
+    "content-hash": "dc1c764526311eddc1fb093a0e69478f",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -9376,6 +9376,19 @@
                 }
             ],
             "time": "2024-11-24T12:48:58+00:00"
+        },
+        {
+            "name": "jjj/chosen",
+            "version": "2.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JJJ/chosen.git",
+                "reference": "2.2.1"
+            },
+            "type": "drupal-library",
+            "extra": {
+                "installer-name": "chosen"
+            }
         },
         {
             "name": "jquery/fancytree",
