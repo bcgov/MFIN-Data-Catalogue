@@ -109,7 +109,7 @@ jobs:
       with:
         repository: bcgov-c/tenant-gitops-newbblicenseplate
         path: tenant-gitops
-        ssh-key: ${{ secrets.SSH_KEY }}
+        ssh-key: ${{ secrets.ARGO_OPENSHIFT_DEPLOYMENT_PIPELINE_SSH_KEY }}
         persist-credentials: true
 
     - name: Update Argo CD
