@@ -9,7 +9,6 @@ on:
 
 env:
   COMPOSER_MEMORY_LIMIT: -1
-  CONTAINER_IMAGE_NAME: newbbimagename
   CONTAINER_REGISTRY: ${{ vars.CONTAINER_REGISTRY }}
   CONTAINER_REGISTRY_USERNAME: ${{ vars.CONTAINER_REGISTRY_USERNAME }}
   CONTAINER_REGISTRY_PASSWORD: ${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
@@ -66,7 +65,7 @@ jobs:
       if: ${{ ! ( startsWith(github.event.ref, 'refs/tags/') && (endsWith(github.event.ref, '.f') || endsWith(github.event.ref, '-f') )) }}
       uses: aquasecurity/trivy-action@0.20.0
       with:
-        image-ref: '${{ env.CONTAINER_IMAGE_NAME }}-web:latest'
+        image-ref: '${{ vars.CONTAINER_IMAGE_NAME }}-web:latest'
         format: 'table'
         exit-code: '0'
         ignore-unfixed: true
@@ -77,7 +76,7 @@ jobs:
       if: ${{ ! ( startsWith(github.event.ref, 'refs/tags/') && (endsWith(github.event.ref, '.f') || endsWith(github.event.ref, '-f') )) }}
       uses: aquasecurity/trivy-action@0.20.0
       with:
-        image-ref: '${{ env.CONTAINER_IMAGE_NAME }}-nginx:latest'
+        image-ref: '${{ vars.CONTAINER_IMAGE_NAME }}-nginx:latest'
         format: 'table'
         exit-code: '0'
         ignore-unfixed: true
@@ -95,15 +94,15 @@ jobs:
       run: |
         # Will end up looking something like this:
         # docker tag fin-exec-support-system-web:latest artifacts.developer.gov.bc.ca/eeba-ess-docker-local/fin-exec-support-system:test-6a-f
-        docker tag ${{ env.CONTAINER_IMAGE_NAME }}-web:latest ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}:${{ env.GITHUB_REFERENCE }}
-        docker push ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}:${{ env.GITHUB_REFERENCE }}
+        docker tag ${{ vars.CONTAINER_IMAGE_NAME }}-web:latest ${{ env.CONTAINER_REGISTRY }}/${{ vars.CONTAINER_IMAGE_NAME }}:${{ env.GITHUB_REFERENCE }}
+        docker push ${{ env.CONTAINER_REGISTRY }}/${{ vars.CONTAINER_IMAGE_NAME }}:${{ env.GITHUB_REFERENCE }}
 
     - name: Build and push Nginx 🐳
       run: |
         # Will end up looking something like this:
         # docker tag fin-exec-support-system-nginx:latest artifacts.developer.gov.bc.ca/eeba-ess-docker-local/fin-exec-support-system-nginx:test-6a-f
-        docker tag ${{ env.CONTAINER_IMAGE_NAME }}-nginx:latest ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}-nginx:${{ env.GITHUB_REFERENCE }}
-        docker push ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}-nginx:${{ env.GITHUB_REFERENCE }}
+        docker tag ${{ vars.CONTAINER_IMAGE_NAME }}-nginx:latest ${{ env.CONTAINER_REGISTRY }}/${{ vars.CONTAINER_IMAGE_NAME }}-nginx:${{ env.GITHUB_REFERENCE }}
+        docker push ${{ env.CONTAINER_REGISTRY }}/${{ vars.CONTAINER_IMAGE_NAME }}-nginx:${{ env.GITHUB_REFERENCE }}
 
     - name: Checkout Tenant GitOps Repo
       uses: actions/checkout@v4
