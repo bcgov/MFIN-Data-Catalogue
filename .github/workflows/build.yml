@@ -9,7 +9,6 @@ on:
 
 env:
   COMPOSER_MEMORY_LIMIT: -1
-  CONTAINER_IMAGE_NAME: newbbimagename
 
 jobs:
   build:
@@ -52,7 +51,7 @@ jobs:
     - name: Scan PHP-FPM image for vulnerabilities
       uses: aquasecurity/trivy-action@0.20.0
       with:
-        image-ref: '${{ env.CONTAINER_IMAGE_NAME }}-web:latest'
+        image-ref: '${{ vars.CONTAINER_IMAGE_NAME }}-web:latest'
         format: 'table'
         exit-code: '0'
         ignore-unfixed: true
@@ -62,7 +61,7 @@ jobs:
     - name: Scan Nginx image for vulnerabilities
       uses: aquasecurity/trivy-action@0.20.0
       with:
-        image-ref: '${{ env.CONTAINER_IMAGE_NAME }}-nginx:latest'
+        image-ref: '${{ vars.CONTAINER_IMAGE_NAME }}-nginx:latest'
         format: 'table'
         exit-code: '0'
         ignore-unfixed: true
