@@ -18,7 +18,6 @@ web_environment:
     - SSO_CLIENT_SECRET=newbb
     - SSO_KEYCLOAK_BASE=newbb
     - SOLR_PASSWORD=newbb
-    - ENVIRONMENT_TYPE=newbb
 corepack_enable: false
 
 # Key features of DDEV's config.yaml:
