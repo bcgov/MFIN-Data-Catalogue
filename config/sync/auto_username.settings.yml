@@ -1,5 +1,6 @@
 _core:
   default_config_hash: cRB3DSMYqngvGAX0vG3k7WjwHMwWJZDWCOcUtt8xM4E
+langcode: en
 aun_pattern: '[user:mail]'
 aun_php: false
 aun_update_on_edit: true

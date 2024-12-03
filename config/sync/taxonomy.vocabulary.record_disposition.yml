@@ -6,3 +6,4 @@ name: 'record disposition'
 vid: record_disposition
 description: 'Used in information schedule, Final disposition categories'
 weight: 0
+new_revision: false

@@ -6,3 +6,4 @@ name: 'Column meta type'
 vid: metadata_type
 description: 'Referenced by <i> field_metadata_type</i>  in data dictionary.<br><i>Metadata type</i> in CA.'
 weight: 0
+new_revision: false

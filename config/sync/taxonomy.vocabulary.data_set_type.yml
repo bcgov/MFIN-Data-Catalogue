@@ -11,3 +11,4 @@ name: 'Record type'
 vid: data_set_type
 description: 'Referenced by <i>field_data_set_type</i>  in data set.<br><i>type</i> in CA.'
 weight: 0
+new_revision: false

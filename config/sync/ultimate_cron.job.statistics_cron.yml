@@ -8,7 +8,7 @@ title: 'Reset counts and clean up'
 id: statistics_cron
 weight: 0
 module: statistics
-callback: statistics_cron
+callback: 'statistics#cron'
 scheduler:
   id: simple
 launcher:

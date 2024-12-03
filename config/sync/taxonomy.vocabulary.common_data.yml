@@ -6,3 +6,4 @@ name: 'Column instance of'
 vid: common_data
 description: 'Referenced by <i>field_instance_of</i>  in data dictionary.<br><i>Instance of</i> in CA.'
 weight: 0
+new_revision: false

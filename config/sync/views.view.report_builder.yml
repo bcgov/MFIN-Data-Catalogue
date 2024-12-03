@@ -1978,6 +1978,7 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
+          pagination_heading_level: h4
       exposed_form:
         type: bef
         options:
@@ -2001,6 +2002,7 @@ display:
               secondary_label: 'Advanced options'
               secondary_open: false
               reset_button_always_show: false
+              autosubmit_textfield_minimum_length: 3
             pager:
               plugin_id: default
               advanced:
@@ -2013,6 +2015,7 @@ display:
                   collapsible: false
                   is_secondary: false
                   collapsible_disable_automatic_open: false
+                  hide_label: false
               nid:
                 plugin_id: default
                 advanced:
@@ -2020,6 +2023,7 @@ display:
                   collapsible: false
                   is_secondary: false
                   collapsible_disable_automatic_open: false
+                  hide_label: false
               field_data_set_type_target_id:
                 plugin_id: default
                 advanced:
@@ -2030,6 +2034,7 @@ display:
                   collapsible: false
                   is_secondary: false
                   collapsible_disable_automatic_open: false
+                  hide_label: false
               field_primary_responsibility_org_target_id:
                 plugin_id: default
                 advanced:
@@ -2040,6 +2045,7 @@ display:
                   collapsible: false
                   is_secondary: false
                   collapsible_disable_automatic_open: false
+                  hide_label: false
               field_visibility_target_id:
                 plugin_id: default
                 advanced:
@@ -2050,6 +2056,7 @@ display:
                   collapsible: false
                   is_secondary: false
                   collapsible_disable_automatic_open: false
+                  hide_label: false
               field_source_system_target_id:
                 plugin_id: default
                 advanced:
@@ -2060,6 +2067,7 @@ display:
                   collapsible: false
                   is_secondary: false
                   collapsible_disable_automatic_open: false
+                  hide_label: false
               field_series_target_id:
                 plugin_id: default
                 advanced:
@@ -2070,6 +2078,7 @@ display:
                   collapsible: false
                   is_secondary: false
                   collapsible_disable_automatic_open: false
+                  hide_label: false
               field_personal_information_value:
                 plugin_id: bef
                 advanced:
@@ -2080,6 +2089,7 @@ display:
                   collapsible: false
                   is_secondary: false
                   collapsible_disable_automatic_open: false
+                  hide_label: false
                 select_all_none: false
                 select_all_none_nested: false
                 display_inline: true
@@ -2093,6 +2103,7 @@ display:
                   collapsible: false
                   is_secondary: false
                   collapsible_disable_automatic_open: false
+                  hide_label: false
               field_critical_information_value:
                 plugin_id: bef
                 advanced:
@@ -2103,6 +2114,7 @@ display:
                   collapsible: false
                   is_secondary: false
                   collapsible_disable_automatic_open: false
+                  hide_label: false
                 select_all_none: false
                 select_all_none_nested: false
                 display_inline: true
@@ -2112,18 +2124,21 @@ display:
                   collapsible: false
                   is_secondary: false
                   collapsible_disable_automatic_open: false
+                  hide_label: false
               field_modified_date_value:
                 plugin_id: default
                 advanced:
                   collapsible: false
                   is_secondary: false
                   collapsible_disable_automatic_open: false
+                  hide_label: false
               field_last_review_date_value:
                 plugin_id: default
                 advanced:
                   collapsible: false
                   is_secondary: false
                   collapsible_disable_automatic_open: false
+                  hide_label: false
               field_review_status_value:
                 plugin_id: bef
                 advanced:
@@ -2134,6 +2149,7 @@ display:
                   collapsible: false
                   is_secondary: false
                   collapsible_disable_automatic_open: false
+                  hide_label: false
                 select_all_none: false
                 select_all_none_nested: false
                 display_inline: false
@@ -2147,6 +2163,7 @@ display:
                   collapsible: false
                   is_secondary: false
                   collapsible_disable_automatic_open: false
+                  hide_label: false
                 select_all_none: false
                 select_all_none_nested: false
                 display_inline: false
@@ -2160,6 +2177,7 @@ display:
                   collapsible: false
                   is_secondary: false
                   collapsible_disable_automatic_open: false
+                  hide_label: false
                 select_all_none: false
                 select_all_none_nested: false
                 display_inline: true
@@ -2173,6 +2191,7 @@ display:
                   collapsible: false
                   is_secondary: false
                   collapsible_disable_automatic_open: false
+                  hide_label: false
       access:
         type: role
         options:
