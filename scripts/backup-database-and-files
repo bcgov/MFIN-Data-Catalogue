@@ -70,7 +70,10 @@ echo "Dumping database to file '$DB_OUTPUT_FILENAME' ..."
 SQL_EXTRA_FLAGS="--no-tablespaces"
     # '--no-tablespaces' is to address this error that was coming up:
     #   "Access denied; you need (at least one of) the PROCESS privilege(s) for this operation' when trying to dump tablespaces"
-drush sql:dump --extra-dump="$SQL_EXTRA_FLAGS" -vvv | gzip > $THIS_BACKUP_DIR/$DB_OUTPUT_FILENAME
+
+NO_CACHE_DATA="--structure-tables-list=cache,cache_*"
+
+drush sql:dump $NO_CACHE_DATA --extra-dump="$SQL_EXTRA_FLAGS" -vvv | gzip > $THIS_BACKUP_DIR/$DB_OUTPUT_FILENAME
 
 # Back up the public/private-files directories.
 for public_or_private_files in public-files private-files; do
@@ -78,7 +81,8 @@ for public_or_private_files in public-files private-files; do
   # Switches to pass into the rsync command.
   rsync_options=""
 
-  # If we have a reference directory, use it with the '--link-dest' option for rsync.
+  # If we have a reference directory, use it with the '--link-dest' option for rsync,
+  # to create hard-linked copies of the files rather than full copies.
   if [ -n "$MOST_RECENT_BACKUP_DIR" ]; then
     rsync_options="--link-dest=$MOST_RECENT_BACKUP_DIR/$public_or_private_files"
   fi
