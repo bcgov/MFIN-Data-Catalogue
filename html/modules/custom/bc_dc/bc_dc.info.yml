@@ -6,6 +6,7 @@ php: 8.2
 configure: bc_dc.settings
 package: BC Base Build
 dependencies:
+  - action:action
   - auto_username:auto_username
   - bcbb:bcbb_book
   - bcbb:bcbb_other

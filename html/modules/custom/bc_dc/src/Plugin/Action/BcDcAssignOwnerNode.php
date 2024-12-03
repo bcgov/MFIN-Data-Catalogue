@@ -2,10 +2,10 @@
 
 namespace Drupal\bc_dc\Plugin\Action;
 
+use Drupal\action\Plugin\Action\AssignOwnerNode;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\node\Plugin\Action\AssignOwnerNode;
 use Drupal\user\Entity\Role;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
