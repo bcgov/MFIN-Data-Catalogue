@@ -8,7 +8,7 @@ title: 'Default cron handler'
 id: cm_revision_delete_cron
 weight: 0
 module: cm_revision_delete
-callback: cm_revision_delete_cron
+callback: 'cm_revision_delete#cron'
 scheduler:
   id: simple
 launcher:

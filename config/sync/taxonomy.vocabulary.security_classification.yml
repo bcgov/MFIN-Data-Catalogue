@@ -6,3 +6,4 @@ name: 'Security classification'
 vid: security_classification
 description: 'Referenced by <i>field_security_classification</i>  in data set.<br><i>Security classification</i> in CA.'
 weight: 0
+new_revision: false

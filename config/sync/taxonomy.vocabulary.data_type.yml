@@ -6,3 +6,4 @@ name: 'Column data type'
 vid: data_type
 description: 'Referenced by <i>field_column_type</i>  in data dictionary.<br><i>Column type</i> in CA.'
 weight: 0
+new_revision: false

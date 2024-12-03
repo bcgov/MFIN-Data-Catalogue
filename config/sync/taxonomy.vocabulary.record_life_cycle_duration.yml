@@ -6,3 +6,4 @@ name: 'record life cycle duration'
 vid: record_life_cycle_duration
 description: 'Used in information schedule, time period for record availability'
 weight: 0
+new_revision: false

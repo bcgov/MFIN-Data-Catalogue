@@ -8,7 +8,7 @@ title: 'Default cron handler'
 id: message_gcnotify_cron
 weight: 0
 module: message_gcnotify
-callback: message_gcnotify_cron
+callback: 'message_gcnotify#cron'
 scheduler:
   id: simple
 launcher:

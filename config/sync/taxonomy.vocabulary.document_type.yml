@@ -11,3 +11,4 @@ name: 'Document type'
 vid: document_type
 description: 'Categorize documents that are related to data, reports and forms'
 weight: 0
+new_revision: false

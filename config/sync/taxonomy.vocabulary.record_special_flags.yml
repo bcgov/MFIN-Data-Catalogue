@@ -6,3 +6,4 @@ name: 'record special flags'
 vid: record_special_flags
 description: 'Used in information schedule'
 weight: 0
+new_revision: false

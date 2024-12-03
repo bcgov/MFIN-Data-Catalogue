@@ -2,7 +2,10 @@ uuid: ca2e134a-050a-4dec-9a17-8971e032075e
 langcode: en
 status: true
 dependencies:
+  config:
+    - workflows.workflow.editorial
   module:
+    - content_moderation
     - node
     - user
   enforced:
@@ -432,6 +435,7 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
+          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:

@@ -8,7 +8,7 @@ title: 'Default cron handler'
 id: bc_dc_cron
 weight: 0
 module: bc_dc
-callback: bc_dc_cron
+callback: 'bc_dc#cron'
 scheduler:
   id: simple
   configuration:
