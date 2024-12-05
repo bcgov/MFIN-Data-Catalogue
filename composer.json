@@ -69,9 +69,6 @@
                 "2820617 - Avoid harcoded prefex and suffix in block region": "https://git.drupalcode.org/project/panels/-/merge_requests/12.diff",
                 "2910704 - IPE toggle preview not working in IE": "https://www.drupal.org/files/issues/panels-ipe-card-flip-ie-error-2910704.diff"
             },
-            "drupal/role_delegation": {
-                "3284859 - Roles being stripped from users when saved if user has no access to roles field": "https://git.drupalcode.org/project/role_delegation/-/merge_requests/6.diff"
-            },
             "drupal/vbo_export": {
                 "3257067 - Ensure PrivateTempStore key is not too long": "https://www.drupal.org/files/issues/2023-06-29/vbo_export-cid_too_long-3257067-9.patch"
             }
