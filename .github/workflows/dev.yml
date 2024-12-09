@@ -4,6 +4,8 @@ on:
   push:
     tags:
     - '*'
+    - '!*-TEST'
+    - '!*-PROD'
     paths-ignore:
     - 'README.md'
 
