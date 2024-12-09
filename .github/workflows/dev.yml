@@ -124,7 +124,7 @@ jobs:
         cd tenant-gitops
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git commit -a -m "feat(helm): DEV to '${{ env.GITHUB_REFERENCE }}', update container images."
+        git commit -a -m "Update Dev server to '${{ env.GITHUB_REFERENCE }}'."
 
     - name: Push changes
       uses: ad-m/github-push-action@master
