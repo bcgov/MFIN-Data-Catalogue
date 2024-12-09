@@ -1483,4 +1483,8 @@ html.bcbb-theme a img.site-logo {
   }
 }
 
+.path-frontpage .alert {
+  margin-top: var(--bs-alert-margin-bottom);
+}
+
 /*# sourceMappingURL=style.css.map */
