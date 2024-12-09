@@ -1,0 +1,8 @@
+uuid: 5a9a71af-781c-4f91-b864-600af80a546e
+langcode: en
+status: true
+dependencies: {  }
+id: footer-prod
+label: 'Footer (PROD)'
+description: ''
+locked: false
