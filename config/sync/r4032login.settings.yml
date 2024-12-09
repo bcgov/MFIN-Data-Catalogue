@@ -4,10 +4,10 @@ langcode: en
 display_denied_message: false
 access_denied_message: 'Access denied. You must log in to view this page.'
 access_denied_message_type: error
-redirect_authenticated_users_to: ''
+redirect_authenticated_users_to: '<front>'
 throw_authenticated_404: false
 display_auth_denied_message: true
-access_denied_auth_message: 'Access denied. Check with your site administrator if you need assistance.'
+access_denied_auth_message: 'Access denied. Your account permissions do not match the record you are trying to reach.'
 access_denied_auth_message_type: error
 user_login_path: /user/login
 default_redirect_code: 307
