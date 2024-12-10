@@ -15,5 +15,7 @@ theme: {  }
 complete_list:
   - robotstxt.settings
 partial_list:
+  - block.block.dc_theme_footer
+  - block.block.dc_theme_footerprod
   - gdx_analytics_drupal_snowplow.settings
   - metatag.metatag_defaults.global
