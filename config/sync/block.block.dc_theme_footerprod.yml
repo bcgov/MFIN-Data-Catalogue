@@ -1,0 +1,25 @@
+uuid: 37f073d6-b3b2-486b-be86-0b5a04830d7e
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.footer-prod
+  module:
+    - system
+  theme:
+    - dc_theme
+id: dc_theme_footerprod
+theme: dc_theme
+region: footer
+weight: 0
+provider: null
+plugin: 'system_menu_block:footer-prod'
+settings:
+  id: 'system_menu_block:footer-prod'
+  label: 'Footer (PROD)'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 1
+  expand_all_items: false
+visibility: {  }
