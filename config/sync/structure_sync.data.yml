@@ -1,0 +1,183 @@
+menus:
+  -
+    menu_name: account
+    title: Dashboard
+    parent: null
+    uri: 'internal:/user'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: 0
+    langcode: en
+    uuid: bf472579-20ee-492f-be91-41e96a237abd
+    options: {  }
+  -
+    menu_name: account
+    title: Documentation
+    parent: null
+    uri: 'entity:node/3'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: -50
+    langcode: en
+    uuid: e9e52793-3ef6-4064-a31f-bb69d32bfd70
+    options: {  }
+  -
+    menu_name: footer
+    title: Accessibility
+    parent: null
+    uri: 'https://www2.gov.bc.ca/gov/content/home/accessible-government'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: -47
+    langcode: en
+    uuid: 60993a69-e087-48be-ac5f-8bde7c021a3c
+    options: {  }
+  -
+    menu_name: footer
+    title: Copyright
+    parent: null
+    uri: 'https://www2.gov.bc.ca/gov/content/home/copyright'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: -46
+    langcode: en
+    uuid: 6d9acb27-72fa-4d6f-9cd1-2cf2102080ff
+    options: {  }
+  -
+    menu_name: footer
+    title: Disclaimer
+    parent: null
+    uri: 'https://www2.gov.bc.ca/gov/content/home/disclaimer'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: -49
+    langcode: en
+    uuid: a5c5de93-2484-4b9c-97ff-db07bc8800c1
+    options: {  }
+  -
+    menu_name: footer
+    title: Home
+    parent: null
+    uri: 'internal:/'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: -50
+    langcode: en
+    uuid: 10e3cfec-9e84-430e-ae8c-4695876e9fed
+    options: {  }
+  -
+    menu_name: footer
+    title: Privacy
+    parent: null
+    uri: 'https://www2.gov.bc.ca/gov/content/home/privacy'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: -48
+    langcode: en
+    uuid: a3105a54-17d7-4871-aa06-21e0053d5e91
+    options: {  }
+  -
+    menu_name: footer
+    title: 'Contact Support'
+    parent: null
+    uri: 'mailto:nicole.degreef@gov.bc.ca'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: -45
+    langcode: en
+    uuid: 106d9731-3e27-4387-8023-c8200860afb1
+    options: {  }
+  -
+    menu_name: footer-prod
+    title: Accessibility
+    parent: null
+    uri: 'https://www2.gov.bc.ca/gov/content/home/accessible-government'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: -47
+    langcode: en
+    uuid: 38049a48-cefc-4e3e-b82d-de4041099a9a
+    options: {  }
+  -
+    menu_name: footer-prod
+    title: 'Contact Support'
+    parent: null
+    uri: 'https://fincsp.atlassian.net/servicedesk/customer/portal/12'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: -45
+    langcode: en
+    uuid: ecb0ed36-0439-43c5-8435-ce943343b126
+    options: {  }
+  -
+    menu_name: footer-prod
+    title: Copyright
+    parent: null
+    uri: 'https://www2.gov.bc.ca/gov/content/home/copyright'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: -46
+    langcode: en
+    uuid: 861a92ce-82e6-4018-a9ae-512b8ce950f8
+    options: {  }
+  -
+    menu_name: footer-prod
+    title: Disclaimer
+    parent: null
+    uri: 'https://www2.gov.bc.ca/gov/content/home/disclaimer'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: -49
+    langcode: en
+    uuid: a14848c0-188b-49bc-ac7b-f79b74a31f73
+    options: {  }
+  -
+    menu_name: footer-prod
+    title: Home
+    parent: null
+    uri: 'internal:/'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: -50
+    langcode: en
+    uuid: eef2b1df-c581-44e8-9cea-3363c61a691e
+    options: {  }
+  -
+    menu_name: footer-prod
+    title: Privacy
+    parent: null
+    uri: 'https://www2.gov.bc.ca/gov/content/home/privacy'
+    link_title: ''
+    description: null
+    enabled: true
+    expanded: false
+    weight: -48
+    langcode: en
+    uuid: 35ef9daf-3567-43c2-8a5e-3c9684843a1d
+    options: {  }
