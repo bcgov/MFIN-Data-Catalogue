@@ -96,3 +96,26 @@
     }
   }
 }
+
+// footer nav - footer prod menu
+html.bcbb-theme {
+  nav.menu--footer-prod ul.navbar-nav {
+    display: block;
+    @include responsive() {
+      columns: 2;
+      gap: 4rem;
+    }
+    a.nav-link {
+      color: var(--bs-gray-100);
+      text-decoration: underline;
+      &:hover,
+      &:focus {
+        color: var(--bs-gray-200);
+      }
+      &:active,
+      &:visited {
+        color: var(--bs-gray-100);
+      }
+    }
+  }
+}
