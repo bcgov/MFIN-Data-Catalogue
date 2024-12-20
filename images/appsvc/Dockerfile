@@ -1,4 +1,4 @@
-# https://github.com/drupalwxt/docker-scaffold/blob/10.3.x/Dockerfile
+# https://github.com/drupalwxt/docker-scaffold/blob/10.4.x/Dockerfile
 ARG BASE_IMAGE
 FROM $BASE_IMAGE as src
 
