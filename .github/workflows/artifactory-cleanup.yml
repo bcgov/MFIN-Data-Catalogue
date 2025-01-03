@@ -24,7 +24,6 @@ jobs:
 
       - run: jf --version
 
-
       - name: Check JFrog Connection
         id: check_connection
         run: |
@@ -32,44 +31,35 @@ jobs:
           echo "Response: $response"
           echo "STATUS=$response" >> $GITHUB_ENV
 
+      - name : Checkout code
+        uses: actions/checkout@v4
 
       - name: Search and delete old artifacts
         if: ${{ env.STATUS == 'OK' }}
         run: |
-          folders=("fintranet" "fintranet-nginx")
-          n=20
-          repo=${{ env.CONTAINER_REPO }}
+          n=35
           echo "Retaining $n images"
+          jf rt s --spec .github/workflows/artifactory-cleanup.search-spec.json --offset=$n --sort-by="modified" --sort-order=desc | jq .[].path | jq 'sub("/manifest.json"; "")' > jfrog_artifacts.txt
 
-          for folder in "${folders[@]}"; do
-            pattern="$repo/$folder/1.0.0-*/"
-
-            jf rt s "$pattern" --limit=1000 --sort-by="created" --sort-order="desc" | jq -r '.[].path' | cut -d'/' -f1-3 | sort -u > "${folder//\//_}_artifacts.txt"
-
-            total_folders=$(wc -l < "${folder//\//_}_artifacts.txt")
-            if [ $total_folders -gt $n ]; then
-
-              echo "Deleting $((total_folders - n)) images from $folder folder..."
+          total_images=$(wc -l < jfrog_artifacts.txt)
+            echo "Total Images: $total_images"
+            if [ "$total_images" -gt 0 ]; then
               while IFS= read -r artifact; do
+                artifact="${artifact%\$}"
                 echo "Attempting to delete: $artifact"
-
-                # Delete the artifact and capture the response
-                response=$(jf rt del "$artifact" --dry-run=false --quiet=true)
+                command="jf rt del $artifact --quiet=true"
+                echo "Command to be executed: $command"
+                response=$(eval "$command")
 
                 # Check for failure in the response
-                if echo "$response" | jq -e '.status == "failure"' > /dev/null; then
+                if echo "$response" | jq -e '.status != "success"' > /dev/null; then
                   echo "Failed to delete $artifact. Response: $response"
                 else
                   echo "Successfully deleted $artifact."
                 fi
-
-              done < <(head -n $((total_folders - n)) "${folder//\//_}_artifacts.txt")
-
+              done < jfrog_artifacts.txt
             else
-              echo "No images to delete in $folder folder."
+               echo "No images to delete in the repository"
             fi
-          done
-
-          rm -f *_artifacts.txt
-
+          rm -f jfrog_artifacts.txt
           echo "Successfully cleaned up temporary files."
