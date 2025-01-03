@@ -1,0 +1,18 @@
+{
+    "files": [
+      {
+        "aql": {
+          "items.find": {
+            // NEWBB: The 'repo' string on the next line should be like "ff61-fintra-docker-local".
+            // NEWBB: It should also match the 'CONTAINER_REPO' github 'variable'.
+            // NEWBB: Delete these three comment-lines, as json doesn't actually allow comments.
+            "repo": "newbb-fintra-docker-local",
+            "name":{"$eq":"manifest.json"},
+            "stat.downloaded":{"$before": "4w"},
+            "modified":{"$before":"4w"},
+            "created":{"$before":"4w"}
+          }
+        }
+      }
+    ]
+  }
