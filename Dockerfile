@@ -116,7 +116,7 @@ RUN chown -R www-data:www-data sites/default
 RUN echo "export TERM=xterm" >> ~/.bashrc
 
 # Drush
-RUN ln -s /var/www/vendor/drush/drush/drush /usr/local/bin/drush
+RUN ln -s /var/www/vendor/bin/drush /usr/local/bin/drush
 
 # Reset Cache
 RUN php -r 'opcache_reset();'
