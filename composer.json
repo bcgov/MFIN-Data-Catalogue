@@ -241,7 +241,7 @@
                 "3456882 - HTML encodings (e.g. '&amp;') showing up in legend": "https://www.drupal.org/files/issues/2024-06-26/3456882-html-encoding-fix.patch"
             },
             "drupal/conditional_fields": {
-                "2550167 - Allow creating dependency on taxonomy parent term": "https://www.drupal.org/files/issues/2024-03-05/conditional_fields-taxonomy_parent_term-2550167-16.patch"
+                "2550167 - Allow creating dependency on taxonomy parent term": "https://www.drupal.org/files/issues/2025-01-17/conditional_fields-taxonomy_parent_term-2550167.patch"
             },
             "drupal/core": {
                 "2821962 - Views exposed filters don't combine with contextual filters when using exposed form in block": "https://www.drupal.org/files/issues/2024-03-19/drupal-exposed-contextual-filters-2821962-65.patch",
