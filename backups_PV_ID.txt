@@ -1,0 +1,22 @@
+Because our 'backups' directory is stored on a
+PersistentVolume of type 'netapp-file-backup',
+Platform Services will keep off-site backups of it
+in case of a major disaster.
+
+If ever we need to ask them to restore it for us,
+we'll need to provide them with the ID of the PersistentVolume
+that it is stored on. In the case of this FDC project (aka "MFIN Data Catalogue"),
+we have TWO backups:
+
+  For our custom-scripted DB dump backups:
+    - PersistentVolume "pvc-6bbbe483-b1a8-43ab-9fe5-e71c51a7d191"
+    - which is owned by PersistentVolumeClaim "mfin-data-catalogue-drupal-drupal-backup"
+
+  For PG BackRest backups:
+    - PersistentVolume "pvc-86d124a6-47b1-400e-800f-bca3d37adf41"
+    - which is owned by PersistentVolumeClaim "mfin-data-catalogue-postgres-cluster-repo1"
+
+Note that this data is also stored in Confluence,
+at https://fincsp.atlassian.net/wiki/spaces/FID/pages/247889948/Restore+from+a+backup
+
+Please update both locations if ever this ID is updated.
