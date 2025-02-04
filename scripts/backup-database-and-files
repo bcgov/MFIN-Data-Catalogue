@@ -16,6 +16,8 @@ MONTHLY_BACKUPS_DIR="$BACKUPS_DIR/monthly"
 PRIVATE_FILES_PATH="$DRUPAL_ROOT/private"
 PUBLIC_FILES_PATH="$DRUPAL_ROOT/html/sites/default/files"
 
+BUILD_HASH_FILE="$DRUPAL_ROOT/build-hash.txt"
+
 # Directory should already be mounted. Test that it is there.
 if [ ! -d $BACKUPS_DIR ]; then
   echo "About to do backups, but backup dir '$BACKUPS_DIR' doesn't exist!"
@@ -46,9 +48,9 @@ END_OF_README
 #           e.g. "2024-05-02.UTC.11h30.newbbproj-dev"
 #   * the DB dump file.
 #           e.g. "DB_DUMP.2024-05-02.UTC.11h30.newbbproj-dev.SQL.GZ"
-# COMMIT_HASH=$(cat /app/build-hash.txt | cut -c 1-8)   // Commit-hash is not currently available, so commented out.
+COMMIT_HASH=$(cat $BUILD_HASH_FILE | cut -c 1-8)
 TIME_AND_DATE=$(date +"%F.UTC.%Hh%M")
-BACKUP_DESCRIPTOR=$TIME_AND_DATE.${APP_NAME}-${ENV_NAME}
+BACKUP_DESCRIPTOR=$TIME_AND_DATE.${APP_NAME}-${ENV_NAME}.commit-${COMMIT_HASH}
 
 # Get previous backup dir,
 #   as a reference to make hard-links against during rsync, below.
@@ -224,3 +226,46 @@ fi
 
 echo
 echo "Backups complete."
+
+
+
+# Function to delete old backups
+#
+# For each backup, we delete its whole directory, including:
+#      - DB dump file.
+#      - public files
+#      - private files
+
+prune_old_backups () {
+
+  # Which sub-directory of backups to prune: weekly, daily, etc.
+  PERIODICITY=$1
+  if ! [[ $PERIODICITY = @(daily|weekly|monthly) ]]; then
+      echo "'$PERIODICITY' has to be daily, weekly or monthly!"
+      return 1;
+  fi
+
+  DAYS_TO_KEEP=$2
+
+  BACKUPS_TO_PRUNE="$BACKUPS_DIR/$PERIODICITY"
+
+  echo "Looking in the $BACKUPS_TO_PRUNE directory for any $PERIODICITY backups"
+  echo "  that are older than $DAYS_TO_KEEP days old."
+  echo
+  echo "  ... The following will be deleted:"
+  find  $BACKUPS_TO_PRUNE  -maxdepth 1  -mtime +$DAYS_TO_KEEP
+  echo "  ... (End of deletion list.)"
+
+  # Do the deletion:
+  find  $BACKUPS_TO_PRUNE  -maxdepth 1  -mtime +$DAYS_TO_KEEP  -exec rm -rf {} \;
+
+  echo "Pruning complete."
+  sleep 3
+}
+
+prune_old_backups daily    14
+prune_old_backups weekly   62
+prune_old_backups monthly 367
+
+
+echo "(done)"
