@@ -10,7 +10,6 @@ use Drupal\Core\File\FileSystemInterface;
 use Drupal\node\NodeInterface;
 use Drupal\path_alias\AliasManagerInterface;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -121,16 +120,12 @@ class BcDcCreateFileController extends ControllerBase {
     // with stream wrappers.
     $file_path = $this->fileSystem->getTempDirectory() . '/' . $filename;
 
-    // Generate the spreadsheet object and save to $file_path.
     $spreadsheet = new Spreadsheet();
-    $worksheets = new Worksheet($spreadsheet);
-    $spreadsheet->addSheet($worksheets);
-    $worksheets->fromArray($results);
-    // Remove first blank worksheet.
-    $sheetIndex = $spreadsheet->getIndex(
-      $spreadsheet->getSheetByName('Worksheet')
-    );
-    $spreadsheet->removeSheetByIndex($sheetIndex);
+    // Get default sheet.
+    $worksheet = $spreadsheet->getActiveSheet();
+    // Rename it to avoid conflicts.
+    $worksheet->setTitle('Data');
+    $worksheet->fromArray($results);
 
     switch ($format) {
       case 'xlsx':
