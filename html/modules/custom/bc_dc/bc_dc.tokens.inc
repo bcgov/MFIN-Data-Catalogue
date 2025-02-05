@@ -30,6 +30,11 @@ function bc_dc_token_info() {
     'description' => t('Returns the current plus the child terms for a uuid concatentated with +.'),
   ];
 
+  $tokens['global']['bc_dc_more_results_if_logged_in'] = [
+    'name' => t('Message: Log in for more search results'),
+    'description' => t("Provides a message only for anonymous users, letting them know that they'll see more search results if they log in."),
+  ];
+
   return ['types' => $types, 'tokens' => $tokens];
 }
 
@@ -79,6 +84,12 @@ function bc_dc_tokens($type, $tokens, array $data, array $options, BubbleableMet
           if (!empty($results)) {
             $replacements[$original] = implode('+', $results);
           }
+          break;
+
+        case 'bc_dc_more_results_if_logged_in':
+          $replacements[$original] = \Drupal::currentUser()->isAuthenticated()
+            ? ''
+            : 'To access to more records based on your credentials, please consider logging in.';
           break;
       }
     }
