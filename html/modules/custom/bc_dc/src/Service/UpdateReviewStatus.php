@@ -61,7 +61,7 @@ class UpdateReviewStatus implements ContainerInjectionInterface {
    *   When TRUE, save the data-set, otherwise do not.
    */
   public function updateEntity(NodeInterface $data_set, bool $save = TRUE): void {
-    if (!$entity->hasField('field_review_status')) {
+    if (!$data_set->hasField('field_review_status')) {
       throw new \Exception("Data Set missing field_review_status field.");
     }
 
