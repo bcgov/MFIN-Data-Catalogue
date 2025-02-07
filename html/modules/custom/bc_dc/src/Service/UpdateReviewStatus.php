@@ -55,14 +55,14 @@ class UpdateReviewStatus implements ContainerInjectionInterface {
   /**
    * Update field_review_status for a single node.
    *
-   * @param \Drupal\node\NodeInterface $entity
+   * @param \Drupal\node\NodeInterface $data_set
    *   The entity to act on.
    * @param bool $save
-   *   When TRUE, save the entity, otherwise do not.
+   *   When TRUE, save the data-set, otherwise do not.
    */
-  public function updateEntity(NodeInterface $entity, bool $save = TRUE): void {
+  public function updateEntity(NodeInterface $data_set, bool $save = TRUE): void {
     if (!$entity->hasField('field_review_status')) {
-      return;
+      throw new \Exception("Data Set missing field_review_status field.");
     }
 
     $status_mapping = [
@@ -70,15 +70,16 @@ class UpdateReviewStatus implements ContainerInjectionInterface {
       static::REVIEW_OVERDUE => 'review_overdue',
     ];
 
-    $update_value = static::dataSetReviewNeeded($entity);
-    $update_value = $status_mapping[$update_value] ?? NULL;
-    $current_value = $entity->get('field_review_status')->value;
-    if ($current_value != $update_value) {
-      $entity->set('field_review_status', $update_value);
+    $updated_review_status = $status_mapping[static::dataSetReviewNeeded($data_set)] ?? NULL;
+    $current_review_status = $data_set->get('field_review_status')->value;
+    if ($current_review_status != $updated_review_status) {
+      $data_set->set('field_review_status', $updated_review_status);
 
       // Allow use from hook_ENTITY_TYPE_presave() where saving would be disabled.
+      // (This prevents endless-loops, where saving the node triggers this code to
+      // run again.)
       if ($save) {
-        $entity->save();
+        $data_set->save();
       }
     }
   }
