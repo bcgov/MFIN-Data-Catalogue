@@ -72,11 +72,14 @@ class UpdateReviewStatus implements ContainerInjectionInterface {
 
     $update_value = static::dataSetReviewNeeded($entity);
     $update_value = $status_mapping[$update_value] ?? NULL;
-    $entity->set('field_review_status', $update_value);
+    $current_value = $entity->get('field_review_status')->value;
+    if ($current_value != $update_value) {
+      $entity->set('field_review_status', $update_value);
 
-    // Allow use from hook_ENTITY_TYPE_presave() where saving would be disabled.
-    if ($save) {
-      $entity->save();
+      // Allow use from hook_ENTITY_TYPE_presave() where saving would be disabled.
+      if ($save) {
+        $entity->save();
+      }
     }
   }
 
