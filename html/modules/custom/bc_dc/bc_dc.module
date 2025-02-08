@@ -15,6 +15,7 @@ use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
@@ -860,6 +861,20 @@ function bc_dc_cron(): void {
 function bc_dc_entity_type_alter(array &$entity_types): void {
   $entity_types['paragraph']->addConstraint('BcDcUrlConstraint');
 }
+
+/**
+ * Implements hook_entity_bundle_field_info_alter().
+ *
+ * Add validation constraint to Visibility field.
+ */
+function bc_dc_entity_bundle_field_info_alter(&$fields, EntityTypeInterface $entity_type, $bundle) {
+  if ($entity_type->id() == 'node' && $bundle == 'data_set') {
+    if (isset($fields['field_visibility'])) {
+      $fields['field_visibility']->addConstraint('bc_dc_VisibilityRules', []);
+    }
+  }
+}
+
 
 /**
  * Implements hook_form_FORM_ID_alter().
