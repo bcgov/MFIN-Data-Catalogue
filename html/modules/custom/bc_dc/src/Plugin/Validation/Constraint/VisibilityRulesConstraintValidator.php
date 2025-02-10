@@ -6,7 +6,11 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
 /**
- * Validates the VisibilityRulesConstraint constraint.
+ * Validate 'Visibility' so that a user can only apply...
+ *
+ * Public on its own, or
+ * IDIR on its own, or
+ * one or more Branch domains (not in combination with Public or IDIR)
  */
 class VisibilityRulesConstraintValidator extends ConstraintValidator {
 
@@ -30,13 +34,13 @@ class VisibilityRulesConstraintValidator extends ConstraintValidator {
       // A visibility type term is something like 'Public' or 'Income Taxation Branch'.
       $visibility_type_term = $taxonomy_term_storage->load($visibility_type_term_id);
       // Each of these visibility type terms has an 'access' field.
-      //   Usually it's empty, but Public is 'pub' and IDIR is 'auth'.
+      // Usually it's empty, but Public is 'pub' and IDIR is 'auth'.
       $access_type_string = $visibility_type_term->field_access_flag->value ?: 'other';
       $visibility_types[$access_type_string] = $visibility_type_term->getName();
     }
 
     // If the user has chosen Public as well as anything else, that is a problem.
-    //   Same as IDIR and anything else.
+    // Same as IDIR and anything else.
 
     foreach (['pub', 'auth'] as $access_type) {
       if (isset($visibility_types[$access_type]) && count($visibility_types) > 1) {
