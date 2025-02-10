@@ -7,11 +7,6 @@ use Symfony\Component\Validator\Constraint;
 /**
  * Checks that the combination of 'Visibility' values is acceptable.
  *
- * Validate 'Visibility' so that a user can only apply:
- *   - Public on its own, or
- *   - IDIR on its own, or
- *   - one or more Branch domains (not in combination with Public or IDIR)
- *
  * @Constraint(
  *   id = "bc_dc_VisibilityRules",
  *   label = @Translation("Visibility choice-Constraint", context = "Validation"),
@@ -21,8 +16,9 @@ use Symfony\Component\Validator\Constraint;
 class VisibilityRulesConstraint extends Constraint {
 
   /**
-   * Constraint violation message for choosing other visibility
-   *   at the same time as 'public' or 'IDIR users'.
+   * Constraint violation message.
+   *
+   * For choosing other visibility along with 'public' or 'IDIR users'.
    *
    * @var string
    */

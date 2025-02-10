@@ -875,7 +875,6 @@ function bc_dc_entity_bundle_field_info_alter(&$fields, EntityTypeInterface $ent
   }
 }
 
-
 /**
  * Implements hook_form_FORM_ID_alter().
  */
