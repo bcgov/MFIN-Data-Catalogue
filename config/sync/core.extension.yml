@@ -1,0 +1,4 @@
+_core:
+  default_config_hash: newbb-drupal-will-create-this-hash
+module:
+  highlight_views_overrides: 0
