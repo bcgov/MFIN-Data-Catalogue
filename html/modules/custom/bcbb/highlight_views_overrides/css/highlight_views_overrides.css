@@ -1,0 +1,7 @@
+
+/* Highlight 'overridden' sections of views-admin pages. */
+.views-ui-display-tab-setting.overridden,
+.views-ui-display-tab-bucket.overridden,
+.views-ui-display-tab-bucket .overridden.views-display-setting:nth-of-type(2n) {
+  background: #fff1e8;
+}
