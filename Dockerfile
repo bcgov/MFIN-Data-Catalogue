@@ -17,6 +17,7 @@ RUN apk --update add --no-cache bash \
                                 git \
                                 gzip \
                                 mysql-client \
+                                mariadb-connector-c \
                                 patch \
                                 postgresql-client \
                                 ssmtp \
@@ -26,6 +27,11 @@ COPY docker/conf/ssmtp.conf /etc/ssmtp/ssmtp.conf
 RUN echo "hostname=drupalwxt.github.io" >> /etc/ssmtp/ssmtp.conf
 RUN echo 'sendmail_path = "/usr/sbin/ssmtp -t"' > /usr/local/etc/php/conf.d/mail.ini
 COPY docker/conf/php.ini /usr/local/etc/php/php.ini
+
+# TLS Enforcement by MariaDB Client in Linux Alpine Base Image
+# https://github.com/laravel/framework/discussions/54267
+COPY docker/conf/my.cnf /etc/my.cnf.d/my.cnf
+COPY docker/conf/drush.yml ~/.drush/drush.yml
 
 # Install additional php extensions
 RUN apk add --update --no-cache autoconf \
