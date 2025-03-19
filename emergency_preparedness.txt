@@ -1,0 +1,65 @@
+If ever there is a major disaster, we'll need
+to get this site back online from backups.
+
+'Vault' is a secure place that we can store vital pieces
+of information. Vault is backed up by Platform Services.
+As such, we'll use it to store important things needed
+for site restoration. In the case of
+"this newbb project",
+we can store the important information here:
+https://vault.developer.gov.bc.ca/ui/vault/secrets/newbblicenseplate-prod/kv/emergency/details
+
+This document that you are reading now will serve as a
+checklist of things to store in Vault during initial site setup,
+to prepare against disasters:
+
++--------------------------------
+| Save the Backups PV ID in Vault
++--------------------------------
+|  [x] This is NOT done yet.
+|  [ ] (newbb) This is done.
+|
++ Because our 'backups' directory is stored on a
+  PersistentVolume of type 'netapp-file-backup',
+  Platform Services will keep off-site backups of it
+  in case of a major disaster.
+
++ HOWEVER, if ever we need to ask them to restore it for us,
+  they require the ID of the PersistentVolume that it is stored on.
+  You should be able to find the PersistentVolume ID here:
+      https://console.apps.silver.devops.gov.bc.ca/k8s/ns/newbblicenseplate-prod/core~v1~PersistentVolumeClaim
+
++ Store the PV ID in Vault (at the URL above), with key "BACKUPS_PVC".
+
++ Note that this ID is also stored in Confluence,
+  at https://fincsp.atlassian.net/wiki/spaces/FID/pages/247889948/Restore+from+a+backup
+
++ Please update both locations if ever this ID is updated.
+|
++--------------------------------
+
++--------------------------------
+| Save essential Secrets into Vault
++--------------------------------
+|  [x] Neither of these secrets is stored in Vault yet
+|  [ ] (newbb) 'artifactory' secret is stored in Vault (copied as YAML)
+|  [ ] (newbb) 'prod-tls-crt' secret is stored in Vault (copied as YAML)
+|
++ The 'artifactory' secret (in Openshift) contains information needed for
+  Openshift to log into JFrog's Artifactory system to save/consume images.
+
++ The 'prod-tls-cert' secret stores SSL certificates needed for serving our site
+  with HTTPS.
+|
++--------------------------------
+
++--------------------------------
+| Save Route info into Vault
++--------------------------------
+|  [x] This is NOT done yet.
+|  [ ] (newbb) The complete Route (as YAML) is stored in Vault.
+|
++ The 'newbb-drupal' Openshift Route (e.g. 'ess-drupal') contains more SSL certificates,
+  which we should keep.
+|
++--------------------------------
