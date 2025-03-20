@@ -7,10 +7,7 @@
             // NEWBB: It should also match the 'CONTAINER_REPO' github 'variable'.
             // NEWBB: Delete these three comment-lines, as json doesn't actually allow comments.
             "repo": "newbb-fintra-docker-local",
-            "name":{"$eq":"manifest.json"},
-            "stat.downloaded":{"$before": "4w"},
-            "modified":{"$before":"4w"},
-            "created":{"$before":"4w"}
+            "name":{"$eq":"manifest.json"}
           }
         }
       }

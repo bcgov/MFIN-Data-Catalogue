@@ -34,32 +34,72 @@ jobs:
       - name : Checkout code
         uses: actions/checkout@v4
 
-      - name: Search and delete old artifacts
+      - name: Get list of old images
         if: ${{ env.STATUS == 'OK' }}
         run: |
-          n=35
-          echo "Retaining $n images"
-          jf rt s --spec .github/workflows/artifactory-cleanup.search-spec.json --offset=$n --sort-by="modified" --sort-order=desc | jq .[].path | jq 'sub("/manifest.json"; "")' > jfrog_artifacts.txt
+          n=30
+          echo "Getting list of oldest images, skipping the most-recent $n of them."
+          jf rt s --spec .github/workflows/artifactory-cleanup.search-spec.json --offset=$n --sort-by="modified" --sort-order=desc | jq .[].path | jq 'sub("/manifest.json"; "")' > jfrog_artifacts_to_delete.txt
 
-          total_images=$(wc -l < jfrog_artifacts.txt)
-            echo "Total Images: $total_images"
-            if [ "$total_images" -gt 0 ]; then
-              while IFS= read -r artifact; do
-                artifact="${artifact%\$}"
-                echo "Attempting to delete: $artifact"
-                command="jf rt del $artifact --quiet=true"
-                echo "Command to be executed: $command"
-                response=$(eval "$command")
+      - name : Checkout code
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ vars.TENANT_GITOPS_REPO }}
+          path: tenant-gitops
+          ssh-key: ${{ secrets.SSH_KEY }}
 
-                # Check for failure in the response
-                if echo "$response" | jq -e '.status != "success"' > /dev/null; then
-                  echo "Failed to delete $artifact. Response: $response"
-                else
-                  echo "Successfully deleted $artifact."
-                fi
-              done < jfrog_artifacts.txt
-            else
-               echo "No images to delete in the repository"
+      - name : Ensure that currently-deployed images are retained
+        run: |
+          deployments=('dev' 'test' 'prod')
+
+          for deployment in "${deployments[@]}"; do
+            values_file="tenant-gitops/helm-drupal/charts/drupal/values-application-${deployment}.yaml"
+            deployed_drupal_image=$(yq eval '.drupal.tag' $values_file)
+            echo "$deployment Drupal: '$deployed_drupal_image' is currently deployed."
+
+            # 'entry' (for Fintranet) will look something like this:
+            #   "ff61-fintra-docker-local/fintranet/1.0.41-dev"
+            entry="${{ vars.CONTAINER_REPO }}/${{ vars.CONTAINER_IMAGE_NAME }}/$deployed_drupal_image"
+            if grep -F -w "$entry" jfrog_artifacts_to_delete.txt; then
+              echo "Found '$entry' in the list of images to delete..."
+              echo "  Removing it from that list, so it will be retained."
+              grep -v "$entry" jfrog_artifacts_to_delete.txt > temp.txt && mv temp.txt jfrog_artifacts_to_delete.txt
             fi
-          rm -f jfrog_artifacts.txt
+
+            deployed_nginx_image=$(yq eval '.nginx.tag' $values_file)
+            echo "$deployment Nginx:  '$deployed_nginx_image' is currently deployed."
+
+            entry="${{ vars.CONTAINER_REPO }}/${{ vars.CONTAINER_IMAGE_NAME }}-nginx/$deployed_nginx_image"
+            if grep -F -w "$entry" jfrog_artifacts_to_delete.txt; then
+              echo "Found '$entry' in the list of images to delete..."
+              echo "  Removing it from that list, so it will be retained."
+              grep -v "$entry" jfrog_artifacts_to_delete.txt > temp.txt && mv temp.txt jfrog_artifacts_to_delete.txt
+            else
+              echo "     (...and is not slated for clean-up)"
+            fi
+          done
+
+      - name: Delete old images (excepting any that are currently deployed)
+        run: |
+          total_images=$(wc -l < jfrog_artifacts_to_delete.txt)
+          echo "Deleting $total_images images..."
+          if [ "$total_images" -gt 0 ]; then
+            while IFS= read -r artifact; do
+              artifact="${artifact%\$}"
+              echo "Attempting to delete: $artifact"
+              command="jf rt del $artifact --quiet=true --dry-run=true"
+              echo "Command to be executed: $command"
+              response=$(eval "$command")
+              # Check for failure in the response
+              if echo "$response" | jq -e '.status != "success"' > /dev/null; then
+                echo "Failed to delete $artifact. Response: $response"
+              else
+                echo "Successfully deleted $artifact."
+              fi
+            done < jfrog_artifacts_to_delete.txt
+          else
+             echo "No images to delete in the repository"
+          fi
+          rm -f jfrog_artifacts_to_delete.txt
           echo "Successfully cleaned up temporary files."
+          echo "Artifactory clean-up is complete."
