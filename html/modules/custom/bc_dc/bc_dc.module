@@ -1295,7 +1295,10 @@ function bc_dc_data_set_has_field(NodeInterface $node, string $field_key): bool 
   return FALSE;
 }
 
-/* When testing whether an MR needs to be reviewed, you test the 'last-review-date' field.
+/**
+ * Get date of last review, or of publishing if not reviewed yet.
+ *
+ * When testing whether an MR needs to be reviewed, you test the 'last-review-date' field.
  * But if it has never been reviewed, then you need to be measuring from the 'published-date'
  * instead, as publishing an MR is sort of like an implicit review of it.
  *
@@ -1307,15 +1310,15 @@ function bc_dc__get_last_review_or_published_date(NodeInterface $node) {
     if ($node->hasField('field_last_review_date') && !empty($last_review_date = $node->get('field_last_review_date')->value)) {
       return $last_review_date;
     }
-    else if ($node->hasField('field_published_date') && !empty($published_date = $node->get('field_published_date')->value)) {
+    elseif ($node->hasField('field_published_date') && !empty($published_date = $node->get('field_published_date')->value)) {
       return $published_date;
     }
     else {
-      return null;
+      return NULL;
     }
   }
   else {
-    throw new \Exception("Need 'data_set' to get last review date. Received '".$node->getType()."'.");
+    throw new \Exception("Need 'data_set' to get last review date. Received '" . $node->getType() . "'.");
   }
 }
 

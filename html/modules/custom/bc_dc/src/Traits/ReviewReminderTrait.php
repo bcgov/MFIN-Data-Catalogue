@@ -34,14 +34,17 @@ trait ReviewReminderTrait {
       return NULL;
     }
 
+    // Rename for clarity.
+    $data_set =& $entity;
+
     // If no interval is configured, no review needed.
-    $field_review_interval = $entity->field_review_interval->value;
+    $field_review_interval = $data_set->field_review_interval->value;
     if (!$field_review_interval) {
       return NULL;
     }
 
     // If it has never been reviewed, no review needed.
-    $field_last_review_date = bc_dc__get_last_review_or_published_date($entity);
+    $field_last_review_date = bc_dc__get_last_review_or_published_date($data_set);
     if (!$field_last_review_date) {
       return NULL;
     }
