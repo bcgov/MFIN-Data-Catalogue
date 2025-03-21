@@ -27,7 +27,10 @@ class BcDcWorkflowBlockForm extends FormBase {
       return $form;
     }
 
-    $isPublished = $args['node']->isPublished();
+    // rename for clarity
+    $data_set =& $args['node'];
+
+    $isPublished = $data_set->isPublished();
 
     // Message if revision is published.
     if ($isPublished) {
@@ -38,10 +41,10 @@ class BcDcWorkflowBlockForm extends FormBase {
     else {
       // Prevent publishing when required fields are empty.
       $empty_required = [];
-      foreach ($args['node']->getFields() as $field) {
+      foreach ($data_set->getFields() as $field) {
         $fieldDefinition = $field->getFieldDefinition();
         // Add to list if the field is empty, required, and in this data_set.
-        if ($field->isEmpty() && $fieldDefinition->isRequired() && bc_dc_data_set_has_field($args['node'], $fieldDefinition->getName())) {
+        if ($field->isEmpty() && $fieldDefinition->isRequired() && bc_dc_data_set_has_field($data_set, $fieldDefinition->getName())) {
           $empty_required[] = $fieldDefinition->getLabel();
         }
       }
@@ -71,9 +74,8 @@ class BcDcWorkflowBlockForm extends FormBase {
       ];
     }
 
-
     // Add the 'full review' checkbox, except if the MR has never been published.
-    if(bc_dc__get_last_review_or_published_date($args['node'])) {
+    if (bc_dc__get_last_review_or_published_date($data_set)) {
       $form['full_review'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('This is a full review'),
