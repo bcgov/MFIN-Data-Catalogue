@@ -71,10 +71,14 @@ class BcDcWorkflowBlockForm extends FormBase {
       ];
     }
 
-    $form['full_review'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('This is a full review'),
-    ];
+
+    // Add the 'full review' checkbox, except if the MR has never been published.
+    if(bc_dc__get_last_review_or_published_date($args['node'])) {
+      $form['full_review'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('This is a full review'),
+      ];
+    }
 
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
