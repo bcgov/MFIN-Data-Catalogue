@@ -99,6 +99,7 @@ module:
   r4032login: 0
   rabbit_hole: 0
   realname: 0
+  redirect: 0
   registration_role: 0
   responsive_image: 0
   rest: 0
