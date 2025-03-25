@@ -35,9 +35,20 @@ jobs:
         export DB_PORT=3306
         git clone --branch 10.2.x-php8.2 https://github.com/drupalwxt/docker-scaffold.git docker
 
-        echo "# Move contrib modules to where we can edit them on deployed server."                      >> docker/Dockerfile
-        echo "RUN mkdir /var/www/contrib_modules && mv --target-directory=/var/www/contrib_modules /var/www/html/modules/contrib/role_delegation"    >> docker/Dockerfile
-        echo "RUN ln -s /var/www/html/sites/default/files/contrib_modules/role_delegation /var/www/html/modules/contrib/role_delegation" >> docker/Dockerfile
+        MODULES_REAL=/var/www/html/modules
+        MODULES_TMP=/var/www/modules_tmp
+        FILES_DIR=/var/www/html/sites/default/files
+
+        cat << END_DOCKER_ADDITION >> docker/Dockerfile
+          # Move contrib modules to where we can edit them on deployed server.
+          RUN    mkdir -p $MODULES_TMP \\
+                  \\
+              && mv $MODULES_REAL/contrib/role_delegation $MODULES_TMP \\
+              && ln -s $FILES_DIR/modules/role_delegation $MODULES_REAL/contrib/role_delegation \\
+                  \\
+              && mv $MODULES_REAL/custom/bc_dc            $MODULES_TMP \\
+              && ln -s $FILES_DIR/modules/bc_dc           $MODULES_REAL/custom/bc_dc
+        END_DOCKER_ADDITION
 
         make build
         docker compose -f docker-compose.ci.yml up -d
