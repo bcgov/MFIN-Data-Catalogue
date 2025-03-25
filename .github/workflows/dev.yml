@@ -34,6 +34,12 @@ jobs:
         export DB_TYPE=mysql
         export DB_PORT=3306
         git clone --branch 10.2.x-php8.2 https://github.com/drupalwxt/docker-scaffold.git docker
+
+        echo "# Move contrib modules to where we can edit them on deployed server."                      >> docker/Dockerfile
+        echo "RUN mv /var/www/html/modules/contrib /var/www/contrib_modules"                             >> docker/Dockerfile
+        echo "RUN ln -s /var/www/html/sites/default/files/contrib_modules /var/www/html/modules/contrib" >> docker/Dockerfile
+        echo "RUN touch /var/www/html/sites/default/files/test-file"                                     >> docker/Dockerfile
+
         make build
         docker compose -f docker-compose.ci.yml up -d
         docker ps -a
