@@ -5,8 +5,10 @@ ARG SSH_PRIVATE_KEY
 ARG GIT_USERNAME
 ARG GIT_PASSWORD
 
-RUN apk --update add fcgi \
-    && curl -o /usr/local/bin/php-fpm-healthcheck https://raw.githubusercontent.com/renatomefi/php-fpm-healthcheck/master/php-fpm-healthcheck \
+RUN apk --no-cache add fcgi \
+    && curl -sSL -o /usr/local/bin/php-fpm-healthcheck \
+       https://raw.githubusercontent.com/renatomefi/php-fpm-healthcheck/a2d45de918787f761754b96b94a59f4f6acebc25/php-fpm-healthcheck \
+    && echo "53bc616c4a30f029b98bff48fdeb0c4da252cb11e4f86656a8222a67dc4e5009  /usr/local/bin/php-fpm-healthcheck" | sha256sum -c - \
     && chmod +x /usr/local/bin/php-fpm-healthcheck
 COPY docker/conf/php-fpm/status.conf /usr/local/etc/php-fpm.d/
 
