@@ -90,6 +90,7 @@ RUN rm -f /var/www/composer.lock; \
 RUN rm -rf /var/www/*
 COPY scripts/ /var/www/scripts/
 COPY composer.json composer.lock /var/www/
+COPY composer.patches/ /var/www/composer.patches
 # Copy possible custom modules and custom themes
 COPY html/modules/custom/ /var/www/html/modules/custom/
 COPY html/themes/custom/ /var/www/html/themes/custom/
