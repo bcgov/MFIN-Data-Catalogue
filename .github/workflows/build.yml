@@ -49,7 +49,7 @@ jobs:
             /var/www/html/modules/custom/NEWBB_another_module_to_test \
 
     - name: Scan PHP-FPM image for vulnerabilities
-      uses: aquasecurity/trivy-action@0.20.0
+      uses: aquasecurity/trivy-action@0.29.0
       with:
         image-ref: '${{ vars.CONTAINER_IMAGE_NAME }}-web:latest'
         format: 'table'
@@ -59,7 +59,7 @@ jobs:
         severity: 'CRITICAL,HIGH,MEDIUM'
 
     - name: Scan Nginx image for vulnerabilities
-      uses: aquasecurity/trivy-action@0.20.0
+      uses: aquasecurity/trivy-action@0.29.0
       with:
         image-ref: '${{ vars.CONTAINER_IMAGE_NAME }}-nginx:latest'
         format: 'table'
