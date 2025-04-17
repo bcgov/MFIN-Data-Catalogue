@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b4e5c06bcdde0f5f6dc5007e913caa77",
+    "content-hash": "33650459d5316dff2b86bb5df3d0936f",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1563,26 +1563,29 @@
         },
         {
             "name": "doctrine/deprecations",
-            "version": "1.1.4",
+            "version": "1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/deprecations.git",
-                "reference": "31610dbb31faa98e6b5447b62340826f54fbc4e9"
+                "reference": "459c2f5dd3d6a4633d3b5f46ee2b1c40f57d3f38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/deprecations/zipball/31610dbb31faa98e6b5447b62340826f54fbc4e9",
-                "reference": "31610dbb31faa98e6b5447b62340826f54fbc4e9",
+                "url": "https://api.github.com/repos/doctrine/deprecations/zipball/459c2f5dd3d6a4633d3b5f46ee2b1c40f57d3f38",
+                "reference": "459c2f5dd3d6a4633d3b5f46ee2b1c40f57d3f38",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1 || ^8.0"
             },
+            "conflict": {
+                "phpunit/phpunit": "<=7.5 || >=13"
+            },
             "require-dev": {
-                "doctrine/coding-standard": "^9 || ^12",
-                "phpstan/phpstan": "1.4.10 || 2.0.3",
+                "doctrine/coding-standard": "^9 || ^12 || ^13",
+                "phpstan/phpstan": "1.4.10 || 2.1.11",
                 "phpstan/phpstan-phpunit": "^1.0 || ^2",
-                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.6 || ^10.5 || ^11.5 || ^12",
                 "psr/log": "^1 || ^2 || ^3"
             },
             "suggest": {
@@ -1602,9 +1605,9 @@
             "homepage": "https://www.doctrine-project.org/",
             "support": {
                 "issues": "https://github.com/doctrine/deprecations/issues",
-                "source": "https://github.com/doctrine/deprecations/tree/1.1.4"
+                "source": "https://github.com/doctrine/deprecations/tree/1.1.5"
             },
-            "time": "2024-12-07T21:18:45+00:00"
+            "time": "2025-04-07T20:06:18+00:00"
         },
         {
             "name": "doctrine/event-manager",
@@ -2440,17 +2443,17 @@
         },
         {
             "name": "drupal/charts",
-            "version": "5.1.4",
+            "version": "5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/charts.git",
-                "reference": "5.1.4"
+                "reference": "5.1.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/charts-5.1.4.zip",
-                "reference": "5.1.4",
-                "shasum": "30c4fd6750ba5fb57cb53cdb6e3e78d502995f93"
+                "url": "https://ftp.drupal.org/files/projects/charts-5.1.5.zip",
+                "reference": "5.1.5",
+                "shasum": "e0ef459623556ef3d9faa5656df9e35bfe4b2876"
             },
             "require": {
                 "drupal/core": "^10.3 || ^11"
@@ -2458,8 +2461,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "5.1.4",
-                    "datestamp": "1743103327",
+                    "version": "5.1.5",
+                    "datestamp": "1744408472",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2763,11 +2766,17 @@
         },
         {
             "name": "drupal/clipboardjs",
-            "version": "dev-2.0.x",
+            "version": "2.0.9",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/clipboardjs.git",
-                "reference": "adb3f68"
+                "reference": "2.0.9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/clipboardjs-2.0.9.zip",
+                "reference": "2.0.9",
+                "shasum": "12ffa23fbe03604fdc51b560827b2e53ef3465b3"
             },
             "require": {
                 "drupal/core": "^8 || ^9 || ^10",
@@ -2775,15 +2784,12 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-2.0.x": "2.0.x-dev"
-                },
                 "drupal": {
-                    "version": "2.0.8+13-dev",
-                    "datestamp": "1738240706",
+                    "version": "2.0.9",
+                    "datestamp": "1738241274",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Dev releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 },
                 "drush": {
@@ -4222,17 +4228,17 @@
         },
         {
             "name": "drupal/externalauth",
-            "version": "2.0.7",
+            "version": "2.0.8",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/externalauth.git",
-                "reference": "2.0.7"
+                "reference": "2.0.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/externalauth-2.0.7.zip",
-                "reference": "2.0.7",
-                "shasum": "93c2b15f21172f931bb81cc365c828c12be377c3"
+                "url": "https://ftp.drupal.org/files/projects/externalauth-2.0.8.zip",
+                "reference": "2.0.8",
+                "shasum": "e9c1b41d6b59d0674b2756361ec729b046759387"
             },
             "require": {
                 "drupal/core": "^9.5 || ^10 || ^11"
@@ -4240,8 +4246,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.0.7",
-                    "datestamp": "1735897906",
+                    "version": "2.0.8",
+                    "datestamp": "1743603496",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4534,17 +4540,17 @@
         },
         {
             "name": "drupal/flag",
-            "version": "4.0.0-beta6",
+            "version": "4.0.0-beta7",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/flag.git",
-                "reference": "8.x-4.0-beta6"
+                "reference": "8.x-4.0-beta7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/flag-8.x-4.0-beta6.zip",
-                "reference": "8.x-4.0-beta6",
-                "shasum": "eb36689b4b97e12b60be626771f6f2a987b83a70"
+                "url": "https://ftp.drupal.org/files/projects/flag-8.x-4.0-beta7.zip",
+                "reference": "8.x-4.0-beta7",
+                "shasum": "6f74fcaec0db3c54934cdf8f25acb67c0c2d7f07"
             },
             "require": {
                 "drupal/core": "^10.3 || ^11"
@@ -4552,8 +4558,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-4.0-beta6",
-                    "datestamp": "1737620760",
+                    "version": "8.x-4.0-beta7",
+                    "datestamp": "1743851261",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
@@ -5876,21 +5882,21 @@
         },
         {
             "name": "drupal/panels",
-            "version": "4.8.0",
+            "version": "4.9.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/panels.git",
-                "reference": "8.x-4.8"
+                "reference": "8.x-4.9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/panels-8.x-4.8.zip",
-                "reference": "8.x-4.8",
-                "shasum": "0b947a1af3b2479c8f38d94f8f065e788d023063"
+                "url": "https://ftp.drupal.org/files/projects/panels-8.x-4.9.zip",
+                "reference": "8.x-4.9",
+                "shasum": "7c05719e3af591947159c071c3bacff9d24d2be5"
             },
             "require": {
-                "drupal/core": "^9.2 || ^10",
-                "drupal/ctools": "^3.12 || ^4.0",
+                "drupal/core": "^9.5 || ^10 || ^11",
+                "drupal/ctools": "^3.15 || ^4.1",
                 "drupal/jquery_ui_droppable": "^1.0 || ^2.0"
             },
             "require-dev": {
@@ -5900,8 +5906,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-4.8",
-                    "datestamp": "1718663806",
+                    "version": "8.x-4.9",
+                    "datestamp": "1744218203",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -17444,16 +17450,16 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "5.6.1",
+            "version": "5.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "e5e784149a09bd69d9a5e3b01c5cbd2e2bd653d8"
+                "reference": "92dde6a5919e34835c506ac8c523ef095a95ed62"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/e5e784149a09bd69d9a5e3b01c5cbd2e2bd653d8",
-                "reference": "e5e784149a09bd69d9a5e3b01c5cbd2e2bd653d8",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/92dde6a5919e34835c506ac8c523ef095a95ed62",
+                "reference": "92dde6a5919e34835c506ac8c523ef095a95ed62",
                 "shasum": ""
             },
             "require": {
@@ -17502,9 +17508,9 @@
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
             "support": {
                 "issues": "https://github.com/phpDocumentor/ReflectionDocBlock/issues",
-                "source": "https://github.com/phpDocumentor/ReflectionDocBlock/tree/5.6.1"
+                "source": "https://github.com/phpDocumentor/ReflectionDocBlock/tree/5.6.2"
             },
-            "time": "2024-12-07T09:39:29+00:00"
+            "time": "2025-04-13T19:20:35+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -20457,7 +20463,6 @@
         "bcgov/gdx_analytics_drupal_snowplow": 20,
         "drupal/better_normalizers": 10,
         "drupal/ckeditor_codemirror": 10,
-        "drupal/clipboardjs": 20,
         "drupal/conditional_fields": 15,
         "drupal/default_content_deploy": 20,
         "drupal/insert_view_adv": 15,
