@@ -24,6 +24,7 @@ use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 use Drupal\message_gcnotify\Service\GcNotifyApiService;
+use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\paragraphs\ParagraphInterface;
 use Drupal\tac_lite\Form\SchemeForm;
@@ -31,6 +32,7 @@ use Drupal\taxonomy\TermInterface;
 use Drupal\user\Entity\User;
 use Drupal\user\UserInterface;
 use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\views\ResultRow;
 use Drupal\views\ViewExecutable;
 
 /**
@@ -968,7 +970,72 @@ function bc_dc_views_pre_render(ViewExecutable $view): void {
     case 'metadata_record_management':
       $view->element['#attached']['library'][] = 'bcbb_other/bcbb-scroll-tables';
       break;
+
+    case 'reports_by_restriction':
+      bc_dc__add_count_to_restriction_report($view);
+      break;
   }
+}
+
+/**
+ * Add count to restriction report.
+ *
+ * Drupal views seems unable to count rows where we have added multiple values.
+ *
+ * Supposing we have this:
+ *     MetadataRecord 100 has visibility 50 + 51
+ *     MetadataRecord 101 has visibility 66
+ *     MetadataRecord 102 also has visibility 66
+ * The initial view results will contain 4 instances of ResultRow:
+ *     nid:100, visibility_target_id:50, book_depth:null
+ *     nid:100, visibility_target_id:51, book_depth:null
+ *     nid:101, visibility_target_id:66, book_depth:null
+ *     nid:102, visibility_target_id:66, book_depth:null
+ * We have added the "book_depth" field, as a dummy field,
+ *   in which our code can place the COUNT that we figure out here.
+ * Our code replaces the view result with this:
+ *     nid:100, visibility_target_id:50, book_depth:1
+ *     nid:100, visibility_target_id:51, book_depth:1
+ *     nid:101, visibility_target_id:66, book_depth:2
+ * Note that node 102 is no longer mentioned. That is ok! The node IDs seem
+ *   unimportant. What is important, is the visibility IDs, and the count.
+ * Drupal views will then be able to take care of aggregating this,
+ *   and outputting what we want:
+ *     visibility 50,51:  count 1
+ *     visibility 66:     count 2
+ */
+function bc_dc__add_count_to_restriction_report(ViewExecutable $view) {
+
+  // Build intermediate step. With above example, it looks like this:
+  // [ 100 => [50=>1, 51=>1],  101 => [66=>1],  102 => [66=>1] ]
+  foreach ($view->result as $result) {
+    $step1[$result->nid][$result->node__field_visibility_field_visibility_target_id] = 1;
+  }
+
+  // Build next intermediate step. Result looks like this:
+  // [ "50,51" => [100=>1],  "66" => [101=>1, 102=>1] ]
+  foreach ($step1 as $nid => $visibilities) {
+    $my_viz = array_keys($visibilities);
+    sort($my_viz);
+    $visibility_set = implode(',', $my_viz);
+    $step2[$visibility_set][$nid] = 1;
+  }
+
+  // Build the Views result that we wanted.
+  $view->result = [];
+  foreach ($step2 as $visibility_set => $nids_with_this_visibility_set) {
+    foreach (explode(',', $visibility_set) as $visibility_id) {
+      // We just use the first node. The rest are unneeded!
+      $representative_nid = array_key_first($nids_with_this_visibility_set);
+      $view->result[] = new ResultRow([
+        '_entity' => Node::load($representative_nid),
+        'nid' => $representative_nid,
+        'node__field_visibility_field_visibility_target_id' => $visibility_id,
+        'book_depth' => count($nids_with_this_visibility_set),
+      ]);
+    }
+  }
+  $view->total_rows = count($view->result);
 }
 
 /**

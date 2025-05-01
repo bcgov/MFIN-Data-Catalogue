@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.field_visibility
     - node.type.data_set
   module:
+    - book
     - charts
     - charts_billboard
     - node
@@ -89,15 +90,15 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_visibility:
-          id: field_visibility
-          table: node__field_visibility
-          field: field_visibility
+        depth:
+          id: depth
+          table: book
+          field: depth
           relationship: none
-          group_type: count
+          group_type: group
           admin_label: ''
-          plugin_id: field
-          label: ''
+          plugin_id: numeric
+          label: Depth
           exclude: false
           alter:
             alter_text: false
@@ -130,32 +131,19 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: false
+          element_default_classes: true
           empty: ''
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: false
-          group_column: target_id
-          group_columns: {  }
-          group_rows: false
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
           set_precision: false
           precision: 0
           decimal: .
-          format_plural: 0
+          separator: ','
+          format_plural: false
           format_plural_string: !!binary MQNAY291bnQ=
           prefix: ''
           suffix: ''
@@ -236,7 +224,7 @@ display:
           grouping:
             -
               field: field_visibility_1
-              rendered: false
+              rendered: true
               rendered_strip: false
           chart_settings:
             library: billboard
@@ -249,34 +237,35 @@ display:
                   enabled: false
                   color: '#006fb0'
                   weight: 2
-                field_visibility:
+                depth:
                   enabled: true
-                  color: '#0096ff'
+                  color: '#f07c33'
                   weight: 2
               entity_grouping:
                 color_selection_method: by_entities_on_entity_reference
                 selected_method:
                   colors:
                     361f1130-4043-40ad-908e-b864aa2dc7bc:
-                      color: '#003366'
+                      color: '#ffff00'
                     82049c48-617f-49da-8bfb-5c440722f8c4:
-                      color: '#800000'
+                      color: '#8080ff'
                     9dc3d512-7dd9-4fff-bc83-6164ec47ab75:
-                      color: '#008080'
+                      color: '#ff0000'
                     a7c22a58-e823-40b7-bd2c-4e21427a314b:
-                      color: '#4B0082'
+                      color: '#ff8000'
                     f8e77c05-4c59-4965-a325-ff840c7a4550:
-                      color: '#36454F'
+                      color: '#00ff00'
                     faba301b-bdf5-4658-abc1-e173b815984f:
-                      color: '#228B22'
+                      color: '#008040'
                     fff131a4-18ae-42b4-9caa-6f1fe75003b4:
-                      color: '#654321'
+                      color: '#804040'
             display:
               title: ''
               title_position: out
               subtitle: ''
               data_labels: true
               data_markers: true
+              connect_nulls: false
               legend_position: bottom
               background: ''
               three_dimensional: 0
@@ -324,7 +313,7 @@ display:
           replica: false
           query_tags: {  }
       relationships: {  }
-      group_by: true
+      group_by: false
       header: {  }
       footer: {  }
       display_extenders: {  }
