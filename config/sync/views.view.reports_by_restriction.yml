@@ -96,7 +96,7 @@ display:
           field: depth
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: 'Book-depth: This is a dummy field used by "bc_dc__add_count_to_restriction_report()" to store the computed count.'
           plugin_id: numeric
           label: Depth
           exclude: false
