@@ -39,6 +39,7 @@ dependencies:
     - node
     - paragraphs
     - rabbit_hole
+    - role_delegation
     - statistics
     - system
     - taxonomy
@@ -66,6 +67,7 @@ permissions:
   - 'access user manage'
   - 'access user profiles'
   - 'add content to books'
+  - 'administer account settings'
   - 'administer book outlines'
   - 'administer content types'
   - 'administer data catalogue'
