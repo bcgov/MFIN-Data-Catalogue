@@ -60,7 +60,6 @@ dependencies:
   - rabbit_hole:rabbit_hole
   - registration_role:registration_role
   - robotstxt:robotstxt
-  - role_delegation:role_delegation
   - search_api_saved_searches:search_api_saved_searches
   - shs:shs
   - smart_trim:smart_trim
