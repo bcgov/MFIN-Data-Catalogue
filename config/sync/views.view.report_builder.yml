@@ -1961,6 +1961,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 25
           total_pages: null
           id: 0
@@ -1978,7 +1979,6 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
-          pagination_heading_level: h4
       exposed_form:
         type: bef
         options:
@@ -2013,16 +2013,16 @@ display:
                 advanced:
                   placeholder_text: ''
                   collapsible: false
-                  is_secondary: false
                   collapsible_disable_automatic_open: false
+                  is_secondary: false
                   hide_label: false
               nid:
                 plugin_id: default
                 advanced:
                   placeholder_text: ''
                   collapsible: false
-                  is_secondary: false
                   collapsible_disable_automatic_open: false
+                  is_secondary: false
                   hide_label: false
               field_data_set_type_target_id:
                 plugin_id: default
@@ -2032,8 +2032,8 @@ display:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
-                  is_secondary: false
                   collapsible_disable_automatic_open: false
+                  is_secondary: false
                   hide_label: false
               field_primary_responsibility_org_target_id:
                 plugin_id: default
@@ -2043,8 +2043,8 @@ display:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
-                  is_secondary: false
                   collapsible_disable_automatic_open: false
+                  is_secondary: false
                   hide_label: false
               field_visibility_target_id:
                 plugin_id: default
@@ -2054,8 +2054,8 @@ display:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
-                  is_secondary: false
                   collapsible_disable_automatic_open: false
+                  is_secondary: false
                   hide_label: false
               field_source_system_target_id:
                 plugin_id: default
@@ -2065,8 +2065,8 @@ display:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
-                  is_secondary: false
                   collapsible_disable_automatic_open: false
+                  is_secondary: false
                   hide_label: false
               field_series_target_id:
                 plugin_id: default
@@ -2076,8 +2076,8 @@ display:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
-                  is_secondary: false
                   collapsible_disable_automatic_open: false
+                  is_secondary: false
                   hide_label: false
               field_personal_information_value:
                 plugin_id: bef
@@ -2087,8 +2087,8 @@ display:
                     filter_rewrite_values: "- Any -|Any\r\nTrue|Yes\r\nFalse|No"
                     filter_rewrite_values_key: false
                   collapsible: false
-                  is_secondary: false
                   collapsible_disable_automatic_open: false
+                  is_secondary: false
                   hide_label: false
                 select_all_none: false
                 select_all_none_nested: false
@@ -2101,8 +2101,8 @@ display:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
-                  is_secondary: false
                   collapsible_disable_automatic_open: false
+                  is_secondary: false
                   hide_label: false
               field_critical_information_value:
                 plugin_id: bef
@@ -2112,8 +2112,8 @@ display:
                     filter_rewrite_values: "- Any -|Any\r\nTrue|Yes\r\nFalse|No"
                     filter_rewrite_values_key: false
                   collapsible: false
-                  is_secondary: false
                   collapsible_disable_automatic_open: false
+                  is_secondary: false
                   hide_label: false
                 select_all_none: false
                 select_all_none_nested: false
@@ -2122,22 +2122,22 @@ display:
                 plugin_id: default
                 advanced:
                   collapsible: false
-                  is_secondary: false
                   collapsible_disable_automatic_open: false
+                  is_secondary: false
                   hide_label: false
               field_modified_date_value:
                 plugin_id: default
                 advanced:
                   collapsible: false
-                  is_secondary: false
                   collapsible_disable_automatic_open: false
+                  is_secondary: false
                   hide_label: false
               field_last_review_date_value:
                 plugin_id: default
                 advanced:
                   collapsible: false
-                  is_secondary: false
                   collapsible_disable_automatic_open: false
+                  is_secondary: false
                   hide_label: false
               field_review_status_value:
                 plugin_id: bef
@@ -2147,8 +2147,8 @@ display:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
-                  is_secondary: false
                   collapsible_disable_automatic_open: false
+                  is_secondary: false
                   hide_label: false
                 select_all_none: false
                 select_all_none_nested: false
@@ -2161,8 +2161,8 @@ display:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
-                  is_secondary: false
                   collapsible_disable_automatic_open: false
+                  is_secondary: false
                   hide_label: false
                 select_all_none: false
                 select_all_none_nested: false
@@ -2175,8 +2175,8 @@ display:
                     filter_rewrite_values: "- Any -|Any\r\nYes|Yes\r\nNo|No"
                     filter_rewrite_values_key: false
                   collapsible: false
-                  is_secondary: false
                   collapsible_disable_automatic_open: false
+                  is_secondary: false
                   hide_label: false
                 select_all_none: false
                 select_all_none_nested: false
@@ -2189,8 +2189,8 @@ display:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
-                  is_secondary: false
                   collapsible_disable_automatic_open: false
+                  is_secondary: false
                   hide_label: false
       access:
         type: role
