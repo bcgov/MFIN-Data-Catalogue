@@ -20,12 +20,16 @@ How to use the 'drupal' branch
 
 Install this project in its own branch, with its own remote, and only fetch the 'drupal' branch from it.
 
-    git remote add basebuild  https://github.com/bcgov-c/fin-basebuild.git --track drupal
-    git fetch basebuild
+```
+    # Add the new remote
+    git remote add basebuild  https://github.com/bcgov-c/fin-basebuild.git
 
-Create a local branch that tracks the remote one.
+    # Fetch only the drupal branch from it
+    git fetch basebuild drupal
 
-    git branch --track drupal basebuild/drupal
+    # Create a local branch that tracks the remote one.
+    git branch --track bb-drupal basebuild/drupal
+```
 
 Make sure you're on your own project's main branch, and merge in the Base Build's latest code.
 
