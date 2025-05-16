@@ -22,7 +22,7 @@ jobs:
     - name: Checkout Tenant GitOps Repo
       uses: actions/checkout@v4
       with:
-        repository: bcgov-c/tenant-gitops-newbblicenseplate
+        repository: ${{ vars.TENANT_GITOPS_REPO }}
         path: tenant-gitops
         ssh-key: ${{ secrets.ARGO_OPENSHIFT_DEPLOYMENT_PIPELINE_SSH_KEY }}
         persist-credentials: true
@@ -47,4 +47,4 @@ jobs:
         ssh: true
         branch: main
         directory: tenant-gitops
-        repository: bcgov-c/tenant-gitops-newbblicenseplate
+        repository: ${{ vars.TENANT_GITOPS_REPO }}
