@@ -15,6 +15,13 @@ The 'drupal' branch is discussed here.
 
 See the README in the 'gitops' branch for a discussion of it.
 
+Project-installation guide
+--------------------------
+Be sure to read the wiki for this project, as it contains the main guidance for how to set up a new project.
+
+  * https://github.com/bcgov-c/fin-basebuild/wiki
+
+
 How to use the 'drupal' branch
 ------------------------------
 
