@@ -28,7 +28,7 @@ jobs:
       uses: mikefarah/yq@v4.34.1
       with:
         cmd: |
-          yq eval '.version = strenv(GITHUB_TAG_TO_DEPLOY)' -i html/modules/custom/newbbproj_common/newbbproj_common.info.yml
+          yq eval '.version = strenv(GITHUB_TAG_TO_DEPLOY)' -i html/modules/custom/newbbproj/newbbproj.info.yml
 
     - name: Build out the Drupal infrastructure
       run: |
