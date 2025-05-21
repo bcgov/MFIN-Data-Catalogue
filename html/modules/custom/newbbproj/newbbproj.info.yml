@@ -1,0 +1,4 @@
+name: NewBB Project
+description: Common code for the NewBB project.
+type: module
+core_version_requirement: ^11
