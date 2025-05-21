@@ -1,7 +1,11 @@
+# NEWBB: Copy Drupal's 'example.gitignore' file above this line.
+# 
+# Below, are ignores from our base-build.
+
 # Ignore Private Files
 private
 private-files
 
-# NEWBB: This line can be removed after you've set up your DDEV project,
-#   since DDEV ignores "config.local.y*ml" in its /.ddev/.gitignore file
-/.ddev/config.local.y*ml
+# Ignore DDEV
+.ddev/*
+!.ddev/config.yaml
