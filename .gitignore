@@ -18,6 +18,9 @@ html/themes/*
 # Ignore NPM folders
 node_modules
 
+# Ignore recipes folder
+/recipes
+
 # Ignore Development Files
 .idea
 *.backup
