@@ -32,7 +32,7 @@ jobs:
 
     - name: Build out the Drupal infrastructure
       run: |
-        export DB_TYPE=mysql  # NEWBB -confirm database type
+        export DB_TYPE=mysql
         export DB_PORT=3306
 
         # # We used to 'git clone' to get the '/docker' directory loaded,
@@ -46,14 +46,14 @@ jobs:
 
     - name: Run installation
       run: |
-        export DB_TYPE=mysql  # NEWBB -confirm database type
+        export DB_TYPE=mysql
         export DB_PORT=3306
         make drupal_install
 
     - name: Run tests
       if: ${{ ! ( startsWith(github.event.ref, 'refs/tags/') && (endsWith(github.event.ref, '.f') || endsWith(github.event.ref, '-f') )) }}
       run: |
-        export DB_TYPE=mysql  # NEWBB -confirm database type
+        export DB_TYPE=mysql
         export DB_PORT=3306
         ./docker/bin/phpcs --standard=/var/www/html/core/phpcs.xml \
             --extensions=php,module,inc,install,test,profile,theme \
