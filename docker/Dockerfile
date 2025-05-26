@@ -98,7 +98,6 @@ RUN rm -f /var/www/composer.lock; \
 RUN rm -rf /var/www/*
 COPY scripts/ /var/www/scripts/
 COPY composer.json composer.lock /var/www/
-COPY composer.patches/ /var/www/composer.patches
 # Copy possible custom modules and custom themes
 COPY html/modules/custom/ /var/www/html/modules/custom/
 COPY html/themes/custom/ /var/www/html/themes/custom/
@@ -106,6 +105,11 @@ COPY html/themes/custom/ /var/www/html/themes/custom/
 COPY config/ /var/www/config/
 # Copy possible load.environment.php
 COPY load.environment.php /var/www/
+
+# Copy patches directory for local patches.
+# Create the directory if it doesn't exist in the build context.
+RUN mkdir -p composer.patches
+COPY composer.patches/ /var/www/composer.patches/
 
 WORKDIR /var/www
 
