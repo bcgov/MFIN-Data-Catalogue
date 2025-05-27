@@ -87,7 +87,7 @@ services:
       retries: 10
 
   pgsql:
-    image: "postgres:${DB_VERSION:-12-alpine}"
+    image: "postgres:${DB_VERSION:-16-alpine}"
     environment:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=root

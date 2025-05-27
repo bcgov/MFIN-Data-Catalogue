@@ -1,5 +1,5 @@
-# https://github.com/docker-library/drupal/blob/master/10.2/php8.2/fpm-alpine3.19/Dockerfile
-FROM drupal:10.2-php8.2-fpm-alpine
+# https://github.com/docker-library/drupal/blob/master/11.1/php8.3/fpm-alpine3.21/Dockerfile
+FROM drupal:11.1.1-php8.3-fpm-alpine3.21
 
 # This Drupal-Alpine base image contains a full copy of Drupal (and its vendor folder).
 # We don't actually use this at all, and build our own version of Drupal, below.
@@ -127,7 +127,7 @@ RUN chown -R www-data:www-data sites/default
 RUN echo "export TERM=xterm" >> ~/.bashrc
 
 # Drush
-RUN ln -s /var/www/vendor/drush/drush/drush /usr/local/bin/drush
+RUN ln -s /var/www/vendor/bin/drush /usr/local/bin/drush
 
 # Reset Cache
 RUN php -r 'opcache_reset();'
