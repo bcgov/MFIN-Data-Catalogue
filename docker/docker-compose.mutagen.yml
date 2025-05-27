@@ -1,0 +1,50 @@
+# Docker Compose (v2)
+
+version: "2"
+services:
+  web:
+    extends:
+      file: docker-compose.base.yml
+      service: web
+    build:
+      context: docker/images/dev
+    volumes:
+      - mutagen-cache:/var/www
+
+  cli:
+    extends:
+      file: docker-compose.base.yml
+      service: cli
+    volumes:
+      - mutagen-cache:/var/www
+
+  nginx:
+    extends:
+      file: docker-compose.base.yml
+      service: nginx
+    volumes:
+      - ./docker/conf/nginx.conf:/etc/nginx/nginx.conf:ro
+      - mutagen-cache:/var/www
+
+  db:
+    extends:
+      file: docker-compose.base.yml
+      service: ${DB_TYPE:-mysql}
+
+  hub:
+    extends:
+      file: docker-compose.base.yml
+      service: hub
+
+  firefox:
+    extends:
+      file: docker-compose.base.yml
+      service: firefox
+
+volumes:
+  db_data:
+  files_data:
+  files_private_data:
+  mutagen-cache:
+    external: true
+    name: ${MUTAGEN_VOLUME}
