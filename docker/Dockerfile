@@ -1,9 +1,10 @@
-# https://github.com/docker-library/drupal/blob/master/10.3/php8.3/fpm-alpine3.19/Dockerfile
-FROM drupal:10.3-php8.3-fpm-alpine
+# https://github.com/docker-library/drupal/blob/master/10.2/php8.2/fpm-alpine3.19/Dockerfile
+FROM drupal:10.2-php8.2-fpm-alpine
 
 ARG SSH_PRIVATE_KEY
 ARG GIT_USERNAME
 ARG GIT_PASSWORD
+ARG GITHUB_SHA
 
 RUN apk --update add fcgi \
     && curl -o /usr/local/bin/php-fpm-healthcheck https://raw.githubusercontent.com/renatomefi/php-fpm-healthcheck/master/php-fpm-healthcheck \
@@ -19,8 +20,14 @@ RUN apk --update add --no-cache bash \
                                 mysql-client \
                                 patch \
                                 postgresql-client \
+                                rsync \
                                 ssmtp \
                                 zlib-dev
+
+# Resolve https://github.com/composer/composer/issues/11913
+RUN apk add --update \
+    && apk add --no-cache curl --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community \
+    && rm -rf /var/cache/apk/*
 
 COPY docker/conf/ssmtp.conf /etc/ssmtp/ssmtp.conf
 RUN echo "hostname=drupalwxt.github.io" >> /etc/ssmtp/ssmtp.conf
@@ -61,7 +68,7 @@ RUN mkdir -p /usr/src/php/ext/redis \
 
 # Composer recommended settings
 ENV COMPOSER_ALLOW_SUPERUSER 1
-ENV COMPOSER_VERSION 2.4.4
+ENV COMPOSER_VERSION 2.7.6
 ENV COMPOSER_MEMORY_LIMIT -1
 ENV COMPOSER_EXIT_ON_PATCH_FAILURE 1
 
@@ -81,7 +88,7 @@ RUN php /tmp/composer-setup.php --no-ansi \
 RUN rm -f /var/www/composer.lock; \
     rm -rf /root/.composer
 RUN rm -rf /var/www/*
-COPY scripts/ScriptHandler.php /var/www/scripts/ScriptHandler.php
+COPY scripts/ /var/www/scripts/
 COPY composer.json composer.lock /var/www/
 # Copy possible custom modules and custom themes
 COPY html/modules/custom/ /var/www/html/modules/custom/
@@ -90,11 +97,6 @@ COPY html/themes/custom/ /var/www/html/themes/custom/
 COPY config/ /var/www/config/
 # Copy possible load.environment.php
 COPY load.environment.php /var/www/
-
-# Copy patches directory for local patches.
-# Create the directory if it doesn't exist in the build context.
-RUN mkdir -p patches
-COPY patches/ /var/www/patches/
 
 WORKDIR /var/www
 
@@ -120,3 +122,6 @@ RUN ln -s /var/www/vendor/drush/drush/drush /usr/local/bin/drush
 
 # Reset Cache
 RUN php -r 'opcache_reset();'
+
+# Record which git commit is loaded into the pod.
+RUN echo "$GITHUB_SHA" > /var/www/build-hash.txt

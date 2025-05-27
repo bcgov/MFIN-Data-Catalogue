@@ -1,9 +1,5 @@
 # CHANGELOG
 
-## 10.3.x
-
-- TBD
-
 ## 10.2.x
 
 - TBD

@@ -1,9 +1,8 @@
-# https://github.com/drupalwxt/docker-scaffold/blob/10.3.x/Dockerfile
+# https://github.com/drupalwxt/docker-scaffold/blob/10.2.x/Dockerfile
 ARG BASE_IMAGE
 FROM $BASE_IMAGE as src
 
-ARG VARNISH=true
-ARG REDIS=true
+ARG VARNISH=false
 
 # Configure supervisor
 RUN apk add --no-cache supervisor
@@ -16,7 +15,6 @@ RUN apk add --no-cache nginx
 RUN mkdir -p /etc/nginx
 
 COPY conf/nginx.conf /etc/nginx/nginx.conf
-COPY conf/redis.conf /etc/redis.conf
 
 # Configure cron
 COPY tasks/ /etc/periodic/
@@ -30,9 +28,6 @@ COPY conf/splash.html /etc/varnish/splash.html
 RUN if [ "$VARNISH" = "true" ]; then \
     apk add --no-cache varnish; \
 fi
-
-# Configure redis
-RUN mkdir -p /var/log/redis
 
 RUN if [ "$REDIS" = "true" ]; then \
     apk --update add redis; \

@@ -9,44 +9,12 @@ backend nginx {
   .port = "8080";
 }
 
-acl purge {
-  "127.0.0.1";  # Allow IPv4 localhost
-  "::1";        # Allow IPv6 localhost
-}
-
 sub vcl_init {
   new backends = directors.round_robin();
   backends.add_backend(nginx);
 }
 
 sub vcl_recv {
-  # Only allow PURGE requests from localhost.
-  if (req.method == "PURGE") {
-    if (!client.ip ~ purge) {
-      return (synth(405, "Not allowed."));
-    }
-    return (hash);
-  }
-
-  # Only allow BAN requests from localhost.
-  if (req.method == "BAN") {
-    if (!client.ip ~ purge) {
-      return (synth(403, "Not allowed."));
-    }
-
-    # Logic for the ban, using the Cache-Tags header. For more info
-    # see https://github.com/geerlingguy/drupal-vm/issues/397.
-    if (req.http.Cache-Tags) {
-      ban("obj.http.Cache-Tags ~ " + req.http.Cache-Tags);
-    }
-    else {
-      return (synth(403, "Cache-Tags header missing."));
-    }
-
-    # Throw a synthetic page so the request won't go to the backend.
-    return (synth(200, "Ban added."));
-  }
-
   set req.http.X-Forwarded-Host = req.http.Host;
   if (!req.http.X-Forwarded-Proto) {
     set req.http.X-Forwarded-Proto = "http";
@@ -115,8 +83,8 @@ sub vcl_backend_response {
   }
   # Only cache select response codes
   if (beresp.status == 200 || beresp.status == 203 || beresp.status == 204 || beresp.status == 206 || beresp.status == 300 || beresp.status == 301 || beresp.status == 404 || beresp.status == 405 || beresp.status == 410 || beresp.status == 414 || beresp.status == 501) {
-    # Cache for 30 days
-    set beresp.ttl = 30d;
+    # Cache for 5 minutes
+    set beresp.ttl = 5m;
     set beresp.grace = 12h;
     set beresp.keep = 24h;
   } else {
