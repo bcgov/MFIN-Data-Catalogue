@@ -1,3 +1,6 @@
+# NEWBB: Merge anything new from Drupal's 'example.gitignore' into this file.
+#
+
 # Ignore Drupal core & scaffolded files
 html/*
 !html/modules/
@@ -12,14 +15,14 @@ html/sites/default/*
 html/themes/*
 !html/themes/custom/
 
-# Ignore Composer vendor folders
+# Ignore dependencies that are managed with Composer.
+# Generally you should only ignore the root vendor directory. It's important
+# that core/assets/vendor and any other vendor directories within contrib or
+# custom module, theme, etc., are not ignored unless you purposely do so.
 /vendor/
 
 # Ignore NPM folders
 node_modules
-
-# Ignore recipes folder
-/recipes
 
 # Ignore Development Files
 .idea
@@ -57,4 +60,3 @@ tmp
 # Ignore DDEV
 .ddev/*
 !.ddev/config.yaml
-
