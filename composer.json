@@ -7,6 +7,9 @@
     "_newbb_comment_6": "Please delete these comment lines!!",
 
 
+  "require-dev": {
+    "drupal/coder": "^8.3"
+  },
   "extra": {
     "composer-exit-on-patch-failure": true,
     "enable-patching": true,
