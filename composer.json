@@ -133,6 +133,7 @@
         "drupal/taxonomy_import": "^2.0",
         "drupal/taxonomy_max_depth": "^2.0",
         "drupal/views_argument_token": "^2.0",
+        "drupal/views_bulk_operations": "4.3.3",
         "drupal/views_field_view": "^1.0@beta",
         "drupal/webform_content_creator": "^4.0",
         "jquery/fancytree": "^2",
