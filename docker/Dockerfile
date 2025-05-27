@@ -1,9 +1,18 @@
 # https://github.com/docker-library/drupal/blob/master/10.2/php8.2/fpm-alpine3.19/Dockerfile
 FROM drupal:10.2-php8.2-fpm-alpine
 
+# This Drupal-Alpine base image contains a full copy of Drupal (and its vendor folder).
+# We don't actually use this at all, and build our own version of Drupal, below.
+# So, to recover the 135MB that this takes up (in our pods, and in Artifactory images),
+# we delete it now:
+#   /opt/drupal is the drupal install
+#   /var/www/html is a symlink to it
+RUN rm -rf /opt/drupal /var/www/html
+
 ARG SSH_PRIVATE_KEY
 ARG GIT_USERNAME
 ARG GIT_PASSWORD
+ARG GITHUB_SHA
 
 RUN apk --update add fcgi \
     && curl -o /usr/local/bin/php-fpm-healthcheck https://raw.githubusercontent.com/renatomefi/php-fpm-healthcheck/master/php-fpm-healthcheck \
@@ -19,6 +28,7 @@ RUN apk --update add --no-cache bash \
                                 mysql-client \
                                 patch \
                                 postgresql-client \
+                                rsync \
                                 ssmtp \
                                 zlib-dev
 
@@ -88,6 +98,7 @@ RUN rm -f /var/www/composer.lock; \
 RUN rm -rf /var/www/*
 COPY scripts/ /var/www/scripts/
 COPY composer.json composer.lock /var/www/
+COPY composer.patches/ /var/www/composer.patches
 # Copy possible custom modules and custom themes
 COPY html/modules/custom/ /var/www/html/modules/custom/
 COPY html/themes/custom/ /var/www/html/themes/custom/
@@ -101,11 +112,11 @@ WORKDIR /var/www
 RUN apk --update --no-cache add git openssh-client; \
     mkdir -p /root/.ssh; echo $SSH_PRIVATE_KEY | base64 -d > /root/.ssh/id_rsa; \
     chmod 700 /root/.ssh; chmod 600 /root/.ssh/id_rsa; \
-    ssh-keyscan github.com > /root/.ssh/known_hosts; \
-    composer install --prefer-dist \
+    ssh-keyscan github.com > /root/.ssh/known_hosts
+RUN composer install --prefer-dist \
                      --ignore-platform-reqs \
-                     --no-interaction && \
-    rm -rf /root/.ssh && \
+                     --no-interaction
+RUN rm -rf /root/.ssh && \
     apk del openssh-client
 
 # Permissions
@@ -120,3 +131,11 @@ RUN ln -s /var/www/vendor/drush/drush/drush /usr/local/bin/drush
 
 # Reset Cache
 RUN php -r 'opcache_reset();'
+
+# Record which git commit is loaded into the pod.
+RUN echo "$GITHUB_SHA" > /var/www/build-hash.txt
+
+# Load secrets automatically upon bash-login.
+#   Note that the secrets are created from gitops, using
+#   the "vault.hashicorp.com/agent-inject-template-secrets.env" annotation.
+RUN echo "source /vault/secrets/secrets.env; echo 'Loaded secrets into environment variables.'" >> /etc/bash/bashrc

@@ -1,8 +1,3 @@
-include .env
-
-NAME := $(or $(BASE_IMAGE),$(BASE_IMAGE),drupalwxt/site-wxt)
-VERSION := $(or $(VERSION),$(VERSION),'latest')
-PLATFORM := $(shell uname -s)
 
 DB_NAME := $(or $(DB_NAME),$(DB_NAME),'wxt')
 DB_TYPE := $(or $(DB_TYPE),$(DB_TYPE),'mysql')
@@ -26,7 +21,8 @@ base:
 	    --build-arg NO_PROXY=$$NO_PROXY \
 	    --build-arg COMPOSER_VERSION=$(COMPOSER_VERSION) \
 	    --build-arg GIT_USERNAME=$(GIT_USERNAME) \
-	    --build-arg GIT_PASSWORD=$(GIT_PASSWORD) .
+	    --build-arg GIT_PASSWORD=$(GIT_PASSWORD) \
+	    --build-arg GITHUB_SHA=$(GITHUB_SHA) .
 
 behat:
 	./docker/bin/behat -vv -c behat.yml --colors
