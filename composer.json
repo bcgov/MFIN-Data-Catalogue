@@ -1,29 +1,22 @@
 {
-    "_newbb_comment": "This is not a full composer.json file, but encapsulates elements that need to have included (merged) in to it.",
-    "_newbb_comment_2": "Delete these comments as part of the merge.",
+    "_newbb_comment_1": "This is not a full composer.json file, but encapsulates elements that need to have included (merged) in to it.",
+    "_newbb_comment_2":     "",
+    "_newbb_comment_3": "YOU NEED TO RUN THE FOLLOWING COMMAND BEFORE MERGING THIS:",
+    "_newbb_comment_4":     "composer require cweagans/composer-patches",
+    "_newbb_comment_5":     "",
+    "_newbb_comment_6": "Please delete these comment lines!!",
 
-    "require": {
-        "cweagans/composer-patches": "^1.7"
+
+  "extra": {
+    "composer-exit-on-patch-failure": true,
+    "enable-patching": true,
+    "patchLevel": {
+      "drupal/core": "-p2"
     },
-    "config": {
-        "allow-plugins": {
-            "cweagans/composer-patches": true
-        }
-    },
-    "extra": {
-        "drupal-scaffold": {
-            "locations": {
-                "web-root": "html/"
-            }
-        },
-        "enable-patching": true,
-        "patchLevel": {
-            "drupal/core": "-p2"
-        },
-        "patches": {
-            "drupal/core": {
-                "571548 - Identifiers longer than 63 characters are truncated, causing Views to break on Postgres": "https://www.drupal.org/files/issues/2025-01-16/drupal-postgres_identifiers_10_4-571548-207.patch"
-            }
-        }
+    "patches": {
+      "drupal/core": {
+        "571548 - Identifiers longer than 63 characters are truncated, causing Views to break on Postgres": "https://www.drupal.org/files/issues/2025-01-16/drupal-postgres_identifiers_10_4-571548-207.patch"
+      }
     }
+  }
 }
