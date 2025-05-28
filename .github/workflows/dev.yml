@@ -111,7 +111,7 @@ jobs:
       with:
         repository: ${{ vars.TENANT_GITOPS_REPO }}
         path: tenant-gitops
-        ssh-key: ${{ secrets.ARGO_OPENSHIFT_DEPLOYMENT_PIPELINE_SSH_KEY }}
+        ssh-key: ${{ secrets.TENANT_GITOPS_DEPLOY_KEY }}
         persist-credentials: true
 
     - name: Update Argo CD
