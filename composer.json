@@ -1,15 +1,13 @@
 {
     "_newbb_comment_1": "This is not a full composer.json file, but encapsulates elements that need to have included (merged) in to it.",
     "_newbb_comment_2":     "",
-    "_newbb_comment_3": "YOU NEED TO RUN THE FOLLOWING COMMAND BEFORE MERGING THIS:",
-    "_newbb_comment_4":     "composer require cweagans/composer-patches",
-    "_newbb_comment_5":     "",
+    "_newbb_comment_3": "YOU NEED TO RUN THE FOLLOWING COMMANDS BEFORE MERGING THIS:",
+    "_newbb_comment_4_a":     "ddev composer require drush/drush cweagans/composer-patches",
+    "_newbb_comment_4_b":     "ddev composer require drupal/coder --dev",
+    "_newbb_comment_5":       "",
     "_newbb_comment_6": "Please delete these comment lines!!",
 
 
-  "require-dev": {
-    "drupal/coder": "^8.3"
-  },
   "extra": {
     "composer-exit-on-patch-failure": true,
     "enable-patching": true,
