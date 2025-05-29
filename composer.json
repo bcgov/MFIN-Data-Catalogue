@@ -48,7 +48,6 @@
         "drupal/upgrade_status": "^4.0",
         "drupal/vbo_export": "^4.1",
         "drupal/views_bulk_edit": "^3.0",
-        "drupal/views_bulk_operations": "^4.2",
         "drupal/views_data_export": "^1.4",
         "drupal/we_megamenu": "^1.16",
         "drush/drush": "^12.0"
