@@ -11,9 +11,6 @@ on:
 
 env:
   COMPOSER_MEMORY_LIMIT: -1
-  CONTAINER_REGISTRY: ${{ vars.CONTAINER_REGISTRY }}
-  CONTAINER_REGISTRY_USERNAME: ${{ vars.CONTAINER_REGISTRY_USERNAME }}
-  CONTAINER_REGISTRY_PASSWORD: ${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
 
 jobs:
   build:
@@ -88,23 +85,23 @@ jobs:
     - name: Login to Container Registry 🐸
       uses: docker/login-action@v2
       with:
-        registry: ${{ env.CONTAINER_REGISTRY }}
-        username: ${{ env.CONTAINER_REGISTRY_USERNAME }}
-        password: ${{ env.CONTAINER_REGISTRY_PASSWORD }}
+        registry: ${{ vars.CONTAINER_REGISTRY }}
+        username: ${{ vars.CONTAINER_REGISTRY_USERNAME }}
+        password: ${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
 
     - name: Build and push PHP-FPM 🐳
       run: |
         # Will end up looking something like this:
         # docker tag fin-exec-support-system-web:latest artifacts.developer.gov.bc.ca/eeba-ess-docker-local/fin-exec-support-system:test-6a-f
-        docker tag ${{ vars.CONTAINER_IMAGE_NAME }}-web:latest ${{ env.CONTAINER_REGISTRY }}/${{ vars.CONTAINER_IMAGE_NAME }}:${{ env.GITHUB_TAG_TO_DEPLOY }}
-        docker push ${{ env.CONTAINER_REGISTRY }}/${{ vars.CONTAINER_IMAGE_NAME }}:${{ env.GITHUB_TAG_TO_DEPLOY }}
+        docker tag ${{ vars.CONTAINER_IMAGE_NAME }}-web:latest ${{ vars.CONTAINER_REGISTRY }}/${{ vars.CONTAINER_IMAGE_NAME }}:${{ env.GITHUB_TAG_TO_DEPLOY }}
+        docker push ${{ vars.CONTAINER_REGISTRY }}/${{ vars.CONTAINER_IMAGE_NAME }}:${{ env.GITHUB_TAG_TO_DEPLOY }}
 
     - name: Build and push Nginx 🐳
       run: |
         # Will end up looking something like this:
         # docker tag fin-exec-support-system-nginx:latest artifacts.developer.gov.bc.ca/eeba-ess-docker-local/fin-exec-support-system-nginx:test-6a-f
-        docker tag ${{ vars.CONTAINER_IMAGE_NAME }}-nginx:latest ${{ env.CONTAINER_REGISTRY }}/${{ vars.CONTAINER_IMAGE_NAME }}-nginx:${{ env.GITHUB_TAG_TO_DEPLOY }}
-        docker push ${{ env.CONTAINER_REGISTRY }}/${{ vars.CONTAINER_IMAGE_NAME }}-nginx:${{ env.GITHUB_TAG_TO_DEPLOY }}
+        docker tag ${{ vars.CONTAINER_IMAGE_NAME }}-nginx:latest ${{ vars.CONTAINER_REGISTRY }}/${{ vars.CONTAINER_IMAGE_NAME }}-nginx:${{ env.GITHUB_TAG_TO_DEPLOY }}
+        docker push ${{ vars.CONTAINER_REGISTRY }}/${{ vars.CONTAINER_IMAGE_NAME }}-nginx:${{ env.GITHUB_TAG_TO_DEPLOY }}
 
     - name: Checkout Tenant GitOps Repo
       uses: actions/checkout@v4

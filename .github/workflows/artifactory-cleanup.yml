@@ -5,12 +5,6 @@ on:
   schedule:
     - cron: '0 0 * * *'
 
-env:
-  CONTAINER_REPO: ${{ vars.CONTAINER_REPO }}
-  ARTIFACTORY_URL: ${{ vars.ARTIFACTORY_URL }}
-  CONTAINER_REGISTRY_USERNAME: ${{ vars.CONTAINER_REGISTRY_USERNAME }}
-  CONTAINER_REGISTRY_PASSWORD: ${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
-
 jobs:
   cleanup:
     runs-on: ubuntu-22.04
@@ -18,9 +12,9 @@ jobs:
     steps:
       - uses: jfrog/setup-jfrog-cli@v4
         env:
-          JF_URL: ${{ env.ARTIFACTORY_URL }}
-          JF_USER: ${{ env.CONTAINER_REGISTRY_USERNAME }}
-          JF_PASSWORD: ${{ env.CONTAINER_REGISTRY_PASSWORD }}
+          JF_URL: ${{ vars.ARTIFACTORY_URL }}
+          JF_USER: ${{ vars.CONTAINER_REGISTRY_USERNAME }}
+          JF_PASSWORD: ${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
 
       - run: jf --version
 
