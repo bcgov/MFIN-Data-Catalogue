@@ -1,0 +1,19 @@
+uuid: dc0ec863-cb56-4bbd-86bd-1f16c6fa26c7
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - telephone
+id: node.field_contact_phone_secondary
+field_name: field_contact_phone_secondary
+entity_type: node
+type: telephone
+settings: {  }
+module: telephone
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

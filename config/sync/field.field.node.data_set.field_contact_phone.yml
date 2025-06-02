@@ -1,0 +1,27 @@
+uuid: 926625f6-77f1-45c4-ab14-3d344f2e118e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_contact_phone
+    - node.type.data_set
+  module:
+    - telephone
+    - telephone_validation
+third_party_settings:
+  telephone_validation:
+    format: 2
+    country:
+      - CA
+id: node.data_set.field_contact_phone
+field_name: field_contact_phone
+entity_type: node
+bundle: data_set
+label: 'Contact phone'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

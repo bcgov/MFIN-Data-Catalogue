@@ -7,8 +7,15 @@ dependencies:
     - field.field.node.data_set.field_asset_location
     - field.field.node.data_set.field_authoritative_info
     - field.field.node.data_set.field_columns
+    - field.field.node.data_set.field_contact_description
     - field.field.node.data_set.field_contact_email
+    - field.field.node.data_set.field_contact_email_secondary
     - field.field.node.data_set.field_contact_name
+    - field.field.node.data_set.field_contact_name_secondary
+    - field.field.node.data_set.field_contact_phone
+    - field.field.node.data_set.field_contact_phone_secondary
+    - field.field.node.data_set.field_contact_url
+    - field.field.node.data_set.field_contact_url_secondary
     - field.field.node.data_set.field_critical_information
     - field.field.node.data_set.field_data_quality_issues
     - field.field.node.data_set.field_data_set_historical_change
@@ -33,11 +40,70 @@ dependencies:
     - bc_dc
     - datetime
     - entity_reference_revisions
+    - field_group
+    - field_label
     - formatter_suite
+    - link
     - options
     - shs
+    - telephone_formatter
     - text
     - user
+third_party_settings:
+  field_group:
+    group_contact_primary:
+      children:
+        - field_contact_name
+        - field_contact_email
+        - field_contact_phone
+        - field_contact_url
+        - field_contact_description
+      label: Primary
+      parent_name: group_contact
+      region: content
+      weight: 29
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        formatter: closed
+        description: ''
+    group_contact:
+      children:
+        - group_contact_primary
+        - group_contact_secondary
+      label: Contact
+      parent_name: ''
+      region: content
+      weight: 21
+      format_type: tabs
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        direction: horizontal
+        width_breakpoint: 640
+    group_contact_secondary:
+      children:
+        - field_contact_name_secondary
+        - field_contact_email_secondary
+        - field_contact_phone_secondary
+        - field_contact_url_secondary
+      label: Secondary
+      parent_name: group_contact
+      region: content
+      weight: 30
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        formatter: closed
+        description: ''
 id: node.data_set.default
 targetEntityType: node
 bundle: data_set
@@ -69,22 +135,100 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 18
+    weight: 16
     region: content
-  field_contact_email:
-    type: basic_string
+  field_contact_description:
+    type: text_default
     label: above
     settings: {  }
+    third_party_settings:
+      field_label:
+        label_class: ''
+        label_value: ' '
+        label_tag: ''
+    weight: 27
+    region: content
+  field_contact_email:
+    type: email_mailto
+    label: inline
+    settings: {  }
     third_party_settings: {  }
-    weight: 28
+    weight: 24
+    region: content
+  field_contact_email_secondary:
+    type: email_mailto
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 32
     region: content
   field_contact_name:
     type: string
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 27
+    weight: 23
+    region: content
+  field_contact_name_secondary:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 31
+    region: content
+  field_contact_phone:
+    type: telephone_formatter
+    label: inline
+    settings:
+      format: 2
+      link: true
+      default_country: CA
+    third_party_settings:
+      field_label:
+        label_class: ''
+        label_value: ''
+        label_tag: ''
+    weight: 25
+    region: content
+  field_contact_phone_secondary:
+    type: telephone_formatter
+    label: inline
+    settings:
+      format: 2
+      link: true
+      default_country: CA
+    third_party_settings:
+      field_label:
+        label_class: ''
+        label_value: ''
+        label_tag: ''
+    weight: 33
+    region: content
+  field_contact_url:
+    type: link
+    label: inline
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 26
+    region: content
+  field_contact_url_secondary:
+    type: link
+    label: inline
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 34
     region: content
   field_critical_information:
     type: boolean
@@ -116,7 +260,7 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 16
+    weight: 14
     region: content
   field_data_sets_used:
     type: formatter_suite_general_entity_reference
@@ -131,7 +275,7 @@ content:
       listStyle: ul
       listSeparator: ', '
     third_party_settings: {  }
-    weight: 23
+    weight: 17
     region: content
   field_information_schedule:
     type: entity_reference_label
@@ -139,7 +283,7 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 17
+    weight: 15
     region: content
   field_modified_date:
     type: datetime_default
@@ -158,7 +302,7 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 24
+    weight: 18
     region: content
   field_primary_responsibility_org:
     type: data_set_facet_search_link
@@ -182,14 +326,14 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 26
+    weight: 20
     region: content
   field_review_status:
     type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 25
+    weight: 19
     region: content
   field_security_classification:
     type: entity_reference_label
@@ -213,7 +357,7 @@ content:
     settings:
       format_as_list: false
     third_party_settings: {  }
-    weight: 15
+    weight: 13
     region: content
   flag_bookmark:
     settings: {  }
