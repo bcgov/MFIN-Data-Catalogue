@@ -43,6 +43,7 @@ dependencies:
   - environment_indicator:environment_indicator
   - field_count_formatter:field_count_formatter
   - field_group:field_group
+  - field_label:field_label
   - field_permissions:field_permissions
   - flag:flag
   - form_mode_control:form_mode_control
