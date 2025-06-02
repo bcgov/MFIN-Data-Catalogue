@@ -234,20 +234,35 @@ function bc_dc_entity_display_build_alter(array &$build, array $context): void {
 
   /** @var \Drupal\Core\Entity\EntityInterface $entity */
   $entity = $context['entity'];
+
+  // Load the display configuration for the entity's view mode.
+  $display = \Drupal::entityTypeManager()
+    ->getStorage('entity_view_display')
+    ->load($entity->getEntityTypeId() . '.' . $entity->bundle() . '.' . $context['view_mode']);
+
   foreach (Element::children($build) as $field_name) {
     if ($entity->get($field_name)->isEmpty()) {
       $definition = $entity->get($field_name)->getFieldDefinition();
 
-      $empty_text = match($field_name) {
+      $empty_text = match ($field_name) {
         'field_last_review_date' => t('Never'),
         default => $definition->isRequired() ? t('Required') : t('Optional'),
       };
       $class = $definition->isRequired() ? 'field-required' : 'field-optional';
       $markup = ['#markup' => '<em class="' . $class . '">' . $empty_text . '</em>'];
 
+      // Try to get custom label from field_label third-party settings.
+      $custom_label = NULL;
+      if ($display instanceof EntityViewDisplayInterface) {
+        $component = $display->getComponent($field_name);
+        if (!empty($component['third_party_settings']['field_label']['label_value'])) {
+          $custom_label = $component['third_party_settings']['field_label']['label_value'];
+        }
+      }
+
       $build[$field_name] = [
         '#theme' => 'field',
-        '#title' => $definition->getLabel(),
+        '#title' => $custom_label ?: $definition->getLabel(),
         '#label_display' => 'inline',
         '#view_mode' => $context['view_mode'],
         '#language' => $entity->get($field_name)->getLangcode(),
@@ -259,7 +274,6 @@ function bc_dc_entity_display_build_alter(array &$build, array $context): void {
         '#object' => $entity,
         '#items' => [(object) ['_attributes' => []]],
         '#is_multiple' => FALSE,
-        // Use simple formatter.
         '#formatter' => 'string',
         '0' => $markup,
       ] + $build[$field_name];
@@ -1007,13 +1021,13 @@ function bc_dc_views_pre_render(ViewExecutable $view): void {
 function bc_dc__add_count_to_restriction_report(ViewExecutable $view) {
 
   // Build intermediate step. With above example, it looks like this:
-  // [ 100 => [50=>1, 51=>1],  101 => [66=>1],  102 => [66=>1] ]
+  // [ 100 => [50=>1, 51=>1],  101 => [66=>1],  102 => [66=>1] ].
   foreach ($view->result as $result) {
     $step1[$result->nid][$result->node__field_visibility_field_visibility_target_id] = 1;
   }
 
   // Build next intermediate step. Result looks like this:
-  // [ "50,51" => [100=>1],  "66" => [101=>1, 102=>1] ]
+  // [ "50,51" => [100=>1],  "66" => [101=>1, 102=>1] ].
   foreach ($step1 as $nid => $visibilities) {
     $my_viz = array_keys($visibilities);
     sort($my_viz);
