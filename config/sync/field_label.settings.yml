@@ -1,0 +1,16 @@
+_core:
+  default_config_hash: V_XR9z7GZyLRKoKEzAhmrDeijaWedIcXmsSwXTFYRrQ
+allowed_tags:
+  - div
+  - span
+  - h2
+  - h3
+  - h4
+  - h5
+  - h6
+class_list: ''
+label_tag_enabled: true
+label_class_enabled: true
+label_class_select_enabled: false
+label_value_enabled: true
+plural_label_enabled: false

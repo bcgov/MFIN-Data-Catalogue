@@ -54,6 +54,7 @@ module:
   field: 0
   field_count_formatter: 0
   field_group: 0
+  field_label: 0
   field_permissions: 0
   field_ui: 0
   file: 0
@@ -127,6 +128,9 @@ module:
   taxonomy_import: 0
   taxonomy_manager: 0
   taxonomy_max_depth: 0
+  telephone: 0
+  telephone_formatter: 0
+  telephone_validation: 0
   text: 0
   toc_api: 0
   toc_filter: 0
