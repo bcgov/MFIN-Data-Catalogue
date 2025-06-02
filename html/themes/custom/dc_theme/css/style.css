@@ -29,6 +29,19 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+#edit-field-contact-url-0,
+#edit-field-contact-url-secondary-0 {
+  margin: -1em 0;
+}
+
+#edit-field-contact-url-0 legend,
+#edit-field-contact-url-secondary-0 legend,
+#edit-field-contact-url-0-uri--description,
+#edit-field-contact-url-secondary-0-uri--description {
+  display: none;
+}
+
 @media only screen and (min-width: 576px) {
   .path-user .block-region-top-right {
     height: 100%;
