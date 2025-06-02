@@ -8,8 +8,15 @@ dependencies:
     - field.field.node.data_set.field_asset_location
     - field.field.node.data_set.field_authoritative_info
     - field.field.node.data_set.field_columns
+    - field.field.node.data_set.field_contact_description
     - field.field.node.data_set.field_contact_email
+    - field.field.node.data_set.field_contact_email_secondary
     - field.field.node.data_set.field_contact_name
+    - field.field.node.data_set.field_contact_name_secondary
+    - field.field.node.data_set.field_contact_phone
+    - field.field.node.data_set.field_contact_phone_secondary
+    - field.field.node.data_set.field_contact_url
+    - field.field.node.data_set.field_contact_url_secondary
     - field.field.node.data_set.field_critical_information
     - field.field.node.data_set.field_data_quality_issues
     - field.field.node.data_set.field_data_set_historical_change
@@ -33,7 +40,9 @@ dependencies:
   module:
     - datetime
     - field_group
+    - link
     - shs
+    - telephone
     - text
 third_party_settings:
   field_group:
@@ -57,21 +66,61 @@ third_party_settings:
         effect: none
         speed: fast
         required_fields: false
-    group_contact_information:
+    group_contact_primary:
       children:
         - field_contact_name
         - field_contact_email
+        - field_contact_phone
+        - field_contact_url
+        - field_contact_description
+      label: Primary
+      region: content
+      parent_name: group_contact
+      weight: 7
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_secondary:
+      children:
+        - field_contact_name_secondary
+        - field_contact_email_secondary
+        - field_contact_phone_secondary
+        - field_contact_url_secondary
+      label: Secondary
+      region: content
+      parent_name: group_contact
+      weight: 9
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_contact:
+      children:
+        - group_contact_primary
+        - group_secondary
       label: Contact
       region: content
       parent_name: ''
       weight: 6
-      format_type: fieldset
+      format_type: tabs
       format_settings:
-        classes: dc-mr-contact-information
+        classes: ''
         show_empty_fields: false
         id: ''
-        description: 'Who can people contact for more information about this asset?'
-        required_fields: true
+        label_as_html: false
+        direction: horizontal
+        width_breakpoint: 640
 id: node.data_set.section_2
 targetEntityType: node
 bundle: data_set
@@ -95,9 +144,25 @@ content:
       rows: 3
       placeholder: ''
     third_party_settings: {  }
+  field_contact_description:
+    type: text_textarea
+    weight: 12
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
   field_contact_email:
     type: email_default
-    weight: 12
+    weight: 9
+    region: content
+    settings:
+      placeholder: ''
+      size: 60
+    third_party_settings: {  }
+  field_contact_email_secondary:
+    type: email_default
+    weight: 9
     region: content
     settings:
       placeholder: ''
@@ -105,11 +170,49 @@ content:
     third_party_settings: {  }
   field_contact_name:
     type: string_textfield
-    weight: 10
+    weight: 8
     region: content
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_contact_name_secondary:
+    type: string_textfield
+    weight: 8
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_contact_phone:
+    type: telephone_default
+    weight: 10
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_contact_phone_secondary:
+    type: telephone_default
+    weight: 10
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_contact_url:
+    type: link_default
+    weight: 11
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_contact_url_secondary:
+    type: link_default
+    weight: 11
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
     third_party_settings: {  }
   field_data_quality_issues:
     type: text_textarea
@@ -145,20 +248,25 @@ content:
     third_party_settings: {  }
   field_published_date:
     type: datetime_default
-    weight: 8
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
   field_review_interval:
     type: number
-    weight: 9
+    weight: 10
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_visibility:
     type: options_buttons
-    weight: 7
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  url_redirects:
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
