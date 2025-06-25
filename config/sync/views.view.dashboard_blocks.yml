@@ -233,7 +233,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: Build
+            text: Edit
             make_link: true
             path: '/node/{{ nid }}/build'
             absolute: false
@@ -289,6 +289,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 8
           total_pages: null
           id: 0
@@ -306,7 +307,6 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
-          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
@@ -533,9 +533,11 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user
         - 'user.node_grants:view'
         - user.permissions
-      tags: {  }
+      tags:
+        - flag.flag.bookmark
   dashboard_needs_review:
     id: dashboard_needs_review
     display_title: 'My needs review'
@@ -800,7 +802,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: Build
+            text: Edit
             make_link: true
             path: '/node/{{ nid }}/build'
             absolute: false
@@ -1074,6 +1076,8 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user
         - 'user.node_grants:view'
         - user.permissions
-      tags: {  }
+      tags:
+        - flag.flag.bookmark
