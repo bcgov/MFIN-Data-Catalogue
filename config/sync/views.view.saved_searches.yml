@@ -409,6 +409,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 20
           total_pages: null
           id: 0
@@ -426,7 +427,6 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
-          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
@@ -1071,7 +1071,7 @@ display:
           admin_label: ''
           plugin_id: text_custom
           empty: false
-          content: '<a href="/user/{{ arguments.uid }}/saved-searches"><div class="card-footer"><span class="icon-bi-arrow-right-short-after">All saved searches</span></div></a>'
+          content: '<a href="/user/{{ raw_arguments.uid }}/saved-searches"><div class="card-footer"><span class="icon-bi-arrow-right-short-after">All saved searches</span></div></a>'
           tokenize: true
       display_extenders: {  }
     cache_metadata:
