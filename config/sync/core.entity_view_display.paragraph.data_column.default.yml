@@ -81,8 +81,12 @@ content:
     type: entity_reference_label
     label: inline
     settings:
-      link: true
-    third_party_settings: {  }
+      link: false
+    third_party_settings:
+      field_label:
+        label_class: ''
+        label_value: ''
+        label_tag: ''
     weight: 7
     region: content
   field_metadata_type:
