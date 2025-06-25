@@ -9,5 +9,7 @@ redirect_login: user
 redirect_logout: /
 userinfo_mappings:
   timezone: zoneinfo
+  field_first_name: given_name
+  field_last_name: family_name
 role_mappings: {  }
 autostart_login: true
