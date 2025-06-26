@@ -1516,4 +1516,13 @@ html.bcbb-theme a img.site-logo {
   }
 }
 
+/* Fix bootstrap validation error highlights */
+.fieldset-legend.has-error,
+.form-type-textarea label.has-error {
+  color: red;
+}
+
+.form-checkbox.error {
+  border: 1px solid #dee2e6 !important;
+}
 /*# sourceMappingURL=style.css.map */

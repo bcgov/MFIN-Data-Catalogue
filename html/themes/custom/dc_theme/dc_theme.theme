@@ -450,3 +450,24 @@ function dc_theme_preprocess_taxonomy_term__organization(array &$variables): voi
     $variables['name'] = $variables['name']['#object']->getName();
   }
 }
+
+/**
+ * Implements hook_preprocess_form_element().
+ */
+function dc_theme_preprocess_form_element(&$variables) {
+  if (!empty($variables['element']['#errors'])) {
+    $variables['label']['#attributes']['class'][] = 'has-error';
+  }
+}
+
+/**
+ * Implements template_preprocess_HOOK() for fieldset.
+ */
+function dc_theme_preprocess_fieldset(&$variables) {
+  $element = $variables['element'];
+  $composite_types = ['checkboxes', 'radios'];
+
+  if (!empty($element['#type']) && in_array($element['#type'], $composite_types) && !empty($variables['element']['#children_errors'])) {
+    $variables['legend_span']['attributes']->addClass('has-error');
+  }
+}
