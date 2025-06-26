@@ -10,7 +10,7 @@
  */
 function bcbb_search_preprocess_input__submit(array &$variables): void {
   // Give danger classes to site search Reset button.
-  if ($variables['attributes']['id'] === 'edit-reset-site-search') {
+  if (isset($variables['attributes']['id']) && $variables['attributes']['id'] === 'edit-reset-site-search') {
     $variables['attributes']['class'][] = 'button--danger';
     $variables['attributes']['class'][] = 'icon-bi-trash3';
   }
