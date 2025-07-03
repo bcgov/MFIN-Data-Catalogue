@@ -3,7 +3,7 @@ _core:
 langcode: en
 uuid: d278b011-3757-41cd-9173-38dfb8874f4c
 name: 'Finance Data Catalogue'
-mail: admin@example.com
+mail: mfin-data-cat@notification.gov.bc.ca
 slogan: ''
 page:
   403: ''
