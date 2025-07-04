@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0e614aae177e4c4724cb076016bacde9",
+    "content-hash": "e34599cf8367d3ef113d0a249e699976",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2503,27 +2503,27 @@
         },
         {
             "name": "drupal/chosen",
-            "version": "4.0.3",
+            "version": "5.0.2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/chosen.git",
-                "reference": "4.0.3"
+                "reference": "5.0.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/chosen-4.0.3.zip",
-                "reference": "4.0.3",
-                "shasum": "72a4090b4b21ff7341d1f2e05866b25feede3188"
+                "url": "https://ftp.drupal.org/files/projects/chosen-5.0.2.zip",
+                "reference": "5.0.2",
+                "shasum": "bda191e28f3461bfa36f63d12b6d14c346104840"
             },
             "require": {
                 "drupal/chosen_lib": "*",
-                "drupal/core": "^9.2 || ^10 || ^11"
+                "drupal/core": "^10.2 || ^11"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "4.0.3",
-                    "datestamp": "1725307446",
+                    "version": "5.0.2",
+                    "datestamp": "1746293867",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2572,7 +2572,7 @@
                     "homepage": "https://www.drupal.org/user/235438"
                 }
             ],
-            "description": "Makes select elements more user-friendly using <a href=\"https://github.com/JJJ/chosen\">Chosen</a>.",
+            "description": "Makes select elements more user-friendly using <a href=\"https://github.com/noli42/chosen\">Chosen</a>.",
             "homepage": "https://www.drupal.org/project/chosen",
             "support": {
                 "source": "https://git.drupalcode.org/project/chosen"
@@ -2580,16 +2580,16 @@
         },
         {
             "name": "drupal/chosen_lib",
-            "version": "4.0.3",
+            "version": "5.0.2",
             "require": {
-                "drupal/chosen": "^4",
-                "drupal/core": "^9.2 || ^10 || ^11"
+                "drupal/chosen": "^5",
+                "drupal/core": "^10.2 || ^11"
             },
             "type": "metapackage",
             "extra": {
                 "drupal": {
-                    "version": "4.0.3",
-                    "datestamp": "1725307446",
+                    "version": "5.0.2",
+                    "datestamp": "1746293867",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2638,7 +2638,7 @@
                     "homepage": "https://www.drupal.org/user/235438"
                 }
             ],
-            "description": "Add <a href=\"https://github.com/JJJ/chosen\">chosen</a> library definition.",
+            "description": "Add <a href=\"https://github.com/noli42/chosen\">chosen</a> library definition.",
             "homepage": "https://www.drupal.org/project/chosen",
             "support": {
                 "source": "https://git.drupalcode.org/project/chosen"
@@ -9918,19 +9918,6 @@
             "time": "2025-06-16T07:42:34+00:00"
         },
         {
-            "name": "jjj/chosen",
-            "version": "2.2.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/JJJ/chosen.git",
-                "reference": "2.2.1"
-            },
-            "type": "drupal-library",
-            "extra": {
-                "installer-name": "chosen"
-            }
-        },
-        {
             "name": "jquery/fancytree",
             "version": "2.37.0",
             "dist": {
@@ -12137,6 +12124,18 @@
             "type": "npm-asset",
             "license": [
                 "BSD-2-Clause"
+            ]
+        },
+        {
+            "name": "npm-asset/noli42--chosen",
+            "version": "3.0.0",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/@noli42/chosen/-/chosen-3.0.0.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "ISC"
             ]
         },
         {

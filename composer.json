@@ -108,7 +108,7 @@
         "drupal/better_normalizers": "^2.0@beta",
         "drupal/cancel_button": "^1.4",
         "drupal/charts": "^5.0",
-        "drupal/chosen": "^4.0",
+        "drupal/chosen": "^5.0",
         "drupal/ckeditor_codemirror": "^3.0@beta",
         "drupal/clipboardjs": "^2.0",
         "drupal/cm_revision_delete": "^1.1.4",
@@ -147,6 +147,7 @@
         "jquery/fancytree": "^2",
         "npm-asset/cdubz--ckeditor5-source-editing-codemirror": "^35.1",
         "npm-asset/clipboard": "^2.0.11",
+        "npm-asset/noli42--chosen": "^3.0",
         "oomphinc/composer-installers-extender": "^2.0",
         "phpoffice/phpspreadsheet": "^2.0",
         "tabby/tabby": "^12.0",
@@ -214,6 +215,9 @@
             "html/core": [
                 "type:drupal-core"
             ],
+            "html/libraries/chosen": [
+                "npm-asset/noli42--chosen"
+            ],
             "html/libraries/ckeditor5-source-editing-codemirror": [
                 "npm-asset/cdubz--ckeditor5-source-editing-codemirror"
             ],
@@ -245,11 +249,6 @@
             ]
         },
         "composer-exit-on-patch-failure": true,
-        "merge-plugin": {
-            "include": [
-                "html/modules/contrib/chosen/composer.libraries.json"
-            ]
-        },
         "patches": {
             "drupal/charts": {
                 "3442641 - Chart segments are all the same color in Views pie/donut charts": "https://www.drupal.org/files/issues/2024-04-22/charts-pie_donut_colors-3442641-4.patch",
