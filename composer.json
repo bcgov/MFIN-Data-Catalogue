@@ -144,6 +144,7 @@
         "drupal/views_field_view": "^1.0@beta",
         "drupal/webform_content_creator": "^4.0",
         "jquery/fancytree": "^2",
+        "npm-asset/clipboard": "^2.0.11",
         "oomphinc/composer-installers-extender": "^2.0",
         "phpoffice/phpspreadsheet": "^2.0",
         "tabby/tabby": "^12.0",
@@ -242,8 +243,7 @@
         "merge-plugin": {
             "include": [
                 "html/modules/contrib/chosen/composer.libraries.json",
-                "html/modules/contrib/ckeditor_codemirror/composer.libraries.json",
-                "html/modules/contrib/clipboardjs/composer.libraries.json"
+                "html/modules/contrib/ckeditor_codemirror/composer.libraries.json"
             ]
         },
         "patches": {
