@@ -100,6 +100,7 @@
         "bcgov/bcbb_theme": "1.0.x@dev",
         "bcgov/gdx_analytics_drupal_snowplow": "dev-main",
         "billboardjs/billboard": "^3.10",
+        "bower-asset/codemirror": "^6.65",
         "composer/installers": "^2.2",
         "d3/d3": "^7.8",
         "drupal/action": "^0.2",
@@ -144,6 +145,7 @@
         "drupal/views_field_view": "^1.0@beta",
         "drupal/webform_content_creator": "^4.0",
         "jquery/fancytree": "^2",
+        "npm-asset/cdubz--ckeditor5-source-editing-codemirror": "^35.1",
         "npm-asset/clipboard": "^2.0.11",
         "oomphinc/composer-installers-extender": "^2.0",
         "phpoffice/phpspreadsheet": "^2.0",
@@ -212,6 +214,9 @@
             "html/core": [
                 "type:drupal-core"
             ],
+            "html/libraries/ckeditor5-source-editing-codemirror": [
+                "npm-asset/cdubz--ckeditor5-source-editing-codemirror"
+            ],
             "html/libraries/{$name}": [
                 "type:drupal-library",
                 "type:npm-asset",
@@ -242,8 +247,7 @@
         "composer-exit-on-patch-failure": true,
         "merge-plugin": {
             "include": [
-                "html/modules/contrib/chosen/composer.libraries.json",
-                "html/modules/contrib/ckeditor_codemirror/composer.libraries.json"
+                "html/modules/contrib/chosen/composer.libraries.json"
             ]
         },
         "patches": {
