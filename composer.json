@@ -153,8 +153,7 @@
         "tabby/tabby": "^12.0",
         "vlucas/phpdotenv": "^5.1",
         "webflo/drupal-finder": "^1.2",
-        "weitzman/drupal-test-traits": "^2.1",
-        "wikimedia/composer-merge-plugin": "^2.1"
+        "weitzman/drupal-test-traits": "^2.1"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -168,7 +167,6 @@
             "phpstan/extension-installer": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "cweagans/composer-patches": true,
-            "wikimedia/composer-merge-plugin": true,
             "oomphinc/composer-installers-extender": true,
             "php-http/discovery": true,
             "tbachert/spi": true
