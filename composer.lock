@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0d28ab048388bb69f07923b037dc4d2a",
+    "content-hash": "9c819dee9e165ef9ccc3a9495e6a5ab3",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -10697,6 +10697,74 @@
             "time": "2025-05-31T08:24:38+00:00"
         },
         {
+            "name": "npm-asset/clipboard",
+            "version": "2.0.11",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/clipboard/-/clipboard-2.0.11.tgz"
+            },
+            "require": {
+                "npm-asset/good-listener": ">=1.2.2,<2.0.0",
+                "npm-asset/select": ">=1.1.2,<2.0.0",
+                "npm-asset/tiny-emitter": ">=2.0.0,<3.0.0"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/delegate",
+            "version": "3.2.0",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/delegate/-/delegate-3.2.0.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/good-listener",
+            "version": "1.2.2",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/good-listener/-/good-listener-1.2.2.tgz"
+            },
+            "require": {
+                "npm-asset/delegate": ">=3.1.2,<4.0.0"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/select",
+            "version": "1.1.2",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/select/-/select-1.1.2.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/tiny-emitter",
+            "version": "2.1.0",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/tiny-emitter/-/tiny-emitter-2.1.0.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
             "name": "oomphinc/composer-installers-extender",
             "version": "2.0.1",
             "source": {
@@ -15330,19 +15398,6 @@
                 "source": "https://github.com/wikimedia/composer-merge-plugin/tree/v2.1.0"
             },
             "time": "2023-04-15T19:07:00+00:00"
-        },
-        {
-            "name": "zenorocha/clipboard.js",
-            "version": "v2.0.11",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/zenorocha/clipboard.js.git",
-                "reference": "v2.0.11"
-            },
-            "type": "drupal-library",
-            "extra": {
-                "installer-name": "clipboard.js"
-            }
         }
     ],
     "packages-dev": [
