@@ -3,6 +3,7 @@ NEWBB2: Merge these in, and delete these comments.
 
 database:
     type: postgres
+    version: "16"
 
 web_environment:
     # newbb: To set the ACTUAL values for these environment variables,
