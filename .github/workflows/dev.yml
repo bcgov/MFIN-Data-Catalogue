@@ -51,7 +51,7 @@ jobs:
         make drupal_install
 
     - name: Run tests
-      if: ${{ ! ( startsWith(github.event.ref, 'refs/tags/') && (endsWith(github.event.ref, '.f') || endsWith(github.event.ref, '-f') )) }}
+      if: ${{ ( startsWith(github.event.ref, 'refs/tags/') && (endsWith(github.event.ref, '.t') || endsWith(github.event.ref, '-t') )) }}
       run: |
         export DB_TYPE=mysql
         export DB_PORT=3306
@@ -64,7 +64,7 @@ jobs:
             /var/www/html/modules/custom/NEWBB_another_module_to_test \
 
     - name: Scan PHP-FPM image for vulnerabilities
-      if: ${{ ! ( startsWith(github.event.ref, 'refs/tags/') && (endsWith(github.event.ref, '.f') || endsWith(github.event.ref, '-f') )) }}
+      if: ${{ ( startsWith(github.event.ref, 'refs/tags/') && (endsWith(github.event.ref, '.t') || endsWith(github.event.ref, '-t') )) }}
       uses: aquasecurity/trivy-action@0.29.0
       with:
         image-ref: '${{ vars.CONTAINER_IMAGE_NAME }}-web:latest'
@@ -75,7 +75,7 @@ jobs:
         severity: 'CRITICAL,HIGH,MEDIUM'
 
     - name: Scan Nginx image for vulnerabilities
-      if: ${{ ! ( startsWith(github.event.ref, 'refs/tags/') && (endsWith(github.event.ref, '.f') || endsWith(github.event.ref, '-f') )) }}
+      if: ${{ ( startsWith(github.event.ref, 'refs/tags/') && (endsWith(github.event.ref, '.t') || endsWith(github.event.ref, '-t') )) }}
       uses: aquasecurity/trivy-action@0.29.0
       with:
         image-ref: '${{ vars.CONTAINER_IMAGE_NAME }}-nginx:latest'
