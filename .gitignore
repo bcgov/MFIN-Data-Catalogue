@@ -55,7 +55,6 @@ ddev-cron-log.txt
 # Ignore Temporary and Private Files
 private
 private-files
-tmp
 
 # Ignore DDEV
 .ddev/*
