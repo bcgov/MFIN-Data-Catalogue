@@ -81,7 +81,7 @@ jobs:
             while IFS= read -r artifact; do
               artifact="${artifact%\$}"
               echo "Attempting to delete: $artifact"
-              command="jf rt del $artifact --quiet=true --dry-run=true"
+              command="jf rt del $artifact --quiet=true"
               echo "Command to be executed: $command"
               response=$(eval "$command")
               # Check for failure in the response
