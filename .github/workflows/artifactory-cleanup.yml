@@ -31,7 +31,8 @@ jobs:
       - name: Get list of old images
         if: ${{ env.STATUS == 'OK' }}
         run: |
-          n=30
+          # newbb: for HOW_MANY_IMAGES_TO_RETAIN, 30 is a good value to set this to, initially.
+          n=${{ vars.HOW_MANY_IMAGES_TO_RETAIN }}
           echo "Getting list of oldest images, skipping the most-recent $n of them."
           jf rt s --spec .github/workflows/artifactory-cleanup.search-spec.json --offset=$n --sort-by="modified" --sort-order=desc | jq .[].path | jq 'sub("/manifest.json"; "")' > jfrog_artifacts_to_delete.txt
 
