@@ -14,6 +14,7 @@ dependencies:
     - form_mode_control
     - node
     - paragraphs
+    - paragraphs_type_permissions
     - statistics
     - system
 id: data_catalogue_api_user
@@ -33,7 +34,11 @@ permissions:
   - 'create field_paragraph_document_type'
   - 'create field_primary_responsibility_org'
   - 'create field_related_document'
+  - 'create paragraph content data_column'
+  - 'create paragraph content documents'
   - 'delete own never_published data_set in_org'
+  - 'delete paragraph content data_column'
+  - 'delete paragraph content documents'
   - 'edit any data_set content'
   - 'edit field_asset_location'
   - 'edit field_paragraph_document_link'
@@ -44,6 +49,8 @@ permissions:
   - 'flag bookmark'
   - 'revert data_set revisions'
   - 'unflag bookmark'
+  - 'update paragraph content data_column'
+  - 'update paragraph content documents'
   - 'use  The form mode section_1 linked to  node entity( data_set )'
   - 'use  The form mode section_2 linked to  node entity( data_set )'
   - 'use  The form mode section_3 linked to  node entity( data_set )'
@@ -62,5 +69,7 @@ permissions:
   - 'view latest version'
   - 'view own field_primary_responsibility_org'
   - 'view own unpublished content'
+  - 'view paragraph content data_column'
+  - 'view paragraph content documents'
   - 'view post access counter'
   - 'view unpublished paragraphs'
