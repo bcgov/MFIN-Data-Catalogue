@@ -363,7 +363,7 @@ class BcDcAddColumnsForm extends FormBase {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, NodeInterface $node = NULL): array {
+  public function buildForm(array $form, FormStateInterface $form_state, ?NodeInterface $node = NULL): array {
     // Return 404 if there is not a data_set node provided.
     if (!$node || $node->bundle() !== 'data_set') {
       throw new NotFoundHttpException();

@@ -41,7 +41,6 @@ class VisibilityRulesConstraintValidator extends ConstraintValidator {
 
     // If the user has chosen Public as well as anything else, that is a problem.
     // Same as IDIR and anything else.
-
     foreach (['pub', 'auth'] as $access_type) {
       if (isset($visibility_types[$access_type]) && count($visibility_types) > 1) {
         $this->context->addViolation($constraint->onlyPublicOrIDIRMessage, [

@@ -27,7 +27,7 @@ class BcDcWorkflowBlockForm extends FormBase {
       return $form;
     }
 
-    // rename for clarity
+    // Rename for clarity.
     $data_set =& $args['node'];
 
     $isPublished = $data_set->isPublished();
