@@ -2467,7 +2467,7 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           parse_mode: direct
-          min_length: 3
+          min_length: 2
           fields: {  }
         search_api_language:
           id: search_api_language
