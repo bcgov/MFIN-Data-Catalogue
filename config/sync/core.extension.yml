@@ -66,6 +66,7 @@ module:
   hal: 0
   help: 0
   hierarchical_term_formatter: 0
+  highlight_views_overrides: 0
   history: 0
   image: 0
   insert_view_adv: 0

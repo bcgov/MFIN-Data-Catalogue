@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * highlight_views_overrides.module
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_alter().
+ */
+function highlight_views_overrides_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'view_edit_form') {
+    $form['#attached']['library'][] = 'highlight_views_overrides/highlight-overrides';
+  }
+}
