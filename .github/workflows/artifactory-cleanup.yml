@@ -1,30 +1,23 @@
-name: Cleanup Artifacts
+name: Cleanup artifacts
 
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
   schedule:
-    - cron: '0 0 15 * *'
-
-env:
-  CONTAINER_REPO: ${{ secrets.CONTAINER_REPO }} 
-  ARTIFACTORY_URL: ${{ secrets.ARTIFACTORY_URL }}
-  CONTAINER_REGISTRY_USERNAME: ${{ secrets.CONTAINER_REGISTRY_USERNAME }}
-  CONTAINER_REGISTRY_PASSWORD: ${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
+    - cron: '0 0 * * *'
 
 jobs:
   cleanup:
     runs-on: ubuntu-22.04
 
     steps:
-
       - uses: jfrog/setup-jfrog-cli@v4
         env:
-          JF_URL: ${{ env.ARTIFACTORY_URL }}
-          JF_USER: ${{ env.CONTAINER_REGISTRY_USERNAME }}
-          JF_PASSWORD: ${{ env.CONTAINER_REGISTRY_PASSWORD }}
-   
+          JF_URL: ${{ vars.ARTIFACTORY_URL }}
+          JF_USER: ${{ vars.CONTAINER_REGISTRY_USERNAME }}
+          JF_PASSWORD: ${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
+
       - run: jf --version
-      
+
       - name: Check JFrog Connection
         id: check_connection
         run: |
@@ -32,38 +25,75 @@ jobs:
           echo "Response: $response"
           echo "STATUS=$response" >> $GITHUB_ENV
 
+      - name : Checkout code
+        uses: actions/checkout@v4
 
-      - name: Search and Remove Old Artifacts
+      - name: Get list of old images
         if: ${{ env.STATUS == 'OK' }}
         run: |
-          folders=("mfin-data-catalogue" "mfin-data-catalogue-nginx")
-          n=30  
-          repo=${{ env.CONTAINER_REPO }}
-          echo "Retiaining $n images"
+          n=${{ vars.HOW_MANY_IMAGES_TO_RETAIN }}
+          echo "Getting list of oldest images, skipping the most-recent $n of them."
+          jf rt s --spec .github/workflows/artifactory-cleanup.search-spec.json --offset=$n --sort-by="modified" --sort-order=desc | jq .[].path | jq 'sub("/manifest.json"; "")' > jfrog_artifacts_to_delete.txt
 
-          for folder in "${folders[@]}"; do                  
-            pattern="$repo/$folder/1.0.0-*/"
+      - name : Checkout code
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ vars.TENANT_GITOPS_REPO }}
+          path: tenant-gitops
+          ssh-key: ${{ secrets.TENANT_GITOPS_DEPLOY_KEY }}
 
-            jf rt s "$pattern" --limit=1000 --sort-by="created" --sort-order="desc" | jq -r '.[].path' | cut -d'/' -f1-3 | sort -u > "${folder//\//_}_artifacts.txt"
-            
-            total_folders=$(wc -l < "${folder//\//_}_artifacts.txt")
-            if [ $total_folders -gt $n ]; then
-             while IFS= read -r artifact; do
-                echo "Attempting to delete: $artifact"
-      
-                # Delete the artifact and capture the response
-                response=$(jf rt del "$artifact" --dry-run=true --quiet=true)
-      
-                # Check for failure in the response
-                if echo "$response" | jq -e '.status == "failure"' > /dev/null; then
-                  echo "Failed to delete $artifact. Response: $response"
-                else
-                  echo "Successfully deleted $artifact."
-                fi    
-              done < <(head -n $((total_folders - n)) "${folder//\//_}_artifacts.txt")
+      - name : Ensure that currently-deployed images are retained
+        run: |
+          deployments=('dev' 'test' 'prod')
+
+          for deployment in "${deployments[@]}"; do
+            values_file="tenant-gitops/helm-drupal/charts/drupal/values-application-${deployment}.yaml"
+            deployed_drupal_image=$(yq eval '.drupal.tag' $values_file)
+            echo "$deployment Drupal: '$deployed_drupal_image' is currently deployed."
+
+            # 'entry' (for Fintranet) will look something like this:
+            #   "ff61-fintra-docker-local/fintranet/1.0.41-dev"
+            entry="${{ vars.CONTAINER_REPO }}/${{ vars.CONTAINER_IMAGE_NAME }}/$deployed_drupal_image"
+            if grep -F -w "$entry" jfrog_artifacts_to_delete.txt; then
+              echo "Found '$entry' in the list of images to delete..."
+              echo "  Removing it from that list, so it will be retained."
+              grep -v "$entry" jfrog_artifacts_to_delete.txt > temp.txt && mv temp.txt jfrog_artifacts_to_delete.txt
+            fi
+
+            deployed_nginx_image=$(yq eval '.nginx.tag' $values_file)
+            echo "$deployment Nginx:  '$deployed_nginx_image' is currently deployed."
+
+            entry="${{ vars.CONTAINER_REPO }}/${{ vars.CONTAINER_IMAGE_NAME }}-nginx/$deployed_nginx_image"
+            if grep -F -w "$entry" jfrog_artifacts_to_delete.txt; then
+              echo "Found '$entry' in the list of images to delete..."
+              echo "  Removing it from that list, so it will be retained."
+              grep -v "$entry" jfrog_artifacts_to_delete.txt > temp.txt && mv temp.txt jfrog_artifacts_to_delete.txt
             else
-              echo "No folders to delete in $folder."
+              echo "     (...and is not slated for clean-up)"
             fi
           done
-          echo "Clean Up Temporary Files"
-          rm -f *_artifacts.txt
+
+      - name: Delete old images (excepting any that are currently deployed)
+        run: |
+          total_images=$(wc -l < jfrog_artifacts_to_delete.txt)
+          echo "Deleting $total_images images..."
+          if [ "$total_images" -gt 0 ]; then
+            while IFS= read -r artifact; do
+              artifact="${artifact%\$}"
+              echo "Attempting to delete: $artifact"
+              command="jf rt del $artifact --quiet=true"
+              echo "Command to be executed: $command"
+              response=$(eval "$command")
+              # Check for failure in the response
+              if echo "$response" | jq -e '.status != "success"' > /dev/null; then
+                echo "Failed to delete $artifact. Response: $response"
+              else
+                echo "Successfully deleted $artifact."
+              fi
+            done < jfrog_artifacts_to_delete.txt
+          else
+             echo "No images to delete in the repository"
+          fi
+          rm -f jfrog_artifacts_to_delete.txt
+          echo "Successfully cleaned up temporary files."
+          echo "Artifactory clean-up is complete."

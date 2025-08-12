@@ -1,0 +1,12 @@
+{
+    "files": [
+      {
+        "aql": {
+          "items.find": {
+            "repo": "mea3-mfin-docker-local",
+            "name":{"$eq":"manifest.json"}
+          }
+        }
+      }
+    ]
+  }
