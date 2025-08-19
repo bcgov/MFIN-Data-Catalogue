@@ -2,6 +2,9 @@ name: Deploy to Prod
 
 on:
   workflow_dispatch:
+  push:
+    tags:
+    - '*-PROD'
 
 jobs:
   build:
@@ -10,29 +13,33 @@ jobs:
     - uses: actions/checkout@master
 
     - name: Export github reference var
-      run: echo "GITHUB_REFERENCE=$(echo ${GITHUB_REF#refs/tags/})" >> $GITHUB_ENV
+      run: |
+        GITHUB_TAG_RECEIVED_IN_WORKFLOW=${GITHUB_REF#refs/tags/}
+        # For tag "1.2.3", deploy "1.2.3".
+        # For tag "1.2.3-PROD", remove the suffix, and deploy "1.2.3".
+        echo "GITHUB_TAG_TO_DEPLOY=$(echo ${GITHUB_TAG_RECEIVED_IN_WORKFLOW/-PROD})" >> $GITHUB_ENV
 
     - name: Checkout Tenant GitOps Repo
       uses: actions/checkout@v4
       with:
-        repository: bcgov-c/tenant-gitops-ea352d
+        repository: ${{ vars.TENANT_GITOPS_REPO }}
         path: tenant-gitops
-        ssh-key: ${{ secrets.SSH_KEY }}
+        ssh-key: ${{ secrets.TENANT_GITOPS_DEPLOY_KEY }}
         persist-credentials: true
 
     - name: Update Argo CD
       uses: mikefarah/yq@v4.34.1
       with:
         cmd: |
-          yq -i '.drupal.tag = strenv(GITHUB_REFERENCE) |
-                 .nginx.tag = strenv(GITHUB_REFERENCE) ' tenant-gitops/helm-drupal/charts/drupal/values-application-prod.yaml
+          yq -i '.drupal.tag = strenv(GITHUB_TAG_TO_DEPLOY) |
+                 .nginx.tag = strenv(GITHUB_TAG_TO_DEPLOY) ' tenant-gitops/helm-drupal/charts/drupal/values-application-prod.yaml
 
     - name: Commit files
       run: |
         cd tenant-gitops
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git commit -a -m "feat(helm): Update container images to ${{ env.GITHUB_REFERENCE }}"
+        git commit -a -m "Update PROD server to '${{ env.GITHUB_TAG_TO_DEPLOY }}'."
 
     - name: Push changes
       uses: ad-m/github-push-action@master
@@ -40,4 +47,4 @@ jobs:
         ssh: true
         branch: main
         directory: tenant-gitops
-        repository: bcgov-c/tenant-gitops-ea352d
+        repository: ${{ vars.TENANT_GITOPS_REPO }}
