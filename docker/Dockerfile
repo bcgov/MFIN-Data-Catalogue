@@ -1,6 +1,14 @@
 # https://github.com/docker-library/drupal/blob/master/10.2/php8.2/fpm-alpine3.19/Dockerfile
 FROM drupal:10.2-php8.2-fpm-alpine
 
+# This Drupal-Alpine base image contains a full copy of Drupal (and its vendor folder).
+# We don't actually use this at all, and build our own version of Drupal, below.
+# So, to recover the 135MB that this takes up (in our pods, and in Artifactory images),
+# we delete it now:
+#   /opt/drupal is the drupal install
+#   /var/www/html is a symlink to it
+RUN rm -rf /opt/drupal /var/www/html
+
 ARG SSH_PRIVATE_KEY
 ARG GIT_USERNAME
 ARG GIT_PASSWORD
@@ -24,7 +32,7 @@ RUN apk --update add --no-cache bash \
                                 ssmtp \
                                 zlib-dev
 
-# Resolve https://github.com/composer/composer/issues/11913
+                                # Resolve https://github.com/composer/composer/issues/11913
 RUN apk add --update \
     && apk add --no-cache curl --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community \
     && rm -rf /var/cache/apk/*
@@ -90,7 +98,6 @@ RUN rm -f /var/www/composer.lock; \
 RUN rm -rf /var/www/*
 COPY scripts/ /var/www/scripts/
 COPY composer.json composer.lock /var/www/
-COPY composer.patches/ /var/www/composer.patches
 # Copy possible custom modules and custom themes
 COPY html/modules/custom/ /var/www/html/modules/custom/
 COPY html/themes/custom/ /var/www/html/themes/custom/
@@ -98,6 +105,11 @@ COPY html/themes/custom/ /var/www/html/themes/custom/
 COPY config/ /var/www/config/
 # Copy possible load.environment.php
 COPY load.environment.php /var/www/
+
+# Copy patches directory for local patches.
+# Create the directory if it doesn't exist in the build context.
+RUN mkdir -p composer.patches
+COPY composer.patches/ /var/www/composer.patches/
 
 WORKDIR /var/www
 
@@ -126,3 +138,8 @@ RUN php -r 'opcache_reset();'
 
 # Record which git commit is loaded into the pod.
 RUN echo "$GITHUB_SHA" > /var/www/build-hash.txt
+
+# Load secrets automatically upon bash-login.
+#   Note that the secrets are created from gitops, using
+#   the "vault.hashicorp.com/agent-inject-template-secrets.env" annotation.
+RUN echo "source /vault/secrets/secrets.env; echo 'Loaded secrets into environment variables.'" >> /etc/bash/bashrc
