@@ -38,6 +38,7 @@ dependencies:
     - media
     - node
     - paragraphs
+    - paragraphs_type_permissions
     - rabbit_hole
     - role_delegation
     - statistics
@@ -96,6 +97,8 @@ permissions:
   - 'create field_related_document'
   - 'create image media'
   - 'create page content'
+  - 'create paragraph content data_column'
+  - 'create paragraph content documents'
   - 'create terms in common_data'
   - 'create terms in data_set_series'
   - 'create terms in data_set_type'
@@ -117,6 +120,8 @@ permissions:
   - 'delete any page content'
   - 'delete own data_set content'
   - 'delete own never_published data_set in_org'
+  - 'delete paragraph content data_column'
+  - 'delete paragraph content documents'
   - 'delete taxonomy terms'
   - 'delete terms in common_data'
   - 'delete terms in data_set_series'
@@ -163,6 +168,8 @@ permissions:
   - 'revert any basic block content revisions'
   - 'revert data_set revisions'
   - 'unflag bookmark'
+  - 'update paragraph content data_column'
+  - 'update paragraph content documents'
   - 'use  The form mode default linked to  media entity( audio )'
   - 'use  The form mode default linked to  media entity( document )'
   - 'use  The form mode default linked to  media entity( image )'
