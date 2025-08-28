@@ -9,6 +9,7 @@ dependencies:
     - field_permissions
     - filter
     - media
+    - paragraphs_type_permissions
     - system
 _core:
   default_config_hash: 6WavjUYXIegP9AAg2zXGx54MWIVoomC3SZhNiqe-Dyk
@@ -23,3 +24,5 @@ permissions:
   - 'view field_primary_responsibility_org'
   - 'view media'
   - 'view own field_primary_responsibility_org'
+  - 'view paragraph content data_column'
+  - 'view paragraph content documents'

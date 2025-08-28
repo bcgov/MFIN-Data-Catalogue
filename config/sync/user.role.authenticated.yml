@@ -14,6 +14,7 @@ dependencies:
     - filter
     - form_mode_control
     - media
+    - paragraphs_type_permissions
     - search_api_saved_searches
     - shortcut
     - system
@@ -45,3 +46,5 @@ permissions:
   - 'view field_related_document'
   - 'view media'
   - 'view own field_primary_responsibility_org'
+  - 'view paragraph content data_column'
+  - 'view paragraph content documents'
