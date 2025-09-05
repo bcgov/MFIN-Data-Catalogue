@@ -24,7 +24,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'Records by security classification'
+      title: 'Published records by security classification'
       fields:
         field_security_classification:
           id: field_security_classification

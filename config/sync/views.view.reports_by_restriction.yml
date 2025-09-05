@@ -25,7 +25,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'Records by restriction'
+      title: 'Published records by visibility restriction'
       fields:
         field_visibility_1:
           id: field_visibility_1
