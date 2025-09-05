@@ -722,7 +722,7 @@ function bc_dc_form_node_data_set_edit_form_alter(array &$form, FormStateInterfa
     if (!isset($form['#validate'])) {
       $form['#validate'] = [];
     }
-    array_unshift($form['#validate'], '_bc_dc_form_node_data_set_edit_form_submit');
+    array_unshift($form['#validate'], '_bc_dc_form_node_data_set_edit_form_validate');
   }
 }
 
@@ -748,7 +748,7 @@ function _bc_dc_get_term_root_ancestor(int $tid): ?TermInterface {
  * @param \Drupal\Core\Form\FormStateInterface $form_state
  *   The current state of the form.
  */
-function _bc_dc_form_node_data_set_edit_form_submit(array &$form, FormStateInterface $form_state): void {
+function _bc_dc_form_node_data_set_edit_form_validate(array &$form, FormStateInterface $form_state): void {
   // Saving should always be to a draft state. This must run first to ensure it
   // will work regardless of what transtions are configured.
   $form_state->setValue(['moderation_state', '0', 'value'], 'draft');
@@ -767,6 +767,42 @@ function _bc_dc_form_node_data_set_edit_form_submit(array &$form, FormStateInter
       if (!$new_type_root || $new_type_root->id() !== $old_type_root->id()) {
         $form_state->setErrorByName('field_data_set_type', t('The metadata root record type cannot be changed.'));
       }
+    }
+  }
+
+  // When adding MR refs to the "Assets used" field, disallow:
+  //   -- self-references
+  //   -- duplicate references
+  $this_node = \Drupal::routeMatch()->getParameter('node');
+  $this_nid = null;
+  if ($this_node instanceof NodeInterface) {
+    $this_nid = $this_node->id();
+  }
+  $asset_ref_counts = [];
+  $fix_help = "(To delete a reference to another asset in 'Assets used', just clear the text out of its row.)";
+  foreach($form_state->getValue('field_data_sets_used') as $index => $mr_ref_info) {
+    // The 'Add another item' shows up in this array, 
+    // with a non-numeric index. Skip it.
+    if (is_numeric($index)) {
+      $asset_id_referenced = $mr_ref_info['target_id'];
+      // Empty rows produce a null asset-id ref -- skip them.
+      if (! is_null($asset_id_referenced)) {
+        if (isset($this_nid)  &&  $this_nid == $asset_id_referenced) {
+          $form_state->setErrorByName('field_data_sets_used', "An asset may not reference itself, in 'Assets used'. {$fix_help}");
+        }
+        // Keep a count of how many times we've seen each referenced asset.
+        if (! isset($asset_ref_counts[$asset_id_referenced])) {
+          $asset_ref_counts[$asset_id_referenced] = 1;
+        }else{
+          $asset_ref_counts[$asset_id_referenced]++;
+        }
+      }
+    }
+  } 
+  foreach ($asset_ref_counts as $id => $count) {
+    if ($count > 1) {
+      $form_state->setErrorByName('field_data_sets_used', "Please do not include duplicates, in 'Assets used'. {$fix_help}");
+      break;
     }
   }
 }
