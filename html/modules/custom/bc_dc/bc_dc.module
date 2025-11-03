@@ -779,7 +779,6 @@ function _bc_dc_form_node_data_set_edit_form_validate(array &$form, FormStateInt
     $this_nid = $this_node->id();
   }
   $asset_ref_counts = [];
-  $fix_help = "(To delete a reference to another asset in 'Assets used', just clear the text out of its row.)";
   foreach($form_state->getValue('field_data_sets_used') as $index => $mr_ref_info) {
     // The 'Add another item' shows up in this array, 
     // with a non-numeric index. Skip it.
@@ -788,7 +787,7 @@ function _bc_dc_form_node_data_set_edit_form_validate(array &$form, FormStateInt
       // Empty rows produce a null asset-id ref -- skip them.
       if (! is_null($asset_id_referenced)) {
         if (isset($this_nid)  &&  $this_nid == $asset_id_referenced) {
-          $form_state->setErrorByName('field_data_sets_used', "An asset may not reference itself, in 'Assets used'. {$fix_help}");
+          $form_state->setErrorByName('field_data_sets_used', "An asset may not reference itself, in 'Assets used'.");
         }
         // Keep a count of how many times we've seen each referenced asset.
         if (! isset($asset_ref_counts[$asset_id_referenced])) {
@@ -801,7 +800,7 @@ function _bc_dc_form_node_data_set_edit_form_validate(array &$form, FormStateInt
   } 
   foreach ($asset_ref_counts as $id => $count) {
     if ($count > 1) {
-      $form_state->setErrorByName('field_data_sets_used', "Please do not include duplicates, in 'Assets used'. {$fix_help}");
+      $form_state->setErrorByName('field_data_sets_used', "Please do not include duplicates, in 'Assets used'.");
       break;
     }
   }
