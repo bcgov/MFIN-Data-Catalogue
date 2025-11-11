@@ -2,6 +2,10 @@
 
 namespace BCGovC\MfinDataCatalogue;
 
+/**
+ * This is here to be used during creation of the Drupal site.
+ */
+
 use Composer\Script\Event;
 use Composer\Semver\Comparator;
 use Drupal\Core\Site\Settings;

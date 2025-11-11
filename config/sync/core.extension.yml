@@ -66,6 +66,7 @@ module:
   hal: 0
   help: 0
   hierarchical_term_formatter: 0
+  highlight_views_overrides: 0
   history: 0
   image: 0
   insert_view_adv: 0
@@ -94,6 +95,7 @@ module:
   page_manager_ui: 0
   panels: 0
   paragraphs_features: 0
+  paragraphs_type_permissions: 0
   path: 0
   path_alias: 0
   pgsql: 0

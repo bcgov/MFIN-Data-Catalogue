@@ -63,7 +63,7 @@ class BcDcArchiveForm extends ConfirmFormBase implements AccessInterface {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, NodeInterface $node = NULL): array {
+  public function buildForm(array $form, FormStateInterface $form_state, ?NodeInterface $node = NULL): array {
     // Store the form ID for later use.
     $this->id = (int) $node->id();
 

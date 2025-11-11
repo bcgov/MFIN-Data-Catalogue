@@ -6,6 +6,9 @@
  * @see https://getcomposer.org/doc/04-schema.md#files
  */
 
+
+// This file is consumed by docker/Dockerfile.
+
 use Dotenv\Dotenv;
 
 /**

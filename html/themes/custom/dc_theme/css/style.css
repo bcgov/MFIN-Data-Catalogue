@@ -1525,4 +1525,11 @@ html.bcbb-theme a img.site-logo {
 .form-checkbox.error {
   border: 1px solid #dee2e6 !important;
 }
+
+/* Tweak to pie-chart legend. */
+body .bb-legend-item-hidden {
+    opacity: .1;
+    text-decoration: line-through;
+  }
+
 /*# sourceMappingURL=style.css.map */

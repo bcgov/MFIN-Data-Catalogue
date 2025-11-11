@@ -1,19 +1,29 @@
+# Ignore Drupal core & scaffolded files
 html/*
 !html/modules/
 html/modules/*
 !html/modules/custom/
+!html/sites/
+html/sites/*
+!html/sites/default/
+html/sites/default/*
+!html/sites/default/settings.local.php
 !html/themes/
 html/themes/*
 !html/themes/custom/
 
-vendor
-*/*/*/vendor
-*/*/vendor
+# Ignore dependencies that are managed with Composer.
+# Generally you should only ignore the root vendor directory. It's important
+# that core/assets/vendor and any other vendor directories within contrib or
+# custom module, theme, etc., are not ignored unless you purposely do so.
+/vendor/
+
+# Ignore NPM folders
+node_modules
 
 # Ignore Development Files
 .idea
 *.backup
-*.ddev
 *.diff
 *.DS_Store
 *.err
@@ -34,7 +44,15 @@ ddev-cron-log.txt
 *.sass-cache*
 **/sass/*.css
 
-# Custom
-docker
-config/sync/openid_connect.client.keycloak.yml
-files-private
+# Ignore Exports
+*.gz
+*.sql
+*.zip
+
+# Ignore Temporary and Private Files
+private
+private-files
+
+# Ignore DDEV
+.ddev/*
+!.ddev/config.yaml
