@@ -22,7 +22,7 @@
         "drupal/form_mode_control": "^2.2",
         "drupal/gin": "^3.0@RC",
         "drupal/inline_entity_form": "^2.0",
-        "drupal/linkit": "^6.1",
+        "drupal/linkit": "^7.0",
         "drupal/m4032404": "^1.0",
         "drupal/metatag": "^2.0",
         "drupal/openid_connect": "^3.0@alpha",
