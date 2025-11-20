@@ -770,7 +770,7 @@ function _bc_dc_form_node_data_set_edit_form_validate(array &$form, FormStateInt
     }
   }
 
-  // When adding MR refs to the "Assets used" field, disallow:
+  // When adding MR refs to the "Assets used" field, don't allow:
   //   -- self-references
   //   -- duplicate references
   $this_node = \Drupal::routeMatch()->getParameter('node');
