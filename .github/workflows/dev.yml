@@ -123,7 +123,7 @@ jobs:
         cd tenant-gitops
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git commit -a -m "Update Dev server to '${{ env.GITHUB_TAG_TO_DEPLOY }}'."
+        git commit -a -m "Update DEV server to '${{ env.GITHUB_TAG_TO_DEPLOY }}'."
 
     - name: Push changes
       uses: ad-m/github-push-action@master
