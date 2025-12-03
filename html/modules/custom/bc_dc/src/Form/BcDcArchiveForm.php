@@ -93,7 +93,7 @@ class BcDcArchiveForm extends ConfirmFormBase implements AccessInterface {
    * {@inheritdoc}
    */
   public function getDescription(): TranslatableMarkup {
-    return $this->t('You may re-publish it later.');
+    return $this->t('Unpublished metadata records will remain visible to you under the Manage tab of your Dashboard. You may re-publish them later.');
   }
 
   /**
