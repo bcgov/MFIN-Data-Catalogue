@@ -34,6 +34,7 @@ dependencies:
     - taxonomy.vocabulary.organization
     - taxonomy.vocabulary.security_classification
     - user.role.authenticated
+    - workflows.workflow.editorial
   module:
     - better_exposed_filters
     - content_moderation
@@ -3056,7 +3057,8 @@ display:
           entity_type: node
           plugin_id: moderation_state_filter
           operator: in
-          value: {  }
+          value:
+            editorial-draft: editorial-draft
           group: 1
           exposed: true
           expose:
@@ -3077,22 +3079,34 @@ display:
               administrator: '0'
               data_catalogue_administrator: '0'
               data_catalogue_manager: '0'
+              data_catalogue_api_user: '0'
               data_catalogue_editor: '0'
               data_catalogue_user: '0'
               data_catalogue_information_management_specialist: '0'
-            reduce: false
-          is_grouped: false
+            reduce: true
+          is_grouped: true
           group_info:
-            label: ''
+            label: 'Moderation state'
             description: ''
-            identifier: ''
+            identifier: moderation_state
             optional: true
             widget: select
             multiple: false
             remember: false
-            default_group: All
+            default_group: '1'
             default_group_multiple: {  }
-            group_items: {  }
+            group_items:
+              1:
+                title: Draft
+                operator: in
+                value:
+                  editorial-draft: editorial-draft
+              2:
+                title: 'Not Draft'
+                operator: in
+                value:
+                  editorial-published: editorial-published
+                  editorial-archived: editorial-archived
         status:
           id: status
           table: node_field_data
