@@ -799,7 +799,7 @@ function _bc_dc_form_node_data_set_edit_form_validate(array &$form, FormStateInt
       }
     }
   }
-  foreach ($asset_ref_counts as $id => $count) {
+  foreach (array_values($asset_ref_counts) as $count) {
     if ($count > 1) {
       $form_state->setErrorByName('field_data_sets_used', "Please do not include duplicates, in 'Assets used'.");
       break;
