@@ -779,7 +779,7 @@ function _bc_dc_form_node_data_set_edit_form_validate(array &$form, FormStateInt
     $this_nid = $this_node->id();
   }
   $asset_ref_counts = [];
-  foreach ($form_state->getValue('field_data_sets_used') as $index => $mr_ref_info) {
+  foreach ($form_state->getValue('field_data_sets_used') ?? [] as $index => $mr_ref_info) {
     // The 'Add another item' shows up in this array,
     // with a non-numeric index. Skip it.
     if (is_numeric($index)) {
@@ -801,7 +801,7 @@ function _bc_dc_form_node_data_set_edit_form_validate(array &$form, FormStateInt
   }
   foreach ($asset_ref_counts as $id => $count) {
     if ($count > 1) {
-      $form_state->setErrorByName('field_data_sets_used', t("Please do not include duplicate reference ID @id in 'Assets used'.", ['@id' => $id]));
+      $form_state->setErrorByName('field_data_sets_used', "Please do not include duplicates, in 'Assets used'.");
       break;
     }
   }
