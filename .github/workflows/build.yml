@@ -32,13 +32,6 @@ jobs:
         make build
         docker compose -f docker-compose.ci.yml up -d
         docker ps -a
-        sleep 10
-
-    - name: Run installation
-      run: |
-        export DB_TYPE=mysql
-        export DB_PORT=3306
-        make drupal_install
 
     - name: Scan PHP-FPM image for vulnerabilities
       uses: aquasecurity/trivy-action@0.29.0
