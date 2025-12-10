@@ -117,7 +117,8 @@ RUN apk --update --no-cache add git openssh-client; \
     mkdir -p /root/.ssh; echo $SSH_PRIVATE_KEY | base64 -d > /root/.ssh/id_rsa; \
     chmod 700 /root/.ssh; chmod 600 /root/.ssh/id_rsa; \
     ssh-keyscan github.com > /root/.ssh/known_hosts
-RUN composer install --prefer-dist \
+RUN composer install --no-dev \
+                     --prefer-dist \
                      --ignore-platform-reqs \
                      --no-interaction
 RUN rm -rf /root/.ssh && \
