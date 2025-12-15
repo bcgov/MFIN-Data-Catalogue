@@ -1383,3 +1383,12 @@ function bc_dc_robotstxt(): array {
   // Default to adding nothing.
   return [];
 }
+
+/**
+ * Implements hook_chart_alter().
+ */
+function bc_dc_chart_alter(array &$element, $chart_id) {
+  if ($chart_id === 'reports_by_restriction_block_records_by_restriction') {
+    $element['#attached']['library'][] = 'bc_dc/piechart_tweak';
+  }
+}
