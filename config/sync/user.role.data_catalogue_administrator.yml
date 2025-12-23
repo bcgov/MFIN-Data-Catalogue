@@ -165,6 +165,7 @@ permissions:
   - 'edit terms in security_classification'
   - 'edit terms in tags'
   - 'flag bookmark'
+  - 'initiate search indexing'
   - 'revert any basic block content revisions'
   - 'revert data_set revisions'
   - 'unflag bookmark'
