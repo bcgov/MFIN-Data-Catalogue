@@ -121,6 +121,7 @@ permissions:
   - 'edit terms in security_classification'
   - 'edit terms in tags'
   - 'flag bookmark'
+  - 'initiate search indexing'
   - 'revert data_set revisions'
   - 'unflag bookmark'
   - 'update paragraph content data_column'

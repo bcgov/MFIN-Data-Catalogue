@@ -8,3 +8,9 @@ bc_dc.settings:
   description: 'Configure BC Data Catalogue Module.'
   route_name: bc_dc.settings
   parent: bc_dc.category
+
+bc_dc.build_index_now:
+  title: 'Add to search index'
+  description: 'Trigger an immediate processing of any items in the search-index queue.'
+  parent: bc_dc.category
+  route_name: bc_dc.build_index_now
