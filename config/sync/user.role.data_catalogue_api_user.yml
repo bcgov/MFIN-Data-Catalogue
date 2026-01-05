@@ -47,7 +47,6 @@ permissions:
   - 'edit field_related_document'
   - 'edit own field_primary_responsibility_org'
   - 'flag bookmark'
-  - 'initiate search indexing'
   - 'revert data_set revisions'
   - 'unflag bookmark'
   - 'update paragraph content data_column'

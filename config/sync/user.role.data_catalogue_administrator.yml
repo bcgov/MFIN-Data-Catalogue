@@ -4,11 +4,17 @@ status: true
 dependencies:
   config:
     - block_content.type.basic
+    - core.entity_form_display.user.user.default
     - filter.format.full_html
+    - media.type.audio
+    - media.type.document
     - media.type.image
+    - media.type.remote_video
+    - media.type.video
     - node.type.book
     - node.type.data_set
     - node.type.page
+    - paragraphs.paragraphs_type.data_column
     - taxonomy.vocabulary.common_data
     - taxonomy.vocabulary.data_set_series
     - taxonomy.vocabulary.data_set_type
@@ -165,7 +171,6 @@ permissions:
   - 'edit terms in security_classification'
   - 'edit terms in tags'
   - 'flag bookmark'
-  - 'initiate search indexing'
   - 'revert any basic block content revisions'
   - 'revert data_set revisions'
   - 'unflag bookmark'
