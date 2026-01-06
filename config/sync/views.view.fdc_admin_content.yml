@@ -476,7 +476,7 @@ display:
               authenticated: authenticated
           is_grouped: true
           group_info:
-            label: 'Published status'
+            label: Status
             description: ''
             identifier: status
             optional: true
@@ -833,7 +833,7 @@ display:
               authenticated: authenticated
           is_grouped: true
           group_info:
-            label: 'Published status'
+            label: Status
             description: ''
             identifier: status
             optional: true
@@ -1067,7 +1067,7 @@ display:
               authenticated: authenticated
           is_grouped: true
           group_info:
-            label: 'Published status'
+            label: Status
             description: ''
             identifier: status
             optional: true
@@ -1301,7 +1301,7 @@ display:
               authenticated: authenticated
           is_grouped: true
           group_info:
-            label: 'Published status'
+            label: Status
             description: ''
             identifier: status
             optional: true
@@ -1887,7 +1887,7 @@ display:
               authenticated: authenticated
           is_grouped: true
           group_info:
-            label: 'Published status'
+            label: Status
             description: ''
             identifier: status
             optional: true
