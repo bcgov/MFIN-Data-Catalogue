@@ -1,0 +1,45 @@
+# Admin: Content
+
+bc_dc.add_article:
+  route_name: node.add
+  title: 'Add Article'
+  route_parameters:
+    node_type: article
+  options:
+    query:
+      destination: '/admin/content/article'
+  appears_on:
+    - view.fdc_admin_content.page_2
+
+bc_dc.add_page:
+  route_name: node.add
+  title: 'Add Basic page'
+  route_parameters:
+    node_type: page
+  options:
+    query:
+      destination: '/admin/content/page'
+  appears_on:
+    - view.fdc_admin_content.page_3
+
+bc_dc.add_book:
+  route_name: node.add
+  title: 'Add Book page'
+  route_parameters:
+    node_type: book
+  options:
+    query:
+      destination: '/admin/content/book'
+  appears_on:
+    - view.fdc_admin_content.page_4
+
+bc_dc.add_data_set:
+  route_name: node.add
+  title: 'Add Metadata record'
+  route_parameters:
+    node_type: data_set
+  options:
+    query:
+      destination: '/admin/content/data_set'
+  appears_on:
+    - view.fdc_admin_content.page_5
