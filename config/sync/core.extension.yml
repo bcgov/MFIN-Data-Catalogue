@@ -42,12 +42,14 @@ module:
   datetime: 0
   dblog: 0
   default_content_deploy: 0
+  devel: 0
   diff: 0
   dynamic_page_cache: 0
   editor: 0
   embed: 0
   entity_embed: 0
   entity_reference_revisions: 0
+  entity_usage: 0
   environment_indicator: 0
   facets: 0
   facets_summary: 0
