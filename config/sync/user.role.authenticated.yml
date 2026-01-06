@@ -17,7 +17,6 @@ dependencies:
     - media
     - paragraphs_type_permissions
     - search_api_saved_searches
-    - shortcut
     - system
 _core:
   default_config_hash: cFrlqjtkTfvY3RGccjJkPf1SGIfJ942IrxTLWAO4mgA
@@ -30,7 +29,6 @@ permissions:
   - 'access content'
   - 'access data catalogue docs'
   - 'access environment indicator'
-  - 'access shortcuts'
   - 'access user reports'
   - 'delete own files'
   - 'post comments'
