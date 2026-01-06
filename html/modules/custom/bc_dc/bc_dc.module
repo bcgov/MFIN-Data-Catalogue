@@ -1161,6 +1161,14 @@ function bc_dc_menu_local_tasks_alter(array &$data, string $route_name, Refinabl
   if (isset($data['tabs'][0]['entity.user.canonical']['#link']['title'])) {
     $data['tabs'][0]['entity.user.canonical']['#link']['title'] = t('Dashboard');
   }
+
+  // Hide these default local tasks.
+  unset($data['tabs'][0]['entity.block_content.collection']);
+  unset($data['tabs'][0]['comment.admin']);
+  unset($data['tabs'][0]['entity.media.collection']);
+  unset($data['tabs'][0]['views_view:view.files.page_1']);
+  unset($data['tabs'][0]['views_view:view.saved_searches_admin.page']);
+  unset($data['tabs'][1]);
 }
 
 /**
