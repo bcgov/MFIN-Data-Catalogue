@@ -4,7 +4,9 @@ status: true
 dependencies:
   config:
     - core.entity_form_mode.media.media_library
+    - field.field.media.image.field_height
     - field.field.media.image.field_media_image
+    - field.field.media.image.field_width
     - image.style.thumbnail
     - media.type.image
   module:
@@ -33,6 +35,8 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_height: true
+  field_width: true
   name: true
   path: true
   status: true
