@@ -4,7 +4,9 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.media.media_library
+    - field.field.media.image.field_height
     - field.field.media.image.field_media_image
+    - field.field.media.image.field_width
     - image.style.media_library
     - media.type.image
   module:
@@ -38,7 +40,9 @@ content:
     region: content
 hidden:
   created: true
+  field_height: true
   field_media_image: true
+  field_width: true
   langcode: true
   name: true
   search_api_excerpt: true
