@@ -43,3 +43,36 @@ bc_dc.add_data_set:
       destination: '/admin/content/data_set'
   appears_on:
     - view.fdc_admin_content.page_5
+
+# Admin: Media
+
+bc_dc.add_media:
+  route_name: entity.media.add_page
+  title: 'Add media'
+  options:
+    query:
+      destination: '/admin/media'
+  appears_on:
+    - view.fdc_admin_media.page_1
+
+bc_dc.add_document:
+  route_name: entity.media.add_form
+  title: 'Add Document'
+  route_parameters:
+    media_type: document
+  options:
+    query:
+      destination: '/admin/media/document'
+  appears_on:
+    - view.fdc_admin_media.page_2
+
+bc_dc.add_image:
+  route_name: entity.media.add_form
+  title: 'Add Image'
+  route_parameters:
+    media_type: image
+  options:
+    query:
+      destination: '/admin/media/image'
+  appears_on:
+    - view.media_library.page_1
