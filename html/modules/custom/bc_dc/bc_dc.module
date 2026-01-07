@@ -82,6 +82,26 @@ function bc_dc_node_view_alter(array &$build, NodeInterface $entity, EntityViewD
 }
 
 /**
+ * Implements hook_page_attachments().
+ */
+function bc_dc_page_attachments(array &$attachments) {
+  // Attach the library if the active route is an admin one.
+  // if (\Drupal::service('router.admin_context')->isAdminRoute()) {
+  //   $attachments['#attached']['library'][] = 'bc_dc/fdc_ckeditor';
+  // }
+  // Attach the library on the specific route.
+  $route_match = \Drupal::routeMatch()->getRouteName();
+  $media_library_view_route = [
+    'view.media_library.page_1',
+    'view.fdc_admin_media.page_1',
+    'view.fdc_admin_media.page_2',
+  ];
+  if (in_array($route_match, $media_library_view_route)) {
+    $attachments['#attached']['library'][] = 'bc_dc/fdc_media_library';
+  }
+}
+
+/**
  * Implements hook_preprocess_HOOK() for flag.html.twig.
  */
 function bc_dc_preprocess_flag(array &$variables): void {
@@ -1170,7 +1190,7 @@ function bc_dc_menu_local_tasks_alter(array &$data, string $route_name, Refinabl
   unset($data['tabs'][0]['views_view:view.saved_searches_admin.page']);
 
   // Hide content moderation tabs.
-  if ($route_name == 'system.admin_content') {  
+  if ($route_name == 'system.admin_content') {
     unset($data['tabs'][1]);
   }
 }
