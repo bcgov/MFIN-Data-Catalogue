@@ -5,13 +5,19 @@ dependencies: {  }
 _core:
   default_config_hash: cCiWdBHgLwj5omG35lsKc4LkW4MBdmcctkVop4ol5x0
 name: thumbnail
-label: 'Thumbnail (100×100)'
+label: 'Thumbnail (90×90)'
 effects:
   1cfec298-8620-4749-b100-ccb6c4500779:
     uuid: 1cfec298-8620-4749-b100-ccb6c4500779
     id: image_scale
     weight: 0
     data:
-      width: 100
-      height: 100
+      width: 90
+      height: 90
       upscale: false
+  4533b5a2-6cd0-48f3-9fb0-e0afc90b82ff:
+    uuid: 4533b5a2-6cd0-48f3-9fb0-e0afc90b82ff
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp
