@@ -35,6 +35,8 @@ docker run -i \
   ${vol} \
   -w "/var/www/html" \
   -e "SIMPLETEST_DB=${DB_CONNECTION}/${DB_NAME}" \
+  -e "SIMPLETEST_BASE_URL=http://nginx" \
+  -e "BROWSERTEST_OUTPUT_DIRECTORY=/tmp/browser_output" \
   -e DB_TYPE=$DB_TYPE \
   -e DB_PORT=$DB_PORT \
   -e DB_NAME=$DB_NAME \
