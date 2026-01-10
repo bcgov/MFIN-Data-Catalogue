@@ -136,11 +136,13 @@ phpcs: drupal_cs
 phpunit:
 	./docker/bin/phpunit --colors=always \
 	    -c /var/www/html/core/phpunit.xml.dist \
+	    profiles/wxt \
 	    --testsuite=kernel \
 	    --group=$(PROFILE_NAME)
 
 	./docker/bin/phpunit --colors=always \
 	    -c /var/www/html/core/phpunit.xml.dist \
+	    profiles/wxt \
 	    --testsuite=unit \
 	    --group=$(PROFILE_NAME) \
 	    --dont-report-useless-tests
