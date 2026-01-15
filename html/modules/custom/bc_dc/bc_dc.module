@@ -325,6 +325,17 @@ function bc_dc_node_access(NodeInterface $entity, string $operation, AccountInte
     return AccessResult::allowed();
   }
 
+  if ($operation == 'update' && $entity->bundle() === 'data_set') {
+    $is_my_node = $account->id() == $entity->getOwnerId();
+    $allowed = (
+      (    $account->hasPermission('edit own data_set in_org') && $is_my_node
+        || $account->hasPermission('edit any data_set in_org')
+      )
+      && bc_dc_data_set_user_org_match($entity, $account) 
+    );
+    return AccessResult::forbiddenIf(!$allowed);
+  }
+
   // Deny access to `book` by permission.
   if ($entity->bundle() === 'book') {
     return AccessResult::forbiddenIf(!$account->hasPermission('access data catalogue docs'), 'User does not have permission to access book content.');
