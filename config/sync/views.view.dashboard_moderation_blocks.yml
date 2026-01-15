@@ -245,12 +245,12 @@ display:
           admin_label: ''
           entity_type: node
           plugin_id: entity_link
-          label: Operations
+          label: ''
           exclude: false
           alter:
             alter_text: false
             text: ''
-            make_link: true
+            make_link: false
             path: ''
             absolute: false
             external: false
@@ -289,31 +289,30 @@ display:
           text: View
           output_url_as_text: false
           absolute: false
-        nid:
-          id: nid
-          table: node_field_data
-          field: nid
+        edit_node:
+          id: edit_node
+          table: node
+          field: edit_node
           relationship: nid
           group_type: group
-          admin_label: ''
+          admin_label: "Get link to edit if user has perm. Custom twig-template converts 'edit' to 'build'."
           entity_type: node
-          entity_field: nid
-          plugin_id: field
+          plugin_id: entity_link_edit
           label: ''
           exclude: false
           alter:
-            alter_text: true
-            text: Edit
+            alter_text: false
+            text: build
             make_link: true
-            path: '/node/{{ nid }}/build'
-            absolute: false
+            path: ''
+            absolute: true
             external: false
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: 'Edit {{ title }}'
+            alt: ''
             rel: ''
-            link_class: 'btn btn-primary'
+            link_class: ''
             prefix: ''
             suffix: ''
             target: ''
@@ -335,30 +334,19 @@ display:
           element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: false
+          element_default_classes: true
           empty: ''
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: value
-          type: number_integer
-          settings:
-            thousand_separator: ''
-            prefix_suffix: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
+          text: build
+          output_url_as_text: true
+          absolute: false
       pager:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 8
           total_pages: null
           id: 0
@@ -376,7 +364,6 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
-          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
