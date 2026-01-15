@@ -22,6 +22,6 @@
 #}
 {% set url = output.__toString() %}
 {% if url is not empty %}
-  <a href="{{ url|replace({'edit': 'build'}) -}}" class="btn btn-primary">Edit</a>
+  {{ url|replace({'/edit': '/build'})|raw -}}
 {% endif %}
 
