@@ -43,6 +43,7 @@ permissions:
   - 'edit field_related_document'
   - 'edit own data_set in_org'
   - 'flag bookmark'
+  - 'initiate search indexing'
   - 'revert data_set revisions'
   - 'unflag bookmark'
   - 'update paragraph content data_column'
