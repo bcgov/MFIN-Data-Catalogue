@@ -35,6 +35,14 @@ use Drupal\views\Plugin\views\query\QueryPluginBase;
 use Drupal\views\ResultRow;
 use Drupal\views\ViewExecutable;
 
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Drupal\Core\Controller\ControllerBase;
+use Drupal\search_api\Entity\Index;
+
+
+
+
 /**
  * Implements hook_entity_operation().
  */
@@ -383,6 +391,40 @@ function bc_dc_node_presave(NodeInterface $entity): void {
   if ($entity->bundle() !== 'data_set') {
     return;
   }
+  
+  // If MR is published or unpublished, then add it to be updated in the search index.
+  
+  $index = Index::load($index_id = 'default_index');
+
+  if ($index) {
+    $remaining_items = $index->getTrackerInstance()->getRemainingItemsCount();
+    $messenger = \Drupal::messenger();
+    if (!$remaining_items) {
+      $messenger->addStatus($this->t('There were no items queued to add to the search index.'));
+    }
+    else {
+      // Should only need this one... use 10 just to be safe.
+      $indexed_count = $index->indexItems(10);
+
+      $remaining_items = $index->getTrackerInstance()->getRemainingItemsCount();
+
+      if ($remaining_items) {
+        $messenger->addStatus(t('Successfully indexed @count_items. There @are_still_x_items remaining in the queue.', [
+          '@count_items' => \Drupal::translation()->formatPlural($indexed_count, '1 item', '@count items'),
+          '@are_still_x_items' => \Drupal::translation()->formatPlural($remaining_items, 'is still 1 item', 'are still @count items'),
+        ]));
+      }
+      else {
+        $messenger->addStatus(t('Successfully indexed @all_x_items_that_were in the queue.', [
+          '@all_x_items_that_were' => \Drupal::translation()->formatPlural($indexed_count, 'the one item that was', 'all @count items that were'),
+        ]));
+      }
+    }
+  }
+  else {
+    throw new \Exception("Search index '$index_id' not found.");
+  }
+
 
   // When is_complete_review is checked, set field_last_review_date to now.
   if ($entity->get('field_is_complete_review')->value) {
