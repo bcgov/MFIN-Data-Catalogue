@@ -24,7 +24,3 @@
 'access user manage':
   title: 'Access user manage tab'
   description: 'Access the manage tab at /user/UID/manage'
-
-'initiate search indexing':
-  title: 'Initiate search indexing'
-  description: 'Ask the search engine to immediately process any content that is queued for indexing.'
