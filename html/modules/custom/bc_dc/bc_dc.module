@@ -397,12 +397,27 @@ function bc_dc_node_presave(NodeInterface $node): void {
 }
 
 /**
+ * Implements hook_ENTITY_TYPE_insert() for node.
+ */
+function bc_dc_node_insert(NodeInterface $node): void {
+  // Act only on Metadata Records.
+  if ($node->bundle() == 'data_set') {
+    // If MR is changed in any way, then update it in the search index.
+    \Drupal::service('bc_dc.search_indexing')->reindexNode($node);
+  }
+}
+
+/**
  * Implements hook_ENTITY_TYPE_update() for node.
  */
 function bc_dc_node_update(NodeInterface $node): void {
   // Act only on Metadata Records.
   if ($node->bundle() == 'data_set') {
 
+    // If MR is changed in any way, then update it in the search index.
+    \Drupal::service('bc_dc.search_indexing')->reindexNode($node);
+
+    
     // Send a notification to all users who have bookmarked this data_set and who
     // last viewed it before the modified_date.
   

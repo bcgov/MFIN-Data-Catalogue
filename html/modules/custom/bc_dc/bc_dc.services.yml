@@ -10,3 +10,6 @@ services:
   bc_dc.update_review_status:
     class: Drupal\bc_dc\Service\UpdateReviewStatus
     arguments: ['@entity_type.manager']
+  bc_dc.search_indexing:
+    class: Drupal\bc_dc\Service\SearchIndexing
+    arguments: []
