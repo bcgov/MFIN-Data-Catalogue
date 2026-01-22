@@ -17,14 +17,14 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Service for sending reminders to review out-of-date data_set nodes.
  */
-class ReviewReminder implements ContainerInjectionInterface {
+class EmailSending implements ContainerInjectionInterface {
 
   use LoggerChannelTrait;
   use ReviewReminderTrait;
   use StringTranslationTrait;
 
   /**
-   * Constructs a new ReviewReminder object.
+   * Constructs a new EmailSending object.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory
    *   The config.factory service.
@@ -87,7 +87,7 @@ class ReviewReminder implements ContainerInjectionInterface {
       return NULL;
     }
 
-    $body = $this->generateBody($assets_needing_review_for_user, $uid);
+    $body = $this->generateReviewReminderBody($assets_needing_review_for_user, $uid);
     if (!$body) {
       $logger->error('ReviewReminder: Empty message for user @uid.', ['@uid' => $uid]);
       return NULL;
@@ -118,7 +118,7 @@ class ReviewReminder implements ContainerInjectionInterface {
    * @return string|null
    *   The body of the message or NULL if there is no message to send.
    */
-  public function generateBody(array $assets_needing_review_for_user, $uid): ?string {
+  public function generateReviewReminderBody(array $assets_needing_review_for_user, $uid): ?string {
 
     $user = $this->entityTypeManager->getStorage('user')->load($uid);
 
@@ -205,7 +205,7 @@ END_BODY,
         '@first_name' => $user->field_first_name->value,
         '@count_records' => $this->formatPlural($count_records_to_review, 'record', '@count records'),
         '@records_to_review' => $body_records_to_review,
-        '@email_footer' => _bc_dc_get_email_footer(),
+        '@email_footer' => $this->getEmailFooter(),
       ]
     );
 
@@ -255,5 +255,27 @@ END_BODY,
 
     return $assets_needing_review;
   }
+
+
+  /**
+   * Get the common text we put in email footers.
+   */
+  public function getEmailFooter() {
+    $is_test_or_dev = preg_match('/(dev|test)/i', \Drupal::config('environment_indicator.indicator')->get('name'));
+
+    return t(<<<END_EMAIL_FOOTER
+  For more information or assistance, please @contact_us.
+
+  Ministry of Finance Data Catalogue
+  @data_cat_main_url
+  END_EMAIL_FOOTER,
+    [
+      '@contact_us' => $is_test_or_dev
+        ? 'contact Nicole.deGreef@gov.bc.ca'
+        : 'reach out via [Finance Data Catalogue Support](https://fincsp.atlassian.net/servicedesk/customer/portal/12)',
+      '@data_cat_main_url' => Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString(),
+    ]);
+  }
+
 
 }

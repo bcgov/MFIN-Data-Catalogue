@@ -439,10 +439,10 @@ function bc_dc_node_update(NodeInterface $node): void {
     // We compare dates because field_modified_date might not be set to now, but
     // some time in the past when it was know that an update was made.
     foreach ($bookmark_flaggings as $bookmark_flagging) {
-      if ($new_modified_date > $bookmark_flagging->get('field_last_viewed_date')->value) {
+      $date_owner_last_viewed_mr = $bookmark_flagging->get('field_last_viewed_date')->value;
+      if ($new_modified_date > $date_owner_last_viewed_mr) {
         $owner = $bookmark_flagging->getOwner();
-        $email = $owner->getEmail();
-        if ($email) {
+        if ($owner->getEmail()) {
           _bc_dc_send_email_re_changed_asset($owner, $node);
         }
       }
@@ -459,6 +459,8 @@ function bc_dc_node_update(NodeInterface $node): void {
  *   The Metadata record they bookmarked.
  */
 function _bc_dc_send_email_re_changed_asset($owner, $asset) {
+
+  $email_sending_service = \Drupal::service('bc_dc.email_sending');
 
   // We want to be able to say what kind of metadata record this is:
   // - Postgres database
@@ -547,7 +549,7 @@ END_BODY,
     ]
   );
 
-  $body_content .= _bc_dc_get_email_footer();
+  $body_content .= $email_sending_service->getEmailFooter();
 
   // Send the message and log the result.
   $success = GcNotifyApiService::sendMessage([$owner->getEmail()], $subject, $body_content);
@@ -558,26 +560,6 @@ END_BODY,
               '@nid' => $asset->id(),
             ]
   );
-}
-
-/**
- * Get the common text we put in email footers.
- */
-function _bc_dc_get_email_footer() {
-  $is_test_or_dev = preg_match('/(dev|test)/i', \Drupal::config('environment_indicator.indicator')->get('name'));
-
-  return t(<<<END_EMAIL_FOOTER
-For more information or assistance, please @contact_us.
-
-Ministry of Finance Data Catalogue
-@data_cat_main_url
-END_EMAIL_FOOTER,
-  [
-    '@contact_us' => $is_test_or_dev
-      ? 'contact Nicole.deGreef@gov.bc.ca'
-      : 'reach out via [Finance Data Catalogue Support](https://fincsp.atlassian.net/servicedesk/customer/portal/12)',
-    '@data_cat_main_url' => Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString(),
-  ]);
 }
 
 /**
