@@ -277,5 +277,116 @@ END_BODY,
     ]);
   }
 
+  /**
+   * Send an email to someone re a bookmarked asset having been updated.
+   *
+   * @param \Drupal\user\Entity\User $owner
+   *   User who bookmarked this Metadata record.
+   * @param [type] $asset
+   *   The Metadata record they bookmarked.
+   */
+  function sendEmailReChangedAsset($owner, $asset) {
+
+    // We want to be able to say what kind of metadata record this is:
+    // - Postgres database
+    // - CHEFS form
+    // etc.
+    // To do this, we first look up the data-type term, and its ancestors.
+    // Then we make a few changes (so that it reads better), and render it.
+    //
+    // Build an array of this asset's dataset_type's term's name,
+    // and its ancestors' names.
+    // We are trying to build this var: $nice_record_type_name.
+    /* e.g. Data -> File -> CSV.              => "CSV data-file"
+    //      Data -> Database -> Postgres      => "Postgres database"
+    //      Data -> Database                  => "Database"
+    //      Form -> CHEFS                     => "CHEFS form"
+    //      Report                            => "Report"
+    //      Data                              => "Data-source"
+    */
+    $dataset_type_names = [];
+    $dataset_type_tid = $asset->field_data_set_type[0]->getValue()['target_id'];
+    $term_ancestry = $this->entityTypeManager->getStorage('taxonomy_term')->loadAllParents($dataset_type_tid);
+    foreach ($term_ancestry as $dataset_type_term) {
+      $dataset_type_names[] = $dataset_type_term->getName();
+    }
+
+    // $term_ancestry looks like 0=>'Postgres', 1='Database', 2=>'Data'.
+    // -- We want this reversed for our manipulations below.
+    $dataset_type_names = array_reverse($dataset_type_names);
+
+    if ($dataset_type_names[0] == 'Data') {
+      // Rename 'File' to be clearer.
+      if ($dataset_type_names[1] == 'File') {
+        $dataset_type_names[1] = 'Data-file';
+      }
+
+      // Throw away the first 'Data' term. We'll just call it a
+      // "Postgres database", not "Postgres database 'data'".
+      array_shift($dataset_type_names);
+    }
+
+    $nice_record_type_name = isset($dataset_type_names[1])
+      ? $dataset_type_names[1] . ' ' . strtolower($dataset_type_names[0])
+      : $dataset_type_names[0];
+
+    // This "remove-bookmark" link doesn't work, I think due to
+    // the CSRF token being connected to the wrong user?
+    /* $remove_bookmark_link = Url::fromRoute('flag.action_link_unflag',
+    ['flag'=>'bookmark', 'entity_id'=> $asset->id()],
+    ['absolute' => TRUE])->toString(),
+    */
+    $subject = t('Update to "@asset_name" metadata record', ['@asset_name' => $asset->getTitle()]);
+
+    $body_content = t(<<<END_BODY
+Dear @first_name,
+
+In the Finance Data Catalogue, you previously bookmarked the metadata record "[@asset_name](@asset_url)", which is a @nice_record_type_name.
+
+It has just been updated. Click to view the updated record:
+
+- [@direct_asset_url](@asset_url)
+
+___
+
+If you no longer want these reminders, you can unbookmark the related record here:
+
+- ["My bookmarks", in the Finance Data Catalogue](@subscriber_alerts_url)
+
+
+END_BODY,
+      [
+        '@first_name' => $owner->field_first_name->value,
+        '@nice_record_type_name' => $nice_record_type_name,
+        '@asset_name' => $asset->getTitle(),
+        '@direct_asset_url' => Url::fromRoute('entity.node.canonical',
+          ['node' => $asset->id()],
+          ['absolute' => TRUE]
+        )->toString(),
+        '@asset_url' => Url::fromRoute('user.login', [], [
+          'query' => ['destination' => '/node/' . $asset->id()],
+          'absolute' => TRUE,
+        ])->toString(),
+        '@subscriber_alerts_url' => Url::fromRoute('user.login', [], [
+          'query' => ['destination' => '/user/' . $owner->id() . '/bookmarks'],
+          'absolute' => TRUE,
+        ])->toString(),
+      ]
+    );
+
+    $body_content .= $this->getEmailFooter();
+
+    // Send the message and log the result.
+    $success = GcNotifyApiService::sendMessage([$owner->getEmail()], $subject, $body_content);
+    $logger = $this->getLogger('bc_dc');
+    $logger->notice(($success ? 'Sent message' : 'Failed sending message')
+              . 'to user @user_num when updating data_set @nid.', [
+                '@user_num' => $owner->id(),
+                '@nid' => $asset->id(),
+              ]
+    );
+  }
+
+
 
 }
