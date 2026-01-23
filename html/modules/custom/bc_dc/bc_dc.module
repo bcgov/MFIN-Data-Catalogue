@@ -23,7 +23,6 @@ use Drupal\Core\Render\Element;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
-use Drupal\message_gcnotify\Service\GcNotifyApiService;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\paragraphs\ParagraphInterface;
@@ -401,10 +400,12 @@ function bc_dc_node_presave(NodeInterface $node): void {
  */
 function bc_dc_node_insert(NodeInterface $node): void {
   // Act only on Metadata Records.
-  if ($node->bundle() == 'data_set') {
-    // If MR is changed in any way, then update it in the search index.
-    \Drupal::service('bc_dc.search_indexing')->reindexNode($node);
+  if ($node->bundle() != 'data_set') {
+    return;
   }
+
+  // If MR is changed in any way, then update it in the search index.
+  \Drupal::service('bc_dc.search_indexing')->reindexNode($node);
 }
 
 /**
@@ -412,172 +413,47 @@ function bc_dc_node_insert(NodeInterface $node): void {
  */
 function bc_dc_node_update(NodeInterface $node): void {
   // Act only on Metadata Records.
-  if ($node->bundle() == 'data_set') {
+  if ($node->bundle() != 'data_set') {
+    return;
+  }
 
-    // If MR is changed in any way, then update it in the search index.
-    \Drupal::service('bc_dc.search_indexing')->reindexNode($node);
+  $data_set =& $node;  // For clarity
 
-    
-    // Send a notification to all users who have bookmarked this data_set and who
-    // last viewed it before the modified_date.
-  
-    // If field_modified_date is not made greater than it was, do nothing.
-    $old_modified_date = $node->original->field_modified_date->value;
-    $new_modified_date = $node->field_modified_date->value;
-    if ($new_modified_date <= $old_modified_date) {
-      return;
-    }
+  // If MR is changed in any way, then update it in the search index.
+  \Drupal::service('bc_dc.search_indexing')->reindexNode($data_set);
 
-    // Load an array of all bookmarks.
-    $flag_service = \Drupal::service('flag');
-    $bookmark_flag = $flag_service->getFlagById('bookmark');
-    /** @var \Drupal\flag\FlaggingInterface[] $bookmark_flaggings Array of flaggings. */
-    $bookmark_flaggings = $flag_service->getEntityFlaggings($bookmark_flag, $node);
 
-    // Email users who asked to be notified of the change,
-    // if the data set was modified after the last viewed date.
-    // We compare dates because field_modified_date might not be set to now, but
-    // some time in the past when it was know that an update was made.
-    foreach ($bookmark_flaggings as $bookmark_flagging) {
-      if ($new_modified_date > $bookmark_flagging->get('field_last_viewed_date')->value) {
-        $owner = $bookmark_flagging->getOwner();
-        $email = $owner->getEmail();
-        if ($email) {
-          _bc_dc_send_email_re_changed_asset($owner, $node);
-        }
+  // Send a notification to all users who have bookmarked this data_set and who
+  // last viewed it before the modified_date.
+
+  // If field_modified_date is not made greater than it was, do nothing.
+  $old_modified_date = $data_set->original->field_modified_date->value;
+  $new_modified_date = $data_set->field_modified_date->value;
+
+  if ($new_modified_date <= $old_modified_date) {
+    return;
+  }
+
+
+  // Load an array of all bookmarks.
+  $flag_service = \Drupal::service('flag');
+  $bookmark_flag = $flag_service->getFlagById('bookmark');
+  /** @var \Drupal\flag\FlaggingInterface[] $bookmark_flaggings Array of flaggings. */
+  $bookmark_flaggings = $flag_service->getEntityFlaggings($bookmark_flag, $data_set);
+
+  // Email users who asked to be notified of the change,
+  // if the data set was modified after the last viewed date.
+  // We compare dates because field_modified_date might not be set to now, but
+  // some time in the past when it was know that an update was made.
+  foreach ($bookmark_flaggings as $bookmark_flagging) {
+    $date_owner_last_viewed_mr = $bookmark_flagging->get('field_last_viewed_date')->value;
+    if ($new_modified_date > $date_owner_last_viewed_mr) {
+      $owner = $bookmark_flagging->getOwner();
+      if ($owner->getEmail()) {
+        \Drupal::service('bc_dc.email_sending')->sendEmailReChangedMetadataRecord($owner, $data_set, strtotime($date_owner_last_viewed_mr));
       }
     }
   }
-}
-
-/**
- * Send an email to someone re a bookmarked asset having been updated.
- *
- * @param \Drupal\user\Entity\User $owner
- *   User who bookmarked this Metadata record.
- * @param [type] $asset
- *   The Metadata record they bookmarked.
- */
-function _bc_dc_send_email_re_changed_asset($owner, $asset) {
-
-  // We want to be able to say what kind of metadata record this is:
-  // - Postgres database
-  // - CHEFS form
-  // etc.
-  // To do this, we first look up the data-type term, and its ancestors.
-  // Then we make a few changes (so that it reads better), and render it.
-  //
-  // Build an array of this asset's dataset_type's term's name,
-  // and its ancestors' names.
-  // We are trying to build this var: $nice_record_type_name.
-  /* e.g. Data -> File -> CSV.              => "CSV data-file"
-  //      Data -> Database -> Postgres      => "Postgres database"
-  //      Data -> Database                  => "Database"
-  //      Form -> CHEFS                     => "CHEFS form"
-  //      Report                            => "Report"
-  //      Data                              => "Data-source"
-   */
-  $dataset_type_names = [];
-  $dataset_type_tid = $asset->field_data_set_type[0]->getValue()['target_id'];
-  $term_ancestry = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadAllParents($dataset_type_tid);
-  foreach ($term_ancestry as $dataset_type_term) {
-    $dataset_type_names[] = $dataset_type_term->getName();
-  }
-
-  // $term_ancestry looks like 0=>'Postgres', 1='Database', 2=>'Data'.
-  // -- We want this reversed for our manipulations below.
-  $dataset_type_names = array_reverse($dataset_type_names);
-
-  if ($dataset_type_names[0] == 'Data') {
-    // Rename 'File' to be clearer.
-    if ($dataset_type_names[1] == 'File') {
-      $dataset_type_names[1] = 'Data-file';
-    }
-
-    // Throw away the first 'Data' term. We'll just call it a
-    // "Postgres database", not "Postgres database 'data'".
-    array_shift($dataset_type_names);
-  }
-
-  $nice_record_type_name = isset($dataset_type_names[1])
-    ? $dataset_type_names[1] . ' ' . strtolower($dataset_type_names[0])
-    : $dataset_type_names[0];
-
-  // This "remove-bookmark" link doesn't work, I think due to
-  // the CSRF token being connected to the wrong user?
-  /* $remove_bookmark_link = Url::fromRoute('flag.action_link_unflag',
-  ['flag'=>'bookmark', 'entity_id'=> $asset->id()],
-  ['absolute' => TRUE])->toString(),
-   */
-  $subject = t('Update to "@asset_name" metadata record', ['@asset_name' => $asset->getTitle()]);
-
-  $body_content = t(<<<END_BODY
-Dear @first_name,
-
-In the Finance Data Catalogue, you previously bookmarked the metadata record "[@asset_name](@asset_url)", which is a @nice_record_type_name.
-
-It has just been updated. Click to view the updated record:
-
-- [@direct_asset_url](@asset_url)
-
-___
-
-If you no longer want these reminders, you can unbookmark the related record here:
-
-- ["My bookmarks", in the Finance Data Catalogue](@subscriber_alerts_url)
-
-
-END_BODY,
-    [
-      '@first_name' => $owner->field_first_name->value,
-      '@nice_record_type_name' => $nice_record_type_name,
-      '@asset_name' => $asset->getTitle(),
-      '@direct_asset_url' => Url::fromRoute('entity.node.canonical',
-        ['node' => $asset->id()],
-        ['absolute' => TRUE]
-      )->toString(),
-      '@asset_url' => Url::fromRoute('user.login', [], [
-        'query' => ['destination' => '/node/' . $asset->id()],
-        'absolute' => TRUE,
-      ])->toString(),
-      '@subscriber_alerts_url' => Url::fromRoute('user.login', [], [
-        'query' => ['destination' => '/user/' . $owner->id() . '/bookmarks'],
-        'absolute' => TRUE,
-      ])->toString(),
-    ]
-  );
-
-  $body_content .= _bc_dc_get_email_footer();
-
-  // Send the message and log the result.
-  $success = GcNotifyApiService::sendMessage([$owner->getEmail()], $subject, $body_content);
-  $logger = \Drupal::logger('bc_dc');
-  $logger->notice(($success ? 'Sent message' : 'Failed sending message')
-            . 'to user @user_num when updating data_set @nid.', [
-              '@user_num' => $owner->id(),
-              '@nid' => $asset->id(),
-            ]
-  );
-}
-
-/**
- * Get the common text we put in email footers.
- */
-function _bc_dc_get_email_footer() {
-  $is_test_or_dev = preg_match('/(dev|test)/i', \Drupal::config('environment_indicator.indicator')->get('name'));
-
-  return t(<<<END_EMAIL_FOOTER
-For more information or assistance, please @contact_us.
-
-Ministry of Finance Data Catalogue
-@data_cat_main_url
-END_EMAIL_FOOTER,
-  [
-    '@contact_us' => $is_test_or_dev
-      ? 'contact Nicole.deGreef@gov.bc.ca'
-      : 'reach out via [Finance Data Catalogue Support](https://fincsp.atlassian.net/servicedesk/customer/portal/12)',
-    '@data_cat_main_url' => Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString(),
-  ]);
 }
 
 /**
