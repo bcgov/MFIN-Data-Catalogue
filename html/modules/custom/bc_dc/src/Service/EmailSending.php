@@ -278,14 +278,14 @@ END_BODY,
   }
 
   /**
-   * Send an email to someone re a bookmarked asset having been updated.
+   * Send an email to someone re a bookmarked data_set having been updated.
    *
    * @param \Drupal\user\Entity\User $owner
    *   User who bookmarked this Metadata record.
-   * @param [type] $asset
+   * @param [type] $data_set
    *   The Metadata record they bookmarked.
    */
-  function sendEmailReChangedAsset($owner, $asset) {
+  function sendEmailReChangedMetadataRecord($owner, $data_set) {
 
     // We want to be able to say what kind of metadata record this is:
     // - Postgres database
@@ -294,7 +294,7 @@ END_BODY,
     // To do this, we first look up the data-type term, and its ancestors.
     // Then we make a few changes (so that it reads better), and render it.
     //
-    // Build an array of this asset's dataset_type's term's name,
+    // Build an array of this data_set's type's term's name,
     // and its ancestors' names.
     // We are trying to build this var: $nice_record_type_name.
     /* e.g. Data -> File -> CSV.              => "CSV data-file"
@@ -305,7 +305,7 @@ END_BODY,
     //      Data                              => "Data-source"
     */
     $dataset_type_names = [];
-    $dataset_type_tid = $asset->field_data_set_type[0]->getValue()['target_id'];
+    $dataset_type_tid = $data_set->field_data_set_type[0]->getValue()['target_id'];
     $term_ancestry = $this->entityTypeManager->getStorage('taxonomy_term')->loadAllParents($dataset_type_tid);
     foreach ($term_ancestry as $dataset_type_term) {
       $dataset_type_names[] = $dataset_type_term->getName();
@@ -333,10 +333,10 @@ END_BODY,
     // This "remove-bookmark" link doesn't work, I think due to
     // the CSRF token being connected to the wrong user?
     /* $remove_bookmark_link = Url::fromRoute('flag.action_link_unflag',
-    ['flag'=>'bookmark', 'entity_id'=> $asset->id()],
+    ['flag'=>'bookmark', 'entity_id'=> $data_set->id()],
     ['absolute' => TRUE])->toString(),
     */
-    $subject = t('Update to "@asset_name" metadata record', ['@asset_name' => $asset->getTitle()]);
+    $subject = t('Update to "@asset_name" metadata record', ['@asset_name' => $data_set->getTitle()]);
 
     $body_content = t(<<<END_BODY
 Dear @first_name,
@@ -358,13 +358,13 @@ END_BODY,
       [
         '@first_name' => $owner->field_first_name->value,
         '@nice_record_type_name' => $nice_record_type_name,
-        '@asset_name' => $asset->getTitle(),
+        '@asset_name' => $data_set->getTitle(),
         '@direct_asset_url' => Url::fromRoute('entity.node.canonical',
-          ['node' => $asset->id()],
+          ['node' => $data_set->id()],
           ['absolute' => TRUE]
         )->toString(),
         '@asset_url' => Url::fromRoute('user.login', [], [
-          'query' => ['destination' => '/node/' . $asset->id()],
+          'query' => ['destination' => '/node/' . $data_set->id()],
           'absolute' => TRUE,
         ])->toString(),
         '@subscriber_alerts_url' => Url::fromRoute('user.login', [], [
@@ -382,7 +382,7 @@ END_BODY,
     $logger->notice(($success ? 'Sent message' : 'Failed sending message')
               . 'to user @user_num when updating data_set @nid.', [
                 '@user_num' => $owner->id(),
-                '@nid' => $asset->id(),
+                '@nid' => $data_set->id(),
               ]
     );
   }

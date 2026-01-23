@@ -411,18 +411,19 @@ function bc_dc_node_insert(NodeInterface $node): void {
  */
 function bc_dc_node_update(NodeInterface $node): void {
   // Act only on Metadata Records.
-  if ($node->bundle() == 'data_set') {
+
+  $data_set =& $node;  // For clarity
 
     // If MR is changed in any way, then update it in the search index.
-    \Drupal::service('bc_dc.search_indexing')->reindexNode($node);
+  \Drupal::service('bc_dc.search_indexing')->reindexNode($data_set);
 
     
     // Send a notification to all users who have bookmarked this data_set and who
     // last viewed it before the modified_date.
   
     // If field_modified_date is not made greater than it was, do nothing.
-    $old_modified_date = $node->original->field_modified_date->value;
-    $new_modified_date = $node->field_modified_date->value;
+  $old_modified_date = $data_set->original->field_modified_date->value;
+  $new_modified_date = $data_set->field_modified_date->value;
     if ($new_modified_date <= $old_modified_date) {
       return;
     }
@@ -442,8 +443,7 @@ function bc_dc_node_update(NodeInterface $node): void {
       if ($new_modified_date > $date_owner_last_viewed_mr) {
         $owner = $bookmark_flagging->getOwner();
         if ($owner->getEmail()) {
-          \Drupal::service('bc_dc.email_sending')->sendEmailReChangedAsset($owner, $node);
-        }
+        \Drupal::service('bc_dc.email_sending')->sendEmailReChangedMetadataRecord($owner, $data_set);
       }
     }
   }
