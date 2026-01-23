@@ -400,10 +400,12 @@ function bc_dc_node_presave(NodeInterface $node): void {
  */
 function bc_dc_node_insert(NodeInterface $node): void {
   // Act only on Metadata Records.
-  if ($node->bundle() == 'data_set') {
-    // If MR is changed in any way, then update it in the search index.
-    \Drupal::service('bc_dc.search_indexing')->reindexNode($node);
+  if ($node->bundle() != 'data_set') {
+    return;
   }
+
+  // If MR is changed in any way, then update it in the search index.
+  \Drupal::service('bc_dc.search_indexing')->reindexNode($node);
 }
 
 /**
@@ -411,39 +413,44 @@ function bc_dc_node_insert(NodeInterface $node): void {
  */
 function bc_dc_node_update(NodeInterface $node): void {
   // Act only on Metadata Records.
+  if ($node->bundle() != 'data_set') {
+    return;
+  }
 
   $data_set =& $node;  // For clarity
 
-    // If MR is changed in any way, then update it in the search index.
+  // If MR is changed in any way, then update it in the search index.
   \Drupal::service('bc_dc.search_indexing')->reindexNode($data_set);
 
-    
-    // Send a notification to all users who have bookmarked this data_set and who
-    // last viewed it before the modified_date.
-  
-    // If field_modified_date is not made greater than it was, do nothing.
+
+  // Send a notification to all users who have bookmarked this data_set and who
+  // last viewed it before the modified_date.
+
+  // If field_modified_date is not made greater than it was, do nothing.
   $old_modified_date = $data_set->original->field_modified_date->value;
   $new_modified_date = $data_set->field_modified_date->value;
-    if ($new_modified_date <= $old_modified_date) {
-      return;
-    }
 
-    // Load an array of all bookmarks.
-    $flag_service = \Drupal::service('flag');
-    $bookmark_flag = $flag_service->getFlagById('bookmark');
-    /** @var \Drupal\flag\FlaggingInterface[] $bookmark_flaggings Array of flaggings. */
-    $bookmark_flaggings = $flag_service->getEntityFlaggings($bookmark_flag, $node);
+  if ($new_modified_date <= $old_modified_date) {
+    return;
+  }
 
-    // Email users who asked to be notified of the change,
-    // if the data set was modified after the last viewed date.
-    // We compare dates because field_modified_date might not be set to now, but
-    // some time in the past when it was know that an update was made.
-    foreach ($bookmark_flaggings as $bookmark_flagging) {
-      $date_owner_last_viewed_mr = $bookmark_flagging->get('field_last_viewed_date')->value;
-      if ($new_modified_date > $date_owner_last_viewed_mr) {
-        $owner = $bookmark_flagging->getOwner();
-        if ($owner->getEmail()) {
-        \Drupal::service('bc_dc.email_sending')->sendEmailReChangedMetadataRecord($owner, $data_set);
+
+  // Load an array of all bookmarks.
+  $flag_service = \Drupal::service('flag');
+  $bookmark_flag = $flag_service->getFlagById('bookmark');
+  /** @var \Drupal\flag\FlaggingInterface[] $bookmark_flaggings Array of flaggings. */
+  $bookmark_flaggings = $flag_service->getEntityFlaggings($bookmark_flag, $data_set);
+
+  // Email users who asked to be notified of the change,
+  // if the data set was modified after the last viewed date.
+  // We compare dates because field_modified_date might not be set to now, but
+  // some time in the past when it was know that an update was made.
+  foreach ($bookmark_flaggings as $bookmark_flagging) {
+    $date_owner_last_viewed_mr = $bookmark_flagging->get('field_last_viewed_date')->value;
+    if ($new_modified_date > $date_owner_last_viewed_mr) {
+      $owner = $bookmark_flagging->getOwner();
+      if ($owner->getEmail()) {
+        \Drupal::service('bc_dc.email_sending')->sendEmailReChangedMetadataRecord($owner, $data_set, strtotime($date_owner_last_viewed_mr));
       }
     }
   }

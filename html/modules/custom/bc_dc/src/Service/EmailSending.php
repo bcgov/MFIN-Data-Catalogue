@@ -12,6 +12,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\Core\Url;
 use Drupal\message_gcnotify\Service\GcNotifyApiService;
+use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -285,7 +286,7 @@ END_BODY,
    * @param [type] $data_set
    *   The Metadata record they bookmarked.
    */
-  function sendEmailReChangedMetadataRecord($owner, $data_set) {
+  function sendEmailReChangedMetadataRecord($owner, $data_set, $owner_last_viewed_mr_timestamp) {
 
     // We want to be able to say what kind of metadata record this is:
     // - Postgres database
@@ -330,22 +331,78 @@ END_BODY,
       ? $dataset_type_names[1] . ' ' . strtolower($dataset_type_names[0])
       : $dataset_type_names[0];
 
+
+    // Build up the list of links to show:
+    //   - one to view the MR
+    //   - one to view the *changes* to the MR
+    //   - optional one to view all changes to the MR since the user last looked at it.
+    $links_to_show = '';
+
+    $link_to_view_dataset = Url::fromRoute('user.login', [], [
+          'query' => ['destination' => '/node/' . $data_set->id()],
+          'absolute' => TRUE,
+        ])->toString();
+    $links_to_show .= "- [The latest complete version of the record]($link_to_view_dataset)\n";
+
+    // '$sr' is 'significant revisions'
+    $sr = $this->getSignificantRevisions($data_set, $owner_last_viewed_mr_timestamp);
+
+    $link_to_recent_change = $this->getSingleDiffLink($data_set->id(), 
+      $sr['most_recent_published_rev'],
+      $sr['current_published_rev']
+    );
+    $links_to_show .= "- [Only the changes that were just made]($link_to_recent_change)\n";
+    
+    if ($sr['most_recent_published_rev'] != $sr['most_recent_published_rev_user_has_seen']) {
+      $link_to_changes_user_hasnt_seen = $this->getSingleDiffLink($data_set->id(), 
+        $sr['most_recent_published_rev_user_has_seen'],
+        $sr['current_published_rev']
+      );
+      if (date('Ymd', $owner_last_viewed_mr_timestamp) == date('Ymd')) {
+        $when_last_viewed = 'today';
+      }
+      elseif (date('Ymd', $owner_last_viewed_mr_timestamp) == date('Ymd', time()-24*3600)) {
+        $when_last_viewed = 'yesterday';
+      }
+      else {
+        if (time() - $owner_last_viewed_mr_timestamp < 24*3600*30*8) {
+          // Less than 8 months ago. Use just month and day  e.g. "January 23rd"
+          $date_format = 'F jS';
+        }else{
+          // More than 8 months ago... use year, too.
+          $date_format = 'F jS, Y';
+        }
+        $when_last_viewed = 'on ' . date($date_format, $owner_last_viewed_mr_timestamp); 
+      }
+      $links_to_show .= "- [All the changes that have been made since you last viewed this record, $when_last_viewed]"
+        ."($link_to_changes_user_hasnt_seen)\n";
+    }
+
+
     // This "remove-bookmark" link doesn't work, I think due to
     // the CSRF token being connected to the wrong user?
     /* $remove_bookmark_link = Url::fromRoute('flag.action_link_unflag',
     ['flag'=>'bookmark', 'entity_id'=> $data_set->id()],
     ['absolute' => TRUE])->toString(),
     */
-    $subject = t('Update to "@asset_name" metadata record', ['@asset_name' => $data_set->getTitle()]);
+    $orig_title = $data_set->original->getTitle();
+    $cur_title = $data_set->getTitle();
+    $possible_new_title = $orig_title == $cur_title 
+      ? '' 
+      : sprintf(' (whose title is now "%s")', $cur_title); 
+
+    // Build the email!
+
+    $subject = t('Update to "@asset_name" metadata record', ['@asset_name' => $orig_title]);
 
     $body_content = t(<<<END_BODY
 Dear @first_name,
 
-In the Finance Data Catalogue, you previously bookmarked the metadata record "[@asset_name](@asset_url)", which is a @nice_record_type_name.
+In the Finance Data Catalogue, you previously bookmarked the metadata record "[@asset_name](@asset_url)"@possible_new_title. 
 
-It has just been updated. Click to view the updated record:
+This @nice_record_type_name has just been updated. Click to view:
 
-- [@direct_asset_url](@asset_url)
+@links_to_show
 
 ___
 
@@ -358,15 +415,13 @@ END_BODY,
       [
         '@first_name' => $owner->field_first_name->value,
         '@nice_record_type_name' => $nice_record_type_name,
-        '@asset_name' => $data_set->getTitle(),
-        '@direct_asset_url' => Url::fromRoute('entity.node.canonical',
-          ['node' => $data_set->id()],
-          ['absolute' => TRUE]
-        )->toString(),
+        '@asset_name' => $orig_title,
         '@asset_url' => Url::fromRoute('user.login', [], [
           'query' => ['destination' => '/node/' . $data_set->id()],
           'absolute' => TRUE,
         ])->toString(),
+        '@possible_new_title' => $possible_new_title,
+        '@links_to_show' => $links_to_show,
         '@subscriber_alerts_url' => Url::fromRoute('user.login', [], [
           'query' => ['destination' => '/user/' . $owner->id() . '/bookmarks'],
           'absolute' => TRUE,
@@ -388,5 +443,84 @@ END_BODY,
   }
 
 
+  /**
+   * getSignificatnRevisions()
+   * 
+   * Given a MetadataRecord and the time that a person last viewed it,
+   * return a list of the following revision IDs:
+   *   - ID of currently published revision
+   *   - ID of previously publishe revision
+   *   - ID of the published revision that was active when the person last viewed it.
+   *
+   * @param NodeInterface $metadata_record
+   * @param integer $since_timestamp
+   * @return array
+   */
+  public function getSignificantRevisions(NodeInterface $metadata_record, int $since_timestamp) {
+    $node_storage = $this->entityTypeManager->getStorage('node');
+    $revision_ids = $node_storage->revisionIds($metadata_record);
+
+    do {
+      $current_rev_id = array_pop($revision_ids);
+      if (!$current_rev_id) throw new \Exception("No published revisions for node $nid.");
+    } while (
+        $node_storage->loadRevision($current_rev_id)->moderation_state[0]->value != 'published'
+    );
+
+    $most_recent_published_rev_id = null;
+    do {
+      $this_rev_id = array_pop($revision_ids);
+      if (!$this_rev_id) throw new \Exception("No previously published revisions for node {$metadata_record->id()}.");
+      $this_rev = $node_storage->loadRevision($this_rev_id);
+      if ($this_rev->moderation_state[0]->value == 'published') {
+        $most_recent_published_rev_id = $most_recent_published_rev_id ?: $this_rev_id;
+      }
+      } while (
+           $this_rev->moderation_state[0]->value != 'published'
+        || $this_rev->revision_timestamp->value > $since_timestamp
+    );
+          
+    return ([
+      'current_published_rev'                   => $current_rev_id,
+      'most_recent_published_rev'               => $most_recent_published_rev_id,
+      'most_recent_published_rev_user_has_seen' => $this_rev_id,
+    ]);
+
+  }
+
+  /**
+   * getSingleDiffLink()
+   * 
+   * Build the URL needed to view a diff between two revisions of a Node.
+   * e.g. https://test.cat.data.fin.gov.bc.ca/node/418/revisions/view/21080/21081/visual_inline
+   * (That is the URL you end up at, but actually the URL sends you to the user login,
+   * with a redirect to that URL.)
+   *
+   * @param integer $nid
+   * @param integer $earlier_rev_id
+   * @param integer $later_rev_id
+   * @return String 
+   */
+  public function getSingleDiffLink(int $nid, int $earlier_rev_id, int $later_rev_id) {
+    $diff_link = Url::fromRoute('diff.revisions_diff',
+      [
+        'node' => $nid,
+        'left_revision' => $earlier_rev_id,
+        'right_revision' => $later_rev_id,
+        'filter' => 'visual_inline',
+      ],
+      ['absolute' => FALSE]
+    )->toString();
+
+    $diff_via_login = Url::fromRoute('user.login', 
+      [], 
+      [
+        'query' => ['destination' => $diff_link],
+        'absolute' => TRUE,
+      ]
+    )->toString();
+
+    return $diff_via_login;
+  }
 
 }
