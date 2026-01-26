@@ -3,4 +3,4 @@ description: Common code for the NewBB project.
 type: module
 core_version_requirement: ^11
 dependencies:
-  - drupal:help
+  - drupal:admin_toolbar_tools
