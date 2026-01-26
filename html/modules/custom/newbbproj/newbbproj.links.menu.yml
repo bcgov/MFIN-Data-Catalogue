@@ -1,0 +1,5 @@
+newbbproj.code_version:
+  title: 'NEWBB-project revision x.y.z'
+  parent: admin_toolbar_tools.help
+  route_name: '<nolink>'
+  weight: 15
