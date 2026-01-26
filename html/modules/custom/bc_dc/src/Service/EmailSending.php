@@ -435,7 +435,7 @@ END_BODY,
     $success = GcNotifyApiService::sendMessage([$owner->getEmail()], $subject, $body_content);
     $logger = $this->getLogger('bc_dc');
     $logger->notice(($success ? 'Sent message' : 'Failed sending message')
-              . 'to user @user_num when updating data_set @nid.', [
+              . ' to user @user_num when updating data_set @nid.', [
                 '@user_num' => $owner->id(),
                 '@nid' => $data_set->id(),
               ]
