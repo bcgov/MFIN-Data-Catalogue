@@ -5,75 +5,9 @@
     "license": "GPL-2.0-or-later",
     "homepage": "https://github.com/bcgov/bcbb",
     "require": {
-        "cweagans/composer-patches": "^1",
-        "drupal/admin_toolbar": "^3.0",
-        "drupal/allowed_formats": "^2.0",
-        "drupal/better_exposed_filters": "^6.0",
-        "drupal/ckeditor5_fullscreen": "^1.0@beta",
-        "drupal/config_filter": "^2.4",
-        "drupal/config_ignore": "^3.1",
-        "drupal/config_split": "^2.0",
-        "drupal/devel": "^5.0",
-        "drupal/diff": "^1.9",
-        "drupal/entity_embed": "^1.5",
-        "drupal/environment_indicator": "^4.0",
-        "drupal/facets": "^2.0",
-        "drupal/field_group": "^4.0",
-        "drupal/form_mode_control": "^2.2",
-        "drupal/gin": "^4.0",
-        "drupal/gin_toolbar": "^2.1",
-        "drupal/inline_entity_form": "^2.0",
-        "drupal/linkit": "^7.0",
-        "drupal/m4032404": "^1.0",
-        "drupal/metatag": "^2.0",
-        "drupal/openid_connect": "^3.0@alpha",
-        "drupal/page_manager": "^4.0",
-        "drupal/panels": "^4.7",
-        "drupal/paragraphs": "^1.15",
-        "drupal/pathauto": "^1.11",
-        "drupal/rabbit_hole": "^2.0@alpha",
-        "drupal/realname": "^2.0",
-        "drupal/robotstxt": "^1.5",
-        "drupal/role_delegation": "^1.2",
-        "drupal/search_api": "^1.29",
-        "drupal/search_api_solr": "^4.2",
-        "drupal/shield": "^1.7",
-        "drupal/smtp": "^1.2",
-        "drupal/structure_sync": "^2.0",
-        "drupal/taxonomy_manager": "^2.0",
-        "drupal/toc_filter": "^2.1",
-        "drupal/token_filter": "^2.0",
-        "drupal/token": "^1.11",
-        "drupal/twig_tweak": "^3.2",
-        "drupal/ultimate_cron": "^2.0@alpha",
-        "drupal/upgrade_status": "^4.0",
-        "drupal/vbo_export": "^4.1",
-        "drupal/views_bulk_edit": "^3.0",
-        "drupal/views_data_export": "^1.4",
-        "drupal/we_megamenu": "^1.16",
-        "drush/drush": "^12.0"
     },
     "extra": {
         "patches": {
-            "drupal/core": {
-                "3392572 - strnatcasecmp(): Passing null to string is deprecated": "https://www.drupal.org/files/issues/2023-10-25/drupal-strnatcasecmp_string_only-3392572-10.patch"
-            },
-            "drupal/diff": {
-                "2954352 - Local tasks for node not visible on diff.revisions_diff route": "https://www.drupal.org/files/issues/2024-05-16/diff-add_local_tasks-2954352-17.patch"
-            },
-            "drupal/page_manager": {
-                "2756613 - Avoid harcoded prefex and suffix in block region": "https://www.drupal.org/files/issues/page_manager-avoid_prefix_suffix-2756613-8.patch"
-            },
-            "drupal/panels": {
-                "2820617 - Avoid harcoded prefex and suffix in block region": "https://git.drupalcode.org/project/panels/-/merge_requests/12.diff",
-                "2910704 - IPE toggle preview not working in IE": "https://www.drupal.org/files/issues/panels-ipe-card-flip-ie-error-2910704.diff"
-            },
-            "drupal/role_delegation": {
-                "3475414 - Allow users with administer users to see Roles tab via a setting": "https://www.drupal.org/files/issues/2024-12-05/3475414-role_delegation-5.patch"
-            },
-            "drupal/vbo_export": {
-                "3257067 - Ensure PrivateTempStore key is not too long": "https://www.drupal.org/files/issues/2023-06-29/vbo_export-cid_too_long-3257067-9.patch"
-            }
         }
     }
 }
