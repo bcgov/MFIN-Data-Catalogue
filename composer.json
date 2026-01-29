@@ -100,6 +100,7 @@
         "drupal/auto_username": "^2.0",
         "drupal/better_exposed_filters": "^6.0",
         "drupal/better_normalizers": "^2.0@beta",
+        "drupal/bootstrap5": "^3",
         "drupal/cancel_button": "^1.4",
         "drupal/charts": "^5.0",
         "drupal/chosen": "^5.0",
