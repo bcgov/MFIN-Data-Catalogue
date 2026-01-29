@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fd6a90a3e882a47052fd0de8e596a066",
+    "content-hash": "d916bbe115dbc9172098341e128e2564",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -61,36 +61,6 @@
                 "source": "https://github.com/asm89/stack-cors/tree/v2.3.0"
             },
             "time": "2025-03-13T08:50:04+00:00"
-        },
-        {
-            "name": "bcgov/bcbb_theme",
-            "version": "1.0.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/bcgov/bcbb-theme.git",
-                "reference": "ca0c3da4162f10c9ebed71ede7d95ae71869fbd0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb-theme/zipball/ca0c3da4162f10c9ebed71ede7d95ae71869fbd0",
-                "reference": "ca0c3da4162f10c9ebed71ede7d95ae71869fbd0",
-                "shasum": ""
-            },
-            "require": {
-                "drupal/bootstrap5": "^3"
-            },
-            "default-branch": true,
-            "type": "drupal-theme",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "description": "BC Base Build Theme",
-            "homepage": "https://github.com/bcgov/bcbb-theme",
-            "support": {
-                "source": "https://github.com/bcgov/bcbb-theme/tree/1.0.x",
-                "issues": "https://github.com/bcgov/bcbb-theme/issues"
-            },
-            "time": "2024-10-09T17:57:41+00:00"
         },
         {
             "name": "bcgov/gdx_analytics_drupal_snowplow",
@@ -2214,56 +2184,6 @@
             "support": {
                 "source": "https://git.drupal.org/project/better_normalizers.git",
                 "issues": "https://www.drupal.org/project/issues/better_normalizers"
-            }
-        },
-        {
-            "name": "drupal/bootstrap5",
-            "version": "3.0.15",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/bootstrap5.git",
-                "reference": "3.0.15"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/bootstrap5-3.0.15.zip",
-                "reference": "3.0.15",
-                "shasum": "881d53ca5c8debbe1c352b10fb6a0238ea60da4f"
-            },
-            "require": {
-                "drupal/core": "^9.4 || ^10"
-            },
-            "type": "drupal-theme",
-            "extra": {
-                "drupal": {
-                    "version": "3.0.15",
-                    "datestamp": "1769589552",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Vladimir Roudakov (vladimiraus)",
-                    "homepage": "https://www.drupal.org/u/vladimiraus",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "vladimiraus",
-                    "homepage": "https://www.drupal.org/user/673120"
-                }
-            ],
-            "description": "Master theme using Bootstrap 5: powerful front-end framework for faster and easier web development.",
-            "homepage": "https://www.drupal.org/project/bootstrap5",
-            "support": {
-                "source": "https://git.drupalcode.org/project/bootstrap5",
-                "issues": "https://www.drupal.org/project/issues/bootstrap5"
             }
         },
         {
@@ -24274,7 +24194,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "bcgov/bcbb_theme": 20,
         "bcgov/gdx_analytics_drupal_snowplow": 20,
         "drupal/better_normalizers": 10,
         "drupal/ckeditor5_fullscreen": 10,
