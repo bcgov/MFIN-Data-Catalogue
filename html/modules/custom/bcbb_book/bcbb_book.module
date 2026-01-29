@@ -1,0 +1,87 @@
+<?php
+
+/**
+ * @file
+ * Module file.
+ */
+
+use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_preprocess_HOOK() for book_navigation.
+ */
+function bcbb_book_preprocess_book_navigation(array &$variables): void {
+  // Only display the list of child pages on root book page.
+  if ($variables['current_depth'] > 1) {
+    unset($variables['tree']);
+  }
+
+  // Display the summary in the list of child pages.
+  if (!empty($variables['tree']['#items'])) {
+    foreach ($variables['tree']['#items'] as $nid => &$item) {
+      // Get the node in the current language.
+      $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
+      $book_page = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
+      if ($book_page->hasTranslation($langcode)) {
+        $book_page = $book_page->getTranslation($langcode);
+      }
+
+      // If there is a summary, set it as the suffix.
+      $summary = $book_page->get('body')->summary ?? NULL;
+      if ($summary) {
+        $item['suffix'] = [
+          '#type' => 'processed_text',
+          '#format' => $book_page->get('body')->format,
+          '#prefix' => '<div class="summary">',
+          '#text' => $summary,
+          '#suffix' => '</div>',
+        ];
+      }
+    }
+  }
+}
+
+/**
+ * Returns whether a node is allowed to be part of a book.
+ *
+ * @param \Drupal\node\NodeInterface $node
+ *   The node to check.
+ *
+ * @return bool
+ *   TRUE if the node is allowed, FALSE otherwise.
+ */
+function bcbb_book_node_allowed_in_book(NodeInterface $node): bool {
+  $bundle = $node->getType();
+  $allowed_types = \Drupal::config('book.settings')->get('allowed_types');
+  return array_search($bundle, $allowed_types, TRUE) !== FALSE;
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function bcbb_book_menu_local_tasks_alter(array &$data, string $route_name, RefinableCacheableDependencyInterface &$cacheability): void {
+  // Get the current node.
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if (is_numeric($node)) {
+    $node = \Drupal::entityTypeManager()->getStorage('node')->load($node);
+  }
+
+  // Hide book outline tab on content types that are not allowed to be in books.
+  if ($node instanceof NodeInterface) {
+    if (!bcbb_book_node_allowed_in_book($node)) {
+      unset($data['tabs'][0]['entity.node.book_outline_form']);
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function bcbb_book_form_node_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
+  // Hide book outline tab on content types that are not allowed to be in books.
+  if (!bcbb_book_node_allowed_in_book($form_state->getFormObject()->getEntity())) {
+    $form['book']['#access'] = FALSE;
+  }
+}

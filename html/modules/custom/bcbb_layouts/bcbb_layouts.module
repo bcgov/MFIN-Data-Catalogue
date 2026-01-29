@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @file
+ * Module file.
+ */
+
+/**
+ * Implements hook_preprocess_HOOK() for bcbb-search-results.html.twig.
+ */
+function bcbb_layouts_preprocess_bcbb_search_results(array &$variables): void {
+  // Get route name.
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  // See if route matches the search results page.
+  if ($route_name === 'page_manager.page_view_site_search_site_search-panels_variant-0') {
+    // Create a custom variable that can be defined in twig.
+    $variables['wrapper_attributes']['class'][] = 'bcbb-search-wrapper';
+    $variables['sidebar_wrapper_attributes']['class'][] = 'bcbb-search-sidebar';
+    $variables['facet_wrapper_attributes']['class'][] = 'dc-search-filters';
+    $variables['facet_wrapper_attributes']['class'][] = 'bcbb-desktop-open';
+    $variables['#attached']['library'][] = 'bcbb_other/bcbb-misc';
+  }
+}

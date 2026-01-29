@@ -1,0 +1,22 @@
+name: 'BC Base Build Search'
+description: 'Search configuration.'
+type: module
+core_version_requirement: ^10.2 || ^11.0
+package: 'BC Base Build'
+
+dependencies:
+  - bcbb:bcbb
+  - bcbb:bcbb_layouts
+  - better_exposed_filters:better_exposed_filters
+  - drupal:node
+  - drupal:text
+  - drupal:user
+  - drupal:views
+  - facets:facets
+  - facets:facets_summary
+  - page_manager:page_manager_ui
+  - panels:panels
+  - search_api_saved_searches:search_api_saved_searches
+  - search_api:search_api
+  - search_api:search_api_db
+  - views_bulk_operations:views_bulk_operations
