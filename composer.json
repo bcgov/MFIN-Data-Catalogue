@@ -156,7 +156,7 @@
         "drupal/redirect": "^1.11",
         "drupal/registration_role": "^2.0",
         "drupal/robotstxt": "^1.5",
-        "drupal/role_delegation": "^1.2",
+        "drupal/role_delegation": "1.4",
         "drupal/search_api": "^1.29",
         "drupal/search_api_saved_searches": "^1.0",
         "drupal/search_api_solr": "^4.2",
