@@ -1,0 +1,15 @@
+# Ignore Development Files
+.idea
+*.backup
+*.ddev
+*.diff
+*.DS_Store
+*.err
+*.log
+*.orig
+*.prettierignore
+*.rej
+*.sass-cache
+*.swo
+*.swp
+*.vi

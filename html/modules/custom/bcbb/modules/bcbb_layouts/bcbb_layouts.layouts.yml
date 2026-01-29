@@ -1,0 +1,56 @@
+bcbb_main_sidebar_right:
+  label: 'BCBB main with right sidebar'
+  category: 'BCBB Layouts'
+  template: templates/bcbb_main_sidebar_right
+  default_region: main
+  regions:
+    top:
+      label: Top
+    main:
+      label: Main content
+    sidebar:
+      label: Sidebar
+    bottom:
+      label: Bottom
+bcbb_search_results:
+  label: 'BCBB search results'
+  category: 'BCBB Layouts'
+  template: templates/bcbb_search_results
+  default_region: main
+  regions:
+    top:
+      label: Top
+    main:
+      label: Main content
+    sidebar_top:
+      label: Sidebar top
+    sidebar_bottom:
+      label: Sidebar bottom
+    bottom:
+      label: Bottom
+bcbb_bricks:
+  label: 'BCBB bricks'
+  category: 'BCBB Layouts'
+  template: templates/bcbb_bricks
+  default_region: main
+  regions:
+    header:
+      label: Header
+    top_left:
+      label: Top left
+    top_right:
+      label: Top right
+    main:
+      label: Main content
+    bottom_left:
+      label: Main bottom left
+    bottom_right:
+      label: Main bottom right
+    card_group:
+      label: Card group
+    footer_left:
+      label: Footer left
+    footer_right:
+      label: Footer right
+    footer:
+      label: Footer

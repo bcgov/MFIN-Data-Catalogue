@@ -1,0 +1,11 @@
+langcode: en
+status: true
+dependencies: {  }
+id: site_search
+label: 'Site search'
+description: ''
+use_admin_theme: false
+path: /search/site
+access_logic: and
+access_conditions: {  }
+parameters: {  }

@@ -1,0 +1,31 @@
+<div{{ attributes }}>
+  {% if content.top %}
+    <div class="top-region">
+      {{ content.top }}
+    </div>
+  {% endif %}
+  {% if content.sidebar or content.main %}
+    <div class="row">
+      {% if content.sidebar %}
+        <div class="col-sm-12 col-lg-4 offset-lg-1 order-lg-2">
+          {% if content.sidebar %}
+            {{ content.sidebar }}
+          {% endif %}
+          {% if content.sidebar_bottom %}
+            {{ content.sidebar_bottom }}
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if content.main %}
+        <div class="col-sm-12 col-lg-7 order-1 main-region">
+          {{ content.main }}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+  {% if content.bottom %}
+    <div class="bottom-region">
+      {{ content.bottom }}
+    </div>
+  {% endif %}
+</div>
