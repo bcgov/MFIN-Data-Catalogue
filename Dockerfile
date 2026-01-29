@@ -5,8 +5,10 @@ ARG SSH_PRIVATE_KEY
 ARG GIT_USERNAME
 ARG GIT_PASSWORD
 
-RUN apk --update add fcgi \
-    && curl -o /usr/local/bin/php-fpm-healthcheck https://raw.githubusercontent.com/renatomefi/php-fpm-healthcheck/master/php-fpm-healthcheck \
+RUN apk --no-cache add fcgi \
+    && curl -sSL -o /usr/local/bin/php-fpm-healthcheck \
+       https://raw.githubusercontent.com/renatomefi/php-fpm-healthcheck/a2d45de918787f761754b96b94a59f4f6acebc25/php-fpm-healthcheck \
+    && echo "53bc616c4a30f029b98bff48fdeb0c4da252cb11e4f86656a8222a67dc4e5009  /usr/local/bin/php-fpm-healthcheck" | sha256sum -c - \
     && chmod +x /usr/local/bin/php-fpm-healthcheck
 COPY docker/conf/php-fpm/status.conf /usr/local/etc/php-fpm.d/
 
@@ -17,6 +19,7 @@ RUN apk --update add --no-cache bash \
                                 git \
                                 gzip \
                                 mysql-client \
+                                mariadb-connector-c \
                                 patch \
                                 postgresql-client \
                                 ssmtp \
@@ -26,6 +29,11 @@ COPY docker/conf/ssmtp.conf /etc/ssmtp/ssmtp.conf
 RUN echo "hostname=drupalwxt.github.io" >> /etc/ssmtp/ssmtp.conf
 RUN echo 'sendmail_path = "/usr/sbin/ssmtp -t"' > /usr/local/etc/php/conf.d/mail.ini
 COPY docker/conf/php.ini /usr/local/etc/php/php.ini
+
+# TLS Enforcement by MariaDB Client in Linux Alpine Base Image
+# https://github.com/laravel/framework/discussions/54267
+COPY docker/conf/my.cnf /etc/my.cnf.d/my.cnf
+COPY docker/conf/drush.yml ~/.drush/drush.yml
 
 # Install additional php extensions
 RUN apk add --update --no-cache autoconf \
@@ -53,17 +61,17 @@ RUN apk add --update --no-cache autoconf \
 COPY docker/certs/BaltimoreCyberTrustRoot.crt.pem /etc/ssl/mysql/BaltimoreCyberTrustRoot.crt.pem
 
 # Redis
-ENV PHPREDIS_VERSION=5.3.7
+ENV PHPREDIS_VERSION 6.1.0
 RUN mkdir -p /usr/src/php/ext/redis \
     && curl -L https://github.com/phpredis/phpredis/archive/$PHPREDIS_VERSION.tar.gz | tar xvz -C /usr/src/php/ext/redis --strip 1 \
     && echo 'redis' >> /usr/src/php-available-exts \
     && docker-php-ext-install redis
 
 # Composer recommended settings
-ENV COMPOSER_ALLOW_SUPERUSER=1
-ENV COMPOSER_VERSION=2.4.4
-ENV COMPOSER_MEMORY_LIMIT=-1
-ENV COMPOSER_EXIT_ON_PATCH_FAILURE=1
+ENV COMPOSER_ALLOW_SUPERUSER 1
+ENV COMPOSER_VERSION 2.5.8
+ENV COMPOSER_MEMORY_LIMIT -1
+ENV COMPOSER_EXIT_ON_PATCH_FAILURE 1
 
 # Check Composer
 RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer; \
