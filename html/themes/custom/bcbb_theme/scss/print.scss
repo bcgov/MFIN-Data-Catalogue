@@ -1,0 +1,74 @@
+@import
+'variables',
+'mixins';
+
+@media print {
+
+  a,
+  a:visited {
+    text-decoration: none !important;
+  }
+
+main {
+    a,
+    a:visited {
+      color: #000 !important;
+    }
+  }
+
+  .container {
+    min-width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .card {
+    border: 0px solid transparent !important;
+  }
+
+  #environment-indicator,
+  [class*="block-views-exposed-filter-blocksite-search-block"],
+  .bcbb-search-api-form,
+  .bcbb-search-sidebar,
+  .block-bc-dc-workflow-block,
+  .block-book-navigation,
+  .block-webform,
+  .btn,
+  .node__links,
+  .openid-connect-login-form,
+  .page-title::after,
+  .region-breadcrumb,
+  .toc,
+  .toc-responsive,
+  button,
+  footer,
+  header,
+  input[type="file"],
+  input[type="submit"],
+  ul.nav-tabs,
+  ul.pagination
+   {
+    display: none !important;
+  }
+
+  .text-bg-warning {
+    @include bg-color-print($colorAlert-warning);
+    color: white;
+  }
+
+  .text-bg-success {
+    @include bg-color-print($colorAlert-success);
+    color: white;
+  }
+
+  .text-bg-danger {
+    @include bg-color-print($colorAlert-error);
+    color: white;
+  }
+
+  .bcbb-search-wrapper {
+    div[class^="col-"] {
+      min-width: 100% !important;
+    }
+  }
+
+}

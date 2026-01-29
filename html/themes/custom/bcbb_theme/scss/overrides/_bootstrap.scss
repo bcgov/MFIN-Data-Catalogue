@@ -1,0 +1,21 @@
+// use this file to override styles set by Bootstrap 5
+.bcbb-theme {
+
+  input[type=checkbox] {
+    border-color: $colorInputBorder;
+  }
+  
+  // force title to wrap if it's too long
+  .region-nav-branding,
+  .region-nav-additional {
+    flex-shrink: unset;
+  }
+
+  // remove uppercase on site title
+
+  .navbar-brand .site-title {
+    text-transform: none;
+    letter-spacing: normal;
+  }
+  
+}

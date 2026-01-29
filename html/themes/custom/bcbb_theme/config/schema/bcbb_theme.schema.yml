@@ -1,0 +1,20 @@
+bcbb_theme.settings:
+  type: config_object
+  label: "BC Base Build theme API settings"
+  mapping:
+    b5_body_schema:
+      type: string
+    b5_body_bg_schema:
+      type: string
+    b5_navbar_schema:
+      type: string
+    b5_navbar_bg_schema:
+      type: string
+    b5_footer_schema:
+      type: string
+    b5_footer_bg_schema:
+      type: string
+    b5_top_container:
+      type: string
+    b5_top_container_config:
+      type: string

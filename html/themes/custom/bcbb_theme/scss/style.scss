@@ -1,0 +1,62 @@
+// fontawesome
+// importing core styling file
+// to use the local copy of font-awsome, uncomment:
+// @import
+//   '../assets/fontawesome/scss/fontawesome.scss',
+//   '../assets/fontawesome/scss/solid.scss',
+//   '../assets/fontawesome/scss/regular.scss',
+//  '../assets/fontawesome/scss/brands.scss';
+
+// Bootstrap icons
+@import '../assets/bootstrap-icons/bi.scss';
+
+
+// BC base-build theme
+// see design system https://digital.gov.bc.ca/common-components/design-system/
+@import
+  // global
+  'variables',
+  'functions',
+  'mixins';
+
+
+@import
+  // overrides
+  './overrides/variables_drupal',
+  './overrides/variables_bootstrap',
+  // Include bootstrap.
+ '../../../../themes/contrib/bootstrap5/scss/style',
+  './overrides/bootstrap',
+  './overrides/drupal';
+
+
+  @import
+  // theme
+  'typography',
+  'html',
+  'helpers',
+  './components/_text_decoration',
+  './components/icons',
+  './components/alerts',
+  './components/badges',
+  './components/search',
+  './components/lists',
+  './components/subway',
+  './components/toc',
+  './components/collapse',
+  './components/buttons_links',
+  './components/fields',
+  './components/navigation',
+  './components/views',
+  './components/header',
+  './components/footer',
+  './components/containers'
+  ;
+
+// #################################
+// DEV STYLES: disable in production
+// #################################
+@import
+'devel';
+
+// ######## END DEV STYLES #########

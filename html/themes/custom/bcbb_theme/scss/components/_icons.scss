@@ -1,0 +1,58 @@
+// document how this works
+
+.icon-bi-arrow-right-short {@include icon-bi($bi-arrow-right-short);}
+.icon-bi-arrow-right-short-after {@include icon-bi($bi-arrow-right-short,true);}
+.icon-bi-award-fill {@include icon-bi($bi-award-fill);}
+.icon-bi-award-fill-after {@include icon-bi($bi-award-fill,true);}
+.icon-bi-bookmark-dash-fill {@include icon-bi($bi-bookmark-dash-fill);}
+.icon-bi-bookmark-dash-fill-after {@include icon-bi($bi-bookmark-dash-fill,true);}
+.icon-bi-bookmark-plus {@include icon-bi($bi-bookmark-plus);}
+.icon-bi-bookmark-plus-after {@include icon-bi($bi-bookmark-plus,true);}
+.icon-bi-bookmarks-fill {@include icon-bi($bi-bookmarks-fill);}
+.icon-bi-bookmarks-fill-after {@include icon-bi($bi-bookmarks-fill,true);}
+.icon-bi-caret-left {@include icon-bi($bi-caret-left);}
+.icon-bi-caret-left-after {@include icon-bi($bi-caret-left,true);}
+.icon-bi-caret-right {@include icon-bi($bi-caret-right);}
+.icon-bi-caret-right-after {@include icon-bi($bi-caret-right,true);}
+.icon-bi-funnel {@include icon-bi($bi-funnel);}
+.icon-bi-funnel-after {@include icon-bi($bi-funnel,true);}
+.icon-bi-funnel-fill {@include icon-bi($bi-funnel-fill);}
+.icon-bi-funnel-fill-after {@include icon-bi($bi-funnel-fill,true);}
+.icon-bi-info-circle {@include icon-bi($bi-info-circle);}
+.icon-bi-info-circle-after {@include icon-bi($bi-info-circle,true);}
+.icon-bi-list-ol {@include icon-bi($bi-list-ol);}
+.icon-bi-list-ol-after {@include icon-bi($bi-list-ol,true);}
+.icon-bi-plus-circle {@include icon-bi($bi-plus-circle);}
+.icon-bi-plus-circle-after {@include icon-bi($bi-plus-circle,true);}
+.icon-bi-printer {@include icon-bi($bi-printer);}
+.icon-bi-printer-after {@include icon-bi($bi-printer,true);}
+.icon-bi-save {@include icon-bi($bi-save);}
+.icon-bi-save-after {@include icon-bi($bi-save,true);}
+.icon-bi-search {@include icon-bi($bi-search);}
+.icon-bi-search-after {@include icon-bi($bi-search,true);}
+.icon-bi-trash3 {@include icon-bi($bi-trash3);}
+.icon-bi-trash3-after {@include icon-bi($bi-trash3,true);}
+.icon-bi-x-circle {@include icon-bi($bi-x-circle);}
+.icon-bi-x-circle-after {@include icon-bi($bi-x-circle,true);}
+.icon-bi-x-circle-fill {@include icon-bi($bi-x-circle-fill);}
+.icon-bi-x-circle-fill-after {@include icon-bi($bi-x-circle-fill,true);}
+
+.icon-bi {
+  font-family: 'bootstrap-icons' !important;
+}
+
+.focus-underline {
+  &:hover,
+  &:focus,
+  &:active {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='1'%3E%3Cline x1='0' y1='0.5' x2='10' y2='0.5' style='stroke: currentColor; stroke-width: 1;' /%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-position: bottom;
+    &::before,
+    &::after {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='1'%3E%3Cline x1='0' y1='0' x2='10' y2='0' style='stroke: red; stroke-width: 4; stroke-opacity: 0' /%3E%3C/svg%3E") !important;
+      background-repeat: repeat-x;
+      background-position: bottom;
+    }
+  }
+}

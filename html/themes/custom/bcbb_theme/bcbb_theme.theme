@@ -1,0 +1,130 @@
+<?php
+
+/**
+ * @file
+ * BC base-build theme file.
+ */
+
+/**
+ * Implements hook_preprocess_HOOK() for block--system-branding-block.html.twig.
+ */
+function bcbb_theme_preprocess_block__system_branding_block(array &$variables): void {
+  $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
+  $variables['#cache']['contexts'][] = 'url.path.is_front';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block--system-menu-block--account.html.twig.
+ */
+function bcbb_theme_preprocess_block__system_menu_block__account(array &$variables): void {
+  $variables['attributes']['class'][] = 'd-flex';
+  $variables['attributes']['class'][] = 'justify-content-end';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for book-tree.html.twig.
+ */
+function bcbb_theme_preprocess_book_tree(array &$variables): void {
+  // Add subway classes.
+  $variables['attributes']['class'][] = 'bb-subway';
+  $variables['attributes']['class'][] = 'small';
+
+  // Add class to active link.
+  _bcbb_theme_preprocess_book_tree_recurse($variables['items']);
+}
+
+/**
+ * Recursively find the active item and give it class `active`.
+ *
+ * The active item is the lowest-level item that has `in_active_trail` TRUE.
+ *
+ * @param array $items
+ *   The items to search.
+ *
+ * @return bool
+ *   TRUE if the class was set, FALSE otherwise.
+ */
+function _bcbb_theme_preprocess_book_tree_recurse(array &$items): bool {
+  foreach ($items as &$item) {
+    if ($item['in_active_trail']) {
+      // Recurse into children.
+      $class_added = _bcbb_theme_preprocess_book_tree_recurse($item['below']);
+
+      // If there are no in_active_trail items below this, then this is active.
+      if (!$class_added) {
+        $item['attributes']->addClass('active');
+      }
+
+      // Either this or an item below must be the active one, return that the
+      // class was added.
+      return TRUE;
+    }
+  }
+  return FALSE;
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for links--node.html.twig.
+ */
+function bcbb_theme_preprocess_links__node(array &$variables): void {
+  if (isset($variables['links']['book_add_child']['link'])) {
+    // Add button classes.
+    $variables['links']['book_add_child']['link']['#attributes']['class'][] = 'btn';
+    $variables['links']['book_add_child']['link']['#attributes']['class'][] = 'btn-success';
+    // Add icon.
+    $variables['links']['book_add_child']['link']['#attributes']['class'][] = 'icon-bi-plus-circle';
+
+  }
+  if (isset($variables['links']['book_printer']['link'])) {
+    // Add button classes.
+    $variables['links']['book_printer']['link']['#attributes']['class'][] = 'btn';
+    $variables['links']['book_printer']['link']['#attributes']['class'][] = 'btn-light';
+    // Add icon.
+    $variables['links']['book_printer']['link']['#attributes']['class'][] = 'icon-bi-printer';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page-title.html.twig.
+ */
+function bcbb_theme_preprocess_page_title(array &$variables): void {
+  $variables['title_attributes']['class'][] = 'page-title';
+}
+
+/**
+ * Implements hook_theme_suggestions_form_alter().
+ */
+function bcbb_theme_theme_suggestions_form_alter(array &$suggestions, array $variables): void {
+  // Get the form ID from the variables.
+  $form_id = $variables['element']['#form_id'];
+
+  // Add a theme suggestion based on the form ID.
+  $suggestions[] = 'form__' . str_replace('-', '_', $form_id);
+}
+
+/**
+ * Implements template_preprocess_input().
+ */
+function bcbb_theme_preprocess_input(array &$variables): void {
+  // Remove `aria-describedby` attributes if there is no description.
+  // @see https://www.drupal.org/project/drupal/issues/2547063
+  if (!empty($variables['attributes']['aria-describedby']) && empty($variables['element']['#description'])) {
+    unset($variables['attributes']['aria-describedby']);
+  }
+
+  // Except on the login page, adjust the classes of the login button.
+  if (($variables['element']['#id'] ?? NULL) === 'edit-openid-connect-client-keycloak-login' && \Drupal::routeMatch()->getRouteName() !== 'user.login') {
+    // Remove 'button' value from classes.
+    unset($variables['attributes']['class'][array_search('button', $variables['attributes']['class'], TRUE)]);
+    // Add class that gives appearance of a link.
+    $variables['attributes']['class'][] = 'bb-link-light';
+  }
+
+  // For certain values of #id, set the 'icon' variable.
+  $icons = [
+    'edit-reset' => 'icon-bi-trash3',
+  ];
+  if (isset($variables['element']['#id']) && is_string($variables['element']['#id']) && isset($icons[$variables['element']['#id']])) {
+    $variables['icon'] = $icons[$variables['element']['#id']];
+  }
+}

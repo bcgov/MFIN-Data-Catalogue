@@ -1,0 +1,16 @@
+//var(--bs-pagination-active-bg)
+.bcbb-theme {
+  a.page-link,
+  a.page-link:visited {
+    color: var(--bs-pagination-active-bg);
+  }
+
+  li.is-active,
+  li.active {
+    a.page-link,
+    a.page-link:visited {
+    color: var(--bs-pagination-active-color);
+    }
+  }
+  
+}
