@@ -1,0 +1,89 @@
+
+// Alerts
+// see https://developer.gov.bc.ca/Design-System/Alert-Banners
+
+
+.bc-gov-alertbanner {
+  border: px-em(1px) solid transparent;
+  border-radius: px-em(4px);
+  font-weight: 700;
+  font-size: px-em(18px);
+  margin-bottom: px-em(20px);
+  padding: 1em 1em 1em 4em ;
+  > * {
+    margin-bottom: 0;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-size: px-em(18px);
+    font-weight: 600;
+    &~p {
+      font-weight: normal;
+    }
+  }
+  background-repeat: no-repeat !important;
+  background-size: 2em;
+  background-position: 1em center;
+}
+
+
+// types of alert
+
+.bc-gov-alertbanner-error {
+  $alertColor: $colorAlert-error;
+  color: $colorAlert-error;
+  background-color: mix($colorWhite, $colorAlert-error, 85%);
+  border-color: rgba($colorAlert-error, 0.25);
+  a {
+    color: mix($colorBlack, $colorAlert-error, 25%);
+    &:hover,
+    &:focus {
+      color: mix($colorBlack, $colorAlert-error, 50%);
+    }
+  }
+  @include icon-error;
+}
+
+.bc-gov-alertbanner-info {
+  $alertColor: $colorAlert-info;
+  color: $alertColor;
+  background-color: mix($colorWhite, $alertColor, 90%);
+  border-color: rgba($alertColor, 0.25);
+  a {
+    color: mix($colorBlack, $alertColor, 25%);
+    &:hover,
+    &:focus {
+      color: mix($colorBlack, $alertColor, 50%);
+    }
+  }
+  @include icon-info($alertColor);
+}
+
+.bc-gov-alertbanner-success {
+  $alertColor: $colorAlert-success;
+  color: $alertColor;
+  background-color: mix($colorWhite, $alertColor, 90%);
+  border-color: rgba($alertColor, 0.25);
+  a {
+    color: mix($colorBlack, $alertColor, 25%);
+    &:hover,
+    &:focus {
+      color: mix($colorBlack, $alertColor, 50%);
+    }
+  }
+  @include icon-success;
+}
+
+.bc-gov-alertbanner-warning {
+  $alertColor: $colorAlert-warning;
+  color: $alertColor;
+  background-color: mix($colorWhite, $alertColor, 90%);
+  border-color: rgba($alertColor, 0.25);
+  a {
+    color: mix($colorBlack, $alertColor, 25%);
+    &:hover,
+    &:focus {
+      color: mix($colorBlack, $alertColor, 50%);
+    }
+  }
+  @include icon-warning;
+}

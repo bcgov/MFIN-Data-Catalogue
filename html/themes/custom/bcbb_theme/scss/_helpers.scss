@@ -1,0 +1,158 @@
+//use font-awsome for content of the element
+.bb-fa-glyph {
+  font-family: "Font Awesome 6 Free" !important;
+  font-weight: 900 !important;
+}
+
+// remove border on last child
+
+.last-child-no-border > * {
+  &:last-child {
+    border: 0px transparent !important;
+  }
+}
+
+// only show focus on keyboard
+
+// responsive visually hidden
+
+// this will show content above the specified breakpoint
+.visually-hidden-sm-up {
+  @include responsive($sm-min) {
+    @include visually-hidden;
+  }
+}
+
+.visually-hidden-md-up {
+  @include responsive($md-min) {
+    @include visually-hidden;
+  }
+}
+
+.visually-hidden-lg-up {
+  @include responsive($lg-min) {
+    @include visually-hidden;
+  }
+}
+
+.visually-hidden-xl-up {
+  @include responsive($lg-min) {
+    @include visually-hidden;
+  }
+}
+
+// this will show content below the specified breakpoint
+.visually-hidden-sm-down {
+  @include responsive-down($sm-min) {
+    @include visually-hidden;
+  }
+}
+
+.visually-hidden-md-down {
+  @include responsive-down($md-min) {
+    @include visually-hidden;
+  }
+}
+
+.visually-hidden-lg-down {
+  @include responsive-down($lg-min) {
+    @include visually-hidden;
+  }
+}
+
+.visually-hidden-xl-down {
+  @include responsive-down($lg-min) {
+    @include visually-hidden;
+  }
+}
+
+// responsive pointer events
+
+// this will disable taps and clicks above the specified breakpoint
+.disable-pointer-sm-up {
+  @include responsive($sm-min) {
+    @include disable-pointer;
+  }
+}
+
+.disable-pointer-md-up {
+  @include responsive($md-min) {
+    @include disable-pointer;
+  }
+}
+
+.disable-pointer-lg-up {
+  @include responsive($lg-min) {
+    @include disable-pointer;
+  }
+}
+
+.disable-pointer-xl-up {
+  @include responsive($lg-min) {
+    @include disable-pointer;
+  }
+}
+
+// this will disable taps and clicks below the specified breakpoint
+.disable-pointer-sm-down {
+  @include responsive-down($sm-min) {
+    @include disable-pointer;
+  }
+}
+
+.disable-pointer-md-down {
+  @include responsive-down($md-min) {
+    @include disable-pointer;
+  }
+}
+
+.disable-pointer-lg-down {
+  @include responsive-down($lg-min) {
+    @include disable-pointer;
+  }
+}
+
+.disable-pointer-xl-down {
+  @include responsive-down($lg-min) {
+    @include disable-pointer;
+  }
+}
+
+.bcbb-dividers {
+  > * {
+    border-bottom: 1px solid var(--bs-light-border-subtle);
+    &:last-child {
+      border-bottom: 0px solid transparent;
+    }
+  }
+}
+
+// negative margins
+
+.ms-n1 {
+  margin-left: -0.25em !important;
+}
+
+.ms-n2 {
+  margin-left: -0.5em !important;
+}
+
+.ms-n3 {
+  margin-left: -0.75em !important;
+}
+
+.ms-n4 {
+  margin-left: -1em !important;
+}
+
+.ms-n5 {
+  margin-left: -1.25em !important;
+}
+
+
+// break and element out of it's container
+// goes full screen width
+
+.bcbb-fw {
+  margin: 0px calc(50% - 50vw);
+}

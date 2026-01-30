@@ -1,0 +1,64 @@
+@media print {
+  a,
+  a:visited {
+    text-decoration: none !important;
+  }
+  main a,
+  main a:visited {
+    color: #000 !important;
+  }
+  .container {
+    min-width: 100% !important;
+    max-width: 100% !important;
+  }
+  .card {
+    border: 0px solid transparent !important;
+  }
+  #environment-indicator,
+  [class*=block-views-exposed-filter-blocksite-search-block],
+  .bcbb-search-api-form,
+  .bcbb-search-sidebar,
+  .block-bc-dc-workflow-block,
+  .block-book-navigation,
+  .block-webform,
+  .btn,
+  .node__links,
+  .openid-connect-login-form,
+  .page-title::after,
+  .region-breadcrumb,
+  .toc,
+  .toc-responsive,
+  button,
+  footer,
+  header,
+  input[type=file],
+  input[type=submit],
+  ul.nav-tabs,
+  ul.pagination {
+    display: none !important;
+  }
+  .text-bg-warning {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+    background-color: #6c4a00 !important;
+    color: white;
+  }
+  .text-bg-success {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+    background-color: #2e8540 !important;
+    color: white;
+  }
+  .text-bg-danger {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+    background-color: #a12622 !important;
+    color: white;
+  }
+  .bcbb-search-wrapper div[class^=col-] {
+    min-width: 100% !important;
+  }
+}/*# sourceMappingURL=print.css.map */

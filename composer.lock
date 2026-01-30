@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fd6a90a3e882a47052fd0de8e596a066",
+    "content-hash": "14ebf9e62d1bae265f4e4e14a00b2e05",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -61,36 +61,6 @@
                 "source": "https://github.com/asm89/stack-cors/tree/v2.3.0"
             },
             "time": "2025-03-13T08:50:04+00:00"
-        },
-        {
-            "name": "bcgov/bcbb_theme",
-            "version": "1.0.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/bcgov/bcbb-theme.git",
-                "reference": "ca0c3da4162f10c9ebed71ede7d95ae71869fbd0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bcgov/bcbb-theme/zipball/ca0c3da4162f10c9ebed71ede7d95ae71869fbd0",
-                "reference": "ca0c3da4162f10c9ebed71ede7d95ae71869fbd0",
-                "shasum": ""
-            },
-            "require": {
-                "drupal/bootstrap5": "^3"
-            },
-            "default-branch": true,
-            "type": "drupal-theme",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "description": "BC Base Build Theme",
-            "homepage": "https://github.com/bcgov/bcbb-theme",
-            "support": {
-                "source": "https://github.com/bcgov/bcbb-theme/tree/1.0.x",
-                "issues": "https://github.com/bcgov/bcbb-theme/issues"
-            },
-            "time": "2024-10-09T17:57:41+00:00"
         },
         {
             "name": "bcgov/gdx_analytics_drupal_snowplow",
@@ -24274,7 +24244,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "bcgov/bcbb_theme": 20,
         "bcgov/gdx_analytics_drupal_snowplow": 20,
         "drupal/better_normalizers": 10,
         "drupal/ckeditor5_fullscreen": 10,

@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Theme override to display primary and secondary local tasks.
+ *
+ * This version uses @aria-label instead of hidden headers.
+ *
+ * This file is needed until resolution of:
+ * https://www.drupal.org/project/bootstrap5/issues/3427194
+ *
+ * Available variables:
+ * - primary: HTML list items representing primary tasks.
+ * - secondary: HTML list items representing secondary tasks.
+ *
+ * Each item in these variables (primary and secondary) can be individually
+ * themed in menu-local-task.html.twig.
+ */
+#}
+{% if primary %}
+  <nav class="tabs-wrapper tabs-primary is-collapsible" aria-label="{{ 'Primary tabs'|t }}" data-drupal-nav-tabs>
+    <ul class="nav nav-tabs flex-column flex-md-row primary clearfix" data-drupal-nav-tabs-target>{{ primary }}</ul>
+  </nav>
+{% endif %}
+{% if secondary %}
+  <nav class="tabs-wrapper tabs-secondary" aria-label="{{ 'Secondary tabs'|t }}" data-drupal-nav-tabs>
+    <ul class="nav nav-tabs flex-column flex-md-row primary clearfix" data-drupal-nav-tabs-target>{{ secondary }}</ul>
+  </nav>
+{% endif %}

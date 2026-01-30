@@ -1,0 +1,11 @@
+// List styles
+
+ul.bcbb-inline-list {
+  list-style: none;
+  li {
+    display: inline-block;
+    &:not(:last-child):after {
+      content: " | ";
+    }
+  } 
+}

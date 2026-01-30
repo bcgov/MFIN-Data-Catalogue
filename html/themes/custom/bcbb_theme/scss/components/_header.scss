@@ -1,0 +1,9 @@
+.bcbb-header {
+  border-bottom: 1px solid $colorInputBorder;
+  .bcbb-header-branding.bcbb-header-search {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 1em;
+    align-items: center;
+  }
+}

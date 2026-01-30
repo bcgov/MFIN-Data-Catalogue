@@ -15,10 +15,6 @@
         },
         {
             "type": "vcs",
-            "url": "https://github.com/bcgov/bcbb-theme"
-        },
-        {
-            "type": "vcs",
             "url": "https://github.com/chrislaick/gdx_analytics_drupal_snowplow"
         },
         {
@@ -92,7 +88,6 @@
         }
     ],
     "require": {
-        "bcgov/bcbb_theme": "1.0.x@dev",
         "bcgov/gdx_analytics_drupal_snowplow": "dev-main",
         "billboardjs/billboard": "^3.10",
         "bower-asset/codemirror": "^6.65",
@@ -105,6 +100,7 @@
         "drupal/auto_username": "^2.0",
         "drupal/better_exposed_filters": "^6.0",
         "drupal/better_normalizers": "^2.0@beta",
+        "drupal/bootstrap5": "^3",
         "drupal/cancel_button": "^1.4",
         "drupal/charts": "^5.0",
         "drupal/chosen": "^5.0",

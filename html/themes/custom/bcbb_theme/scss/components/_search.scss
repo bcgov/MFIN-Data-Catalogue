@@ -1,0 +1,255 @@
+// Search
+
+.badge-facet {
+  min-width: 4em;
+}
+
+.bcbb-search-sidebar {
+  .bcbb-facet-result {
+    @include responsive-down($lg-max) {
+      > * {
+        max-width: 50%;
+      }
+    }
+  }
+  
+  // Remove border and margin
+  > details {
+    border: none;
+    margin-top: 0;
+    
+    // style summary border
+    > summary {
+      border-width: 0 0 1px 0;
+      background: var(--bs-gray-200);
+      border-color: var(--bs-gray-300);
+      border-radius: 0;
+      padding: 1em;
+    }
+  }
+
+  //wide screen
+  @include responsive($lg-min) {
+    //Remove the `details` disclosure triangle
+    > details {
+      &.block-search-api-saved-searches[open] {
+        border: 1px solid var(--bs-gray-300);
+        
+        > summary {
+          list-style: none;
+          padding-left: 0;
+          padding-bottom: 0;
+          background-color: transparent;
+          // disable expand/collapse details element
+          pointer-events: none;
+          
+          // add search icon
+          &::before {
+            font-family: "bootstrap-icons";
+            content: "\f525";
+            padding-right: 0.5em;
+          }
+        }
+      }
+      
+      // remove border for search filters
+      &.dc-search-filters {
+        border: none;
+        
+        > summary {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.facets-widget-links {
+  a,
+  a:active,
+  a:visited {
+    text-decoration: none;
+    color: $colorTextLink !important;
+  }
+  a:hover,
+  a:focus,
+  a:focus-within {
+    text-decoration: underline;
+  }
+}
+
+.bcbb-search-wrapper {
+  .view-site-search {
+    .form-type-checkbox {
+      margin-top: .125em;
+    }
+  }
+
+  .bcbb-current-search-facets {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: .25em 1.5em;
+    align-items: flex-start;
+    justify-content: flex-start;
+    
+    li {
+      flex-basis: content;
+    }
+    
+    li.facet-summary-item--clear {
+      margin-left: -1.5em !important;
+      
+      a {
+        @include icon-cancel($colorWhite);
+        background-position: .5em center;
+        background-repeat: no-repeat;
+        background-size: 1em 1em;
+        text-decoration: none;
+      }
+      
+      a,
+      a:active,
+      a:visited {
+        background-color: $colorAlert-error;
+        transition: background-color 0.15s ease-in-out;
+        color: $colorWhite;
+        border-radius: var(--bs-border-radius-pill) !important;
+        padding: .15em .75em .15em 2em;
+        text-decoration: none;
+      }
+      
+      a:hover,
+      a:focus,
+      a:focus-within {
+        background-color: #711b18;
+      }
+    }
+    
+    @include responsive($lg-min) {
+      flex-direction: row;
+    }
+  }
+
+  .block-region-sidebar-bottom {
+    @extend .bcbb-dividers;
+  }
+  
+  .vbo-info-list-wrapper {
+    h3 {
+      @extend .h5;
+    }
+  }
+
+  .search-bb-search-block {
+    .views-exposed-form {
+      .form--inline {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        .form-item {
+          float: none;
+          margin-right: 0;
+        }
+        .form-text {
+          $iconColor: $colorBlack;
+          border-radius: var(--bs-border-radius) 0 0 var(--bs-border-radius);
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' shape-rendering='geometricPrecision' width='50' height='50' fill='#{svg-color($iconColor)}' viewBox='0 0 16 16' opacity='.75'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0'/%3E%3C/svg%3E%0A");
+          background-repeat: no-repeat;
+          background-size: 1em 1em;
+          padding-left: 2em;
+          background-position: .5em center;
+        }
+        .form-actions {
+          input[value="search"].btn,
+          input[value="Search"].btn {
+            border-radius: 0 var(--bs-border-radius) var(--bs-border-radius) 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+// grid layout for search results
+.search-bb-container {
+  @include responsive($lg-min) {
+    display: grid;
+    grid-template-columns: 7fr 1fr 4fr;
+    grid-template-rows: max-content 1fr;
+    grid-template-areas:
+      "search-block . sidebar-right"
+      "results      . sidebar-right"
+      "results      . sidebar-right";
+  }
+}
+
+.search-bb-search-block {
+  grid-area: search-block;
+}
+
+.search-bb-results {
+  grid-area: results;
+}
+
+.search-bb-sidebar-right {
+  grid-area: sidebar-right;
+}
+
+// search block in the header region
+
+.block-bcbb-search {
+  //reset spacing
+  * {
+    padding: 0;
+    margin: 0;
+  }
+
+  form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    
+    // hide all the hidden inputs so they don't mess with grid
+    .bcbb-input-wrapper:has(input[type="hidden"]) {
+      display: none;
+    }
+    
+    input[name="search_keyword"] {
+      border-radius: var(--bs-border-radius) 0 0 var(--bs-border-radius);
+      border-right: none;
+    }
+    
+    // style the input button
+    .btn {
+      background-color: transparent;
+      border-color: $colorInputBorder;
+      border-left: none;
+      border-radius: 0 var(--bs-btn-border-radius) var(--bs-btn-border-radius) 0;
+      
+      &:hover,
+      &:focus {
+        background-color: var(--bs-gray-200);
+      }
+    }
+  }
+}
+
+// search submit using an icon
+input.bcbb-search-submit-icon {
+  $iconColor: $colorBlack;
+  text-indent: -9999px;
+  width: 2.6em;
+  
+  // build the icon
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' shape-rendering='geometricPrecision' width='50' height='50' fill='#{svg-color($iconColor)}' viewBox='0 0 16 16' opacity='1'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0'/%3E%3C/svg%3E%0A");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 60% 60%;
+  
+  // opacity on hover
+  &:hover,
+  &:focus {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' shape-rendering='geometricPrecision' width='50' height='50' fill='#{svg-color($iconColor)}' viewBox='0 0 16 16' opacity='0.85'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0'/%3E%3C/svg%3E%0A");
+  }
+}

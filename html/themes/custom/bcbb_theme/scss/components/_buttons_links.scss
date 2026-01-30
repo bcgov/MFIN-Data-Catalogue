@@ -1,0 +1,24 @@
+.bcbb-theme {
+
+// customize button colours
+  .button {
+    @include button-color-light($colorAccent-secondary,$colorText-primary);
+  }
+
+  .button--primary,
+  .btn-primary {
+    @include button-color-dark($colorAccent-primary,$colorWhite);
+  }
+  .button--danger,
+  .btn-danger {
+    @include button-color-dark($colorAlert-error,$colorWhite);
+  }
+
+  .btn,
+  .button {
+    &:only-child {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}

@@ -1,0 +1,138 @@
+// Subway navigation
+// the styles assumes the list items are a set of links
+
+
+// use this to replace the '#' on hex values in svg
+@function svg-color($color) {
+  @return '%23' + str-slice('#{$color}', 2);
+}
+
+// stroke_width controls size and position of lines. 
+// everything is relative of the value you set here 
+$stroke_width: 1px;
+$svg_stroke_offset: calc($stroke_width/2);
+$svg_stroke_double: calc($stroke_width*2);
+// stroke_color controls color of lines,
+// circle outline and the end of a line in a sub-list.
+// and the hover on circles
+$stroke_color: $colorAccent-primary;
+// this should be set to match whatever the background
+// colour of the container is
+$fill_color: $colorWhite;
+$circle_size: calc($stroke_width*3);
+$circle_size_offset: calc($circle_size/2);
+
+$tl: "data:image/svg+xml,%3Csvg width='300' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='#{$svg_stroke_offset}'   y1='#{$svg_stroke_offset}' x2='#{$svg_stroke_offset}' y2='300' stroke='#{svg-color($stroke_color)}' stroke-width='#{$stroke_width}' /%3E%3Cline x1='#{$svg_stroke_offset}' y1='#{$svg_stroke_offset}' x2='300' y2='#{$svg_stroke_offset}' stroke='#{svg-color($stroke_color)}' stroke-width='#{$stroke_width}' /%3E%3C/svg%3E";
+
+$bl: "data:image/svg+xml,%3Csvg width='300' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='#{$svg_stroke_offset}' y1='300' x2='#{$svg_stroke_offset}' y2='#{$svg_stroke_offset}' stroke='#{svg-color($stroke_color)}' stroke-width='#{$stroke_width}' /%3E%3Cline x1='#{$svg_stroke_offset}' y1='300' x2='300' y2='300' stroke='#{svg-color($stroke_color)}' stroke-width='#{$svg_stroke_double}' /%3E%3C/svg%3E";
+
+$x: "data:image/svg+xml,%3Csvg width='3000' height='#{$stroke_width}' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='#{$svg_stroke_offset}' x2='3000' y2='#{$svg_stroke_offset}' stroke='#{svg-color($stroke_color)}'  stroke-width='#{$stroke_width}' /%3E%3C/svg%3E";
+$y: "data:image/svg+xml,%3Csvg width='#{$stroke_width}' height='3000' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='#{$svg_stroke_offset}' y1='0' x2='#{$svg_stroke_offset}' y2='3000' stroke='#{svg-color($stroke_color)}' stroke-width='#{$stroke_width}' /%3E%3C/svg%3E";
+
+$circle: "data:image/svg+xml,%3Csvg width='#{$circle_size}' height='#{$circle_size}' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='#{$circle_size_offset}' cy='#{$circle_size_offset}' r='#{$circle_size_offset}' fill='#{svg-color($stroke_color)}' /%3E%3C/svg%3E";
+
+ul.bb-subway {
+  padding-left: 0;
+  list-style: none;
+  ul {
+    list-style: none;
+    padding-left: 0;
+    li {
+      padding-left: .75em;
+      &::before {
+        left: .75em;
+      }
+      
+    }
+  }
+  li {
+    position: relative;
+    &::before {
+      position: absolute;
+      content: ' ';
+      width: .75em;
+      height: 100%;
+      background-image: url($x);
+      background-repeat: no-repeat;
+      background-position: right 0 top calc(.5em - $svg_stroke_offset);
+    }
+    a {
+      display: block;
+      margin-left: 1.5em;
+      padding-bottom: 1.15em;
+      z-index: inherit;
+      line-height: 1;
+      text-decoration: none;
+
+      &::before {
+        position: absolute;
+        margin-left: -1.25em;
+        border: $stroke_width solid $stroke_color;
+        background: $fill_color;
+        overflow: hidden;
+        content: '';
+        border-radius: 50%;
+        width: 1em;
+        height: 1em;
+      }
+      &:hover,
+      &:focus,
+      &:active,
+      .active {
+        &::before {
+         transition: background-color .3s ease-in-out;
+         transform: scale(1.15,1.15);
+        background-color: $stroke_color;
+        }       
+      }
+    }
+    &.active:not(:has(.active)) {
+      > a {
+        font-weight: bold;
+        &::before {
+          background-color: $stroke_color;
+        }
+      }
+    }
+    &>ul {
+      &::before {
+        z-index: -999;
+        background-repeat: no-repeat;
+       background-image: url($y), url($circle);
+        background-position: left 50% bottom .5em, left 50% bottom .5em;
+        content: ' ';
+        width: 1.5em;
+        height: 100%;
+        position: absolute;
+        top: 0;
+      }
+    }
+  }
+
+  &>li {
+    
+   &::before {
+    background-repeat: no-repeat;
+    background-image: url($y), url($x);
+    background-position: 0 0, right 0 top calc(.5em - $svg_stroke_offset);
+  }
+   &:first-child::before {
+      background-image: url($tl);
+      background-position: 0 calc(.5em - $svg_stroke_offset);
+    }
+    
+    &:last-child::before {
+      background-image: url($bl);
+      background-position: 0 calc(-300px + calc(.5em + $svg_stroke_offset));
+    }
+
+    &:only-child::before {
+      background-image: none;
+  }
+  }
+  .summary {
+    margin-left: 1.5em;
+    margin-top: -.5em;
+    padding-bottom: 1em;
+  }
+}

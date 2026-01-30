@@ -1,0 +1,13 @@
+# Ignore Files
+
+*.DS_Store
+*.diff
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.vi
+*.sass-cache
+*.prettierignore
