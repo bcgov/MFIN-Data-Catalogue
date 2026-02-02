@@ -12,6 +12,11 @@
   title: 'Delete any never-published metadata record if organization matches'
 'delete own never_published data_set in_org':
   title: 'Delete own never-published metadata record if organization matches'
+'edit own data_set in_org':
+  title: 'Edit own metadata records within organization'
+'edit any data_set in_org':
+  title: 'Edit any metadata records within organization'
+
 
 'access user reports':
   title: 'Access user reports tab'

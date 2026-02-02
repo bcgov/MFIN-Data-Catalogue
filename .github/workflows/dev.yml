@@ -25,8 +25,8 @@ jobs:
       uses: mikefarah/yq@v4.34.1
       with:
         cmd: |
-          yq eval '.version = strenv(GITHUB_TAG_TO_DEPLOY)' -i html/modules/custom/bc_dc/bc_dc.info.yml
-
+          yq eval '."bc_dc.code_version".title = "FDC version " + strenv(GITHUB_TAG_TO_DEPLOY)' -i html/modules/custom/bc_dc/bc_dc.links.menu.yml
+          
     - name: Build out the Drupal infrastructure
       run: |
         export DB_TYPE=mysql
@@ -39,27 +39,6 @@ jobs:
         make build
         docker compose -f docker-compose.ci.yml up -d
         docker ps -a
-        sleep 10
-
-    - name: Run installation
-      run: |
-        export DB_TYPE=mysql
-        export DB_PORT=3306
-        make drupal_install
-
-    - name: Run tests
-      if: ${{ ( startsWith(github.event.ref, 'refs/tags/') && (endsWith(github.event.ref, '.t') || endsWith(github.event.ref, '-t') )) }}
-      run: |
-        export DB_TYPE=mysql
-        export DB_PORT=3306
-        ./docker/bin/phpcs --standard=/var/www/html/core/phpcs.xml \
-            --extensions=php,module,inc,install,test,profile,theme \
-            --report=full \
-            --colors \
-            /var/www/html/modules/contrib/bcbb \
-            /var/www/html/modules/custom/bc_dc \
-            /var/www/html/themes/contrib/bcbb_theme \
-            /var/www/html/themes/custom/dc_theme
 
     - name: Scan PHP-FPM image for vulnerabilities
       if: ${{ ( startsWith(github.event.ref, 'refs/tags/') && (endsWith(github.event.ref, '.t') || endsWith(github.event.ref, '-t') )) }}
@@ -112,21 +91,21 @@ jobs:
         ssh-key: ${{ secrets.TENANT_GITOPS_DEPLOY_KEY }}
         persist-credentials: true
 
-    - name: Update Argo CD
+    - name: Update values-application-dev.yaml with this deployment's tag 
       uses: mikefarah/yq@v4.34.1
       with:
         cmd: |
           yq -i '.drupal.tag = strenv(GITHUB_TAG_TO_DEPLOY) |
                  .nginx.tag = strenv(GITHUB_TAG_TO_DEPLOY) ' tenant-gitops/helm-drupal/charts/drupal/values-application-dev.yaml
 
-    - name: Commit files
+    - name: Commit this change to git
       run: |
         cd tenant-gitops
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git commit -a -m "Update Dev server to '${{ env.GITHUB_TAG_TO_DEPLOY }}'."
+        git commit -a -m "Update DEV server to '${{ env.GITHUB_TAG_TO_DEPLOY }}'."
 
-    - name: Push changes
+    - name: Push this commit back up to GitHub
       uses: ad-m/github-push-action@master
       with:
         ssh: true

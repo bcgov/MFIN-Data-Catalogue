@@ -1,0 +1,20 @@
+.media-library-item__click-to-select-trigger {
+  height: auto !important;
+}
+
+.media-library-item__preview-wrapper .media-library-item__attributes {
+  display: none;
+}
+
+.fw-semibold {
+  font-weight: 575;
+}
+
+.word-break-normal {
+  word-break: normal;
+}
+
+.image-style-thumbnail {
+  width: 45px;
+  vertical-align: middle;
+}

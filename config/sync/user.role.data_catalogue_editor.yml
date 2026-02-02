@@ -41,6 +41,7 @@ permissions:
   - 'edit field_paragraph_document_title'
   - 'edit field_paragraph_document_type'
   - 'edit field_related_document'
+  - 'edit own data_set in_org'
   - 'flag bookmark'
   - 'revert data_set revisions'
   - 'unflag bookmark'

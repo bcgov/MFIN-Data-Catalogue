@@ -38,3 +38,42 @@ bc_dc.user_manage_tab:
   route_name: bc_dc.user_manage_tab
   base_route: entity.user.canonical
   title: 'Manage'
+
+# Admin: Content
+
+bc_dc.admin_content_article:
+  route_name: view.fdc_admin_content.page_2
+  title: 'Article'
+  base_route: system.admin_content
+
+bc_dc.admin_content_page:
+  route_name: view.fdc_admin_content.page_3
+  title: 'Basic page'
+  base_route: system.admin_content
+
+bc_dc.admin_content_book:
+  route_name: view.fdc_admin_content.page_4
+  title: 'Book page'
+  base_route: system.admin_content
+
+bc_dc.admin_content_data_set:
+  route_name: view.fdc_admin_content.page_5
+  title: 'Metadata record'
+  base_route: system.admin_content
+
+# Admin: Media
+
+bc_dc.admin_media:
+  route_name: view.fdc_admin_media.page_1
+  title: 'Media'
+  base_route: view.fdc_admin_media.page_1
+
+bc_dc.admin_media_document:
+  route_name: view.fdc_admin_media.page_2
+  title: 'Document'
+  base_route: view.fdc_admin_media.page_1
+
+bc_dc.admin_media_image:
+  route_name: view.media_library.page_1
+  title: 'Image'
+  base_route: view.fdc_admin_media.page_1

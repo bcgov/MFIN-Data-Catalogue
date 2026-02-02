@@ -4,11 +4,14 @@ status: true
 dependencies:
   config:
     - block_content.type.basic
+    - core.entity_form_display.user.user.default
     - filter.format.full_html
+    - media.type.document
     - media.type.image
     - node.type.book
     - node.type.data_set
     - node.type.page
+    - paragraphs.paragraphs_type.data_column
     - taxonomy.vocabulary.common_data
     - taxonomy.vocabulary.data_set_series
     - taxonomy.vocabulary.data_set_type
@@ -140,6 +143,7 @@ permissions:
   - 'edit any basic block content'
   - 'edit any book content'
   - 'edit any data_set content'
+  - 'edit any data_set in_org'
   - 'edit any image media'
   - 'edit any page content'
   - 'edit field_asset_location'
@@ -149,6 +153,7 @@ permissions:
   - 'edit field_paragraph_document_type'
   - 'edit field_primary_responsibility_org'
   - 'edit field_related_document'
+  - 'edit own data_set in_org'
   - 'edit own field_primary_responsibility_org'
   - 'edit terms in common_data'
   - 'edit terms in data_set_series'
@@ -170,11 +175,8 @@ permissions:
   - 'unflag bookmark'
   - 'update paragraph content data_column'
   - 'update paragraph content documents'
-  - 'use  The form mode default linked to  media entity( audio )'
   - 'use  The form mode default linked to  media entity( document )'
   - 'use  The form mode default linked to  media entity( image )'
-  - 'use  The form mode default linked to  media entity( remote_video )'
-  - 'use  The form mode default linked to  media entity( video )'
   - 'use  The form mode default linked to  node entity( book )'
   - 'use  The form mode default linked to  node entity( page )'
   - 'use  The form mode default linked to  paragraph entity( data_column )'
@@ -184,11 +186,8 @@ permissions:
   - 'use  The form mode default linked to  taxonomy_term entity( record_life_cycle_duration )'
   - 'use  The form mode default linked to  taxonomy_term entity( record_special_flags )'
   - 'use  The form mode default linked to  user entity( user )'
-  - 'use  The form mode media_library linked to  media entity( audio )'
   - 'use  The form mode media_library linked to  media entity( document )'
   - 'use  The form mode media_library linked to  media entity( image )'
-  - 'use  The form mode media_library linked to  media entity( remote_video )'
-  - 'use  The form mode media_library linked to  media entity( video )'
   - 'use  The form mode section_1 linked to  node entity( data_set )'
   - 'use  The form mode section_2 linked to  node entity( data_set )'
   - 'use  The form mode section_3 linked to  node entity( data_set )'

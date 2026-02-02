@@ -3,7 +3,9 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.media.image.field_height
     - field.field.media.image.field_media_image
+    - field.field.media.image.field_width
     - image.style.max_1300x1300
     - media.type.image
   module:
@@ -15,6 +17,15 @@ targetEntityType: media
 bundle: image
 mode: default
 content:
+  field_height:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
   field_media_image:
     type: image
     label: hidden
@@ -29,6 +40,15 @@ content:
       svg_render_as_image: true
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_width:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 3
     region: content
 hidden:
   created: true

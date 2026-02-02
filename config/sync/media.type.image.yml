@@ -14,3 +14,5 @@ source_configuration:
   source_field: field_media_image
 field_map:
   name: name
+  width: field_width
+  height: field_height

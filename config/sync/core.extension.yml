@@ -48,6 +48,7 @@ module:
   embed: 0
   entity_embed: 0
   entity_reference_revisions: 0
+  entity_usage: 0
   environment_indicator: 0
   facets: 0
   facets_summary: 0
@@ -63,6 +64,7 @@ module:
   form_mode_control: 0
   formatter_suite: 0
   gdx_analytics_drupal_snowplow: 0
+  gin_toolbar: 0
   hal: 0
   help: 0
   hierarchical_term_formatter: 0
@@ -83,6 +85,7 @@ module:
   linkit: 0
   media: 0
   media_library: 0
+  menu_link_attributes: 0
   menu_link_content: 0
   menu_ui: 0
   message_gcnotify: 0
@@ -116,7 +119,6 @@ module:
   search_api_solr_admin: 0
   serialization: 0
   shield: 0
-  shortcut: 0
   shs: 0
   smart_trim: 0
   smtp: 0
@@ -167,4 +169,5 @@ theme:
   bootstrap5: 0
   bcbb_theme: 0
   dc_theme: 0
+  gin: 0
 profile: standard

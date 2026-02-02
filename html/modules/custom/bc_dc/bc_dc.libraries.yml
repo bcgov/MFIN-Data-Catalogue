@@ -3,3 +3,17 @@ bc_dc.form:
     js/views/WidgetView.js: {}
   dependencies:
     - shs/shs.form
+
+piechart_tweak:
+  version: VERSION
+  js:
+    js/piechart_tweak.js:
+      weight: -5
+  dependencies:
+    - charts/global
+
+fdc_media_library:
+  version: 1
+  css:
+    theme:
+      css/fdc_media_library.css: {}

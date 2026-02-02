@@ -18,6 +18,7 @@ dependencies:
   - cm_revision_delete:cm_revision_delete
   - date_popup:date_popup
   - diff:diff
+  - drupal:admin_toolbar_tools
   - drupal:basic_auth
   - drupal:charts
   - drupal:ctools_views

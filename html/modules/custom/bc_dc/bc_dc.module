@@ -23,7 +23,6 @@ use Drupal\Core\Render\Element;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
-use Drupal\message_gcnotify\Service\GcNotifyApiService;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\paragraphs\ParagraphInterface;
@@ -34,6 +33,8 @@ use Drupal\user\UserInterface;
 use Drupal\views\Plugin\views\query\QueryPluginBase;
 use Drupal\views\ResultRow;
 use Drupal\views\ViewExecutable;
+
+
 
 /**
  * Implements hook_entity_operation().
@@ -78,6 +79,26 @@ function bc_dc_node_view_alter(array &$build, NodeInterface $entity, EntityViewD
     // Ensure book_navigation is just heavier than bcbb_search_api_block.
     $build['bcbb_search_api_block']['#weight'] = $build['book_navigation']['#weight'];
     $build['book_navigation']['#weight']++;
+  }
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function bc_dc_page_attachments(array &$attachments) {
+  // Attach the library if the active route is an admin one.
+  // if (\Drupal::service('router.admin_context')->isAdminRoute()) {
+  //   $attachments['#attached']['library'][] = 'bc_dc/fdc_ckeditor';
+  // }
+  // Attach the library on the specific route.
+  $route_match = \Drupal::routeMatch()->getRouteName();
+  $media_library_view_route = [
+    'view.media_library.page_1',
+    'view.fdc_admin_media.page_1',
+    'view.fdc_admin_media.page_2',
+  ];
+  if (in_array($route_match, $media_library_view_route)) {
+    $attachments['#attached']['library'][] = 'bc_dc/fdc_media_library';
   }
 }
 
@@ -305,6 +326,17 @@ function bc_dc_node_access(NodeInterface $entity, string $operation, AccountInte
     return AccessResult::allowed();
   }
 
+  if ($operation == 'update' && $entity->bundle() === 'data_set') {
+    $is_my_node = $account->id() == $entity->getOwnerId();
+    $allowed = (
+      (    $account->hasPermission('edit own data_set in_org') && $is_my_node
+        || $account->hasPermission('edit any data_set in_org')
+      )
+      && bc_dc_data_set_user_org_match($entity, $account) 
+    );
+    return AccessResult::forbiddenIf(!$allowed);
+  }
+
   // Deny access to `book` by permission.
   if ($entity->bundle() === 'book') {
     return AccessResult::forbiddenIf(!$account->hasPermission('access data catalogue docs'), 'User does not have permission to access book content.');
@@ -347,190 +379,81 @@ function bc_dc_data_set_user_org_match(NodeInterface $entity, AccountInterface $
 /**
  * Implements hook_ENTITY_TYPE_presave().
  */
-function bc_dc_node_presave(NodeInterface $entity): void {
+function bc_dc_node_presave(NodeInterface $node): void {
   // Act only on data_set nodes.
-  if ($entity->bundle() !== 'data_set') {
+  if ($node->bundle() !== 'data_set') {
     return;
   }
-
+  
   // When is_complete_review is checked, set field_last_review_date to now.
-  if ($entity->get('field_is_complete_review')->value) {
-    $entity->set('field_last_review_date', date('Y-m-d'));
-    $entity->set('field_is_complete_review', FALSE);
+  if ($node->get('field_is_complete_review')->value) {
+    $node->set('field_last_review_date', date('Y-m-d'));
+    $node->set('field_is_complete_review', FALSE);
   }
 
   // Update field_review_status.
-  \Drupal::service('bc_dc.update_review_status')->updateEntity($entity, FALSE);
+  \Drupal::service('bc_dc.update_review_status')->updateEntity($node, FALSE);
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert() for node.
+ */
+function bc_dc_node_insert(NodeInterface $node): void {
+  // Act only on Metadata Records.
+  if ($node->bundle() != 'data_set') {
+    return;
+  }
+
+  // If MR is changed in any way, then update it in the search index.
+  \Drupal::service('bc_dc.search_indexing')->reindexNode($node);
 }
 
 /**
  * Implements hook_ENTITY_TYPE_update() for node.
  */
-function bc_dc_node_update(NodeInterface $entity): void {
-  // Send a notification to all users who have bookmarked this data_set and who
-  // last viewed it before the modified_date.
-  //
-  // Act only on data_set nodes.
-  if ($entity->bundle() !== 'data_set') {
+function bc_dc_node_update(NodeInterface $node): void {
+  // Act only on Metadata Records.
+  if ($node->bundle() != 'data_set') {
     return;
   }
 
+  $data_set =& $node;  // For clarity
+
+  // If MR is changed in any way, then update it in the search index.
+  \Drupal::service('bc_dc.search_indexing')->reindexNode($data_set);
+
+
+  // Send a notification to all users who have bookmarked this data_set and who
+  // last viewed it before the modified_date.
+
   // If field_modified_date is not made greater than it was, do nothing.
-  $old_modified_date = $entity->original->field_modified_date->value;
-  $new_modified_date = $entity->field_modified_date->value;
+  $old_modified_date = $data_set->original->field_modified_date->value;
+  $new_modified_date = $data_set->field_modified_date->value;
+
   if ($new_modified_date <= $old_modified_date) {
     return;
   }
+
 
   // Load an array of all bookmarks.
   $flag_service = \Drupal::service('flag');
   $bookmark_flag = $flag_service->getFlagById('bookmark');
   /** @var \Drupal\flag\FlaggingInterface[] $bookmark_flaggings Array of flaggings. */
-  $bookmark_flaggings = $flag_service->getEntityFlaggings($bookmark_flag, $entity);
+  $bookmark_flaggings = $flag_service->getEntityFlaggings($bookmark_flag, $data_set);
 
   // Email users who asked to be notified of the change,
   // if the data set was modified after the last viewed date.
   // We compare dates because field_modified_date might not be set to now, but
   // some time in the past when it was know that an update was made.
   foreach ($bookmark_flaggings as $bookmark_flagging) {
-    if ($new_modified_date > $bookmark_flagging->get('field_last_viewed_date')->value) {
+    $date_owner_last_viewed_mr = $bookmark_flagging->get('field_last_viewed_date')->value;
+    if ($new_modified_date > $date_owner_last_viewed_mr) {
       $owner = $bookmark_flagging->getOwner();
-      $email = $owner->getEmail();
-      if ($email) {
-        _bc_dc_send_email_re_changed_asset($owner, $entity);
+      if ($owner->getEmail()) {
+        \Drupal::service('bc_dc.email_sending')->sendEmailReChangedMetadataRecord($owner, $data_set, strtotime($date_owner_last_viewed_mr));
       }
     }
   }
-}
-
-/**
- * Send an email to someone re a bookmarked asset having been updated.
- *
- * @param \Drupal\user\Entity\User $owner
- *   User who bookmarked this Metadata record.
- * @param [type] $asset
- *   The Metadata record they bookmarked.
- */
-function _bc_dc_send_email_re_changed_asset($owner, $asset) {
-
-  // We want to be able to say what kind of metadata record this is:
-  // - Postgres database
-  // - CHEFS form
-  // etc.
-  // To do this, we first look up the data-type term, and its ancestors.
-  // Then we make a few changes (so that it reads better), and render it.
-  //
-  // Build an array of this asset's dataset_type's term's name,
-  // and its ancestors' names.
-  // We are trying to build this var: $nice_record_type_name.
-  /* e.g. Data -> File -> CSV.              => "CSV data-file"
-  //      Data -> Database -> Postgres      => "Postgres database"
-  //      Data -> Database                  => "Database"
-  //      Form -> CHEFS                     => "CHEFS form"
-  //      Report                            => "Report"
-  //      Data                              => "Data-source"
-   */
-  $dataset_type_names = [];
-  $dataset_type_tid = $asset->field_data_set_type[0]->getValue()['target_id'];
-  $term_ancestry = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadAllParents($dataset_type_tid);
-  foreach ($term_ancestry as $dataset_type_term) {
-    $dataset_type_names[] = $dataset_type_term->getName();
-  }
-
-  // $term_ancestry looks like 0=>'Postgres', 1='Database', 2=>'Data'.
-  // -- We want this reversed for our manipulations below.
-  $dataset_type_names = array_reverse($dataset_type_names);
-
-  if ($dataset_type_names[0] == 'Data') {
-    // Rename 'File' to be clearer.
-    if ($dataset_type_names[1] == 'File') {
-      $dataset_type_names[1] = 'Data-file';
-    }
-
-    // Throw away the first 'Data' term. We'll just call it a
-    // "Postgres database", not "Postgres database 'data'".
-    array_shift($dataset_type_names);
-  }
-
-  $nice_record_type_name = isset($dataset_type_names[1])
-    ? $dataset_type_names[1] . ' ' . strtolower($dataset_type_names[0])
-    : $dataset_type_names[0];
-
-  // This "remove-bookmark" link doesn't work, I think due to
-  // the CSRF token being connected to the wrong user?
-  /* $remove_bookmark_link = Url::fromRoute('flag.action_link_unflag',
-  ['flag'=>'bookmark', 'entity_id'=> $asset->id()],
-  ['absolute' => TRUE])->toString(),
-   */
-  $subject = t('Update to "@asset_name" metadata record', ['@asset_name' => $asset->getTitle()]);
-
-  $body_content = t(<<<END_BODY
-Dear @first_name,
-
-In the Finance Data Catalogue, you previously bookmarked the metadata record "[@asset_name](@asset_url)", which is a @nice_record_type_name.
-
-It has just been updated. Click to view the updated record:
-
-- [@direct_asset_url](@asset_url)
-
-___
-
-If you no longer want these reminders, you can unbookmark the related record here:
-
-- ["My bookmarks", in the Finance Data Catalogue](@subscriber_alerts_url)
-
-
-END_BODY,
-    [
-      '@first_name' => $owner->field_first_name->value,
-      '@nice_record_type_name' => $nice_record_type_name,
-      '@asset_name' => $asset->getTitle(),
-      '@direct_asset_url' => Url::fromRoute('entity.node.canonical',
-        ['node' => $asset->id()],
-        ['absolute' => TRUE]
-      )->toString(),
-      '@asset_url' => Url::fromRoute('user.login', [], [
-        'query' => ['destination' => '/node/' . $asset->id()],
-        'absolute' => TRUE,
-      ])->toString(),
-      '@subscriber_alerts_url' => Url::fromRoute('user.login', [], [
-        'query' => ['destination' => '/user/' . $owner->id() . '/bookmarks'],
-        'absolute' => TRUE,
-      ])->toString(),
-    ]
-  );
-
-  $body_content .= _bc_dc_get_email_footer();
-
-  // Send the message and log the result.
-  $success = GcNotifyApiService::sendMessage([$owner->getEmail()], $subject, $body_content);
-  $logger = \Drupal::logger('bc_dc');
-  $logger->notice(($success ? 'Sent message' : 'Failed sending message')
-            . 'to user @user_num when updating data_set @nid.', [
-              '@user_num' => $owner->id(),
-              '@nid' => $asset->id(),
-            ]
-  );
-}
-
-/**
- * Get the common text we put in email footers.
- */
-function _bc_dc_get_email_footer() {
-  $is_test_or_dev = preg_match('/(dev|test)/i', \Drupal::config('environment_indicator.indicator')->get('name'));
-
-  return t(<<<END_EMAIL_FOOTER
-For more information or assistance, please @contact_us.
-
-Ministry of Finance Data Catalogue
-@data_cat_main_url
-END_EMAIL_FOOTER,
-  [
-    '@contact_us' => $is_test_or_dev
-      ? 'contact Nicole.deGreef@gov.bc.ca'
-      : 'reach out via [Finance Data Catalogue Support](https://fincsp.atlassian.net/servicedesk/customer/portal/12)',
-    '@data_cat_main_url' => Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString(),
-  ]);
 }
 
 /**
@@ -771,34 +694,35 @@ function _bc_dc_form_node_data_set_edit_form_validate(array &$form, FormStateInt
   }
 
   // When adding MR refs to the "Assets used" field, disallow:
-  //   -- self-references
-  //   -- duplicate references
+  // -- self-references
+  // -- duplicate references.
   $this_node = \Drupal::routeMatch()->getParameter('node');
-  $this_nid = null;
+  $this_nid = NULL;
   if ($this_node instanceof NodeInterface) {
     $this_nid = $this_node->id();
   }
   $asset_ref_counts = [];
-  foreach($form_state->getValue('field_data_sets_used') as $index => $mr_ref_info) {
-    // The 'Add another item' shows up in this array, 
+  foreach ($form_state->getValue('field_data_sets_used') ?? [] as $index => $mr_ref_info) {
+    // The 'Add another item' shows up in this array,
     // with a non-numeric index. Skip it.
     if (is_numeric($index)) {
       $asset_id_referenced = $mr_ref_info['target_id'];
       // Empty rows produce a null asset-id ref -- skip them.
-      if (! is_null($asset_id_referenced)) {
+      if (!is_null($asset_id_referenced)) {
         if (isset($this_nid)  &&  $this_nid == $asset_id_referenced) {
           $form_state->setErrorByName('field_data_sets_used', "An asset may not reference itself, in 'Assets used'.");
         }
         // Keep a count of how many times we've seen each referenced asset.
-        if (! isset($asset_ref_counts[$asset_id_referenced])) {
+        if (!isset($asset_ref_counts[$asset_id_referenced])) {
           $asset_ref_counts[$asset_id_referenced] = 1;
-        }else{
+        }
+        else {
           $asset_ref_counts[$asset_id_referenced]++;
         }
       }
     }
-  } 
-  foreach ($asset_ref_counts as $id => $count) {
+  }
+  foreach (array_values($asset_ref_counts) as $count) {
     if ($count > 1) {
       $form_state->setErrorByName('field_data_sets_used', "Please do not include duplicates, in 'Assets used'.");
       break;
@@ -1160,6 +1084,18 @@ function bc_dc_menu_local_tasks_alter(array &$data, string $route_name, Refinabl
   if (isset($data['tabs'][0]['entity.user.canonical']['#link']['title'])) {
     $data['tabs'][0]['entity.user.canonical']['#link']['title'] = t('Dashboard');
   }
+
+  // Hide these default local tasks.
+  unset($data['tabs'][0]['entity.block_content.collection']);
+  unset($data['tabs'][0]['comment.admin']);
+  unset($data['tabs'][0]['entity.media.collection']);
+  unset($data['tabs'][0]['views_view:view.files.page_1']);
+  unset($data['tabs'][0]['views_view:view.saved_searches_admin.page']);
+
+  // Hide content moderation tabs.
+  if ($route_name == 'system.admin_content') {
+    unset($data['tabs'][1]);
+  }
 }
 
 /**
@@ -1381,4 +1317,13 @@ function bc_dc_robotstxt(): array {
 
   // Default to adding nothing.
   return [];
+}
+
+/**
+ * Implements hook_chart_alter().
+ */
+function bc_dc_chart_alter(array &$element, $chart_id) {
+  if ($chart_id === 'reports_by_restriction_block_records_by_restriction') {
+    $element['#attached']['library'][] = 'bc_dc/piechart_tweak';
+  }
 }
