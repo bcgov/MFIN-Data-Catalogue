@@ -147,3 +147,25 @@ RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
   source /vault/secrets/secrets.env
   echo 'Loaded secrets into environment variables.'
 END_BASHRC_LINES
+
+# Set the bash prompt colours and text.
+# Note that "\[\033[1;30m\]" means set the foreground colour to 30 (black), with 1 (bold).
+#  Foreground colours range from 30-37, and are Black, Red, Green, Yellow, Blue, Purple, Cyan, White.
+# "[\033[0;30;41m\]" means set foreground and background. BG colours are same as FG, but (40-47).
+# "\[\033[00m\]" means reset colour back to normal.
+# "\[\033[38;2;0;0;0m\]"   means set FG to RGB black
+# "\[\033[48;2;0;255;0m\]" means set BG to RGB green
+# \h is hostname
+# \w is current directory
+# \$ is prompt ($, or might be # for root)
+RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
+  case "$ENVIRONMENT_NAME" in
+    "dev")   ENVIRONMENT_INDICATOR='\[\033[38;2;0;0;0m\]\[\033[48;2;160;255;160m\]Dev'    ;; # Black on green.
+    "test")  ENVIRONMENT_INDICATOR='\[\033[38;2;0;0;0m\]\[\033[48;2;255;255;96m\]Test'    ;; # Black on yellow.
+    "prod")  ENVIRONMENT_INDICATOR='\[\033[38;2;255;255;255m\]\[\033[48;2;235;0;0m\]PROD' ;; # White on red.
+    *) echo "Bad environment name, '$ENV_NAME'." ;;
+  esac
+  PROJECT_COLOUR="\[\033[00m\]\[\033[1;36m\]" # alter the last number (30), to 30-36, to be unique for this project.
+
+  export PS1="$ENVIRONMENT_INDICATOR$PROJECT_COLOUR \h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] \$ "
+END_BASHRC_LINES
