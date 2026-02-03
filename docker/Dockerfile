@@ -143,4 +143,7 @@ RUN echo "$GITHUB_SHA" > /var/www/build-hash.txt
 # Load secrets automatically upon bash-login.
 #   Note that the secrets are created from gitops, using
 #   the "vault.hashicorp.com/agent-inject-template-secrets.env" annotation.
-RUN echo "source /vault/secrets/secrets.env; echo 'Loaded secrets into environment variables.'" >> /etc/bash/bashrc
+RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
+  source /vault/secrets/secrets.env
+  echo 'Loaded secrets into environment variables.'
+END_BASHRC_LINES
