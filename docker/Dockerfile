@@ -161,11 +161,14 @@ END_BASHRC_LINES
 RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
   case "$ENVIRONMENT_NAME" in
     "dev")   ENVIRONMENT_INDICATOR='\[\033[38;2;0;0;0m\]\[\033[48;2;160;255;160m\]Dev'    ;; # Black on green.
-    "test")  ENVIRONMENT_INDICATOR='\[\033[38;2;0;0;0m\]\[\033[48;2;255;255;96m\]Test'    ;; # Black on yellow.
+    "test")  ENVIRONMENT_INDICATOR='\[\033[38;2;0;0;0m\]\[\033[48;2;230;230;96m\]Test'    ;; # Black on yellow.
     "prod")  ENVIRONMENT_INDICATOR='\[\033[38;2;255;255;255m\]\[\033[48;2;235;0;0m\]PROD' ;; # White on red.
     *) echo "Bad environment name, '$ENV_NAME'." ;;
   esac
-  PROJECT_COLOUR="\[\033[00m\]\[\033[1;36m\]" # alter the last number (30), to 30-36, to be unique for this project.
+  PROJECT_COLOUR="\[\033[48;2;220;250;250m\]"  # fdc
+# PROJECT_COLOUR="\[\033[48;2;250;220;250m\]"  # ess
+# PROJECT_COLOUR="\[\033[48;2;250;250;220m\]"  # intra
+# PROJECT_COLOUR="\[\033[48;2;220;220;250m\]"  # cas
 
-  export PS1="$ENVIRONMENT_INDICATOR$PROJECT_COLOUR \h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] \$ "
+  export PS1="$ENVIRONMENT_INDICATOR\[\033[00m\] \h:$PROJECT_COLOUR\w\[\033[00m\] \$ "
 END_BASHRC_LINES
