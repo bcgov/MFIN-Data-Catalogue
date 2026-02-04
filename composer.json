@@ -317,7 +317,7 @@
                 "2756613 - Avoid harcoded prefex and suffix in block region": "https://www.drupal.org/files/issues/page_manager-avoid_prefix_suffix-2756613-8.patch"
             },
             "drupal/panels": {
-                "2820617 - Avoid harcoded prefex and suffix in block region": "https://git.drupalcode.org/project/panels/-/merge_requests/12.diff",
+                "2820617 - Avoid hard-coded prefix and suffix in block region": "composer.patches/2820617.panels.mr12-as-at-2024-01-10.patch.txt",
                 "2910704 - IPE toggle preview not working in IE": "https://www.drupal.org/files/issues/panels-ipe-card-flip-ie-error-2910704.diff"
             },
             "drupal/role_delegation": {
