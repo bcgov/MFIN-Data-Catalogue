@@ -154,9 +154,9 @@ END_BASHRC_LINES
 # \$ is prompt ($, or might be # for root)
 RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
   case "$ENVIRONMENT_NAME" in
-    "dev")   ENVIRONMENT_INDICATOR='\[\033[38;2;0;0;0m\]\[\033[48;2;160;255;160m\]Dev'    ;; # Black on green.
-    "test")  ENVIRONMENT_INDICATOR='\[\033[38;2;0;0;0m\]\[\033[48;2;230;230;96m\]Test'    ;; # Black on yellow.
-    "prod")  ENVIRONMENT_INDICATOR='\[\033[38;2;255;255;255m\]\[\033[48;2;235;0;0m\]PROD' ;; # White on red.
+    "dev")   ENVIRONMENT_COLOUR='\[\033[38;2;0;0;0m\]\[\033[48;2;160;255;160m\]'    ;; # Black on green.
+    "test")  ENVIRONMENT_COLOUR='\[\033[38;2;0;0;0m\]\[\033[48;2;230;230;96m\]'    ;; # Black on yellow.
+    "prod")  ENVIRONMENT_COLOUR='\[\033[38;2;255;255;255m\]\[\033[48;2;235;0;0m\]' ;; # White on red.
     *) echo "Bad environment name, '$ENV_NAME'." ;;
   esac
 
@@ -179,7 +179,7 @@ RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
 
   RESET_COLOUR='\[\033[00m\]'
 
-  export PS1="${PROJECT_NAME_COLOUR}${PROJECT_NAME}-${ENVIRONMENT_INDICATOR}${RESET_COLOUR}:${PROJECT_DIR_COLOUR}\w${RESET_COLOUR} \$ "
+  export PS1="${PROJECT_NAME_COLOUR}${PROJECT_NAME}-${ENVIRONMENT_COLOUR}${ENVIRONMENT_NAME}${RESET_COLOUR}:${PROJECT_DIR_COLOUR}\w${RESET_COLOUR} \$ "
 
   echo "----------- Connected to '$(hostname)'. -----------"
 
