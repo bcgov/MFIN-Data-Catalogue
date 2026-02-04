@@ -166,18 +166,20 @@ RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
   #   - "Dir colour" has Sat=100%, Lum=93%
   # The Bash prompt only supports RGB format, so they have been converted from HSL to RGB.
   #
-# PROJECT_NAME='intra'; PROJECT_NAME_COLOUR="\[\033[38;2;191;191;064m\]"; PROJECT_DIR_COLOUR="\[\033[48;2;250;250;220m\]"  # Hue:60
-  PROJECT_NAME='fdc';   PROJECT_NAME_COLOUR="\[\033[38;2;064;191;191m\]"; PROJECT_DIR_COLOUR="\[\033[48;2;220;250;250m\]"  # Hue:180
-# PROJECT_NAME='cas';   PROJECT_NAME_COLOUR="\[\033[38;2;064;064;191m\]"; PROJECT_DIR_COLOUR="\[\033[48;2;220;220;250m\]"  # Hue:240
-# PROJECT_NAME='ess';   PROJECT_NAME_COLOUR="\[\033[38;2;191;064;191m\]"; PROJECT_DIR_COLOUR="\[\033[48;2;250;220;250m\]"  # Hue:300
+
+  # PROJECT_NAME='intra'; PROJECT_NAME_COLOUR="\[\033[38;2;191;064;064m\]"; PROJECT_DIR_COLOUR="\[\033[48;2;250;220;220m\]"  # Hue:  0 (red)
+  # PROJECT_NAME='ess';   PROJECT_NAME_COLOUR="\[\033[38;2;191;191;064m\]"; PROJECT_DIR_COLOUR="\[\033[48;2;250;250;220m\]"  # Hue: 60 (yellow)
+  PROJECT_NAME='fdc';   PROJECT_NAME_COLOUR="\[\033[38;2;064;191;064m\]"; PROJECT_DIR_COLOUR="\[\033[48;2;220;250;220m\]"  # Hue:120 (green)
+  # PROJECT_NAME='cas';   PROJECT_NAME_COLOUR="\[\033[38;2;064;191;191m\]"; PROJECT_DIR_COLOUR="\[\033[48;2;220;250;250m\]"  # Hue:180 (cyan)
+  # PROJECT_NAME='TBD 1'; PROJECT_NAME_COLOUR="\[\033[38;2;064;064;191m\]"; PROJECT_DIR_COLOUR="\[\033[48;2;220;220;250m\]"  # Hue:240 (blue)
+  # PROJECT_NAME='TBD 2'; PROJECT_NAME_COLOUR="\[\033[38;2;191;064;191m\]"; PROJECT_DIR_COLOUR="\[\033[48;2;250;220;250m\]"  # Hue:300 (purple)
 
   RESET_COLOUR='\[\033[00m\]'
 
   export PS1="${PROJECT_NAME_COLOUR}${PROJECT_NAME}-${ENVIRONMENT_INDICATOR}${RESET_COLOUR}:${PROJECT_DIR_COLOUR}\w${RESET_COLOUR} \$ "
 
   echo
-  echo "|---------- Connected to '$(hostname)'. -----------"
-  echo "|"
+  echo "----------- Connected to '$(hostname)'. -----------"
 
 END_BASHRC_LINES
 
@@ -188,8 +190,7 @@ RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
   # Guard to only affect interactive shells
   if [[ $- == *i* ]]; then
     _exit_message() {
-      echo "|"
-      echo "|------- Disconnecting from '$(hostname)'. --------"
+      echo "-------- Disconnecting from '$(hostname)'. --------"
       echo
     }
 
