@@ -262,7 +262,7 @@ END_BODY,
    * Get the common text we put in email footers.
    */
   public function getEmailFooter() {
-    $is_test_or_dev = preg_match('/(dev|test)/i', \Drupal::config('environment_indicator.indicator')->get('name'));
+    $is_test_or_dev = preg_match('/(dev|test)/i', \Drupal::config('environment_indicator.indicator')->get('name') ?? '');
 
     return t(<<<END_EMAIL_FOOTER
   For more information or assistance, please @contact_us.
