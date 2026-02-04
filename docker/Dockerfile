@@ -149,13 +149,8 @@ RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
 END_BASHRC_LINES
 
 # Set the bash prompt colours and text.
-# Note that "\[\033[1;30m\]" means set the foreground colour to 30 (black), with 1 (bold).
-#  Foreground colours range from 30-37, and are Black, Red, Green, Yellow, Blue, Purple, Cyan, White.
-# "[\033[0;30;41m\]" means set foreground and background. BG colours are same as FG, but (40-47).
-# "\[\033[00m\]" means reset colour back to normal.
 # "\[\033[38;2;0;0;0m\]"   means set FG to RGB black
 # "\[\033[48;2;0;255;0m\]" means set BG to RGB green
-# \h is hostname
 # \w is current directory
 # \$ is prompt ($, or might be # for root)
 RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
@@ -165,10 +160,26 @@ RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
     "prod")  ENVIRONMENT_INDICATOR='\[\033[38;2;255;255;255m\]\[\033[48;2;235;0;0m\]PROD' ;; # White on red.
     *) echo "Bad environment name, '$ENV_NAME'." ;;
   esac
-  PROJECT_COLOUR="\[\033[48;2;220;250;250m\]"  # fdc
-# PROJECT_COLOUR="\[\033[48;2;250;220;250m\]"  # ess
-# PROJECT_COLOUR="\[\033[48;2;250;250;220m\]"  # intra
-# PROJECT_COLOUR="\[\033[48;2;220;220;250m\]"  # cas
 
-  export PS1="$ENVIRONMENT_INDICATOR\[\033[00m\] \h:$PROJECT_COLOUR\w\[\033[00m\] \$ "
+  # HSL (Hue/Sat/Lum) versions of these colours. 
+  #   - Each project has a unique hue.
+  #   - "Name colour" has Sat=50%, Lum=50%
+  #   - "Dir colour" has Sat=100%, Lum=93%
+  # The Bash prompt only supports RGB format, so they have been converted from HSL to RGB.
+  #
+# PROJECT_NAME='intra'; PROJECT_NAME_COLOUR="\[\033[38;2;191;191;064m\]"; PROJECT_DIR_COLOUR="\[\033[48;2;250;250;220m\]"  # Hue:60
+  PROJECT_NAME='fdc';   PROJECT_NAME_COLOUR="\[\033[38;2;064;191;191m\]"; PROJECT_DIR_COLOUR="\[\033[48;2;220;250;250m\]"  # Hue:180
+# PROJECT_NAME='cas';   PROJECT_NAME_COLOUR="\[\033[38;2;064;064;191m\]"; PROJECT_DIR_COLOUR="\[\033[48;2;220;220;250m\]"  # Hue:240
+# PROJECT_NAME='ess';   PROJECT_NAME_COLOUR="\[\033[38;2;191;064;191m\]"; PROJECT_DIR_COLOUR="\[\033[48;2;250;220;250m\]"  # Hue:300
+
+  RESET_COLOUR='\[\033[00m\]'
+
+  export PS1="${PROJECT_NAME_COLOUR}${PROJECT_NAME}-${ENVIRONMENT_INDICATOR}${RESET_COLOUR}:${PROJECT_DIR_COLOUR}\w${RESET_COLOUR} \$ "
+
+  echo "This is pod '$(hostname)'."
 END_BASHRC_LINES
+
+# Mention the pod name again upon logout, in case it might be useful later.
+RUN cat <<'END_BASHLOGOUT_LINES' >> /etc/bash/bash_logout
+  echo "Good-bye from pod '$(hosthame)'."
+END_BASHLOGOUT_LINES
