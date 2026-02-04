@@ -180,6 +180,6 @@ RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
 END_BASHRC_LINES
 
 # Mention the pod name again upon logout, in case it might be useful later.
-RUN cat <<'END_BASHLOGOUT_LINES' >> /etc/bash/bash_logout
+RUN cat <<'END_BASHLOGOUT_LINES' >> /etc/bash.bash_logout
   echo "Good-bye from pod '$(hosthame)'."
 END_BASHLOGOUT_LINES
