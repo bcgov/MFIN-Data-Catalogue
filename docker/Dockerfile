@@ -145,7 +145,6 @@ RUN echo "$GITHUB_SHA" > /var/www/build-hash.txt
 #   the "vault.hashicorp.com/agent-inject-template-secrets.env" annotation.
 RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
   source /vault/secrets/secrets.env
-  echo 'Loaded secrets into environment variables.'
 END_BASHRC_LINES
 
 # Set the bash prompt colours and text.
@@ -176,10 +175,31 @@ RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
 
   export PS1="${PROJECT_NAME_COLOUR}${PROJECT_NAME}-${ENVIRONMENT_INDICATOR}${RESET_COLOUR}:${PROJECT_DIR_COLOUR}\w${RESET_COLOUR} \$ "
 
-  echo "This is pod '$(hostname)'."
+  echo
+  echo "|---------- Connected to '$(hostname)'. -----------"
+  echo "|"
+
 END_BASHRC_LINES
 
+
 # Mention the pod name again upon logout, in case it might be useful later.
-RUN cat <<'END_BASHLOGOUT_LINES' >> /etc/bash.bash_logout
-  echo "Good-bye from pod '$(hosthame)'."
-END_BASHLOGOUT_LINES
+RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
+
+  # Guard to only affect interactive shells
+  if [[ $- == *i* ]]; then
+    _exit_message() {
+      echo "|"
+      echo "|------- Disconnecting from '$(hostname)'. --------"
+      echo
+    }
+
+    # Chain with any existing EXIT trap (avoid overwriting)
+    existing_trap=$(trap -p EXIT | sed -E "s/^trap -- '(.*)' EXIT$/\1/")
+    if [[ -n "$existing_trap" ]]; then
+      trap '{ '"$existing_trap"'; } ; _exit_message' EXIT
+    else
+      trap '_exit_message' EXIT
+    fi
+  fi
+
+END_BASHRC_LINES
