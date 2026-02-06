@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies: {  }
+machine: production
+description: null
+name: Production
+weight: 2
+url: 'https://cabops.gov.bc.ca'
+fg_color: 'hsl(356, 69%, 51%)'
+bg_color: 'hsl(8, 100%, 67%)'
