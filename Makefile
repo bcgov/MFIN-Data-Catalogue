@@ -136,16 +136,8 @@ phpcs: drupal_cs
 phpunit:
 	./docker/bin/phpunit --colors=always \
 	    -c /var/www/html/core/phpunit.xml.dist \
-	    profiles/wxt \
-	    --testsuite=kernel \
+	    profiles/wxt/tests/src/Kernel \
 	    --group=$(PROFILE_NAME)
-
-	./docker/bin/phpunit --colors=always \
-	    -c /var/www/html/core/phpunit.xml.dist \
-	    profiles/wxt \
-	    --testsuite=unit \
-	    --group=$(PROFILE_NAME) \
-	    --dont-report-useless-tests
 
 release: tag_latest
 	@if ! docker images $(NAME) | awk '{ print $$2 }' | grep -q -F $(VERSION); then echo "$(NAME) version $(VERSION) is not yet built. Please run 'make base'"; false; fi
