@@ -1,5 +1,7 @@
 # TLS Enforcement by MariaDB Client in Linux Alpine Base Image
 # https://github.com/laravel/framework/discussions/54267
-[client]
-ssl = false
-ssl-verify-server-cert = false
+command:
+  sql:
+    cli:
+      options:
+        extra: "--skip-ssl"
