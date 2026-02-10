@@ -1,5 +1,5 @@
-# https://github.com/docker-library/drupal/blob/master/11.1/php8.3/fpm-alpine3.21/Dockerfile
-FROM drupal:11.1.1-php8.3-fpm-alpine3.21
+# https://github.com/docker-library/drupal/blob/master/11.2/php8.3/fpm-alpine3.21/Dockerfile
+FROM drupal:11.2.7-php8.3-fpm-alpine3.21
 
 # This Drupal-Alpine base image contains a full copy of Drupal (and its vendor folder).
 # We don't actually use this at all, and build our own version of Drupal, below.
