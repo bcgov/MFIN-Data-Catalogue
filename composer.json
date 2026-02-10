@@ -8,6 +8,19 @@
     
     Please delete these comment lines!! (They are not valid JSON.)
 
+  "require": {
+
+    IMPORTANT: When updating Drupal core to a new version, be sure 
+    to also switch to the corresponding branch in WXT-Drupal-Scaffold, 
+    which is merged into this branch. You'll need to 'git subtree merge'
+    it in.
+    
+    (In the case of Drupal 10.5, there was no matching version in docker-scaffold,
+     so we're using 10.6 from there.)
+    "drupal/core-composer-scaffold": "~10.5.4",
+    "drupal/core-recommended": "~10.5.4"
+
+  },
   "extra": {
     "composer-exit-on-patch-failure": true,
     "enable-patching": true,
