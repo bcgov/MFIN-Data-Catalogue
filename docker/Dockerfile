@@ -1,5 +1,5 @@
 # https://github.com/docker-library/drupal/blob/master/10.2/php8.2/fpm-alpine3.19/Dockerfile
-FROM drupal:10.2-php8.2-fpm-alpine
+FROM drupal:10.6.1-php8.3-fpm-alpine3.23
 
 # This Drupal-Alpine base image contains a full copy of Drupal (and its vendor folder).
 # We don't actually use this at all, and build our own version of Drupal, below.
@@ -14,8 +14,10 @@ ARG GIT_USERNAME
 ARG GIT_PASSWORD
 ARG GITHUB_SHA
 
-RUN apk --update add fcgi \
-    && curl -o /usr/local/bin/php-fpm-healthcheck https://raw.githubusercontent.com/renatomefi/php-fpm-healthcheck/master/php-fpm-healthcheck \
+RUN apk --no-cache add fcgi \
+    && curl -sSL -o /usr/local/bin/php-fpm-healthcheck \
+       https://raw.githubusercontent.com/renatomefi/php-fpm-healthcheck/a2d45de918787f761754b96b94a59f4f6acebc25/php-fpm-healthcheck \
+    && echo "53bc616c4a30f029b98bff48fdeb0c4da252cb11e4f86656a8222a67dc4e5009  /usr/local/bin/php-fpm-healthcheck" | sha256sum -c - \
     && chmod +x /usr/local/bin/php-fpm-healthcheck
 COPY docker/conf/php-fpm/status.conf /usr/local/etc/php-fpm.d/
 
@@ -26,6 +28,7 @@ RUN apk --update add --no-cache bash \
                                 git \
                                 gzip \
                                 mysql-client \
+                                mariadb-connector-c \
                                 patch \
                                 postgresql-client \
                                 rsync \
@@ -41,6 +44,11 @@ COPY docker/conf/ssmtp.conf /etc/ssmtp/ssmtp.conf
 RUN echo "hostname=drupalwxt.github.io" >> /etc/ssmtp/ssmtp.conf
 RUN echo 'sendmail_path = "/usr/sbin/ssmtp -t"' > /usr/local/etc/php/conf.d/mail.ini
 COPY docker/conf/php.ini /usr/local/etc/php/php.ini
+
+# TLS Enforcement by MariaDB Client in Linux Alpine Base Image
+# https://github.com/laravel/framework/discussions/54267
+COPY docker/conf/my.cnf /etc/my.cnf.d/my.cnf
+COPY docker/conf/drush.yml ~/.drush/drush.yml
 
 # Install additional php extensions
 RUN apk add --update --no-cache autoconf \
@@ -68,7 +76,7 @@ RUN apk add --update --no-cache autoconf \
 COPY docker/certs/BaltimoreCyberTrustRoot.crt.pem /etc/ssl/mysql/BaltimoreCyberTrustRoot.crt.pem
 
 # Redis
-ENV PHPREDIS_VERSION 5.3.7
+ENV PHPREDIS_VERSION 6.1.0
 RUN mkdir -p /usr/src/php/ext/redis \
     && curl -L https://github.com/phpredis/phpredis/archive/$PHPREDIS_VERSION.tar.gz | tar xvz -C /usr/src/php/ext/redis --strip 1 \
     && echo 'redis' >> /usr/src/php-available-exts \
@@ -76,7 +84,7 @@ RUN mkdir -p /usr/src/php/ext/redis \
 
 # Composer recommended settings
 ENV COMPOSER_ALLOW_SUPERUSER 1
-ARG COMPOSER_VERSION
+ENV COMPOSER_VERSION 2.5.8
 ENV COMPOSER_MEMORY_LIMIT -1
 ENV COMPOSER_EXIT_ON_PATCH_FAILURE 1
 
@@ -143,4 +151,67 @@ RUN echo "$GITHUB_SHA" > /var/www/build-hash.txt
 # Load secrets automatically upon bash-login.
 #   Note that the secrets are created from gitops, using
 #   the "vault.hashicorp.com/agent-inject-template-secrets.env" annotation.
-RUN echo "source /vault/secrets/secrets.env; echo 'Loaded secrets into environment variables.'" >> /etc/bash/bashrc
+RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
+  source /vault/secrets/secrets.env
+END_BASHRC_LINES
+
+# Set the bash prompt colours and text.
+# "\[\033[38;2;0;0;0m\]"   means set FG to RGB black
+# "\[\033[48;2;0;255;0m\]" means set BG to RGB green
+# \w is current directory
+# \$ is prompt ($, or might be # for root)
+RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
+  case "$ENVIRONMENT_NAME" in
+    "dev")   ENVIRONMENT_COLOUR='\[\033[38;2;0;0;0m\]\[\033[48;2;160;255;160m\]'    ;; # Black on green.
+    "test")  ENVIRONMENT_COLOUR='\[\033[38;2;0;0;0m\]\[\033[48;2;230;230;96m\]'    ;; # Black on yellow.
+    "prod")  ENVIRONMENT_COLOUR='\[\033[38;2;255;255;255m\]\[\033[48;2;235;0;0m\]' ;; # White on red.
+    *) echo "Bad environment name, '$ENV_NAME'." ;;
+  esac
+
+  # HSL (Hue/Sat/Lum) versions of these colours. 
+  #   - Each project has a unique hue.
+  #   - "Name colour" has Sat=50%, Lum=50%
+  #   - "Dir colour" has Sat=100%, Lum=93%
+  # The Bash prompt only supports RGB format, so they have been converted from HSL to RGB.
+  #
+
+  # NEWBB: Delete the following line, and uncomment one from below.
+  PROJECT_NAME='NEWBB-changeme'; PROJECT_NAME_COLOUR="\[\033[38;2;255;0;0m\]"; PROJECT_DIR_COLOUR="\[\033[48;2;255;0;0m\]"  
+
+  # PROJECT_NAME='intra'; PROJECT_NAME_COLOUR="\[\033[38;2;191;064;064m\]"; PROJECT_DIR_COLOUR="\[\033[48;2;250;220;220m\]"  # Hue:  0 (red)
+  # PROJECT_NAME='ess';   PROJECT_NAME_COLOUR="\[\033[38;2;191;191;064m\]"; PROJECT_DIR_COLOUR="\[\033[48;2;250;250;220m\]"  # Hue: 60 (yellow)
+  # PROJECT_NAME='fdc';   PROJECT_NAME_COLOUR="\[\033[38;2;064;191;064m\]"; PROJECT_DIR_COLOUR="\[\033[48;2;220;250;220m\]"  # Hue:120 (green)
+  # PROJECT_NAME='cas';   PROJECT_NAME_COLOUR="\[\033[38;2;064;191;191m\]"; PROJECT_DIR_COLOUR="\[\033[48;2;220;250;250m\]"  # Hue:180 (cyan)
+  # PROJECT_NAME='TBD 1'; PROJECT_NAME_COLOUR="\[\033[38;2;064;064;191m\]"; PROJECT_DIR_COLOUR="\[\033[48;2;220;220;250m\]"  # Hue:240 (blue)
+  # PROJECT_NAME='TBD 2'; PROJECT_NAME_COLOUR="\[\033[38;2;191;064;191m\]"; PROJECT_DIR_COLOUR="\[\033[48;2;250;220;250m\]"  # Hue:300 (purple)
+
+  RESET_COLOUR='\[\033[00m\]'
+
+  export PS1="${PROJECT_NAME_COLOUR}${PROJECT_NAME}-${ENVIRONMENT_COLOUR}${ENVIRONMENT_NAME}${RESET_COLOUR}:${PROJECT_DIR_COLOUR}\w${RESET_COLOUR} \$ "
+
+  echo
+  echo "----------- Connected to '$(hostname)'. -----------"
+
+END_BASHRC_LINES
+
+
+# Mention the pod name again upon logout, in case it might be useful later.
+RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
+
+  # Guard to only affect interactive shells
+  if [[ $- == *i* ]]; then
+    _exit_message() {
+      echo "-------- Disconnecting from '$(hostname)'. --------"
+      echo
+    }
+
+    # Chain with any existing EXIT trap (avoid overwriting)
+    existing_trap=$(trap -p EXIT | sed -E "s/^trap -- '(.*)' EXIT$/\1/")
+    if [[ -n "$existing_trap" ]]; then
+      trap '{ '"$existing_trap"'; } ; _exit_message' EXIT
+    else
+      trap '_exit_message' EXIT
+    fi
+  fi
+
+END_BASHRC_LINES

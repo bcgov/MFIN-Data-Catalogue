@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 10.6.x
+
+## 10.5.x (skipped)
+
+## 10.4.x
+
+- TBD
+
+## 10.3.x
+
+- TBD
+
 ## 10.2.x
 
 - TBD
