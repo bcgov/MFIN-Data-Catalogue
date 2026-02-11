@@ -91,19 +91,21 @@ jobs:
         ssh-key: ${{ secrets.TENANT_GITOPS_DEPLOY_KEY }}
         persist-credentials: true
 
-    - name: Update values-application-dev.yaml with this deployment's tag 
+    - name: Update the Dev and Test values-application yaml files with this deployment's tag 
       uses: mikefarah/yq@v4.34.1
       with:
         cmd: |
           yq -i '.drupal.tag = strenv(GITHUB_TAG_TO_DEPLOY) |
-                 .nginx.tag = strenv(GITHUB_TAG_TO_DEPLOY) ' tenant-gitops/helm-drupal/charts/drupal/values-application-dev.yaml
+                 .nginx.tag  = strenv(GITHUB_TAG_TO_DEPLOY)' tenant-gitops/helm-drupal/charts/drupal/values-application-dev.yaml
+          yq -i '.drupal.tag = strenv(GITHUB_TAG_TO_DEPLOY) |
+                 .nginx.tag  = strenv(GITHUB_TAG_TO_DEPLOY)' tenant-gitops/helm-drupal/charts/drupal/values-application-test.yaml
 
     - name: Commit this change to git
       run: |
         cd tenant-gitops
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git commit -a -m "Update DEV server to '${{ env.GITHUB_TAG_TO_DEPLOY }}'."
+        git commit -a -m "Update DEV and TEST servers to '${{ env.GITHUB_TAG_TO_DEPLOY }}'."
 
     - name: Push this commit back up to GitHub
       uses: ad-m/github-push-action@master
