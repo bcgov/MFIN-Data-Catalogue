@@ -7,12 +7,12 @@ index 0000000000000000000000000000000000000000..3da5bafc33194639b8033af9b8e90ed6
 +show_roles_tab_administer_users: false
 diff --git a/config/schema/role_delegation.schema.yml b/config/schema/role_delegation.schema.yml
 new file mode 100644
-index 0000000000000000000000000000000000000000..99e42f17725e49d027b53fe13a86c3af5a4ed064
+index 0000000000000000000000000000000000000000..cdb2f0340c9fc2acc4a5aafb26db1f6275f6d7ef
 --- /dev/null
 +++ b/config/schema/role_delegation.schema.yml
 @@ -0,0 +1,7 @@
 +role_delegation.settings:
-+  type: config_entity
++  type: config_object
 +  label: 'Role delegation settings'
 +  mapping:
 +    show_roles_tab_administer_users:
@@ -39,29 +39,59 @@ index 0000000000000000000000000000000000000000..b097131603c9744aaf2da117d94edd1e
 +    ->set('show_roles_tab_administer_users', TRUE)
 +    ->save();
 +}
+diff --git a/role_delegation.links.menu.yml b/role_delegation.links.menu.yml
+new file mode 100644
+index 0000000000000000000000000000000000000000..8dd01adc243608ee4aaa7c58304a331f728725a0
+--- /dev/null
++++ b/role_delegation.links.menu.yml
+@@ -0,0 +1,5 @@
++role_delegation.settings:
++  title: 'Role Delegation'
++  description: 'Configure Role Delegation settings.'
++  route_name: role_delegation.settings
++  parent: user.admin_index
+\ No newline at end of file
+diff --git a/role_delegation.routing.yml b/role_delegation.routing.yml
+index 834c884807ac5781b3504567f4924625effae1ee..19033f485577405c6aaf0c66c22fd2e0b363fbb5 100644
+--- a/role_delegation.routing.yml
++++ b/role_delegation.routing.yml
+@@ -7,3 +7,13 @@ role_delegation.edit_form:
+     _role_delegation_access_check: 'TRUE'
+   options:
+     _admin_route: TRUE
++
++role_delegation.settings:
++  path: '/admin/config/people/role-delegation'
++  defaults:
++    _form: 'Drupal\role_delegation\Form\RoleDelegationConfigForm'
++    _title: 'Role Delegation'
++  requirements:
++    _permission: 'administer site configuration'
++  options:
++    _admin_route: TRUE
 diff --git a/role_delegation.services.yml b/role_delegation.services.yml
-index c9975108af6a68365f516b119a54eb6863c2dee2..d23def91b61320a340b708f8d62c644ea898caa4 100644
+index c9975108af6a68365f516b119a54eb6863c2dee2..633e51d032cca06bcc4233bffaeb7c3947f1ae7f 100644
 --- a/role_delegation.services.yml
 +++ b/role_delegation.services.yml
-@@ -1,12 +1,13 @@
+@@ -1,12 +1,14 @@
  services:
-+  _defaults:
-+    autowire: true
    access_check.role_delegation:
      class: Drupal\role_delegation\Access\RoleDelegationAccessCheck
 -    arguments: ['@delegatable_roles', '@permission_generator.role_delegation', '@current_user']
++    autowire: true
      tags:
        - { name: access_check, applies_to: _role_delegation_access_check }
    delegatable_roles:
      class: Drupal\role_delegation\DelegatableRoles
--    arguments: ['@module_handler']
+     arguments: ['@module_handler']
 +  Drupal\role_delegation\DelegatableRolesInterface: '@delegatable_roles'
    permission_generator.role_delegation:
      class: Drupal\role_delegation\PermissionGenerator
--    arguments: ['@delegatable_roles']
+     arguments: ['@delegatable_roles']
 +  Drupal\role_delegation\PermissionGenerator: '@permission_generator.role_delegation'
+\ No newline at end of file
 diff --git a/src/Access/RoleDelegationAccessCheck.php b/src/Access/RoleDelegationAccessCheck.php
-index c161ae7b85f1effaf4ab6372eb7d86170b949427..9eec3d854ed9561932df6deb1904fabf73adddfb 100644
+index c161ae7b85f1effaf4ab6372eb7d86170b949427..53cddb59d91cde4c4249295b163609bfe61cec10 100644
 --- a/src/Access/RoleDelegationAccessCheck.php
 +++ b/src/Access/RoleDelegationAccessCheck.php
 @@ -4,6 +4,7 @@ namespace Drupal\role_delegation\Access;
@@ -120,14 +150,12 @@ index c161ae7b85f1effaf4ab6372eb7d86170b949427..9eec3d854ed9561932df6deb1904fabf
    }
  
    /**
-@@ -66,17 +41,18 @@ class RoleDelegationAccessCheck implements AccessInterface {
-     }
+@@ -67,16 +42,17 @@ class RoleDelegationAccessCheck implements AccessInterface {
  
      // Deny access when the current user has the 'administer users'
--    // permission. Roles can be edited on the user edit page.
+     // permission. Roles can be edited on the user edit page.
 -    if ($account->hasPermission('administer users')) {
 -      return AccessResult::neutral()->cachePerPermissions();
-+    // permission unless configured. Roles can be edited on the user edit page.
 +    $settings = $this->configFactory->get('role_delegation.settings');
 +    if ($account->hasPermission('administer users') && !$settings->get('show_roles_tab_administer_users')) {
 +      return AccessResult::neutral()->cachePerPermissions()->addCacheableDependency($settings);
@@ -144,18 +172,66 @@ index c161ae7b85f1effaf4ab6372eb7d86170b949427..9eec3d854ed9561932df6deb1904fabf
    }
  
  }
-diff --git a/src/Plugin/Action/RoleDelegationManagerRoleUserTrait.php b/src/Plugin/Action/RoleDelegationManagerRoleUserTrait.php
-index f7773be8629f7c11815a4c13096d056915bff9f0..f4559a124d5487f638cc56a1e93a3be6ae77941a 100644
---- a/src/Plugin/Action/RoleDelegationManagerRoleUserTrait.php
-+++ b/src/Plugin/Action/RoleDelegationManagerRoleUserTrait.php
-@@ -5,7 +5,6 @@ namespace Drupal\role_delegation\Plugin\Action;
- use Drupal\Core\Access\AccessResult;
- use Drupal\Core\Form\FormStateInterface;
- use Drupal\Core\Session\AccountInterface;
--use Drupal\user\Plugin\Action\AddRoleUser;
- use Symfony\Component\DependencyInjection\ContainerInterface;
- 
- /**
+diff --git a/src/Form/RoleDelegationConfigForm.php b/src/Form/RoleDelegationConfigForm.php
+new file mode 100644
+index 0000000000000000000000000000000000000000..a28df95fc569728c5a27578ca1191807898dfeca
+--- /dev/null
++++ b/src/Form/RoleDelegationConfigForm.php
+@@ -0,0 +1,54 @@
++<?php
++
++namespace Drupal\role_delegation\Form;
++
++use Drupal\Core\Form\ConfigFormBase;
++use Drupal\Core\Form\FormStateInterface;
++
++/**
++ * Configure Role Delegation settings.
++ */
++class RoleDelegationConfigForm extends ConfigFormBase {
++
++  /**
++   * {@inheritdoc}
++   */
++  protected function getEditableConfigNames(): array {
++    return ['role_delegation.settings'];
++  }
++
++  /**
++   * {@inheritdoc}
++   */
++  public function getFormId(): string {
++    return 'role_delegation_config_form';
++  }
++
++  /**
++   * {@inheritdoc}
++   */
++  public function buildForm(array $form, FormStateInterface $form_state): array {
++    $config = $this->config('role_delegation.settings');
++
++    $form['show_roles_tab_administer_users'] = [
++      '#type' => 'checkbox',
++      '#title' => $this->t('Show the Roles tab for users with the <em>administer users</em> permission'),
++      '#default_value' => $config->get('show_roles_tab_administer_users'),
++      '#description' => $this->t('By default, users with the <em>administer users</em> permission can edit roles on the user edit page, so the Roles tab is hidden. Enable this to show the Roles tab for those users as well.'),
++    ];
++
++    return parent::buildForm($form, $form_state);
++  }
++
++  /**
++   * {@inheritdoc}
++   */
++  public function submitForm(array &$form, FormStateInterface $form_state): void {
++    $this->config('role_delegation.settings')
++      ->set('show_roles_tab_administer_users', (bool) $form_state->getValue('show_roles_tab_administer_users'))
++      ->save();
++
++    parent::submitForm($form, $form_state);
++  }
++
++}
 diff --git a/tests/src/Functional/RoleAssignTest.php b/tests/src/Functional/RoleAssignTest.php
 index 18f49304246294cba0fbad742fad6414024f6c3b..bbc8643f30fd5af3c406a6348da33f9de2ca7ff5 100644
 --- a/tests/src/Functional/RoleAssignTest.php
