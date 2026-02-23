@@ -21,7 +21,7 @@ base:
 	    --build-arg GIT_USERNAME=$(GIT_USERNAME) \
 	    --build-arg GIT_PASSWORD=$(GIT_PASSWORD) \
 	    --build-arg GITHUB_SHA=$(GITHUB_SHA) \
-	    --build-arg DEPLOYED_TAG='$(GITHUB_TAG_TO_DEPLOY)' .
+	    --build-arg GITHUB_TAG_TO_DEPLOY='$(GITHUB_TAG_TO_DEPLOY)' .
 
 
 behat:
