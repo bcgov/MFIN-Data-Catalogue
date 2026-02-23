@@ -13,6 +13,7 @@ ARG SSH_PRIVATE_KEY
 ARG GIT_USERNAME
 ARG GIT_PASSWORD
 ARG GITHUB_SHA
+ARG DEPLOYED_TAG
 
 RUN apk --no-cache add fcgi \
     && curl -sSL -o /usr/local/bin/php-fpm-healthcheck \
@@ -187,7 +188,7 @@ RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
 
   RESET_COLOUR='\[\033[00m\]'
 
-  export PS1="${PROJECT_NAME}-${ENVIRONMENT_COLOUR}${ENVIRONMENT_NAME}${RESET_COLOUR}:${PROJECT_COLOUR_HIGHLIGHT}\w${RESET_COLOUR} \$ "
+  export PS1="${PROJECT_NAME}-${ENVIRONMENT_COLOUR}${ENVIRONMENT_NAME}${RESET_COLOUR} (${DEPLOYED_TAG}):${PROJECT_COLOUR_HIGHLIGHT}\w${RESET_COLOUR} \$ "
 
   echo
   echo "----------- Connected to '$(hostname)'. -----------"

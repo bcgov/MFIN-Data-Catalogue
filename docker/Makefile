@@ -22,7 +22,9 @@ base:
 	    --build-arg COMPOSER_VERSION=$(COMPOSER_VERSION) \
 	    --build-arg GIT_USERNAME=$(GIT_USERNAME) \
 	    --build-arg GIT_PASSWORD=$(GIT_PASSWORD) \
-	    --build-arg GITHUB_SHA=$(GITHUB_SHA) .
+	    --build-arg GITHUB_SHA=$(GITHUB_SHA) \
+	    --build-arg DEPLOYED_TAG='$(GITHUB_TAG_TO_DEPLOY)' .
+
 
 behat:
 	./docker/bin/behat -vv -c behat.yml --colors
