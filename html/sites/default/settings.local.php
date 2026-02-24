@@ -2,6 +2,8 @@
 
 // phpcs:ignoreFile
 
+$databases['default']['default']['schema'] = "fdc";
+
 /**
  * @file
  * Local development override configuration feature.
