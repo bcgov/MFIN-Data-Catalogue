@@ -173,12 +173,12 @@ RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
   PROJECT_NAME='NEWBB-changeme'; PROJECT_NAME_COLOUR="\[\033[38;2;255;0;0m\]"; PROJECT_DIR_COLOUR="\[\033[48;2;255;0;0m\]"  
 
   # PROJECT_NAME='intra'; PROJECT_COLOUR="\[\033[38;2;000;229;230m\]"  # Hue:180, Sat:100%, Lum:45% (Medium Turquoise)
-  # PROJECT_NAME='tbd-1'; PROJECT_COLOUR="\[\033[38;2;000;153;230m\]"  # Hue:200, Sat:100%, Lum:60% (Silk Blue)
-  # PROJECT_NAME='ess';   PROJECT_COLOUR="\[\033[38;2;000;076;230m\]"  # Hue:220, Sat:100%, Lum:67% (Cerulean Blue)
-  # PROJECT_NAME='tbd-2'; PROJECT_COLOUR="\[\033[38;2;000;000;230m\]"  # Hue:240, Sat:100%, Lum:75% (Sapphire)
-  # PROJECT_NAME='fdc';   PROJECT_COLOUR="\[\033[38;2;077;000;230m\]"  # Hue:260, Sat:100%, Lum:75% (Iris)
-  # PROJECT_NAME='tbd-3'; PROJECT_COLOUR="\[\033[38;2;153;000;230m\]"  # Hue:280, Sat:100%, Lum:72% (Deep lavender)
-  # PROJECT_NAME='cas';   PROJECT_COLOUR="\[\033[38;2;229;000;230m\]"  # Hue:300, Sat:100%, Lum:67% (Pinkish purple)
+  # PROJECT_NAME='tbd-1'; PROJECT_COLOUR="\[\033[38;2;051;119;255m\]"  # Hue:200, Sat:100%, Lum:60% (Silk Blue)
+  # PROJECT_NAME='ess';   PROJECT_COLOUR="\[\033[38;2;087;143;255m\]"  # Hue:220, Sat:100%, Lum:67% (Cerulean Blue)
+  # PROJECT_NAME='tbd-2'; PROJECT_COLOUR="\[\033[38;2;128;128;255m\]"  # Hue:240, Sat:100%, Lum:75% (Sapphire)
+  # PROJECT_NAME='fdc';   PROJECT_COLOUR="\[\033[38;2;170;128;255m\]"  # Hue:260, Sat:100%, Lum:75% (Iris)
+  # PROJECT_NAME='tbd-3'; PROJECT_COLOUR="\[\033[38;2;207;112;255m\]"  # Hue:280, Sat:100%, Lum:72% (Deep lavender)
+  # PROJECT_NAME='cas';   PROJECT_COLOUR="\[\033[38;2;255;087;255m\]"  # Hue:300, Sat:100%, Lum:67% (Pinkish purple)
 
   RESET_COLOUR='\[\033[00m\]'
   
