@@ -171,8 +171,8 @@ RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
     *) echo "Bad environment name, '$ENV_NAME'." ;;
   esac
 
-  PROJECT_NAME='fdc';
-  PROJECT_COLOUR="\[\033[38;2;077;000;230m\]"  # Hue:260, Sat:100%, Lum:75% (Iris)
+  PROJECT_NAME='fdc'
+  PROJECT_COLOUR="\[\033[38;2;170;128;255m\]"  # Hue:260, Sat:100%, Lum:75% (Iris)
   RESET_COLOUR='\[\033[00m\]'
   
   export PS1="${PROJECT_NAME}-${ENVIRONMENT_COLOUR}${ENVIRONMENT_NAME}${RESET_COLOUR}(${GITHUB_TAG_TO_DEPLOY}):${PROJECT_COLOUR}\w${RESET_COLOUR} \$ "
