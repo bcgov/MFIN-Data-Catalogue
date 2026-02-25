@@ -171,23 +171,11 @@ RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
     *) echo "Bad environment name, '$ENV_NAME'." ;;
   esac
 
-  # HSL (Hue/Sat/Lum) versions of these colours. 
-  #   - Each project has a unique hue.
-  #   - "Project colour highlight" has Sat=100%, Lum=93%  (and will be used for background for the directory)
-  # The Bash prompt only supports RGB format, so they have been converted from HSL to RGB.
-  #
-
-  # PROJECT_NAME='intra'; PROJECT_COLOUR_HIGHLIGHT="\[\033[48;2;225;250;250m\]"  # Hue:180 (Medium Turquoise)
-  # PROJECT_NAME='tbd-1'; PROJECT_COLOUR_HIGHLIGHT="\[\033[48;2;225;241;250m\]"  # Hue:200 (Silk Blue)
-  # PROJECT_NAME='ess';   PROJECT_COLOUR_HIGHLIGHT="\[\033[48;2;225;233;250m\]"  # Hue:220 (Cerulean Blue)
-  # PROJECT_NAME='tbd-2'; PROJECT_COLOUR_HIGHLIGHT="\[\033[48;2;225;225;250m\]"  # Hue:240 (Sapphire)
-   PROJECT_NAME='fdc';   PROJECT_COLOUR_HIGHLIGHT="\[\033[48;2;233;225;250m\]"  # Hue:260 (Iris)
-  # PROJECT_NAME='tbd-3'; PROJECT_COLOUR_HIGHLIGHT="\[\033[48;2;241;225;250m\]"  # Hue:280 (Deep lavender)
-  # PROJECT_NAME='cas';   PROJECT_COLOUR_HIGHLIGHT="\[\033[48;2;250;225;250m\]"  # Hue:300 (Pinkish purple)
-
+  PROJECT_NAME='fdc';
+  PROJECT_COLOUR="\[\033[38;2;077;000;230m\]"  # Hue:260, Sat:100%, Lum:75% (Iris)
   RESET_COLOUR='\[\033[00m\]'
-
-  export PS1="${PROJECT_NAME}-${ENVIRONMENT_COLOUR}${ENVIRONMENT_NAME}${RESET_COLOUR}(${GITHUB_TAG_TO_DEPLOY}):${PROJECT_COLOUR_HIGHLIGHT}\w${RESET_COLOUR} \$ "
+  
+  export PS1="${PROJECT_NAME}-${ENVIRONMENT_COLOUR}${ENVIRONMENT_NAME}${RESET_COLOUR}(${GITHUB_TAG_TO_DEPLOY}):${PROJECT_COLOUR}\w${RESET_COLOUR} \$ "
 
   echo
   echo "----------- Connected to '$(hostname)'. -----------"
