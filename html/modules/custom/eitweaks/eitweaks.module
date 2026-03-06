@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Environment Indicator Tweaks module.
+ */
+
+/**
+ * Implements hook_toolbar_alter().
+ *
+ * Note that Environment Indicator sets this in its ToolbarHandler.php
+ * (in the toolbar() function). Here, we piggyback on that. Note that they
+ * pass some parameters into their JS file. We get access to them, too.
+ */
+function eitweaks_toolbar_alter(&$items) {
+  $items['environment_indicator']['#attached']['library'][] = 'eitweaks/eitweaks';
+}
