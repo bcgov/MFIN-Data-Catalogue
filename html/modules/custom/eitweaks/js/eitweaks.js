@@ -6,6 +6,10 @@
   // the Environment Indicator module's 'environment_indicator.js' file.
   Drupal.behaviors.eitweaks = {
     attach: function (context, settings) {
+      
+      // Get params passed in from eitweaks.module
+      const params = drupalSettings.eitweaks || {};
+
       if (typeof(settings.environmentIndicator) != 'undefined') {
 
         // Modify gin toolbar so that background is set to the colour we wanted
@@ -48,6 +52,9 @@
           // Settings provides the colour in hex format (e.g. #FFEE01). JQuery returns them as
           // rgb(12,23,34) format. Below, we want to compare apples to apples.
           var our_bg_color_as_rgb = $(`#toolbar-item-environment-indicator`, context).css('background-color');
+
+          // Environment name looks like "Cabops Dev". We want just the "dev":
+          var site_environment = params.environment_name.trim().split(" ").pop().toLowerCase();
 
           // Loop through the items in the dropdown.
           $(`.toolbar-tab--toolbar-item-environment-indicator ul.toolbar-menu`, context).find('li>a').each(

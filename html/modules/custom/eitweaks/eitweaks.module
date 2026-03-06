@@ -14,4 +14,9 @@
  */
 function eitweaks_toolbar_alter(&$items) {
   $items['environment_indicator']['#attached']['library'][] = 'eitweaks/eitweaks';
+  $items['environment_indicator']['#attached']['drupalSettings']['eitweaks'] = [
+    'user_is_developer' => \Drupal::currentUser()->hasPermission('administer users'),
+    'environment_name' => \Drupal::config('environment_indicator.indicator')->get('name'),
+  ];
+
 }
