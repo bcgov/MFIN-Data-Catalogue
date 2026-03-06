@@ -12,24 +12,8 @@
 
       if (typeof(settings.environmentIndicator) != 'undefined') {
 
-        // Modify gin toolbar so that background is set to the colour we wanted
-        // in Environment Indicator.
-
-        // Set a coloured border on the bottom, using the colour that had been earmarked
-        // by Environment Indicator as the "foreground" colour. Do it for both the main
-        // toolbar, and the narrow-width (mobile phone) version.
-        // $(`#toolbar-item-administration-tray .toolbar-lining,
-        //     #gin-toolbar-bar`, context)
-        //   .css({'border-bottom': settings.environmentIndicator.bgColor + " 4px solid"});
-
         // Remove the unneeded border at the top, which just wastes vertical space.
         if ($('body').hasClass('gin--horizontal-toolbar')) {
-          // $(`#gin-toolbar-bar .toolbar-tab,
-          //     #toolbar-item-administration-tray,
-          //     #toolbar-item-administration-tray .toolbar-lining,
-          //     #toolbar-item-administration-tray .toolbar-lining ul.toolbar-menu,
-          //     #toolbar-item-administration-tray .toolbar-lining ul.toolbar-menu li.menu-item`, context)
-          //   .css({'border-top': 0});
 
           // Set our fg/bg colours on the Switcher dropdown.
             $(`.toolbar-tab--toolbar-item-environment-indicator > a`, context)
@@ -45,11 +29,11 @@
           $(`.toolbar-tab--toolbar-item-environment-indicator a.edit-environments`, context)
             .remove();
 
-          // In the Switcher dropdown, we want to highlight the environment we are currently
-          // on, and disable its link as it doesn't make sense to switch to the current environment.
-
           // Environment name looks like "Cabops Dev". We want just the "dev":
           var site_environment = params.environment_name.trim().split(" ").pop().toLowerCase();
+
+          // In the Switcher dropdown, we want to highlight the environment we are currently
+          // on, and disable its link as it doesn't make sense to switch to the current environment.
 
           // Loop through the items in the dropdown.
           $(`.toolbar-tab--toolbar-item-environment-indicator ul.toolbar-menu`, context).find('li>a').each(
