@@ -185,14 +185,34 @@ $settings['file_private_path'] = '../private';
  */
 $config['config_split.config_split.dev']['status'] = TRUE;
 
+
 /**
- * Environment Indicator module configuration (Custom).
- *
- * This is used to configure the current environment's name and colour.
+ * "Environment Indicator" module.
  */
-$config['environment_indicator.indicator']['name'] = 'LOCAL';
-$config['environment_indicator.indicator']['bg_color'] = '#eeeeee'; // newbb: consider tweaking these colours to be unique per-project.
-$config['environment_indicator.indicator']['fg_color'] = '#222330'; // newbb: consider tweaking these colours to be unique per-project.
+
+// If we're on a 'dev' server, but not on the actual OpenShift one, then we're "local".
+// Set that as a pseudo-environment.
+if (in_array($environ, $dev_servers) && $environ != 'development') {
+  $environ = 'LOCALHOST';
+}
+
+$indicator_config = [
+  // server   => [  name                   ,  bg_color  ]
+  'LOCALHOST' => ["NEWBB-appname localhost", 'hsl(220, 100%, 67%)'],
+  'DEV'       => ['NEWBB-appname Dev',       'hsl(130, 100%, 67%)'],
+  'TEST'      => ['NEWBB-appname Test',      'hsl( 65, 100%, 67%)'],
+  'PROD'      => ['NEWBB-appname PROD',      'hsl(  8, 100%, 67%)'],
+];
+
+if (!empty($indicator_config[$environ])) {
+  $config['environment_indicator.indicator']['name']     = $indicator_config[$environ][0];
+  $config['environment_indicator.indicator']['bg_color'] = $indicator_config[$environ][1];
+  $config['environment_indicator.indicator']['fg_color'] = 'hsl(356,69%,51%)';
+}
+else {
+  throw new \Exception("Environment Indicator config problems, in settings.local.php.");
+}
+
 
 /**
  * Shield module configuration (Custom).

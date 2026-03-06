@@ -47,11 +47,6 @@
 
           // In the Switcher dropdown, we want to highlight the environment we are currently
           // on, and disable its link as it doesn't make sense to switch to the current environment.
-          // Find it by looking for the one with the same background colour as the current environment.
-
-          // Settings provides the colour in hex format (e.g. #FFEE01). JQuery returns them as
-          // rgb(12,23,34) format. Below, we want to compare apples to apples.
-          var our_bg_color_as_rgb = $(`#toolbar-item-environment-indicator`, context).css('background-color');
 
           // Environment name looks like "Cabops Dev". We want just the "dev":
           var site_environment = params.environment_name.trim().split(" ").pop().toLowerCase();
@@ -59,11 +54,15 @@
           // Loop through the items in the dropdown.
           $(`.toolbar-tab--toolbar-item-environment-indicator ul.toolbar-menu`, context).find('li>a').each(
             function() {
-              if ($(this).css('background-color') == our_bg_color_as_rgb) {
+              var link_text = $(this, context).text();
+
+              // Link text may be "Open on Dev". We want just "dev":
+              var link_environment = link_text.trim().split(" ").pop().toLowerCase();
+
+              if (site_environment == link_environment) {
                 // If we're on dev, then the link should say 'Open on dev'. We want it to just say '--- dev ---'.
                 // But this function seems to run more than once, due to 'context'. So test first if
                 // we've already switched the text.
-                var link_text = $(this, context).text();
                 if (link_text.substring(0,8) == 'Open on ') {
                   // Change the text, and also remove the link.
                   $(this)
