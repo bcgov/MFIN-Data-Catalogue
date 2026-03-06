@@ -6,5 +6,5 @@ description: null
 name: Dev
 weight: 0
 url: 'https://dev.cabops.gov.bc.ca'
-fg_color: 'hsl(356, 69%, 51%)'
-bg_color: 'hsl(130, 100%, 67%)'
+fg_color: 'hsl(0, 0%, 30%)'
+bg_color: 'hsl(125, 100%, 74%)'

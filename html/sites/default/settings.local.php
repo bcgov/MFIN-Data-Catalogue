@@ -207,7 +207,7 @@ $indicator_config = [
 if (!empty($indicator_config[$environ])) {
   $config['environment_indicator.indicator']['name']     = $indicator_config[$environ][0];
   $config['environment_indicator.indicator']['bg_color'] = $indicator_config[$environ][1];
-  $config['environment_indicator.indicator']['fg_color'] = 'hsl(356,69%,51%)';
+  $config['environment_indicator.indicator']['fg_color'] = '#222330';
 }
 else {
   throw new \Exception("Environment Indicator config problems, in settings.local.php.");

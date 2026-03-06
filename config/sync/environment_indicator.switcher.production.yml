@@ -3,8 +3,8 @@ status: true
 dependencies: {  }
 machine: production
 description: null
-name: Production
+name: PROD
 weight: 2
 url: 'https://cabops.gov.bc.ca'
-fg_color: 'hsl(356, 69%, 51%)'
-bg_color: 'hsl(8, 100%, 67%)'
+fg_color: 'hsl(0, 0%, 35%)'
+bg_color: 'hsl(5, 100%, 74%)'
