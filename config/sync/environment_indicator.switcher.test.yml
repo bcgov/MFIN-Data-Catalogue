@@ -5,6 +5,6 @@ machine: test
 description: null
 name: Test
 weight: 1
-url: 'https://test.cabops.gov.bc.ca/'
+url: 'https://test.NEWBB-SITENAME.gov.bc.ca/'
 fg_color: 'hsl(0, 0%, 35%)'
 bg_color: 'hsl(65, 100%, 74%)'

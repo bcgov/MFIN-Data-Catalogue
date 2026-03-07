@@ -5,6 +5,6 @@ machine: ddev
 description: null
 name: localhost
 weight: -10
-url: 'https://ess.ddev.site'
+url: 'https://NEWBB-project-shortname.ddev.site'
 fg_color: 'hsl(0, 0%, 35%)'
 bg_color: 'hsl(215, 100%, 74%)'
