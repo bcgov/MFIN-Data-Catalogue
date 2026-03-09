@@ -268,3 +268,11 @@ $keycloak_settings['end_session_endpoint']   = $sso_endpoint_baseurl_extended . 
  */
 $config['file.settings']['make_unused_managed_files_temporary'] = TRUE;
 $config['system.file']['temporary_maximum_age'] = 1;
+
+/**
+ * Database schema name.
+ * 
+ * Postgres requires us to use a schema. DDEV doesn't seem to handle this
+ * yet in the settings.ddev.php file, so we do it here.
+ */
+$databases['default']['default']['schema'] = "NEWBB-DB-schemaname"; # Keep this schema name short and tight.
