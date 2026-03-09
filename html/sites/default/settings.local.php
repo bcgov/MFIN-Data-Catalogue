@@ -187,14 +187,34 @@ $settings['file_private_path'] = '../private';
  */
 $config['config_split.config_split.dev']['status'] = TRUE;
 
+
 /**
- * Environment Indicator module configuration (Custom).
- *
- * This is used to configure the current environment's name and colour.
+ * "Environment Indicator" module.
  */
-$config['environment_indicator.indicator']['name'] = 'LOCAL';
-$config['environment_indicator.indicator']['bg_color'] = '#eeeeee'; // newbb: consider tweaking these colours to be unique per-project.
-$config['environment_indicator.indicator']['fg_color'] = '#222330'; // newbb: consider tweaking these colours to be unique per-project.
+
+// If we're on a 'dev' server, but not on the actual OpenShift one, then we're "local".
+// Set that as a pseudo-environment.
+if (in_array($environ, $dev_servers) && $environ != 'development') {
+  $environ = 'LOCALHOST';
+}
+
+$indicator_config = [
+  // server   => [  name                   ,  bg_color  ]
+  'LOCALHOST' => ["FDC localhost", 'hsl(220, 100%, 67%)'],
+  'DEV'       => ['FDC Dev',       'hsl(130, 100%, 67%)'],
+  'TEST'      => ['FDC Test',      'hsl( 65, 100%, 67%)'],
+  'PROD'      => ['FDC PROD',      'hsl(  8, 100%, 67%)'],
+];
+
+if (!empty($indicator_config[$environ])) {
+  $config['environment_indicator.indicator']['name']     = $indicator_config[$environ][0];
+  $config['environment_indicator.indicator']['bg_color'] = $indicator_config[$environ][1];
+  $config['environment_indicator.indicator']['fg_color'] = '#222330';
+}
+else {
+  throw new \Exception("Environment Indicator config problems, in settings.local.php.");
+}
+
 
 /**
  * Shield module configuration (Custom).
@@ -235,3 +255,11 @@ $keycloak_settings['end_session_endpoint']   = $sso_endpoint_baseurl_extended . 
  */
 $config['file.settings']['make_unused_managed_files_temporary'] = TRUE;
 $config['system.file']['temporary_maximum_age'] = 1;
+
+/**
+ * Database schema name.
+ * 
+ * Postgres requires us to use a schema. DDEV doesn't seem to handle this
+ * yet in the settings.ddev.php file, so we do it here.
+ */
+$databases['default']['default']['schema'] = "fdc"; # Keep this schema name short and tight.

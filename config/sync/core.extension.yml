@@ -50,6 +50,7 @@ module:
   entity_reference_revisions: 0
   entity_usage: 0
   environment_indicator: 0
+  environment_indicator_toolbar: 0
   facets: 0
   facets_summary: 0
   field: 0
@@ -155,6 +156,7 @@ module:
   webform_content_creator: 0
   webform_ui: 0
   workflows: 0
+  eitweaks: 1
   pathauto: 1
   externalauth: 10
   views: 10

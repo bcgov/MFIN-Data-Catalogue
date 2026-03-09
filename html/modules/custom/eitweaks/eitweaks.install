@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the eitweaks module.
+ */
+
+/**
+ * Implements hook_install().
+ *
+ * We want our module's hooks to run AFTER the hooks belonging to
+ * Environment Indicator, so that we can overwrite some of the CSS that
+ * they set.
+ */
+function eitweaks_install() {
+  // Set our module's weight to a bit heavier than EI.
+  $env_indicator_module_weight = \Drupal::config('core.extension')->get('module')['environment_indicator'];
+  module_set_weight('eitweaks', 1 + $env_indicator_module_weight);
+}

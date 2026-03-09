@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies: {  }
+machine: production
+description: null
+name: PROD
+weight: 2
+url: 'https://cat.data.fin.gov.bc.ca'
+fg_color: 'hsl(0, 0%, 35%)'
+bg_color: 'hsl(5, 100%, 74%)'

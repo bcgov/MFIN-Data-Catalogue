@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies: {  }
+machine: test
+description: null
+name: Test
+weight: 1
+url: 'https://test.cat.data.fin.gov.bc.ca/'
+fg_color: 'hsl(0, 0%, 35%)'
+bg_color: 'hsl(65, 100%, 74%)'
