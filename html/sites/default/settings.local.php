@@ -183,8 +183,23 @@ $settings['file_private_path'] = '../private';
  *
  * This is used to configure Configuration Split.
  */
-$config['config_split.config_split.dev']['status'] = TRUE;
+$environ = getenv('ENVIRONMENT_TYPE'); // for brevity
 
+/* Uncomment this to simulate a different server.
+ * And run 'drush cim -y' to make the new Config Split take effect.
+ */
+// $environ='production';
+
+// Environments where extra dev tools will be available.
+$dev_servers = [
+  'development',    // openshift dev server
+  'ci',             // docker localhost
+  '',               // docker drush requires a blank string
+  'ddev_localhost', // ddev
+];
+
+
+$config['config_split.config_split.dev']['status'] = TRUE;
 
 /**
  * "Environment Indicator" module.
