@@ -14,8 +14,10 @@
     to also switch to the corresponding branch in WXT-Drupal-Scaffold, 
     which is merged into this branch. You'll need to 'git subtree merge'
     it in.
-    "drupal/core-composer-scaffold": "~10.6.0",
-    "drupal/core-recommended":       "~10.6.0"
+    "drupal/core-composer-scaffold": "11.2.7",
+    "drupal/core-recommended": "~11.2.7"
+
+
 
   },
   "extra": {
