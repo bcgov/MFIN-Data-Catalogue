@@ -1,5 +1,8 @@
 eitweaks:
   version: 1
+  css:
+    component:
+      css/eitweaks.css: {}
   js:
     js/eitweaks.js: {}
   dependencies:

@@ -36,7 +36,7 @@
           // on, and disable its link as it doesn't make sense to switch to the current environment.
 
           // Loop through the items in the dropdown.
-          $(`.toolbar-tab--toolbar-item-environment-indicator ul.toolbar-menu`, context).find('li>a').each(
+          $(`.toolbar-tab--toolbar-item-environment-indicator ul.toolbar-menu`, context).find('li a').each(
             function() {
               var link_text = $(this, context).text();
 
