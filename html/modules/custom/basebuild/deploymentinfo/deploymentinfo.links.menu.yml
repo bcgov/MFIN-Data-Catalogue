@@ -1,5 +1,11 @@
+deploymentinfo.gitops_revision:
+  title: 'Gitops revision - details set in deploymentinfo_menu_links_discovered_alter()'
+  parent: admin_toolbar_tools.help
+  route_name: '<nolink>'
+  weight: 14
+
 deploymentinfo.code_version:
-  title: 'NEWBB-project revision x.y.z'
+  title: 'NEWBB-project revision x.y.z - details set in deploymentinfo_menu_links_discovered_alter()'
   parent: admin_toolbar_tools.help
   route_name: '<nolink>'
   weight: 15
