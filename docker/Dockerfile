@@ -1,4 +1,4 @@
-# https://github.com/docker-library/drupal/blob/master/11.2/php8.3/fpm-alpine3.21/Dockerfile
+ # https://github.com/docker-library/drupal/blob/master/11.2/php8.3/fpm-alpine3.21/Dockerfile
 FROM drupal:11.2.7-php8.3-fpm-alpine3.21
 
 # This Drupal-Alpine base image contains a full copy of Drupal (and its vendor folder).
@@ -184,6 +184,7 @@ RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
   
   export PS1="${PROJECT_NAME}-${ENVIRONMENT_COLOUR}${ENVIRONMENT_NAME}${RESET_COLOUR}(${GITHUB_TAG_TO_DEPLOY}):${PROJECT_COLOUR}\w${RESET_COLOUR} \$ "
 
+  echo
   echo "----------- Connected to '$(hostname)'. -----------"
 
 END_BASHRC_LINES
@@ -196,6 +197,7 @@ RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
   if [[ $- == *i* ]]; then
     _exit_message() {
       echo "-------- Disconnecting from '$(hostname)'. --------"
+      echo
     }
 
     # Chain with any existing EXIT trap (avoid overwriting)
