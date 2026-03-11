@@ -22,6 +22,7 @@ use Drupal\Core\Link;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Site\Settings;
 use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
@@ -1331,5 +1332,21 @@ function bc_dc_robotstxt(): array {
 function bc_dc_chart_alter(array &$element, $chart_id) {
   if ($chart_id === 'reports_by_restriction_block_records_by_restriction') {
     $element['#attached']['library'][] = 'bc_dc/piechart_tweak';
+  }
+}
+
+/**
+ * Implements hook_menu_links_discovered_alter().
+ * 
+ * Set info about deployed GitOps commit, into menu.
+ */
+function bc_dc_menu_links_discovered_alter(&$links) {
+  $item_to_modify = 'bc_dc.code_version';
+  if (isset($links[$item_to_modify])) {
+    $sha = Settings::get('deploy_info')['gitops_revision_sha'] ?? 'no_sha_provided_to_drupal';
+    unset($links[$item_to_modify]['route_name']);
+    $links[$item_to_modify]['url'] = "https://github.com/bcgov-c/tenant-gitops-ea352d/commit/$sha";
+    $links[$item_to_modify]['options']['attributes']['target'] = '_blank';
+    $links[$item_to_modify]['description'] = "Deployed by ArgoCD from gitops commit " . substr($sha,0,7) . ".\n(Click to see it.)";
   }
 }
