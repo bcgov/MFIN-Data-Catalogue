@@ -1343,10 +1343,24 @@ function bc_dc_chart_alter(array &$element, $chart_id) {
 function bc_dc_menu_links_discovered_alter(&$links) {
   $item_to_modify = 'bc_dc.code_version';
   if (isset($links[$item_to_modify])) {
-    $sha = Settings::get('deploy_info')['gitops_revision_sha'] ?? 'no_sha_provided_to_drupal';
     unset($links[$item_to_modify]['route_name']);
-    $links[$item_to_modify]['url'] = "https://github.com/bcgov-c/tenant-gitops-ea352d/commit/$sha";
+    
+    $gitops_sha = Settings::get('deploy_info')['gitops_revision_sha'] ?? 'no_sha_provided_to_drupal';
+    $url_to_gitops_commits = "https://github.com/bcgov-c/tenant-gitops-ea352d/commit";
+    $links[$item_to_modify]['url'] = "$url_to_gitops_commits/$gitops_sha";
     $links[$item_to_modify]['options']['attributes']['target'] = '_blank';
-    $links[$item_to_modify]['description'] = "Deployed by ArgoCD from gitops commit " . substr($sha,0,7) . ".\n(Click to see it.)";
+    $links[$item_to_modify]['description'] = t(
+"Drupal commit '@drupal_sha' (@drupal_tag)
+by @author_info
+
+Deployed by ArgoCD from @url_to_gitops_commits/@short_gitops_sha.", 
+      [ 
+        '@drupal_sha' => substr(getenv('DRUPAL_REPO_SHA'),0,7),
+        '@drupal_tag' => getenv('DRUPAL_REPO_TAG_TO_DEPLOY'),
+        '@author_info' => getenv('DRUPAL_REPO_AUTHOR_INFO'),
+        '@url_to_gitops_commits' => $url_to_gitops_commits,
+        '@short_gitops_sha' => substr($gitops_sha,0,7),
+      ]
+    );
   }
 }

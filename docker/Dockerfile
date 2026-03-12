@@ -13,8 +13,13 @@ ARG SSH_PRIVATE_KEY
 ARG GIT_USERNAME
 ARG GIT_PASSWORD
 ARG GITHUB_SHA
-# Persist this one into an environment var, so that it's available at run-time.
+ARG DRUPAL_REPO_AUTHOR_INFO
+ARG DRUPAL_REPO_COMMITTER_INFO
 ARG DRUPAL_REPO_TAG_TO_DEPLOY
+
+ENV DRUPAL_REPO_SHA=$GITHUB_SHA
+ENV DRUPAL_REPO_AUTHOR_INFO="$DRUPAL_REPO_AUTHOR_INFO"
+ENV DRUPAL_REPO_COMMITTER_INFO="$DRUPAL_REPO_COMMITTER_INFO"
 ENV DRUPAL_REPO_TAG_TO_DEPLOY=$DRUPAL_REPO_TAG_TO_DEPLOY
 
 RUN apk --no-cache add fcgi \
@@ -179,6 +184,10 @@ RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
 
   echo
   echo "----------- Connected to '$(hostname)'. -----------"
+  echo "-- Drupal commit: ${DRUPAL_REPO_SHA:0:7} ($DRUPAL_REPO_TAG_TO_DEPLOY)"
+  echo "--        Author: $DRUPAL_REPO_AUTHOR_INFO"
+  echo "--"
+  echo "-- Deployed from https://github.com/bcgov-c/tenant-gitops-ea352d/commit/${DEPLOYED_GITOPS_REVISION_SHA:0:7}"
 
 END_BASHRC_LINES
 
