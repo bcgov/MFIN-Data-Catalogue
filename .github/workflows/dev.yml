@@ -19,13 +19,14 @@ jobs:
     - uses: actions/checkout@master
 
     - name: Export github reference var
-      run: echo "GITHUB_TAG_TO_DEPLOY=$(echo ${GITHUB_REF#refs/tags/})" >> $GITHUB_ENV
+      run: |
+        echo "DRUPAL_REPO_TAG_TO_DEPLOY=$(echo ${GITHUB_REF#refs/tags/})" >> $GITHUB_ENV
 
     - name: Update application version
       uses: mikefarah/yq@v4.34.1
       with:
         cmd: |
-          yq eval '."bc_dc.code_version".title = "FDC version " + strenv(GITHUB_TAG_TO_DEPLOY)' -i html/modules/custom/bc_dc/bc_dc.links.menu.yml
+          yq eval '."bc_dc.code_version".title = "FDC version " + strenv(DRUPAL_REPO_TAG_TO_DEPLOY)' -i html/modules/custom/bc_dc/bc_dc.links.menu.yml
           
     - name: Build out the Drupal infrastructure
       run: |
@@ -73,15 +74,15 @@ jobs:
       run: |
         # Will end up looking something like this:
         # docker tag fin-exec-support-system-web:latest artifacts.developer.gov.bc.ca/eeba-ess-docker-local/fin-exec-support-system:test-6a-f
-        docker tag ${{ vars.CONTAINER_IMAGE_NAME }}-web:latest ${{ vars.CONTAINER_REGISTRY }}/${{ vars.CONTAINER_IMAGE_NAME }}:${{ env.GITHUB_TAG_TO_DEPLOY }}
-        docker push ${{ vars.CONTAINER_REGISTRY }}/${{ vars.CONTAINER_IMAGE_NAME }}:${{ env.GITHUB_TAG_TO_DEPLOY }}
+        docker tag ${{ vars.CONTAINER_IMAGE_NAME }}-web:latest ${{ vars.CONTAINER_REGISTRY }}/${{ vars.CONTAINER_IMAGE_NAME }}:${{ env.DRUPAL_REPO_TAG_TO_DEPLOY }}
+        docker push ${{ vars.CONTAINER_REGISTRY }}/${{ vars.CONTAINER_IMAGE_NAME }}:${{ env.DRUPAL_REPO_TAG_TO_DEPLOY }}
 
     - name: Build and push Nginx 🐳
       run: |
         # Will end up looking something like this:
         # docker tag fin-exec-support-system-nginx:latest artifacts.developer.gov.bc.ca/eeba-ess-docker-local/fin-exec-support-system-nginx:test-6a-f
-        docker tag ${{ vars.CONTAINER_IMAGE_NAME }}-nginx:latest ${{ vars.CONTAINER_REGISTRY }}/${{ vars.CONTAINER_IMAGE_NAME }}-nginx:${{ env.GITHUB_TAG_TO_DEPLOY }}
-        docker push ${{ vars.CONTAINER_REGISTRY }}/${{ vars.CONTAINER_IMAGE_NAME }}-nginx:${{ env.GITHUB_TAG_TO_DEPLOY }}
+        docker tag ${{ vars.CONTAINER_IMAGE_NAME }}-nginx:latest ${{ vars.CONTAINER_REGISTRY }}/${{ vars.CONTAINER_IMAGE_NAME }}-nginx:${{ env.DRUPAL_REPO_TAG_TO_DEPLOY }}
+        docker push ${{ vars.CONTAINER_REGISTRY }}/${{ vars.CONTAINER_IMAGE_NAME }}-nginx:${{ env.DRUPAL_REPO_TAG_TO_DEPLOY }}
 
     - name: Checkout Tenant GitOps Repo
       uses: actions/checkout@v4
@@ -95,17 +96,17 @@ jobs:
       uses: mikefarah/yq@v4.34.1
       with:
         cmd: |
-          yq -i '.drupal.tag = strenv(GITHUB_TAG_TO_DEPLOY) |
-                 .nginx.tag  = strenv(GITHUB_TAG_TO_DEPLOY)' tenant-gitops/helm-drupal/charts/drupal/values-application-dev.yaml
-          yq -i '.drupal.tag = strenv(GITHUB_TAG_TO_DEPLOY) |
-                 .nginx.tag  = strenv(GITHUB_TAG_TO_DEPLOY)' tenant-gitops/helm-drupal/charts/drupal/values-application-test.yaml
+          yq -i '.drupal.tag = strenv(DRUPAL_REPO_TAG_TO_DEPLOY) |
+                 .nginx.tag  = strenv(DRUPAL_REPO_TAG_TO_DEPLOY)' tenant-gitops/helm-drupal/charts/drupal/values-application-dev.yaml
+          yq -i '.drupal.tag = strenv(DRUPAL_REPO_TAG_TO_DEPLOY) |
+                 .nginx.tag  = strenv(DRUPAL_REPO_TAG_TO_DEPLOY)' tenant-gitops/helm-drupal/charts/drupal/values-application-test.yaml
 
     - name: Commit this change to git
       run: |
         cd tenant-gitops
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git commit -a -m "Update DEV and TEST servers to '${{ env.GITHUB_TAG_TO_DEPLOY }}'."
+        git commit -a -m "Update DEV and TEST servers to '${{ env.DRUPAL_REPO_TAG_TO_DEPLOY }}'."
 
     - name: Push this commit back up to GitHub
       uses: ad-m/github-push-action@master
