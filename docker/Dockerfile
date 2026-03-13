@@ -16,11 +16,13 @@ ARG GITHUB_SHA
 ARG DRUPAL_REPO_AUTHOR_INFO
 ARG DRUPAL_REPO_COMMITTER_INFO
 ARG DRUPAL_REPO_TAG_TO_DEPLOY
+ARG DRUPAL_REPO_COMMIT_MESSAGE
 
 ENV DRUPAL_REPO_SHA=$GITHUB_SHA
 ENV DRUPAL_REPO_AUTHOR_INFO="$DRUPAL_REPO_AUTHOR_INFO"
 ENV DRUPAL_REPO_COMMITTER_INFO="$DRUPAL_REPO_COMMITTER_INFO"
 ENV DRUPAL_REPO_TAG_TO_DEPLOY=$DRUPAL_REPO_TAG_TO_DEPLOY
+ENV DRUPAL_REPO_COMMIT_MESSAGE="$DRUPAL_REPO_COMMIT_MESSAGE"
 
 RUN apk --no-cache add fcgi \
     && curl -sSL -o /usr/local/bin/php-fpm-healthcheck \
@@ -184,8 +186,9 @@ RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
 
   echo
   echo "----------- Connected to '$(hostname)'. -----------"
-  echo "-- Drupal commit: ${DRUPAL_REPO_SHA:0:7} ($DRUPAL_REPO_TAG_TO_DEPLOY)"
-  echo "--        Author: $DRUPAL_REPO_AUTHOR_INFO"
+  echo "--  DRUPAL_REPO_TAG_TO_DEPLOY  (SHA: ${DRUPAL_REPO_SHA:0:7})
+  echo "--      by $DRUPAL_REPO_COMMITTER_INFO"
+  echo "$DRUPAL_REPO_COMMIT_MESSAGE"
   echo "--"
   echo "-- Deployed from https://github.com/bcgov-c/tenant-gitops-ea352d/commit/${DEPLOYED_GITOPS_REVISION_SHA:0:7}"
 

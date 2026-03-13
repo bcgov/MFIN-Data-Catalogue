@@ -21,8 +21,9 @@ jobs:
     - name: Export github reference var
       run: |
         echo "DRUPAL_REPO_TAG_TO_DEPLOY=$GITHUB_REF_NAME" >> $GITHUB_ENV
-        echo "DRUPAL_REPO_AUTHOR_INFO=$(git show -s --format='Authored by %an, on %ad' $GITHUB_SHA)" >> $GITHUB_ENV
-        echo "DRUPAL_REPO_COMMITTER_INFO=$(git show -s --format='Committed by %cn, on %cd' $GITHUB_SHA)" >> $GITHUB_ENV
+        echo "DRUPAL_REPO_AUTHOR_INFO=$(git show -s --format='%an, on %ad' $GITHUB_SHA)" >> $GITHUB_ENV
+        echo "DRUPAL_REPO_COMMITTER_INFO=$(git show -s --format='%cn, on %cd' $GITHUB_SHA)" >> $GITHUB_ENV
+        echo "DRUPAL_REPO_COMMIT_MESSAGE=$(git show -s --format="%B" $GITHUB_SHA)" >> $GITHUB_ENV
 
     - name: Update application version
       uses: mikefarah/yq@v4.34.1

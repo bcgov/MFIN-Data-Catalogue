@@ -1350,14 +1350,16 @@ function bc_dc_menu_links_discovered_alter(&$links) {
     $links[$item_to_modify]['url'] = "$url_to_gitops_commits/$gitops_sha";
     $links[$item_to_modify]['options']['attributes']['target'] = '_blank';
     $links[$item_to_modify]['description'] = t(
-"Drupal commit '@drupal_sha' (@drupal_tag)
-by @author_info
+"@drupal_tag' (SHA: @drupal_sha)
+    by @committer_info
+@drupal_commit_message
 
 Deployed by ArgoCD from @url_to_gitops_commits/@short_gitops_sha.", 
       [ 
         '@drupal_sha' => substr(getenv('DRUPAL_REPO_SHA'),0,7),
         '@drupal_tag' => getenv('DRUPAL_REPO_TAG_TO_DEPLOY'),
-        '@author_info' => getenv('DRUPAL_REPO_AUTHOR_INFO'),
+        '@committer_info' => getenv('DRUPAL_REPO_COMMITTER_INFO'),
+        '@drupal_commit_message' => getenv('DRUPAL_REPO_COMMIT_MESSAGE'),
         '@url_to_gitops_commits' => $url_to_gitops_commits,
         '@short_gitops_sha' => substr($gitops_sha,0,7),
       ]

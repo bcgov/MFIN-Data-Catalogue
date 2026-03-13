@@ -25,8 +25,9 @@ base:
 	    --build-arg GITHUB_SHA \
 			--build-arg DRUPAL_REPO_AUTHOR_INFO \
 			--build-arg DRUPAL_REPO_COMMITTER_INFO \
-			--build-arg DRUPAL_REPO_TAG_TO_DEPLOY='$(DRUPAL_REPO_TAG_TO_DEPLOY)' .
-
+			--build-arg DRUPAL_REPO_COMMIT_MESSAGE \
+			--build-arg DRUPAL_REPO_TAG_TO_DEPLOY \
+			.
 
 behat:
 	./docker/bin/behat -vv -c behat.yml --colors
