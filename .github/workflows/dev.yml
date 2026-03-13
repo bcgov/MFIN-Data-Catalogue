@@ -22,7 +22,8 @@ jobs:
       run: |
         echo "DRUPAL_REPO_TAG_TO_DEPLOY=$GITHUB_REF_NAME" >> $GITHUB_ENV
         echo "DRUPAL_REPO_AUTHOR_INFO=$(git show -s --format='%an, on %ad' $GITHUB_SHA)" >> $GITHUB_ENV
-        echo "DRUPAL_REPO_COMMITTER_INFO=$(git show -s --format='%cn, on %cd' $GITHUB_SHA)" >> $GITHUB_ENV
+        echo "DRUPAL_REPO_COMMITTER=$(git show -s --format='%cn' $GITHUB_SHA)" >> $GITHUB_ENV
+        echo "DRUPAL_REPO_COMMIT_DATETIME=$(git show -s --format='%cd' $GITHUB_SHA)" >> $GITHUB_ENV
         echo "DRUPAL_REPO_COMMIT_MESSAGE=$(git show -s --format="%B" $GITHUB_SHA)" >> $GITHUB_ENV
 
     - name: Update application version

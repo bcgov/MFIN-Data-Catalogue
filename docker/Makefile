@@ -24,7 +24,8 @@ base:
 	    --build-arg GIT_PASSWORD="$(GIT_PASSWORD)" \
 	    --build-arg GITHUB_SHA \
 			--build-arg DRUPAL_REPO_AUTHOR_INFO \
-			--build-arg DRUPAL_REPO_COMMITTER_INFO \
+			--build-arg DRUPAL_REPO_COMMITTER \
+			--build-arg DRUPAL_REPO_COMMIT_DATETIME \
 			--build-arg DRUPAL_REPO_COMMIT_MESSAGE \
 			--build-arg DRUPAL_REPO_TAG_TO_DEPLOY \
 			.
