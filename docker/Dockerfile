@@ -186,7 +186,7 @@ RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
 
   echo
   echo "----------- Connected to '$(hostname)'. -----------"
-  echo "--  DRUPAL_REPO_TAG_TO_DEPLOY  (SHA: ${DRUPAL_REPO_SHA:0:7})
+  echo "--  DRUPAL_REPO_TAG_TO_DEPLOY  (SHA: ${DRUPAL_REPO_SHA:0:7})"
   echo "--      by $DRUPAL_REPO_COMMITTER_INFO"
   echo "$DRUPAL_REPO_COMMIT_MESSAGE"
   echo "--"
