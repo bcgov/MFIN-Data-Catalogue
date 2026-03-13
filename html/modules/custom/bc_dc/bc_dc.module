@@ -1350,7 +1350,7 @@ function bc_dc_menu_links_discovered_alter(&$links) {
     $links[$item_to_modify]['url'] = "$url_to_gitops_commits/$gitops_sha";
     $links[$item_to_modify]['options']['attributes']['target'] = '_blank';
     $links[$item_to_modify]['description'] = t(
-"@drupal_tag       @commit_date   (SHA: @drupal_sha)
+"@drupal_tag       @commit_datetime   (SHA: @drupal_sha)
                        (committed by @committer_name)
 
 @drupal_commit_message
