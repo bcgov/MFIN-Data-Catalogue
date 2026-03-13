@@ -22,16 +22,14 @@ base:
 	    --build-arg COMPOSER_VERSION=$(COMPOSER_VERSION) \
 	    --build-arg GIT_USERNAME=$(GIT_USERNAME) \
 	    --build-arg GIT_PASSWORD="$(GIT_PASSWORD)" \
-	    --build-arg GITHUB_SHA=$(GITHUB_SHA) \
-			--build-arg "DRUPAL_REPO_AUTHOR_INFO=$$(DRUPAL_REPO_AUTHOR_INFO)" \
-			--build-arg "DRUPAL_REPO_COMMITTER_INFO=$$(DRUPAL_REPO_COMMITTER_INFO)" \
+	    --build-arg GITHUB_SHA \
+			--build-arg DRUPAL_REPO_AUTHOR_INFO \
+			--build-arg DRUPAL_REPO_COMMITTER_INFO \
 			--build-arg DRUPAL_REPO_TAG_TO_DEPLOY='$(DRUPAL_REPO_TAG_TO_DEPLOY)' .
 
 
 behat:
 	./docker/bin/behat -vv -c behat.yml --colors
-			--build-arg COMMIT_MESSAGE="$(COMMIT_MESSAGE)"
-			--build-arg COMMIT_TAGS=$(COMMIT_TAGS)
 
 build: all
 
