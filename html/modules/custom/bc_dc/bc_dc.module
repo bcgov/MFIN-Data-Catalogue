@@ -1345,6 +1345,8 @@ function bc_dc_menu_links_discovered_alter(&$links) {
   if (isset($links[$item_to_modify])) {
     unset($links[$item_to_modify]['route_name']);
     
+# TODO: Genericize this for basebuild.
+
     $gitops_sha = Settings::get('deploy_info')['gitops_revision_sha'] ?? 'no_sha_provided_to_drupal';
     $url_to_gitops_commits = "https://github.com/bcgov-c/tenant-gitops-ea352d/commit";
     $links[$item_to_modify]['url'] = "$url_to_gitops_commits/$gitops_sha";
