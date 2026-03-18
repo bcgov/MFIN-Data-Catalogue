@@ -189,28 +189,22 @@ RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
   # Remove any blank lines from the commit message, and whitespace from end of each line:
   TERSE_DRUPAL_REPO_COMMIT_MESSAGE=$(printf "%s" "$LKJ" |  grep -v '^[[:space:]]*$' | sed 's/[[:space:]]\+$//')
 
-
-  /* To make it look like this:
-    
-  ----------- Connected to 'mfin-data-catalogue-drupal-76db898bd4-drwzl'. -----------
-  -- https://github.com/bcgov-c/tenant-gitops-ea352d/commit/4468730
-  -- https://github.com/bcgov/MFIN-Data-Catalogue/commit/ceaa1ec (Fri 2026-03-13 16:42, Dan Howard) 
-  --     #Z61: Merge 'View' and 'Edit' into single view field, for visual consistency with other views...
-  --     - This
-  --     - That
-  fdc-dev(1.0.44g):/var/www/html $ 
-
-  In the Drupal Admin menu, I'd like to make TWO entries: One that says "GitOps deployment", and the "FDC 1.0.43". 
-  The latter can have the date, committer and commit-message on hover, and both can take you to the commit
-  on github if you click.
-
-  */
+  # To make it look like this:
+  #  
+  # ----------- Connected to 'mfin-data-catalogue-drupal-76db898bd4-drwzl'. -----------
+  # -- https://github.com/bcgov-c/tenant-gitops-ea352d/commit/4468730
+  # -- https://github.com/bcgov/MFIN-Data-Catalogue/commit/ceaa1ec (Fri 2026-03-13 16:42, Dan Howard) 
+  # --     #XYZ-1234: Merge 'View' and 'Edit' into single view field, for visual consistency with other views...
+  # --     - did thing A
+  # --     - and thing B
+  # fdc-dev(1.0.44g):/var/www/html $ 
 
   echo
   echo "----------- Connected to '$(hostname)'. -----------"
   echo "-- https://github.com/bcgov-c/tenant-gitops-ea352d/commit/${DEPLOYED_GITOPS_REVISION_SHA:0:7}"
-  echo "-- https://github.com/bcgov/MFIN-Data-Catalogue/commit/${DRUPAL_REPO_SHA:0:7} ($DRUPAL_REPO_COMMIT_DATETIME, $DRUPAL_REPO_COMMITTER)"
+  echo "-- https://github.com/bcgov/MFIN-Data-Catalogue/commit/${DRUPAL_REPO_SHA:0:7}, $DRUPAL_REPO_COMMIT_DATETIME, $DRUPAL_REPO_COMMITTER"
   echo "$DRUPAL_REPO_COMMIT_MESSAGE" | awk '{print "--    "$0}'
+  echo "--"
 
 END_BASHRC_LINES
 
