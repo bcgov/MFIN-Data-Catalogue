@@ -9,7 +9,6 @@ dependencies:
   module:
     - bc_dc
     - comment
-    - environment_indicator
     - field_permissions
     - file
     - filter
@@ -28,7 +27,6 @@ permissions:
   - 'access comments'
   - 'access content'
   - 'access data catalogue docs'
-  - 'access environment indicator'
   - 'access user reports'
   - 'delete own files'
   - 'post comments'
