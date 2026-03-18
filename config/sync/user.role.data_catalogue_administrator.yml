@@ -32,6 +32,7 @@ dependencies:
     - block_content
     - book
     - content_moderation
+    - environment_indicator
     - field_permissions
     - field_ui
     - filter
@@ -61,6 +62,7 @@ permissions:
   - 'access block library'
   - 'access content overview'
   - 'access data catalogue docs'
+  - 'access environment indicator'
   - 'access help pages'
   - 'access media overview'
   - 'access printer-friendly version'
