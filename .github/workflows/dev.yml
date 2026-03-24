@@ -42,7 +42,7 @@ jobs:
 
     - name: Scan PHP-FPM image for vulnerabilities
       if: ${{ ( startsWith(github.event.ref, 'refs/tags/') && (endsWith(github.event.ref, '.t') || endsWith(github.event.ref, '-t') )) }}
-      uses: aquasecurity/trivy-action@0.29.0
+      uses: aquasecurity/trivy-action@v0.29.0
       with:
         image-ref: '${{ vars.CONTAINER_IMAGE_NAME }}-web:latest'
         format: 'table'
@@ -53,7 +53,7 @@ jobs:
 
     - name: Scan Nginx image for vulnerabilities
       if: ${{ ( startsWith(github.event.ref, 'refs/tags/') && (endsWith(github.event.ref, '.t') || endsWith(github.event.ref, '-t') )) }}
-      uses: aquasecurity/trivy-action@0.29.0
+      uses: aquasecurity/trivy-action@v0.29.0
       with:
         image-ref: '${{ vars.CONTAINER_IMAGE_NAME }}-nginx:latest'
         format: 'table'
