@@ -1,0 +1,10 @@
+h1.page-title {
+  &::after {
+    border-bottom: .18em solid $colorBrand-secondary;
+    content: "";
+    display: block;
+    padding-bottom: .15em;
+    width: 3em;
+    margin-bottom: $spacer * 2;
+  }
+}

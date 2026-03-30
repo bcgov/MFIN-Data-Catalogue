@@ -1,0 +1,72 @@
+// Colour palette
+// see https://developer.gov.bc.ca/Design-System/Colour-Palette
+
+// primary B.C. brand
+$colorBrand-primary: #234075;
+$colorBrand-secondary: #e3a82b;
+$colorBrand-secondary-a11y: #a36b00;
+
+// B.C. brand variants
+
+$colorBrand-secondary-light: #ffecbd;
+
+// backgrounds
+$colorAccent-primary: #38598a;
+$colorAccent-secondary: #f2f2f2;
+
+// black and white
+// we define these as variables so they
+// can be adjusted if needed.
+// sometimes pure white or pure black is too intense
+$colorWhite: #fff;
+$colorBlack: #000;
+
+
+// text #10365a
+$colorText-primary: #313132;
+
+// transparency on text for easier readability
+$colorText-primary-alpha: rgba($colorText-primary, 0.9);
+$colorTextLink: #1a5a96;
+$colorTextLink-hover: #10365a;
+$colorTextLink-variant: #9b06aa;
+
+// helper colours
+$colorCurrent: currentColor;
+
+// components
+$colorInputBorder: rgb(192,192,192);
+
+// semantic colors
+$colorAlert-error: #a12622;
+$colorAlert-success: #2e8540;
+$colorAlert-warning: #6c4a00;
+$colorAlert-info: #1a5a96;
+$colorBeta: #fcba19;
+
+
+
+//Breakpoints
+// these should match bcbb_theme.breakpoints.yml
+// for responsive, use -min
+
+$xs-max: 575.98px;
+$sm-min: 576px;
+$sm-max: 767.98px;
+$md-min: 768px;
+$md-max: 991.98px;
+$lg-min: 992px;
+$lg-max: 1199.98px;
+$xl-min: 1200px;
+$xl-max: 1399.98px;
+$xxl-min: 1400px;
+
+// typography
+
+$defaultFont-size: 16px;
+$fontSize-h1: 2.074em;
+$fontSize-h2: 1.728em;
+$fontSize-h3: 1.44em;
+$fontSize-h4: 1.2em;
+$fontSize-h5: 1.1em;
+$fontSize-h6: 1em;

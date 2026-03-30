@@ -262,7 +262,7 @@ END_BODY,
    * Get the common text we put in email footers.
    */
   public function getEmailFooter() {
-    $is_test_or_dev = preg_match('/(dev|test)/i', \Drupal::config('environment_indicator.indicator')->get('name'));
+    $is_test_or_dev = preg_match('/(dev|test)/i', \Drupal::config('environment_indicator.indicator')->get('name') ?? '');
 
     return t(<<<END_EMAIL_FOOTER
   For more information or assistance, please @contact_us.
@@ -398,7 +398,7 @@ END_BODY,
     $body_content = t(<<<END_BODY
 Dear @first_name,
 
-In the Finance Data Catalogue, you previously bookmarked the metadata record "[@asset_name](@asset_url)"@possible_new_title. 
+In the Finance Data Catalogue, you previously bookmarked the metadata record "@asset_name"@possible_new_title. 
 
 This @nice_record_type_name has just been updated. Click to view:
 
@@ -416,10 +416,6 @@ END_BODY,
         '@first_name' => $owner->field_first_name->value,
         '@nice_record_type_name' => $nice_record_type_name,
         '@asset_name' => $orig_title,
-        '@asset_url' => Url::fromRoute('user.login', [], [
-          'query' => ['destination' => '/node/' . $data_set->id()],
-          'absolute' => TRUE,
-        ])->toString(),
         '@possible_new_title' => $possible_new_title,
         '@links_to_show' => $links_to_show,
         '@subscriber_alerts_url' => Url::fromRoute('user.login', [], [

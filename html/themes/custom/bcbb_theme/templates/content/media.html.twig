@@ -1,0 +1,33 @@
+{#
+/**
+ * @file
+ * Theme override to display a media item.
+ *
+ * This version wraps the content in `div` instead of `article`.
+ *
+ * This file is needed until resolution of:
+ * https://www.drupal.org/project/bootstrap5/issues/3427715
+ *
+ * Available variables:
+ * - name: Name of the media.
+ * - content: Media content.
+ *
+ * @see template_preprocess_media()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'media',
+    'media--type-' ~ media.bundle()|clean_class,
+    not media.isPublished() ? 'media--unpublished',
+    view_mode ? 'media--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {{ title_suffix.contextual_links }}
+  {% if content %}
+    {{ content }}
+  {% endif %}
+</div>

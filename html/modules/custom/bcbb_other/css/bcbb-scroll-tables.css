@@ -1,0 +1,85 @@
+/* Reset spacing on child elements */
+.scroll-table * {
+  border: 0;
+  margin: 0;
+}
+
+/* wrapper table and buttons*/
+.scroll-table {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+  padding: 0 2px;
+}
+
+/* wrapper for table */
+.scroll-table .table-container {
+  overflow-x: auto;
+  padding: 0 1em;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* left and right scroll buttons */
+.scroll-table .scroll-button {
+  display: block;
+  min-width: 3em;
+  height: 100%;
+  position: absolute;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.05);
+  color: black;
+}
+
+.scroll-table .scroll-button:active {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.scroll-table .scroll-button.right-button {
+  right: 0px;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.scroll-table .scroll-button.left-button {
+  left: 0px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* icon on button */
+.scroll-table .scroll-icon
+{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 1em;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  border: 3px solid #003366;
+  background-color: rgb(255,255,255);
+}
+
+.scroll-table .scroll-button:active .scroll-icon {
+  background-color: #e5e5e5;
+}
+
+.scroll-table .scroll-button.right-button .scroll-icon {
+  right: .5em
+}
+.scroll-table .scroll-button.left-button .scroll-icon {
+  left: .5em
+}
+
+/* arrow in the icon */
+.scroll-table .scroll-icon svg {
+  width: 25px;
+  height: 25px;
+  fill: #003366;
+}
+
+/* push buttons to edge of page on mobile*/
+@media (max-width: 768px) {
+  .scroll-table {
+  margin: 0px calc(50% - 50vw);
+ }
+}

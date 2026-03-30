@@ -1,0 +1,55 @@
+// Beta banner
+
+
+%badge {
+  display: inline-block;
+  border-left: px-em(4px) solid transparent;
+  border-radius: 0 px-em(4px) px-em(4px) 0;
+  line-height: 1;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: baseline;
+  font-size: px-em(calc($defaultFont-size*.9));
+  font-weight: 500;
+  padding: .25em 1em .25em .5em;
+  margin: 0 .5em;
+}
+
+.badge-beta {
+  $badgeColor: $colorBeta;
+  @extend %badge;
+  color: $badgeColor;
+  border-left-color: mix($colorBlack, $badgeColor, 80%);
+  background-color: mix($colorBlack, $badgeColor, 70%);
+}
+
+.badge-error {
+  $badgeColor:$colorAlert-error;
+  @extend %badge;
+  color: $badgeColor;
+  background-color: mix($colorWhite, $badgeColor, 90%);
+  border-left-color: mix($colorBlack, $badgeColor, 25%);
+}
+
+.badge-info {
+  $badgeColor:$colorAlert-info;
+  @extend %badge;
+  color: $badgeColor;
+  background-color: mix($colorWhite, $badgeColor, 90%);
+  border-left-color: mix($colorBlack, $badgeColor, 25%);
+}
+.badge-warning {
+  $badgeColor:$colorAlert-warning;
+  @extend %badge;
+  color: $badgeColor;
+  background-color: mix($colorWhite, $badgeColor, 90%);
+  border-left-color: mix($colorBlack, $badgeColor, 25%);
+}
+
+.badge-success {
+  $badgeColor:$colorAlert-success;
+  @extend %badge;
+  color: $badgeColor;
+  background-color: mix($colorWhite, $badgeColor, 90%);
+   border-left-color: mix($colorBlack, $badgeColor, 25%);
+}

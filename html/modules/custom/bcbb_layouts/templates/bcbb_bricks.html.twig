@@ -1,0 +1,64 @@
+<div{{ attributes }}>
+  {% if content.header %}
+  <div class="header-region mt-4 mb-4 mb-md-5">
+    {{ content.header }}
+  </div>
+  {% endif %}
+  {% if content.top_right or content.top_left %}
+  <div class="row mt-4 mb-4 mb-md-5 top-wrapper">
+    {% if content.top_left %}
+    <div class="{% if content.top_right %}col-md-6 mb-4 mb-md-0 top-left-region{% else %}col-md-6 top-left-region{% endif %}">
+      {{ content.top_left }}
+    </div>
+    {% endif %}
+    {% if content.top_right %}
+    <div class="{% if content.top_left %}col-md-5 offset-md-1 top-right-region{% else %}col-md-6 top-right-region{% endif %}">
+      {{ content.top_right }}
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+  {% if content.main %}
+  <div class="main-region mb-4 mb-md-5">
+    {{ content.main }}
+  </div>
+  {% endif %}
+  {% if content.bottom_right or content.bottom_left %}
+  <div class="row mb-4 mb-md-5 bottom-container">
+    {% if content.bottom_left %}
+    <div class="col bottom-left-region">
+      {{ content.bottom_left }}
+    </div>
+    {% endif %}
+    {% if content.bottom_right %}
+    <div class="col bottom-right-region">
+      {{ content.bottom_right }}
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+  {% if content.card_group %}
+  <div class="card-group-region card-group mb-4 mb-md-5">
+    {{ content.card_group }}
+  </div>
+  {% endif %}
+  {% if content.footer_left or content.footer_right %}
+  <div class="row mb-4 mb-md-5 footer-cols-container">
+    {% if content.footer_left %}
+    <div class="col footer-left-region">
+      {{ content.footer_left }}
+    </div>
+    {% endif %}
+    {% if content.footer_right %}
+    <div class="col footer-right-region">
+      {{ content.footer_right }}
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+  {% if content.footer %}
+  <div class="footer-region mb-4 mb-md-5">
+    {{ content.footer }}
+  </div>
+  {% endif %}
+</div>

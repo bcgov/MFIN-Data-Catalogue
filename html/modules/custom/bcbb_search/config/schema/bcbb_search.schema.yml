@@ -1,0 +1,35 @@
+block.settings.bcbb_search_api_block:
+  type: block_settings
+  label: 'BC Base Build Search API Block'
+  mapping:
+    search:
+      type: mapping
+      label: 'Search configuration'
+      mapping:
+        search_label:
+          type: label
+          label: 'Search label'
+        search_placeholder:
+          type: label
+          label: 'Placeholder'
+        search_btn_label:
+          type: label
+          label: 'Button label'
+        search_url:
+          type: string
+          label: 'Search URL'
+        label_sr_only:
+          type: boolean
+          label: 'Label shown on screen reader only'
+        search_input_size:
+          type: boolean
+          label: 'Set search input size'
+        search_input_size_value:
+          type: integer
+          label: 'search input size'
+        show_advanced_link:
+          type: boolean
+          label: 'Show advanced search link'
+        show_reset_button:
+          type: boolean
+          label: 'Show reset button'

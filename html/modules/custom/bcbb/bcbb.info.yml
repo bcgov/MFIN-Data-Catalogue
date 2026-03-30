@@ -1,0 +1,5 @@
+name: 'BC Base Build'
+description: 'Modules shared by BC Drupal sites.'
+type: module
+core_version_requirement: ^10.2 || ^11.0
+package: 'BC Base Build'

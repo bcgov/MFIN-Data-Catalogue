@@ -1,0 +1,7 @@
+block.settings.bcbb_book_navigation:
+  type: block_settings
+  label: 'BC Base Build book navigation'
+  mapping:
+    book_id:
+      type: integer
+      label: 'Book ID'

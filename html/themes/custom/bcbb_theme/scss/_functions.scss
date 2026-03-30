@@ -1,0 +1,37 @@
+// Functions
+
+// use a sass variable in the svg data uri
+// it strips '#' and replaces with %23
+@function svg-color($color) {
+  @return '%23' + str-slice('#{$color}', 2, -1)
+};
+
+// convert pixels to em units
+// this is better for responsive design
+@function px-em($value, $base-font-size: $defaultFont-size) {
+  @return (calc($value / $base-font-size)) * 1em;
+}
+
+// convert HEX to RGB
+// this is needed for some bootstrap color processing
+
+@function hex-rgb($hex) {
+  $hex: ltrim($hex, '#'); // Remove the '#' symbol if present
+  $length: str-length($hex);
+  
+  // Check if input is a valid hex color
+  @if ($length != 3) and ($length != 6) or (str-slice($hex, 1, $length) != str-replace($hex, '[0-9a-fA-F]', '')) {
+    @return null;
+  }
+  
+  // Convert 3-digit hex to 6-digit hex if necessary
+  @if $length == 3 {
+    $hex: str-replace($hex, '([0-9a-fA-F])', '$1$1');
+  }
+  
+  $red: str-slice($hex, 1, 2);
+  $green: str-slice($hex, 3, 4);
+  $blue: str-slice($hex, 5, 6);
+  
+  @return red($red), green($green), blue($blue);
+}

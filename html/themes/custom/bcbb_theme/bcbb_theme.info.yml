@@ -1,0 +1,26 @@
+name: 'BC Base Build'
+type: theme
+description: 'BC Base Build subtheme based on Bootstrap 5 theme.'
+core_version_requirement: ^10.2 || ^11.0
+'base theme': bootstrap5
+libraries:
+  - bcbb_theme/global-styling
+ckeditor_stylesheets:
+  - css/style.css
+ckeditor5-stylesheets:
+  - css/ck5style.css
+regions:
+  header: Header
+  branding: 'Branding region'
+  search: 'Search'
+  nav_main: 'Main navigation region'
+  nav_additional: 'Additional navigation region (eg search form, social icons, etc)'
+  breadcrumb: Breadcrumbs
+  content: 'Main content'
+  sidebar_first: 'Sidebar first'
+  sidebar_second: 'Sidebar second'
+  footer: Footer
+bootstrap5/global-styling:
+  css:
+    theme:
+      css/style.css: 'false'

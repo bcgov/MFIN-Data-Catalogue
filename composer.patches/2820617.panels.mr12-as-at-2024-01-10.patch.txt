@@ -1,0 +1,15 @@
+diff --git a/src/Plugin/DisplayBuilder/StandardDisplayBuilder.php b/src/Plugin/DisplayBuilder/StandardDisplayBuilder.php
+index bde30aaa3f8c74cb01e9094a244ac322808c3fe3..51d9bd0c0de340b2df9d57d9cd08ff55c9d07d6c 100644
+--- a/src/Plugin/DisplayBuilder/StandardDisplayBuilder.php
++++ b/src/Plugin/DisplayBuilder/StandardDisplayBuilder.php
+@@ -106,10 +106,6 @@ class StandardDisplayBuilder extends DisplayBuilderBase implements PluginWizardI
+         continue;
+       }
+ 
+-      $region_name = Html::getClass("block-region-$region");
+-      $build[$region]['#prefix'] = '<div class="' . $region_name . '">';
+-      $build[$region]['#suffix'] = '</div>';
+-
+       /** @var \Drupal\Core\Block\BlockPluginInterface[] $blocks */
+       $weight = 0;
+       foreach ($blocks as $block_id => $block) {

@@ -1,0 +1,14 @@
+block.settings.bcbb_text_block:
+  type: block_settings
+  label: 'BC Base Build text block'
+  mapping:
+    content:
+      type: mapping
+      label: 'Content'
+      mapping:
+        value:
+          type: string
+          label: 'Content value'
+        format:
+          type: string
+          label: 'Text format'

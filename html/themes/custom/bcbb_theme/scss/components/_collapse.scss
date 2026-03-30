@@ -1,0 +1,62 @@
+// responsive collapse
+// exposed collapsed content on desktop
+// this extends Bootstrap collapse https://getbootstrap.com/docs/5.3/components/collapse/
+
+.bb-collapse {
+  .toggle {
+    width: 100%;
+    text-align: left;
+    border-width: 0 0 1px 0;
+    background: var(--bs-gray-100);
+    border-color: var(--bs-gray-300);
+    border-radius: 0;
+    position: relative;
+    padding: 1em 1em 1em 3em;
+    @include responsive($lg-min) {
+      padding: .5em 1em .5em 3em;
+    }
+
+    &::before {
+      position: absolute;
+      margin-left: -1.5em;
+      display: inline-block;
+      font-family: 'bootstrap-icons' !important;
+      content: "\F231";
+    }
+    &:hover,
+    &:active,
+    &:focus {
+      background: var(--bs-gray-200) !important;
+      border-color: var(--bs-gray-300) !important;
+    }
+    &[aria-expanded="true"]
+    {
+      background: var(--bs-gray-200) !important;
+      border-color: var(--bs-gray-300) !important;
+      &::before {
+        content: "\F229";
+      }
+    }
+  }
+}
+
+.bb-collapse-responsive {
+  .collapse:not(.show) {
+    @include responsive($lg-min) {
+      display: block !important;
+    }
+  }
+  @include responsive($lg-min) {
+  .toggle {
+    &::before {
+      content:"" !important;
+    }
+    &[aria-expanded=true] {
+
+      background: var(--bs-gray-100) !important;
+      border-color: var(--bs-gray-300) !important;
+
+    }
+  }
+}
+}

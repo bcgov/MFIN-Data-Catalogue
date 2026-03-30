@@ -121,11 +121,12 @@ function bc_dc_preprocess_flag(array &$variables): void {
       'Bookmarked by 1 person',
       'Bookmarked by @count people', [
         '@count' => $node_bookmark_count,
-      ]);
-    // Visually display the count message.
-    $variables['title']['#markup'] = '<span class="title dc-label icon-bi-bookmark-dash-fill">' . $variables['title']['#markup'] . '</span> <span class="count small">' . $count_message->render() . '</span>';
-    // Add the count message to the @aria-label.
-    $variables['attributes']['aria-label'] .= ' ' . $count_message . '.';
+    ]);
+
+    // Save the count_message, to be rendered by our flag.html.twig override.
+    $variables['count_message'] = $count_message->render();
+
+    $variables['title']['#markup'] = '<span class="title dc-label icon-bi-bookmark-dash-fill">' . $variables['title']['#markup'] . '</span>';
   }
   else {
     // Add "add bookmark" icon class.
@@ -326,7 +327,12 @@ function bc_dc_node_access(NodeInterface $entity, string $operation, AccountInte
     return AccessResult::allowed();
   }
 
-  if ($operation == 'update' && $entity->bundle() === 'data_set') {
+  // Restrict some users to only see MRs in their org, 
+  // or that they they themselves created.
+  if (   $operation == 'update' 
+      && $entity->bundle() == 'data_set'
+      && !$account->hasPermission('edit any data_set content')) 
+  {
     $is_my_node = $account->id() == $entity->getOwnerId();
     $allowed = (
       (    $account->hasPermission('edit own data_set in_org') && $is_my_node

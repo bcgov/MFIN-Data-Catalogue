@@ -1,0 +1,48 @@
+{#
+# This template extends options available in bcbb_main_sidebar_right.html.twig
+# the sidebar has two regions. sidebar_top can be used for whatever blocks are
+# required sidebar_bottom should only be used for facets, there is a button
+# hard-coded in this template that will collapse/expand the facets on mobile.
+#}
+
+{# create a custom variable and use pre-process function for logic #}
+{% set wrapper_attributes = create_attribute(wrapper_attributes) %}
+{% set sidebar_wrapper_attributes = create_attribute(sidebar_wrapper_attributes) %}
+{% set facet_wrapper_attributes = create_attribute(facet_wrapper_attributes) %}
+
+<div{{ wrapper_attributes.addClass(['container']) }}>
+  <div class="search-bb-container">
+  {% if content.top %}
+    <div class="top-region search-bb-search-block">
+      {{ content.top }}
+    </div>
+  {% endif %}
+  {% if content.sidebar_top or content.sidebar_bottom or content.main %}
+    {% if content.sidebar_top or content.sidebar_bottom %}
+      <div{{ sidebar_wrapper_attributes.addClass(['search-bb-sidebar-right']) }}>
+        {% if content.sidebar_top %}
+          {{ content.sidebar_top }}
+        {% endif %}
+        {% if content.sidebar_bottom %}
+          <details{{ facet_wrapper_attributes }}>
+            <summary>{{ 'Show filters'|t }}</summary>
+            {{ content.sidebar_bottom }}
+          </details>
+        {% endif %}
+      </div>
+    {% endif %}
+    {% if content.main %}
+      <div class="search-bb-results mt-3">
+        {{ content.main }}
+      </div>
+    {% endif %}
+  {% endif %}
+  </div>
+  {% if content.bottom %}
+    <div class="row">
+      <div class="col-sm-12 bottom-region">
+        {{ content.bottom }}
+      </div>
+    </div>
+  {% endif %}
+</div>

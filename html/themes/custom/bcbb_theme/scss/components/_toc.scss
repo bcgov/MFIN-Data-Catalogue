@@ -1,0 +1,14 @@
+// extends styles for TOC module
+
+.node .toc-tree {
+  border: 0;
+  margin-bottom: 2.26em;
+}
+
+form.toc-mobile select {
+    height: 3em;
+    border: 1px solid $colorBrand-secondary;
+    background-color: $colorBrand-secondary-light;
+    border-radius: .25em;
+    padding: 0 1em;
+}

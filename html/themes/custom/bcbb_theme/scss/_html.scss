@@ -1,0 +1,73 @@
+html.bcbb-theme {
+
+  body {
+    font-family: 'BCSans', 'Calibri', Arial, sans-serif;
+  }
+
+  img {
+    max-width: 100%;
+    max-height: auto;
+  }
+
+  main {
+    color: $colorText-primary-alpha;
+
+
+
+    p {
+      line-height: 1.6;
+    }
+
+    a:not(.btn, .button, .page-link) {
+      color: $colorTextLink;
+      &:hover,
+      &:focus {
+        color: $colorTextLink-hover;
+      }
+      &:active,
+      &:visited {
+        color: $colorTextLink-variant;
+      }
+    }
+
+    h1,
+    .h1 {
+      font-size: $fontSize-h1;
+      font-weight: 700;
+    }
+
+    h2,
+    .h2 {
+      font-size: $fontSize-h2;
+    }
+
+    h3,
+    .h3 {
+      font-size: $fontSize-h3;
+    }
+
+    h4,
+    .h4 {
+      font-size: $fontSize-h4;
+    }
+
+    h5,
+    .h5 {
+      font-size: $fontSize-h5;
+    }
+
+    h6,
+    .h6 {
+      font-size: $fontSize-h6;
+    }
+
+    table {
+      width: 100%;
+    }
+
+  }
+
+  kbd {
+    white-space: nowrap;
+  }
+}
