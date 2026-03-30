@@ -310,9 +310,6 @@
             "drupal/diff": {
                 "2954352 - Local tasks for node not visible on diff.revisions_diff route": "https://www.drupal.org/files/issues/2024-05-16/diff-add_local_tasks-2954352-17.patch"
             },
-            "drupal/openid_connect": {
-                "3011413 - Autologin when one client enabled": "composer.patches/3011413.openid_connect.mr98-as-at-2025-03-25.patch.txt"
-            },
             "drupal/page_manager": {
                 "2756613 - Avoid harcoded prefex and suffix in block region": "https://www.drupal.org/files/issues/page_manager-avoid_prefix_suffix-2756613-8.patch"
             },
