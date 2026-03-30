@@ -1338,7 +1338,9 @@ function bc_dc_chart_alter(array &$element, $chart_id) {
 /**
  * Implements hook_menu_links_discovered_alter().
  * 
- * Set info about deployed GitOps commit, into menu.
+ * Set info about deployed Drupal/GitOps commits, into the admin menu.
+ * NB: Similar information in inserted into the RSH greeting-message, 
+ * in docker/Dockerfile.
  */
 function bc_dc_menu_links_discovered_alter(&$links) {
       

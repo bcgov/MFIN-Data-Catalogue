@@ -189,14 +189,17 @@ RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
   # Remove any blank lines from the commit message, and whitespace from end of each line:
   TERSE_DRUPAL_REPO_COMMIT_MESSAGE=$(printf "%s" "$LKJ" |  grep -v '^[[:space:]]*$' | sed 's/[[:space:]]\+$//')
 
-  # To make it look like this:
-  #  
+  # Set up RSH connection-greeting message, to look like this, below.
+  #  NB: similar information is inserted into the Drupal Admin menu, 
+  #  in bc_dc.module, bc_dc_menu_links_discovered_alter().
+    
   # ----------- Connected to 'mfin-data-catalogue-drupal-76db898bd4-drwzl'. -----------
   # -- https://github.com/bcgov-c/tenant-gitops-ea352d/commit/4468730
   # -- https://github.com/bcgov/MFIN-Data-Catalogue/commit/ceaa1ec (Fri 2026-03-13 16:42, Dan Howard) 
   # --     #XYZ-1234: Merge 'View' and 'Edit' into single view field, for visual consistency with other views...
   # --     - did thing A
   # --     - and thing B
+  # --
   # fdc-dev(1.0.44g):/var/www/html $ 
 
   echo
