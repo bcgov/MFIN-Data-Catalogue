@@ -1,7 +1,7 @@
 @import
 //get variables and mixins from bcbb theme
-'../../../contrib/bcbb_theme/scss/variables',
-'../../../contrib/bcbb_theme/scss/mixins';
+'../../../custom/bcbb_theme/scss/variables',
+'../../../custom/bcbb_theme/scss/mixins';
 
 @media print {
   #dc_data_dictionary > div.item-list,

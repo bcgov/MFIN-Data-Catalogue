@@ -27,7 +27,7 @@
 @font-face {
   font-display: block;
   font-family: "bootstrap-icons";
-  src: url("/themes/contrib/bcbb_theme/assets/bootstrap-icons/fonts/bootstrap-icons.woff2") format("woff2"), url("/themes/contrib/bcbb_theme/assets/bootstrap-icons/fonts/bootstrap-icons.woff") format("woff");
+  src: url("/themes/custom/bcbb_theme/assets/bootstrap-icons/fonts/bootstrap-icons.woff2") format("woff2"), url("/themes/custom/bcbb_theme/assets/bootstrap-icons/fonts/bootstrap-icons.woff") format("woff");
 }
 .ck-content :root {
   --bs-tertiary-color: #757779 !important;
