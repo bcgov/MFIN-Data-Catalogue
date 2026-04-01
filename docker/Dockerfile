@@ -14,8 +14,8 @@ ARG GIT_USERNAME
 ARG GIT_PASSWORD
 ARG GITHUB_SHA
 # Persist this one into an environment var, so that it's available at run-time.
-ARG GITHUB_TAG_TO_DEPLOY
-ENV GITHUB_TAG_TO_DEPLOY=${GITHUB_TAG_TO_DEPLOY}
+ARG DRUPAL_REPO_TAG_TO_DEPLOY
+ENV DRUPAL_REPO_TAG_TO_DEPLOY=$DRUPAL_REPO_TAG_TO_DEPLOY
 
 RUN apk --update add fcgi \
     && curl -o /usr/local/bin/php-fpm-healthcheck https://raw.githubusercontent.com/renatomefi/php-fpm-healthcheck/master/php-fpm-healthcheck \
@@ -182,7 +182,7 @@ RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
 
   RESET_COLOUR='\[\033[00m\]'
   
-  export PS1="${PROJECT_NAME}-${ENVIRONMENT_COLOUR}${ENVIRONMENT_NAME}${RESET_COLOUR}(${GITHUB_TAG_TO_DEPLOY}):${PROJECT_COLOUR}\w${RESET_COLOUR} \$ "
+  export PS1="${PROJECT_NAME}-${ENVIRONMENT_COLOUR}${ENVIRONMENT_NAME}${RESET_COLOUR}(${DRUPAL_REPO_TAG_TO_DEPLOY}):${PROJECT_COLOUR}\w${RESET_COLOUR} \$ "
 
   echo
   echo "----------- Connected to '$(hostname)'. -----------"
