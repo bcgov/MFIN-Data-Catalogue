@@ -25,7 +25,7 @@ jobs:
       uses: mikefarah/yq@v4.34.1
       with:
         cmd: |
-          yq eval '."newbbproj.code_version".title = "NEWBBPROJ version " + strenv(GITHUB_TAG_TO_DEPLOY)' -i html/modules/custom/newbbproj/newbbproj.links.menu.yml
+          yq eval '."deploymentinfo.code_version".title = "FDC version " + strenv(DRUPAL_REPO_TAG_TO_DEPLOY)' -i html/modules/custom/basebuild/deploymentinfo/deploymentinfo.links.menu.yml
           
     - name: Build out the Drupal infrastructure
       run: |
