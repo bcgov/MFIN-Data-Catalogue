@@ -21,9 +21,9 @@ base:
 	    --build-arg NO_PROXY=$$NO_PROXY \
 	    --build-arg COMPOSER_VERSION=$(COMPOSER_VERSION) \
 	    --build-arg GIT_USERNAME=$(GIT_USERNAME) \
-	    --build-arg GIT_PASSWORD=$(GIT_PASSWORD) \
+	    --build-arg GIT_PASSWORD="$(GIT_PASSWORD)" \
 	    --build-arg GITHUB_SHA=$(GITHUB_SHA) \
-	    --build-arg GITHUB_TAG_TO_DEPLOY='$(GITHUB_TAG_TO_DEPLOY)' .
+			--build-arg DRUPAL_REPO_TAG_TO_DEPLOY='$(DRUPAL_REPO_TAG_TO_DEPLOY)' .
 
 
 behat:
