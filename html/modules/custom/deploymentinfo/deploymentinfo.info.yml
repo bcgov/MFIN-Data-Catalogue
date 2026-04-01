@@ -1,0 +1,6 @@
+name: Deployment Info
+description: Supply information about the Drupal/GitOps commits used for deployment. Shown in admin menu, and at RSH login.
+type: module
+core_version_requirement: ^11
+dependencies:
+  - drupal:admin_toolbar_tools
