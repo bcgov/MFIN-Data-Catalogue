@@ -42,6 +42,7 @@ module:
   datetime: 0
   dblog: 0
   default_content_deploy: 0
+  deploymentinfo: 0
   diff: 0
   dynamic_page_cache: 0
   editor: 0
