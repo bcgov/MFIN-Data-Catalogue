@@ -185,7 +185,8 @@ RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
   PROJECT_COLOUR="\[\033[38;2;170;128;255m\]"  # Hue:260, Sat:100%, Lum:75% (Iris)
   RESET_COLOUR='\[\033[00m\]'
   
-  export PS1="${PROJECT_NAME}-${ENVIRONMENT_COLOUR}${ENVIRONMENT_NAME}${RESET_COLOUR}(${DRUPAL_REPO_TAG_TO_DEPLOY}):${PROJECT_COLOUR}\w${RESET_COLOUR} \$ "
+  export PS1="${PROJECT_COLOUR}${PROJECT_NAME}${RESET_COLOUR}-${ENVIRONMENT_COLOUR}${ENVIRONMENT_NAME}${RESET_COLOUR}(${DRUPAL_REPO_TAG_TO_DEPLOY}):${PROJECT_COLOUR}\w${RESET_COLOUR} \$ "
+
 
   # Remove any blank lines from the commit message, and whitespace from end of each line:
   TERSE_DRUPAL_REPO_COMMIT_MESSAGE=$(printf "%s" "$LKJ" |  grep -v '^[[:space:]]*$' | sed 's/[[:space:]]\+$//')
