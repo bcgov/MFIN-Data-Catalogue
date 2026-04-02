@@ -12,14 +12,14 @@ function deploymentinfo_menu_links_discovered_alter(&$links) {
       
   $repo_info = [
     'gitops' => [
-      'github_repo' => 'bcgov-c/tenant-gitops-ea352d',
+      'github_repo' => getenv('TENANT_GITOPS_REPO'),
       'link_machinename' => 'deploymentinfo.gitops_revision',
       'link_label' => 'Gitops @short_sha', 
       'sha' => getenv('DEPLOYED_GITOPS_REVISION_SHA') ?? 'no_sha_provided_to_drupal',
       'description' => "The GitOps commit that ArgoCD used to build the Helm chart:\n@url_to_commits/@short_sha",
     ],
     'drupal' => [
-      'github_repo' => 'bcgov/MFIN-Data-Catalogue',
+      'github_repo' => getenv('DRUPAL_REPO'),
       'link_machinename' => 'deploymentinfo.code_version',
       'link_label' => 'FDC @drupal_tag', 
       'sha' => getenv('DRUPAL_REPO_SHA'),

@@ -12,6 +12,8 @@ RUN rm -rf /opt/drupal /var/www/html
 ARG SSH_PRIVATE_KEY
 ARG GIT_USERNAME
 ARG GIT_PASSWORD
+ARG GITHUB_REPOSITORY
+ARG TENANT_GITOPS_REPO
 ARG GITHUB_SHA
 ARG DRUPAL_REPO_AUTHOR_INFO
 ARG DRUPAL_REPO_COMMITTER
@@ -20,6 +22,8 @@ ARG DRUPAL_REPO_TAG_TO_DEPLOY
 ARG DRUPAL_REPO_COMMIT_MESSAGE
 
 # Persist these ARGs into environment vars, to be available at run-time.
+ENV DRUPAL_REPO="$GITHUB_REPOSITORY"
+ENV TENANT_GITOPS_REPO="$TENANT_GITOPS_REPO"
 ENV DRUPAL_REPO_SHA=$GITHUB_SHA
 ENV DRUPAL_REPO_AUTHOR_INFO="$DRUPAL_REPO_AUTHOR_INFO"
 ENV DRUPAL_REPO_COMMITTER="$DRUPAL_REPO_COMMITTER"
@@ -223,8 +227,8 @@ RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
 
   echo
   echo "----------- Connected to '$(hostname)'. -----------"
-  echo "-- https://github.com/bcgov-c/tenant-gitops-newbbgitopslicenseplate/commit/${DEPLOYED_GITOPS_REVISION_SHA:0:7}"
-  echo "-- https://github.com/newbb-bcgov-or-bcgov-c/newbbgithubprojectname/commit/${DRUPAL_REPO_SHA:0:7}, $DRUPAL_REPO_COMMIT_DATETIME, $DRUPAL_REPO_COMMITTER"
+  echo "-- https://github.com/$TENANT_GITOPS_REPO/commit/${DEPLOYED_GITOPS_REVISION_SHA:0:7}"
+  echo "-- https://github.com/$DRUPAL_REPO/commit/${DRUPAL_REPO_SHA:0:7}, $DRUPAL_REPO_COMMIT_DATETIME, $DRUPAL_REPO_COMMITTER"
   echo "$DRUPAL_REPO_COMMIT_MESSAGE" | awk '{print "--    "$0}'
   echo "--"
 
