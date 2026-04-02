@@ -21,7 +21,7 @@ function deploymentinfo_menu_links_discovered_alter(&$links) {
     'drupal' => [
       'github_repo' => getenv('DRUPAL_REPO'),
       'link_machinename' => 'deploymentinfo.code_version',
-      'link_label' => 'FDC @drupal_tag', 
+      'link_label' => 'NEWBB-ProjectShortname @drupal_tag', # TODO: Replace this with a parameter, maybe from github actions.
       'sha' => getenv('DRUPAL_REPO_SHA'),
       'description' => 
 "@commit_datetime, @committer_name
