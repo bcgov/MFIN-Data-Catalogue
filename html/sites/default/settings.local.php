@@ -276,13 +276,3 @@ $config['system.file']['temporary_maximum_age'] = 1;
  * yet in the settings.ddev.php file, so we do it here.
  */
 $databases['default']['default']['schema'] = "NEWBB-DB-schemaname"; # Keep this schema name short and tight.
-
-/**
- * Tenant Gitops Deployment Info
- * 
- * Normally, the Helm Chart will generate this for the settings.php in Openshift.
- * This is here basically for local debugging.
- */
-$settings['deploy_info'] = [
-  'gitops_revision_sha' => 'abcf21234_hash_normally_set_in_helm_chart',
-];
