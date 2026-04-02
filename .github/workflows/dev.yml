@@ -20,6 +20,7 @@ jobs:
 
     - name: Export github reference var
       run: |
+        echo "TENANT_GITOPS_REPO=${{ vars.TENANT_GITOPS_REPO }}" >> $GITHUB_ENV
         echo "DRUPAL_REPO_TAG_TO_DEPLOY=$GITHUB_REF_NAME" >> $GITHUB_ENV
         echo "DRUPAL_REPO_AUTHOR_INFO=$(git show -s --format='%an, on %ad' $GITHUB_SHA)" >> $GITHUB_ENV
         echo "DRUPAL_REPO_COMMITTER=$(git show -s --format='%cn' $GITHUB_SHA)" >> $GITHUB_ENV
