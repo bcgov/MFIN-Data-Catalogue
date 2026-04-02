@@ -1,7 +1,5 @@
 <?php
 
-use Drupal\Core\Site\Settings;
-
 
 /**
  * Implements hook_menu_links_discovered_alter().
@@ -17,7 +15,7 @@ function deploymentinfo_menu_links_discovered_alter(&$links) {
       'github_repo' => 'bcgov-c/tenant-gitops-ea352d',
       'link_machinename' => 'deploymentinfo.gitops_revision',
       'link_label' => 'Gitops @short_sha', 
-      'sha' => Settings::get('deploy_info')['gitops_revision_sha'] ?? 'no_sha_provided_to_drupal',
+      'sha' => getenv('DEPLOYED_GITOPS_REVISION_SHA') ?? 'no_sha_provided_to_drupal',
       'description' => "The GitOps commit that ArgoCD used to build the Helm chart:\n@url_to_commits/@short_sha",
     ],
     'drupal' => [
