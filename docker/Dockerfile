@@ -214,15 +214,13 @@ RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
   # --     #XYZ-1234: Merge 'View' and 'Edit' into single view field, for visual consistency with other views...
   # --     - did thing A
   # --     - and thing B
-  # --
   # fdc-dev(1.0.44g):/var/www/html $ 
 
   echo
   echo "----------- Connected to '$(hostname)'. -----------"
   echo "-- https://github.com/$TENANT_GITOPS_REPO/commit/${DEPLOYED_GITOPS_REVISION_SHA:0:7}"
   echo "-- https://github.com/$DRUPAL_REPO/commit/${DRUPAL_REPO_SHA:0:7}, $DRUPAL_REPO_COMMIT_DATETIME, $DRUPAL_REPO_COMMITTER"
-  echo "$DRUPAL_REPO_COMMIT_MESSAGE" | awk '{print "--    "$0}'
-  echo "--"
+  printf '%s' "$DRUPAL_REPO_COMMIT_MESSAGE" | awk '{print "--     "$0}'
 
 END_BASHRC_LINES
 
