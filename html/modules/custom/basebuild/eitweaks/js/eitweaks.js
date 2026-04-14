@@ -39,15 +39,19 @@
           $(`.toolbar-tab--toolbar-item-environment-indicator ul.toolbar-menu`, context).find('li a').each(
             function() {
               var link_text = $(this, context).text();
-
+              
               // Link text may be "Open on Dev". We want just "dev":
               var link_environment = link_text.trim().split(" ").pop().toLowerCase();
 
               if (site_environment != 'localhost' && link_environment == 'localhost' && !params.user_is_developer) {
                 // Remove the DDEV item for non-admins when on one of the Openshift servers.
-                (this).closest('li').remove();
+                $(this).closest('li').remove();
               }
-
+              else {
+                // Make the buttons all fill the full width of the drop-menu.
+                $(this).closest('li').css('width', '-webkit-fill-available');
+              }
+              
               if (site_environment == link_environment) {
                 // If we're on dev, then the link should say 'Open on dev'. We want it to just say '--- dev ---'.
                 // But this function seems to run more than once, due to 'context'. So test first if
@@ -58,10 +62,6 @@
                     .text('--- ' + link_text.substring(8) + ' ---')
                     .css({'cursor': 'default'})
                     .removeAttr('href')
-                    .closest('li').css({
-                      'width': '-webkit-fill-available', 
-                      'width': '-moz-available'
-                    })
                   ;
                 }
               }
