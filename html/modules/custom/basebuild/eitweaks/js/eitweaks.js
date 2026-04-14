@@ -58,6 +58,10 @@
                     .text('--- ' + link_text.substring(8) + ' ---')
                     .css({'cursor': 'default'})
                     .removeAttr('href')
+                    .closest('li').css({
+                      'width': '-webkit-fill-available', 
+                      'width': '-moz-available'
+                    })
                   ;
                 }
               }
