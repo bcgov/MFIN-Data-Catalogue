@@ -1,0 +1,59 @@
+<?php
+
+
+/**
+ * Implements hook_menu_links_discovered_alter().
+ * 
+ * Set info about deployed Drupal/GitOps commits, into the admin menu.
+ * NB: Similar information in inserted into the RSH greeting-message, 
+ * in docker/Dockerfile.
+ */
+function deploymentinfo_menu_links_discovered_alter(&$links) {
+      
+  $repo_info = [
+    'gitops' => [
+      'github_repo' => getenv('TENANT_GITOPS_REPO'),
+      'link_machinename' => 'deploymentinfo.gitops_revision',
+      'link_label' => 'Gitops @short_sha', 
+      'sha' => getenv('DEPLOYED_GITOPS_REVISION_SHA') ?? 'no_sha_provided_to_drupal',
+      'description' => "The GitOps commit that ArgoCD used to build the Helm chart:\n@url_to_commits/@short_sha",
+    ],
+    'drupal' => [
+      'github_repo' => getenv('DRUPAL_REPO'),
+      'link_machinename' => 'deploymentinfo.code_version',
+      'link_label' => 'FDC @drupal_tag', # TODO: Replace this with a parameter, maybe from github actions.
+      'sha' => getenv('DRUPAL_REPO_SHA'),
+      'description' => 
+"@commit_datetime, @committer_name
+
+@drupal_commit_message
+
+@url_to_commits/@short_sha",
+    ],
+  ];
+  foreach ($repo_info as $repo_type => $info) {
+    $link_to_modify =& $links[$info['link_machinename']];
+    if (isset($link_to_modify)) {
+      if (empty(getenv('DRUPAL_REPO_TAG_TO_DEPLOY'))) {
+        # Operating in localhost. Remove these two links, as we have nothing useful for them.
+        unset($links[$info['link_machinename']]);
+      } 
+      else {
+        $params_palette = [ 
+          '@drupal_tag' => getenv('DRUPAL_REPO_TAG_TO_DEPLOY'),
+          '@committer_name' => getenv('DRUPAL_REPO_COMMITTER'),
+          '@commit_datetime' => getenv('DRUPAL_REPO_COMMIT_DATETIME'),
+          '@drupal_commit_message' => getenv('DRUPAL_REPO_COMMIT_MESSAGE'),
+          '@url_to_commits' => sprintf("https://github.com/%s/commit", $info['github_repo']),
+          '@long_sha' => $info['sha'],
+          '@short_sha' => substr($info['sha'],0,7),
+        ];
+        unset($link_to_modify['route_name']);
+        $link_to_modify['title'] = t($info['link_label'], $params_palette);
+        $link_to_modify['url'] = t("@url_to_commits/@long_sha", $params_palette);
+        $link_to_modify['options']['attributes']['target'] = '_blank';
+        $link_to_modify['description'] = t($info['description'], $params_palette);
+      }
+    }
+  }
+}

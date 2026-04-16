@@ -21,10 +21,16 @@ base:
 	    --build-arg NO_PROXY=$$NO_PROXY \
 	    --build-arg COMPOSER_VERSION=$(COMPOSER_VERSION) \
 	    --build-arg GIT_USERNAME=$(GIT_USERNAME) \
-	    --build-arg GIT_PASSWORD=$(GIT_PASSWORD) \
-	    --build-arg GITHUB_SHA=$(GITHUB_SHA) \
-	    --build-arg GITHUB_TAG_TO_DEPLOY='$(GITHUB_TAG_TO_DEPLOY)' .
-
+	    --build-arg GIT_PASSWORD="$(GIT_PASSWORD)" \
+			--build-arg GITHUB_REPOSITORY \
+			--build-arg TENANT_GITOPS_REPO \
+	    --build-arg GITHUB_SHA \
+			--build-arg DRUPAL_REPO_AUTHOR_INFO \
+			--build-arg DRUPAL_REPO_COMMITTER \
+			--build-arg DRUPAL_REPO_COMMIT_DATETIME \
+			--build-arg DRUPAL_REPO_COMMIT_MESSAGE \
+			--build-arg DRUPAL_REPO_TAG_TO_DEPLOY \
+			.
 
 behat:
 	./docker/bin/behat -vv -c behat.yml --colors

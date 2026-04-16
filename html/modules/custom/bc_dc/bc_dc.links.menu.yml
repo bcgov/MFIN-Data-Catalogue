@@ -8,9 +8,3 @@ bc_dc.settings:
   description: 'Configure BC Data Catalogue Module.'
   route_name: bc_dc.settings
   parent: bc_dc.category
-
-bc_dc.code_version:
-  title: 'FDC revision x.y.z'
-  parent: admin_toolbar_tools.help
-  route_name: '<nolink>'
-  weight: 15

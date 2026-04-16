@@ -12,10 +12,24 @@ RUN rm -rf /opt/drupal /var/www/html
 ARG SSH_PRIVATE_KEY
 ARG GIT_USERNAME
 ARG GIT_PASSWORD
+ARG GITHUB_REPOSITORY
+ARG TENANT_GITOPS_REPO
 ARG GITHUB_SHA
-# Persist this one into an environment var, so that it's available at run-time.
-ARG GITHUB_TAG_TO_DEPLOY
-ENV GITHUB_TAG_TO_DEPLOY=${GITHUB_TAG_TO_DEPLOY}
+ARG DRUPAL_REPO_AUTHOR_INFO
+ARG DRUPAL_REPO_COMMITTER
+ARG DRUPAL_REPO_COMMIT_DATETIME
+ARG DRUPAL_REPO_TAG_TO_DEPLOY
+ARG DRUPAL_REPO_COMMIT_MESSAGE
+
+# Persist these ARGs into environment vars, to be available at run-time.
+ENV DRUPAL_REPO="$GITHUB_REPOSITORY"
+ENV TENANT_GITOPS_REPO="$TENANT_GITOPS_REPO"
+ENV DRUPAL_REPO_SHA=$GITHUB_SHA
+ENV DRUPAL_REPO_AUTHOR_INFO="$DRUPAL_REPO_AUTHOR_INFO"
+ENV DRUPAL_REPO_COMMITTER="$DRUPAL_REPO_COMMITTER"
+ENV DRUPAL_REPO_COMMIT_DATETIME="$DRUPAL_REPO_COMMIT_DATETIME"
+ENV DRUPAL_REPO_TAG_TO_DEPLOY=$DRUPAL_REPO_TAG_TO_DEPLOY
+ENV DRUPAL_REPO_COMMIT_MESSAGE="$DRUPAL_REPO_COMMIT_MESSAGE"
 
 RUN apk --no-cache add fcgi \
     && curl -sSL -o /usr/local/bin/php-fpm-healthcheck \
@@ -175,10 +189,33 @@ RUN cat <<'END_BASHRC_LINES' >> /etc/bash/bashrc
   PROJECT_COLOUR="\[\033[38;2;170;128;255m\]"  # Hue:260, Sat:100%, Lum:75% (Iris)
   RESET_COLOUR='\[\033[00m\]'
   
-  export PS1="${PROJECT_NAME}-${ENVIRONMENT_COLOUR}${ENVIRONMENT_NAME}${RESET_COLOUR}(${GITHUB_TAG_TO_DEPLOY}):${PROJECT_COLOUR}\w${RESET_COLOUR} \$ "
+  export PS1="${PROJECT_COLOUR}${PROJECT_NAME}${RESET_COLOUR}-${ENVIRONMENT_COLOUR}${ENVIRONMENT_NAME}${RESET_COLOUR}(${DRUPAL_REPO_TAG_TO_DEPLOY}):${PROJECT_COLOUR}\w${RESET_COLOUR} \$ "
+
+
+  # Remove any blank lines from the commit message, and whitespace from end of each line:
+  TERSE_DRUPAL_REPO_COMMIT_MESSAGE=$(printf "%s" "$LKJ" |  grep -v '^[[:space:]]*$' | sed 's/[[:space:]]\+$//')
+
+  # Set up RSH connection-greeting message.
+  #  NB: similar information is inserted into the Drupal Admin menu, 
+  #  in bc_dc.module, bc_dc_menu_links_discovered_alter().
+  #
+  # Should look something like this:
+    
+  # ----------- Connected to 'mfin-data-catalogue-drupal-76db898bd4-drwzl'. -----------
+  # -- https://github.com/bcgov-c/tenant-gitops-ea352d/commit/4468730
+  # -- https://github.com/bcgov/MFIN-Data-Catalogue/commit/ceaa1ec (Fri 2026-03-13 16:42, Dan Howard) 
+  # --     #XYZ-1234: Merge 'View' and 'Edit' into single view field, for visual consistency with other views...
+  # --     - did thing A
+  # --     - and thing B
+  # --
+  # fdc-dev(1.0.44g):/var/www/html $ 
 
   echo
   echo "----------- Connected to '$(hostname)'. -----------"
+  echo "-- https://github.com/$TENANT_GITOPS_REPO/commit/${DEPLOYED_GITOPS_REVISION_SHA:0:7}"
+  echo "-- https://github.com/$DRUPAL_REPO/commit/${DRUPAL_REPO_SHA:0:7}, $DRUPAL_REPO_COMMIT_DATETIME, $DRUPAL_REPO_COMMITTER"
+  echo "$DRUPAL_REPO_COMMIT_MESSAGE" | awk '{print "--    "$0}'
+  echo "--"
 
 END_BASHRC_LINES
 
