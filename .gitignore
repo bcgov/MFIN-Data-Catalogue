@@ -11,6 +11,8 @@ html/sites/default/*
 !html/themes/
 html/themes/*
 !html/themes/custom/
+/.editorconfig
+/.gitattributes
 
 # Ignore dependencies that are managed with Composer.
 # Generally you should only ignore the root vendor directory. It's important
