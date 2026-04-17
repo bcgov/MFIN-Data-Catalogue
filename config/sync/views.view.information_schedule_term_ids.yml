@@ -2267,10 +2267,10 @@ display:
         block_info_schedule_entities: '0'
       filename: 'information-schedule-values_[date:html_date]'
       automatic_download: true
-      store_in_public_file_directory: null
       custom_redirect_path: false
       redirect_to_display: none
       include_query_params: false
+      store_in_public_file_directory: null
     cache_metadata:
       max-age: -1
       contexts:
