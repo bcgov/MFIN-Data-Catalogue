@@ -9,6 +9,8 @@ dependencies:
     - bc_dc
     - book
     - content_moderation
+    - entity_clone
+    - entity_clone_extras
     - field_permissions
     - flag
     - form_mode_control
@@ -26,6 +28,7 @@ permissions:
   - 'access printer-friendly version'
   - 'access site reports'
   - 'access user manage'
+  - 'clone data_set node entities'
   - 'create data_set content'
   - 'create field_asset_location'
   - 'create field_organization'
@@ -50,6 +53,7 @@ permissions:
   - 'edit own field_primary_responsibility_org'
   - 'flag bookmark'
   - 'revert data_set revisions'
+  - 'take_ownership_on_clone node entity'
   - 'unflag bookmark'
   - 'update paragraph content data_column'
   - 'update paragraph content documents'
