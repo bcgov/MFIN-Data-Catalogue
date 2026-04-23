@@ -128,7 +128,6 @@
         "drupal/entity_usage": "^2.0@beta",
         "drupal/environment_indicator": "^4.0",
         "drupal/facets": "^2.0",
-        "drupal/field_count_formatter": "@dev",
         "drupal/field_group": "^4.0",
         "drupal/field_label": "^1.5",
         "drupal/field_permissions": "^1.2",
