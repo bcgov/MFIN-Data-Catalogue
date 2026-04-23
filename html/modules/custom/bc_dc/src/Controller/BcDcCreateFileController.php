@@ -44,10 +44,10 @@ class BcDcCreateFileController extends ControllerBase {
   }
 
   /**
-  * {@inheritdoc}
-  */
-  public static function create(ContainerInterface $container): self {
-    return new self(
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container): static {
+    return new static(
       $container->get('entity.repository'),
       $container->get('file_system'),
       $container->get('path_alias.manager'),

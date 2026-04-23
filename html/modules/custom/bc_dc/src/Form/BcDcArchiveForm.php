@@ -46,8 +46,8 @@ class BcDcArchiveForm extends ConfirmFormBase implements AccessInterface {
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container): self {
-    return new self(
+  public static function create(ContainerInterface $container): static {
+    return new static(
       $container->get('content_moderation.moderation_information'),
       $container->get('entity_type.manager'),
     );

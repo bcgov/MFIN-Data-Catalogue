@@ -48,7 +48,7 @@ class EmailSending implements ContainerInjectionInterface {
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
-    return new self(
+    return new static(
       $container->get('config.factory'),
       $container->get('entity_type.manager'),
       $container->get('logger.factory'),

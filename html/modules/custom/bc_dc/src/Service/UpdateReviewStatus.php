@@ -29,8 +29,8 @@ class UpdateReviewStatus implements ContainerInjectionInterface {
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container): self {
-    return new self(
+  public static function create(ContainerInterface $container): static {
+    return new static(
       $container->get('entity_type.manager'),
     );
   }
