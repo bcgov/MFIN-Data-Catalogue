@@ -121,7 +121,6 @@
         "drupal/entity_usage": "^2.0@beta",
         "drupal/environment_indicator": "^4.0",
         "drupal/facets": "^2.0",
-        "drupal/field_count_formatter": "^3.0",
         "drupal/field_group": "^4.0",
         "drupal/field_label": "^1.5",
         "drupal/field_permissions": "^1.2",
@@ -306,9 +305,6 @@
             },
             "drupal/diff": {
                 "2954352 - Local tasks for node not visible on diff.revisions_diff route": "https://www.drupal.org/files/issues/2024-05-16/diff-add_local_tasks-2954352-17.patch"
-            },
-            "drupal/field_count_formatter": {
-                "3430480 - Automated Drupal 11 compatibility fixes": "https://www.drupal.org/files/issues/2026-01-14/field_count_formatter-d11-support.patch"
             },
             "drupal/page_manager": {
                 "2756613 - Avoid harcoded prefex and suffix in block region": "https://www.drupal.org/files/issues/page_manager-avoid_prefix_suffix-2756613-8.patch"
