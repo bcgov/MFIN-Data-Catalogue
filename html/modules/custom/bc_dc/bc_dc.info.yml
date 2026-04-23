@@ -15,7 +15,6 @@ dependencies:
   - ckeditor5_fullscreen:ckeditor5_fullscreen
   - ckeditor_codemirror:ckeditor_codemirror
   - clipboardjs:clipboardjs
-  - cm_revision_delete:cm_revision_delete
   - date_popup:date_popup
   - diff:diff
   - drupal:admin_toolbar_tools
@@ -67,7 +66,6 @@ dependencies:
   - smart_trim:smart_trim
   - smtp:smtp
   - tac_lite:tac_lite
-  - taxonomy_delete:taxonomy_delete
   - taxonomy_import:taxonomy_import
   - taxonomy_manager:taxonomy_manager
   - taxonomy_max_depth:taxonomy_max_depth
