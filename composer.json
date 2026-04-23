@@ -187,7 +187,7 @@
         "drupal/views_field_view": "^1.0@beta",
         "drupal/webform": "^6.3",
         "drupal/webform_content_creator": "^4.0",
-        "drush/drush": "^12.0",
+        "drush/drush": "^13.0",
         "jquery/fancytree": "^2",
         "npm-asset/cdubz--ckeditor5-source-editing-codemirror": "^35.1",
         "npm-asset/clipboard": "^2.0.11",
@@ -314,6 +314,9 @@
             "drupal/diff": {
                 "2954352 - Local tasks for node not visible on diff.revisions_diff route": "https://www.drupal.org/files/issues/2024-05-16/diff-add_local_tasks-2954352-17.patch"
             },
+            "drupal/field_count_formatter": {
+                "3430480 - Automated Drupal 11 compatibility fixes": "https://www.drupal.org/files/issues/2026-01-14/field_count_formatter-d11-support.patch"
+            },
             "drupal/page_manager": {
                 "2756613 - Avoid harcoded prefex and suffix in block region": "https://www.drupal.org/files/issues/page_manager-avoid_prefix_suffix-2756613-8.patch"
             },
@@ -332,6 +335,9 @@
                 "3203718 - add the ability to select all terms from a vocabulary": "https://www.drupal.org/files/issues/2021-03-15/tac_lite-add_all_option-3203718-2.patch",
                 "3359802 - Add schema for tac_lite.settings": "https://www.drupal.org/files/issues/2023-05-11/tac_lite-schema-3359802-2.patch",
                 "3403235 - Allow specifying which field to use for access control": "https://www.drupal.org/files/issues/2023-11-21/tac_lite-choose_fields-3403235-2.patch"
+            },
+            "drupal/taxonomy_delete": {
+                "3434896 - Automated Drupal 11 compatibility fixes": "https://www.drupal.org/files/issues/2024-03-25/taxonomy_delete.8.x-1.5.rector.patch"
             },
             "drupal/vbo_export": {
                 "3257067 - Ensure PrivateTempStore key is not too long": "https://www.drupal.org/files/issues/2023-06-29/vbo_export-cid_too_long-3257067-9.patch"
