@@ -132,7 +132,7 @@
         "drupal/field_group": "^4.0",
         "drupal/field_label": "^1.5",
         "drupal/field_permissions": "^1.2",
-        "drupal/flag": "^4.0",
+        "drupal/flag": "^5.0",
         "drupal/form_mode_control": "^2.2",
         "drupal/formatter_suite": "^2.0",
         "drupal/gin": "~5.0.12",
