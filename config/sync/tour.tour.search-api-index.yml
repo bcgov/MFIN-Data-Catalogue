@@ -8,7 +8,6 @@ _core:
   default_config_hash: DHNg3a7QdthDmUgBXKgxq-ewQd4uA9hHAmaM9vul95A
 id: search-api-index
 label: 'Information about an index'
-module: search_api
 routes:
   -
     route_name: entity.search_api_index.canonical

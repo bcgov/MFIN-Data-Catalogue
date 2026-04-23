@@ -8,7 +8,6 @@ _core:
   default_config_hash: sQzCtjeNBZnQCDro5e8B7_KNpDYVoetYDs4iaf1xBOA
 id: search-api-index-form
 label: 'Add or edit a Search API index'
-module: search_api
 routes:
   -
     route_name: entity.search_api_index.add_form

@@ -8,7 +8,6 @@ _core:
   default_config_hash: TtSWlBl_1VI03GJW1yyzVwtlq15Yst0id1vPdvz5qxM
 id: search-api-index-fields
 label: 'Fields indexed in this index'
-module: search_api
 routes:
   -
     route_name: entity.search_api_index.fields

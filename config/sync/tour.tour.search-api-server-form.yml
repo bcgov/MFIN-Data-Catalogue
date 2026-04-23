@@ -8,7 +8,6 @@ _core:
   default_config_hash: 0kIrvs9YL0PKR2nGfa7deQoPoXrWR5nUI0UtCfj04LA
 id: search-api-server-form
 label: 'Add or edit a Search API server'
-module: search_api
 routes:
   -
     route_name: entity.search_api_server.add_form

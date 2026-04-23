@@ -8,7 +8,6 @@ _core:
   default_config_hash: vs6bUgjvoJIdOBQIcX2l2Dp6BXpVFbs-h6PsKOmZfYk
 id: search-api-index-processors
 label: 'Processors used for this index'
-module: search_api
 routes:
   -
     route_name: entity.search_api_index.processors
