@@ -21,6 +21,8 @@ class BcDcSettingsForm extends ConfigFormBase {
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The config.factory service.
    */
+  /* TODO: Possible dead code? The 'ReviewReminder' service does not appear to exist.
+      Check with Nicole if this is expected. */
   public function __construct(
     protected ReviewReminder $bcDcReviewReminder,
     ConfigFactoryInterface $config_factory,
@@ -31,8 +33,8 @@ class BcDcSettingsForm extends ConfigFormBase {
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container): static {
-    return new static(
+  public static function create(ContainerInterface $container): self {
+    return new self(
       $container->get('bc_dc.review_reminder'),
       $container->get('config.factory'),
     );
