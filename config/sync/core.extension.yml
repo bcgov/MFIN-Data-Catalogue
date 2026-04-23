@@ -67,7 +67,6 @@ module:
   formatter_suite: 0
   gdx_analytics_drupal_snowplow: 0
   gin_toolbar: 0
-  hal: 0
   help: 0
   hierarchical_term_formatter: 0
   highlight_views_overrides: 0
