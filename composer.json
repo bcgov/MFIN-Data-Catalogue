@@ -176,7 +176,6 @@
         "drupal/toc_filter": "^2.1",
         "drupal/token": "^1.11",
         "drupal/token_filter": "^2.0",
-        "drupal/tour": "^2.0",
         "drupal/twig_tweak": "^3.2",
         "drupal/ultimate_cron": "^2.0@alpha",
         "drupal/upgrade_status": "^4.3",
