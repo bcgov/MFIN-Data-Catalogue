@@ -2,7 +2,7 @@
 
 namespace Drupal\bc_dc\Form;
 
-use Drupal\bc_dc\Service\ReviewReminder;
+use Drupal\bc_dc\Service\EmailSending;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -16,15 +16,15 @@ class BcDcSettingsForm extends ConfigFormBase {
   /**
    * Constructor.
    *
-   * @param \Drupal\bc_dc\Service\ReviewReminder $bcDcReviewReminder
-   *   The bc_dc.review_reminder service.
+   * @param \Drupal\bc_dc\Service\EmailSending $bcDcEmailSending
+   *   The bc_dc.email_sending service.
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The config.factory service.
    */
   /* TODO: Possible dead code? The 'ReviewReminder' service does not appear to exist.
       Check with Nicole if this is expected. */
   public function __construct(
-    protected ReviewReminder $bcDcReviewReminder,
+    protected EmailSending $bcDcEmailSending,
     ConfigFactoryInterface $config_factory,
   ) {
     parent::__construct($config_factory);
@@ -35,7 +35,7 @@ class BcDcSettingsForm extends ConfigFormBase {
    */
   public static function create(ContainerInterface $container): self {
     return new self(
-      $container->get('bc_dc.review_reminder'),
+      $container->get('bc_dc.email_sending'),
       $container->get('config.factory'),
     );
   }
@@ -149,7 +149,7 @@ class BcDcSettingsForm extends ConfigFormBase {
    *   The current state of the form.
    */
   public function sendDataSetReviewReminders(array &$form, FormStateInterface $form_state): void {
-    $this->bcDcReviewReminder->sendRemindersToAllUsers();
+    $this->bcDcEmailSending->sendRemindersToAllUsers();
 
     $this->messenger()->addMessage($this->t('Metadata record review reminders have been sent.'));
   }

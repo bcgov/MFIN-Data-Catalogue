@@ -84,13 +84,13 @@ class EmailSending implements ContainerInjectionInterface {
     $logger = $this->getLogger('bc_dc');
 
     if (!$email) {
-      $logger->error('ReviewReminder: User @uid has no email address.', ['@uid' => $uid]);
+      $logger->error('EmailSending: User @uid has no email address.', ['@uid' => $uid]);
       return NULL;
     }
 
     $body = $this->generateReviewReminderBody($assets_needing_review_for_user, $uid);
     if (!$body) {
-      $logger->error('ReviewReminder: Empty message for user @uid.', ['@uid' => $uid]);
+      $logger->error('EmailSending: Empty message for user @uid.', ['@uid' => $uid]);
       return NULL;
     }
 
