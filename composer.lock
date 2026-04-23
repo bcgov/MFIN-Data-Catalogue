@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "25566bfe71237495b4ae7b11afe61727",
+    "content-hash": "a85fbbf5b67e5d73d0c607b07ca807bf",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1840,67 +1840,6 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/admin_toolbar",
                 "issues": "https://www.drupal.org/project/issues/admin_toolbar"
-            }
-        },
-        {
-            "name": "drupal/allowed_formats",
-            "version": "2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/allowed_formats.git",
-                "reference": "2.0.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/allowed_formats-2.0.0.zip",
-                "reference": "2.0.0",
-                "shasum": "ac6c6d398f303608ced7e9cd9d4556a728dc41f0"
-            },
-            "require": {
-                "drupal/core": "^9.2 || ^10"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "2.0.0",
-                    "datestamp": "1669170410",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Northern Commerce (formerly Digital Echidna)",
-                    "homepage": "https://www.drupal.org/northern-commerce-formerly-digital-echidna",
-                    "role": "Supporting organization"
-                },
-                {
-                    "name": "Jordan Thompson (nord102)",
-                    "homepage": "https://www.drupal.org/u/nord102",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Wunder",
-                    "homepage": "https://www.drupal.org/wunder",
-                    "role": "Supporting organization"
-                },
-                {
-                    "name": "Florian Loretan (floretan)",
-                    "homepage": "https://www.drupal.org/u/floretan",
-                    "role": "Maintainer"
-                }
-            ],
-            "description": "Limit which text formats are available for each field instance.",
-            "homepage": "https://www.drupal.org/project/allowed_formats",
-            "support": {
-                "source": "http://cgit.drupalcode.org/allowed_formats",
-                "issues": "https://www.drupal.org/project/issues/allowed_formats"
             }
         },
         {
@@ -4987,99 +4926,6 @@
             }
         },
         {
-            "name": "drupal/inline_entity_form",
-            "version": "2.0.0-rc10",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/inline_entity_form.git",
-                "reference": "2.0.0-rc10"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/inline_entity_form-2.0.0-rc10.zip",
-                "reference": "2.0.0-rc10",
-                "shasum": "f984e26786c5c5187246e8ee9f54d43f44b0ca53"
-            },
-            "require": {
-                "drupal/core": "^9.1 || ^10",
-                "drupal/rat": "^1.0.0@rc",
-                "php": ">=7.1"
-            },
-            "require-dev": {
-                "drupal/entity_reference_revisions": "^1.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "2.0.0-rc10",
-                    "datestamp": "1698919897",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "RC releases are not covered by Drupal security advisories."
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "bojanz",
-                    "homepage": "https://www.drupal.org/user/86106"
-                },
-                {
-                    "name": "centarro",
-                    "homepage": "https://www.drupal.org/user/3661446"
-                },
-                {
-                    "name": "dawehner",
-                    "homepage": "https://www.drupal.org/user/99340"
-                },
-                {
-                    "name": "dww",
-                    "homepage": "https://www.drupal.org/user/46549"
-                },
-                {
-                    "name": "geek-merlin",
-                    "homepage": "https://www.drupal.org/user/229048"
-                },
-                {
-                    "name": "joachim",
-                    "homepage": "https://www.drupal.org/user/107701"
-                },
-                {
-                    "name": "jsacksick",
-                    "homepage": "https://www.drupal.org/user/972218"
-                },
-                {
-                    "name": "oknate",
-                    "homepage": "https://www.drupal.org/user/471638"
-                },
-                {
-                    "name": "ram4nd",
-                    "homepage": "https://www.drupal.org/user/601534"
-                },
-                {
-                    "name": "rszrama",
-                    "homepage": "https://www.drupal.org/user/49344"
-                },
-                {
-                    "name": "slashrsm",
-                    "homepage": "https://www.drupal.org/user/744628"
-                },
-                {
-                    "name": "webflo",
-                    "homepage": "https://www.drupal.org/user/254778"
-                }
-            ],
-            "description": "Provides a widget for inline management (creation, modification, removal) of referenced entities.",
-            "homepage": "https://www.drupal.org/project/inline_entity_form",
-            "support": {
-                "source": "https://git.drupalcode.org/project/inline_entity_form"
-            }
-        },
-        {
             "name": "drupal/insert_view_adv",
             "version": "2.0.0",
             "source": {
@@ -5562,58 +5408,6 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/linkit",
                 "issues": "http://drupal.org/project/linkit"
-            }
-        },
-        {
-            "name": "drupal/m4032404",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/m4032404.git",
-                "reference": "8.x-1.1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/m4032404-8.x-1.1.zip",
-                "reference": "8.x-1.1",
-                "shasum": "92790c32166a9f4895aaead3d4ab4f676ba74100"
-            },
-            "require": {
-                "drupal/core": "^8.7.7 || ^9 || ^10"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "8.x-1.1",
-                    "datestamp": "1749831657",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "elc",
-                    "homepage": "https://www.drupal.org/user/784944"
-                },
-                {
-                    "name": "skwashd",
-                    "homepage": "https://www.drupal.org/user/116305"
-                },
-                {
-                    "name": "suzymasri",
-                    "homepage": "https://www.drupal.org/user/2428842"
-                }
-            ],
-            "description": "Emit a 404 response for access denied pages",
-            "homepage": "https://www.drupal.org/project/m4032404",
-            "support": {
-                "source": "https://git.drupalcode.org/project/m4032404"
             }
         },
         {
@@ -6441,48 +6235,6 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/rabbit_hole"
             }
-        },
-        {
-            "name": "drupal/rat",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/rat.git",
-                "reference": "f13fcfb83445e505ffa84d2137231d91cd8c8146"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://git.drupalcode.org/api/v4/projects/project%2Frat/repository/archive.zip?sha=f13fcfb83445e505ffa84d2137231d91cd8c8146",
-                "reference": "f13fcfb83445e505ffa84d2137231d91cd8c8146",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.4 || ^8.0"
-            },
-            "require-dev": {
-                "drupal/core": "^9.4",
-                "drupal/core-dev": "^9.4"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Drupal\\rat\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "gpl-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Merlin",
-                    "email": "merlin@geeks4change.net"
-                }
-            ],
-            "support": {
-                "source": "https://git.drupalcode.org/project/rat/-/tree/1.0.1"
-            },
-            "time": "2025-12-29T15:30:47+00:00"
         },
         {
             "name": "drupal/realname",
@@ -8263,17 +8015,17 @@
         },
         {
             "name": "drupal/upgrade_status",
-            "version": "4.3.8",
+            "version": "4.3.9",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/upgrade_status.git",
-                "reference": "4.3.8"
+                "reference": "4.3.9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/upgrade_status-4.3.8.zip",
-                "reference": "4.3.8",
-                "shasum": "4526741f6d0991f2165d4d79c8830602f5ac8bca"
+                "url": "https://ftp.drupal.org/files/projects/upgrade_status-4.3.9.zip",
+                "reference": "4.3.9",
+                "shasum": "bef9e5e08a3b6ecc6a5c380107e624fb4b5f03ef"
             },
             "require": {
                 "dekor/php-array-table": "^2.0",
@@ -8290,8 +8042,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "4.3.8",
-                    "datestamp": "1751485112",
+                    "version": "4.3.9",
+                    "datestamp": "1771841606",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -8708,72 +8460,6 @@
             "homepage": "https://www.drupal.org/project/views_field_view",
             "support": {
                 "source": "https://git.drupalcode.org/project/views_field_view"
-            }
-        },
-        {
-            "name": "drupal/we_megamenu",
-            "version": "1.16.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/we_megamenu.git",
-                "reference": "8.x-1.16"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/we_megamenu-8.x-1.16.zip",
-                "reference": "8.x-1.16",
-                "shasum": "c26d2b2abddb2b247c7b663d8fd4b5081f74ad18"
-            },
-            "require": {
-                "drupal/core": "^9.4 || ^10"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "8.x-1.16",
-                    "datestamp": "1693387972",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Hai Nguyen Ngoc (HaiNN)",
-                    "homepage": "https://www.drupal.org/u/hainn",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "hai nguyen",
-                    "homepage": "https://www.drupal.org/user/1229130"
-                },
-                {
-                    "name": "kate@weebpal.com",
-                    "homepage": "https://www.drupal.org/user/3831926"
-                },
-                {
-                    "name": "nghianguyen",
-                    "homepage": "https://www.drupal.org/user/3116893"
-                },
-                {
-                    "name": "thonglpm",
-                    "homepage": "https://www.drupal.org/user/3745891"
-                },
-                {
-                    "name": "weebpal",
-                    "homepage": "https://www.drupal.org/user/1861072"
-                }
-            ],
-            "description": "This powerful Drupal module helps you create custom menu, video and Drupal Blocks.",
-            "homepage": "https://www.drupal.org/project/we_megamenu",
-            "support": {
-                "source": "https://git.drupalcode.org/project/we_megamenu",
-                "issues": "https://www.drupal.org/project/issues/we_megamenu"
             }
         },
         {

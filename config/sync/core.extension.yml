@@ -147,6 +147,7 @@ module:
   twig_tweak: 0
   ultimate_cron: 0
   update: 0
+  upgrade_status: 0
   user: 0
   vbo_export: 0
   views_argument_token: 0
