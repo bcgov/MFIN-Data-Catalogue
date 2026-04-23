@@ -10,6 +10,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides a base class for statistics blocks for the dashboard.
+ * 
+ * @phpstan-consistent-constructor
  */
 abstract class BcDcRecordsStatsBase extends BlockBase implements ContainerFactoryPluginInterface {
 

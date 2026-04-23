@@ -10,6 +10,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides the module configuration form.
+ * 
+ * @phpstan-consistent-constructor
  */
 class BcDcSettingsForm extends ConfigFormBase {
 

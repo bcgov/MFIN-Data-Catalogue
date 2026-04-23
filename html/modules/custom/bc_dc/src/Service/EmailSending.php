@@ -17,6 +17,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Service for sending reminders to review out-of-date data_set nodes.
+ * 
+ * @phpstan-consistent-constructor
  */
 class EmailSending implements ContainerInjectionInterface {
 

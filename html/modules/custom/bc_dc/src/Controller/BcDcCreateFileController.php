@@ -18,6 +18,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Create a file in csv or xlsx.
+ * 
+ * @phpstan-consistent-constructor
  */
 class BcDcCreateFileController extends ControllerBase {
 

@@ -21,6 +21,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *     "entity_reference_revisions"
  *   }
  * )
+ * 
+ * @phpstan-consistent-constructor
  */
 class BcDcRelatedDocuments extends FormatterBase {
 
