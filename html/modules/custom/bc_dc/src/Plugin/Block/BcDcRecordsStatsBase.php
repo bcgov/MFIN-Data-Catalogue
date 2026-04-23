@@ -38,6 +38,8 @@ abstract class BcDcRecordsStatsBase extends BlockBase implements ContainerFactor
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): self {
+    // Add the following 'ignore' line, to that drupal 'upgrade-status' won't incorrectly flag this as a problem.
+    // @phpstan-ignore-next-line
     return new self(
       $configuration,
       $plugin_id,

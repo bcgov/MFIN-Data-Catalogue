@@ -458,7 +458,7 @@ END_BODY,
 
     do {
       $current_rev_id = array_pop($revision_ids);
-      if (!$current_rev_id) throw new \Exception("No published revisions for node $nid.");
+      if (!$current_rev_id) throw new \Exception("No published revisions for node {$metadata_record->id()}.");
     } while (
         $node_storage->loadRevision($current_rev_id)->moderation_state[0]->value != 'published'
     );
