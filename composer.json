@@ -285,6 +285,9 @@
         },
         "composer-exit-on-patch-failure": true,
         "patches": {
+            "bcgov/gdx_analytics_drupal_snowplow": {
+                "FDC-issue 714 - upgrade GDX snowplow module to Drupal 11": "composer.patches/FDC-issue-714.snowplow-d11-upgrade.patch"
+            },
             "drupal/charts": {
                 "3442641 - Chart segments are all the same color in Views pie/donut charts": "https://www.drupal.org/files/issues/2024-04-22/charts-pie_donut_colors-3442641-4.patch",
                 "3456882 - HTML encodings (e.g. '&amp;') showing up in legend": "https://www.drupal.org/files/issues/2024-06-26/3456882-html-encoding-fix.patch"

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "63021f19809a564a1394799671aa0e29",
+    "content-hash": "a250cc482ea6fbd38e786482ea3f01c9",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -67,14 +67,17 @@
             "version": "dev-main",
             "source": {
                 "type": "git",
-                "url": "https://github.com/chrislaick/gdx_analytics_drupal_snowplow.git",
-                "reference": "009e890a10528d81ffa733109be1836f5f99e2e1"
+                "url": "https://github.com/bcgov/GDX-Analytics-Drupal-Snowplow.git",
+                "reference": "cb9cd722e029dc4c11307159b070bd9f6393ccf6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/chrislaick/gdx_analytics_drupal_snowplow/zipball/009e890a10528d81ffa733109be1836f5f99e2e1",
-                "reference": "009e890a10528d81ffa733109be1836f5f99e2e1",
+                "url": "https://api.github.com/repos/bcgov/GDX-Analytics-Drupal-Snowplow/zipball/cb9cd722e029dc4c11307159b070bd9f6393ccf6",
+                "reference": "cb9cd722e029dc4c11307159b070bd9f6393ccf6",
                 "shasum": ""
+            },
+            "require": {
+                "drupal/core": "^8.8 || ^9 || ^10"
             },
             "default-branch": true,
             "type": "drupal-module",
@@ -83,14 +86,11 @@
             ],
             "description": "The GDX Analytics Drupal Snowplow module.",
             "homepage": "https://github.com/bcgov/GDX-Analytics-Drupal-Snowplow",
-            "keywords": [
-                "Drupal",
-                "analytics"
-            ],
             "support": {
-                "source": "https://github.com/chrislaick/gdx_analytics_drupal_snowplow/tree/main"
+                "source": "https://github.com/bcgov/GDX-Analytics-Drupal-Snowplow/tree/main",
+                "issues": "https://github.com/bcgov/GDX-Analytics-Drupal-Snowplow/issues"
             },
-            "time": "2024-06-25T16:40:46+00:00"
+            "time": "2025-07-31T22:05:43+00:00"
         },
         {
             "name": "billboardjs/billboard",
