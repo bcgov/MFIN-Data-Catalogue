@@ -12,7 +12,6 @@ module:
   bcbb_other: 0
   bcbb_search: 0
   better_exposed_filters: 0
-  better_normalizers: 0
   block: 0
   block_content: 0
   book: 0
@@ -41,7 +40,6 @@ module:
   date_popup: 0
   datetime: 0
   dblog: 0
-  default_content_deploy: 0
   deploymentinfo: 0
   diff: 0
   dynamic_page_cache: 0
