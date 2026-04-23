@@ -2,4 +2,4 @@ name: BCBB - Highlight Views Overrides
 type: module
 description: When editing a view, colour the background of items that are "overridden".
 package: Base Build
-core_version_requirement: ^9 || ^10
+core_version_requirement: ^9 || ^10 || ^11
