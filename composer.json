@@ -106,7 +106,7 @@
         "drupal/chosen": "^5.0",
         "drupal/ckeditor5_fullscreen": "^1.0@beta",
         "drupal/ckeditor_codemirror": "^3.0@beta",
-        "drupal/clipboardjs": "^2.0",
+        "drupal/clipboardjs": "^2.1@RC",
         "drupal/cm_revision_delete": "^1.1.4",
         "drupal/conditional_fields": "^4.0@alpha",
         "drupal/config_filter": "^2.4",
