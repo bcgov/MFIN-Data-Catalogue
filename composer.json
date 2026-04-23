@@ -163,7 +163,6 @@
         "drupal/structure_sync": "^2.0",
         "drupal/svg_image": "^3.0",
         "drupal/tac_lite": "^2.0",
-        "drupal/taxonomy_delete": "^1.5",
         "drupal/taxonomy_import": "^2.0",
         "drupal/taxonomy_manager": "^2.0",
         "drupal/taxonomy_max_depth": "^2.0",
