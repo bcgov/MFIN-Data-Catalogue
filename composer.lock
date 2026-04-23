@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e39f331f03e97c6e08e351d96f34e7a0",
+    "content-hash": "bb59f0f93b8ea61ba060bd2d248baffc",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1986,26 +1986,26 @@
         },
         {
             "name": "drupal/bootstrap5",
-            "version": "3.0.16",
+            "version": "4.0.8",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/bootstrap5.git",
-                "reference": "3.0.16"
+                "reference": "4.0.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/bootstrap5-3.0.16.zip",
-                "reference": "3.0.16",
-                "shasum": "277b7c71cc387171a8a62c3226e0454135a1856a"
+                "url": "https://ftp.drupal.org/files/projects/bootstrap5-4.0.8.zip",
+                "reference": "4.0.8",
+                "shasum": "1d7dc5c04ce262628c005671117888caa498453e"
             },
             "require": {
-                "drupal/core": "^9.4 || ^10"
+                "drupal/core": "^10.1 || ^11.0"
             },
             "type": "drupal-theme",
             "extra": {
                 "drupal": {
-                    "version": "3.0.16",
-                    "datestamp": "1770988431",
+                    "version": "4.0.8",
+                    "datestamp": "1770988520",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"

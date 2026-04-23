@@ -99,7 +99,7 @@
         "drupal/auto_username": "^2.0",
         "drupal/better_exposed_filters": "^7.0",
         "drupal/book": "^2.0",
-        "drupal/bootstrap5": "^3",
+        "drupal/bootstrap5": "^4",
         "drupal/cancel_button": "^1.4",
         "drupal/charts": "^5.0",
         "drupal/chosen": "^5.0",
