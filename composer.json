@@ -15,7 +15,7 @@
         },
         {
             "type": "vcs",
-            "url": "https://github.com/chrislaick/gdx_analytics_drupal_snowplow"
+            "url": "https://github.com/bcgov/GDX-Analytics-Drupal-Snowplow.git"
         },
         {
             "type": "vcs",
