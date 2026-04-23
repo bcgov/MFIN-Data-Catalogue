@@ -182,6 +182,7 @@
         "drupal/views_bulk_operations": "4.3.3",
         "drupal/views_data_export": "^1.4",
         "drupal/views_field_view": "^1.0@beta",
+        "drupal/webform": "^6.3",
         "drupal/webform_content_creator": "^4.0",
         "drush/drush": "^12.0",
         "jquery/fancytree": "^2",
