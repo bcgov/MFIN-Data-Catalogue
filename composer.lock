@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5f615a3befca19aeb05cd2e5315aaa4b",
+    "content-hash": "e4e3b18ab3d9f8386d0cca2691246a68",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4054,6 +4054,26 @@
                 "source": "https://git.drupalcode.org/project/facets",
                 "issues": "https://www.drupal.org/project/issues/facets",
                 "irc": "irc://irc.freenode.org/drupal-search-api"
+            }
+        },
+        {
+            "name": "drupal/field_count_formatter",
+            "version": "dev-d-11-upgrade",
+            "dist": {
+                "type": "path",
+                "url": "html/MONITOR_this_dir/field_count_formatter",
+                "reference": "d5aba8de873ecc1064f0a56eda330eb5020c2fa8"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10 || ^11"
+            },
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
             }
         },
         {
@@ -18013,6 +18033,7 @@
         "drupal/conditional_fields": 15,
         "drupal/entity_clone": 10,
         "drupal/entity_usage": 10,
+        "drupal/field_count_formatter": 20,
         "drupal/insert_view_adv": 15,
         "drupal/openid_connect": 15,
         "drupal/paragraphs_features": 10,
