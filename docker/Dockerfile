@@ -127,7 +127,7 @@ COPY composer.json composer.lock /var/www/
 COPY html/modules/custom/ /var/www/html/modules/custom/
 COPY html/themes/custom/ /var/www/html/themes/custom/
 # Copy any "path repo" modules into place.
-COPY html/MONITOR_this_dir/ /var/www/html/modules/MONITOR_this_dir/
+COPY html/MONITOR_this_dir/ /var/www/html/MONITOR_this_dir/
 # Copy possible config/sync and other config
 COPY config/ /var/www/config/
 # Copy possible load.environment.php
