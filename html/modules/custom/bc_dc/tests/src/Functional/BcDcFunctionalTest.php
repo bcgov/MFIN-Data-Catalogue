@@ -1168,8 +1168,8 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
       [td/a[@href = "/node/2/build"]]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
 
-    // Test bc_dc.review_reminder service, ReviewReminder class.
-    $bc_dc_review_reminder = \Drupal::service('bc_dc.review_reminder');
+    // Test bc_dc.email_sending service, EmailSending class.
+    $bc_dc_review_reminder = \Drupal::service('bc_dc.email_sending');
     $data_set_url = $data_set->toUrl('canonical', ['absolute' => TRUE])->toString();
     // Test ::getAssetsNeedingReview().
     $reminders = $bc_dc_review_reminder->getAssetsNeedingReview();

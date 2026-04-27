@@ -25,8 +25,9 @@ class BcbbSearchFunctionalTest extends BcbbBrowserTestBase {
     $this->drupalGet('');
     $this->assertSession()->statusCodeEquals(200);
 
-    $this->drupalGet('search/site');
-    $this->assertSession()->statusCodeEquals(200);
+    // Commented out, because we don't support search/site anymore.
+    // $this->drupalGet('search/site');
+    // $this->assertSession()->statusCodeEquals(200);
 
     // Login as admin.
     $this->drupalLogin($this->rootUser);
@@ -49,7 +50,9 @@ class BcbbSearchFunctionalTest extends BcbbBrowserTestBase {
 
     $this->drupalGet('admin/content');
 
-    $this->drupalGet('search/site');
+    // Commented out, because we don't support search/site anymore.
+    // $this->drupalGet('search/site');
+
     // Article.
     $this->assertSession()->elementTextEquals('xpath', '//a[@data-drupal-facet-item-value = "article"]', 'article 1');
     $this->assertSession()->pageTextContains($edit_article['edit-title-0-value']);

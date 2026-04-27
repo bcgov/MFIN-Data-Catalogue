@@ -21,6 +21,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   id = "bc_dc_page_view_tracker",
  *   admin_label = @Translation("Page view tracker"),
  * )
+ * 
+ * @phpstan-consistent-constructor
  */
 class PageViewTracker extends BlockBase implements ContainerFactoryPluginInterface {
 

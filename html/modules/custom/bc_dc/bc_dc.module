@@ -823,8 +823,8 @@ function bc_dc_cron(): void {
 
   // Send review reminders on Sundays.
   if (idate('w', $request_time) === 0) {
-    $reviewReminder = \Drupal::service('bc_dc.review_reminder');
-    $reviewReminder->sendRemindersToAllUsers();
+    $emailSending = \Drupal::service('bc_dc.email_sending');
+    $emailSending->sendRemindersToAllUsers();
   }
 
   // Update every instance of field_review_status.

@@ -21,6 +21,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *     "node" = @ContextDefinition("entity:node")
  *   }
  * )
+ * 
+ * @phpstan-consistent-constructor
  */
 class EditSectionBtn extends BlockBase implements ContainerFactoryPluginInterface {
 

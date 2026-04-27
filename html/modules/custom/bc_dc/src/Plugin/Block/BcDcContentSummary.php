@@ -21,6 +21,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *     "user" = @ContextDefinition("entity:user")
  *   }
  * )
+ * 
+ * @phpstan-consistent-constructor
  */
 class BcDcContentSummary extends BlockBase implements ContainerFactoryPluginInterface {
 

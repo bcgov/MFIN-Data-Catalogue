@@ -10,6 +10,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Service to update field_review_status on data_set nodes.
+ * 
+ * @phpstan-consistent-constructor
  */
 class UpdateReviewStatus implements ContainerInjectionInterface {
 

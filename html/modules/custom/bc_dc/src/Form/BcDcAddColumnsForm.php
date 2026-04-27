@@ -23,6 +23,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  * 3. ::submitFormPage1() sets page 2 to be displayed.
  * 4. ::buildForm() displays page 2 of the form. User confirms their upload.
  * 5. ::submitForm() adds the columns to the data_set.
+ * 
+ * @phpstan-consistent-constructor
  */
 class BcDcAddColumnsForm extends FormBase {
 

@@ -17,6 +17,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   label = @Translation("Change content author"),
  *   type = "node"
  * )
+ * 
+ * @phpstan-consistent-constructor
  */
 class BcDcAssignOwnerNode extends AssignOwnerNode {
 

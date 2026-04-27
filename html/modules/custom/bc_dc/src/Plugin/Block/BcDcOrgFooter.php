@@ -15,6 +15,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   id = "bc_dc_org_footer",
  *   admin_label = @Translation("Organization footer"),
  * )
+ * 
+ * @phpstan-consistent-constructor
  */
 class BcDcOrgFooter extends BlockBase implements ContainerFactoryPluginInterface {
 
