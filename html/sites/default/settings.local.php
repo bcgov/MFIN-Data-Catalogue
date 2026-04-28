@@ -201,7 +201,6 @@ $dev_servers = [
 
 $config['config_split.config_split.dev']['status'] = TRUE;
 
-
 /**
  * "Environment Indicator" module.
  */

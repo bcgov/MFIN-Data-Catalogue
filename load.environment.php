@@ -9,13 +9,20 @@
 
 // This file is consumed by docker/Dockerfile.
 
-use Dotenv\Dotenv;
+use Symfony\Component\Dotenv\Dotenv;
 
-/**
- * Load any .env file. See /.env.example.
- *
- * Drupal has no official method for loading environment variables and uses
- * getenv() in some places.
- */
-$dotenv = Dotenv::createUnsafeImmutable(__DIR__);
-$dotenv->safeLoad();
+$dotenv = new Dotenv();
+$dotenv->usePutenv(TRUE);
+
+$paths = [
+  __DIR__ . '/.env',
+];
+
+foreach ($paths as $path) {
+  try {
+    $dotenv->load($path);
+  }
+  catch (\Exception $exception) {
+    // Void.
+  }
+}
