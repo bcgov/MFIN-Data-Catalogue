@@ -114,7 +114,6 @@ module:
   search_api_solr: 0
   search_api_solr_admin: 0
   serialization: 0
-  shield: 0
   shs: 0
   smart_trim: 0
   smtp: 0
