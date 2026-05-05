@@ -1,6 +1,8 @@
 NEWBB: This is not a complete DDEV config file, but only a couple essential parts for basebuild.
 NEWBB2: Merge these in, and delete these comments.
 
+docroot: html
+php_version: "8.3"
 database:
     type: postgres
     version: "16"

@@ -15,7 +15,8 @@
     which is merged into this branch. You'll need to 'git subtree merge'
     it in.
     "drupal/core-composer-scaffold": "11.2.7",
-    "drupal/core-recommended": "~11.2.7"
+    "drupal/core-recommended": "~11.2.7",
+    "drush/drush": "^13"
 
 
 
