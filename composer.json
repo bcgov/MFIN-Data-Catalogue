@@ -326,7 +326,7 @@
                 "2910704 - IPE toggle preview not working in IE": "https://www.drupal.org/files/issues/panels-ipe-card-flip-ie-error-2910704.diff"
             },
             "drupal/role_delegation": {
-                "3475414 - Allow users with administer users to see Roles tab via a setting": "composer.patches/3475414.role_delegation.mr19-as-at-2026-02-12.patch.txt",
+                "3475414 - Allow users with administer users to see Roles tab via a setting": "https://www.drupal.org/files/issues/2026-04-03/role_delegation-3475414-d11-1.6-rebased_0.patch",
                 "3284859 - Roles being stripped from users when saved if user has no access to roles field": "composer.patches/3284859.role_delegation.mr6-as-at-2026-04-30.patch.txt"
             },
             "drupal/shs": {
