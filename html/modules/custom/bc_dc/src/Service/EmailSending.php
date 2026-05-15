@@ -319,14 +319,20 @@ END_BODY,
     $dataset_type_names = array_reverse($dataset_type_names);
 
     if ($dataset_type_names[0] == 'Data') {
-      // Rename 'File' to be clearer.
-      if ($dataset_type_names[1] == 'File') {
-        $dataset_type_names[1] = 'Data-file';
+      if (!isset($dataset_type_names[1])) { 
+        // If the only term is "Data", that doesn't read well. Let's call it a
+        // "Data-source" instead.
+        $dataset_type_names[0] = 'Data-source';
       }
-
-      // Throw away the first 'Data' term. We'll just call it a
-      // "Postgres database", not "Postgres database 'data'".
-      array_shift($dataset_type_names);
+      else {
+        // Rename 'File' to be clearer.
+        if ($dataset_type_names[1] == 'File') {
+          $dataset_type_names[1] = 'Data-file';
+        }
+        // Throw away the first 'Data' term. We'll just call it a
+        // "Postgres database", not "Postgres database 'data'".
+        array_shift($dataset_type_names);
+      } 
     }
 
     $nice_record_type_name = isset($dataset_type_names[1])
