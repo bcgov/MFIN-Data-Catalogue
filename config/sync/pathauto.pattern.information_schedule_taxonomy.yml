@@ -7,7 +7,7 @@ dependencies:
 id: information_schedule_taxonomy
 label: 'Information schedule taxonomy'
 type: 'canonical_entities:taxonomy_term'
-pattern: '[term:vocabulary]/[term:parents:join-path]/[term:name]'
+pattern: '/[term:vocabulary]/[term:parents:join-path]/[term:name]'
 selection_criteria:
   4b100d95-b034-4fd6-a382-d3f82812b942:
     id: 'entity_bundle:taxonomy_term'
