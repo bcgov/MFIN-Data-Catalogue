@@ -58,5 +58,5 @@ filters:
     settings:
       type: full
       auto: ''
-      block: '0'
-      exclude_above: '0'
+      block: false
+      exclude_above: false
