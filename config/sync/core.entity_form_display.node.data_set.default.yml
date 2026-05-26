@@ -37,6 +37,7 @@ dependencies:
     - field.field.node.data_set.field_source_system
     - field.field.node.data_set.field_visibility
     - node.type.data_set
+    - workflows.workflow.editorial
   module:
     - conditional_fields
     - content_moderation
@@ -307,7 +308,42 @@ content:
     settings:
       size: 60
       placeholder: ''
-    third_party_settings: {  }
+    third_party_settings:
+      conditional_fields:
+        c6d526c1-2ea5-471e-b909-73074062c512:
+          entity_type: node
+          bundle: data_set
+          dependee: field_data_set_type
+          settings:
+            state: visible
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form: {  }
+            effect: show
+            effect_options: {  }
+            selector: ''
+        7766304e-f153-4e9a-97ec-2acd601cbe16:
+          entity_type: node
+          bundle: data_set
+          dependee: field_data_set_type
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 3
+            value: ''
+            values: '5'
+            value_form:
+              -
+                target_id: ''
+            effect: show
+            effect_options: {  }
+            selector: ''
+            include_descendants: 1
   field_information_schedule:
     type: options_shs
     weight: 15
