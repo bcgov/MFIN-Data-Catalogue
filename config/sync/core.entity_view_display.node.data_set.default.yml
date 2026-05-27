@@ -78,7 +78,7 @@ third_party_settings:
       label: Contact
       parent_name: ''
       region: content
-      weight: 21
+      weight: 22
       format_type: tabs
       format_settings:
         classes: ''
@@ -136,7 +136,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 16
+    weight: 17
     region: content
   field_contact_description:
     type: text_default
@@ -276,15 +276,15 @@ content:
       listStyle: ul
       listSeparator: ', '
     third_party_settings: {  }
-    weight: 17
+    weight: 18
     region: content
   field_form_number:
     type: string
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 35
+    weight: 15
     region: content
   field_information_schedule:
     type: entity_reference_label
@@ -292,7 +292,7 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 15
+    weight: 16
     region: content
   field_modified_date:
     type: datetime_default
@@ -311,7 +311,7 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 18
+    weight: 19
     region: content
   field_primary_responsibility_org:
     type: data_set_facet_search_link
@@ -335,14 +335,14 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 20
+    weight: 21
     region: content
   field_review_status:
     type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 19
+    weight: 20
     region: content
   field_security_classification:
     type: entity_reference_label
