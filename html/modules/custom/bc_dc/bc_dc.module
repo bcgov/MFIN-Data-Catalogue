@@ -400,6 +400,15 @@ function bc_dc_node_presave(NodeInterface $node): void {
 
   // Update field_review_status.
   \Drupal::service('bc_dc.update_review_status')->updateEntity($node, FALSE);
+
+  // For nodes added via the API, it is easy to forget to set the text format for body.
+  //   If you forget, it defaults to 'plain_text', even though 'basic_html' is the only 
+  //   format permitted.
+  // Fix this, just in case.
+  if (empty($node->body->format)) {
+    $node->body->format = 'basic_html';
+    $node->body->value = '<p>' . $node->body->value . '</p>';
+  }
 }
 
 /**
