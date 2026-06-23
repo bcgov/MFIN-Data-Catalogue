@@ -1,4 +1,4 @@
-name: Deploy to Development
+name: "1- Build image, tag for DEV/TEST"
 
 on:
   push:
