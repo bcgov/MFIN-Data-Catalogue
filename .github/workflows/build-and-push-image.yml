@@ -16,7 +16,8 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@master
+    - name: Checkout our repo into the runner
+      uses: actions/checkout@master
 
     - name: Export github reference var
       run: |
@@ -46,7 +47,7 @@ jobs:
         docker ps -a
 
     - name: Scan PHP-FPM image for vulnerabilities
-      if: ${{ ( startsWith(github.event.ref, 'refs/tags/') && (endsWith(github.event.ref, '.t') || endsWith(github.event.ref, '-t') )) }}
+      if: ${{ github.ref_type == 'tag' && endsWith(env.DRUPAL_REPO_TAG_TO_DEPLOY, '-t') }}
       uses: aquasecurity/trivy-action@v0.35.0
       with:
         image-ref: '${{ vars.CONTAINER_IMAGE_NAME }}-web:latest'
@@ -57,7 +58,7 @@ jobs:
         severity: 'CRITICAL,HIGH,MEDIUM'
 
     - name: Scan Nginx image for vulnerabilities
-      if: ${{ ( startsWith(github.event.ref, 'refs/tags/') && (endsWith(github.event.ref, '.t') || endsWith(github.event.ref, '-t') )) }}
+      if: ${{ github.ref_type == 'tag' && endsWith(env.DRUPAL_REPO_TAG_TO_DEPLOY, '-t') }}
       uses: aquasecurity/trivy-action@v0.35.0
       with:
         image-ref: '${{ vars.CONTAINER_IMAGE_NAME }}-nginx:latest'
