@@ -1173,6 +1173,28 @@ function bc_dc_form_user_form_alter(array &$form, FormStateInterface $form_state
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter() for entity_clone_form.
+ */
+function bc_dc_form_entity_clone_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Force ownership and visually hide it from the form.
+  if (isset($form['take_ownership'])) {
+    $form['take_ownership']['#type'] = 'value';
+    $form['take_ownership']['#value'] = 1;
+  }
+  // Force "Cloned" suffix and visually hide it from the form.
+  if (isset($form['no_suffix'])) {
+    $form['no_suffix']['#type'] = 'value';
+    $form['no_suffix']['#value'] = 0;
+  }
+  // Force "Draft" moderation state and visually hide it from the form.
+  if (isset($form['moderation_state'])) {
+    $form['moderation_state']['#type'] = 'value';
+    $form['moderation_state']['#value'] = 'draft';
+  }
+
+}
+
+/**
  * Implements hook_field_widget_complete_form_alter().
  *
  * Adds after_build to remove help with text formats link.
