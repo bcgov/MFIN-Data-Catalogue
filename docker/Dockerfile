@@ -128,8 +128,6 @@ COPY html/themes/custom/ /var/www/html/themes/custom/
 COPY html/MONITOR_this_dir/ /var/www/html/MONITOR_this_dir/
 # Copy possible config/sync and other config
 COPY config/ /var/www/config/
-# Copy possible load.environment.php
-COPY load.environment.php /var/www/
 
 # Copy patches directory for local patches.
 # Create the directory if it doesn't exist in the build context.

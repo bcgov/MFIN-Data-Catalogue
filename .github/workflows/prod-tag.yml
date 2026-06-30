@@ -1,4 +1,4 @@
-name: Deploy to Prod
+name: "2- Tag for PROD"
 
 on:
   workflow_dispatch:

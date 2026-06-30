@@ -117,8 +117,8 @@
         "drupal/config_filter": "^2.4",
         "drupal/config_ignore": "^3.1",
         "drupal/config_split": "^2.0",
-        "drupal/core-composer-scaffold": "^11.2",
-        "drupal/core-recommended": "^11.2",
+        "drupal/core-composer-scaffold": "~11.3.0",
+        "drupal/core-recommended": "~11.3.0",
         "drupal/date_popup": "^2.0",
         "drupal/devel": "^5.0",
         "drupal/devel_php": "^1.5",
@@ -186,6 +186,7 @@
         "drupal/webform": "^6.3",
         "drupal/webform_content_creator": "^4.0",
         "drush/drush": "^13.0",
+        
         "jquery/fancytree": "^2",
         "npm-asset/cdubz--ckeditor5-source-editing-codemirror": "^35.1",
         "npm-asset/clipboard": "^2.0.11",
@@ -193,7 +194,6 @@
         "oomphinc/composer-installers-extender": "^2.0",
         "phpoffice/phpspreadsheet": "^2.0",
         "tabby/tabby": "^12.0",
-        "vlucas/phpdotenv": "^5.1",
         "webflo/drupal-finder": "^1.2",
         "weitzman/drupal-test-traits": "^2.1"
     },
@@ -224,8 +224,7 @@
     "autoload": {
         "classmap": [
             "scripts/ScriptHandler.php"
-        ],
-        "files": ["load.environment.php"]
+        ]
     },
     "scripts": {
         "clean-billboardjs": "./scripts/clean-billboardjs.sh",
