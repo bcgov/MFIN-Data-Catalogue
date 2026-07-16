@@ -157,7 +157,7 @@ display:
           set_precision: false
           precision: 0
           decimal: .
-          format_plural: 0
+          format_plural: false
           format_plural_string: !!binary MQNAY291bnQ=
           prefix: ''
           suffix: ''
@@ -332,6 +332,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 10
           total_pages: null
           id: 1
@@ -349,7 +350,6 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
-          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
@@ -565,14 +565,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              data_catalogue_administrator: '0'
-              data_catalogue_manager: '0'
-              data_catalogue_api_user: '0'
-              data_catalogue_editor: '0'
-              data_catalogue_user: '0'
-              data_catalogue_information_management_specialist: '0'
             placeholder: ''
           is_grouped: false
           group_info:

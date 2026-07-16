@@ -126,7 +126,8 @@ function bc_dc_preprocess_flag(array &$variables): void {
     // Save the count_message, to be rendered by our flag.html.twig override.
     $variables['count_message'] = $count_message->render();
 
-    $variables['title']['#markup'] = '<span class="title dc-label icon-bi-bookmark-dash-fill">' . $variables['title']['#markup'] . '</span>';
+    $variables['title']['#prefix'] = '<span class="title dc-label icon-bi-bookmark-dash-fill">';
+    $variables['title']['#suffix'] = '</span>';
   }
   else {
     // Add "add bookmark" icon class.
@@ -327,18 +328,18 @@ function bc_dc_node_access(NodeInterface $entity, string $operation, AccountInte
     return AccessResult::allowed();
   }
 
-  // Restrict some users to only see MRs in their org, 
+  // Restrict some users to only see MRs in their org,
   // or that they they themselves created.
-  if (   $operation == 'update' 
+  if (   $operation == 'update'
       && $entity->bundle() == 'data_set'
-      && !$account->hasPermission('edit any data_set content')) 
+      && !$account->hasPermission('edit any data_set content'))
   {
     $is_my_node = $account->id() == $entity->getOwnerId();
     $allowed = (
       (    $account->hasPermission('edit own data_set in_org') && $is_my_node
         || $account->hasPermission('edit any data_set in_org')
       )
-      && bc_dc_data_set_user_org_match($entity, $account) 
+      && bc_dc_data_set_user_org_match($entity, $account)
     );
     return AccessResult::forbiddenIf(!$allowed);
   }
@@ -390,7 +391,7 @@ function bc_dc_node_presave(NodeInterface $node): void {
   if ($node->bundle() !== 'data_set') {
     return;
   }
-  
+
   // When is_complete_review is checked, set field_last_review_date to now.
   if ($node->get('field_is_complete_review')->value) {
     $node->set('field_last_review_date', date('Y-m-d'));
@@ -399,6 +400,15 @@ function bc_dc_node_presave(NodeInterface $node): void {
 
   // Update field_review_status.
   \Drupal::service('bc_dc.update_review_status')->updateEntity($node, FALSE);
+
+  // For nodes added via the API, it is easy to forget to set the text format for body.
+  //   If you forget, it defaults to 'plain_text', even though 'basic_html' is the only
+  //   format permitted.
+  // Fix this, just in case.
+  if (empty($node->body->format)) {
+    $node->body->format = 'basic_html';
+    $node->body->value = '<p>' . $node->body->value . '</p>';
+  }
 }
 
 /**
@@ -823,8 +833,8 @@ function bc_dc_cron(): void {
 
   // Send review reminders on Sundays.
   if (idate('w', $request_time) === 0) {
-    $reviewReminder = \Drupal::service('bc_dc.review_reminder');
-    $reviewReminder->sendRemindersToAllUsers();
+    $emailSending = \Drupal::service('bc_dc.email_sending');
+    $emailSending->sendRemindersToAllUsers();
   }
 
   // Update every instance of field_review_status.
@@ -1163,6 +1173,28 @@ function bc_dc_form_user_form_alter(array &$form, FormStateInterface $form_state
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter() for entity_clone_form.
+ */
+function bc_dc_form_entity_clone_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Force ownership and visually hide it from the form.
+  if (isset($form['take_ownership'])) {
+    $form['take_ownership']['#type'] = 'value';
+    $form['take_ownership']['#value'] = 1;
+  }
+  // Force "Cloned" suffix and visually hide it from the form.
+  if (isset($form['no_suffix'])) {
+    $form['no_suffix']['#type'] = 'value';
+    $form['no_suffix']['#value'] = 0;
+  }
+  // Force "Draft" moderation state and visually hide it from the form.
+  if (isset($form['moderation_state'])) {
+    $form['moderation_state']['#type'] = 'value';
+    $form['moderation_state']['#value'] = 'draft';
+  }
+
+}
+
+/**
  * Implements hook_field_widget_complete_form_alter().
  *
  * Adds after_build to remove help with text formats link.
@@ -1250,6 +1282,7 @@ function bc_dc_data_set_has_field(NodeInterface $node, string $field_key): bool 
     'field_data_set_historical_change',
     'field_data_sets_used',
     'field_source_system',
+    'field_form_number',
   ];
 
   // If it is not one of the fields that may be hidden, do not hide.
@@ -1269,6 +1302,11 @@ function bc_dc_data_set_has_field(NodeInterface $node, string $field_key): bool 
 
   // "Data" type has all fields.
   if ($data_set_type === 'data') {
+    return $field_key !== 'field_form_number';
+  }
+
+  // "Form" type has field_form_number.
+  if ($data_set_type === 'form' && $field_key === 'field_form_number') {
     return TRUE;
   }
 

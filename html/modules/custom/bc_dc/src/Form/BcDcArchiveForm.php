@@ -19,6 +19,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Implements a form to archive a node.
+ * 
+ * @phpstan-consistent-constructor
  */
 class BcDcArchiveForm extends ConfirmFormBase implements AccessInterface {
 

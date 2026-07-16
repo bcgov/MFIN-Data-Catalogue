@@ -7,7 +7,7 @@ dependencies:
 id: content_default
 label: 'Content default'
 type: 'canonical_entities:node'
-pattern: '[node:title]'
+pattern: '/[node:title]'
 selection_criteria:
   805f5f51-7f37-4c7c-ae42-1ca7e7360141:
     id: 'entity_bundle:node'

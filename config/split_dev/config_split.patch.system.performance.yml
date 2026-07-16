@@ -1,0 +1,11 @@
+adding:
+  css:
+    preprocess: false
+  js:
+    preprocess: false
+removing:
+  css:
+    preprocess: true
+  js:
+    preprocess: true
+  stale_file_threshold: 2592000

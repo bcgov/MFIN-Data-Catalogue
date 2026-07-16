@@ -21,6 +21,7 @@ dependencies:
     - field.field.node.data_set.field_data_set_historical_change
     - field.field.node.data_set.field_data_set_type
     - field.field.node.data_set.field_data_sets_used
+    - field.field.node.data_set.field_form_number
     - field.field.node.data_set.field_information_schedule
     - field.field.node.data_set.field_is_complete_review
     - field.field.node.data_set.field_last_review_date
@@ -293,6 +294,49 @@ content:
             values_set: 3
             value: ''
             values: "10\r\n20"
+            value_form:
+              -
+                target_id: ''
+            effect: show
+            effect_options: {  }
+            selector: ''
+            include_descendants: 1
+  field_form_number:
+    type: string_textfield
+    weight: 60
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        c6d526c1-2ea5-471e-b909-73074062c512:
+          entity_type: node
+          bundle: data_set
+          dependee: field_data_set_type
+          settings:
+            state: visible
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form: {  }
+            effect: show
+            effect_options: {  }
+            selector: ''
+        7766304e-f153-4e9a-97ec-2acd601cbe16:
+          entity_type: node
+          bundle: data_set
+          dependee: field_data_set_type
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 3
+            value: ''
+            values: '5'
             value_form:
               -
                 target_id: ''

@@ -812,6 +812,12 @@ html.bcbb-theme nav.menu--footer-prod ul.navbar-nav a.nav-link:active, html.bcbb
   float: none;
   clear: none;
 }
+.view-report-builder .view-filters .views-exposed-form .form-radios *:not(input):not(select):not(button) {
+  padding-left: 2px;
+}
+.view-report-builder .view-filters .views-exposed-form .form-radios .form-check-input[type="radio"] {
+  margin-left: 0px;
+}
 .view-report-builder .view-filters .views-exposed-form > .form--inline {
   display: grid;
   grid-template-columns: 1fr;

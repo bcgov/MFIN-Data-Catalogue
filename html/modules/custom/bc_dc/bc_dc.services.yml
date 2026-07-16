@@ -7,6 +7,11 @@ services:
   bc_dc.email_sending:
     class: Drupal\bc_dc\Service\EmailSending
     arguments: ['@config.factory', '@entity_type.manager', '@logger.factory', '@string_translation']
+  # bc_dc.entity_clone_subscriber:
+  #   class: Drupal\bc_dc\EventSubscriber\EntityCloneSubscriber
+  #   arguments: ['@logger.factory']
+  #   tags:
+  #     - { name: event_subscriber }
   bc_dc.update_review_status:
     class: Drupal\bc_dc\Service\UpdateReviewStatus
     arguments: ['@entity_type.manager']

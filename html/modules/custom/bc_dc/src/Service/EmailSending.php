@@ -17,6 +17,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Service for sending reminders to review out-of-date data_set nodes.
+ * 
+ * @phpstan-consistent-constructor
  */
 class EmailSending implements ContainerInjectionInterface {
 
@@ -84,13 +86,13 @@ class EmailSending implements ContainerInjectionInterface {
     $logger = $this->getLogger('bc_dc');
 
     if (!$email) {
-      $logger->error('ReviewReminder: User @uid has no email address.', ['@uid' => $uid]);
+      $logger->error('EmailSending: User @uid has no email address.', ['@uid' => $uid]);
       return NULL;
     }
 
     $body = $this->generateReviewReminderBody($assets_needing_review_for_user, $uid);
     if (!$body) {
-      $logger->error('ReviewReminder: Empty message for user @uid.', ['@uid' => $uid]);
+      $logger->error('EmailSending: Empty message for user @uid.', ['@uid' => $uid]);
       return NULL;
     }
 
@@ -317,14 +319,20 @@ END_BODY,
     $dataset_type_names = array_reverse($dataset_type_names);
 
     if ($dataset_type_names[0] == 'Data') {
-      // Rename 'File' to be clearer.
-      if ($dataset_type_names[1] == 'File') {
-        $dataset_type_names[1] = 'Data-file';
+      if (!isset($dataset_type_names[1])) { 
+        // If the only term is "Data", that doesn't read well. Let's call it a
+        // "Data-source" instead.
+        $dataset_type_names[0] = 'Data-source';
       }
-
-      // Throw away the first 'Data' term. We'll just call it a
-      // "Postgres database", not "Postgres database 'data'".
-      array_shift($dataset_type_names);
+      else {
+        // Rename 'File' to be clearer.
+        if ($dataset_type_names[1] == 'File') {
+          $dataset_type_names[1] = 'Data-file';
+        }
+        // Throw away the first 'Data' term. We'll just call it a
+        // "Postgres database", not "Postgres database 'data'".
+        array_shift($dataset_type_names);
+      } 
     }
 
     $nice_record_type_name = isset($dataset_type_names[1])
@@ -458,7 +466,7 @@ END_BODY,
 
     do {
       $current_rev_id = array_pop($revision_ids);
-      if (!$current_rev_id) throw new \Exception("No published revisions for node $nid.");
+      if (!$current_rev_id) throw new \Exception("No published revisions for node {$metadata_record->id()}.");
     } while (
         $node_storage->loadRevision($current_rev_id)->moderation_state[0]->value != 'published'
     );

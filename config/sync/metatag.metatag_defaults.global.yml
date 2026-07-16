@@ -8,5 +8,5 @@ id: global
 label: Global
 tags:
   canonical_url: '[current-page:url]'
-  robots: ''
+  robots: 'noindex, nofollow'
   title: '[current-page:title] | [site:name]'

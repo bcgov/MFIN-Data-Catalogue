@@ -2,8 +2,6 @@
 
 // phpcs:ignoreFile
 
-$databases['default']['default']['schema'] = "fdc";
-
 /**
  * @file
  * Local development override configuration feature.
@@ -203,7 +201,6 @@ $dev_servers = [
 
 $config['config_split.config_split.dev']['status'] = TRUE;
 
-
 /**
  * "Environment Indicator" module.
  */
@@ -274,7 +271,7 @@ $config['system.file']['temporary_maximum_age'] = 1;
 
 /**
  * Database schema name.
- * 
+ *
  * Postgres requires us to use a schema. DDEV doesn't seem to handle this
  * yet in the settings.ddev.php file, so we do it here.
  */

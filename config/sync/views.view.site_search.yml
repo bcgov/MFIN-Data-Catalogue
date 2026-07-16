@@ -2361,13 +2361,13 @@ display:
               autosubmit: false
               autosubmit_exclude_textfield: false
               autosubmit_textfield_delay: 500
+              autosubmit_textfield_minimum_length: 3
               autosubmit_hide: false
               input_required: false
               allow_secondary: false
               secondary_label: 'Advanced options'
               secondary_open: false
               reset_button_always_show: false
-              autosubmit_textfield_minimum_length: 3
             filter:
               search_api_fulltext:
                 plugin_id: default
@@ -2442,14 +2442,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              data_catalogue_administrator: '0'
-              data_catalogue_manager: '0'
-              data_catalogue_api_user: '0'
-              data_catalogue_editor: '0'
-              data_catalogue_user: '0'
-              data_catalogue_information_management_specialist: '0'
             expose_fields: false
             placeholder: 'Data catalogue search terms'
             searched_fields_id: search_api_fulltext_searched_fields

@@ -6,6 +6,6 @@ dependencies:
     - node
 id: node.section_4
 label: 'Section 4'
-description: ''
+description: null
 targetEntityType: node
 cache: true

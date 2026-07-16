@@ -1,6 +1,6 @@
 uuid: 37f073d6-b3b2-486b-be86-0b5a04830d7e
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - system.menu.footer-prod

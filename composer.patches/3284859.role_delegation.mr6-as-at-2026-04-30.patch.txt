@@ -1,0 +1,20 @@
+diff --git a/role_delegation.module b/role_delegation.module
+index b6c350ca7727db9d9c61b67078a9a404610285df..4eb4bcf68751e2db633b5692ffd0988c03733df5 100644
+--- a/role_delegation.module
++++ b/role_delegation.module
+@@ -167,10 +167,11 @@ function role_delegation_options_list_alter(array &$options, array $context) {
+  * @see role_delegation_form_alter()
+  */
+ function role_delegation_user_form_builder(string $entity_type, UserInterface $user, array &$form, FormStateInterface $form_state) {
+-  // If the user has no access to the "role_change" field, then the form will
+-  // submit an empty array for the field, which will make later processing think
+-  // it was intentional. Set it to the empty field value to correct this.
+-  if (!isset($form['role_change']['#access']) || !$form['role_change']['#access']) {
++  // If the user has no access to the "role_change" or "role" field, then the
++  // form will submit an empty array for the field, which will make later
++  // processing think it was intentional. Set it to the empty field value to
++  // correct this.
++  if (!isset($form['role_change']['#access'], $form['account']['roles']['#access']) || !$form['role_change']['#access'] || !$form['account']['roles']['#access']) {
+     $user->set('role_change', DelegatableRoles::$emptyFieldValue);
+   }
+ }

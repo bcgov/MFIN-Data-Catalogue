@@ -10,6 +10,7 @@ dependencies:
     - field.storage.node.field_data_set_historical_change
     - field.storage.node.field_data_set_type
     - field.storage.node.field_data_sets_used
+    - field.storage.node.field_form_number
     - field.storage.node.field_last_review_date
     - field.storage.node.field_modified_date
     - field.storage.node.field_personal_information
@@ -67,6 +68,69 @@ display:
     display_options:
       title: 'Data catalogue report builder'
       fields:
+        field_form_number:
+          id: field_form_number
+          table: node__field_form_number
+          field: field_form_number
+          relationship: nid
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'Form ID'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
         title:
           id: title
           table: node_field_revision
@@ -1997,13 +2061,13 @@ display:
               autosubmit: false
               autosubmit_exclude_textfield: false
               autosubmit_textfield_delay: 500
+              autosubmit_textfield_minimum_length: 3
               autosubmit_hide: false
               input_required: false
               allow_secondary: false
               secondary_label: 'Advanced options'
               secondary_open: false
               reset_button_always_show: false
-              autosubmit_textfield_minimum_length: 3
             pager:
               plugin_id: default
               advanced:
@@ -2344,14 +2408,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              data_catalogue_administrator: '0'
-              data_catalogue_manager: '0'
-              data_catalogue_api_user: '0'
-              data_catalogue_editor: '0'
-              data_catalogue_user: '0'
-              data_catalogue_information_management_specialist: '0'
             placeholder: ''
           is_grouped: false
           group_info:
@@ -2396,14 +2452,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              data_catalogue_administrator: '0'
-              data_catalogue_manager: '0'
-              data_catalogue_api_user: '0'
-              data_catalogue_editor: '0'
-              data_catalogue_user: '0'
-              data_catalogue_information_management_specialist: '0'
             min_placeholder: ''
             max_placeholder: ''
             placeholder: ''
@@ -2445,14 +2493,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              data_catalogue_administrator: '0'
-              data_catalogue_manager: '0'
-              data_catalogue_api_user: '0'
-              data_catalogue_editor: '0'
-              data_catalogue_user: '0'
-              data_catalogue_information_management_specialist: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -2498,13 +2538,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              data_catalogue_administrator: '0'
-              data_catalogue_manager: '0'
-              data_catalogue_editor: '0'
-              data_catalogue_user: '0'
-              data_catalogue_information_management_specialist: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -2550,14 +2583,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              data_catalogue_administrator: '0'
-              data_catalogue_manager: '0'
-              data_catalogue_api_user: '0'
-              data_catalogue_editor: '0'
-              data_catalogue_user: '0'
-              data_catalogue_information_management_specialist: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -2603,14 +2628,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              data_catalogue_administrator: '0'
-              data_catalogue_manager: '0'
-              data_catalogue_api_user: '0'
-              data_catalogue_editor: '0'
-              data_catalogue_user: '0'
-              data_catalogue_information_management_specialist: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -2656,14 +2673,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              data_catalogue_administrator: '0'
-              data_catalogue_manager: '0'
-              data_catalogue_api_user: '0'
-              data_catalogue_editor: '0'
-              data_catalogue_user: '0'
-              data_catalogue_information_management_specialist: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -2709,14 +2718,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              data_catalogue_administrator: '0'
-              data_catalogue_manager: '0'
-              data_catalogue_api_user: '0'
-              data_catalogue_editor: '0'
-              data_catalogue_user: '0'
-              data_catalogue_information_management_specialist: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -2762,14 +2763,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              data_catalogue_administrator: '0'
-              data_catalogue_manager: '0'
-              data_catalogue_api_user: '0'
-              data_catalogue_editor: '0'
-              data_catalogue_user: '0'
-              data_catalogue_information_management_specialist: '0'
           is_grouped: false
           group_info:
             label: ''
@@ -2808,14 +2801,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              data_catalogue_administrator: '0'
-              data_catalogue_manager: '0'
-              data_catalogue_api_user: '0'
-              data_catalogue_editor: '0'
-              data_catalogue_user: '0'
-              data_catalogue_information_management_specialist: '0'
           is_grouped: false
           group_info:
             label: ''
@@ -2862,14 +2847,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              data_catalogue_administrator: '0'
-              data_catalogue_manager: '0'
-              data_catalogue_api_user: '0'
-              data_catalogue_editor: '0'
-              data_catalogue_user: '0'
-              data_catalogue_information_management_specialist: '0'
             min_placeholder: ''
             max_placeholder: ''
             placeholder: ''
@@ -2919,14 +2896,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              data_catalogue_administrator: '0'
-              data_catalogue_manager: '0'
-              data_catalogue_api_user: '0'
-              data_catalogue_editor: '0'
-              data_catalogue_user: '0'
-              data_catalogue_information_management_specialist: '0'
             min_placeholder: ''
             max_placeholder: ''
             placeholder: ''
@@ -2976,14 +2945,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              data_catalogue_administrator: '0'
-              data_catalogue_manager: '0'
-              data_catalogue_api_user: '0'
-              data_catalogue_editor: '0'
-              data_catalogue_user: '0'
-              data_catalogue_information_management_specialist: '0'
             min_placeholder: ''
             max_placeholder: ''
             placeholder: ''
@@ -3025,14 +2986,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              data_catalogue_administrator: '0'
-              data_catalogue_manager: '0'
-              data_catalogue_api_user: '0'
-              data_catalogue_editor: '0'
-              data_catalogue_user: '0'
-              data_catalogue_information_management_specialist: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -3075,14 +3028,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              data_catalogue_administrator: '0'
-              data_catalogue_manager: '0'
-              data_catalogue_api_user: '0'
-              data_catalogue_editor: '0'
-              data_catalogue_user: '0'
-              data_catalogue_information_management_specialist: '0'
             reduce: true
           is_grouped: true
           group_info:
@@ -3135,14 +3080,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              data_catalogue_administrator: '0'
-              data_catalogue_manager: '0'
-              data_catalogue_api_user: '0'
-              data_catalogue_editor: '0'
-              data_catalogue_user: '0'
-              data_catalogue_information_management_specialist: '0'
           is_grouped: false
           group_info:
             label: ''
@@ -3183,14 +3120,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              data_catalogue_administrator: '0'
-              data_catalogue_manager: '0'
-              data_catalogue_api_user: '0'
-              data_catalogue_editor: '0'
-              data_catalogue_user: '0'
-              data_catalogue_information_management_specialist: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -3295,6 +3224,7 @@ display:
         - 'config:field.storage.node.field_data_set_historical_change'
         - 'config:field.storage.node.field_data_set_type'
         - 'config:field.storage.node.field_data_sets_used'
+        - 'config:field.storage.node.field_form_number'
         - 'config:field.storage.node.field_last_review_date'
         - 'config:field.storage.node.field_modified_date'
         - 'config:field.storage.node.field_personal_information'
@@ -5304,6 +5234,7 @@ display:
         - 'config:field.storage.node.field_data_set_historical_change'
         - 'config:field.storage.node.field_data_set_type'
         - 'config:field.storage.node.field_data_sets_used'
+        - 'config:field.storage.node.field_form_number'
         - 'config:field.storage.node.field_last_review_date'
         - 'config:field.storage.node.field_modified_date'
         - 'config:field.storage.node.field_personal_information'

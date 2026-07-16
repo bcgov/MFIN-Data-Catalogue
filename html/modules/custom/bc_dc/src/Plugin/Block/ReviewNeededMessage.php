@@ -16,6 +16,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   id = "bc_dc_review_needed_message",
  *   admin_label = @Translation("Review needed message"),
  * )
+ * 
+ * @phpstan-consistent-constructor
  */
 class ReviewNeededMessage extends BlockBase implements ContainerFactoryPluginInterface {
 

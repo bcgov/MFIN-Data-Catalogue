@@ -9,3 +9,8 @@ style:
       css/style.css: {}
       css/print.css:
         media: print
+
+chosen:
+  css:
+    theme:
+      css/chosen.css: {}

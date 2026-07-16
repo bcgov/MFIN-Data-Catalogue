@@ -1,0 +1,62 @@
+.chosen-container {
+  padding: 0.375rem 2.25rem 0.375rem 0.75rem !important;
+}
+
+.chosen-container:focus {
+  border-color: rgb(134, 182.5, 254);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.chosen-container-single .chosen-single {
+  border: none;
+  color: #212529 !important;
+}
+
+.chosen-container-active.chosen-with-drop .chosen-single div b,
+.chosen-container-single .chosen-single div b {
+  background: none;
+}
+
+.chosen-container-active .chosen-single,
+.chosen-container-active .chosen-choices,
+.chosen-container-active .chosen-drop {
+  border-color: #212529;
+}
+
+.chosen-container .chosen-results li {
+  line-height: 2;
+}
+
+.chosen-container .chosen-drop {
+  left: 0;
+  border-top-width: 1px;
+  border-radius: 0;
+}
+
+.chosen-container-single .chosen-search input[type=text] {
+  line-height: 1.5;
+  border-radius: 0;
+}
+
+.chosen-container .chosen-results {
+  color: #212529;
+  padding: 0;
+}
+
+.chosen-container .chosen-results li {
+  padding-left: 0.75rem !important;
+  border-radius: 0;
+}
+
+.chosen-container-multi .chosen-choices {
+  border: none;
+}
+
+.chosen-container-multi .chosen-choices li.search-choice {
+  line-height: 1rem;
+}
+
+.chosen-container-multi .chosen-drop .result-selected {
+  color: rgba(33, 37, 41, 0.5);
+}

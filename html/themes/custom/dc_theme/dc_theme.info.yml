@@ -17,4 +17,5 @@ regions:
 libraries:
   - dc_theme/devel
   - dc_theme/style
+  - dc_theme/chosen
   - bcbb_other/toggle-details

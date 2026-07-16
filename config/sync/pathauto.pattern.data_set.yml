@@ -7,7 +7,7 @@ dependencies:
 id: data_set
 label: 'Data set'
 type: 'canonical_entities:node'
-pattern: '[node:title]'
+pattern: '/[node:title]'
 selection_criteria:
   77c65794-7908-4988-b47e-9ca9535b60f6:
     id: 'entity_bundle:node'

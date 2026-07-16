@@ -141,13 +141,8 @@ phpcs: drupal_cs
 
 phpunit:
 	./docker/bin/phpunit --colors=always \
-	    -c /var/www/html/core/phpunit.xml \
-	    --testsuite=kernel \
-	    --group=$(PROFILE_NAME)
-
-	./docker/bin/phpunit --colors=always \
-	    -c /var/www/html/core/phpunit.xml \
-	    --testsuite=unit \
+	    -c /var/www/html/core/phpunit.xml.dist \
+	    profiles/wxt/tests/src/Kernel \
 	    --group=$(PROFILE_NAME)
 
 release: tag_latest

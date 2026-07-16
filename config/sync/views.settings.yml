@@ -5,7 +5,6 @@ sql_signature: false
 ui:
   show:
     additional_queries: false
-    advanced_column: true
     default_display: true
     performance_statistics: false
     preview_information: true
@@ -13,6 +12,7 @@ ui:
       enabled: true
       where: below
     display_embed: false
+    advanced_column: true
   always_live_preview: false
   exposed_filter_any_label: old_any
 field_rewrite_elements:

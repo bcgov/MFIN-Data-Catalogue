@@ -1,4 +1,4 @@
-name: Deploy to Development
+name: "1- Build image, tag for DEV/TEST"
 
 on:
   push:
@@ -16,7 +16,8 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@master
+    - name: Checkout our repo into the runner
+      uses: actions/checkout@master
 
     - name: Export github reference var
       run: |
@@ -46,7 +47,7 @@ jobs:
         docker ps -a
 
     - name: Scan PHP-FPM image for vulnerabilities
-      if: ${{ ( startsWith(github.event.ref, 'refs/tags/') && (endsWith(github.event.ref, '.t') || endsWith(github.event.ref, '-t') )) }}
+      if: ${{ github.ref_type == 'tag' && endsWith(env.DRUPAL_REPO_TAG_TO_DEPLOY, '-t') }}
       uses: aquasecurity/trivy-action@v0.35.0
       with:
         image-ref: '${{ vars.CONTAINER_IMAGE_NAME }}-web:latest'
@@ -57,7 +58,7 @@ jobs:
         severity: 'CRITICAL,HIGH,MEDIUM'
 
     - name: Scan Nginx image for vulnerabilities
-      if: ${{ ( startsWith(github.event.ref, 'refs/tags/') && (endsWith(github.event.ref, '.t') || endsWith(github.event.ref, '-t') )) }}
+      if: ${{ github.ref_type == 'tag' && endsWith(env.DRUPAL_REPO_TAG_TO_DEPLOY, '-t') }}
       uses: aquasecurity/trivy-action@v0.35.0
       with:
         image-ref: '${{ vars.CONTAINER_IMAGE_NAME }}-nginx:latest'
@@ -96,7 +97,17 @@ jobs:
         ssh-key: ${{ secrets.TENANT_GITOPS_DEPLOY_KEY }}
         persist-credentials: true
 
-    - name: Update the Dev and Test values-application yaml files with this deployment's tag 
+    - name: Determine deployment target (DEV/TEST or PROD) 
+      run: |
+        if [[ "$GITHUB_REF_NAME" == *-prod ]]; then
+          echo "DEPLOY_TARGET=PROD server" >> $GITHUB_ENV
+        else
+          echo "DEPLOY_TARGET=DEV and TEST servers" >> $GITHUB_ENV
+        fi
+
+
+    - name: Update the DEV and TEST values-application yaml files with this deployment's tag 
+      if: ${{ env.DEPLOY_TARGET == 'DEV and TEST servers' }}
       uses: mikefarah/yq@v4.34.1
       with:
         cmd: |
@@ -105,12 +116,20 @@ jobs:
           yq -i '.drupal.tag = strenv(DRUPAL_REPO_TAG_TO_DEPLOY) |
                  .nginx.tag  = strenv(DRUPAL_REPO_TAG_TO_DEPLOY)' tenant-gitops/helm-drupal/charts/drupal/values-application-test.yaml
 
+    - name: Update the PROD values-application yaml files with this deployment's tag 
+      if: ${{ env.DEPLOY_TARGET == 'PROD server' }}
+      uses: mikefarah/yq@v4.34.1
+      with:
+        cmd: |
+          yq -i '.drupal.tag = strenv(DRUPAL_REPO_TAG_TO_DEPLOY) |
+                 .nginx.tag  = strenv(DRUPAL_REPO_TAG_TO_DEPLOY)' tenant-gitops/helm-drupal/charts/drupal/values-application-prod.yaml
+
     - name: Commit this change to git
       run: |
         cd tenant-gitops
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git commit -a -m "Update DEV and TEST servers to '${{ env.DRUPAL_REPO_TAG_TO_DEPLOY }}'."
+        git commit -a -m "Update ${{ env.DEPLOY_TARGET }} to '${{ env.DRUPAL_REPO_TAG_TO_DEPLOY }}'"
 
     - name: Push this commit back up to GitHub
       uses: ad-m/github-push-action@master

@@ -1,5 +1,5 @@
-# https://github.com/docker-library/drupal/blob/master/10.2/php8.2/fpm-alpine3.19/Dockerfile
-FROM drupal:10.6.1-php8.3-fpm-alpine3.23
+ # https://github.com/docker-library/drupal/blob/master/11.2/php8.3/fpm-alpine3.21/Dockerfile
+FROM drupal:11.2.7-php8.3-fpm-alpine3.21
 
 # This Drupal-Alpine base image contains a full copy of Drupal (and its vendor folder).
 # We don't actually use this at all, and build our own version of Drupal, below.
@@ -31,10 +31,8 @@ ENV DRUPAL_REPO_COMMIT_DATETIME="$DRUPAL_REPO_COMMIT_DATETIME"
 ENV DRUPAL_REPO_TAG_TO_DEPLOY=$DRUPAL_REPO_TAG_TO_DEPLOY
 ENV DRUPAL_REPO_COMMIT_MESSAGE="$DRUPAL_REPO_COMMIT_MESSAGE"
 
-RUN apk --no-cache add fcgi \
-    && curl -sSL -o /usr/local/bin/php-fpm-healthcheck \
-       https://raw.githubusercontent.com/renatomefi/php-fpm-healthcheck/a2d45de918787f761754b96b94a59f4f6acebc25/php-fpm-healthcheck \
-    && echo "53bc616c4a30f029b98bff48fdeb0c4da252cb11e4f86656a8222a67dc4e5009  /usr/local/bin/php-fpm-healthcheck" | sha256sum -c - \
+RUN apk --update add fcgi \
+    && curl -o /usr/local/bin/php-fpm-healthcheck https://raw.githubusercontent.com/renatomefi/php-fpm-healthcheck/master/php-fpm-healthcheck \
     && chmod +x /usr/local/bin/php-fpm-healthcheck
 COPY docker/conf/php-fpm/status.conf /usr/local/etc/php-fpm.d/
 
@@ -126,10 +124,10 @@ COPY composer.json composer.lock /var/www/
 # Copy possible custom modules and custom themes
 COPY html/modules/custom/ /var/www/html/modules/custom/
 COPY html/themes/custom/ /var/www/html/themes/custom/
+# Copy any "path repo" modules into place.
+COPY html/MONITOR_this_dir/ /var/www/html/MONITOR_this_dir/
 # Copy possible config/sync and other config
 COPY config/ /var/www/config/
-# Copy possible load.environment.php
-COPY load.environment.php /var/www/
 
 # Copy patches directory for local patches.
 # Create the directory if it doesn't exist in the build context.
@@ -157,7 +155,7 @@ RUN chown -R www-data:www-data sites/default
 RUN echo "export TERM=xterm" >> ~/.bashrc
 
 # Drush
-RUN ln -s /var/www/vendor/drush/drush/drush /usr/local/bin/drush
+RUN ln -s /var/www/vendor/bin/drush /usr/local/bin/drush
 
 # Reset Cache
 RUN php -r 'opcache_reset();'

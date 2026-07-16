@@ -21,7 +21,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *  category = @Translation("BC Base"),
  * )
  */
-class BcbbSearchBlock extends BlockBase implements ContainerFactoryPluginInterface {
+final class BcbbSearchBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
    * Constructs a BcbbSearchBlock object.

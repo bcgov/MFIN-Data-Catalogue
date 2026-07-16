@@ -55,6 +55,12 @@
               </div>
             {% endif %}
 
+            {% if node.field_form_number and not node.field_form_number.isempty %}
+              <div class="mb-3">
+                {{ node.field_form_number|view }}
+              </div>
+            {% endif %}
+
             {% if node.field_published_date and not node.field_published_date.isempty %}
               <div class="mb-3">
                 {{ node.field_published_date|view }}
