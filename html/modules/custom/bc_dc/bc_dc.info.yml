@@ -38,6 +38,7 @@ dependencies:
   - drupal:text
   - drupal:user
   - drupal:views_field_view
+  - entity_clone:entity_clone
   - entity_embed:entity_embed
   - entity_reference_revisions:entity_reference_revisions
   - environment_indicator:environment_indicator
