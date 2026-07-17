@@ -4,6 +4,12 @@ bc_dc.form:
   dependencies:
     - shs/shs.form
 
+views-custom-scroll:
+  js:
+    js/views_custom_scroll.js: {}
+  dependencies:
+    - core/drupal
+
 piechart_tweak:
   version: VERSION
   js:
