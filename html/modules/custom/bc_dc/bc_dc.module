@@ -884,16 +884,24 @@ function bc_dc_form_bc_dc_add_columns_form_alter(array &$form, FormStateInterfac
  *   A Drupal render array or NULL if there are no columns.
  */
 function bc_dc_get_data_dictionary_download_links(FieldableEntityInterface $entity): ?array {
-  if (!$entity->get('field_columns')->referencedEntities()) {
+  if (!$entity->hasField('field_columns') || $entity->get('field_columns')->isEmpty()) {
     return NULL;
   }
 
   $items = [];
+  $route_params = [
+   'node' => $entity->id(),
+ ];
+ // Check if viewing a specific/draft revision and capture its VID.
+ if ($entity instanceof NodeInterface && $entity->getRevisionId()) {
+   $route_params['node_revision'] = $entity->getRevisionId();
+ }
   foreach (BcDcCreateFileController::SUPPORTED_EXTENSIONS as $format) {
+    $route_params['format'] = $format;
     $items[] = Link::createFromRoute(
       t('Download current data dictionary file to @format', ['@format' => strtoupper($format)]),
       'bc_dc.create_columns_file',
-      ['node' => $entity->id(), 'format' => $format],
+      $route_params
     );
   }
   return [

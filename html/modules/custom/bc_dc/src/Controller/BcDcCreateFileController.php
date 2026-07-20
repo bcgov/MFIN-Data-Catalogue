@@ -14,11 +14,12 @@ use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Create a file in csv or xlsx.
- * 
+ *
  * @phpstan-consistent-constructor
  */
 class BcDcCreateFileController extends ControllerBase {
@@ -101,14 +102,27 @@ class BcDcCreateFileController extends ControllerBase {
    *   The node.
    * @param string $format
    *   The format of the file to serve.
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The current request object.
    *
    * @return Symfony\Component\HttpFoundation\BinaryFileResponse
    *   The file to download.
    */
-  public function createFile(NodeInterface $node, string $format): BinaryFileResponse {
+  public function createFile(NodeInterface $node, string $format, Request $request): BinaryFileResponse {
     // Not Found if $format is not a supported file extension.
     if (!in_array($format, static::SUPPORTED_EXTENSIONS, TRUE)) {
       throw new NotFoundHttpException();
+    }
+
+    // Check if an explicit revision ID was passed in the request query parameters.
+    $revision_id = $request->query->get('node_revision');
+    if ($revision_id && $node->getRevisionId() != $revision_id) {
+      /** @var \Drupal\node\NodeStorageInterface $node_storage */
+      $node_storage = $this->entityTypeManager()->getStorage('node');
+      $node_revision = $node_storage->loadRevision($revision_id);
+      if ($node_revision instanceof NodeInterface) {
+        $node = $node_revision;
+      }
     }
 
     $results = $this->createFileContents($node);
