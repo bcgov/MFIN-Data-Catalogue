@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - uses: jfrog/setup-jfrog-cli@v4
+      - uses: jfrog/setup-jfrog-cli@v5
         env:
           JF_URL: ${{ vars.ARTIFACTORY_URL }}
           JF_USER: ${{ vars.CONTAINER_REGISTRY_USERNAME }}
@@ -26,7 +26,7 @@ jobs:
           echo "STATUS=$response" >> $GITHUB_ENV
 
       - name : Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Get list of old images
         if: ${{ env.STATUS == 'OK' }}
@@ -37,7 +37,7 @@ jobs:
           jf rt s --spec .github/workflows/artifactory-cleanup.search-spec.json --offset=$n --sort-by="modified" --sort-order=desc | jq .[].path | jq 'sub("/manifest.json"; "")' > jfrog_artifacts_to_delete.txt
 
       - name : Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: ${{ vars.TENANT_GITOPS_REPO }}
           path: tenant-gitops
