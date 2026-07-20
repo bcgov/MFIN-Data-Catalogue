@@ -52,6 +52,7 @@ bc_dc.create_columns_file:
     parameters:
       node:
         type: entity:node
+        load_forward_revision: true
 
 bc_dc.user_reports_tab:
   path: '/user/{user}/reports'
