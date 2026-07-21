@@ -1,0 +1,61 @@
+diff --git a/tac_lite.tokens.inc b/tac_lite.tokens.inc
+new file mode 100644
+index 0000000000000000000000000000000000000000..ee39f01cb38fbcd47876a7837ec4c899e9e3e3fa
+--- /dev/null
++++ b/tac_lite.tokens.inc
+@@ -0,0 +1,55 @@
++<?php
++
++/**
++ * @file
++ * Token hook implementations.
++ */
++
++use Drupal\Core\Render\BubbleableMetadata;
++use Drupal\tac_lite\Form\SchemeForm;
++
++/**
++ * Implements hook_token_info().
++ */
++function tac_lite_token_info(): array {
++  $types = [];
++  $tokens = [];
++
++  // The tac_lite term IDs.
++  $tokens['current-user']['tac-term-ids'] = [
++    'name' => t('tac_lite term IDs'),
++    'description' => t('Replace "?" with the scheme number to get the tac_lite term IDs delimited with "+" for use in Views.'),
++    'dynamic' => TRUE,
++  ];
++
++  return ['types' => $types, 'tokens' => $tokens];
++}
++
++/**
++ * Implements hook_tokens().
++ */
++function tac_lite_tokens($type, $tokens, array $data, array $options, BubbleableMetadata $bubbleable_metadata): array {
++  $token_service = \Drupal::token();
++
++  $replacements = [];
++
++  // The current-user tokens.
++  if ($type === 'current-user') {
++    $scheme_ids = $token_service->findWithPrefix($tokens, 'tac-term-ids');
++    foreach ($scheme_ids as $scheme_id => $original) {
++      // Scheme ID must be an integer.
++      $scheme_id = (int) $scheme_id;
++      // Skip any invalid scheme IDs.
++      if ($scheme_id < 1) {
++        continue;
++      }
++      $config = SchemeForm::tacLiteConfig($scheme_id);
++      $tids = array_filter(_tac_lite_user_tids($data['current-user'], $scheme_id, $config));
++      if ($tids) {
++        $replacements[$original] = implode('+', $tids);
++      }
++    }
++  }
++
++  return $replacements;
++}
