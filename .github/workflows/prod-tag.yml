@@ -20,7 +20,7 @@ jobs:
         echo "DRUPAL_REPO_TAG_TO_DEPLOY=$(echo ${GITHUB_TAG_RECEIVED_IN_WORKFLOW/-PROD})" >> $GITHUB_ENV
 
     - name: Checkout Tenant GitOps Repo
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         repository: ${{ vars.TENANT_GITOPS_REPO }}
         path: tenant-gitops

@@ -69,7 +69,7 @@ jobs:
         severity: 'CRITICAL,HIGH,MEDIUM'
 
     - name: Login to Container Registry 🐸
-      uses: docker/login-action@v2
+      uses: docker/login-action@v4
       with:
         registry: ${{ vars.CONTAINER_REGISTRY }}
         username: ${{ vars.CONTAINER_REGISTRY_USERNAME }}
@@ -90,7 +90,7 @@ jobs:
         docker push ${{ vars.CONTAINER_REGISTRY }}/${{ vars.CONTAINER_IMAGE_NAME }}-nginx:${{ env.DRUPAL_REPO_TAG_TO_DEPLOY }}
 
     - name: Checkout Tenant GitOps Repo
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         repository: ${{ vars.TENANT_GITOPS_REPO }}
         path: tenant-gitops
