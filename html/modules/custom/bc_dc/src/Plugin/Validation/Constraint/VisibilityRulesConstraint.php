@@ -22,6 +22,6 @@ class VisibilityRulesConstraint extends Constraint {
    *
    * @var string
    */
-  public $onlyPublicOrIDIRMessage = "If you choose '%public_or_idir' visibility, you may not also choose other levels of visibility.";
+  public $onlyPublicOrIDIRMessage = "When %public_or_idir visibility is selected, no other visiblity levels can be selected.";
 
 }
