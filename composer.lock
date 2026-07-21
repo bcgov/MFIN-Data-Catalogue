@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "de6d492c519f684cac43316e7706515a",
+    "content-hash": "645af98bd1571d648cfa63e0920175a0",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4033,7 +4033,7 @@
         },
         {
             "name": "drupal/field_count_formatter",
-            "version": "dev-d.main",
+            "version": "1.0.x-dev",
             "dist": {
                 "type": "path",
                 "url": "html/MONITOR_this_dir/field_count_formatter",
