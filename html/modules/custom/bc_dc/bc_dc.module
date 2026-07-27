@@ -1153,8 +1153,13 @@ function bc_dc_preprocess_breadcrumb(array &$variables): void {
  * Implements hook_preprocess_views_view().
  */
 function bc_dc_preprocess_views_view(&$variables) {
+  // Attach the library to specific view ids.
+  $view_id = [
+    'metadata_record_management',
+    'report_builder',
+  ];
   $view = $variables['view'];
-  if ($view->id() == 'report_builder') {
+   if (in_array($view->id(), $view_id)) {
     $variables['#attached']['library'][] = 'bc_dc/views-custom-scroll';
   }
 }

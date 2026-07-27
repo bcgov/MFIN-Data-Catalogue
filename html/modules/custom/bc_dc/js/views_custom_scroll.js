@@ -11,7 +11,7 @@
 
       if (hasQueryParams) {
         // Target the results table wrapper container
-        const resultsTarget = document.querySelector('.view-report-builder .view-content');
+        const resultsTarget = document.querySelector('.view .view-content');
 
         if (resultsTarget) {
           // Gather Gin administration header layout dimensions dynamically
