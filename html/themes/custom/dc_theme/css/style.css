@@ -798,6 +798,7 @@ html.bcbb-theme nav.menu--footer-prod ul.navbar-nav a.nav-link:active, html.bcbb
   display: none;
 }
 
+.view-metadata-record-management .view-header,
 .view-report-builder .view-header {
   max-width: 1300px;
   margin: 0 auto;
