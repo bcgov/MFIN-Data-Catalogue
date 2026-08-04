@@ -144,6 +144,7 @@
         "drupal/menu_link_attributes": "^1.6",
         "drupal/message_gcnotify": "^1.0.1",
         "drupal/metatag": "^2.0",
+        "drupal/monolog": "^3.0",
         "drupal/openid_connect": "^3.0@alpha",
         "drupal/page_manager": "^4.0",
         "drupal/panels": "^4.7",

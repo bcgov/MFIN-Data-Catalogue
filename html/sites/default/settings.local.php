@@ -35,6 +35,7 @@
  * Enable local development services.
  */
 $settings['container_yamls'][] = DRUPAL_ROOT . '/sites/development.services.yml';
+$settings['container_yamls'][] = 'sites/default/monolog.services.yml';
 
 /**
  * Show all error messages, with backtrace information.
