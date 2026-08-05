@@ -9,6 +9,9 @@ on:
     paths-ignore:
     - 'README.md'
 
+permissions:
+  contents: read
+
 env:
   COMPOSER_MEMORY_LIMIT: -1
 
@@ -17,7 +20,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - name: Checkout our repo into the runner
-      uses: actions/checkout@master
+      uses: actions/checkout@v5
 
     - name: Export github reference var
       run: |
@@ -97,7 +100,7 @@ jobs:
         ssh-key: ${{ secrets.TENANT_GITOPS_DEPLOY_KEY }}
         persist-credentials: true
 
-    - name: Determine deployment target (DEV/TEST or PROD) 
+    - name: Determine deployment target (DEV/TEST or PROD)
       run: |
         if [[ "$GITHUB_REF_NAME" == *-prod ]]; then
           echo "DEPLOY_TARGET=PROD server" >> $GITHUB_ENV
@@ -106,7 +109,7 @@ jobs:
         fi
 
 
-    - name: Update the DEV and TEST values-application yaml files with this deployment's tag 
+    - name: Update the DEV and TEST values-application yaml files with this deployment's tag
       if: ${{ env.DEPLOY_TARGET == 'DEV and TEST servers' }}
       uses: mikefarah/yq@v4.34.1
       with:
@@ -116,7 +119,7 @@ jobs:
           yq -i '.drupal.tag = strenv(DRUPAL_REPO_TAG_TO_DEPLOY) |
                  .nginx.tag  = strenv(DRUPAL_REPO_TAG_TO_DEPLOY)' tenant-gitops/helm-drupal/charts/drupal/values-application-test.yaml
 
-    - name: Update the PROD values-application yaml files with this deployment's tag 
+    - name: Update the PROD values-application yaml files with this deployment's tag
       if: ${{ env.DEPLOY_TARGET == 'PROD server' }}
       uses: mikefarah/yq@v4.34.1
       with:

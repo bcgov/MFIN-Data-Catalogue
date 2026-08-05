@@ -6,11 +6,14 @@ on:
     tags:
     - '*-PROD'
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v5
 
     - name: Export github reference var
       run: |
