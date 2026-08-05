@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.data_set.field_authoritative_info
     - field.field.node.data_set.field_columns
     - field.field.node.data_set.field_contact_description
+    - field.field.node.data_set.field_contact_description_second
     - field.field.node.data_set.field_contact_email
     - field.field.node.data_set.field_contact_email_secondary
     - field.field.node.data_set.field_contact_name
@@ -110,7 +111,15 @@ content:
             include_descendants: 1
   field_contact_description:
     type: text_textarea
-    weight: 59
+    weight: 36
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_contact_description_second:
+    type: text_textarea
+    weight: 37
     region: content
     settings:
       rows: 5
@@ -126,7 +135,7 @@ content:
     third_party_settings: {  }
   field_contact_email_secondary:
     type: email_default
-    weight: 54
+    weight: 32
     region: content
     settings:
       placeholder: ''
@@ -142,7 +151,7 @@ content:
     third_party_settings: {  }
   field_contact_name_secondary:
     type: string_textfield
-    weight: 53
+    weight: 31
     region: content
     settings:
       size: 60
@@ -150,21 +159,21 @@ content:
     third_party_settings: {  }
   field_contact_phone:
     type: telephone_default
-    weight: 52
+    weight: 30
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_contact_phone_secondary:
     type: telephone_default
-    weight: 56
+    weight: 33
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_contact_url:
     type: link_default
-    weight: 57
+    weight: 34
     region: content
     settings:
       placeholder_url: ''
@@ -172,7 +181,7 @@ content:
     third_party_settings: {  }
   field_contact_url_secondary:
     type: link_default
-    weight: 58
+    weight: 35
     region: content
     settings:
       placeholder_url: ''
@@ -303,7 +312,7 @@ content:
             include_descendants: 1
   field_form_number:
     type: string_textfield
-    weight: 60
+    weight: 38
     region: content
     settings:
       size: 60
@@ -505,7 +514,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 50
+    weight: 29
     region: content
     settings: {  }
     third_party_settings: {  }

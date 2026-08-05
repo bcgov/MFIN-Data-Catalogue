@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.data_set.field_authoritative_info
     - field.field.node.data_set.field_columns
     - field.field.node.data_set.field_contact_description
+    - field.field.node.data_set.field_contact_description_second
     - field.field.node.data_set.field_contact_email
     - field.field.node.data_set.field_contact_email_secondary
     - field.field.node.data_set.field_contact_name
@@ -93,6 +94,7 @@ third_party_settings:
         - field_contact_email_secondary
         - field_contact_phone_secondary
         - field_contact_url_secondary
+        - field_contact_description_second
       label: Secondary
       region: content
       parent_name: group_contact
@@ -146,6 +148,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_contact_description:
+    type: text_textarea
+    weight: 12
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_contact_description_second:
     type: text_textarea
     weight: 12
     region: content
