@@ -6,11 +6,14 @@ on:
     tags:
     - '*-PROD'
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v5
 
     - name: Export github reference var
       run: |
@@ -20,7 +23,7 @@ jobs:
         echo "DRUPAL_REPO_TAG_TO_DEPLOY=$(echo ${GITHUB_TAG_RECEIVED_IN_WORKFLOW/-PROD})" >> $GITHUB_ENV
 
     - name: Checkout Tenant GitOps Repo
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         repository: ${{ vars.TENANT_GITOPS_REPO }}
         path: tenant-gitops

@@ -144,6 +144,7 @@
         "drupal/menu_link_attributes": "^1.6",
         "drupal/message_gcnotify": "^1.0.1",
         "drupal/metatag": "^2.0",
+        "drupal/monolog": "^3.0",
         "drupal/openid_connect": "^3.0@alpha",
         "drupal/page_manager": "^4.0",
         "drupal/panels": "^4.7",
@@ -186,7 +187,6 @@
         "drupal/webform": "^6.3",
         "drupal/webform_content_creator": "^4.0",
         "drush/drush": "^13.0",
-        
         "jquery/fancytree": "^2",
         "npm-asset/cdubz--ckeditor5-source-editing-codemirror": "^35.1",
         "npm-asset/clipboard": "^2.0.11",
@@ -295,6 +295,9 @@
         },
         "composer-exit-on-patch-failure": true,
         "patches": {
+            "bcgov/gdx_analytics_drupal_snowplow": {
+                "GDX Snowplow, issue 30 - Fix PHP warnings": "composer.patches/GDX-Analytics-Drupal-Snowplow.pullrequest_31.patch.txt"
+            },
             "drupal/charts": {
                 "3442641 - Chart segments are all the same color in Views pie/donut charts": "https://www.drupal.org/files/issues/2024-04-22/charts-pie_donut_colors-3442641-4.patch",
                 "3456882 - HTML encodings (e.g. '&amp;') showing up in legend": "https://www.drupal.org/files/issues/2024-06-26/3456882-html-encoding-fix.patch"
@@ -332,8 +335,8 @@
                 "3284824 - Schema definition for entity_reference_shs field formatter missing": "https://www.drupal.org/files/issues/2022-06-09/shs-schema_formatter_missing-3284824-2.patch"
             },
             "drupal/tac_lite": {
-                "3420249 - Create token for use in Views": "https://www.drupal.org/files/issues/2024-02-08/tac_lite-token-3420249-2.patch",
-                "3203718 - add the ability to select all terms from a vocabulary": "https://www.drupal.org/files/issues/2026-04-10/tac_lite-add_all_option-3203718-16.patch",
+                "3420249 - Create token for use in Views": "composer.patches/3420249.tac_lite.mr22-as-at-2026-07-21.patch.txt",
+                "3203718 - add the ability to select all terms from a vocabulary": "https://www.drupal.org/files/issues/2026-05-05/tac_lite-add_all_option-3203718-22.patch",
                 "3359802 - Add schema for tac_lite.settings": "https://www.drupal.org/files/issues/2023-05-11/tac_lite-schema-3359802-2.patch",
                 "3403235 - Allow specifying which field to use for access control": "https://www.drupal.org/files/issues/2026-05-05/tac_lite-choose_fields-3403235-7.patch"
             },

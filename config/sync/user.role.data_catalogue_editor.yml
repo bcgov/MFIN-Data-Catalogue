@@ -62,7 +62,6 @@ permissions:
   - 'use editorial transition archived_published'
   - 'use editorial transition create_new_draft'
   - 'use editorial transition publish'
-  - 'view any unpublished content'
   - 'view data_set revisions'
   - 'view field_organization'
   - 'view field_primary_responsibility_org'

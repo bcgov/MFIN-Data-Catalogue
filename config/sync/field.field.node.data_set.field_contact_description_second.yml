@@ -1,0 +1,24 @@
+uuid: e7eb2504-206b-41d9-a8df-81aa1b04e096
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_contact_description_second
+    - filter.format.basic_html
+    - node.type.data_set
+  module:
+    - text
+id: node.data_set.field_contact_description_second
+field_name: field_contact_description_second
+entity_type: node
+bundle: data_set
+label: 'Contact description'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+field_type: text_long

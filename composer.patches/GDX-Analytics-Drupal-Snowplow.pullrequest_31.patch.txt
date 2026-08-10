@@ -1,0 +1,22 @@
+diff --git a/gdx_analytics_drupal_snowplow.module b/gdx_analytics_drupal_snowplow.module
+index 65e97b8..97876af 100644
+--- a/gdx_analytics_drupal_snowplow.module
++++ b/gdx_analytics_drupal_snowplow.module
+@@ -122,7 +122,7 @@ function handleTrackerWithSearch(&$page, $settings) {
+     $search_key = $settings['gdx_analytics_search_key'];
+ 
+     // Extract query string from the full URI
+-    $query_string = parse_url($curr_uri, PHP_URL_QUERY);
++    $query_string = parse_url($curr_uri, PHP_URL_QUERY) ?? '';
+ 
+     // Split query string by '&' to get key-value pairs
+     $params = explode('&', $query_string);
+@@ -131,7 +131,7 @@ function handleTrackerWithSearch(&$page, $settings) {
+     // This also checks for multiple use of the same key (Example: /search/node?keys=test1+test2&keys=test3)
+     $all_keys = [];
+     foreach ($params as $param) {
+-        list($key, $value) = explode('=', $param);
++        list($key, $value) = array_pad(explode('=', $param), 2, ''); 
+         if ($key == $search_key) {
+             $all_keys[] = urldecode($value);
+         }
