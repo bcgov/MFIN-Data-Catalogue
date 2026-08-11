@@ -38,7 +38,7 @@ jobs:
         docker ps -a
 
     - name: Scan PHP-FPM image for vulnerabilities
-      uses: aquasecurity/trivy-action@v0.35.0
+      uses: aquasecurity/trivy-action@v0.36.0
       with:
         image-ref: '${{ vars.CONTAINER_IMAGE_NAME }}-web:latest'
         format: 'table'
@@ -48,7 +48,7 @@ jobs:
         severity: 'CRITICAL,HIGH,MEDIUM'
 
     - name: Scan Nginx image for vulnerabilities
-      uses: aquasecurity/trivy-action@v0.35.0
+      uses: aquasecurity/trivy-action@v0.36.0
       with:
         image-ref: '${{ vars.CONTAINER_IMAGE_NAME }}-nginx:latest'
         format: 'table'
