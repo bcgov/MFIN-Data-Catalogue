@@ -13246,6 +13246,74 @@ h1.page-title::after, .page-title.h1::after {
   content: "\f153";
 }
 
+.icon-bi-eye {
+  display: inline-flex !important;
+  width: auto;
+  gap: 0.25em;
+  align-items: center;
+  text-decoration: none;
+}
+.icon-bi-eye::before, .icon-bi-eye::after {
+  font-family: "bootstrap-icons" !important;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-bi-eye::before {
+  content: "\f341";
+}
+
+.icon-bi-eye-after {
+  display: inline-flex !important;
+  width: auto;
+  gap: 0.25em;
+  align-items: center;
+  text-decoration: none;
+}
+.icon-bi-eye-after::before, .icon-bi-eye-after::after {
+  font-family: "bootstrap-icons" !important;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-bi-eye-after::after {
+  content: "\f341";
+}
+
+.icon-bi-eye-slash {
+  display: inline-flex !important;
+  width: auto;
+  gap: 0.25em;
+  align-items: center;
+  text-decoration: none;
+}
+.icon-bi-eye-slash::before, .icon-bi-eye-slash::after {
+  font-family: "bootstrap-icons" !important;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-bi-eye-slash::before {
+  content: "\f340";
+}
+
+.icon-bi-eye-slash-after {
+  display: inline-flex !important;
+  width: auto;
+  gap: 0.25em;
+  align-items: center;
+  text-decoration: none;
+}
+.icon-bi-eye-slash-after::before, .icon-bi-eye-slash-after::after {
+  font-family: "bootstrap-icons" !important;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-bi-eye-slash-after::after {
+  content: "\f340";
+}
+
 .icon-bi-bookmark-dash-fill {
   display: inline-flex !important;
   width: auto;
@@ -13277,7 +13345,7 @@ h1.page-title::after, .page-title.h1::after {
   -moz-osx-font-smoothing: grayscale;
 }
 .icon-bi-bookmark-dash-fill-after::after {
-  content: "\f197";
+  content: "\f33e";
 }
 
 .icon-bi-bookmark-plus {

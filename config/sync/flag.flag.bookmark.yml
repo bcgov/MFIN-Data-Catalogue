@@ -5,17 +5,17 @@ dependencies:
   module:
     - node
 id: bookmark
-label: Bookmark
+label: Watch
 bundles:
   - data_set
 entity_type: node
 global: false
-flag_short: Bookmark
-flag_long: 'Add this item to your bookmarks'
-flag_message: 'Item added to your bookmarks'
-unflag_short: 'Remove bookmark'
-unflag_long: 'Remove this item from your bookmarks'
-unflag_message: 'This item has been removed from your bookmarks'
+flag_short: 'Add to watch list'
+flag_long: 'Get notified when this metadata record changes'
+flag_message: 'Added to watch list. You’ll be notified when this metadata record changes.'
+unflag_short: 'Remove from watch list'
+unflag_long: 'Stop receiving notifications when this metadata record changes'
+unflag_message: 'Removed from watch list. You’ll no longer receive notifications about changes to this metadata record.'
 unflag_denied_text: ''
 weight: 0
 flag_type: 'entity:node'
