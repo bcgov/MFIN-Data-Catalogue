@@ -109,12 +109,23 @@ function bc_dc_preprocess_flag(array &$variables): void {
   // Replace @title with improved @aria-label.
   unset($variables['attributes']['title']);
   $title = $variables['flaggable']->getTitle();
-  $variables['attributes']['aria-label'] = $variables['action'] === 'flag' ?
+
+  $is_flagging = $variables['action'] === 'flag';
+
+  $variables['attributes']['aria-label'] = $is_flagging ?
     t('Add @title metadata record to watch list', ['@title' => $title]) :
     t('Remove @title metadata record from watch list', ['@title' => $title]);
 
+  // Determine the correct icon class based on the current user's action:
+  // - 'flag' means clicking it will ADD to watch list -> show open eye icon
+  // - 'unflag' means clicking it will REMOVE from watch list -> show eye-slash icon
+  $icon_class = $is_flagging ? 'icon-bi-eye' : 'icon-bi-eye-slash';
+
+  // Apply the wrapper consistently to title render array.
+  $variables['title']['#prefix'] = '<span class="title dc-label ' . $icon_class . '">';
+  $variables['title']['#suffix'] = '</span>';
+
   // Watch count message.
-  // If at least one user has watched an item, add a message with the count.
   $node_watch_count = bc_dc_count_node_bookmarks($variables['flaggable']);
   if ($node_watch_count > 0) {
     $count_message = \Drupal::translation()->formatPlural($node_watch_count,
@@ -123,15 +134,8 @@ function bc_dc_preprocess_flag(array &$variables): void {
         '@count' => $node_watch_count,
     ]);
 
-    // Save the count_message, to be rendered by our flag.html.twig override.
+    // Save the count_message to be rendered by flag.html.twig.
     $variables['count_message'] = $count_message->render();
-
-    $variables['title']['#prefix'] = '<span class="title dc-label icon-bi-eye-slash">';
-    $variables['title']['#suffix'] = '</span>';
-  }
-  else {
-    // Add "add bookmark" icon class.
-    $variables['attributes']['class'][] = 'icon-bi-eye';
   }
 }
 
