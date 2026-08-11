@@ -13314,106 +13314,38 @@ h1.page-title::after, .page-title.h1::after {
   content: "\f340";
 }
 
-.icon-bi-bookmark-dash-fill {
+.icon-bi-eye-fill {
   display: inline-flex !important;
   width: auto;
   gap: 0.25em;
   align-items: center;
   text-decoration: none;
 }
-.icon-bi-bookmark-dash-fill::before, .icon-bi-bookmark-dash-fill::after {
+.icon-bi-eye-fill::before, .icon-bi-eye-fill::after {
   font-family: "bootstrap-icons" !important;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.icon-bi-bookmark-dash-fill::before {
-  content: "\f197";
-}
-
-.icon-bi-bookmark-dash-fill-after {
-  display: inline-flex !important;
-  width: auto;
-  gap: 0.25em;
-  align-items: center;
-  text-decoration: none;
-}
-.icon-bi-bookmark-dash-fill-after::before, .icon-bi-bookmark-dash-fill-after::after {
-  font-family: "bootstrap-icons" !important;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-.icon-bi-bookmark-dash-fill-after::after {
+.icon-bi-eye-fill::before {
   content: "\f33e";
 }
 
-.icon-bi-bookmark-plus {
+.icon-bi-eye-fill-after {
   display: inline-flex !important;
   width: auto;
   gap: 0.25em;
   align-items: center;
   text-decoration: none;
 }
-.icon-bi-bookmark-plus::before, .icon-bi-bookmark-plus::after {
+.icon-bi-eye-fill-after::before, .icon-bi-eye-fill-after::after {
   font-family: "bootstrap-icons" !important;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.icon-bi-bookmark-plus::before {
-  content: "\f19d";
-}
-
-.icon-bi-bookmark-plus-after {
-  display: inline-flex !important;
-  width: auto;
-  gap: 0.25em;
-  align-items: center;
-  text-decoration: none;
-}
-.icon-bi-bookmark-plus-after::before, .icon-bi-bookmark-plus-after::after {
-  font-family: "bootstrap-icons" !important;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-.icon-bi-bookmark-plus-after::after {
-  content: "\f19d";
-}
-
-.icon-bi-bookmarks-fill {
-  display: inline-flex !important;
-  width: auto;
-  gap: 0.25em;
-  align-items: center;
-  text-decoration: none;
-}
-.icon-bi-bookmarks-fill::before, .icon-bi-bookmarks-fill::after {
-  font-family: "bootstrap-icons" !important;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-.icon-bi-bookmarks-fill::before {
-  content: "\f1a3";
-}
-
-.icon-bi-bookmarks-fill-after {
-  display: inline-flex !important;
-  width: auto;
-  gap: 0.25em;
-  align-items: center;
-  text-decoration: none;
-}
-.icon-bi-bookmarks-fill-after::before, .icon-bi-bookmarks-fill-after::after {
-  font-family: "bootstrap-icons" !important;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-.icon-bi-bookmarks-fill-after::after {
-  content: "\f1a3";
+.icon-bi-eye-fill-after::after {
+  content: "\f33e";
 }
 
 .icon-bi-caret-left {

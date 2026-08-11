@@ -307,7 +307,7 @@ ul.dc-list-inline li:last-child::after, ol.dc-list-inline li:last-child::after {
   -moz-osx-font-smoothing: grayscale;
 }
 .path-user .card-group-region .block-views-blockbookmarks-dashboard-bookmarks > h2::before {
-  content: "\f1a3";
+  content: "\f33e";
 }
 .path-user .card-group-region .block-views-blocksaved-searches-dashboard-saved-search > h2 {
   display: inline-flex !important;
