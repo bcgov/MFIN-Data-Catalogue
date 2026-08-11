@@ -166,6 +166,7 @@ permissions:
   - 'edit terms in security_classification'
   - 'edit terms in tags'
   - 'flag bookmark'
+  - 'reorder book pages'
   - 'revert any basic block content revisions'
   - 'revert data_set revisions'
   - 'take_ownership_on_clone node entity'
