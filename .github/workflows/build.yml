@@ -22,11 +22,7 @@ jobs:
 
     - name: Build out the Drupal infrastructure
       run: |
-<<<<<<< HEAD
-        export DB_TYPE=mysql  # NEWBB -confirm database type
-=======
         export DB_TYPE=mysql
->>>>>>> a591caff3... Switch back to DB_TYPE=mysql for GitHub Actions in Build and Dev
         export DB_PORT=3306
 
         # # We used to 'git clone' to get the '/docker' directory loaded,
