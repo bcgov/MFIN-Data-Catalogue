@@ -620,14 +620,14 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     // Test bookmarks.
     //
     // No items bookmarked.
-    $this->assertSession()->linkNotExists('Remove bookmark');
-    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//div[normalize-space(text()) = "You currently do not have any metadata records bookmarked."]');
+    $this->assertSession()->linkNotExists('Remove from watch list');
+    $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//div[normalize-space(text()) = "You currently do not have any metadata records in your watch list."]');
     // Bookmark an item.
     $this->clickLink('View');
-    $this->clickLink('Bookmark');
-    $this->assertSession()->pageTextContains('Item added to your bookmarks');
+    $this->clickLink('Add to watch list');
+    $this->assertSession()->pageTextContains('Added to watch list. You’ll be notified when this metadata record changes.');
     // View page has link to remove bookmark.
-    $this->assertSession()->elementExists('xpath', '//a[*[contains(@class, "title")][contains(text(), "Remove bookmark")]][*[contains(@class, "count")][contains(text(), "Bookmarked by 1 person")]]');
+    $this->assertSession()->elementExists('xpath', '//a[*[contains(@class, "title")][contains(text(), "Remove from watch list")]][*[contains(@class, "count")][contains(text(), "1 person watching")]]');
     // Bookmark now appears on the dashboard.
     $this->drupalGet('user');
     $args = [
@@ -636,7 +636,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     ];
     $xpath = $this->assertSession()->buildXPathQuery('//section[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//a[normalize-space(text()) = :data_set_title][starts-with(@href, :data_set_path)]', $args);
     $this->assertSession()->elementExists('xpath', $xpath);
-    $this->assertSession()->elementNotExists('xpath', '//section[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//div[normalize-space(text()) = "You currently do not have any metadata records bookmarked."]');
+    $this->assertSession()->elementNotExists('xpath', '//section[contains(@class, "block-views-blockbookmarks-dashboard-bookmarks")]//div[normalize-space(text()) = "You currently do not have any metadata records in your watch list."]');
     // Metadata record count message.
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//*[text() = "You currently have no published metadata records."]');
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//a[text() = "Manage metadata records"]');
@@ -678,7 +678,7 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $this->assertSession()->elementExists('xpath', '//section[contains(@class, "block-views-blockdashboard-blocks-dashboard-needs-review")]//div[normalize-space(text()) = "You currently have no metadata records needing review."]');
     // Metadata record count message.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//*[text() = "You currently have no published metadata records."]');
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//*[text() = "You have 1 published metadata record that has been bookmarked once."]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//*[text() = "You have 1 published metadata record with 1 watcher."]');
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//a[text() = "Manage metadata records"]');
 
     // Test data set update message.
@@ -903,11 +903,11 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // "Edit" tab does not appear for data_set content type.
     $this->assertSession()->elementNotExists('xpath', '//a[@href = "/node/2/edit"]');
     // Bookmarked by 1.
-    $this->assertSession()->elementExists('xpath', '//a[*[contains(@class, "title")][contains(text(), "Bookmark")]][*[contains(@class, "count")][contains(text(), "Bookmarked by 1 person")]]');
+    $this->assertSession()->elementExists('xpath', '//a[*[contains(@class, "title")][contains(text(), "Add to watch list")]][*[contains(@class, "count")][contains(text(), "1 person watching")]]');
     // Add a bookmark.
     $this->click('div.flag-bookmark.action-flag > a');
     // Bookmarked by 2.
-    $this->assertSession()->elementExists('xpath', '//a[*[contains(@class, "title")][contains(text(), "Remove bookmark")]][*[contains(@class, "count")][contains(text(), "Bookmarked by 2 people")]]');
+    $this->assertSession()->elementExists('xpath', '//a[*[contains(@class, "title")][contains(text(), "Remove from watch list")]][*[contains(@class, "count")][contains(text(), "2 people watching")]]');
 
     // Test book module.
     //
@@ -1510,7 +1510,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $this->assertSession()->statusCodeEquals(200);
     // Metadata record count message.
     $this->assertSession()->elementNotExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//*[text() = "You currently have no published metadata records."]');
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//*[text() = "You have 2 published metadata records that have been bookmarked 2 times."]');
+    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//*[text() = "You have 2 published metadata records with 2 watchers."]');
     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "block-bc-dc-content-summary")]//a[text() = "Manage metadata records"]');
 
     // Check access to taxonomy term pages. They should be 404 except for
@@ -1689,7 +1689,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     $xpath = $this->assertSession()->buildXPathQuery('//ol/li//a[contains(text(), :data_set_title_2)]', $args);
     $this->assertSession()->elementExists('xpath', $xpath, $details);
     // Access to bookmarks page.
-    $this->drupalGet('user/1/bookmarks');
+    $this->drupalGet('user/1/watchlist');
     $this->assertSession()->statusCodeEquals(200);
     // Access to saved searches page.
     // This test is in ExistingSite because search does not work in Functional.
@@ -1703,7 +1703,7 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Anonymous.
     $this->drupalLogout();
     // No access to bookmarks page.
-    $this->drupalGet('user/1/bookmarks');
+    $this->drupalGet('user/1/watchlist');
     $this->assertSession()->statusCodeEquals(404);
     // No access to saved searches page.
     $this->drupalGet('user/1/saved-searches');
