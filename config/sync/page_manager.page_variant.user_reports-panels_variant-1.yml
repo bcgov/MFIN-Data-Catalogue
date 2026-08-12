@@ -22,11 +22,11 @@ variant_settings:
   blocks:
     71e1a5aa-6841-4f66-912f-5ae1926006f5:
       id: 'views_block:bookmarks-block_1'
-      label: 'Top bookmarked assets'
+      label: 'Top watched assets'
       label_display: visible
       provider: views
       context_mapping: {  }
-      views_label: 'Top bookmarked assets'
+      views_label: 'Top watched assets'
       items_per_page: 3
       exposed: {  }
       arguments:
@@ -59,11 +59,11 @@ variant_settings:
       css_styles: ''
     5b4a2b77-4caa-4ec0-8e62-57f462bad188:
       id: 'views_block:bookmarks-block_1'
-      label: 'Top bookmarked reports'
+      label: 'Top watched reports'
       label_display: visible
       provider: views
       context_mapping: {  }
-      views_label: 'Top bookmarked reports'
+      views_label: 'Top watched reports'
       items_per_page: 3
       exposed: {  }
       arguments:
@@ -80,11 +80,11 @@ variant_settings:
       css_styles: ''
     c6dff1f5-e606-4575-8988-d2bfa371d836:
       id: 'views_block:bookmarks-block_1'
-      label: 'Top bookmarked forms'
+      label: 'Top watched forms'
       label_display: visible
       provider: views
       context_mapping: {  }
-      views_label: 'Top bookmarked forms'
+      views_label: 'Top watched forms'
       items_per_page: 3
       exposed: {  }
       arguments:
