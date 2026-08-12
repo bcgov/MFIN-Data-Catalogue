@@ -117,8 +117,8 @@
         "drupal/config_filter": "^2.4",
         "drupal/config_ignore": "^3.1",
         "drupal/config_split": "^2.0",
-        "drupal/core-composer-scaffold": "~11.3.0",
-        "drupal/core-recommended": "~11.3.0",
+        "drupal/core-composer-scaffold": "~11.4.0",
+        "drupal/core-recommended": "~11.4.0",
         "drupal/date_popup": "^2.0",
         "drupal/devel": "^5.0",
         "drupal/devel_php": "^1.5",
@@ -308,12 +308,12 @@
             },
             "drupal/core": {
                 "571548 - Identifiers longer than 63 characters are truncated, causing Views to break on Postgres": "composer.patches/571548.core.mr6379-as-at-2026-04-22.patch.txt",
-		        "2280479 - Add setting to EntityReferenceSelection plugins to prevent references to referencing entity": "https://www.drupal.org/files/issues/2024-12-11/drupal-self_reference_d11-2280479-106.patch",
+		            "2280479 - Add setting to EntityReferenceSelection plugins to prevent references to referencing entity": "https://www.drupal.org/files/issues/2024-12-11/drupal-self_reference_d11-2280479-106.patch",
                 "2821962 - Views exposed filters don't combine with contextual filters when using exposed form in block": "https://www.drupal.org/files/issues/2024-03-19/drupal-exposed-contextual-filters-2821962-65.patch",
                 "3079534 - Views JOIN condition fails in PostgreSQL when comparing entity identifiers of different datatypes": "https://www.drupal.org/files/issues/2024-01-17/drupal-views_postgres_join_no_tests-3079534-36.patch",
                 "2840283 - Problem with action path for embedded forms": "https://www.drupal.org/files/issues/2020-03-19/linked-display-2840283-40_1.patch",
                 "3392572 - strnatcasecmp(): Passing null to string is deprecated": "https://www.drupal.org/files/issues/2023-10-25/drupal-strnatcasecmp_string_only-3392572-10.patch",
-                "2920527 - Postgres driver issue with nested savepoints mimic_implicit_commit duplicated": "https://www.drupal.org/files/issues/2026-04-09/drupal-mimic_implicit_commit_error-2920527-77.patch"
+                "2920527 - Postgres driver issue with nested savepoints mimic_implicit_commit duplicated": "composer.patches/2920527.core.mr10896-as-at-2026-08-12.patch.txt"
             },
             "drupal/ctools": {
                 "2759445 - Manually pass an argument to a views block through interface": "https://www.drupal.org/files/issues/2023-01-18/2759445-100.patch"
