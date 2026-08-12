@@ -21,7 +21,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *     "user" = @ContextDefinition("entity:user")
  *   }
  * )
- * 
+ *
  * @phpstan-consistent-constructor
  */
 class BcDcContentSummary extends BlockBase implements ContainerFactoryPluginInterface {
@@ -91,16 +91,18 @@ class BcDcContentSummary extends BlockBase implements ContainerFactoryPluginInte
         $total_bookmarks += bc_dc_count_node_bookmarks($node);
       }
 
+      $watchers_text = $this->formatPlural($total_bookmarks,
+        '1 watcher',
+        '@count watchers', [
+        '@count' => $total_bookmarks,
+      ]);
+
       $message = $this->formatPlural($total_nodes,
-        'You have @count published metadata record that has been @bookmarked_times.',
-        'You have @count published metadata records that have been @bookmarked_times.', [
-          '@count' => $total_nodes,
-          '@bookmarked_times' => $this->formatPlural($total_bookmarks,
-            'bookmarked once',
-            'bookmarked @num_bookmarks times', [
-              '@num_bookmarks' => $total_bookmarks,
-            ]),
-        ]);
+        'You have 1 published metadata record with @watchers.',
+        'You have @count published metadata records with @watchers.', [
+        '@count' => $total_nodes,
+        '@watchers' => $watchers_text,
+      ]);
     }
     else {
       $message = $this->t('You currently have no published metadata records.');
