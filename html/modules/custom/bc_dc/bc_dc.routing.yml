@@ -71,3 +71,12 @@ bc_dc.user_manage_tab:
     parameters:
       user:
         type: 'entity:user'
+
+bc_dc.logging_test:
+  path: '/test/log/{level}'
+  defaults:
+    _controller: '\Drupal\bc_dc\Controller\LoggingTestController::logTest'
+    _title: 'Logging Test'
+  requirements:
+    _access: 'TRUE'
+    level: 'info|notice|warning|error|critical|alert'
