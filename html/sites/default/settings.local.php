@@ -276,3 +276,11 @@ $config['system.file']['temporary_maximum_age'] = 1;
  * yet in the settings.ddev.php file, so we do it here.
  */
 $databases['default']['default']['schema'] = "fdc"; # Keep this schema name short and tight.
+
+
+/**
+ * GDX Snowplow Analytics
+ *
+ * This collector is different on production vs. dev/test.
+ */
+$config['gdx_analytics_drupal_snowplow.settings']['gdx_collector_mode'] = 'spm.apps.gov.bc.ca';
