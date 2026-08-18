@@ -139,6 +139,11 @@ RUN composer install --no-dev \
 RUN rm -rf /root/.ssh && \
     apk del openssh-client
 
+# We are sharing the main settings.php between the Drupal repo and the Helm chart, 
+# so that it can be updated in one place. Platform-specific settings are set in
+# settings.localhost.php, for DDEV, and settings.openshift.php in the Helm chart.
+COPY html/sites/default/settings.php /var/www/html/sites/default/settings.php
+
 # Permissions
 WORKDIR /var/www/html
 RUN chown -R www-data:www-data sites/default
