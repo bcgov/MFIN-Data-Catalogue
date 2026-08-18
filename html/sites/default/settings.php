@@ -106,10 +106,13 @@ $settings['entity_update_backup'] = TRUE;
  * This used to configure the client for OpenID Connect module for
  * authentication with BC Gov's Pathfinder SSO.
  */
+
+$config['openid_connect.client.keycloak']['status'] = TRUE;
+
 // Set up reference variable, for brevity below.
 $keycloak_settings =& $config['openid_connect.client.keycloak']['settings'];
 
-// Get the three values from the OpenShift Secret.
+// Get the three values, loaded from Vault.
 $keycloak_settings['client_id'    ] = getenv('SSO_CLIENT_ID');
 $keycloak_settings['client_secret'] = getenv('SSO_CLIENT_SECRET');
 $sso_endpoint_baseurl_extended      = getenv('SSO_KEYCLOAK_BASE') . '/realms/standard/protocol/openid-connect';
@@ -119,6 +122,8 @@ $keycloak_settings['authorization_endpoint'] = $sso_endpoint_baseurl_extended . 
 $keycloak_settings['token_endpoint']         = $sso_endpoint_baseurl_extended . '/token';
 $keycloak_settings['userinfo_endpoint']      = $sso_endpoint_baseurl_extended . '/userinfo';
 $keycloak_settings['end_session_endpoint']   = $sso_endpoint_baseurl_extended . '/logout';
+
+$keycloak_settings['scopes'] = ['openid', 'profile', 'email'];
 
 
 /**
