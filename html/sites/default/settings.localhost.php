@@ -11,34 +11,6 @@
  */
 $databases['default']['default']['schema'] = "fdc"; # Keep this schema name short and tight.
 
-/**
- * @file
- * Local development override configuration feature.
- *
- * To activate this feature, copy and rename it such that its path plus
- * filename is 'sites/default/settings.local.php'. Then, go to the bottom of
- * 'sites/default/settings.php' and uncomment the commented lines that mention
- * 'settings.local.php'.
- *
- * If you are using a site name in the path, such as 'sites/example.com', copy
- * this file to 'sites/example.com/settings.local.php', and uncomment the lines
- * at the bottom of 'sites/example.com/settings.php'.
- */
-
-/**
- * Assertions.
- *
- * The Drupal project primarily uses runtime assertions to enforce the
- * expectations of the API by failing when incorrect calls are made by code
- * under development.
- *
- * @see http://php.net/assert
- * @see https://www.drupal.org/node/2492225
- *
- * It is strongly recommended that you set zend.assertions=1 in the PHP.ini file
- * (It cannot be changed from .htaccess or runtime) on development machines and
- * to 0 or -1 in production.
- */
 
 /**
  * Enable local development services.
@@ -72,14 +44,6 @@ $config['system.performance']['js']['preprocess'] = FALSE;
  * Only use this setting once the site has been installed.
  */
 # $settings['cache']['bins']['render'] = 'cache.backend.null';
-
-/**
- * Disable caching for migrations.
- *
- * Uncomment the code below to only store migrations in memory and not in the
- * database. This makes it easier to develop custom migrations.
- */
-# $settings['cache']['bins']['discovery_migration'] = 'cache.backend.memory';
 
 /**
  * Disable Internal Page Cache.
