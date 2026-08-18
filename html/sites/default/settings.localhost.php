@@ -240,25 +240,6 @@ $config['shield.settings']['credentials']['shield'] = [
   'pass' => getenv('SHIELD_PASS'),
 ];
 
-/**
- * OpenID Connect module configuration (Custom).
- *
- * This used to configure the client for OpenID Connect module for
- * authentication with BC Gov's Pathfinder SSO.
- */
-// Set up reference variable, for brevity below.
-$keycloak_settings =& $config['openid_connect.client.keycloak']['settings'];
-
-// Get the three values from the OpenShift Secret.
-$keycloak_settings['client_id'    ] = getenv('SSO_CLIENT_ID');
-$keycloak_settings['client_secret'] = getenv('SSO_CLIENT_SECRET');
-$sso_endpoint_baseurl_extended      = getenv('SSO_KEYCLOAK_BASE') . '/realms/standard/protocol/openid-connect';
-
-// Set the endpoints.
-$keycloak_settings['authorization_endpoint'] = $sso_endpoint_baseurl_extended . '/auth';
-$keycloak_settings['token_endpoint']         = $sso_endpoint_baseurl_extended . '/token';
-$keycloak_settings['userinfo_endpoint']      = $sso_endpoint_baseurl_extended . '/userinfo';
-$keycloak_settings['end_session_endpoint']   = $sso_endpoint_baseurl_extended . '/logout';
 
 /**
  * File settings (Custom).
