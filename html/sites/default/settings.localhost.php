@@ -194,18 +194,6 @@ $config['environment_indicator.indicator']['fg_color'] = '#222330';
 
 
 /**
- * Shield module configuration (Custom).
- *
- * This is used to configure the credentials for Shield module for basic HTTP
- * authentication.
- */
-$config['shield.settings']['credentials']['shield'] = [
-  'user' => getenv('SHIELD_USER'),
-  'pass' => getenv('SHIELD_PASS'),
-];
-
-
-/**
  * File settings (Custom).
  *
  * This will remove orphaned (deleted) files from the file system on the
