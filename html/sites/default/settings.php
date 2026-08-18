@@ -905,10 +905,10 @@ if (is_file(__DIR__ . '/settings.ddev.php') && getenv('IS_DDEV_PROJECT') == 'tru
   include __DIR__ . '/settings.ddev.php';
 }
 
-if (is_file(__DIR__ . '/settings.local.php')) {
-  include __DIR__ . '/settings.local.php';
+if (is_file(__DIR__ . '/settings.localhost.php')) {
+  include __DIR__ . '/settings.localhost.php';
 }
 
-if (is_file(__DIR__ . '/extra.settings.php')) {
-  include __DIR__ . '/extra.settings.php';
+if (is_file(__DIR__ . '/settings.openshift.php')) {
+  include __DIR__ . '/settings.openshift.php';
 }
