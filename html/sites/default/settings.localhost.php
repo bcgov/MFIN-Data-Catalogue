@@ -2,6 +2,15 @@
 
 // phpcs:ignoreFile
 
+
+/**
+ * Database schema name.
+ *
+ * Postgres requires us to use a schema. DDEV doesn't seem to handle this
+ * yet in the settings.ddev.php file, so we do it here.
+ */
+$databases['default']['default']['schema'] = "fdc"; # Keep this schema name short and tight.
+
 /**
  * @file
  * Local development override configuration feature.
@@ -201,15 +210,6 @@ $config['environment_indicator.indicator']['fg_color'] = '#222330';
  */
 $config['file.settings']['make_unused_managed_files_temporary'] = TRUE;
 $config['system.file']['temporary_maximum_age'] = 1;
-
-
-/**
- * Database schema name.
- *
- * Postgres requires us to use a schema. DDEV doesn't seem to handle this
- * yet in the settings.ddev.php file, so we do it here.
- */
-$databases['default']['default']['schema'] = "fdc"; # Keep this schema name short and tight.
 
 
 /**
