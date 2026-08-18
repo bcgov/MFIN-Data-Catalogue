@@ -178,55 +178,19 @@ $settings['config_sync_directory'] = '../config/sync';
  */
 $settings['file_private_path'] = '../private';
 
+
 /**
- * Configuration Split module configuration (Custom).
- *
- * This is used to configure Configuration Split.
+ * Configuration Split module
  */
-$environ = getenv('ENVIRONMENT_TYPE'); // for brevity
-
-/* Uncomment this to simulate a different server.
- * And run 'drush cim -y' to make the new Config Split take effect.
- */
-// $environ='production';
-
-// Environments where extra dev tools will be available.
-$dev_servers = [
-  'development',    // openshift dev server
-  'ci',             // docker localhost
-  '',               // docker drush requires a blank string
-  'ddev_localhost', // ddev
-];
-
-
 $config['config_split.config_split.dev']['status'] = TRUE;
+
 
 /**
  * "Environment Indicator" module.
  */
-
-// If we're on a 'dev' server, but not on the actual OpenShift one, then we're "local".
-// Set that as a pseudo-environment.
-if (in_array($environ, $dev_servers) && $environ != 'development') {
-  $environ = 'LOCALHOST';
-}
-
-$indicator_config = [
-  // server   => [  name                   ,  bg_color  ]
-  'LOCALHOST' => ["FDC localhost", 'hsl(220, 100%, 67%)'],
-  'DEV'       => ['FDC Dev',       'hsl(130, 100%, 67%)'],
-  'TEST'      => ['FDC Test',      'hsl( 65, 100%, 67%)'],
-  'PROD'      => ['FDC PROD',      'hsl(  8, 100%, 67%)'],
-];
-
-if (!empty($indicator_config[$environ])) {
-  $config['environment_indicator.indicator']['name']     = $indicator_config[$environ][0];
-  $config['environment_indicator.indicator']['bg_color'] = $indicator_config[$environ][1];
-  $config['environment_indicator.indicator']['fg_color'] = '#222330';
-}
-else {
-  throw new \Exception("Environment Indicator config problems, in settings.local.php.");
-}
+$config['environment_indicator.indicator']['name']     = 'FDC localhost';
+$config['environment_indicator.indicator']['bg_color'] = 'hsl(220, 100%, 67%)';
+$config['environment_indicator.indicator']['fg_color'] = '#222330';
 
 
 /**
@@ -249,6 +213,7 @@ $config['shield.settings']['credentials']['shield'] = [
  */
 $config['file.settings']['make_unused_managed_files_temporary'] = TRUE;
 $config['system.file']['temporary_maximum_age'] = 1;
+
 
 /**
  * Database schema name.
