@@ -12,7 +12,7 @@
  * Postgres requires us to use a schema. 
  * DDEV doesn't seem to handle this, so we do it here.
  */
-$databases['default']['default']['schema'] = "fdc"; # Keep this schema name short and tight.
+$databases['default']['default']['schema'] = "fdc"; 
 
 
 /**
@@ -34,6 +34,7 @@ $settings['config_sync_directory'] = '../config/sync';
  */
 $settings['container_yamls'][] = DRUPAL_ROOT . '/sites/development.services.yml';
 
+
 /**
  * Show all error messages, with backtrace information.
  *
@@ -41,6 +42,7 @@ $settings['container_yamls'][] = DRUPAL_ROOT . '/sites/development.services.yml'
  * example the database connection failed, we rely only on this value.
  */
 $config['system.logging']['error_level'] = 'verbose';
+
 
 /**
  * Disable CSS and JS aggregation.
@@ -140,6 +142,7 @@ $settings['skip_permissions_hardening'] = TRUE;
  */
 # $settings['config_exclude_modules'] = ['devel', 'stage_file_proxy'];
 
+
 /**
  * Private file path:
  *
@@ -165,9 +168,17 @@ $config['config_split.config_split.dev']['status'] = TRUE;
 /**
  * "Environment Indicator" module.
  */
-$config['environment_indicator.indicator']['name']     = 'FDC localhost';
+$config['environment_indicator.indicator']['name']     = 'localhost';
 $config['environment_indicator.indicator']['bg_color'] = 'hsl(220, 100%, 67%)';
 $config['environment_indicator.indicator']['fg_color'] = '#222330';
+
+
+/**
+ * GDX Snowplow Analytics
+ *
+ * This collector is different on production vs. dev/test.
+ */
+$config['gdx_analytics_drupal_snowplow.settings']['gdx_collector_mode'] = 'spm.apps.gov.bc.ca';
 
 
 /**
@@ -179,10 +190,3 @@ $config['environment_indicator.indicator']['fg_color'] = '#222330';
 $config['file.settings']['make_unused_managed_files_temporary'] = TRUE;
 $config['system.file']['temporary_maximum_age'] = 1;
 
-
-/**
- * GDX Snowplow Analytics
- *
- * This collector is different on production vs. dev/test.
- */
-$config['gdx_analytics_drupal_snowplow.settings']['gdx_collector_mode'] = 'spm.apps.gov.bc.ca';
