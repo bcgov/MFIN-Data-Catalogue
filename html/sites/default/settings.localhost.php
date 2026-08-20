@@ -1,6 +1,11 @@
 <?php
 
-// phpcs:ignoreFile
+/**
+ * @file
+ * Localhost-specific settings for Drupal.
+ * 
+ * This file is included from the main settings.php file.
+ */
 
 
 /**
