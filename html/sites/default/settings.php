@@ -4,8 +4,24 @@
 
 /**
  * @file
- * Drupal site-specific configuration file.
+ * Drupal common configuration file.
+ * 
+ * This settings.php file is used for both:
+ *    - local development (DDEV) and,
+ *    - OpenShift deployments
+ *
+ * For local development, it is just used in place, as-is.
+ *
+ * For deployment to openshift, it is injected into the image that is 
+ * created, by way of the Dockerfile. 
+ * 
+ * ------
+ * default.settings.php
+ * 
+ * Please look in default.settings.php for a list of all available settings and their descriptions.
+ * There are many options there, which we have removed from this file, for brevity.
  */
+
 
 /**
  * Salt for one-time login links, cancel links, form tokens, etc.
@@ -26,6 +42,7 @@
  * @endcode
  */
 $settings['hash_salt'] = 'overridden in settings.openshift.php';
+
 
 /**
  * Access control for update.php script.
@@ -85,20 +102,6 @@ $settings['entity_update_backup'] = TRUE;
 
 
 /**
- * Node migration type.
- *
- * This is used to force the migration system to use the classic node migrations
- * instead of the default complete node migrations. The migration system will
- * use the classic node migration only if there are existing migrate_map tables
- * for the classic node migrations and they contain data. These tables may not
- * exist if you are developing custom migrations and do not want to use the
- * complete node migrations. Set this to TRUE to force the use of the classic
- * node migrations.
- */
-$settings['migrate_node_migrate_type_classic'] = FALSE;
-
-
-/**
 * OpenID Connect module configuration (Custom).
 *
 * This used to configure the client for OpenID Connect module for
@@ -125,15 +128,7 @@ $keycloak_settings['scopes'] = ['openid', 'profile', 'email'];
 
 
 /**
- * Load local development override configuration, if available.
- *
- * Create a settings.local.php file to override variables on secondary (staging,
- * development, etc.) installations of this site.
- *
- * Typical uses of settings.local.php include:
- * - Disabling caching.
- * - Disabling JavaScript/CSS compression.
- * - Rerouting outgoing emails.
+ * Load more configuration, when available.
  *
  * Keep this code block at the end of this file to take full effect.
  */
