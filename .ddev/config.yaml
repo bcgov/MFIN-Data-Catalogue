@@ -6,15 +6,3 @@ php_version: "8.3"
 database:
     type: postgres
     version: "16"
-
-web_environment:
-    # newbb: To set the ACTUAL values for these environment variables,
-    # override 'web_environment' in a ".ddev/config.local.yaml" or ".ddev/config.yourname.local.yaml" file.
-    # "Local" yaml files are git-ignored by default by DDEV's own .gitignore file.
-    # See https://ddev.readthedocs.io/en/stable/users/extend/customization-extendibility/#extending-configyaml-with-custom-configyaml-files
-    - SHIELD_USER=newbb
-    - SHIELD_PASS=newbb
-    - SSO_CLIENT_ID=newbb
-    - SSO_CLIENT_SECRET=newbb
-    - SSO_KEYCLOAK_BASE=newbb
-    - SOLR_PASSWORD=newbb
