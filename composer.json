@@ -14,11 +14,11 @@
     to also switch to the corresponding branch in WXT-Drupal-Scaffold, 
     which is merged into this branch. You'll need to 'git subtree merge'
     it in.
+
     "drupal/core-composer-scaffold": "~11.3.0",
     "drupal/core-recommended": "~11.3.0",
-    "drush/drush": "^13"
-
-
+    "drush/drush": "^13",
+    "drupal/openid_connect": "^3.0@alpha"
 
   },
   "extra": {
@@ -30,6 +30,9 @@
     "patches": {
       "drupal/core": {
         "571548 - Identifiers longer than 63 characters are truncated, causing Views to break on Postgres": "https://www.drupal.org/files/issues/2025-01-16/drupal-postgres_identifiers_10_4-571548-207.patch"
+      },
+      "drupal/openid_connect": {
+        "3497559 - User role cleared after log in": "https://www.drupal.org/files/issues/2026-03-18/openid_connect_issue_3497559_3.0.0-alpha8.patch"
       }
     }
   }

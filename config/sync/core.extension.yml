@@ -5,4 +5,5 @@ module:
   environment_indicator: 0
   environment_indicator_toolbar: 0
   highlight_views_overrides: 0
+  openid_connect: 0
   eitweaks: 1

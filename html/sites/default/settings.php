@@ -116,8 +116,6 @@ $settings['entity_update_backup'] = TRUE;
  * authentication with BC Gov's Pathfinder SSO.
  */
 
-$config['openid_connect.client.keycloak']['status'] = TRUE;
-
 // Set up reference variable, for brevity below.
 $keycloak_settings =& $config['openid_connect.client.keycloak']['settings'];
 
@@ -131,8 +129,6 @@ $keycloak_settings['authorization_endpoint'] = $sso_endpoint_baseurl_extended . 
 $keycloak_settings['token_endpoint']         = $sso_endpoint_baseurl_extended . '/token';
 $keycloak_settings['userinfo_endpoint']      = $sso_endpoint_baseurl_extended . '/userinfo';
 $keycloak_settings['end_session_endpoint']   = $sso_endpoint_baseurl_extended . '/logout';
-
-$keycloak_settings['scopes'] = ['openid', 'profile', 'email'];
 
 
 /**
