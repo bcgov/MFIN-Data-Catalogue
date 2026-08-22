@@ -7,7 +7,7 @@ html/modules/*
 html/sites/*
 !html/sites/default/
 html/sites/default/*
-!html/sites/default/settings.local.php
+!html/sites/default/settings.localhost.php
 !html/sites/default/settings.php
 !html/themes/
 html/themes/*
