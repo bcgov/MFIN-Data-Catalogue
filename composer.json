@@ -341,7 +341,8 @@
                 "3420249 - Create token for use in Views": "composer.patches/3420249.tac_lite.mr22-as-at-2026-07-21.patch.txt",
                 "3203718 - add the ability to select all terms from a vocabulary": "https://www.drupal.org/files/issues/2026-05-05/tac_lite-add_all_option-3203718-22.patch",
                 "3359802 - Add schema for tac_lite.settings": "https://www.drupal.org/files/issues/2023-05-11/tac_lite-schema-3359802-2.patch",
-                "3403235 - Allow specifying which field to use for access control": "https://www.drupal.org/files/issues/2026-05-05/tac_lite-choose_fields-3403235-7.patch"
+                "3403235 - Allow specifying which field to use for access control": "https://www.drupal.org/files/issues/2026-05-05/tac_lite-choose_fields-3403235-7.patch",
+                "3618911 - Fix 'mimic_implicit_commit' Postgres error": "https://www.drupal.org/files/issues/2026-08-24/tac_lite.mimic_implicit_commit_error.3618911-1.patch"
             },
             "drupal/taxonomy_delete": {
                 "3434896 - Automated Drupal 11 compatibility fixes": "https://www.drupal.org/files/issues/2024-03-25/taxonomy_delete.8.x-1.5.rector.patch"
