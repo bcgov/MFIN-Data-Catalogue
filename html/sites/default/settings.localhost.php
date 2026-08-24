@@ -38,6 +38,7 @@ $settings['config_sync_directory'] = '../config/sync';
  * Enable local development services.
  */
 $settings['container_yamls'][] = DRUPAL_ROOT . '/sites/development.services.yml';
+$settings['container_yamls'][] = 'sites/default/monolog.services.yml';
 
 
 /**
