@@ -28,9 +28,9 @@
       "drupal/core": "-p2"
     },
     "patches": {
-      "drupal/core": {
-        "571548 - Identifiers longer than 63 characters are truncated, causing Views to break on Postgres": "https://www.drupal.org/files/issues/2025-01-16/drupal-postgres_identifiers_10_4-571548-207.patch"
-      },
+            "drupal/core": {
+                "571548 - Identifiers longer than 63 characters are truncated, causing Views to break on Postgres": "composer.patches/571548.core.mr6379-as-at-2026-04-17.patch.txt"
+            },
       "drupal/openid_connect": {
         "3497559 - User role cleared after log in": "https://www.drupal.org/files/issues/2026-03-18/openid_connect_issue_3497559_3.0.0-alpha8.patch"
       }

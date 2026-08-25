@@ -1,0 +1,147 @@
+diff --git a/core/modules/field/tests/src/Kernel/EntityReference/Views/EntityReferenceRelationshipTest.php b/core/modules/field/tests/src/Kernel/EntityReference/Views/EntityReferenceRelationshipTest.php
+index 643a255895d3e9b2590bb4f997b2f4cdbfd07a5e..a35eca86674cb13157e1c87049f54d0e4a7966c0 100644
+--- a/core/modules/field/tests/src/Kernel/EntityReference/Views/EntityReferenceRelationshipTest.php
++++ b/core/modules/field/tests/src/Kernel/EntityReference/Views/EntityReferenceRelationshipTest.php
+@@ -10,6 +10,7 @@
+ use Drupal\field\Entity\FieldStorageConfig;
+ use Drupal\Tests\field\Traits\EntityReferenceFieldCreationTrait;
+ use Drupal\Tests\views\Kernel\ViewsKernelTestBase;
++use Drupal\views\Plugin\views\query\Sql;
+ use Drupal\views\Tests\ViewTestData;
+ use Drupal\views\Views;
+ use PHPUnit\Framework\Attributes\Group;
+@@ -141,7 +142,8 @@ public function testNoDataTableRelationship(): void {
+       $this->assertEquals($this->entities[$index]->id(), $row->_entity->id());
+ 
+       // Test the forward relationship.
+-      $this->assertEquals(1, $row->entity_test_mul_property_data_entity_test__field_test_data_i);
++      $alias = Sql::sanitizeAlias('entity_test_mul_property_data_entity_test__field_test_data_id');
++      $this->assertEquals(1, $row->{$alias});
+ 
+       // Test that the correct relationship entity is on the row.
+       $this->assertEquals(1, $row->_relationship_entities['field_test_data']->id());
+diff --git a/core/modules/views/src/Plugin/views/query/Sql.php b/core/modules/views/src/Plugin/views/query/Sql.php
+index ced0e1cbfcc8c301ca289fac761f835f196aaa29..f464621249c1f8f0cefd08f788d32e94c73a5abc 100644
+--- a/core/modules/views/src/Plugin/views/query/Sql.php
++++ b/core/modules/views/src/Plugin/views/query/Sql.php
+@@ -276,6 +276,7 @@ protected function setDistinct($value = TRUE) {
+   public function setCountField($table, $field, $alias = NULL) {
+     if (empty($alias)) {
+       $alias = $table . '_' . $field;
++      $alias = $this->sanitizeAlias($alias);
+     }
+     $this->count_field = [
+       'table' => $table,
+@@ -409,6 +410,7 @@ public function addRelationship($alias, JoinPluginBase $join, $base, $link_point
+     while (!empty($this->relationships[$alias])) {
+       $alias = $alias_base . '_' . $count++;
+     }
++    $alias = $this->sanitizeAlias($alias);
+ 
+     // Make sure this join is adjusted for our relationship.
+     if ($link_point && isset($this->relationships[$link_point])) {
+@@ -529,6 +531,7 @@ public function queueTable($table, $relationship = NULL, ?JoinPluginBase $join =
+       else {
+         $alias = $relationship . '_' . $table;
+       }
++      $alias = $this->sanitizeAlias($alias);
+     }
+ 
+     // Check this again to make sure we don't blow up existing aliases for
+@@ -538,10 +541,12 @@ public function queueTable($table, $relationship = NULL, ?JoinPluginBase $join =
+     }
+ 
+     $alias = $this->markTable($table, $relationship, $alias);
++    $alias = $this->sanitizeAlias($alias);
+ 
+     // If no alias is specified, give it the default.
+-    if (!isset($alias)) {
++    if (empty($alias)) {
+       $alias = $this->tables[$relationship][$table]['alias'] . $this->tables[$relationship][$table]['count'];
++      $alias = $this->sanitizeAlias($alias);
+     }
+ 
+     // If this is a relationship based table, add a marker with
+@@ -571,6 +576,39 @@ public function queueTable($table, $relationship = NULL, ?JoinPluginBase $join =
+     return $alias;
+   }
+ 
++  /**
++   * Ensures the alias is unique.
++   *
++   * We limit the length of an alias string (to a default maximum of 60
++   * characters), incorporating a hash of the original value for uniqueness
++   * if that value was too long to use verbatim.
++   *
++   * This prevents subsequent truncation from creating duplicate aliases
++   * in cases where two or more aliases are identical up to the point of
++   * truncation.  This happens particularly easily with relationships,
++   * where alias names may be built from several concatenated identifiers.
++   *
++   * @param mixed $alias
++   *   The alias to sanitize.
++   * @param int $maxlength
++   *   The maximum number of characters permitted in an alias. Defaults to 60.
++   *
++   * @return mixed
++   *   The sanitized alias when the alias is a string. Otherwise, the unmodified
++   *   alias.
++   */
++  public static function sanitizeAlias(mixed $alias, int $maxlength = 60): mixed {
++    if (!is_string($alias)) {
++      return $alias;
++    }
++    if (strlen($alias) > $maxlength) {
++      $checksum = 'c' . crc32($alias);
++      $pos = strlen($checksum) + strlen($alias) - $maxlength;
++      $alias = $checksum . substr($alias, $pos);
++    }
++    return strtolower(substr($alias, 0, $maxlength));
++  }
++
+   /**
+    * Marks a relationship based table as included.
+    */
+@@ -585,6 +623,7 @@ protected function markTable($table, $relationship, $alias) {
+           $alias = $relationship . '__';
+         }
+         $alias .= $table;
++        $alias = $this->sanitizeAlias($alias);
+       }
+       $this->tables[$relationship][$table] = [
+         'count' => 1,
+@@ -831,6 +870,10 @@ public function getTableInfo($table) {
+       if (!empty($this->tableQueue[$alias])) {
+         return $this->tableQueue[$alias];
+       }
++      $alias = $this->sanitizeAlias($alias);
++      if (!empty($this->tableQueue[$alias])) {
++        return $this->tableQueue[$alias];
++      }
+     }
+   }
+ 
+@@ -879,12 +922,7 @@ public function addField($table, $field, $alias = '', $params = []) {
+     // Make sure an alias is assigned.
+     $alias = $alias ?: $field;
+ 
+-    // PostgreSQL truncates aliases to 63 characters:
+-    // https://www.drupal.org/node/571548.
+-
+-    // We limit the length of the original alias up to 60 characters
+-    // to get a unique alias later if its have duplicates.
+-    $alias = strtolower(substr($alias, 0, 60));
++    $alias = $this->sanitizeAlias($alias);
+ 
+     // Create a field info array.
+     $field_info = [
+@@ -899,7 +937,8 @@ public function addField($table, $field, $alias = '', $params = []) {
+     $base = $alias;
+     $counter = 0;
+     while (!empty($this->fields[$alias]) && $this->fields[$alias] != $field_info) {
+-      $field_info['alias'] = $alias = $base . '_' . ++$counter;
++      $alias = $this->sanitizeAlias($base . '_' . ++$counter);
++      $field_info['alias'] = $alias;
+     }
+ 
+     if (empty($this->fields[$alias])) {
