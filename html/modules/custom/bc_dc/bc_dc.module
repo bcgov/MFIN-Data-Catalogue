@@ -566,9 +566,9 @@ function bc_dc_form_webform_submission_create_data_set_form_alter(array &$form, 
     $form['elements']['field_primary_responsibility_org']['#access'] = FALSE;
   }
 
-  // If there are no options, hide the form and display a message. Otherwise,
-  // hide the message.
-  if ($count === 0) {
+  // If there are no options (and this is not an admin user), hide the form and display a message. 
+  // Otherwise, hide the message and display the form.
+  if ($count === 0 && !$user->hasPermission('edit own field_primary_responsibility_org')) {
     foreach (array_keys($form['elements']) as $key) {
       if ($key !== 'empty_user_field_organization_message') {
         $form['elements'][$key]['#access'] = FALSE;
