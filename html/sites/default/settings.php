@@ -1,7 +1,5 @@
 <?php
 
-// phpcs:ignoreFile
-
 /**
  * @file
  * Drupal common configuration file.
@@ -65,6 +63,22 @@ $settings['hash_salt'] = getenv('HASH_SALT') ?: 'raNdoM ***fallback*** $string$,
  * TRUE back to a FALSE!
  */
 $settings['update_free_access'] = FALSE;
+
+
+/**
+ * Private file path:
+ *
+ * A local file system path where private files will be stored. This directory
+ * must be absolute, outside of the Drupal installation directory and not
+ * accessible over the web.
+ *
+ * Note: Caches need to be cleared when this value is changed to make the
+ * private:// stream wrapper available to the system.
+ *
+ * See https://www.drupal.org/documentation/modules/file for more information
+ * about securing private files.
+ */
+$settings['file_private_path'] = DRUPAL_ROOT . "/../private";
 
 
 /**
@@ -132,6 +146,28 @@ $keycloak_settings['userinfo_endpoint']      = $sso_endpoint_baseurl_extended . 
 $keycloak_settings['end_session_endpoint']   = $sso_endpoint_baseurl_extended . '/logout';
 
 $keycloak_settings['scopes'] = ['openid', 'profile', 'email'];
+
+
+/**
+* Shield module configuration (Custom).
+*
+* This is used to configure the credentials for Shield module for basic HTTP
+* authentication.
+*/
+$config['shield.settings']['credentials']['shield'] = [
+  'user' => getenv('SHIELD_USER'),
+  'pass' => getenv('SHIELD_PASS'),
+];
+
+
+/**
+* File settings (Custom).
+*
+* This will remove orphaned (deleted) files from the file system on the
+* next cron run.
+*/
+$config['file.settings']['make_unused_managed_files_temporary'] = TRUE;
+$config['system.file']['temporary_maximum_age'] = 1;
 
 
 /**

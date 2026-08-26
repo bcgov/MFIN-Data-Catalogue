@@ -1,0 +1,46 @@
+# Docker Compose (v2)
+
+version: "2"
+services:
+  web:
+    extends:
+      file: docker-compose.base.yml
+      service: web
+    build:
+      context: docker/images/appsvc
+      args:
+        - BASE_IMAGE=${BASE_IMAGE}
+        - http_proxy=${HTTP_PROXY:-}
+        - https_proxy=${HTTP_PROXY:-}
+        - HTTP_PROXY=${HTTP_PROXY:-}
+        - HTTPS_PROXY=${HTTP_PROXY:-}
+        - NO_PROXY=hub,${NO_PROXY:-}
+        - no_proxy=hub,${NO_PROXY:-}
+    environment:
+      - http_proxy=${HTTP_PROXY:-}
+      - https_proxy=${HTTP_PROXY:-}
+      - HTTP_PROXY=${HTTP_PROXY:-}
+      - HTTPS_PROXY=${HTTP_PROXY:-}
+      - NO_PROXY=${NO_PROXY:-}
+      - no_proxy=${NO_PROXY:-}
+      - DB_TYPE=${DB_TYPE:-mysql}
+      - DB_PORT=${DB_PORT:-3306}
+      - DB_NAME=${DB_NAME:-wxt}
+    env_file: .env
+    ports:
+      - "80:80"
+    container_name: ${DOCKER_NAME}_appsvc
+    volumes:
+      - ./docker/conf/drupal/settings.php:/var/www/html/sites/default/settings.php:ro
+      - files_data:/var/www/html/sites/default/files
+      - files_private_data:/var/www/files_private
+
+  db:
+    extends:
+      file: docker-compose.base.yml
+      service: ${DB_TYPE:-mysql}
+
+volumes:
+  db_data:
+  files_data:
+  files_private_data:
