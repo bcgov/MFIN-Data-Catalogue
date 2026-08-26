@@ -161,7 +161,7 @@ $settings['skip_permissions_hardening'] = TRUE;
  * See https://www.drupal.org/documentation/modules/file for more information
  * about securing private files.
  */
-$settings['file_private_path'] = '../private';
+$settings['file_private_path'] = DRUPAL_ROOT . "/../private";
 
 
 /**
