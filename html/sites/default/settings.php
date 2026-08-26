@@ -39,16 +39,7 @@
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-// NEWBB: Generate a random string, and store it in Vault.
-// Here is a good way, from a bash shell: 
-//   cat | sha256sum
-//     Type a bunch of crazy human-generated random text here aSKJsldijl23ioa
-//     laoiwe0jlwr8qnc82y3rcyniouyniuqw vifuy 87fbq82u34nd18637dqw.
-//     Ctrl-D
-//   It gives you a nice, unguessable, 64-char hexidecimal hash.
-// Store it in Vault, inside the "Drupal" secret, with key 'HASH_SALT'.
-// Then you can delete this newbb comment-block.
-$settings['hash_salt'] = getenv('HASH_SALT') ?: 'raNdoM ***fallback*** $string$, just in case. (Store the real one in Vault, not here.)';
+$settings['hash_salt'] = getenv('HASH_SALT') ?: 'Fallback string, just in case. (Store the real one in Vault, not here.)';
 
 
 /**
