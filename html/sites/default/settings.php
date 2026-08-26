@@ -132,6 +132,28 @@ $keycloak_settings['end_session_endpoint']   = $sso_endpoint_baseurl_extended . 
 
 
 /**
+* Shield module configuration (Custom).
+*
+* This is used to configure the credentials for Shield module for basic HTTP
+* authentication.
+*/
+$config['shield.settings']['credentials']['shield'] = [
+  'user' => getenv('SHIELD_USER'),
+  'pass' => getenv('SHIELD_PASS'),
+];
+
+
+/**
+* File settings (Custom).
+*
+* This will remove orphaned (deleted) files from the file system on the
+* next cron run.
+*/
+$config['file.settings']['make_unused_managed_files_temporary'] = TRUE;
+$config['system.file']['temporary_maximum_age'] = 1;
+
+
+/**
  * Load more configuration, when available.
  *
  * Keep this code block at the end of this file to take full effect.

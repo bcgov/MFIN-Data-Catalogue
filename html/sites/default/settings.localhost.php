@@ -176,26 +176,3 @@ $config['config_split.config_split.dev']['status'] = TRUE;
 $config['environment_indicator.indicator']['name']     = 'localhost';
 $config['environment_indicator.indicator']['bg_color'] = 'hsl(220, 100%, 67%)';
 $config['environment_indicator.indicator']['fg_color'] = '#222330';
-
-
-/**
- * Shield module configuration (Custom).
- *
- * This is used to configure the credentials for Shield module for basic HTTP
- * authentication.
- */
-$config['shield.settings']['credentials']['shield'] = [
-  'user' => getenv('SHIELD_USER'),
-  'pass' => getenv('SHIELD_PASS'),
-];
-
-
-/**
- * File settings (Custom).
- *
- * This will remove orphaned (deleted) files from the file system on the
- * next cron run.
- */
-$config['file.settings']['make_unused_managed_files_temporary'] = TRUE;
-$config['system.file']['temporary_maximum_age'] = 1;
-
