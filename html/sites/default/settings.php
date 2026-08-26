@@ -1,7 +1,5 @@
 <?php
 
-// phpcs:ignoreFile
-
 /**
  * @file
  * Drupal common configuration file.
