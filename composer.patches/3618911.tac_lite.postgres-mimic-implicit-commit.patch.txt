@@ -1,0 +1,75 @@
+diff --git a/tac_lite.module b/tac_lite.module
+index 534abf8..bafb50e 100644
+--- a/tac_lite.module
++++ b/tac_lite.module
+@@ -176,17 +176,31 @@ function tac_lite_node_grants(AccountInterface $account, $op) {
+  * Users are granted access to terms either because of who they are,
+  * or because of the roles they have.
+  */
+-function _tac_lite_user_tids($account, $scheme) {
++function _tac_lite_user_tids($account, $scheme, $config = NULL) {
++  $uid = $account ? $account->id() : 0;
++
++  // Pure static in-memory caching.
++  // Do NOT use \Drupal::cache() here as DB cache lookups inside query alter 
++  // hooks trigger PostgreSQL savepoint collisions (mimic_implicit_commit).
++  $static_cache = &drupal_static(__FUNCTION__, []);
++  if (isset($static_cache[$uid][$scheme])) {
++    return $static_cache[$uid][$scheme];
++  }
++
++  // Validate $config to ensure it is an ImmutableConfig object.
++  if (!($config instanceof \Drupal\Core\Config\ImmutableConfig)) {
++    $config = \Drupal::config('tac_lite.settings');
++  }
++
+   // Grant id 0 is reserved for nodes which were not given a grant id
+   // when they were created. By adding 0 to the grant id, we let the
+   // user view those nodes.
+   $grants = [0];
+-  $config = \Drupal::config('tac_lite.settings');
+   $storage_type = $config->get('tac_lite_storage_type') ?: 'tid';
+   $storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+ 
+   // Gather all raw identifiers from User Data and Role Defaults.
+-  $data = \Drupal::service('user.data')->get('tac_lite', $account->id(), 'tac_lite_scheme_' . $scheme) ?: [];
++  $data = $uid ? (\Drupal::service('user.data')->get('tac_lite', $uid, 'tac_lite_scheme_' . $scheme) ?: []) : [];
+   $defaults = $config->get('tac_lite_grants_scheme_' . $scheme) ?: [];
+   $roles = $account->getRoles();
+ 
+@@ -222,9 +236,35 @@ function _tac_lite_user_tids($account, $scheme) {
+   // user settings, we may have a bogus entry with vid set
+   // to ''. Here we make sure not to return that.
+   unset($grants['']);
++
++  $static_cache[$uid][$scheme] = $grants;
+   return $grants;
+ }
+ 
++/**
++ * Implements hook_entity_presave().
++ *
++ * Pre-warms TAC Lite user grants in memory prior to entity saves.
++ * Prevents UserData DB queries inside hook_node_grants() during PostgreSQL
++ * query alters (e.g. Pathauto -> Book tokens during JSON:API entity_insert).
++ */
++function tac_lite_entity_presave(\Drupal\Core\Entity\EntityInterface $entity) {
++  if ($entity->getEntityTypeId() === 'node') {
++    $schemes = \Drupal::config('tac_lite.settings')->get('tac_lite_schemes') ?: 1;
++
++    $accounts = [\Drupal::currentUser()];
++    if (method_exists($entity, 'getOwner') && ($owner = $entity->getOwner())) {
++      $accounts[] = $owner;
++    }
++
++    foreach ($accounts as $account) {
++      for ($i = 1; $i <= $schemes; $i++) {
++        _tac_lite_user_tids($account, $i);
++      }
++    }
++  }
++}
++
+ /**
+  * Implements hook_query_TAG_alter().
+  */
