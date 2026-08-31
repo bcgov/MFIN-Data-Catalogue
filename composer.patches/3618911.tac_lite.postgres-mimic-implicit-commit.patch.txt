@@ -1,5 +1,5 @@
 diff --git a/tac_lite.module b/tac_lite.module
-index 534abf8..bafb50e 100644
+index 534abf8..d00aa8d 100644
 --- a/tac_lite.module
 +++ b/tac_lite.module
 @@ -176,17 +176,31 @@ function tac_lite_node_grants(AccountInterface $account, $op) {
@@ -37,7 +37,7 @@ index 534abf8..bafb50e 100644
    $defaults = $config->get('tac_lite_grants_scheme_' . $scheme) ?: [];
    $roles = $account->getRoles();
  
-@@ -222,9 +236,35 @@ function _tac_lite_user_tids($account, $scheme) {
+@@ -222,9 +236,48 @@ function _tac_lite_user_tids($account, $scheme) {
    // user settings, we may have a bogus entry with vid set
    // to ''. Here we make sure not to return that.
    unset($grants['']);
@@ -67,6 +67,19 @@ index 534abf8..bafb50e 100644
 +        _tac_lite_user_tids($account, $i);
 +      }
 +    }
++  }
++}
++
++/**
++ * Implements hook_query_alter().
++ *
++ * Prevents PostgreSQL mimic_implicit_commit savepoint collisions during
++ * JSON:API/REST entity creation when nested queries (e.g. Book tokens ->
++ * NodeGrantDatabaseStorage::checkAll) execute inside active transaction alters.
++ */
++function tac_lite_query_alter(\Drupal\Core\Database\Query\AlterableInterface $query) {
++  if (\Drupal::database()->inTransaction() && $query->hasTag('node_access')) {
++    $query->addTag('bypass_node_access');
 +  }
 +}
 +
