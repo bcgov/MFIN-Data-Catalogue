@@ -1,5 +1,5 @@
 diff --git a/tac_lite.module b/tac_lite.module
-index 534abf8..d00aa8d 100644
+index 534abf8..7f4a24d 100644
 --- a/tac_lite.module
 +++ b/tac_lite.module
 @@ -176,17 +176,31 @@ function tac_lite_node_grants(AccountInterface $account, $op) {
@@ -37,7 +37,7 @@ index 534abf8..d00aa8d 100644
    $defaults = $config->get('tac_lite_grants_scheme_' . $scheme) ?: [];
    $roles = $account->getRoles();
  
-@@ -222,9 +236,48 @@ function _tac_lite_user_tids($account, $scheme) {
+@@ -222,9 +236,58 @@ function _tac_lite_user_tids($account, $scheme) {
    // user settings, we may have a bogus entry with vid set
    // to ''. Here we make sure not to return that.
    unset($grants['']);
@@ -50,8 +50,6 @@ index 534abf8..d00aa8d 100644
 + * Implements hook_entity_presave().
 + *
 + * Pre-warms TAC Lite user grants in memory prior to entity saves.
-+ * Prevents UserData DB queries inside hook_node_grants() during PostgreSQL
-+ * query alters (e.g. Pathauto -> Book tokens during JSON:API entity_insert).
 + */
 +function tac_lite_entity_presave(\Drupal\Core\Entity\EntityInterface $entity) {
 +  if ($entity->getEntityTypeId() === 'node') {
@@ -71,14 +69,26 @@ index 534abf8..d00aa8d 100644
 +}
 +
 +/**
-+ * Implements hook_query_alter().
++ * Implements hook_module_implements_alter().
++ *
++ * Ensures tac_lite runs before node module for query_node_access_alter.
++ */
++function tac_lite_module_implements_alter(&$implementations, $hook) {
++  if ($hook === 'query_node_access_alter' && isset($implementations['tac_lite'])) {
++    $group = $implementations['tac_lite'];
++    unset($implementations['tac_lite']);
++    $implementations = ['tac_lite' => $group] + $implementations;
++  }
++}
++
++/**
++ * Implements hook_query_TAG_alter() for node_access.
 + *
 + * Prevents PostgreSQL mimic_implicit_commit savepoint collisions during
-+ * JSON:API/REST entity creation when nested queries (e.g. Book tokens ->
-+ * NodeGrantDatabaseStorage::checkAll) execute inside active transaction alters.
++ * JSON:API/REST entity creation when nested queries execute inside open transactions.
 + */
-+function tac_lite_query_alter(\Drupal\Core\Database\Query\AlterableInterface $query) {
-+  if (\Drupal::database()->inTransaction() && $query->hasTag('node_access')) {
++function tac_lite_query_node_access_alter(\Drupal\Core\Database\Query\AlterableInterface $query) {
++  if (\Drupal::database()->inTransaction()) {
 +    $query->addTag('bypass_node_access');
 +  }
 +}
