@@ -323,9 +323,6 @@
             "drupal/page_manager": {
                 "2756613 - Avoid harcoded prefex and suffix in block region": "https://www.drupal.org/files/issues/page_manager-avoid_prefix_suffix-2756613-8.patch"
             },
-            "drupal/openid_connect": {
-                "3497559 - User role cleared after log in": "https://www.drupal.org/files/issues/2026-03-18/openid_connect_issue_3497559_3.0.0-alpha8.patch"
-            },
             "drupal/panels": {
                 "2820617 - Avoid hard-coded prefix and suffix in block region": "composer.patches/2820617.panels.mr12-as-at-2024-01-10.patch.txt",
                 "2910704 - IPE toggle preview not working in IE": "https://www.drupal.org/files/issues/panels-ipe-card-flip-ie-error-2910704.diff"
