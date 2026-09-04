@@ -18,7 +18,7 @@
     "drupal/core-composer-scaffold": "~11.3.0",
     "drupal/core-recommended": "~11.3.0",
     "drush/drush": "^13",
-    "drupal/openid_connect": "^3.0@alpha"
+    "drupal/openid_connect": ">=3.0.0-alpha9 <4.0.0"
 
   },
   "extra": {
@@ -31,9 +31,9 @@
             "drupal/core": {
                 "571548 - Identifiers longer than 63 characters are truncated, causing Views to break on Postgres": "composer.patches/571548.core.mr6379-as-at-2026-04-17.patch.txt"
             },
-      "drupal/openid_connect": {
-        "3497559 - User role cleared after log in": "https://www.drupal.org/files/issues/2026-03-18/openid_connect_issue_3497559_3.0.0-alpha8.patch"
-      }
+            "drupal/openid_connect": {
+                "BCBB-120 - Default FALSE for openid_connect 'Force reset role mappings'": "composer.patches/BCBB-120.openid_connect.patch.txt"
+            },
     }
   }
 }

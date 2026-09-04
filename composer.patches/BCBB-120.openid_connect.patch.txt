@@ -1,0 +1,37 @@
+diff --git a/config/install/openid_connect.settings.yml b/config/install/openid_connect.settings.yml
+index 316be4f..ba9b425 100644
+--- a/config/install/openid_connect.settings.yml
++++ b/config/install/openid_connect.settings.yml
+@@ -8,5 +8,5 @@ redirect_logout: ''
+ userinfo_mappings:
+   timezone: zoneinfo
+ role_mappings: {}
+-force_reset_role_mappings: true
++force_reset_role_mappings: false
+ autostart_login: false
+diff --git a/src/Form/OpenIDConnectSettingsForm.php b/src/Form/OpenIDConnectSettingsForm.php
+index 79a1de4..25d047a 100644
+--- a/src/Form/OpenIDConnectSettingsForm.php
++++ b/src/Form/OpenIDConnectSettingsForm.php
+@@ -231,7 +231,7 @@ class OpenIDConnectSettingsForm extends ConfigFormBase {
+     $form['force_reset_role_mappings'] = [
+       '#title' => $this->t('Force reset role mappings'),
+       '#type' => 'checkbox',
+-      '#default_value' => $settings->get('force_reset_role_mappings') ?? TRUE,
++      '#default_value' => $settings->get('force_reset_role_mappings') ?? FALSE,
+       '#description' => $this->t('Enable this if you would like roles to be reset on every login. When this is enabled, upon login, if the groups returned by the provider are empty and any role mappings are defined, then all Drupal roles will be cleared. This setting has a default of enabled to maintain backward compatibility.'),
+     ];
+ 
+diff --git a/src/OpenIDConnect.php b/src/OpenIDConnect.php
+index aa20d87..bc2eb94 100644
+--- a/src/OpenIDConnect.php
++++ b/src/OpenIDConnect.php
+@@ -794,7 +794,7 @@ class OpenIDConnect {
+     // @see https://www.drupal.org/project/openid_connect/issues/3497559
+     $mapping_data_available = !empty($role_mappings) && !empty($user_groups);
+     // Get the reset role mapping configuration. Default to TRUE for BC.
+-    $force_reset_role_mapping = $settings->get('force_reset_role_mappings') ?? TRUE;
++    $force_reset_role_mapping = $settings->get('force_reset_role_mappings') ?? FALSE;
+     if ($force_reset_role_mapping || $mapping_data_available) {
+       $this->setAccountRoles($account, $role_mappings, $user_groups);
+     }
