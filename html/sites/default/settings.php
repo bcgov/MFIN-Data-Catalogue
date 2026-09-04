@@ -84,7 +84,7 @@ $settings['file_private_path'] = DRUPAL_ROOT . "/../private";
 /**
  * Load services definition file.
  */
-$settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.yml';
+$settings['container_yamls'][] = DRUPAL_ROOT . '/sites/default/services.yml';
 
 
 /**
@@ -179,12 +179,12 @@ if (is_file(__DIR__ . '/settings.ddev.php') && getenv('IS_DDEV_PROJECT') == 'tru
   include __DIR__ . '/settings.ddev.php';
 }
 
-// These are additions for local development, and IS tracked in the repo.
+// Additions for localhost development (normally using DDEV). This file IS tracked in the repo.
 if (is_file(__DIR__ . '/settings.localhost.php')) {
   include __DIR__ . '/settings.localhost.php';
 }
 
-// These are additions for OpenShift deployments, and is tracked in the GITOPS repo.
+// Additions for OpenShift deployments. This file is tracked in the GITOPS repo.
 if (is_file(__DIR__ . '/settings.openshift.php')) {
   include __DIR__ . '/settings.openshift.php';
 }
