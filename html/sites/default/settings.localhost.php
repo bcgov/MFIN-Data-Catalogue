@@ -149,6 +149,11 @@ $settings['skip_permissions_hardening'] = TRUE;
 
 
 /**
+ * Disable Shield module during local development. (It is not needed locally.)
+ */
+$config['shield.settings']['shield_enable'] = FALSE;
+
+/**
  * Configuration Split module
  */
 $config['config_split.config_split.dev']['status'] = TRUE;
