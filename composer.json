@@ -289,7 +289,8 @@
         "composer-exit-on-patch-failure": true,
         "patches": {
             "bcgov/gdx_analytics_drupal_snowplow": {
-                "GDX Snowplow, issue 30 - Fix PHP warnings": "composer.patches/GDX-Analytics-Drupal-Snowplow.pullrequest_31.patch.txt"
+                "GDX Snowplow, issue 30 - Fix PHP warnings": "composer.patches/GDX-Analytics-Drupal-Snowplow.pullrequest_31.patch.txt",
+                "GDX Snowplow, issue 32 - Allow overrides to config from settings.php": "composer.patches/GDX-Analytics-Drupal-Snowplow.pullrequest_33.patch.txt"
             },
             "drupal/charts": {
                 "3442641 - Chart segments are all the same color in Views pie/donut charts": "https://www.drupal.org/files/issues/2024-04-22/charts-pie_donut_colors-3442641-4.patch",

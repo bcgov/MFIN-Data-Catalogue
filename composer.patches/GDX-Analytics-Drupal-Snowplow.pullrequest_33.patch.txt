@@ -1,0 +1,24 @@
+diff --git a/gdx_analytics_drupal_snowplow.module b/gdx_analytics_drupal_snowplow.module
+index 65e97b8..d9868b6 100644
+--- a/gdx_analytics_drupal_snowplow.module
++++ b/gdx_analytics_drupal_snowplow.module
+@@ -72,7 +72,7 @@ function handleNonAdminRoutes(&$page, $logger) {
+   try {
+ 
+     // Get configuration settings.
+-    $settings = \Drupal::config(GDX_ANALYTICS_CONFIG_NAME)->getRawData();
++    $settings = \Drupal::config(GDX_ANALYTICS_CONFIG_NAME)->get();
+ 
+     // Set collector, script uri, app_id, snowplow_version and search path.
+     $page['#attached']['drupalSettings'] = [
+@@ -160,9 +160,7 @@ function isConfigurationIncomplete($logger, $messenger) {
+   try {
+ 
+     // Get configuration settings.
+-    $config = \Drupal::config(GDX_ANALYTICS_CONFIG_NAME);
+-    // Retrieve raw data.
+-    $settings = $config->getRawData();
++    $settings = \Drupal::config(GDX_ANALYTICS_CONFIG_NAME)->get();
+ 
+     // Check if any setting is empty.
+     return in_array('', $settings);
