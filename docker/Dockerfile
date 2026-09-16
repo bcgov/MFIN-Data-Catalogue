@@ -124,8 +124,6 @@ COPY composer.json composer.lock /var/www/
 # Copy possible custom modules and custom themes
 COPY html/modules/custom/ /var/www/html/modules/custom/
 COPY html/themes/custom/ /var/www/html/themes/custom/
-# Copy any "path repo" modules into place.
-COPY html/MONITOR_this_dir/ /var/www/html/MONITOR_this_dir/
 # Copy possible config/sync and other config
 COPY config/ /var/www/config/
 
@@ -146,6 +144,11 @@ RUN composer install --no-dev \
                      --no-interaction
 RUN rm -rf /root/.ssh && \
     apk del openssh-client
+
+# We are sharing the main settings.php between the Drupal repo and the Helm chart, 
+# so that it can be updated in one place. Platform-specific settings are set in
+# settings.localhost.php, for DDEV, and settings.openshift.php in the Helm chart.
+COPY html/sites/default/settings.php /var/www/html/sites/default/settings.php
 
 # Permissions
 WORKDIR /var/www/html

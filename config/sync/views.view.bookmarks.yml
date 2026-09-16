@@ -27,7 +27,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'My bookmarks'
+      title: 'My watch list'
       fields:
         title:
           id: title
@@ -425,7 +425,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: 'You currently do not have any metadata records bookmarked.'
+            value: 'You currently do not have any metadata records in your watch list.'
             format: full_html
           tokenize: false
       sorts:
@@ -539,11 +539,13 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
+        - user
         - 'user.node_grants:view'
         - user.roles
       tags:
         - 'config:field.storage.flagging.field_last_viewed_date'
         - 'config:field.storage.node.field_modified_date'
+        - flag.flag.bookmark
   block_1:
     id: block_1
     display_title: 'Top bookmarked'
@@ -627,7 +629,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '| <span class="icon-bi-bookmarks-fill-after">{{ count }}</span>'
+            text: '| <span class="icon-bi-eye-fill-after">{{ count }}</span>'
             make_link: false
             path: ''
             absolute: false
@@ -688,7 +690,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: 'There are currently no bookmarks for this record type.'
+            value: 'There are currently no records of this type on your watch list.'
             format: basic_html
           tokenize: true
       sorts:
@@ -843,7 +845,8 @@ display:
         - url
         - 'user.node_grants:view'
         - user.roles
-      tags: {  }
+      tags:
+        - flag.flag.bookmark
   dashboard_bookmarks:
     id: dashboard_bookmarks
     display_title: 'User bookmarked'
@@ -1163,9 +1166,9 @@ display:
           exclude: true
           alter:
             alter_text: true
-            text: '<div class="card-footer"><span class="icon-bi-arrow-right-short-after">All bookmarks</span></div>'
+            text: '<div class="card-footer"><span class="icon-bi-arrow-right-short-after">All watched</span></div>'
             make_link: true
-            path: '/user/{{ uid }}/bookmarks'
+            path: '/user/{{ uid }}/watchlist'
             absolute: false
             external: false
             replace_spaces: false
@@ -1224,7 +1227,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: '<div class="m-4">You currently do not have any metadata records bookmarked.</div>'
+            value: '<div class="m-4">You currently do not have any metadata records in your watch list.</div>'
             format: full_html
           tokenize: false
       filters:
@@ -1276,11 +1279,13 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - user
         - 'user.node_grants:view'
         - user.roles
       tags:
         - 'config:field.storage.flagging.field_last_viewed_date'
         - 'config:field.storage.node.field_modified_date'
+        - flag.flag.bookmark
   page_1:
     id: page_1
     display_title: 'User bookmarked page'
@@ -1600,9 +1605,9 @@ display:
           exclude: true
           alter:
             alter_text: true
-            text: 'All bookmarks demo'
+            text: 'All watched demo'
             make_link: true
-            path: '/user/{{ uid }}/bookmarks'
+            path: '/user/{{ uid }}/watchlist'
             absolute: false
             external: false
             replace_spaces: false
@@ -1679,10 +1684,10 @@ display:
       css_class: 'dashboard-page dashboard-page-bookmarks'
       display_description: ''
       display_extenders: {  }
-      path: user/%user/bookmarks
+      path: user/%user/watchlist
       menu:
         type: tab
-        title: Bookmarks
+        title: Watchlist
         description: ''
         weight: -5
         expanded: false
@@ -1696,8 +1701,10 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user
         - 'user.node_grants:view'
         - user.roles
       tags:
         - 'config:field.storage.flagging.field_last_viewed_date'
         - 'config:field.storage.node.field_modified_date'
+        - flag.flag.bookmark

@@ -1,0 +1,72 @@
+diff --git a/core/modules/pgsql/src/Driver/Database/pgsql/Connection.php b/core/modules/pgsql/src/Driver/Database/pgsql/Connection.php
+index f28897768de0260d0a44964c47de166d7c85f62e..70b6aa779b7f665be487edfe65ee5f92ecee3832 100644
+--- a/core/modules/pgsql/src/Driver/Database/pgsql/Connection.php
++++ b/core/modules/pgsql/src/Driver/Database/pgsql/Connection.php
+@@ -394,7 +394,7 @@ public function getFullQualifiedTableName($table) {
+    */
+   public function addSavepoint($savepoint_name = 'mimic_implicit_commit') {
+     @trigger_error(__METHOD__ . '() is deprecated in drupal:11.4.0 and is removed from drupal:13.0.0. Use TransactionManager to start a transaction then call ::commitOrRelease() or ::rollback() on it. See https://www.drupal.org/node/3524461', E_USER_DEPRECATED);
+-    if ($this->inTransaction()) {
++    if ($this->inTransaction() && !$this->transactionManager()->has($savepoint_name)) {
+       $this->savepoints[$savepoint_name] = $this->startTransaction($savepoint_name);
+     }
+   }
+diff --git a/core/modules/pgsql/tests/src/Unit/ConnectionTest.php b/core/modules/pgsql/tests/src/Unit/ConnectionTest.php
+new file mode 100644
+index 0000000000000000000000000000000000000000..76131607eefdfefb052a3b94db42987d38dd3f51
+--- /dev/null
++++ b/core/modules/pgsql/tests/src/Unit/ConnectionTest.php
+@@ -0,0 +1,52 @@
++<?php
++
++declare(strict_types=1);
++
++namespace Drupal\Tests\pgsql\Unit;
++
++use Drupal\pgsql\Driver\Database\pgsql\Connection;
++use Drupal\pgsql\Driver\Database\pgsql\TransactionManager;
++use Drupal\Tests\UnitTestCase;
++use PHPUnit\Framework\Attributes\Group;
++
++/**
++ * Test pgsql connections.
++ */
++#[Group('Database')]
++class ConnectionTest extends UnitTestCase {
++
++  /**
++   * Tests that no exception is thrown if transaction already has savepoint.
++   */
++  public function testAddSavepoint(): void {
++    $transactionManager = $this->createPartialMock(TransactionManager::class, ['has']);
++
++    $transactionManager->expects($this->once())
++      ->method('has')
++      ->willReturn(TRUE);
++
++    $connection = $this->createPartialMock(
++      Connection::class,
++      [
++        'inTransaction',
++        'transactionManager',
++      ]
++    );
++
++    $connection->expects($this->once())
++      ->method('inTransaction')
++      ->willReturn(TRUE);
++
++    $connection->expects($this->once())
++      ->method('transactionManager')
++      ->willReturn($transactionManager);
++
++    try {
++      $connection->addSavepoint();
++    }
++    catch (\Exception) {
++      $this->fail('There should be no exception when calling Connection::addSavepoint().');
++    }
++  }
++
++}
+

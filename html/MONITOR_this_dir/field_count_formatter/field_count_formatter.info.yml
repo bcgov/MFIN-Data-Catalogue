@@ -1,5 +1,0 @@
-name: Field Count Formatter Dan
-type: module
-description: Formatter for multiple value field to simply show how many values have been entered
-package: Other
-core_version_requirement: ^9 || ^10 || ^11

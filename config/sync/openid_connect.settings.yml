@@ -12,4 +12,5 @@ userinfo_mappings:
   field_first_name: given_name
   field_last_name: family_name
 role_mappings: {  }
+force_reset_role_mappings: false
 autostart_login: true

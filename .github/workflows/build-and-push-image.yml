@@ -51,7 +51,7 @@ jobs:
 
     - name: Scan PHP-FPM image for vulnerabilities
       if: ${{ github.ref_type == 'tag' && endsWith(env.DRUPAL_REPO_TAG_TO_DEPLOY, '-t') }}
-      uses: aquasecurity/trivy-action@v0.35.0
+      uses: aquasecurity/trivy-action@v0.36.0
       with:
         image-ref: '${{ vars.CONTAINER_IMAGE_NAME }}-web:latest'
         format: 'table'
@@ -62,7 +62,7 @@ jobs:
 
     - name: Scan Nginx image for vulnerabilities
       if: ${{ github.ref_type == 'tag' && endsWith(env.DRUPAL_REPO_TAG_TO_DEPLOY, '-t') }}
-      uses: aquasecurity/trivy-action@v0.35.0
+      uses: aquasecurity/trivy-action@v0.36.0
       with:
         image-ref: '${{ vars.CONTAINER_IMAGE_NAME }}-nginx:latest'
         format: 'table'

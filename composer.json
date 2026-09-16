@@ -6,13 +6,6 @@
     "homepage": "https://github.com/bcgov-c/MFIN-Data-Catalogue",
     "repositories": [
         {
-          "type": "path",
-          "url": "html/MONITOR_this_dir/field_count_formatter",
-          "options": {
-            "symlink": true
-          }
-        },
-        {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         },
@@ -117,8 +110,8 @@
         "drupal/config_filter": "^2.4",
         "drupal/config_ignore": "^3.1",
         "drupal/config_split": "^2.0",
-        "drupal/core-composer-scaffold": "~11.3.0",
-        "drupal/core-recommended": "~11.3.0",
+        "drupal/core-composer-scaffold": "~11.4.0",
+        "drupal/core-recommended": "~11.4.0",
         "drupal/date_popup": "^2.0",
         "drupal/devel": "^5.0",
         "drupal/devel_php": "^1.5",
@@ -128,7 +121,7 @@
         "drupal/entity_usage": "^2.0@beta",
         "drupal/environment_indicator": "^4.0",
         "drupal/facets": "^2.0",
-        "drupal/field_count_formatter": "@dev",
+        "drupal/field_count_formatter": "^3.1",
         "drupal/field_group": "^4.0",
         "drupal/field_label": "^1.5",
         "drupal/field_permissions": "^1.2",
@@ -144,7 +137,6 @@
         "drupal/menu_link_attributes": "^1.6",
         "drupal/message_gcnotify": "^1.0.1",
         "drupal/metatag": "^2.0",
-        "drupal/monolog": "^3.0",
         "drupal/openid_connect": "^3.0@alpha",
         "drupal/page_manager": "^4.0",
         "drupal/panels": "^4.7",
@@ -211,12 +203,13 @@
         },
         "allow-plugins": {
             "composer/installers": true,
-            "drupal/core-composer-scaffold": true,
-            "phpstan/extension-installer": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true,
             "cweagans/composer-patches": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "drupal/core-composer-scaffold": true,
             "oomphinc/composer-installers-extender": true,
             "php-http/discovery": true,
+            "phpstan/extension-installer": true,
+            "symfony/runtime": true,
             "tbachert/spi": true
         },
         "sort-packages": true
@@ -296,7 +289,8 @@
         "composer-exit-on-patch-failure": true,
         "patches": {
             "bcgov/gdx_analytics_drupal_snowplow": {
-                "GDX Snowplow, issue 30 - Fix PHP warnings": "composer.patches/GDX-Analytics-Drupal-Snowplow.pullrequest_31.patch.txt"
+                "GDX Snowplow, issue 30 - Fix PHP warnings": "composer.patches/GDX-Analytics-Drupal-Snowplow.pullrequest_31.patch.txt",
+                "GDX Snowplow, issue 32 - Allow overrides to config from settings.php": "composer.patches/GDX-Analytics-Drupal-Snowplow.pullrequest_33.patch.txt"
             },
             "drupal/charts": {
                 "3442641 - Chart segments are all the same color in Views pie/donut charts": "https://www.drupal.org/files/issues/2024-04-22/charts-pie_donut_colors-3442641-4.patch",
@@ -307,12 +301,12 @@
             },
             "drupal/core": {
                 "571548 - Identifiers longer than 63 characters are truncated, causing Views to break on Postgres": "composer.patches/571548.core.mr6379-as-at-2026-04-22.patch.txt",
-		        "2280479 - Add setting to EntityReferenceSelection plugins to prevent references to referencing entity": "https://www.drupal.org/files/issues/2024-12-11/drupal-self_reference_d11-2280479-106.patch",
+		            "2280479 - Add setting to EntityReferenceSelection plugins to prevent references to referencing entity": "https://www.drupal.org/files/issues/2024-12-11/drupal-self_reference_d11-2280479-106.patch",
                 "2821962 - Views exposed filters don't combine with contextual filters when using exposed form in block": "https://www.drupal.org/files/issues/2024-03-19/drupal-exposed-contextual-filters-2821962-65.patch",
                 "3079534 - Views JOIN condition fails in PostgreSQL when comparing entity identifiers of different datatypes": "https://www.drupal.org/files/issues/2024-01-17/drupal-views_postgres_join_no_tests-3079534-36.patch",
                 "2840283 - Problem with action path for embedded forms": "https://www.drupal.org/files/issues/2020-03-19/linked-display-2840283-40_1.patch",
                 "3392572 - strnatcasecmp(): Passing null to string is deprecated": "https://www.drupal.org/files/issues/2023-10-25/drupal-strnatcasecmp_string_only-3392572-10.patch",
-                "2920527 - Postgres driver issue with nested savepoints mimic_implicit_commit duplicated": "https://www.drupal.org/files/issues/2026-04-09/drupal-mimic_implicit_commit_error-2920527-77.patch"
+                "2920527 - Postgres driver issue with nested savepoints mimic_implicit_commit duplicated": "composer.patches/2920527.core.mr10896-as-at-2026-08-12.patch.txt"
             },
             "drupal/ctools": {
                 "2759445 - Manually pass an argument to a views block through interface": "https://www.drupal.org/files/issues/2023-01-18/2759445-100.patch"
@@ -338,7 +332,8 @@
                 "3420249 - Create token for use in Views": "composer.patches/3420249.tac_lite.mr22-as-at-2026-07-21.patch.txt",
                 "3203718 - add the ability to select all terms from a vocabulary": "https://www.drupal.org/files/issues/2026-05-05/tac_lite-add_all_option-3203718-22.patch",
                 "3359802 - Add schema for tac_lite.settings": "https://www.drupal.org/files/issues/2023-05-11/tac_lite-schema-3359802-2.patch",
-                "3403235 - Allow specifying which field to use for access control": "https://www.drupal.org/files/issues/2026-05-05/tac_lite-choose_fields-3403235-7.patch"
+                "3403235 - Allow specifying which field to use for access control": "https://www.drupal.org/files/issues/2026-05-05/tac_lite-choose_fields-3403235-7.patch",
+                "3618911 - Fix 'mimic_implicit_commit' Postgres error": "https://www.drupal.org/files/issues/2026-08-31/3618911.tac_lite.postgres-mimic-implicit-commit-5.patch"
             },
             "drupal/taxonomy_delete": {
                 "3434896 - Automated Drupal 11 compatibility fixes": "https://www.drupal.org/files/issues/2024-03-25/taxonomy_delete.8.x-1.5.rector.patch"

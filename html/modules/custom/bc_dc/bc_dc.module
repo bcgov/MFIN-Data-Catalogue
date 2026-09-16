@@ -109,29 +109,33 @@ function bc_dc_preprocess_flag(array &$variables): void {
   // Replace @title with improved @aria-label.
   unset($variables['attributes']['title']);
   $title = $variables['flaggable']->getTitle();
-  $variables['attributes']['aria-label'] = $variables['action'] === 'flag' ?
-    t('Not bookmarked; add bookmark for "@title".', ['@title' => $title]) :
-    t('Bookmarked; remove bookmark for "@title".', ['@title' => $title]);
 
-  // Bookmark count message.
-  // If at least one user has bookmarked an item, add a message with the count.
-  $node_bookmark_count = bc_dc_count_node_bookmarks($variables['flaggable']);
-  if ($node_bookmark_count > 0) {
-    $count_message = \Drupal::translation()->formatPlural($node_bookmark_count,
-      'Bookmarked by 1 person',
-      'Bookmarked by @count people', [
-        '@count' => $node_bookmark_count,
+  $is_flagging = $variables['action'] === 'flag';
+
+  $variables['attributes']['aria-label'] = $is_flagging ?
+    t('Add @title metadata record to watch list', ['@title' => $title]) :
+    t('Remove @title metadata record from watch list', ['@title' => $title]);
+
+  // Determine the correct icon class based on the current user's action:
+  // - 'flag' means clicking it will ADD to watch list -> show open eye icon
+  // - 'unflag' means clicking it will REMOVE from watch list -> show eye-slash icon
+  $icon_class = $is_flagging ? 'icon-bi-eye' : 'icon-bi-eye-slash';
+
+  // Apply the wrapper consistently to title render array.
+  $variables['title']['#prefix'] = '<span class="title dc-label ' . $icon_class . '">';
+  $variables['title']['#suffix'] = '</span>';
+
+  // Watch count message.
+  $node_watch_count = bc_dc_count_node_bookmarks($variables['flaggable']);
+  if ($node_watch_count > 0) {
+    $count_message = \Drupal::translation()->formatPlural($node_watch_count,
+      '1 person watching',
+      '@count people watching', [
+        '@count' => $node_watch_count,
     ]);
 
-    // Save the count_message, to be rendered by our flag.html.twig override.
+    // Save the count_message to be rendered by flag.html.twig.
     $variables['count_message'] = $count_message->render();
-
-    $variables['title']['#prefix'] = '<span class="title dc-label icon-bi-bookmark-dash-fill">';
-    $variables['title']['#suffix'] = '</span>';
-  }
-  else {
-    // Add "add bookmark" icon class.
-    $variables['attributes']['class'][] = 'icon-bi-bookmark-plus';
   }
 }
 
@@ -562,9 +566,9 @@ function bc_dc_form_webform_submission_create_data_set_form_alter(array &$form, 
     $form['elements']['field_primary_responsibility_org']['#access'] = FALSE;
   }
 
-  // If there are no options, hide the form and display a message. Otherwise,
-  // hide the message.
-  if ($count === 0) {
+  // If there are no options (and this is not an admin user), hide the form and display a message. 
+  // Otherwise, hide the message and display the form.
+  if ($count === 0 && !$user->hasPermission('edit own field_primary_responsibility_org')) {
     foreach (array_keys($form['elements']) as $key) {
       if ($key !== 'empty_user_field_organization_message') {
         $form['elements'][$key]['#access'] = FALSE;

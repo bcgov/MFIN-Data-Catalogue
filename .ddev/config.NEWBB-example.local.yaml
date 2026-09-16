@@ -1,0 +1,19 @@
+# NEWBB
+# Copy this file to ".ddev/config.local.yaml".
+# Do NOT check it into git.
+#   ("Local" yaml files are git-ignored by default by DDEV's own .gitignore file.)
+# DO fill in the values. They can be the same values you have stored in Vault.
+#
+# On openshift, values are loaded from Vault and inserted into environment variables.
+# On localhost in DDEV, they are loaded from this file.
+#
+# See https://ddev.readthedocs.io/en/stable/users/extend/customization-extendibility/#extending-configyaml-with-custom-configyaml-files
+
+web_environment:
+    - SHIELD_USER=newbb
+    - SHIELD_PASS=newbb
+    - SSO_CLIENT_ID=newbb
+    - SSO_CLIENT_SECRET=newbb
+    - SSO_KEYCLOAK_BASE=newbb
+    - SOLR_PASSWORD=newbb
+    - HASH_SALT=newbb-make-up-any-random-string--not-the-same-salt-that-is-stored-in-Vault--for-security-reasons

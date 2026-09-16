@@ -30,7 +30,7 @@ variant_settings:
       provider: views
       context_mapping: {  }
       views_label: ''
-      items_per_page: none
+      items_per_page: 0
       exposed: {  }
       region: footer
       weight: -1
@@ -83,16 +83,16 @@ variant_settings:
       css_styles: ''
     dc082711-7cf6-46f8-8d03-093d21fd2fef:
       id: 'views_block:bookmarks-block_1'
-      label: 'Top bookmarked assets'
+      label: 'Top watched assets'
       label_display: visible
       provider: views
       context_mapping: {  }
-      views_label: 'Top bookmarked assets'
-      items_per_page: '3'
+      views_label: 'Top watched assets'
+      items_per_page: 3
       exposed: {  }
       arguments:
         field_data_set_type_target_id:
-          type: numeric
+          type: entity_target_id
           value: '[global:bc_dc_term_lineage:e8736124-b46c-4309-8ae9-db39454399d6]'
       region: footer
       weight: -4
@@ -104,16 +104,16 @@ variant_settings:
       css_styles: ''
     e28a85b4-c239-4a2b-bff0-d3cbb7a24377:
       id: 'views_block:bookmarks-block_1'
-      label: 'Top bookmarked forms'
+      label: 'Top watched forms'
       label_display: visible
       provider: views
       context_mapping: {  }
-      views_label: 'Top bookmarked forms'
-      items_per_page: '3'
+      views_label: 'Top watched forms'
+      items_per_page: 3
       exposed: {  }
       arguments:
         field_data_set_type_target_id:
-          type: numeric
+          type: entity_target_id
           value: '[global:bc_dc_term_lineage:5af4d0df-74a9-4781-84e9-bbb22413e4bb]'
       region: footer
       weight: -2
@@ -125,16 +125,16 @@ variant_settings:
       css_styles: ''
     796b4323-1b19-410b-bacc-193ebba85604:
       id: 'views_block:bookmarks-block_1'
-      label: 'Top bookmarked reports'
+      label: 'Top watched reports'
       label_display: visible
       provider: views
       context_mapping: {  }
-      views_label: 'Top bookmarked reports'
-      items_per_page: '3'
+      views_label: 'Top watched reports'
+      items_per_page: 3
       exposed: {  }
       arguments:
         field_data_set_type_target_id:
-          type: numeric
+          type: entity_target_id
           value: '[global:bc_dc_term_lineage:0399445d-9f64-414b-92d8-612882796198]'
       region: footer
       weight: -3
@@ -151,7 +151,7 @@ variant_settings:
       provider: views
       context_mapping: {  }
       views_label: ''
-      items_per_page: none
+      items_per_page: 0
       exposed: {  }
       region: footer_right
       weight: 0
@@ -167,7 +167,7 @@ variant_settings:
       provider: views
       context_mapping: {  }
       views_label: ''
-      items_per_page: none
+      items_per_page: 0
       exposed: {  }
       region: footer_left
       weight: 0
