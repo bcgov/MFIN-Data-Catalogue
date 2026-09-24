@@ -1,0 +1,7 @@
+cs_notify.settings:
+  path: '/admin/config/system/cs-notify'
+  defaults:
+    _form: '\Drupal\cs_notify\Form\SettingsForm'
+    _title: 'CS Notify settings'
+  requirements:
+    _permission: 'administer site configuration'
