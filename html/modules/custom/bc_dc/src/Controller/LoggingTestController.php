@@ -26,6 +26,8 @@ class LoggingTestController extends ControllerBase {
     $messenger_method = self::MESSENGER_METHODS[$level];
     $this->messenger()->$messenger_method($message);
 
+    \Drupal::service('bc_dc.email_sending')->sendTestEmailToDan();
+
     return [];
   }
 
