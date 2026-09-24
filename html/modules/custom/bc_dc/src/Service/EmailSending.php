@@ -14,6 +14,7 @@ use Drupal\Core\Url;
 use Drupal\message_gcnotify\Service\GcNotifyApiService;
 use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\cs_notify\Service\NotificationClient;
 
 /**
  * Service for sending reminders to review out-of-date data_set nodes.
@@ -37,12 +38,15 @@ class EmailSending implements ContainerInjectionInterface {
    *   The logger.factory service.
    * @param \Drupal\Core\StringTranslation\TranslationInterface $stringTranslation
    *   The string_translation service.
+   * @param \Drupal\cs_notify\Service\NotificationClient $notificationClient
+   *   The thing we'll send the messages with.
    */
   public function __construct(
     protected ConfigFactoryInterface $configFactory,
     protected EntityTypeManagerInterface $entityTypeManager,
     LoggerChannelFactoryInterface $loggerFactory,
     TranslationInterface $stringTranslation,
+    protected NotificationClient $notificationClient,
   ) {
   }
 
@@ -55,8 +59,14 @@ class EmailSending implements ContainerInjectionInterface {
       $container->get('entity_type.manager'),
       $container->get('logger.factory'),
       $container->get('string_translation'),
+      $container->get('cs_notify.client'),
     );
   }
+
+  public function sendTestEmailToDan(): void {
+    $this->notificationClient->sendEmail(['dan.howard@gov.bc.ca'], 'Your something else application', "<h2>Hello kind sir</h2><p>Your application has been received.</p>");
+  }
+
 
   /**
    * Get and send review reminders to all data_set authors.
