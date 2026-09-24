@@ -1,0 +1,5 @@
+name: 'CS Notify'
+description: 'Wrapper module for the BC Connected Services Notify API'
+type: module
+core_version_requirement: ^11.0
+configure: cs_notify.settings

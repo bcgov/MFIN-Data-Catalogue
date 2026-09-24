@@ -1,0 +1,5 @@
+cs_notify.settings:
+  title: 'CS Notify'
+  description: "Configure API settings for Connected Services' Notify API"
+  parent: system.admin_config_system
+  route_name: cs_notify.settings
