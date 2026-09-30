@@ -6,6 +6,10 @@ bc_dc.form:
     - shs/shs.form
     - core/drupal
     - core/once
+  css:
+    theme:
+      css/cshs_form.css: {}
+
 
 views-custom-scroll:
   js:
