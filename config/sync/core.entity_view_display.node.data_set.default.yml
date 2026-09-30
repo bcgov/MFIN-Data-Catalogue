@@ -21,6 +21,7 @@ dependencies:
     - field.field.node.data_set.field_data_quality_issues
     - field.field.node.data_set.field_data_set_historical_change
     - field.field.node.data_set.field_data_set_type
+    - field.field.node.data_set.field_data_set_type_1
     - field.field.node.data_set.field_data_sets_used
     - field.field.node.data_set.field_form_number
     - field.field.node.data_set.field_information_schedule
@@ -79,7 +80,7 @@ third_party_settings:
       label: Contact
       parent_name: ''
       region: content
-      weight: 22
+      weight: 23
       format_type: tabs
       format_settings:
         classes: ''
@@ -138,7 +139,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 17
+    weight: 18
     region: content
   field_contact_description:
     type: text_default
@@ -181,6 +182,7 @@ content:
     label: inline
     settings:
       link_to_entity: false
+      link_rel: canonical
     third_party_settings: {  }
     weight: 23
     region: content
@@ -189,6 +191,7 @@ content:
     label: inline
     settings:
       link_to_entity: false
+      link_rel: canonical
     third_party_settings: {  }
     weight: 31
     region: content
@@ -276,6 +279,18 @@ content:
     third_party_settings: {  }
     weight: 14
     region: content
+  field_data_set_type_1:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: false
+    third_party_settings:
+      field_label:
+        label_class: ''
+        label_value: ''
+        label_tag: ''
+    weight: 15
+    region: content
   field_data_sets_used:
     type: formatter_suite_general_entity_reference
     label: hidden
@@ -289,15 +304,16 @@ content:
       listStyle: ul
       listSeparator: ', '
     third_party_settings: {  }
-    weight: 18
+    weight: 19
     region: content
   field_form_number:
     type: string
     label: inline
     settings:
       link_to_entity: false
+      link_rel: canonical
     third_party_settings: {  }
-    weight: 15
+    weight: 16
     region: content
   field_information_schedule:
     type: entity_reference_label
@@ -305,7 +321,7 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 16
+    weight: 17
     region: content
   field_modified_date:
     type: datetime_default
@@ -324,7 +340,7 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 19
+    weight: 20
     region: content
   field_primary_responsibility_org:
     type: data_set_facet_search_link
@@ -348,14 +364,14 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 21
+    weight: 22
     region: content
   field_review_status:
     type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 20
+    weight: 21
     region: content
   field_security_classification:
     type: entity_reference_label
