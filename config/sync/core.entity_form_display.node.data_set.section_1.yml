@@ -22,6 +22,7 @@ dependencies:
     - field.field.node.data_set.field_data_quality_issues
     - field.field.node.data_set.field_data_set_historical_change
     - field.field.node.data_set.field_data_set_type
+    - field.field.node.data_set.field_data_set_type_1
     - field.field.node.data_set.field_data_sets_used
     - field.field.node.data_set.field_form_number
     - field.field.node.data_set.field_information_schedule
@@ -41,6 +42,7 @@ dependencies:
     - node.type.data_set
   module:
     - chosen_field
+    - cshs
     - shs
 id: node.data_set.section_1
 targetEntityType: node
@@ -57,9 +59,23 @@ content:
       create_new_levels: false
       force_deepest: false
     third_party_settings: {  }
+  field_data_set_type_1:
+    type: cshs
+    weight: 2
+    region: content
+    settings:
+      save_lineage: true
+      force_deepest: false
+      parent: null
+      level_labels: ''
+      hierarchy_depth: 0
+      required_depth: 0
+      none_label: '- Select -'
+      allow_unpublished: false
+    third_party_settings: {  }
   field_form_number:
     type: string_textfield
-    weight: 2
+    weight: 3
     region: content
     settings:
       size: 60
@@ -67,7 +83,7 @@ content:
     third_party_settings: {  }
   field_series:
     type: chosen_select
-    weight: 3
+    weight: 4
     region: content
     settings:
       chosen_placeholder: ''
@@ -83,7 +99,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 4
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }

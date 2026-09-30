@@ -21,6 +21,7 @@ dependencies:
     - field.field.node.data_set.field_data_quality_issues
     - field.field.node.data_set.field_data_set_historical_change
     - field.field.node.data_set.field_data_set_type
+    - field.field.node.data_set.field_data_set_type_1
     - field.field.node.data_set.field_data_sets_used
     - field.field.node.data_set.field_form_number
     - field.field.node.data_set.field_information_schedule
@@ -42,6 +43,7 @@ dependencies:
   module:
     - conditional_fields
     - content_moderation
+    - cshs
     - datetime
     - link
     - paragraphs
@@ -65,7 +67,7 @@ content:
     third_party_settings: {  }
   field_asset_location:
     type: text_textarea
-    weight: 25
+    weight: 26
     region: content
     settings:
       rows: 5
@@ -73,7 +75,7 @@ content:
     third_party_settings: {  }
   field_columns:
     type: paragraphs
-    weight: 17
+    weight: 18
     region: content
     settings:
       title: Paragraph
@@ -111,7 +113,7 @@ content:
             include_descendants: 1
   field_contact_description:
     type: text_textarea
-    weight: 36
+    weight: 37
     region: content
     settings:
       rows: 5
@@ -119,7 +121,7 @@ content:
     third_party_settings: {  }
   field_contact_description_second:
     type: text_textarea
-    weight: 37
+    weight: 38
     region: content
     settings:
       rows: 5
@@ -127,7 +129,7 @@ content:
     third_party_settings: {  }
   field_contact_email:
     type: email_default
-    weight: 28
+    weight: 29
     region: content
     settings:
       placeholder: ''
@@ -135,7 +137,7 @@ content:
     third_party_settings: {  }
   field_contact_email_secondary:
     type: email_default
-    weight: 32
+    weight: 33
     region: content
     settings:
       placeholder: ''
@@ -143,7 +145,7 @@ content:
     third_party_settings: {  }
   field_contact_name:
     type: string_textfield
-    weight: 27
+    weight: 28
     region: content
     settings:
       size: 60
@@ -151,7 +153,7 @@ content:
     third_party_settings: {  }
   field_contact_name_secondary:
     type: string_textfield
-    weight: 31
+    weight: 32
     region: content
     settings:
       size: 60
@@ -159,21 +161,21 @@ content:
     third_party_settings: {  }
   field_contact_phone:
     type: telephone_default
-    weight: 30
+    weight: 31
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_contact_phone_secondary:
     type: telephone_default
-    weight: 33
+    weight: 34
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_contact_url:
     type: link_default
-    weight: 34
+    weight: 35
     region: content
     settings:
       placeholder_url: ''
@@ -181,7 +183,7 @@ content:
     third_party_settings: {  }
   field_contact_url_secondary:
     type: link_default
-    weight: 35
+    weight: 36
     region: content
     settings:
       placeholder_url: ''
@@ -280,9 +282,23 @@ content:
       create_new_levels: false
       force_deepest: false
     third_party_settings: {  }
+  field_data_set_type_1:
+    type: cshs
+    weight: 15
+    region: content
+    settings:
+      save_lineage: true
+      force_deepest: false
+      parent: null
+      level_labels: ''
+      hierarchy_depth: 0
+      required_depth: 0
+      none_label: '- Select -'
+      allow_unpublished: false
+    third_party_settings: {  }
   field_data_sets_used:
     type: entity_reference_autocomplete_tags
-    weight: 16
+    weight: 17
     region: content
     settings:
       match_operator: CONTAINS
@@ -312,7 +328,7 @@ content:
             include_descendants: 1
   field_form_number:
     type: string_textfield
-    weight: 38
+    weight: 39
     region: content
     settings:
       size: 60
@@ -355,7 +371,7 @@ content:
             include_descendants: 1
   field_information_schedule:
     type: options_shs
-    weight: 15
+    weight: 16
     region: content
     settings:
       display_node_count: false
@@ -365,14 +381,14 @@ content:
     third_party_settings: {  }
   field_is_complete_review:
     type: boolean_checkbox
-    weight: 21
+    weight: 22
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_last_review_date:
     type: datetime_default
-    weight: 19
+    weight: 20
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -384,7 +400,7 @@ content:
     third_party_settings: {  }
   field_personal_information:
     type: options_buttons
-    weight: 24
+    weight: 25
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -402,7 +418,7 @@ content:
     third_party_settings: {  }
   field_related_document:
     type: paragraphs
-    weight: 26
+    weight: 27
     region: content
     settings:
       title: Paragraph
@@ -420,14 +436,14 @@ content:
     third_party_settings: {  }
   field_review_interval:
     type: number
-    weight: 20
+    weight: 21
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_review_status:
     type: options_select
-    weight: 22
+    weight: 23
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -484,13 +500,13 @@ content:
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 23
+    weight: 24
     region: content
     settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 18
+    weight: 19
     region: content
     settings:
       display_label: true
@@ -514,7 +530,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 29
+    weight: 30
     region: content
     settings: {  }
     third_party_settings: {  }

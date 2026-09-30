@@ -22,6 +22,7 @@ dependencies:
     - field.field.node.data_set.field_data_quality_issues
     - field.field.node.data_set.field_data_set_historical_change
     - field.field.node.data_set.field_data_set_type
+    - field.field.node.data_set.field_data_set_type_1
     - field.field.node.data_set.field_data_sets_used
     - field.field.node.data_set.field_form_number
     - field.field.node.data_set.field_information_schedule
@@ -40,6 +41,7 @@ dependencies:
     - field.field.node.data_set.field_visibility
     - node.type.data_set
   module:
+    - cshs
     - field_group
     - shs
 third_party_settings:
@@ -47,6 +49,7 @@ third_party_settings:
     group_hidden:
       children:
         - field_data_set_type
+        - field_data_set_type_1
       label: Hidden
       region: content
       parent_name: ''
@@ -78,6 +81,20 @@ content:
       create_new_items: false
       create_new_levels: false
       force_deepest: false
+    third_party_settings: {  }
+  field_data_set_type_1:
+    type: cshs
+    weight: 21
+    region: content
+    settings:
+      save_lineage: true
+      force_deepest: false
+      parent: null
+      level_labels: ''
+      hierarchy_depth: 0
+      required_depth: 0
+      none_label: '- Select -'
+      allow_unpublished: false
     third_party_settings: {  }
   field_data_sets_used:
     type: entity_reference_autocomplete
