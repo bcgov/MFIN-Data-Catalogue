@@ -112,6 +112,7 @@
         "drupal/config_split": "^2.0",
         "drupal/core-composer-scaffold": "~11.4.0",
         "drupal/core-recommended": "~11.4.0",
+        "drupal/cshs": "^4.0",
         "drupal/date_popup": "^2.0",
         "drupal/devel": "^5.0",
         "drupal/devel_php": "^1.5",
