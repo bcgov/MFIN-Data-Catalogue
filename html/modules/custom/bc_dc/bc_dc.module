@@ -188,8 +188,8 @@ function bc_dc_shs_field_data_set_type_class_definitions_alter(array &$definitio
  * Implements hook_preprocess_HOOK() for input.html.twig.
  */
 function bc_dc_preprocess_input(array &$variables): void {
-  // Add library bc_dc/bc_dc.form to pages that have a shs component.
-  if (isset($variables['element']['#shs'])) {
+  // Add library bc_dc/bc_dc.form to pages that have a shs or cshs component.
+  if (isset($variables['element']['#shs']) || isset($variables['element']['#cshs'])) {
     $variables['#attached']['library'][] = 'bc_dc/bc_dc.form';
   }
 }
@@ -566,7 +566,7 @@ function bc_dc_form_webform_submission_create_data_set_form_alter(array &$form, 
     $form['elements']['field_primary_responsibility_org']['#access'] = FALSE;
   }
 
-  // If there are no options (and this is not an admin user), hide the form and display a message. 
+  // If there are no options (and this is not an admin user), hide the form and display a message.
   // Otherwise, hide the message and display the form.
   if ($count === 0 && !$user->hasPermission('edit own field_primary_responsibility_org')) {
     foreach (array_keys($form['elements']) as $key) {
