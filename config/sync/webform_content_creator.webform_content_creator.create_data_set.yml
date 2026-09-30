@@ -9,6 +9,10 @@ content_type: null
 field_title: null
 use_encrypt: null
 encryption_profile: null
+redirect_to_entity: null
+redirect_to_entity_message: null
+redirect_to_entity_message_on_update: null
+sync_unique: null
 sync_content: false
 sync_content_delete: false
 sync_content_field: ''
@@ -17,6 +21,12 @@ target_bundle: data_set
 target_entity_type: node
 elements:
   field_data_set_type:
+    type: false
+    mapping: entity_reference_mapping
+    webform_field: field_data_set_type
+    custom_check: 0
+    custom_value: ''
+  field_data_set_type_1:
     type: false
     mapping: entity_reference_mapping
     webform_field: field_data_set_type
