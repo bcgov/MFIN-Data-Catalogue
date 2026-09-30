@@ -1,0 +1,30 @@
+uuid: 02421c4b-b22e-4735-94be-929d37c261d6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_data_set_type_1
+    - node.type.data_set
+    - taxonomy.vocabulary.data_set_type
+id: node.data_set.field_data_set_type_1
+field_name: field_data_set_type_1
+entity_type: node
+bundle: data_set
+label: 'Record type 1'
+description: 'Classify the item according to type, sub-type and format as applicable. <a href="/node/107">more information…</a>'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:filter_existing_terms'
+  handler_settings:
+    target_bundles:
+      data_set_type: data_set_type
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+    allow_self_reference: true
+field_type: entity_reference

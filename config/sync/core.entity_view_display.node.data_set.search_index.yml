@@ -22,6 +22,7 @@ dependencies:
     - field.field.node.data_set.field_data_quality_issues
     - field.field.node.data_set.field_data_set_historical_change
     - field.field.node.data_set.field_data_set_type
+    - field.field.node.data_set.field_data_set_type_1
     - field.field.node.data_set.field_data_sets_used
     - field.field.node.data_set.field_form_number
     - field.field.node.data_set.field_information_schedule
@@ -78,7 +79,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 23
+    weight: 16
     region: content
   field_critical_information:
     type: boolean
@@ -110,7 +111,19 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 16
+    weight: 13
+    region: content
+  field_data_set_type_1:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: false
+    third_party_settings:
+      field_label:
+        label_class: ''
+        label_value: ''
+        label_tag: ''
+    weight: 14
     region: content
   field_information_schedule:
     type: entity_reference_label
@@ -118,7 +131,7 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 20
+    weight: 15
     region: content
   field_modified_date:
     type: datetime_default
@@ -168,7 +181,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 14
+    weight: 12
     region: content
   flag_bookmark:
     settings: {  }
@@ -183,7 +196,7 @@ content:
   search_api_excerpt:
     settings: {  }
     third_party_settings: {  }
-    weight: 24
+    weight: 17
     region: content
 hidden:
   content_moderation_control: true
