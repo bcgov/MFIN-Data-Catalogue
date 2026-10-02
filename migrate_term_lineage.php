@@ -23,7 +23,8 @@ echo "--------------------------------------------------------\n";
 $query = $node_storage->getQuery()
   ->accessCheck(FALSE)
   ->condition('type', 'data_set')
-  ->exists('field_data_set_type');
+  ->exists('field_data_set_type')
+  ->notExists('field_data_set_type_1');
 
 $nids = $query->execute();
 $total_nodes = count($nids);
