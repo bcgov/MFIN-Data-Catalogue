@@ -43,14 +43,14 @@
 }
 
 /* Align the wrapper so the items sit inline next to the field label */
-.field--name-field-data-set-type-1 .field__items {
+.field--name-field-data-set-type .field__items {
   display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
 }
 
 /* Inject the ' > ' separator after every item except the final one */
-.field--name-field-data-set-type-1 .field__item:not(:last-child)::after {
+.field--name-field-data-set-type .field__item:not(:last-child)::after {
   content: " > ";
   white-space: pre; /* Preserves the spaces on either side of the chevron */
 }
@@ -1121,23 +1121,17 @@ html.bcbb-theme nav.menu--footer-prod ul.navbar-nav a.nav-link:active, html.bcbb
   color: var(--bs-gray-700);
 }
 .page-node-type-data-set .meta-data-record-view .field--name-field-data-set-type *,
-.page-node-type-data-set .meta-data-record-build .field--name-field-data-set-type *,
-.page-node-type-data-set .meta-data-record-view .field--name-field-data-set-type-1 *,
-.page-node-type-data-set .meta-data-record-build .field--name-field-data-set-type-1 * {
+.page-node-type-data-set .meta-data-record-build .field--name-field-data-set-type * {
   margin: 0 !important;
   padding: 0 !important;
   line-height: 1em;
 }
 .page-node-type-data-set .meta-data-record-view .field--name-field-data-set-type *.field__label,
-.page-node-type-data-set .meta-data-record-build .field--name-field-data-set-type *.field__label,
-.page-node-type-data-set .meta-data-record-view .field--name-field-data-set-type-1 *.field__label,
-.page-node-type-data-set .meta-data-record-build .field--name-field-data-set-type-1 *.field__label {
+.page-node-type-data-set .meta-data-record-build .field--name-field-data-set-type *.field__label {
   padding-right: 0.5em !important;
 }
 .page-node-type-data-set .meta-data-record-view .field--name-field-data-set-type * li::after,
-.page-node-type-data-set .meta-data-record-build .field--name-field-data-set-type * li::after,
-.page-node-type-data-set .meta-data-record-view .field--name-field-data-set-type-1 * li::after,
-.page-node-type-data-set .meta-data-record-build .field--name-field-data-set-type-1 * li::after {
+.page-node-type-data-set .meta-data-record-build .field--name-field-data-set-type * li::after {
   margin: 0 0.25em;
 }
 .page-node-type-data-set .field--name-field-data-custodian .field__label {
