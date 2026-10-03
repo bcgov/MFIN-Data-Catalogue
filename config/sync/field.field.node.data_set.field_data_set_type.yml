@@ -1,4 +1,4 @@
-uuid: ba51795a-8616-4a23-9b2b-60b225dd8a73
+uuid: 2f2db11b-505f-4b87-964a-c40f1abfd0f0
 langcode: en
 status: true
 dependencies:
@@ -17,7 +17,7 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:taxonomy_term'
+  handler: 'default:filter_existing_terms'
   handler_settings:
     target_bundles:
       data_set_type: data_set_type

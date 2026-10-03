@@ -1,14 +1,10 @@
-uuid: d541d3c4-b604-41cc-ab33-ad94f58d1662
+uuid: c105866c-c117-4c06-bd7c-d62abef8e130
 langcode: en
 status: true
 dependencies:
   module:
-    - field_permissions
     - node
     - taxonomy
-third_party_settings:
-  field_permissions:
-    permission_type: public
 id: node.field_data_set_type
 field_name: field_data_set_type
 entity_type: node
@@ -17,7 +13,7 @@ settings:
   target_type: taxonomy_term
 module: core
 locked: false
-cardinality: 1
+cardinality: -1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

@@ -43,7 +43,6 @@ dependencies:
   module:
     - cshs
     - field_group
-    - shs
 third_party_settings:
   field_group:
     group_hidden:
@@ -79,18 +78,22 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_data_set_type:
-    type: options_shs
-    weight: 18
+    type: cshs
+    weight: 0
     region: content
     settings:
-      display_node_count: false
-      create_new_items: false
-      create_new_levels: false
+      save_lineage: true
       force_deepest: false
+      parent: null
+      level_labels: ''
+      hierarchy_depth: 0
+      required_depth: 0
+      none_label: '- Select -'
+      allow_unpublished: false
     third_party_settings: {  }
   field_data_set_type_1:
     type: cshs
-    weight: 19
+    weight: 1
     region: content
     settings:
       save_lineage: true

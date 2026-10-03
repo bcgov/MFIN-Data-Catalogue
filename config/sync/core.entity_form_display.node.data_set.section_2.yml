@@ -45,7 +45,6 @@ dependencies:
     - datetime
     - field_group
     - link
-    - shs
     - telephone
     - text
 third_party_settings:
@@ -245,18 +244,22 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_data_set_type:
-    type: options_shs
-    weight: 23
+    type: cshs
+    weight: 0
     region: content
     settings:
-      display_node_count: false
-      create_new_items: false
-      create_new_levels: false
+      save_lineage: true
       force_deepest: false
+      parent: null
+      level_labels: ''
+      hierarchy_depth: 0
+      required_depth: 0
+      none_label: '- Select -'
+      allow_unpublished: false
     third_party_settings: {  }
   field_data_set_type_1:
     type: cshs
-    weight: 24
+    weight: 1
     region: content
     settings:
       save_lineage: true

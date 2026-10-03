@@ -43,22 +43,11 @@ dependencies:
   module:
     - chosen_field
     - cshs
-    - shs
 id: node.data_set.section_1
 targetEntityType: node
 bundle: data_set
 mode: section_1
 content:
-  field_data_set_type:
-    type: options_shs
-    weight: 1
-    region: content
-    settings:
-      display_node_count: false
-      create_new_items: false
-      create_new_levels: false
-      force_deepest: false
-    third_party_settings: {  }
   field_data_set_type_1:
     type: cshs
     weight: 2
@@ -122,6 +111,7 @@ hidden:
   field_critical_information: true
   field_data_quality_issues: true
   field_data_set_historical_change: true
+  field_data_set_type: true
   field_data_sets_used: true
   field_information_schedule: true
   field_is_complete_review: true

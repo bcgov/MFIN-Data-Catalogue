@@ -48,7 +48,6 @@ dependencies:
     - formatter_suite
     - link
     - options
-    - shs
     - telephone_formatter
     - text
     - user
@@ -272,11 +271,15 @@ content:
     weight: 10
     region: content
   field_data_set_type:
-    type: entity_reference_shs
+    type: entity_reference_label
     label: inline
     settings:
       link: false
-    third_party_settings: {  }
+    third_party_settings:
+      field_label:
+        label_class: ''
+        label_value: ''
+        label_tag: ''
     weight: 14
     region: content
   field_data_set_type_1:
