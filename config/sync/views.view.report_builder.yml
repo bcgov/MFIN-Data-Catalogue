@@ -437,7 +437,7 @@ display:
           group_rows: true
           delta_limit: 0
           delta_offset: 0
-          delta_reversed: true
+          delta_reversed: false
           delta_first_last: false
           multi_type: separator
           separator: ' > '
@@ -3669,7 +3669,7 @@ display:
           group_rows: true
           delta_limit: 0
           delta_offset: 0
-          delta_reversed: true
+          delta_reversed: false
           delta_first_last: false
           multi_type: separator
           separator: ' | '
