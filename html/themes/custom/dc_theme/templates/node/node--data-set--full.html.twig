@@ -55,12 +55,6 @@
               </div>
             {% endif %}
 
-            {% if node.field_data_set_type_1 and not node.field_data_set_type_1.isempty %}
-              <div class="mb-3">
-                {{ node.field_data_set_type_1|view }}
-              </div>
-            {% endif %}
-
             {% if node.field_form_number and not node.field_form_number.isempty %}
               <div class="mb-3">
                 {{ node.field_form_number|view }}
