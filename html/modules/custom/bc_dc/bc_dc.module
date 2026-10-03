@@ -178,16 +178,6 @@ function bc_dc_preprocess_taxonomy_term__organization(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_HOOK() for input.html.twig.
- */
-function bc_dc_preprocess_input(array &$variables): void {
-  // Add library bc_dc/bc_dc.form to pages that have a cshs component.
-  if (isset($variables['element']['#cshs'])) {
-    $variables['#attached']['library'][] = 'bc_dc/bc_dc.form';
-  }
-}
-
-/**
  * Implements hook_theme().
  */
 function bc_dc_theme(array $existing, string $type, string $theme, string $path): array {
@@ -694,10 +684,10 @@ function _bc_dc_form_node_data_set_edit_form_validate(array &$form, FormStateInt
   $node = $form_state->getFormObject()->getEntity();
 
   if (!$node->isNew() && $form_state->hasValue('field_data_set_type')) {
-    // With lineage saved, delta 0 on the stored entity is always the root term.
-    $old_tid = $node->get('field_data_set_type')->target_id;
+    // With lineage saved, delta 0 on the stored entity is always the root term ID.
+    $old_root_tid = (int) $node->get('field_data_set_type')->target_id;
 
-    // Safely extract delta 0 from form_state without PHP undefined key warnings.
+    // Safely extract delta 0 from form_state.
     $submitted_values = $form_state->getValue('field_data_set_type');
     $new_tid = NestedArray::getValue($submitted_values, [0, 'target_id']);
 
@@ -707,11 +697,9 @@ function _bc_dc_form_node_data_set_edit_form_validate(array &$form, FormStateInt
       $new_tid = is_array($raw) ? reset($raw) : $raw;
     }
 
-    if ($old_tid && $new_tid && (int) $old_tid !== (int) $new_tid) {
-      $old_root = _bc_dc_get_term_root_ancestor((int) $old_tid);
+    if ($old_root_tid && $new_tid && $old_root_tid !== (int) $new_tid) {
       $new_root = _bc_dc_get_term_root_ancestor((int) $new_tid);
-
-      if (!$new_root || !$old_root || (int) $new_root->id() !== (int) $old_root->id()) {
+      if (!$new_root || (int) $new_root->id() !== $old_root_tid) {
         $form_state->setErrorByName('field_data_set_type', t('The metadata root record type cannot be changed.'));
       }
     }
