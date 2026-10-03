@@ -1110,14 +1110,17 @@ function bc_dc_preprocess_breadcrumb(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_HOOK() for cshs_select.
+ * Implements hook_element_info_alter().
  *
  * Disables the Chosen library on CSHS select elements to prevent conflicts.
  *
  * @see https://www.drupal.org/project/cshs/issues/2877973
  */
-function bc_dc_preprocess_cshs(array &$variables) {
-  $variables['attributes']['class'][] = 'chosen-disable';
+function bc_dc_element_info_alter(array &$info): void {
+  if (isset($info['cshs'])) {
+    $info['cshs']['#chosen'] = FALSE;
+    $info['cshs']['#attributes']['class'][] = 'chosen-disable';
+  }
 }
 
 /**
