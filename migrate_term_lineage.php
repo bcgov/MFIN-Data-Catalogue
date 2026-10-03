@@ -2,91 +2,76 @@
 
 /**
  * @file
- * Phase 1 Migration: Extract lineage and populate temporary field.
- *
- * Workaround for CSHS locking "Save lineage" when data exists.
- * Reads the single term from field_data_set_type, calculates full lineage,
- * and saves the array to the temporary field_data_set_type_1.
+ * Phase 1 Migration via Direct Database Injection (Root -> Child order).
  *
  * Execution: drush scr path/to/migrate_term_lineage.php
  */
 
-$entity_type_manager = \Drupal::entityTypeManager();
-$node_storage = $entity_type_manager->getStorage('node');
-$term_storage = $entity_type_manager->getStorage('taxonomy_term');
+$database = \Drupal::database();
+$term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
 
 echo "--------------------------------------------------------\n";
-echo "Starting Phase 1: field_data_set_type -> field_data_set_type_1\n";
+echo "Starting Phase 1 (Direct DB Injection)...\n";
 echo "--------------------------------------------------------\n";
 
-// Find data_set nodes with legacy field data.
-$query = $node_storage->getQuery()
-  ->accessCheck(FALSE)
-  ->condition('type', 'data_set')
-  ->exists('field_data_set_type')
-  ->notExists('field_data_set_type_1');
+$query = $database->select('node__field_data_set_type', 'legacy');
+$query->fields('legacy');
+$legacy_records = $query->execute()->fetchAll();
 
-$nids = $query->execute();
-$total_nodes = count($nids);
-
-if ($total_nodes === 0) {
-  echo "No nodes found requiring migration. Exiting.\n";
+if (empty($legacy_records)) {
+  echo "No records found in legacy field. Exiting.\n";
   exit;
 }
 
-echo "Found $total_nodes nodes to process.\n\n";
+$total_records = count($legacy_records);
+echo "Found $total_records node records to process.\n\n";
 
 $processed = 0;
-$updated = 0;
-$errors = 0;
-
-// Cache term lineages to reduce DB queries.
 $term_lineage_cache = [];
 
-// Process in chunks of 50.
-$chunks = array_chunk($nids, 50);
+// Wipe existing backwards data in temporary tables for a clean slate.
+$database->truncate('node__field_data_set_type_1')->execute();
+$database->truncate('node_revision__field_data_set_type_1')->execute();
 
-foreach ($chunks as $chunk) {
-  try {
-    $nodes = $node_storage->loadMultiple($chunk);
+foreach ($legacy_records as $record) {
+  $source_tid = $record->field_data_set_type_target_id;
 
-    foreach ($nodes as $nid => $node) {
-      $processed++;
+  // Calculate and cache lineage in top-down order (Root -> Child).
+  if (!isset($term_lineage_cache[$source_tid])) {
+    $lineage_terms = $term_storage->loadAllParents($source_tid);
+    $term_lineage_cache[$source_tid] = array_reverse(array_keys($lineage_terms));
+  }
 
-      // Get legacy term ID.
-      $source_tid = $node->get('field_data_set_type')->target_id;
+  $lineage_tids = $term_lineage_cache[$source_tid];
+  $delta = 0;
 
-      if ($source_tid) {
-        // Fetch and cache lineage if not already cached.
-        if (!isset($term_lineage_cache[$source_tid])) {
-          $lineage_terms = $term_storage->loadAllParents($source_tid);
-          $term_lineage_cache[$source_tid] = array_keys($lineage_terms);
-        }
+  foreach ($lineage_tids as $tid) {
+    $insert_data = [
+      'bundle' => $record->bundle,
+      'deleted' => $record->deleted,
+      'entity_id' => $record->entity_id,
+      'revision_id' => $record->revision_id,
+      'langcode' => $record->langcode,
+      'delta' => $delta,
+      'field_data_set_type_1_target_id' => $tid,
+    ];
 
-        // Save full lineage array to temporary field.
-        $node->set('field_data_set_type_1', $term_lineage_cache[$source_tid]);
+    $database->insert('node__field_data_set_type_1')->fields($insert_data)->execute();
+    $database->insert('node_revision__field_data_set_type_1')->fields($insert_data)->execute();
 
-        // Save node (triggers search reindexing).
-        $node->save();
-        $updated++;
-      }
-    }
+    $delta++;
+  }
 
-    echo "--> Processed $processed / $total_nodes nodes... (Updated: $updated)\n";
+  $processed++;
 
-    // Free memory.
-    $node_storage->resetCache($chunk);
-
-  } catch (\Exception $e) {
-    echo "\n[ERROR] Failed processing chunk: " . $e->getMessage() . "\n";
-    $errors++;
+  if ($processed % 50 === 0) {
+    echo "--> Processed $processed / $total_records records...\n";
   }
 }
 
+// Clear node entity cache so Drupal immediately sees the new order.
+\Drupal::entityTypeManager()->getStorage('node')->resetCache();
+
 echo "--------------------------------------------------------\n";
-echo "Phase 1 Migration Complete!\n";
-echo "--------------------------------------------------------\n";
-echo "Total processed: $processed\n";
-echo "Successfully updated: $updated\n";
-echo "Errors: $errors\n";
+echo "Phase 1 Complete: $processed nodes updated in Root -> Child order.\n";
 echo "--------------------------------------------------------\n";
