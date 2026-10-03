@@ -22,7 +22,6 @@ dependencies:
     - field.field.node.data_set.field_data_quality_issues
     - field.field.node.data_set.field_data_set_historical_change
     - field.field.node.data_set.field_data_set_type
-    - field.field.node.data_set.field_data_set_type_1
     - field.field.node.data_set.field_data_sets_used
     - field.field.node.data_set.field_form_number
     - field.field.node.data_set.field_information_schedule
@@ -99,7 +98,6 @@ hidden:
   field_data_quality_issues: true
   field_data_set_historical_change: true
   field_data_set_type: true
-  field_data_set_type_1: true
   field_data_sets_used: true
   field_form_number: true
   field_information_schedule: true

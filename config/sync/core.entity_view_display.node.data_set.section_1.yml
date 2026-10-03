@@ -22,7 +22,6 @@ dependencies:
     - field.field.node.data_set.field_data_quality_issues
     - field.field.node.data_set.field_data_set_historical_change
     - field.field.node.data_set.field_data_set_type
-    - field.field.node.data_set.field_data_set_type_1
     - field.field.node.data_set.field_data_sets_used
     - field.field.node.data_set.field_form_number
     - field.field.node.data_set.field_information_schedule
@@ -65,18 +64,6 @@ content:
         label_value: ''
         label_tag: ''
     weight: 0
-    region: content
-  field_data_set_type_1:
-    type: entity_reference_label
-    label: inline
-    settings:
-      link: false
-    third_party_settings:
-      field_label:
-        label_class: ''
-        label_value: ''
-        label_tag: ''
-    weight: 1
     region: content
   field_form_number:
     type: string

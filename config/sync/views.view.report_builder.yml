@@ -9,7 +9,6 @@ dependencies:
     - field.storage.node.field_data_quality_issues
     - field.storage.node.field_data_set_historical_change
     - field.storage.node.field_data_set_type
-    - field.storage.node.field_data_set_type_1
     - field.storage.node.field_data_sets_used
     - field.storage.node.field_form_number
     - field.storage.node.field_last_review_date
@@ -323,69 +322,6 @@ display:
           admin_label: ''
           plugin_id: field
           label: 'Record type'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: false
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ' > '
-          field_api_classes: false
-        field_data_set_type_1:
-          id: field_data_set_type_1
-          table: node__field_data_set_type_1
-          field: field_data_set_type_1
-          relationship: nid
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: 'Record type 1'
           exclude: false
           alter:
             alter_text: false
@@ -2574,51 +2510,6 @@ display:
           hierarchy: true
           limit: true
           error_message: true
-        field_data_set_type_1_target_id:
-          id: field_data_set_type_1_target_id
-          table: node__field_data_set_type_1
-          field: field_data_set_type_1_target_id
-          relationship: nid
-          group_type: group
-          admin_label: ''
-          plugin_id: taxonomy_index_tid
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_data_set_type_1_target_id_op
-            label: 'Record type 1'
-            description: ''
-            use_operator: false
-            operator: field_data_set_type_1_target_id_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_data_set_type_1_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          vid: data_set_type
-          type: select
-          hierarchy: true
-          limit: true
-          error_message: true
         field_primary_responsibility_org_target_id:
           id: field_primary_responsibility_org_target_id
           table: node__field_primary_responsibility_org
@@ -3330,7 +3221,6 @@ display:
         - 'config:field.storage.node.field_data_quality_issues'
         - 'config:field.storage.node.field_data_set_historical_change'
         - 'config:field.storage.node.field_data_set_type'
-        - 'config:field.storage.node.field_data_set_type_1'
         - 'config:field.storage.node.field_data_sets_used'
         - 'config:field.storage.node.field_form_number'
         - 'config:field.storage.node.field_last_review_date'
@@ -3551,69 +3441,6 @@ display:
           admin_label: ''
           plugin_id: field
           label: 'Record type'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: false
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ' | '
-          field_api_classes: false
-        field_data_set_type_1:
-          id: field_data_set_type_1
-          table: node__field_data_set_type_1
-          field: field_data_set_type_1
-          relationship: nid
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: 'Record type 1'
           exclude: false
           alter:
             alter_text: false
@@ -5356,7 +5183,6 @@ display:
         - 'config:field.storage.node.field_data_quality_issues'
         - 'config:field.storage.node.field_data_set_historical_change'
         - 'config:field.storage.node.field_data_set_type'
-        - 'config:field.storage.node.field_data_set_type_1'
         - 'config:field.storage.node.field_data_sets_used'
         - 'config:field.storage.node.field_last_review_date'
         - 'config:field.storage.node.field_modified_date'
@@ -5401,7 +5227,6 @@ display:
         - 'config:field.storage.node.field_data_quality_issues'
         - 'config:field.storage.node.field_data_set_historical_change'
         - 'config:field.storage.node.field_data_set_type'
-        - 'config:field.storage.node.field_data_set_type_1'
         - 'config:field.storage.node.field_data_sets_used'
         - 'config:field.storage.node.field_form_number'
         - 'config:field.storage.node.field_last_review_date'
