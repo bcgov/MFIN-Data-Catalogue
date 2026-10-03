@@ -7,6 +7,7 @@
 
 use Drupal\bc_dc\Controller\BcDcCreateFileController;
 use Drupal\block\Entity\Block;
+use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Access\AccessResultAllowed;
 use Drupal\Core\Access\AccessResultInterface;
@@ -180,8 +181,8 @@ function bc_dc_preprocess_taxonomy_term__organization(array &$variables): void {
  * Implements hook_preprocess_HOOK() for input.html.twig.
  */
 function bc_dc_preprocess_input(array &$variables): void {
-  // Add library bc_dc/bc_dc.form to pages that have a shs or cshs component.
-  if (isset($variables['element']['#shs']) || isset($variables['element']['#cshs'])) {
+  // Add library bc_dc/bc_dc.form to pages that have a cshs component.
+  if (isset($variables['element']['#cshs'])) {
     $variables['#attached']['library'][] = 'bc_dc/bc_dc.form';
   }
 }
@@ -685,21 +686,32 @@ function _bc_dc_get_term_root_ancestor(int $tid): ?TermInterface {
  */
 function _bc_dc_form_node_data_set_edit_form_validate(array &$form, FormStateInterface $form_state): void {
   // Saving should always be to a draft state. This must run first to ensure it
-  // will work regardless of what transtions are configured.
+  // will work regardless of what transitions are configured.
   $form_state->setValue(['moderation_state', '0', 'value'], 'draft');
 
-  // Check that the root ancestor of the field_data_set_type has not changed.
-  // Old field_data_set_type.
-  if ($form_state->hasValue('field_data_set_type')) {
-    $node = $form_state->getFormObject()->getEntity();
-    $old_type = (int) $node->field_data_set_type?->first()?->getValue()['target_id'] ?? NULL;
-    // New field_data_set_type.
-    $new_type = (int) $form_state->getValue('field_data_set_type')[0]['target_id'] ?? NULL;
-    // If the type has changed, check if their root ancestors have changed.
-    if ($new_type !== $old_type) {
-      $old_type_root = _bc_dc_get_term_root_ancestor($old_type);
-      $new_type_root = _bc_dc_get_term_root_ancestor($new_type);
-      if (!$new_type_root || $new_type_root->id() !== $old_type_root->id()) {
+  // Enforce that the root record type cannot be changed on existing nodes.
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $form_state->getFormObject()->getEntity();
+
+  if (!$node->isNew() && $form_state->hasValue('field_data_set_type')) {
+    // With lineage saved, delta 0 on the stored entity is always the root term.
+    $old_tid = $node->get('field_data_set_type')->target_id;
+
+    // Safely extract delta 0 from form_state without PHP undefined key warnings.
+    $submitted_values = $form_state->getValue('field_data_set_type');
+    $new_tid = NestedArray::getValue($submitted_values, [0, 'target_id']);
+
+    // Fallback in case CSHS passes raw unmassaged structure ['target_id' => [...]].
+    if (!$new_tid && isset($submitted_values['target_id'])) {
+      $raw = $submitted_values['target_id'];
+      $new_tid = is_array($raw) ? reset($raw) : $raw;
+    }
+
+    if ($old_tid && $new_tid && (int) $old_tid !== (int) $new_tid) {
+      $old_root = _bc_dc_get_term_root_ancestor((int) $old_tid);
+      $new_root = _bc_dc_get_term_root_ancestor((int) $new_tid);
+
+      if (!$new_root || !$old_root || (int) $new_root->id() !== (int) $old_root->id()) {
         $form_state->setErrorByName('field_data_set_type', t('The metadata root record type cannot be changed.'));
       }
     }
