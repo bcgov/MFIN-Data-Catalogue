@@ -1,35 +1,36 @@
-(function (Drupal) {
+/**
+ * @file
+ * Locks the root level (level-0) CSHS dropdown on data_set edit forms.
+ */
+
+(function (Drupal, once) {
   Drupal.behaviors.lockCshsRoot = {
     attach: function (context) {
-
-      // Function that finds and locks the dropdown
-      const lockLevelZero = () => {
-        // Find the level 0 select that hasn't been disabled yet
-        const selects = context.querySelectorAll('.field--name-field-data-set-type-1 .select-wrapper--level-0 select:not([disabled])');
-        selects.forEach(function (rootSelect) {
-          rootSelect.setAttribute('disabled', 'disabled');
-          rootSelect.style.backgroundColor = '#e9ecef';
-        });
-      };
-
-      // 1. Try running it immediately in case CSHS is incredibly fast
-      lockLevelZero();
-
-      // 2. Set up an observer to watch the wrapper. When CSHS builds the
-      // visual dropdowns dynamically, this will instantly catch and lock Level 0.
-      const wrappers = context.querySelectorAll('.field--name-field-data-set-type-1:not(.cshs-observer-attached)');
+      const wrappers = once(
+        'cshs-observer',
+        '.field--name-field-data-set-type',
+        context
+      );
 
       wrappers.forEach(function (wrapper) {
-        wrapper.classList.add('cshs-observer-attached');
+        const lockLevelZero = function () {
+          const rootSelects = wrapper.querySelectorAll(
+            '.select-wrapper--level-0 select:not([disabled])'
+          );
+          rootSelects.forEach(function (rootSelect) {
+            rootSelect.disabled = true;
+            rootSelect.style.backgroundColor = '#e9ecef';
+          });
+        };
 
-        const observer = new MutationObserver(function () {
-          lockLevelZero();
-        });
+        // 1. Run immediately in case CSHS already built the level-0 select.
+        lockLevelZero();
 
-        // Watch for any child elements (like the dropdowns) being added to the wrapper
+        // 2. Observe the wrapper so if CSHS initializes or rebuilds the DOM
+        // after our behavior runs, level-0 is immediately locked again.
+        const observer = new MutationObserver(lockLevelZero);
         observer.observe(wrapper, { childList: true, subtree: true });
       });
-
     }
   };
-})(Drupal);
+})(Drupal, once);

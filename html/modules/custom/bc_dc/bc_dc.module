@@ -642,9 +642,11 @@ function bc_dc_form_node_data_set_edit_form_alter(array &$form, FormStateInterfa
     $form['actions']['cancel']['#attributes']['class'][] = 'btn btn-danger';
   }
 
-  // Add custom validate handler that runs first.
+  // Add custom validate handler and CSHS root-locking JS/CSS on Build/Edit modes.
   // Do not run for the default display mode, which admins may use.
   if ($form_state->get('form_display')?->getMode() !== 'default') {
+    $form['#attached']['library'][] = 'bc_dc/bc_dc.form';
+
     if (!isset($form['#validate'])) {
       $form['#validate'] = [];
     }
