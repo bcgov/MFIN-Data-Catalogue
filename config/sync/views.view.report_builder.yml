@@ -43,12 +43,10 @@ dependencies:
     - csv_serialization
     - datetime
     - field_count_formatter
-    - hierarchical_term_formatter
     - node
     - options
     - rest
     - serialization
-    - shs
     - taxonomy
     - text
     - user
@@ -357,16 +355,16 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: false
+          element_default_classes: true
           empty: ''
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: target_id
-          type: entity_reference_shs
+          type: entity_reference_label
           settings:
             link: false
           group_column: target_id
@@ -377,7 +375,7 @@ display:
           delta_reversed: false
           delta_first_last: false
           multi_type: separator
-          separator: ', '
+          separator: ' > '
           field_api_classes: false
         field_data_set_type_1:
           id: field_data_set_type_1
@@ -3585,22 +3583,18 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: false
+          element_default_classes: true
           empty: ''
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: target_id
-          type: hierarchical_term_formatter
+          type: entity_reference_label
           settings:
-            display: all
             link: false
-            wrap: none
-            separator: ' | '
-            reverse: false
           group_column: target_id
           group_columns: {  }
           group_rows: true
@@ -3609,7 +3603,7 @@ display:
           delta_reversed: false
           delta_first_last: false
           multi_type: separator
-          separator: ', '
+          separator: ' | '
           field_api_classes: false
         field_data_set_type_1:
           id: field_data_set_type_1
