@@ -521,7 +521,7 @@ class BcDcAddColumnsForm extends FormBase {
 
     // Save the uploaded file to the file system, checking its extension.
     $validators = [
-      'file_validate_extensions' => [implode(' ', static::$allowedFormats)],
+      'FileExtension' => ['extensions' => implode(' ', static::$allowedFormats)],
     ];
     $import_file_upload = file_save_upload('import_file_upload', $validators);
     $import_file_upload = is_array($import_file_upload) ? reset($import_file_upload) : NULL;
