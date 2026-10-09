@@ -18,3 +18,5 @@ services:
   bc_dc.search_indexing:
     class: Drupal\bc_dc\Service\SearchIndexing
     arguments: []
+  bc_dc.hide_some_dataset_fields:
+    class: Drupal\bc_dc\Service\HideSomeDatasetFields
