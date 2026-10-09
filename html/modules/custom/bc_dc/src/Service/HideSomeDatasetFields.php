@@ -38,19 +38,24 @@ class HideSomeDatasetFields {
     }
   }
 
+  public function fieldShouldBeHidden($dataset_entity, $field_name) {
+    $fields_to_hide = $this->getFieldsToHide($dataset_entity);
+    return in_array($field_name, $fields_to_hide);
+  }
+
   private function getFieldsToHide($dataset_entity) {
     $fields_to_hide = [];
     $dataset_record_types = array_column($dataset_entity->get('field_data_set_type')->getValue(), 'target_id');
     $show_fields_for_datatypes = [
-        // Field name         =>    [record type term IDs to show for]
-        'field_columns'                   => [20],
-        'field_critical_information'      => [20],
-        'field_data_quality_issues'       => [20],
-        'field_data_set_historical_change'=> [20],
-        'field_source_system'             => [20],
-        'field_data_sets_used'            => [20,10],
-        'field_form_number'               => [5],
-      ];
+      // Field name         =>    [record type term IDs to show for]
+      'field_columns'                   => [20],
+      'field_critical_information'      => [20],
+      'field_data_quality_issues'       => [20],
+      'field_data_set_historical_change'=> [20],
+      'field_source_system'             => [20],
+      'field_data_sets_used'            => [20,10],
+      'field_form_number'               => [5],
+    ];
 
     foreach ($show_fields_for_datatypes as $field_name => $record_types_to_show) {
         if (array_intersect($dataset_record_types, $record_types_to_show) === []) {

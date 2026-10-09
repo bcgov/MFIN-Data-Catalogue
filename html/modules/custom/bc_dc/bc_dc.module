@@ -145,8 +145,9 @@ function bc_dc_preprocess_flag(array &$variables): void {
  */
 function bc_dc_preprocess_node__data_set(array &$variables): void {
   // Hide fields on view and build pages based on field_data_set_type.
+  $helperService = \Drupal::service('bc_dc.hide_some_dataset_fields');
   foreach (array_keys($variables['content']) as $field_key) {
-    if (!bc_dc_data_set_has_field($variables['node'], $field_key)) {
+    if ($helperService->fieldShouldBeHidden($variables['node'], $field_key)) {
       $variables['content'][$field_key]['#access'] = FALSE;
     }
   }
@@ -202,7 +203,8 @@ function bc_dc_theme_suggestions_block_alter(array &$suggestions, array $variabl
     ($variables['elements']['#plugin_id'] === 'entity_view:node' && in_array($variables['elements']['content']['#view_mode'], $sections, TRUE))
   )) {
     $node = \Drupal::request()->attributes->get('node');
-    if ($node && !bc_dc_data_set_has_field($node, 'field_columns')) {
+    $helperService = \Drupal::service('bc_dc.hide_some_dataset_fields');
+    if ($node && $helperService->fieldShouldBeHidden($node, 'field_columns')) {
       $suggestions = ['bc_dc_blank'];
     }
   }
@@ -594,7 +596,7 @@ function bc_dc_form_node_data_set_edit_form_alter(array &$form, FormStateInterfa
 
   // Hide some fields. e.g. 'Form Number' field should be hidden on 
   //   all data-sets, except for ones of type 'Form'.
-  Drupal::service('bc_dc.hide_some_dataset_fields')->hideOnEditForm($form, $form_state);
+  \Drupal::service('bc_dc.hide_some_dataset_fields')->hideOnEditForm($form, $form_state);
 
   // Remove the "Edit all" button.
   $form['field_columns']['widget']['header_actions']['actions']['edit_all']['#access'] = FALSE;
@@ -1260,69 +1262,6 @@ function bc_dc_field_widget_single_element_paragraphs_form_alter(array &$element
       }
     }
   }
-}
-
-/**
- * Return whether a data_set has a field based on its root field_data_set_type.
- *
- * In data_set nodes, some fields are hidden based on the type of the root
- * taxonomy term ancestor of the node's field_data_set_type. The fields hidden
- * here must match the configuration in conditional_fields.
- *
- * @param \Drupal\node\NodeInterface $node
- *   The node to check.
- * @param string $field_key
- *   The field key.
- *
- * @return bool
- *   TRUE when the node has the field, FALSE otherwise.
- */
-function bc_dc_data_set_has_field(NodeInterface $node, string $field_key): bool {
-  $fields_to_hide = [
-    'field_authoritative_info',
-    'field_columns',
-    'field_critical_information',
-    'field_data_quality_issues',
-    'field_data_set_historical_change',
-    'field_data_sets_used',
-    'field_source_system',
-    'field_form_number',
-  ];
-
-  // If it is not one of the fields that may be hidden, do not hide.
-  if (!in_array($field_key, $fields_to_hide, TRUE)) {
-    return TRUE;
-  }
-
-  // Determine this node's root field_data_set_type, cached per node ID.
-  static $data_set_types = [];
-  $nid = $node->id() ?? 0;
-
-  if (!array_key_exists($nid, $data_set_types)) {
-    // With CSHS "Save lineage" enabled, delta 0 (->entity) is always the root term.
-    $root_term = $node->get('field_data_set_type')->entity;
-    $data_set_types[$nid] = $root_term?->get('field_root_type')->value ?? FALSE;
-  }
-
-  $data_set_type = $data_set_types[$nid];
-
-  // "Data" type has all fields except field_form_number.
-  if ($data_set_type === 'data') {
-    return $field_key !== 'field_form_number';
-  }
-
-  // "Form" type only has field_form_number.
-  if ($data_set_type === 'form' && $field_key === 'field_form_number') {
-    return TRUE;
-  }
-
-  // "Report" type only has field_data_sets_used.
-  if ($data_set_type === 'report' && $field_key === 'field_data_sets_used') {
-    return TRUE;
-  }
-
-  // Otherwise, hide the field.
-  return FALSE;
 }
 
 /**

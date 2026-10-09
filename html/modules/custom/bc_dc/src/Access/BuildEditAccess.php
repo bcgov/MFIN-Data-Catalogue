@@ -80,9 +80,10 @@ class BuildEditAccess implements AccessInterface {
    */
   public static function accessAddColumns(AccountInterface $account, RouteMatchInterface $route_match): AccessResultInterface {
     $node = $route_match->getParameter('node');
+    $helperService = \Drupal::service('bc_dc.hide_some_dataset_fields');
 
     // If this node has field_columns, access is the same as ::access().
-    if ($node && bc_dc_data_set_has_field($node, 'field_columns')) {
+    if ($node && !$helperService->fieldShouldBeHidden($node, 'field_columns')) {
       return static::access($account, $route_match);
     }
     // Otherwise, no access for anyone.
