@@ -41,10 +41,11 @@ class BcDcWorkflowBlockForm extends FormBase {
     else {
       // Prevent publishing when required fields are empty.
       $empty_required = [];
+      $helperService = \Drupal::service('bc_dc.hide_some_dataset_fields');
       foreach ($data_set->getFields() as $field) {
         $fieldDefinition = $field->getFieldDefinition();
         // Add to list if the field is empty, required, and in this data_set.
-        if ($field->isEmpty() && $fieldDefinition->isRequired() && bc_dc_data_set_has_field($data_set, $fieldDefinition->getName())) {
+        if ($field->isEmpty() && $fieldDefinition->isRequired() && !$helperService->fieldShouldBeHidden($data_set, $fieldDefinition->getName())) {
           $empty_required[] = $fieldDefinition->getLabel();
         }
       }
