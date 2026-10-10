@@ -40,7 +40,6 @@ dependencies:
     - node.type.data_set
     - workflows.workflow.editorial
   module:
-    - conditional_fields
     - content_moderation
     - cshs
     - datetime
@@ -89,27 +88,7 @@ content:
       features:
         collapse_edit_all: collapse_edit_all
         duplicate: duplicate
-    third_party_settings:
-      conditional_fields:
-        b607952d-80ca-4425-bc1e-cb216f87b5c7:
-          entity_type: node
-          bundle: data_set
-          dependee: field_data_set_type
-          settings:
-            state: visible
-            reset: false
-            condition: value
-            grouping: AND
-            values_set: 3
-            value: ''
-            values: '20'
-            value_form:
-              -
-                target_id: '20'
-            effect: show
-            effect_options: {  }
-            selector: ''
-            include_descendants: 1
+    third_party_settings: {  }
   field_contact_description:
     type: text_textarea
     weight: 37
@@ -194,27 +173,7 @@ content:
     region: content
     settings:
       display_label: true
-    third_party_settings:
-      conditional_fields:
-        6112c5d3-8295-4790-a613-0157352cb38f:
-          entity_type: node
-          bundle: data_set
-          dependee: field_data_set_type
-          settings:
-            state: visible
-            reset: false
-            condition: value
-            grouping: AND
-            values_set: 3
-            value: ''
-            values: '20'
-            value_form:
-              -
-                target_id: '20'
-            effect: show
-            effect_options: {  }
-            selector: ''
-            include_descendants: 1
+    third_party_settings: {  }
   field_data_quality_issues:
     type: text_textarea
     weight: 9
@@ -222,27 +181,7 @@ content:
     settings:
       rows: 5
       placeholder: ''
-    third_party_settings:
-      conditional_fields:
-        b296282b-44da-43d8-8499-f7c1867aadfb:
-          entity_type: node
-          bundle: data_set
-          dependee: field_data_set_type
-          settings:
-            state: visible
-            reset: false
-            condition: value
-            grouping: AND
-            values_set: 3
-            value: ''
-            values: '20'
-            value_form:
-              -
-                target_id: '20'
-            effect: show
-            effect_options: {  }
-            selector: ''
-            include_descendants: 1
+    third_party_settings: {  }
   field_data_set_historical_change:
     type: text_textarea
     weight: 10
@@ -250,27 +189,7 @@ content:
     settings:
       rows: 5
       placeholder: ''
-    third_party_settings:
-      conditional_fields:
-        0da96431-a318-45ed-a1cf-ea8b67453e3a:
-          entity_type: node
-          bundle: data_set
-          dependee: field_data_set_type
-          settings:
-            state: visible
-            reset: false
-            condition: value
-            grouping: AND
-            values_set: 3
-            value: ''
-            values: '20'
-            value_form:
-              -
-                target_id: '20'
-            effect: show
-            effect_options: {  }
-            selector: ''
-            include_descendants: 1
+    third_party_settings: {  }
   field_data_set_type:
     type: cshs
     weight: 14
@@ -294,27 +213,7 @@ content:
       match_limit: 10
       size: 60
       placeholder: ''
-    third_party_settings:
-      conditional_fields:
-        c168f597-eade-4e68-9e00-48de8c97f2c9:
-          entity_type: node
-          bundle: data_set
-          dependee: field_data_set_type
-          settings:
-            state: visible
-            reset: false
-            condition: value
-            grouping: AND
-            values_set: 3
-            value: ''
-            values: "10\r\n20"
-            value_form:
-              -
-                target_id: ''
-            effect: show
-            effect_options: {  }
-            selector: ''
-            include_descendants: 1
+    third_party_settings: {  }
   field_form_number:
     type: string_textfield
     weight: 39
@@ -322,42 +221,7 @@ content:
     settings:
       size: 60
       placeholder: ''
-    third_party_settings:
-      conditional_fields:
-        c6d526c1-2ea5-471e-b909-73074062c512:
-          entity_type: node
-          bundle: data_set
-          dependee: field_data_set_type
-          settings:
-            state: visible
-            condition: value
-            grouping: AND
-            values_set: 1
-            value: ''
-            values: {  }
-            value_form: {  }
-            effect: show
-            effect_options: {  }
-            selector: ''
-        7766304e-f153-4e9a-97ec-2acd601cbe16:
-          entity_type: node
-          bundle: data_set
-          dependee: field_data_set_type
-          settings:
-            state: visible
-            reset: false
-            condition: value
-            grouping: AND
-            values_set: 3
-            value: ''
-            values: '5'
-            value_form:
-              -
-                target_id: ''
-            effect: show
-            effect_options: {  }
-            selector: ''
-            include_descendants: 1
+    third_party_settings: {  }
   field_information_schedule:
     type: options_shs
     weight: 16
@@ -453,27 +317,7 @@ content:
     weight: 13
     region: content
     settings: {  }
-    third_party_settings:
-      conditional_fields:
-        7269b48f-1047-46e6-b6fe-46aab93a0a89:
-          entity_type: node
-          bundle: data_set
-          dependee: field_data_set_type
-          settings:
-            state: visible
-            reset: false
-            condition: value
-            grouping: AND
-            values_set: 3
-            value: ''
-            values: '20'
-            value_form:
-              -
-                target_id: '20'
-            effect: show
-            effect_options: {  }
-            selector: ''
-            include_descendants: 1
+    third_party_settings: {  }
   field_visibility:
     type: options_buttons
     weight: 4
