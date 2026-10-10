@@ -38,11 +38,15 @@ class HideSomeDatasetFields {
     }
   }
 
+  // Returns TRUE if the field should be hidden for a dataset entity
+  //   (given its record type), FALSE otherwise.
   public function fieldShouldBeHidden($dataset_entity, $field_name) {
     $fields_to_hide = $this->getFieldsToHide($dataset_entity);
     return in_array($field_name, $fields_to_hide);
   }
 
+  // Returns an array of field names that should be hidden for the given dataset entity
+  //   given its record type.
   private function getFieldsToHide($dataset_entity) {
     $fields_to_hide = [];
     $dataset_record_types = array_column($dataset_entity->get('field_data_set_type')->getValue(), 'target_id');
