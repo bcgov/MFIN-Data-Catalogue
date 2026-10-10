@@ -45,6 +45,11 @@ class HideSomeDatasetFields {
     return in_array($field_name, $fields_to_hide);
   }
 
+  // Courtesy method, for syntactic clarity.
+  public function fieldShouldBeShown($dataset_entity, $field_name) {
+    return !$this->fieldShouldBeHidden($dataset_entity, $field_name);
+  }
+
   // Returns an array of field names that should be hidden for the given dataset entity
   //   given its record type.
   private function getFieldsToHide($dataset_entity) {

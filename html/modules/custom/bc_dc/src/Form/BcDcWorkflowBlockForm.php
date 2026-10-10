@@ -45,7 +45,7 @@ class BcDcWorkflowBlockForm extends FormBase {
       foreach ($data_set->getFields() as $field) {
         $fieldDefinition = $field->getFieldDefinition();
         // Add to list if the field is empty, required, and in this data_set.
-        if ($field->isEmpty() && $fieldDefinition->isRequired() && !$helperService->fieldShouldBeHidden($data_set, $fieldDefinition->getName())) {
+        if ($field->isEmpty() && $fieldDefinition->isRequired() && $helperService->fieldShouldBeShown($data_set, $fieldDefinition->getName())) {
           $empty_required[] = $fieldDefinition->getLabel();
         }
       }

@@ -83,7 +83,7 @@ class BuildEditAccess implements AccessInterface {
     $helperService = \Drupal::service('bc_dc.hide_some_dataset_fields');
 
     // If this node has field_columns, access is the same as ::access().
-    if ($node && !$helperService->fieldShouldBeHidden($node, 'field_columns')) {
+    if ($node && $helperService->fieldShouldBeShown($node, 'field_columns')) {
       return static::access($account, $route_match);
     }
     // Otherwise, no access for anyone.
