@@ -1900,27 +1900,27 @@
         },
         {
             "name": "drupal/better_exposed_filters",
-            "version": "7.1.3",
+            "version": "7.2.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/better_exposed_filters.git",
-                "reference": "7.1.3"
+                "reference": "7.2.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/better_exposed_filters-7.1.3.zip",
-                "reference": "7.1.3",
-                "shasum": "802c4a2823c5393b78750a540ac4d2e2c95767e5"
+                "url": "https://ftp.drupal.org/files/projects/better_exposed_filters-7.2.0.zip",
+                "reference": "7.2.0",
+                "shasum": "dcb7b5e560fe578ef041cf7e1f6a691dc4d56575"
             },
             "require": {
-                "drupal/core": "^10.3 || ^11",
+                "drupal/core": "^10.3 || ^11 || ^12",
                 "drupal/nouislider_js": "^15.8.1"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "7.1.3",
-                    "datestamp": "1785945788",
+                    "version": "7.2.0",
+                    "datestamp": "1791536367",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4344,17 +4344,17 @@
         },
         {
             "name": "drupal/flag",
-            "version": "5.1.0",
+            "version": "5.1.1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/flag.git",
-                "reference": "5.1.0"
+                "reference": "5.1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/flag-5.1.0.zip",
-                "reference": "5.1.0",
-                "shasum": "6f8d28652146f170ca965a235214857cf612c8c0"
+                "url": "https://ftp.drupal.org/files/projects/flag-5.1.1.zip",
+                "reference": "5.1.1",
+                "shasum": "e155d03c4820deaf240d622e989ed297be9e6429"
             },
             "require": {
                 "drupal/core": "^10.3 || ^11 || ^12"
@@ -4362,8 +4362,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "5.1.0",
-                    "datestamp": "1788266235",
+                    "version": "5.1.1",
+                    "datestamp": "1791382196",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -5661,17 +5661,17 @@
         },
         {
             "name": "drupal/paragraphs_features",
-            "version": "2.2.0",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/paragraphs_features.git",
-                "reference": "2.2.0"
+                "reference": "2.3.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/paragraphs_features-2.2.0.zip",
-                "reference": "2.2.0",
-                "shasum": "8a4872256ca008a9a0c86fdbe6e7dfa594d47779"
+                "url": "https://ftp.drupal.org/files/projects/paragraphs_features-2.3.0.zip",
+                "reference": "2.3.0",
+                "shasum": "c318a6307add7fe85bc0d2bf03e9f01f4d24a64e"
             },
             "require": {
                 "drupal/core": "^9.2 || ^10 || ^11",
@@ -5683,8 +5683,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.2.0",
-                    "datestamp": "1750763757",
+                    "version": "2.3.0",
+                    "datestamp": "1791367452",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -6304,20 +6304,20 @@
         },
         {
             "name": "drupal/search_api",
-            "version": "1.41.0",
+            "version": "1.42.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/search_api.git",
-                "reference": "8.x-1.41"
+                "reference": "8.x-1.42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/search_api-8.x-1.41.zip",
-                "reference": "8.x-1.41",
-                "shasum": "bb030951ee9a09fac67e8cde5b495c3b67e2949d"
+                "url": "https://ftp.drupal.org/files/projects/search_api-8.x-1.42.zip",
+                "reference": "8.x-1.42",
+                "shasum": "a8f18e5873f50551eadfe03c4454bcb8e85eacce"
             },
             "require": {
-                "drupal/core": "^10.3 || ^11"
+                "drupal/core": "^10.3 || ^11 || ^12"
             },
             "conflict": {
                 "drupal/search_api_solr": "2.* || 3.0 || 3.1"
@@ -6336,8 +6336,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.41",
-                    "datestamp": "1780907071",
+                    "version": "8.x-1.42",
+                    "datestamp": "1791743454",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
