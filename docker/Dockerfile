@@ -38,6 +38,11 @@ COPY docker/conf/php-fpm/status.conf /usr/local/etc/php-fpm.d/
 
 HEALTHCHECK --interval=5s --timeout=10s --start-period=5s --retries=3 CMD [ "php-fpm-healthcheck" ]
 
+# Set the PHP-FPM listen port to 9000, so that it can be accessed by the Nginx container.
+RUN printf "[www]\nlisten = 9000\n" > /usr/local/etc/php-fpm.d/zzz-openshift.conf
+# Verify that the listen port is set correctly.
+RUN grep -Hnr '^listen' /usr/local/etc/php-fpm.d/
+
 # Install additional extensions
 RUN apk --update add --no-cache bash \
                                 git \
