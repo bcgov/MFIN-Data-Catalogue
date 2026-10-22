@@ -39,9 +39,8 @@ COPY docker/conf/php-fpm/status.conf /usr/local/etc/php-fpm.d/
 HEALTHCHECK --interval=5s --timeout=10s --start-period=5s --retries=3 CMD [ "php-fpm-healthcheck" ]
 
 # Set the PHP-FPM listen port to 9000, so that it can be accessed by the Nginx container.
+#  Use 'zzz' filename, so that it will load last, trumping future change in the base image.
 RUN printf "[www]\nlisten = 9000\n" > /usr/local/etc/php-fpm.d/zzz-openshift.conf
-# Verify that the listen port is set correctly.
-RUN grep -Hnr '^listen' /usr/local/etc/php-fpm.d/
 
 # Install additional extensions
 RUN apk --update add --no-cache bash \
@@ -96,17 +95,17 @@ RUN apk add --update --no-cache autoconf \
 COPY docker/certs/BaltimoreCyberTrustRoot.crt.pem /etc/ssl/mysql/BaltimoreCyberTrustRoot.crt.pem
 
 # Redis
-ENV PHPREDIS_VERSION 6.1.0
+ENV PHPREDIS_VERSION=6.1.0
 RUN mkdir -p /usr/src/php/ext/redis \
     && curl -L https://github.com/phpredis/phpredis/archive/$PHPREDIS_VERSION.tar.gz | tar xvz -C /usr/src/php/ext/redis --strip 1 \
     && echo 'redis' >> /usr/src/php-available-exts \
     && docker-php-ext-install redis
 
 # Composer recommended settings
-ENV COMPOSER_ALLOW_SUPERUSER 1
-ENV COMPOSER_VERSION 2.5.8
-ENV COMPOSER_MEMORY_LIMIT -1
-ENV COMPOSER_EXIT_ON_PATCH_FAILURE 1
+ENV COMPOSER_ALLOW_SUPERUSER=1
+ENV COMPOSER_VERSION=2.7.6
+ENV COMPOSER_MEMORY_LIMIT=-1
+ENV COMPOSER_EXIT_ON_PATCH_FAILURE=1
 
 # Check Composer
 RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer; \
