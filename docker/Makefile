@@ -8,7 +8,11 @@ all: base
 
 base:
 	mkdir -p config/sync html/modules/custom html/themes/custom
+
+#	"--pull" means to check to see if there is a newer version of the base image, 
+#	  and if so, to pull it down and use it. This is important for security updates.
 	docker build -f docker/Dockerfile \
+			--pull \
 	    -t $(NAME):$(VERSION) \
 	    --build-arg SSH_PRIVATE_KEY="$$(test -f $$HOME/.ssh/id_rsa && base64 $$HOME/.ssh/id_rsa)" \
 	    --no-cache \

@@ -1,5 +1,15 @@
 # https://github.com/docker-library/drupal/blob/master/11.3/php8.4/fpm-alpine3.23/Dockerfile
-FROM drupal:11.3.19-php8.4-fpm-alpine3.23
+# https://hub.docker.com/layers/library/drupal/php8.4-fpm-alpine3.23
+#
+# Note that using an image named with a specific Drupal version, like
+#    11.3.19-php8.4-fpm-alpine3.23
+# is not recommended, because it will not receive security updates. It is a fixed snapshot
+# at a specific point in time. Instead, use the more generic image name, like
+#    11.3-php8.4-fpm-alpine3.23 which will get updates to Drupal, PHP and Alpine, as they are released.
+#
+
+FROM drupal:11.3-php8.4-fpm-alpine3.23
+
 
 # This Drupal-Alpine base image contains a full copy of Drupal (and its vendor folder).
 # We don't actually use this at all, and build our own version of Drupal, below.
