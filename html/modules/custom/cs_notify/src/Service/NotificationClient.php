@@ -25,10 +25,22 @@ class NotificationClient implements NotificationClientInterface {
    */
   protected $logger;
 
+  public function sendEmail($now_not_queued, array $to_addresses, string $subject, string $email_body) {
+    if ($now_not_queued) {
+      $this->sendEmailImmediateBlocking($to_addresses, $subject, $email_body);
+    }
+    else {
+      $this->sendEmailQueued($to_addresses, $subject, $email_body);
+    }
+  }
+
   /**
    * Send an email (right now), using the Notify API, from Connected Services.
+   * 
+   * This function is 'blocking' meaning that while you're waiting for the hand-off
+   * to the Notify service, your code (and the person loading the webpage) is waiting.
    */
-  public function sendEmail(array $to_addresses, string $subject, string $email_body) : NotificationResult {
+  public function sendEmailImmediateBlocking(array $to_addresses, string $subject, string $email_body) : NotificationResult {
 
     $config = $this->configFactory->get('cs_notify.settings');
 
