@@ -8,3 +8,9 @@ services:
 
   Drupal\cs_notify\Service\NotificationClientInterface:
     alias: cs_notify.client
+
+  cs_notify.notification_queue:
+    class: Drupal\cs_notify\Service\NotificationQueueService
+    arguments:
+      - '@logger.factory'
+      - '@queue'
