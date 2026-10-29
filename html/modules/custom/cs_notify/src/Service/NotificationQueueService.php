@@ -8,20 +8,22 @@ use Drupal\Core\Queue\QueueInterface;
 
 class NotificationQueueService {
 
-  public function __construct(LoggerChannelFactoryInterface $loggerFactory) {
+  public function __construct(
+      LoggerChannelFactoryInterface $loggerFactory,
+      QueueFactory $queueFactory,
+  ) {
     $this->logger = $loggerFactory->get('cs_notify');
+    $this->queueFactory = $queueFactory;
   }
 
-  /**
-   * Logger channel.
-   */
   protected $logger;
+  protected $queueFactory;
 
   /**
    * Queue up an email to be processed/sent later (by cron).
    */
   function queueEmail(array $to_addresses, string $subject, string $body) {
-    \Drupal::service('queue')         // returns a QueueFactory
+    $this->queueFactory         
       ->get('cs_notify_email_queue')  // returns a QueueInterface
       ->createItem(
         [
