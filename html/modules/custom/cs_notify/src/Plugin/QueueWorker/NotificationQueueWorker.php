@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\cs_notify\Plugin;
+namespace Drupal\cs_notify\Plugin\QueueWorker;
 
 use Drupal\cs_notify\Exception\NotifyAPIException;
 use Drupal\cs_notify\Other\NotificationResult;
@@ -16,7 +16,7 @@ use Psr\Log\LoggerInterface;
  * @QueueWorker(
  *   id = "cs_notify_email_queue",
  *   title = @Translation("Send emails, Connected Services Notify (QueueWorker)"),
- *   cron = ["time" = 40]
+ *   cron = {"time" = 40}
  * )
  */
 class NotificationQueueWorker extends QueueWorkerBase {
@@ -27,7 +27,7 @@ class NotificationQueueWorker extends QueueWorkerBase {
   public function processItem($queuedEmail) {
     $logger = \Drupal::logger('cs_notify');
     try {
-      $notifyResult = \Drupal::service('cs_notify.client')->sendEmail(
+      $notifyResult = \Drupal::service('cs_notify.client')->sendEmailImmediateBlocking(
         $queuedEmail['to_addresses'],
         $queuedEmail['subject'],
         $queuedEmail['body']
