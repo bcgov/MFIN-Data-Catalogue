@@ -15,7 +15,7 @@ dependencies:
   - ckeditor5_fullscreen:ckeditor5_fullscreen
   - ckeditor_codemirror:ckeditor_codemirror
   - clipboardjs:clipboardjs
-  - cs_notify
+  - cs_notify:cs_notify
   - date_popup:date_popup
   - diff:diff
   - drupal:admin_toolbar_tools

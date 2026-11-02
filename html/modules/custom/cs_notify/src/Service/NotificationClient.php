@@ -25,13 +25,8 @@ class NotificationClient implements NotificationClientInterface {
    */
   protected $logger;
 
-  public function sendEmail($now_not_queued, array $to_addresses, string $subject, string $email_body) {
-    if ($now_not_queued) {
-      $this->sendEmailImmediateBlocking($to_addresses, $subject, $email_body);
-    }
-    else {
-      $this->sendEmailQueued($to_addresses, $subject, $email_body);
-    }
+  public function sendEmailQueued(array $to_addresses, string $subject, string $email_body) {
+    \Drupal::service('cs_notify.notification_queue')->queueEmail($to_addresses, $subject, $email_body);
   }
 
   /**
