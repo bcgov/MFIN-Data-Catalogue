@@ -49,7 +49,7 @@ class NotificationClient implements NotificationClientInterface {
    * This function is 'blocking' meaning that while you're waiting for the hand-off
    * to the Notify service, your code (and the person loading the webpage) is waiting.
    */
-  public function sendEmailImmediateBlocking(array $to_addresses, string $subject, string $email_body) : NotificationResult {
+  public function sendEmailImmediateBlocking(array $to_addresses, string $subject, string $email_body) {
 
     $config = $this->configFactory->get('cs_notify.settings');
 
@@ -123,7 +123,8 @@ class NotificationClient implements NotificationClientInterface {
     }
     catch (GuzzleException $e) {
       $this->logger->error('CS Notify request failed: @message', ['@message' => $e->getMessage()]);
-      return new NotificationResult(FALSE, NULL, $e->getMessage());
+      return;
+      // return new NotificationResult(FALSE, NULL, $e->getMessage());
     }
 
   }
