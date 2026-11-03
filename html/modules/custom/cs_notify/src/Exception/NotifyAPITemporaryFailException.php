@@ -8,5 +8,5 @@ namespace Drupal\cs_notify\Exception;
  * 
  * "Temporary fail" means the Notify service is having a problem, but it might be temporary.
  */
-class NotifyHandoffTemporaryFailException extends \RuntimeException {
+class NotifyAPITemporaryFailException extends \RuntimeException {
 }
