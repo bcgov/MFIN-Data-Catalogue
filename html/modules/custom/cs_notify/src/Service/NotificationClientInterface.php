@@ -14,13 +14,4 @@ interface NotificationClientInterface {
     string   $body
   );
 
-  /**
-   * Send an email through Connected Services 'Notify'.
-   */
-  public function sendEmailImmediateBlocking(
-    array    $to_addresses,   // array of strings, e.g. ['addr1@test.com', 'addr2@other.com']
-    string   $subject, 
-    string   $body
-  );
-
 }
