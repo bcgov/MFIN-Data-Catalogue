@@ -13,7 +13,7 @@ use Psr\Log\LoggerInterface;
  * quitting after about 40 seconds of mailing.
  *
  * @QueueWorker(
- *   id = "cs_notify_email_queue",
+ *   id = "cs_notify_email_to_hand_off",
  *   title = @Translation("Send emails, Connected Services Notify (QueueWorker)"),
  *   cron = {"time" = 40}
  * )
