@@ -63,12 +63,12 @@ class EmailSending implements ContainerInjectionInterface {
     );
   }
 
-  public function sendTestEmailToDan($now_not_later): void {
-    if ($now_not_later) {
-      $notif_result = $this->notificationClient->sendEmailImmediateBlocking(['dan.howard@gov.bc.ca'], 'Your immediate application', "<h2>Hello kind sir</h2><p>Your application has been received.</p>");
-    } else {
-      $this->notificationClient->sendEmailQueued(           ['dan.howard@gov.bc.ca'], 'Your queued application', "<h2>Hello kind sir</h2><p>Your application has been received.</p>");
-    }
+  public function sendTestEmailToDan(): void {
+    $this->notificationClient->sendEmailQueued(
+      ['dan.howard@gov.bc.ca'], 
+      'Your queued application', 
+      "<h2>Hello kind sir</h2><p>Your application has been received.</p>"
+    );
   }
 
 
