@@ -3,7 +3,6 @@
 namespace Drupal\cs_notify\Plugin\QueueWorker;
 
 use Drupal\cs_notify\Exception\NotifyAPIException;
-use Drupal\cs_notify\Other\NotificationResult;
 use Drupal\Core\Queue\QueueWorkerBase;
 use Psr\Log\LoggerInterface;
 
