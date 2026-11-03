@@ -5,10 +5,8 @@ namespace Drupal\cs_notify\Service;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\Queue\QueueFactory;
-use Drupal\cs_notify\Other\NotificationResult;
 use Drupal\cs_notify\Exception\NotifyAPIException;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\GuzzleException;
 
 class NotificationClient implements NotificationClientInterface {
 
@@ -31,7 +29,7 @@ class NotificationClient implements NotificationClientInterface {
    */
   public function sendEmailQueued(array $to_addresses, string $subject, string $email_body) {
     $this->queueFactory
-      ->get('cs_notify_email_queue')
+      ->get('cs_notify_email_to_hand_off')
       ->createItem([
         'to_addresses' => $to_addresses,
         'subject' => $subject,
@@ -74,58 +72,71 @@ class NotificationClient implements NotificationClientInterface {
     ];
 
     try {
+
       $response = $this->httpClient->request(
-        'POST', 
-        $config->get('api_url') . '/api/v1/notifysimple', 
-        $request_payload
+        'POST',
+        $config->get('api_url') . '/api/v1/notifysimple',
+        $request_payload + ['http_errors' => FALSE],  // Affects how Guzzle handles 4xx and 5xx responses. We want to handle those ourselves.
       );
 
       $httpResponseCode = (int) $response->getStatusCode();
+
       switch ($httpResponseCode) {
-        case 202: 
-          // Accepted for delivery. The notifyId identifies this request from here on.
-          break;
 
-        case 400: throw new NotifyAPIException(
-          "Malformed request, or no channel supplied. Request payload: " . print_r($request_payload, true),
-          400);
+        case 202: return; // Accepted by Notify. 'return' dequeues the item.
 
-        case 401: throw new NotifyAPIException("Missing or invalid API key", 401);
+        // We don't want to retry sending this email, but we do want to log the error.
+        case 400: $this->logger->error('Notify rejected request: 400'); return;
+        case 401: $this->logger->error('Notify API key invalid: 401');  return;
+        case 403: $this->logger->error('Notify tenant mismatch: 403');  return;
+        case 422: $this->logger->error('Notify validation failure: @payload',
+            ['@payload' => print_r($request_payload, TRUE)]);           return;
 
-        case 403: throw new NotifyAPIException("The API key is not bound to the requested tenant", 403);
+        // Rate-limit exceeded. 
+        // - Suspend attempts to process the queue for a while, but try again later.
+        case 429: throw new SuspendQueueException('Notify rate-limit exceeded.');
 
-        case 422: throw new NotifyAPIException(
-          "The request is well formed but cannot be accepted - for example both a templateId and inline content," 
-            . " an unknown templateId, or a recipient blocked by the safelist."
-            . " Request payload: " . print_r($request_payload, true),
-          422);
-
-        default: throw new NotifyAPIException("Unknown code", $httpResponseCode);
+        // Notify is having a problem, but it might be temporary. 
+        // - Suspend attempts to process the queue for a while, but try again later.
+        case 500: throw new SuspendQueueException('Notify service: "Internal server error"');
+        case 502: throw new SuspendQueueException('Notify service: "Bad gateway"');
+        case 503: throw new SuspendQueueException('Notify service: "Service unavailable"');
+        case 504: throw new SuspendQueueException('Notify service: "Gateway timeout"');
+        default:  throw new SuspendQueueException("Unexpected response code from Notify service: {$httpResponseCode}");
       }
 
-
-      $response_body = json_decode((string) $response->getBody(), TRUE);
-      /* Response body looks something like this:
-        {
-          "notifyId": "d411312b-26c0-449f-baf9-6a8ad15f0e34",
-          "status": "accepted",
-          "channels": [
-            "email"
-          ],
-          "createdAt": "2026-09-24T19:31:35.819Z",
-          "message": "Notification accepted, queuing in progress"
-        }
-      */
-
-      $messageId = $response_body['notifyId'] ?? 'no ID found';
-      $this->logger->info('Notification accepted. Message ID: @id', ['@id' => $messageId]);
-      return new NotificationResult(TRUE, $messageId);
     }
-    catch (GuzzleException $e) {
-      $this->logger->error('CS Notify request failed: @message', ['@message' => $e->getMessage()]);
-      return;
-      // return new NotificationResult(FALSE, NULL, $e->getMessage());
-    }
+    catch (\GuzzleHttp\Exception\ConnectException  $e) { throw new SuspendQueueException('Notify problem: DNS failure, timeout, connection refused, etc.' . $e->getMessage()); }
+    catch (\GuzzleHttp\Exception\TransferException $e) { throw new SuspendQueueException('Notify problem: Other transport-level issues.' .                  $e->getMessage()); }
+    catch (\GuzzleHttp\Exception\GuzzleException   $e) { throw new SuspendQueueException('Unexpected Guzzle error: ' .                                      $e->getMessage()); } // Should rarely be reached, but acts as a safety net.
+
+    $response_body = json_decode((string) $response->getBody(), TRUE);
+    /* Response body looks something like this:
+      {
+        "notifyId": "d411312b-26c0-449f-baf9-6a8ad15f0e34",
+        "status": "accepted",
+        "channels": [
+          "email"
+        ],
+        "createdAt": "2026-09-24T19:31:35.819Z",
+        "message": "Notification accepted, queuing in progress"
+      }
+    */
+
+    $messageId = $response_body['notifyId'] ?? 'no ID found';
+    $this->logger->info('Notify API says: "@status", "@message", for messageId @id', [
+      '@id' => $messageId, 
+      '@status' => $response_body['status'] ?? 'unknown', 
+      '@message' => $response_body['message'] ?? 'no message found'
+    ]);
+
+    // Queue up a follow-up task to check the status of this email, based on the message ID returned by the Notify API.
+    $this->queueFactory
+      ->get('cs_notify_email_status_check')
+      ->createItem([
+        'notify_id' => $messageId,
+      ]);
+
 
   }
 
