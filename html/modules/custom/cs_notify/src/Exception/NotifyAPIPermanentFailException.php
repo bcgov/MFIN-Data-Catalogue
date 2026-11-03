@@ -8,5 +8,5 @@ namespace Drupal\cs_notify\Exception;
  * 
  * "Permanent fail" means the Notify service is having a problem, and it is not likely to be temporary.
  */
-class NotifyHandoffPermanentFailException extends \RuntimeException {
+class NotifyAPIPermanentFailException extends \RuntimeException {
 }

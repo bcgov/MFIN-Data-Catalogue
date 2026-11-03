@@ -2,8 +2,8 @@
 
 namespace Drupal\cs_notify\Plugin\QueueWorker;
 
-use Drupal\cs_notify\Exception\NotifyHandoffPermanentFailException;
-use Drupal\cs_notify\Exception\NotifyHandoffTemporaryFailException;
+use Drupal\cs_notify\Exception\NotifyAPIPermanentFailException;
+use Drupal\cs_notify\Exception\NotifyAPITemporaryFailException;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -116,18 +116,18 @@ class NotificationStatusCheckQueueWorker extends QueueWorkerBase implements Cont
           break;
 
         // Bad errors. No sense retrying these ones.
-        case 404: throw new NotifyHandoffPermanentFailException('No such notification for this tenant: 404');
+        case 404: throw new NotifyAPIPermanentFailException('No such notification for this tenant: 404');
 
         // Something we messed up with Notify setup. Could try again later.
-        case 401: throw new NotifyHandoffTemporaryFailException('Notify API key invalid: 401');
-        case 403: throw new NotifyHandoffTemporaryFailException('Notify tenant mismatch: 403');
+        case 401: throw new NotifyAPITemporaryFailException('Notify API key invalid: 401');
+        case 403: throw new NotifyAPITemporaryFailException('Notify tenant mismatch: 403');
 
         // Notify is having a problem, but it might be temporary.
-        case 500: throw new NotifyHandoffTemporaryFailException('Notify service: "Internal server error"');
-        case 502: throw new NotifyHandoffTemporaryFailException('Notify service: "Bad gateway"');
-        case 503: throw new NotifyHandoffTemporaryFailException('Notify service: "Service unavailable"');
-        case 504: throw new NotifyHandoffTemporaryFailException('Notify service: "Gateway timeout"');
-        default:  throw new NotifyHandoffTemporaryFailException("Unexpected response code from Notify service: {$httpResponseCode}");   
+        case 500: throw new NotifyAPITemporaryFailException('Notify service: "Internal server error"');
+        case 502: throw new NotifyAPITemporaryFailException('Notify service: "Bad gateway"');
+        case 503: throw new NotifyAPITemporaryFailException('Notify service: "Service unavailable"');
+        case 504: throw new NotifyAPITemporaryFailException('Notify service: "Gateway timeout"');
+        default:  throw new NotifyAPITemporaryFailException("Unexpected response code from Notify service: {$httpResponseCode}");   
       }
       
       $response_body = json_decode((string) $response->getBody(), TRUE);
@@ -219,14 +219,14 @@ class NotificationStatusCheckQueueWorker extends QueueWorkerBase implements Cont
       $status = $response_body[0]['status'];
 
       if (empty($status)) {
-        throw new NotifyHandoffTemporaryFailException('Notify API did not return a status.');
+        throw new NotifyAPITemporaryFailException('Notify API did not return a status.');
       }
       switch ($status) {
         case 'accepted':
         case 'processing':
         case 'sending':
           // Email has not actually been sent yet. Check on it again later.
-          throw new NotifyHandoffTemporaryFailException("Email still at '{$status}' status. Not quite sent yet.");
+          throw new NotifyAPITemporaryFailException("Email still at '{$status}' status. Not quite sent yet.");
 
         case 'sent':
         case 'completed':
@@ -239,14 +239,14 @@ class NotificationStatusCheckQueueWorker extends QueueWorkerBase implements Cont
         case 'failed':
         case 'bounced':
         case 'rejected':
-          throw new NotifyHandoffPermanentFailException("Email fail: {$status}");
+          throw new NotifyAPIPermanentFailException("Email fail: {$status}");
         default:
           // Email is still being processed, or Notify is having a problem. Try again later.
-          throw new NotifyHandoffTemporaryFailException("Unknown status '{$status}' from Notify API");
+          throw new NotifyAPITemporaryFailException("Unknown status '{$status}' from Notify API");
       }
       
     }
-    catch (NotifyHandoffPermanentFailException $e) {
+    catch (NotifyAPIPermanentFailException $e) {
       // Log the error, and return to remove item from the queue.
       $this->logger->error('Perm-fail: @message -- for messageId @id', [
         '@message' => $e->getMessage(), 
@@ -254,7 +254,7 @@ class NotificationStatusCheckQueueWorker extends QueueWorkerBase implements Cont
       ]);
       return;
     }
-    catch (NotifyHandoffTemporaryFailException $e) {
+    catch (NotifyAPITemporaryFailException $e) {
       $this->logger->warning('Temp-fail: @message -- for messageId @id', [
         '@message' => $e->getMessage(),
         '@id' => $queuedEmail['notify_id']
