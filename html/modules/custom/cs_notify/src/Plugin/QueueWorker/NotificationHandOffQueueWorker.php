@@ -11,9 +11,9 @@ use Drupal\Core\Queue\QueueFactory;
 use Drupal\Core\Queue\QueueWorkerBase;
 use Drupal\Core\Queue\SuspendQueueException;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Exception\ConnectException  as GuzzleConnectException;
 use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Exception\TransferException;
+use GuzzleHttp\Exception\TransferException as GuzzleTransferException;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 
@@ -106,10 +106,10 @@ class NotificationHandOffQueueWorker extends QueueWorkerBase implements Containe
       );
 
     }
-    catch (ConnectException $e) {
+    catch (GuzzleConnectException $e) {
       throw new SuspendQueueException('Notify problem: DNS failure, timeout, connection refused, etc. ' . $e->getMessage(), 0, $e);
     }
-    catch (TransferException $e) {
+    catch (GuzzleTransferException $e) {
       throw new SuspendQueueException('Notify problem: Other transport-level issues. ' . $e->getMessage(), 0, $e);
     }
     catch (GuzzleException $e) {
@@ -170,7 +170,7 @@ class NotificationHandOffQueueWorker extends QueueWorkerBase implements Containe
     }
     catch (NotifyHandoffPermanentFailException $e) {
       // Log the error, and return to remove item from the queue.
-      $this->logger->error('Notify API permanent fail: @message', ['@message' => $e->getMessage()]);
+      $this->logger->error('Notify API permanent fail: @message -- for ', ['@message' => $e->getMessage()]);
       return;
     }
     catch (NotifyHandoffTemporaryFailException $e) {
