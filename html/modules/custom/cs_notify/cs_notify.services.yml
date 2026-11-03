@@ -4,13 +4,8 @@ services:
     arguments:
       - '@http_client'
       - '@config.factory'
+      - '@queue'
       - '@logger.factory'
 
   Drupal\cs_notify\Service\NotificationClientInterface:
     alias: cs_notify.client
-
-  cs_notify.notification_queue:
-    class: Drupal\cs_notify\Service\NotificationQueueService
-    arguments:
-      - '@logger.factory'
-      - '@queue'
