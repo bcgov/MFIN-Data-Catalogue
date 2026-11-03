@@ -2,8 +2,8 @@
 
 namespace Drupal\cs_notify\Plugin\QueueWorker;
 
-use Drupal\cs_notify\Exception\NotifyHandoffPermanentFailException;
-use Drupal\cs_notify\Exception\NotifyHandoffTemporaryFailException;
+use Drupal\cs_notify\Exception\NotifyAPIPermanentFailException;
+use Drupal\cs_notify\Exception\NotifyAPITemporaryFailException;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -127,26 +127,26 @@ class NotificationHandOffQueueWorker extends QueueWorkerBase implements Containe
           break;
 
         // Bad errors. No sense retrying these ones.
-        case 400: throw new NotifyHandoffPermanentFailException('Notify rejected request: 400');
-        case 422: throw new NotifyHandoffPermanentFailException(sprintf('Notify validation failure: 422, subject "%s", response: %s', [
+        case 400: throw new NotifyAPIPermanentFailException('Notify rejected request: 400');
+        case 422: throw new NotifyAPIPermanentFailException(sprintf('Notify validation failure: 422, subject "%s", response: %s', [
             $queuedEmail['subject'],
             (string) $response->getBody(),
             // Don't include $request_payload: it contains the API key (and the email body).
         ]));
 
         // Something we messed up with Notify setup. Could try again later.
-        case 401: throw new NotifyHandoffTemporaryFailException('Notify API key invalid: 401');
-        case 403: throw new NotifyHandoffTemporaryFailException('Notify tenant mismatch: 403');
+        case 401: throw new NotifyAPITemporaryFailException('Notify API key invalid: 401');
+        case 403: throw new NotifyAPITemporaryFailException('Notify tenant mismatch: 403');
 
         // Rate-limit exceeded... try again later.
-        case 429: throw new NotifyHandoffTemporaryFailException('Notify rate-limit exceeded.');
+        case 429: throw new NotifyAPITemporaryFailException('Notify rate-limit exceeded.');
 
         // Notify is having a problem, but it might be temporary.
-        case 500: throw new NotifyHandoffTemporaryFailException('Notify service: "Internal server error"');
-        case 502: throw new NotifyHandoffTemporaryFailException('Notify service: "Bad gateway"');
-        case 503: throw new NotifyHandoffTemporaryFailException('Notify service: "Service unavailable"');
-        case 504: throw new NotifyHandoffTemporaryFailException('Notify service: "Gateway timeout"');
-        default:  throw new NotifyHandoffTemporaryFailException("Unexpected response code from Notify service: {$httpResponseCode}");   
+        case 500: throw new NotifyAPITemporaryFailException('Notify service: "Internal server error"');
+        case 502: throw new NotifyAPITemporaryFailException('Notify service: "Bad gateway"');
+        case 503: throw new NotifyAPITemporaryFailException('Notify service: "Service unavailable"');
+        case 504: throw new NotifyAPITemporaryFailException('Notify service: "Gateway timeout"');
+        default:  throw new NotifyAPITemporaryFailException("Unexpected response code from Notify service: {$httpResponseCode}");   
       }
       
       $response_body = json_decode((string) $response->getBody(), TRUE);
@@ -164,16 +164,16 @@ class NotificationHandOffQueueWorker extends QueueWorkerBase implements Containe
 
       $messageId = $response_body['notifyId'];
       if (empty($messageId)) {
-        throw new NotifyHandoffTemporaryFailException('Notify API did not return a message ID.');
+        throw new NotifyAPITemporaryFailException('Notify API did not return a message ID.');
       }
       
     }
-    catch (NotifyHandoffPermanentFailException $e) {
+    catch (NotifyAPIPermanentFailException $e) {
       // Log the error, and return to remove item from the queue.
       $this->logger->error('Notify API permanent fail: @message -- for ', ['@message' => $e->getMessage()]);
       return;
     }
-    catch (NotifyHandoffTemporaryFailException $e) {
+    catch (NotifyAPITemporaryFailException $e) {
       $this->logger->warning('Notify API temporary fail: @message', ['@message' => $e->getMessage()]);
       // Rethrow as a SuspendQueueException to stop processing the queue for now, so it is tried again on a later cron run.
       throw new SuspendQueueException('Notify API temporary fail: ' . $e->getMessage(), 0, $e);
