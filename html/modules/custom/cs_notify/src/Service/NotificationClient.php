@@ -4,7 +4,7 @@ namespace Drupal\cs_notify\Service;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
-use Drupal\Core\Queue\SuspendQueueException;
+use Drupal\Core\Queue\QueueFactory;
 use Drupal\cs_notify\Other\NotificationResult;
 use Drupal\cs_notify\Exception\NotifyAPIException;
 use GuzzleHttp\ClientInterface;
@@ -15,6 +15,7 @@ class NotificationClient implements NotificationClientInterface {
   public function __construct(
     protected ClientInterface $httpClient,
     protected ConfigFactoryInterface $configFactory,
+    protected QueueFactory $queueFactory,
     LoggerChannelFactoryInterface $loggerFactory,
   ) {
     $this->logger = $loggerFactory->get('cs_notify');
@@ -25,8 +26,21 @@ class NotificationClient implements NotificationClientInterface {
    */
   protected $logger;
 
+  /**
+   * Queue up an email to be processed/sent later (by cron).
+   */
   public function sendEmailQueued(array $to_addresses, string $subject, string $email_body) {
-    \Drupal::service('cs_notify.notification_queue')->queueEmail($to_addresses, $subject, $email_body);
+    $this->queueFactory
+      ->get('cs_notify_email_queue')
+      ->createItem([
+        'to_addresses' => $to_addresses,
+        'subject' => $subject,
+        'body' => $email_body,
+      ]);
+
+    $this->logger->info('Queued up email to send to @addresses',
+      ['@addresses' => implode(', ', $to_addresses)]
+    );
   }
 
   /**
