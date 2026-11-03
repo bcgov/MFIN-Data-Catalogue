@@ -1,0 +1,12 @@
+<?php
+
+namespace Drupal\cs_notify\Exception;
+
+/**
+ * Exception class to indicate a problem sending emails
+ *   via the Notify service, from Connected Services.
+ * 
+ * "Temporary fail" means the Notify service is having a problem, but it might be temporary.
+ */
+class NotifyHandoffTemporaryFailException extends \RuntimeException {
+}

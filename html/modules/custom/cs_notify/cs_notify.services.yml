@@ -2,8 +2,6 @@ services:
   cs_notify.client:
     class: Drupal\cs_notify\Service\NotificationClient
     arguments:
-      - '@http_client'
-      - '@config.factory'
       - '@queue'
       - '@logger.factory'
 
