@@ -13,3 +13,7 @@ cs_notify.settings:
     timeout:
       type: integer
       label: 'HTTP timeout'
+
+    process_notify_queues_during_cron:
+      type: boolean
+      label: 'Process Notify queues using Drupal cron'
