@@ -57,6 +57,19 @@ class SettingsForm extends ConfigFormBase {
       '#required' => TRUE,
     ];
 
+    $form['process_notify_queues_during_cron'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Process Notify queues using Drupal cron'),
+      '#description' => $this->t("
+        Normally, you should leave this checked, 
+        so that Notify queues are processed by Drupal's cron.<br/>
+        
+        Uncheck it if the queues are processed by something else, such as a separate <code>drush queue:run</code> job 
+        (such as we do on Openshift in BC Gov's 'Basebuild').
+      "),
+      '#default_value' => $config->get('process_notify_queues_during_cron') ?? TRUE,
+    ];
+
     return parent::buildForm($form, $form_state);
   }
 
