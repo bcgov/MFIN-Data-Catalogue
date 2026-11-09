@@ -1,5 +1,6 @@
 _core:
   default_config_hash: L28NM3IPDAhw8am_459GuLgq32Ob7Vu27Nx29IGMtjA
-api_url: 'https://test.notify.digital.gov.bc.ca'
-api_key: Jfo255HXuOhVtTPhh8MulJBXlRCYkYxJ
+api_url: '<this value will be set from settings.openshift.php>'
+api_key: '<this value will be set from settings.openshift.php (injected from Vault)>'
 timeout: 30
+process_notify_queues_during_cron: false
