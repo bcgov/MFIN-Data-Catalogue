@@ -65,7 +65,7 @@ class NotificationStatusCheckQueueWorker extends QueueWorkerBase implements Cont
   }
 
   /**
-   * Send one queued email using the Notify API, from Connected Services.
+   * Check on the status of a previously sent email using the Notify API, from Connected Services.
    *
    * Returning normally removes the item from the queue. Throwing
    * SuspendQueueException releases the item and stops processing this queue
@@ -73,7 +73,7 @@ class NotificationStatusCheckQueueWorker extends QueueWorkerBase implements Cont
    *
    * {@inheritdoc}
    */
-  public function processItem($queuedEmail) {
+  public function processItem($emailQueuedInNotifySystem) {
 
     $config = $this->configFactory->get('cs_notify.settings');
 
@@ -86,7 +86,7 @@ class NotificationStatusCheckQueueWorker extends QueueWorkerBase implements Cont
     ];
 
     try {
-      $url = sprintf('%s/api/v1/notification_request/%s/request_details', $config->get('api_url'), $queuedEmail['notify_id']);
+      $url = sprintf('%s/api/v1/notification_request/%s/request_details', $config->get('api_url'), $emailQueuedInNotifySystem['notify_id']);
       $response = $this->httpClient->request(
         'GET',
         $url,
@@ -231,7 +231,7 @@ class NotificationStatusCheckQueueWorker extends QueueWorkerBase implements Cont
         case 'sent':
         case 'completed':
           $this->logger->info('Email "@status", for messageId @id', [
-            '@id' => $queuedEmail['notify_id'],
+            '@id' => $emailQueuedInNotifySystem['notify_id'],
             '@status' => $status,
           ]);
           return; // Done with this item, remove it from the queue.
@@ -250,21 +250,18 @@ class NotificationStatusCheckQueueWorker extends QueueWorkerBase implements Cont
       // Log the error, and return to remove item from the queue.
       $this->logger->error('Perm-fail: @message -- for messageId @id', [
         '@message' => $e->getMessage(), 
-        '@id' => $queuedEmail['notify_id']
+        '@id' => $emailQueuedInNotifySystem['notify_id']
       ]);
       return;
     }
     catch (NotifyAPITemporaryFailException $e) {
       $this->logger->warning('Temp-fail: @message -- for messageId @id', [
         '@message' => $e->getMessage(),
-        '@id' => $queuedEmail['notify_id']
+        '@id' => $emailQueuedInNotifySystem['notify_id']
       ]);
       // Rethrow as a SuspendQueueException to stop processing the queue for now, so it is tried again on a later cron run.
       throw new SuspendQueueException('Notify API temporary fail: ' . $e->getMessage(), 0, $e);
     }
-
-
-
   }
 
 }

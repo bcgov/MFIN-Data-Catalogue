@@ -170,7 +170,7 @@ class NotificationHandOffQueueWorker extends QueueWorkerBase implements Containe
     }
     catch (NotifyAPIPermanentFailException $e) {
       // Log the error, and return to remove item from the queue.
-      $this->logger->error('Notify API permanent fail: @message -- for ', ['@message' => $e->getMessage()]);
+      $this->logger->error('Notify API permanent fail: @message', ['@message' => $e->getMessage()]);
       return;
     }
     catch (NotifyAPITemporaryFailException $e) {
@@ -179,6 +179,7 @@ class NotificationHandOffQueueWorker extends QueueWorkerBase implements Containe
       throw new SuspendQueueException('Notify API temporary fail: ' . $e->getMessage(), 0, $e);
     }
 
+    // If we made it this far, it means the Notify API accepted the email normally. Log a note about it.
     $this->logger->info('Notify API says: "@status", "@message", for messageId @id', [
       '@id' => $messageId,
       '@status' => $response_body['status'] ?? 'unknown',
