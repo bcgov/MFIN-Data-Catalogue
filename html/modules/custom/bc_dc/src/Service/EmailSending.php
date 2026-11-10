@@ -11,7 +11,6 @@ use Drupal\Core\Logger\LoggerChannelTrait;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\Core\Url;
-use Drupal\message_gcnotify\Service\GcNotifyApiService;
 use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\cs_notify\Service\NotificationClient;
@@ -94,33 +93,25 @@ class EmailSending implements ContainerInjectionInterface {
    *   TRUE if sending succeed, FALSE if it failed, NULL if the user has no
    *   email address or if there are no updates to send to this user.
    */
-  public function sendRemindersToOneUser(int $uid, array $assets_needing_review_for_user): ?bool {
+  public function sendRemindersToOneUser(int $uid, array $assets_needing_review_for_user): void {
     $account = $this->entityTypeManager->getStorage('user')->load($uid);
     $email = $account?->getEmail();
     $logger = $this->getLogger('bc_dc');
 
     if (!$email) {
       $logger->error('EmailSending: User @uid has no email address.', ['@uid' => $uid]);
-      return NULL;
+      return;
     }
 
     $body = $this->generateReviewReminderBody($assets_needing_review_for_user, $uid);
     if (!$body) {
       $logger->error('EmailSending: Empty message for user @uid.', ['@uid' => $uid]);
-      return NULL;
+      return;
     }
 
     $subject = $this->t('Metadata records you maintain need updates', [], ['langcode' => $account->getPreferredLangcode()]);
 
-    $success = GcNotifyApiService::sendMessage([$email], $subject, $body);
-    if ($success) {
-      $logger->notice('Sent ReviewReminder message to user @uid.', ['@uid' => $uid]);
-    }
-    else {
-      $logger->error('Failed to send ReviewReminder message to user @uid.', ['@uid' => $uid]);
-    }
-
-    return $success;
+    $this->notificationClient->sendEmailQueued([$email], $subject, $body);
   }
 
   /**
@@ -450,14 +441,7 @@ END_BODY,
     $body_content .= $this->getEmailFooter();
 
     // Send the message and log the result.
-    $success = GcNotifyApiService::sendMessage([$owner->getEmail()], $subject, $body_content);
-    $logger = $this->getLogger('bc_dc');
-    $logger->notice(($success ? 'Sent message' : 'Failed sending message')
-              . ' to user @user_num when updating data_set @nid.', [
-                '@user_num' => $owner->id(),
-                '@nid' => $data_set->id(),
-              ]
-    );
+    $this->notificationClient->sendEmailQueued([$owner->getEmail()], $subject, $body_content);
   }
 
 

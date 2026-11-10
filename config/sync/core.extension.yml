@@ -85,7 +85,6 @@ module:
   menu_link_attributes: 0
   menu_link_content: 0
   menu_ui: 0
-  message_gcnotify: 0
   metatag: 0
   node: 0
   openid_connect: 0

@@ -26,7 +26,7 @@ class NotificationClient implements NotificationClientInterface {
    * The actual hand-off to the Notify API happens in
    * \Drupal\cs_notify\Plugin\QueueWorker\NotificationHandOffQueueWorker::processItem().
    */
-  public function sendEmailQueued(array $to_addresses, string $subject, string $email_body): bool {
+  public function sendEmailQueued(array $to_addresses, string $subject, string $email_body) : void {
     $item_id = $this->queueFactory
       ->get('cs_notify_email_to_hand_off')
       ->createItem([
