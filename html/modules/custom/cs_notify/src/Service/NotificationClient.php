@@ -35,14 +35,13 @@ class NotificationClient implements NotificationClientInterface {
         'body' => $email_body,
       ]);
 
+    $the_thing = 'email to send to addresses: ' . implode(', ', $to_addresses);
     if ($item_id !== FALSE) {
       # Success!
-      $this->logger->info('Queued up email to send to @addresses',
-        ['@addresses' => implode(', ', $to_addresses)]
-      );
+      $this->logger->info("Queued up $the_thing."); 
     }
     else {
-      throw new \Exception('Failed to queue up email to send to addresses: ' . implode(', ', $to_addresses));
+      throw new \Exception("Failed to queue up $the_thing.");
     }
   }
 }

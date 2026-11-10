@@ -170,11 +170,24 @@ class NotificationHandOffQueueWorker extends QueueWorkerBase implements Containe
     }
     catch (NotifyAPIPermanentFailException $e) {
       // Log the error, and return to remove item from the queue.
-      $this->logger->error('Notify API permanent fail: @message', ['@message' => $e->getMessage()]);
+      // Include the list of email addresses in the log message, so we can see which email failed, as well as the subject and the Notify API's response message.
+      $this->logger->error('Notify API @perm_or_temp fail: "@message", for email to addresses: @addresses, subject: "@subject", Notify response: "@response"', [
+        '@perm_or_temp' => 'permanent',
+        '@message' => $e->getMessage(),
+        '@addresses' => implode(', ', $queuedEmail['to_addresses']),
+        '@subject' => $queuedEmail['subject'],
+        '@response' => (string) $response->getBody(),
+      ]);
       return;
     }
     catch (NotifyAPITemporaryFailException $e) {
-      $this->logger->warning('Notify API temporary fail: @message', ['@message' => $e->getMessage()]);
+      $this->logger->warning('Notify API @perm_or_temp fail: "@message", for email to addresses: @addresses, subject: "@subject", Notify response: "@response"', [
+        '@perm_or_temp' => 'temporary',
+        '@message' => $e->getMessage(),
+        '@addresses' => implode(', ', $queuedEmail['to_addresses']),
+        '@subject' => $queuedEmail['subject'],
+        '@response' => (string) $response->getBody(),
+      ]);
       // Rethrow as a SuspendQueueException to stop processing the queue for now, so it is tried again on a later cron run.
       throw new SuspendQueueException('Notify API temporary fail: ' . $e->getMessage(), 0, $e);
     }
