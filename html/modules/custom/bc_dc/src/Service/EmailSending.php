@@ -111,7 +111,7 @@ class EmailSending implements ContainerInjectionInterface {
 
     $subject = $this->t('Metadata records you maintain need updates', [], ['langcode' => $account->getPreferredLangcode()]);
 
-    $this->notificationClient->sendEmailQueued([$email], $subject, $body);
+    $this->notificationClient->sendEmailQueued([$email], $subject, $body, 'markdown');
   }
 
   /**
@@ -441,7 +441,7 @@ END_BODY,
     $body_content .= $this->getEmailFooter();
 
     // Send the message and log the result.
-    $this->notificationClient->sendEmailQueued([$owner->getEmail()], $subject, $body_content);
+    $this->notificationClient->sendEmailQueued([$owner->getEmail()], $subject, $body_content, 'markdown');
   }
 
 
