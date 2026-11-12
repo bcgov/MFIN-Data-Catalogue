@@ -11,7 +11,8 @@ interface NotificationClientInterface {
   public function sendEmailQueued(
     array    $to_addresses,   // array of strings, e.g. ['addr1@test.com', 'addr2@other.com']
     string   $subject, 
-    string   $body
+    string   $body,
+    string   $body_type = 'html'  // 'txt', 'html' or 'markdown'. See https://notify.digital.gov.bc.ca/api/docs
   );
 
 }

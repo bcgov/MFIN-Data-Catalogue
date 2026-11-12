@@ -90,7 +90,7 @@ class NotificationHandOffQueueWorker extends QueueWorkerBase implements Containe
           'content' => [
             'subject' => $queuedEmail['subject'],
             'body' => $queuedEmail['body'],
-            'bodyType' => 'html',
+            'bodyType' => $queuedEmail['body_type'],
           ],
         ],
       ],
