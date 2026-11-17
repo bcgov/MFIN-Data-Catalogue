@@ -17,7 +17,7 @@
  * Postgres requires us to use a schema. 
  * DDEV doesn't seem to handle this, so we do it here.
  */
-$databases['default']['default']['schema'] = "NEWBB-DB-schemaname"; # Keep this short and tight. e.g. 'abc' or 'xyz'.
+$databases['default']['default']['schema'] = "drupalschema"; # Keep this short and tight. e.g. 'abc' or 'xyz'.
 
 
 /**
