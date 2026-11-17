@@ -19,6 +19,10 @@
         },
         {
             "type": "vcs",
+            "url": "https://github.com/danhgov/cs_notify.git"
+        },
+        {
+            "type": "vcs",
             "url": "https://github.com/openplus/opbb"
         },
         {
@@ -94,6 +98,7 @@
         "composer/installers": "^2.2",
         "cweagans/composer-patches": "^1",
         "d3/d3": "^7.8",
+        "bcgov/cs_notify": "dev-master",
         "drupal/action": "^0.2",
         "drupal/admin_toolbar": "^3.0",
         "drupal/auto_username": "^2.0",
@@ -135,7 +140,6 @@
         "drupal/insert_view_adv": "^2.0@alpha",
         "drupal/linkit": "^7.0",
         "drupal/menu_link_attributes": "^1.6",
-        "drupal/message_gcnotify": "^1.0.1",
         "drupal/metatag": "^2.0",
         "drupal/openid_connect": "^3.0@alpha",
         "drupal/page_manager": "^4.0",

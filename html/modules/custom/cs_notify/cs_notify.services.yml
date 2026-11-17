@@ -1,9 +1,0 @@
-services:
-  cs_notify.client:
-    class: Drupal\cs_notify\Service\NotificationClient
-    arguments:
-      - '@queue'
-      - '@logger.factory'
-
-  Drupal\cs_notify\Service\NotificationClientInterface:
-    alias: cs_notify.client

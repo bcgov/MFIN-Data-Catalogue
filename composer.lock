@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a00ba48f37b9cf6c86935ec08c63ebe5",
+    "content-hash": "5d1675dbf0b1533b5241f4507936fa57",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -61,6 +61,36 @@
                 "source": "https://github.com/asm89/stack-cors/tree/v2.4.0"
             },
             "time": "2026-01-28T13:08:04+00:00"
+        },
+        {
+            "name": "bcgov/cs_notify",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/danhgov/cs_notify.git",
+                "reference": "7c35f66afa30cb634c926afa24c8667f0b06b70e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/danhgov/cs_notify/zipball/7c35f66afa30cb634c926afa24c8667f0b06b70e",
+                "reference": "7c35f66afa30cb634c926afa24c8667f0b06b70e",
+                "shasum": ""
+            },
+            "require": {
+                "drupal/core": "^8.8 || ^9 || ^10 || ^11"
+            },
+            "default-branch": true,
+            "type": "drupal-module",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Notification functionality, using the Notify API from Connected Services",
+            "homepage": "https://github.com/danhgov/cs_notify",
+            "support": {
+                "source": "https://github.com/danhgov/cs_notify/tree/master",
+                "issues": "https://github.com/danhgov/cs_notify/issues"
+            },
+            "time": "2026-11-17T00:08:44+00:00"
         },
         {
             "name": "bcgov/gdx_analytics_drupal_snowplow",
@@ -5258,70 +5288,6 @@
             }
         },
         {
-            "name": "drupal/message_gcnotify",
-            "version": "1.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/message_gcnotify.git",
-                "reference": "1.0.3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/message_gcnotify-1.0.3.zip",
-                "reference": "1.0.3",
-                "shasum": "1ebcd189de9deee05e2e064d674b92af3b92aa3e"
-            },
-            "require": {
-                "drupal/core": "^10 || ^11"
-            },
-            "require-dev": {
-                "drupal/message": "^1.5",
-                "drupal/message_notify": "^1.3"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "1.0.3",
-                    "datestamp": "1737478442",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "gurjinder_pabla",
-                    "homepage": "https://www.drupal.org/user/2321532"
-                },
-                {
-                    "name": "jmdeleon",
-                    "homepage": "https://www.drupal.org/user/531108"
-                },
-                {
-                    "name": "joel_osc",
-                    "homepage": "https://www.drupal.org/user/124931"
-                },
-                {
-                    "name": "liam morland",
-                    "homepage": "https://www.drupal.org/user/493050"
-                }
-            ],
-            "description": "Sends messages via the GC Notify service. Also provides a Notifier plugin for message_notify.",
-            "homepage": "https://www.drupal.org/project/message_gcnotify",
-            "keywords": [
-                "Actively maintained",
-                "Integrations"
-            ],
-            "support": {
-                "source": "https://git.drupalcode.org/project/message_gcnotify"
-            }
-        },
-        {
             "name": "drupal/metatag",
             "version": "2.2.7",
             "source": {
@@ -5496,6 +5462,7 @@
             "description": "A pluggable client implementation for the OpenID Connect protocol.",
             "homepage": "https://www.drupal.org/project/openid_connect",
             "keywords": [
+                "Access control",
                 "Drupal"
             ],
             "support": {
@@ -8969,22 +8936,22 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "7.16.1",
+            "version": "7.16.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "81755d989b3007ca7f88a069857553cd08e7dc2e"
+                "reference": "c88a78082757dd5a0c44191651535259fcb6e605"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/81755d989b3007ca7f88a069857553cd08e7dc2e",
-                "reference": "81755d989b3007ca7f88a069857553cd08e7dc2e",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/c88a78082757dd5a0c44191651535259fcb6e605",
+                "reference": "c88a78082757dd5a0c44191651535259fcb6e605",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "guzzlehttp/promises": "^2.6",
-                "guzzlehttp/psr7": "^2.13.2",
+                "guzzlehttp/psr7": "^2.13.4",
                 "php": "^7.2.5 || ^8.0",
                 "psr/http-client": "^1.0",
                 "symfony/deprecation-contracts": "^2.5 || ^3.0",
@@ -9077,7 +9044,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/guzzle/issues",
-                "source": "https://github.com/guzzle/guzzle/tree/7.16.1"
+                "source": "https://github.com/guzzle/guzzle/tree/7.16.3"
             },
             "funding": [
                 {
@@ -9093,7 +9060,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-25T21:35:21+00:00"
+            "time": "2026-11-17T16:23:09+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -9181,16 +9148,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "2.13.3",
+            "version": "2.13.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "6d3cd8285a97eaa352956a4ada92fa03ecce1c4e"
+                "reference": "ad5e3f872690e1151e1171de2963150fc45ea1e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/6d3cd8285a97eaa352956a4ada92fa03ecce1c4e",
-                "reference": "6d3cd8285a97eaa352956a4ada92fa03ecce1c4e",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/ad5e3f872690e1151e1171de2963150fc45ea1e3",
+                "reference": "ad5e3f872690e1151e1171de2963150fc45ea1e3",
                 "shasum": ""
             },
             "require": {
@@ -9280,7 +9247,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/2.13.3"
+                "source": "https://github.com/guzzle/psr7/tree/2.13.4"
             },
             "funding": [
                 {
@@ -9296,7 +9263,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-12T15:57:42+00:00"
+            "time": "2026-11-17T16:15:51+00:00"
         },
         {
             "name": "halaxa/json-machine",
@@ -18741,6 +18708,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "bcgov/cs_notify": 20,
         "bcgov/gdx_analytics_drupal_snowplow": 20,
         "drupal/ckeditor5_fullscreen": 10,
         "drupal/ckeditor_codemirror": 10,
