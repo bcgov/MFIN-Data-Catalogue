@@ -2086,6 +2086,9 @@
             ],
             "description": "A book is a set of nodes tied together in a hierarchical structure, with chapters, sections, and subsections.",
             "homepage": "https://drupal.org/project/book",
+            "keywords": [
+                "Actively maintained"
+            ],
             "support": {
                 "source": "https://git.drupalcode.org/project/book",
                 "issues": "https://drupal.org/project/issues/book"
@@ -2812,16 +2815,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "11.4.12",
+            "version": "11.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "d383935b2ee61cef905fa7d1f84642160a89a942"
+                "reference": "ec81468a1e534a8a5a0b803060dbe782a709ef77"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/d383935b2ee61cef905fa7d1f84642160a89a942",
-                "reference": "d383935b2ee61cef905fa7d1f84642160a89a942",
+                "url": "https://api.github.com/repos/drupal/core/zipball/ec81468a1e534a8a5a0b803060dbe782a709ef77",
+                "reference": "ec81468a1e534a8a5a0b803060dbe782a709ef77",
                 "shasum": ""
             },
             "require": {
@@ -2994,7 +2997,7 @@
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
             "support": {
-                "source": "https://github.com/drupal/core/tree/11.4.12"
+                "source": "https://github.com/drupal/core/tree/11.4.13"
             },
             "funding": [
                 {
@@ -3002,11 +3005,11 @@
                     "type": "other"
                 }
             ],
-            "time": "2026-11-06T22:05:10+00:00"
+            "time": "2026-11-18T14:44:34+00:00"
         },
         {
             "name": "drupal/core-composer-scaffold",
-            "version": "11.4.12",
+            "version": "11.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-composer-scaffold.git",
@@ -3050,29 +3053,29 @@
                 "drupal"
             ],
             "support": {
-                "source": "https://github.com/drupal/core-composer-scaffold/tree/11.4.12"
+                "source": "https://github.com/drupal/core-composer-scaffold/tree/11.4.13"
             },
             "time": "2026-07-09T23:23:24+00:00"
         },
         {
             "name": "drupal/core-recommended",
-            "version": "11.4.12",
+            "version": "11.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-recommended.git",
-                "reference": "30234a02ba4ae4e30b1bb54efaaca2c9834e2c1d"
+                "reference": "84c62025acb64562b191b200a33dab043c3590db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core-recommended/zipball/30234a02ba4ae4e30b1bb54efaaca2c9834e2c1d",
-                "reference": "30234a02ba4ae4e30b1bb54efaaca2c9834e2c1d",
+                "url": "https://api.github.com/repos/drupal/core-recommended/zipball/84c62025acb64562b191b200a33dab043c3590db",
+                "reference": "84c62025acb64562b191b200a33dab043c3590db",
                 "shasum": ""
             },
             "require": {
                 "asm89/stack-cors": "~v2.4.0",
                 "composer/semver": "~3.4.4",
                 "doctrine/lexer": "~3.0.1",
-                "drupal/core": "11.4.12",
+                "drupal/core": "11.4.13",
                 "egulias/email-validator": "~4.0.4",
                 "justinrainbow/json-schema": "~6.8.2",
                 "marc-mabe/php-enum": "~v4.7.2",
@@ -3130,9 +3133,9 @@
             ],
             "description": "Core and its dependencies with known-compatible minor versions. Require this project INSTEAD OF drupal/core.",
             "support": {
-                "source": "https://github.com/drupal/core-recommended/tree/11.4.12"
+                "source": "https://github.com/drupal/core-recommended/tree/11.4.13"
             },
-            "time": "2026-11-06T22:05:10+00:00"
+            "time": "2026-11-18T14:44:34+00:00"
         },
         {
             "name": "drupal/cshs",
@@ -3454,6 +3457,10 @@
             ],
             "description": "Various blocks, pages, and functions for developers.",
             "homepage": "https://www.drupal.org/project/devel",
+            "keywords": [
+                "Actively maintained",
+                "Administration tools"
+            ],
             "support": {
                 "source": "https://gitlab.com/drupalspoons/devel",
                 "issues": "https://gitlab.com/drupalspoons/devel/-/issues",
@@ -3615,17 +3622,17 @@
         },
         {
             "name": "drupal/embed",
-            "version": "1.10.0",
+            "version": "1.11.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/embed.git",
-                "reference": "8.x-1.10"
+                "reference": "8.x-1.11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/embed-8.x-1.10.zip",
-                "reference": "8.x-1.10",
-                "shasum": "4ac5be0c3a421851c9c60ed82e3bc497be88e61c"
+                "url": "https://ftp.drupal.org/files/projects/embed-8.x-1.11.zip",
+                "reference": "8.x-1.11",
+                "shasum": "e0a6dc8d19fd52301574f9fca2e5880707ef3a70"
             },
             "require": {
                 "drupal/core": "^10.2 || ^11"
@@ -3636,8 +3643,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.10",
-                    "datestamp": "1737663032",
+                    "version": "8.x-1.11",
+                    "datestamp": "1795024790",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3676,6 +3683,10 @@
             ],
             "description": "Provides a framework for different types of embeds in text editors.",
             "homepage": "https://www.drupal.org/project/embed",
+            "keywords": [
+                "Content editing experience",
+                "Minimally maintained"
+            ],
             "support": {
                 "source": "https://git.drupalcode.org/project/embed"
             }
@@ -5068,6 +5079,10 @@
             ],
             "description": "Provides jQuery UI Draggable library.",
             "homepage": "https://www.drupal.org/project/jquery_ui_draggable",
+            "keywords": [
+                "Developer tools",
+                "Seeking new maintainer"
+            ],
             "support": {
                 "source": "https://git.drupalcode.org/project/jquery_ui_draggable"
             }
@@ -5122,6 +5137,10 @@
             ],
             "description": "Provides jQuery UI Droppable library.",
             "homepage": "https://www.drupal.org/project/jquery_ui_droppable",
+            "keywords": [
+                "Developer tools",
+                "Seeking new maintainer"
+            ],
             "support": {
                 "source": "https://git.drupalcode.org/project/jquery_ui_droppable"
             }
@@ -5496,6 +5515,7 @@
             "description": "A pluggable client implementation for the OpenID Connect protocol.",
             "homepage": "https://www.drupal.org/project/openid_connect",
             "keywords": [
+                "Access control",
                 "Drupal"
             ],
             "support": {
@@ -8969,22 +8989,22 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "7.16.1",
+            "version": "7.16.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "81755d989b3007ca7f88a069857553cd08e7dc2e"
+                "reference": "c88a78082757dd5a0c44191651535259fcb6e605"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/81755d989b3007ca7f88a069857553cd08e7dc2e",
-                "reference": "81755d989b3007ca7f88a069857553cd08e7dc2e",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/c88a78082757dd5a0c44191651535259fcb6e605",
+                "reference": "c88a78082757dd5a0c44191651535259fcb6e605",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "guzzlehttp/promises": "^2.6",
-                "guzzlehttp/psr7": "^2.13.2",
+                "guzzlehttp/psr7": "^2.13.4",
                 "php": "^7.2.5 || ^8.0",
                 "psr/http-client": "^1.0",
                 "symfony/deprecation-contracts": "^2.5 || ^3.0",
@@ -9077,7 +9097,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/guzzle/issues",
-                "source": "https://github.com/guzzle/guzzle/tree/7.16.1"
+                "source": "https://github.com/guzzle/guzzle/tree/7.16.3"
             },
             "funding": [
                 {
@@ -9093,7 +9113,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-25T21:35:21+00:00"
+            "time": "2026-11-17T16:23:09+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -9181,16 +9201,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "2.13.3",
+            "version": "2.13.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "6d3cd8285a97eaa352956a4ada92fa03ecce1c4e"
+                "reference": "ad5e3f872690e1151e1171de2963150fc45ea1e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/6d3cd8285a97eaa352956a4ada92fa03ecce1c4e",
-                "reference": "6d3cd8285a97eaa352956a4ada92fa03ecce1c4e",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/ad5e3f872690e1151e1171de2963150fc45ea1e3",
+                "reference": "ad5e3f872690e1151e1171de2963150fc45ea1e3",
                 "shasum": ""
             },
             "require": {
@@ -9280,7 +9300,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/2.13.3"
+                "source": "https://github.com/guzzle/psr7/tree/2.13.4"
             },
             "funding": [
                 {
@@ -9296,7 +9316,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-12T15:57:42+00:00"
+            "time": "2026-11-17T16:15:51+00:00"
         },
         {
             "name": "halaxa/json-machine",
