@@ -4,6 +4,7 @@ namespace Drupal\bc_dc\Form;
 
 use Drupal\bc_dc\Service\EmailSending;
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Config\TypedConfigManagerInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -26,8 +27,9 @@ class BcDcSettingsForm extends ConfigFormBase {
   public function __construct(
     protected EmailSending $bcDcEmailSending,
     ConfigFactoryInterface $config_factory,
+    TypedConfigManagerInterface $typedConfigManager,
   ) {
-    parent::__construct($config_factory);
+    parent::__construct($config_factory, $typedConfigManager);
   }
 
   /**
@@ -37,6 +39,7 @@ class BcDcSettingsForm extends ConfigFormBase {
     return new static(
       $container->get('bc_dc.email_sending'),
       $container->get('config.factory'),
+      $container->get('config.typed'),
     );
   }
 
