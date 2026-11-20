@@ -11,9 +11,9 @@ use Drupal\Core\Logger\LoggerChannelTrait;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\Core\Url;
-use Drupal\message_gcnotify\Service\GcNotifyApiService;
 use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\cs_notify\Service\NotificationClient;
 
 /**
  * Service for sending reminders to review out-of-date data_set nodes.
@@ -37,12 +37,15 @@ class EmailSending implements ContainerInjectionInterface {
    *   The logger.factory service.
    * @param \Drupal\Core\StringTranslation\TranslationInterface $stringTranslation
    *   The string_translation service.
+   * @param \Drupal\cs_notify\Service\NotificationClient $notificationClient
+   *   The thing we'll send the messages with.
    */
   public function __construct(
     protected ConfigFactoryInterface $configFactory,
     protected EntityTypeManagerInterface $entityTypeManager,
     LoggerChannelFactoryInterface $loggerFactory,
     TranslationInterface $stringTranslation,
+    protected NotificationClient $notificationClient,
   ) {
   }
 
@@ -55,8 +58,18 @@ class EmailSending implements ContainerInjectionInterface {
       $container->get('entity_type.manager'),
       $container->get('logger.factory'),
       $container->get('string_translation'),
+      $container->get('cs_notify.client'),
     );
   }
+
+  public function sendTestEmailToDan(): void {
+    $this->notificationClient->sendEmailQueued(
+      ['dan.howard@gov.bc.ca'], 
+      'Your queued application', 
+      "<h2>Hello kind sir</h2><p>Your application has been received.</p>"
+    );
+  }
+
 
   /**
    * Get and send review reminders to all data_set authors.
@@ -80,33 +93,25 @@ class EmailSending implements ContainerInjectionInterface {
    *   TRUE if sending succeed, FALSE if it failed, NULL if the user has no
    *   email address or if there are no updates to send to this user.
    */
-  public function sendRemindersToOneUser(int $uid, array $assets_needing_review_for_user): ?bool {
+  public function sendRemindersToOneUser(int $uid, array $assets_needing_review_for_user): void {
     $account = $this->entityTypeManager->getStorage('user')->load($uid);
     $email = $account?->getEmail();
     $logger = $this->getLogger('bc_dc');
 
     if (!$email) {
       $logger->error('EmailSending: User @uid has no email address.', ['@uid' => $uid]);
-      return NULL;
+      return;
     }
 
     $body = $this->generateReviewReminderBody($assets_needing_review_for_user, $uid);
     if (!$body) {
       $logger->error('EmailSending: Empty message for user @uid.', ['@uid' => $uid]);
-      return NULL;
+      return;
     }
 
     $subject = $this->t('Metadata records you maintain need updates', [], ['langcode' => $account->getPreferredLangcode()]);
 
-    $success = GcNotifyApiService::sendMessage([$email], $subject, $body);
-    if ($success) {
-      $logger->notice('Sent ReviewReminder message to user @uid.', ['@uid' => $uid]);
-    }
-    else {
-      $logger->error('Failed to send ReviewReminder message to user @uid.', ['@uid' => $uid]);
-    }
-
-    return $success;
+    $this->notificationClient->sendEmailQueued([$email], $subject, $body, 'markdown');
   }
 
   /**
@@ -435,14 +440,7 @@ END_BODY,
     $body_content .= $this->getEmailFooter();
 
     // Send the message and log the result.
-    $success = GcNotifyApiService::sendMessage([$owner->getEmail()], $subject, $body_content);
-    $logger = $this->getLogger('bc_dc');
-    $logger->notice(($success ? 'Sent message' : 'Failed sending message')
-              . ' to user @user_num when updating data_set @nid.', [
-                '@user_num' => $owner->id(),
-                '@nid' => $data_set->id(),
-              ]
-    );
+    $this->notificationClient->sendEmailQueued([$owner->getEmail()], $subject, $body_content, 'markdown');
   }
 
 

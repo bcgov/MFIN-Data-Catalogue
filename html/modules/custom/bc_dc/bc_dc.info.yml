@@ -15,6 +15,7 @@ dependencies:
   - ckeditor5_fullscreen:ckeditor5_fullscreen
   - ckeditor_codemirror:ckeditor_codemirror
   - clipboardjs:clipboardjs
+  - cs_notify:cs_notify
   - date_popup:date_popup
   - diff:diff
   - drupal:admin_toolbar_tools
@@ -51,7 +52,6 @@ dependencies:
   - formatter_suite:formatter_suite
   - hierarchical_term_formatter:hierarchical_term_formatter
   - insert_view_adv:insert_view_adv
-  - message_gcnotify:message_gcnotify
   - metatag:metatag
   - page_manager:page_manager
   - page_manager:page_manager_ui

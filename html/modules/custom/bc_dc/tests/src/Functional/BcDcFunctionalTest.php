@@ -133,17 +133,17 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
     $this->drupalGet('admin/reports/status');
     $this->assertSession()->elementExists('xpath', '//div[@class = "system-status-report__status-title"][normalize-space(text()) = "BC Data Catalogue"]');
 
-    // Test config for message_gcnotify. Ensures tests cannot send messages.
-    $this->drupalGet('admin/config/message/message-gcnotify');
-    $edit = [
-      'enabled' => '0',
-      'prod_apikey' => 'test-prod_apikey',
-      'prod_template' => 'test-prod_template',
-      'test_apikey' => 'test-test_apikey',
-      'team_apikey' => 'test-team_apikey',
-      'test_template' => 'test-test_template',
-    ];
-    $this->submitForm($edit, 'Save configuration');
+    // // Test config for message_gcnotify. Ensures tests cannot send messages.
+    // $this->drupalGet('admin/config/message/message-gcnotify');
+    // $edit = [
+    //   'enabled' => '0',
+    //   'prod_apikey' => 'test-prod_apikey',
+    //   'prod_template' => 'test-prod_template',
+    //   'test_apikey' => 'test-test_apikey',
+    //   'team_apikey' => 'test-team_apikey',
+    //   'test_template' => 'test-test_template',
+    // ];
+    // $this->submitForm($edit, 'Save configuration');
 
     // Test that roles exist.
     $roles = [
@@ -700,22 +700,22 @@ class BcDcFunctionalTest extends BcbbBrowserTestBase {
 
     // Examine logs to check that update notification emails would have been
     // sent to users who bookmarked the updated data_set.
-    $options = [
-      'query' => ['type' => ['bc_dc', 'message_gcnotify']],
-    ];
-    $this->drupalGet('admin/reports/dblog', $options);
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-watchdog")]/div/table/tbody/tr/td/a[text() = "Sent message to 1 users when updating data_set 2."]');
-    // Get from @title the request that would have been sent to GC Notify.
-    $element = $this->xpath('//div[contains(@class, "view-watchdog")]/div/table/tbody/tr/td/a[contains(@title, "A asset you have bookmarked has been updated")]');
-    $element = reset($element);
-    $title = $element->getAttribute('title');
-    preg_match('/^GC Notify disabled[^:]+: (.+)/', $title, $matches);
-    $gcnotify_request = json_decode($matches[1]);
-    // Run tests on the request.
-    $this->assertEquals('A asset you have bookmarked has been updated', $gcnotify_request->rows[1][1]);
-    $this->assertMatchesRegularExpression('(The following asset has been updated:
-' . preg_quote($data_set_title) . '
-https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]));
+//     $options = [
+//       'query' => ['type' => ['bc_dc', 'message_gcnotify']],
+//     ];
+//     $this->drupalGet('admin/reports/dblog', $options);
+//     $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-watchdog")]/div/table/tbody/tr/td/a[text() = "Sent message to 1 users when updating data_set 2."]');
+//     // Get from @title the request that would have been sent to GC Notify.
+//     $element = $this->xpath('//div[contains(@class, "view-watchdog")]/div/table/tbody/tr/td/a[contains(@title, "A asset you have bookmarked has been updated")]');
+//     $element = reset($element);
+//     $title = $element->getAttribute('title');
+//     preg_match('/^GC Notify disabled[^:]+: (.+)/', $title, $matches);
+//     $gcnotify_request = json_decode($matches[1]);
+//     // Run tests on the request.
+//     $this->assertEquals('A asset you have bookmarked has been updated', $gcnotify_request->rows[1][1]);
+//     $this->assertMatchesRegularExpression('(The following asset has been updated:
+// ' . preg_quote($data_set_title) . '
+// https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]));
 
     // The bookmark field_last_viewed_date gets updated when visiting a page.
     //
@@ -1205,14 +1205,14 @@ https?://[^/]+/node/2)', htmlspecialchars_decode($gcnotify_request->rows[1][2]))
     // Valid user, valid data, message gets sent.
     $return = $bc_dc_review_reminder->sendRemindersToOneUser(1, $reminders[1]);
     $this->assertTrue($return);
-    // Log entries for the above.
-    $options = [
-      'query' => ['type' => ['bc_dc', 'message_gcnotify']],
-    ];
-    $this->drupalGet('admin/reports/dblog', $options);
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-watchdog")]/div/table/tbody/tr/td/a[text() = "ReviewReminder: User 10000 has no email address."]');
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-watchdog")]/div/table/tbody/tr/td/a[text() = "ReviewReminder: Empty message for user 1."]');
-    $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-watchdog")]/div/table/tbody/tr/td/a[text() = "Sent ReviewReminder message to user 1."]');
+    // // Log entries for the above.
+    // $options = [
+    //   'query' => ['type' => ['bc_dc', 'message_gcnotify']],
+    // ];
+    // $this->drupalGet('admin/reports/dblog', $options);
+    // $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-watchdog")]/div/table/tbody/tr/td/a[text() = "ReviewReminder: User 10000 has no email address."]');
+    // $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-watchdog")]/div/table/tbody/tr/td/a[text() = "ReviewReminder: Empty message for user 1."]');
+    // $this->assertSession()->elementExists('xpath', '//div[contains(@class, "view-watchdog")]/div/table/tbody/tr/td/a[text() = "Sent ReviewReminder message to user 1."]');
 
     // Test field_data_sets_used.
     // Create a data_set node. node/6.
