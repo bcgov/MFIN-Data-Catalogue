@@ -247,8 +247,7 @@ END_BODY,
     $query = $node_storage->getQuery()
       ->accessCheck(FALSE)
       ->condition('type', 'data_set')
-      ->exists('field_review_interval')
-      ->exists('field_last_review_date');
+      ->exists('field_review_interval');
     $data_set_nids = $query->execute();
 
     $assets_needing_review = [];
