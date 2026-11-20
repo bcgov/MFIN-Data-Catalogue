@@ -64,16 +64,16 @@
         },
         {
             "name": "bcgov/cs_notify",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/danhgov/cs_notify.git",
-                "reference": "3d954969d6c413b26c9a37801788963f5ad4e96d"
+                "reference": "bd07b7925d4654b1d29ed99cc09917ee4d4ba2a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/danhgov/cs_notify/zipball/3d954969d6c413b26c9a37801788963f5ad4e96d",
-                "reference": "3d954969d6c413b26c9a37801788963f5ad4e96d",
+                "url": "https://api.github.com/repos/danhgov/cs_notify/zipball/bd07b7925d4654b1d29ed99cc09917ee4d4ba2a3",
+                "reference": "bd07b7925d4654b1d29ed99cc09917ee4d4ba2a3",
                 "shasum": ""
             },
             "require": {
@@ -86,10 +86,10 @@
             "description": "Notification functionality, using the Notify API from Connected Services",
             "homepage": "https://github.com/danhgov/cs_notify",
             "support": {
-                "source": "https://github.com/danhgov/cs_notify/tree/1.0.0",
+                "source": "https://github.com/danhgov/cs_notify/tree/1.0.1",
                 "issues": "https://github.com/danhgov/cs_notify/issues"
             },
-            "time": "2026-11-17T21:59:50+00:00"
+            "time": "2026-11-20T01:02:12+00:00"
         },
         {
             "name": "bcgov/gdx_analytics_drupal_snowplow",
